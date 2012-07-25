@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="admin_controls well">
+	<a class="btn btn-primary" href="new">New</a>
+</div>
+<table class="table table-borderd table-striped well">
+	<thead>
+	<tr>
+		{% for prop in properties %}
+		<th> {{ prop }}</th>
+		{% endfor %}
+		</tr>
+	</thead>
+	<tbody>
+		{% for item in list %}
+		<tr>
+			{% for prop in item.properties() %}
+				<td> {{ item[prop] }} </td>
+			{% endfor %}
+		</tr>
+		{% endfor %}	
+	</tbody>
+</table>
+{% endblock %}
