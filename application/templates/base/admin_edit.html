@@ -1,13 +1,14 @@
-{% extends "base.html" %} {% block content %}
+{% extends "admin_base.html" %} {% block content %}
 <div class="admin_controls well">
 	<button class="btn" href="#" onclick="history.go(-1);return false;"> <i class="icon-chevron-left"></i> Back</button>
 </div>
 <form id="category-form" class="well form-horizontal"
-	action="{{ url_for('admin_list') }}" method="post"
+	action="{{ action }}" method="post"
 	accept-charset="utf-8">
 	<fieldset>
-		{{ form.hidden_tag() }} {% for field in form._fields %} {% if not
-		field.startswith('csrf') %}
+		{{ form.hidden_tag() }}
+		{% for field in form._fields %} 
+		{% if not field.startswith('csrf') %}
 		<div class="control-group  {{ 'error' if form[field].errors }}">
 			<div class="control-label">{{ form[field].label }}</div>
 			<div class="controls">
@@ -20,7 +21,8 @@
 				{% endif %}
 			</div>
 		</div>
-		{% endif %} {% endfor %}
+		{% endif %} 
+		{% endfor %}
 		<div class="control-group">
 			<div class="controls">
 				<button class="btn" onclick="history.go(-1);"><i class="icon-remove"></i> Cancel</button>

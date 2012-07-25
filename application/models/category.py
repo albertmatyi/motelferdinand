@@ -63,7 +63,7 @@ class CategoryModel(AbstractModel):
         '''
         for cat in CategoryModel.all().filter('parent_id', self.key().id()):
             cat.delete()
-        for dep_mdl in CategoryModel.dependencies[self.__class__]:
+        for dep_mdl in dependencies:
             for obj in dep_mdl.all().filter('category_id', self.key().id()):
                 obj.delete()
         super(CategoryModel, self).delete()
@@ -86,7 +86,10 @@ class CategoryModel(AbstractModel):
             return []
         else:
             parent = CategoryModel.get_by_id(self.parent_id)
-            return parent.get_path_to_root() + [parent] 
+            if parent is not None:
+                return parent.get_path_to_root() + [parent]
+            else:
+                return [] 
         pass
     
     @staticmethod

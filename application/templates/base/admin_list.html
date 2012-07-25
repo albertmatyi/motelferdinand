@@ -1,25 +1,34 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "admin_base.html" %} {% block content %}
 <div class="admin_controls well">
 	<a class="btn btn-primary" href="new">New</a>
 </div>
 <table class="table table-borderd table-striped well">
 	<thead>
-	<tr>
-		{% for prop in properties %}
-		<th> {{ prop }}</th>
-		{% endfor %}
+		<tr>
+			<th>Id</th>
+			{% for prop in properties %}
+				<th>{{ prop }}</th> 
+			{% endfor %}
+			<th>Actions</th>
 		</tr>
 	</thead>
 	<tbody>
 		{% for item in list %}
 		<tr>
+			<td>{{item.key().id()}}</td>
 			{% for prop in item.properties() %}
-				<td> {{ item[prop] }} </td>
+				<td>{{ item[prop] }}</td> 
 			{% endfor %}
+			<td> 
+				<form action="{{item.key().id()}}?_method=DELETE" method="post">
+					<fieldset>
+					<a class="btn btn-primary" href="{{item.key().id()}}" ><i class="icon-edit icon-white"></i></a>
+					<button class="btn btn-danger"><i class="icon-remove icon-white"></i></button>
+					</fieldset>
+				</form>
+			</td>
 		</tr>
-		{% endfor %}	
+		{% endfor %}
 	</tbody>
 </table>
 {% endblock %}
