@@ -9,6 +9,7 @@ from flask.helpers import flash
 CategoryForm = model_form(CategoryModel, wtf.Form)
 
 @app.route("/admin/categories/", methods=["GET"])
+@app.route("/", methods=["GET"])
 def admin_categories():
     categories = CategoryModel.all()
     form = CategoryForm(request.form)
