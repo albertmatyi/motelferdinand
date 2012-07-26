@@ -3,8 +3,14 @@ from wtforms.ext.appengine.db import model_form
 from application.models import * 
 from flaskext import wtf
 from application.controllers import helpers
+from werkzeug.utils import redirect
+from flask.helpers import url_for
 
 CategoryForm = model_form(CategoryModel, wtf.Form)
+
+@app.route("/", methods=["GET"])
+def home():
+    return redirect(url_for('admin_categories'))
 
 @app.route("/admin/categories/", methods=["GET", "POST"])
 def admin_categories():
