@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
-    <title>{% block title%}Flask on App Engine{% endblock %}</title>
+    <title>{% block title%}{% endblock %}Ferdinand Panzio</title>
     <link href="/static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <style> body { padding-top: 90px; } </style> <!-- Bootstrap -->
     <link href="/static/lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
@@ -17,7 +17,7 @@
 
 <body>
     <div id="header">
-        {% include 'includes/nav.html' %} {# pull in navbar #}
+        {% include 'includes/admin_nav.html' %} {# pull in navbar #}
     </div>
     <div class="container" id="maincontent">
         {% include 'includes/flash_message.html' %} {# page-level feedback notices #}

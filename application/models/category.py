@@ -8,11 +8,40 @@ from application.models import AbstractModel, ContentModel
 
 dependencies = [ContentModel]
 
+class CategoryDummy(object):
+    def __init__(self):
+        self.title = 'Root'
+        pass
+    def key(self):
+        return self
+    def id(self): #@ReservedAssignment
+        return ROOT_CAT_ID
+    def contains_collections(self):
+        return False
+    def to_dict(self):
+        return {'title': 'Root',
+                'contains_collections': 'false',
+                'id': ROOT_CAT_ID,
+         }
+    pass
+
+    
+'''
+    The virtual id of the root category
+'''
+ROOT_CAT_ID = -1
+'''
+    A dummy category object containing the ROOT_CAT_ID (@key().id()) and 
+    a title <Root>
+'''
+ROOT_CAT_DUMMY = CategoryDummy()
+
+
 class CategoryModel(AbstractModel):
     """Category Model"""
     title = db.StringProperty(required=False, default='')
     description = db.TextProperty(required=False, default='')
-    parent_id = db.IntegerProperty(required=False)
+    parent_id = db.IntegerProperty(required=False, default=ROOT_CAT_ID)
     order = db.IntegerProperty(required=True, default=0)
     visible = db.BooleanProperty(required=True, default=False)
     subcategories = None
@@ -115,35 +144,6 @@ class CategoryModel(AbstractModel):
         all_categories = [ROOT_CAT_DUMMY] + [c for c in CategoryModel.all()]
         return (categories, category_path, all_categories)
         pass
-
-
-class CategoryDummy(object):
-    def __init__(self):
-        self.title = 'Root'
-        pass
-    def key(self):
-        return self
-    def id(self): #@ReservedAssignment
-        return ROOT_CAT_ID
-    def contains_collections(self):
-        return False
-    def to_dict(self):
-        return {'title': 'Root',
-                'contains_collections': 'false',
-                'id': ROOT_CAT_ID,
-         }
-    pass
-
-    
-'''
-    The virtual id of the root category
-'''
-ROOT_CAT_ID = -1
-'''
-    A dummy category object containing the ROOT_CAT_ID (@key().id()) and 
-    a title <Root>
-'''
-ROOT_CAT_DUMMY = CategoryDummy()
 
 class CircularCategoryException(Exception):
     def __init__(self):

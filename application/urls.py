@@ -8,7 +8,7 @@ URL dispatch route mappings and error handlers
 from flask import render_template
 
 from application import app
-from controllers import category
+from controllers import category, content
 
 ## Error handlers
 # Handle 404 errors
