@@ -6,59 +6,8 @@ Created on Jul 24, 2012
 from google.appengine.ext import db
 from random import Random
 
-def form_to_model(form, mdl_obj):
-    ''' 
-        Copies all data from a form object to the model object
-    '''
-    for prop, val in vars(form).iteritems():
-        if not prop.startswith('__'):
-            if prop in dir(mdl_obj):
-                typ = type(getattr(mdl_obj, prop))
-                val = val.data
-                if typ is int or typ is long or prop.endswith('id'):
-                    val = long(val)
-                elif typ is str:
-                    val = val.strip()
-                setattr(mdl_obj, prop, val)
-    pass
-
 class AbstractModel(db.Model):
     created = db.DateTimeProperty(auto_now_add=True)
-    pass
-
-class UserModel(AbstractModel):
-    email = db.StringProperty(required=False, default='test@test.tst')
-    auth_domain = db.StringProperty(required=False, default='test@test.tst')
-    federated_identity = db.StringProperty(required=False, default='test@test.tst')
-    federated_provider = db.StringProperty(required=False, default='test@test.tst')
-    nickname = db.StringProperty(required=False, default='test@test.tst')
-    user_id = db.StringProperty(required=False, default='test@test.tst')
-    role_id = db.IntegerProperty(required=True)
-    
-class MediaModel(AbstractModel):
-    content_id = db.IntegerProperty(required=True)
-    title = db.StringProperty(required=True)
-    url = db.StringProperty(required=True)
-    typ3 = db.IntegerProperty(required=True)
-
-
-class BookingModel(AbstractModel):
-    fr0m = db.DateProperty(required=True)
-    until = db.DateProperty(required=True)
-    places = db.IntegerProperty(required=True)
-    feedback = db.TextProperty()
-    accepted = db.BooleanProperty()
-    paid = db.BooleanProperty()
-    feedback = db.TextProperty()
-    user_id = db.IntegerProperty(required=True)
-    bookable_id = db.IntegerProperty(required=True)
-    pass
-
-class I18nModel(AbstractModel):
-    clazz = db.StringProperty(required=True)
-    field = db.StringProperty(required=True)
-    locale = db.StringProperty(required=True)
-    translation = db.TextProperty(required=True)
     pass
 
 def init_db():
@@ -79,7 +28,7 @@ def init_db():
         key = CategoryModel(visible=True, title=title, parent_id= -1, contains_collections=cc % 2 is 0).put()
         cc += 1
         # add random number of subcategories
-        for i in range(0, Random().randint(2, 10)):
+        for _ in range(0, Random().randint(2, 10)):
             CategoryModel(visible=True,
                           title=get_random_text(Random().randint(10, 15)).replace('\n', '')
                           .capitalize(), parent_id=key.id()).put()
@@ -116,6 +65,13 @@ Bronson I delectus tassel. Of voluptate vegan mollit. Of fin letterpress art ut 
 Non-ethical shot anime sriracha trust-fund iphone brooklyn original fresh. 8-bit magna art etsy gluten-free incididunt party. Helvetica salvia party art vintage fin. Brony gluten-free authentic hog street-art twee viral. Narwhal gluten-free shot art bennie yr hog placeat.
 '''
 
+from media import *
 from content import *
+from bookable import *
+from user import *
+from booking import *
 from category import *
+
+
+
 
