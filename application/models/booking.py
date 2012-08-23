@@ -5,6 +5,8 @@ Created on Jul 26, 2012
 '''
 from application.models import AbstractModel
 from google.appengine.ext import db
+from application.models.user import UserModel
+from application.models.bookable import BookableModel
 
 class BookingModel(AbstractModel):
     fr0m = db.DateProperty(required=True, auto_now_add=True)
@@ -14,6 +16,6 @@ class BookingModel(AbstractModel):
     accepted = db.BooleanProperty()
     paid = db.BooleanProperty()
     feedback = db.TextProperty()
-    user_id = db.IntegerProperty(required=True, default=-1)
-    bookable_id = db.IntegerProperty(required=True, default=-1)
+    user = db.ReferenceProperty(UserModel, collection_name='bookings')
+    bookable = db.ReferenceProperty(BookableModel, collection_name='bookings')
     pass

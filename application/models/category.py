@@ -4,9 +4,7 @@ Created on Jul 24, 2012
 @author: matyas
 '''
 from google.appengine.ext import db
-from application.models import AbstractModel, ContentModel
-
-dependencies = [ContentModel]
+from application.models import AbstractModel
 
 class CategoryDummy(object):
     def __init__(self):
@@ -36,15 +34,18 @@ ROOT_CAT_ID = -1
 '''
 ROOT_CAT_DUMMY = CategoryDummy()
 
-
 class CategoryModel(AbstractModel):
+
     """Category Model"""
     title = db.StringProperty(required=False, default='')
     description = db.TextProperty(required=False, default='')
-    parent_id = db.IntegerProperty(required=False, default=ROOT_CAT_ID)
+    parent_category = db.SelfReferenceProperty(collection_name='subcategories')
     order = db.IntegerProperty(required=True, default=0)
     visible = db.BooleanProperty(required=True, default=False)
-    subcategories = None
+    dependencies=['contents', 'subcategories', 'bookables']
+    
+    def __repr__(self, *args, **kwargs):
+        return self.title
     
     @staticmethod
     def get_root_categories(visibleOnly=True):
@@ -55,15 +56,6 @@ class CategoryModel(AbstractModel):
         if visibleOnly:
             qry.filter('visible', True)
         return qry 
-        pass
-    
-    def get_subcategories(self, visible_only=True):
-        '''
-            @return: All subcategories of the current CategoryModel 
-        '''
-        cats = [cat for cat in CategoryModel.all().filter('parent_id',
-                                                          self.key().id())]
-        return cats
         pass
     
     def get_path_ids_to_root(self):
@@ -82,20 +74,6 @@ class CategoryModel(AbstractModel):
         if self.is_saved() and self.key().id() in self.get_path_ids_to_root():
             raise CircularCategoryException()
         return True
-        pass
-    
-    def delete(self):
-        '''
-            Overrides the default delete behaviour and cascades on all categories
-            and images first
-            @return super.delete()
-        '''
-        for cat in CategoryModel.all().filter('parent_id', self.key().id()):
-            cat.delete()
-        for dep_mdl in dependencies:
-            for obj in dep_mdl.all().filter('category_id', self.key().id()):
-                obj.delete()
-        super(CategoryModel, self).delete()
         pass
     
     def put(self):
@@ -151,3 +129,4 @@ class CircularCategoryException(Exception):
                         of one of its subcategories"
         pass
     pass
+

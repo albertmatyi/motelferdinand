@@ -5,8 +5,17 @@ Created on Jul 24, 2012
 '''
 from google.appengine.ext import db
 from application.models import AbstractModel
+from application.models.category import CategoryModel
 
-class ContentModel(AbstractModel):
+
+class AbstractContentModel(AbstractModel):
     title = db.StringProperty(required=False, default='')
     description = db.TextProperty(required=False, default='')
-    category_id = db.IntegerProperty(required=True, default=-1)
+    
+    dependencies=['medias']
+    
+    def __repr__(self, *args, **kwargs):
+        return self.title
+    
+class ContentModel(AbstractContentModel):
+    category = db.ReferenceProperty(CategoryModel, collection_name='contents')

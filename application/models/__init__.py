@@ -8,6 +8,20 @@ from random import Random
 
 class AbstractModel(db.Model):
     created = db.DateTimeProperty(auto_now_add=True)
+    
+    def delete(self):
+        '''
+            Overrides the default delete behaviour and cascades on all categories
+            and images first
+            @return super.delete()
+        '''
+        if hasattr(self.__class__, 'dependencies'):
+            for dep in self.__class__.dependencies:
+                for obj in getattr(self, dep):
+                    obj.delete()
+        super(AbstractModel, self).delete()
+        pass
+    
     pass
 
 def init_db():
@@ -64,13 +78,13 @@ Bronson I delectus tassel. Of voluptate vegan mollit. Of fin letterpress art ut 
 
 Non-ethical shot anime sriracha trust-fund iphone brooklyn original fresh. 8-bit magna art etsy gluten-free incididunt party. Helvetica salvia party art vintage fin. Brony gluten-free authentic hog street-art twee viral. Narwhal gluten-free shot art bennie yr hog placeat.
 '''
-
+from category import *
 from media import *
 from content import *
 from bookable import *
 from user import *
 from booking import *
-from category import *
+
 
 
 
