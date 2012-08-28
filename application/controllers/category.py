@@ -5,12 +5,16 @@ from application.controllers import helpers
 from werkzeug.utils import redirect
 from flask.helpers import url_for
 from flaskext import wtf
+from flask.templating import render_template
 
 CategoryForm = model_form(CategoryModel, wtf.Form)
 
 @app.route("/", methods=["GET"])
 def home():
-    return redirect(url_for('admin_categories'))
+    return render_template('/main.html', categories=CategoryModel.all().filter('visible', True),\
+                                         contents=ContentModel.all().filter('visible', True),\
+                                         bookables=BookableModel.all().filter('visible', True),\
+                                         )
 
 @app.route("/admin/categories/", methods=["GET", "POST"])
 def admin_categories():
