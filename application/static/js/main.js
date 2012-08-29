@@ -1,18 +1,14 @@
-var Utils = {
-    renderFieldErrorTooltip: function (selector, msg, placement) {
-        var elem;
-        if (typeof placement === 'undefined') {
-            placement = 'right'; // default to right-aligned tooltip
-        }
-        elem = $(selector);
-        elem.tooltip({'title': msg, 'trigger': 'manual', 'placement': placement});
-        elem.tooltip('show');
-        elem.addClass('error');
-        elem.on('focus click', function(e) {
-            elem.removeClass('error');
-            elem.tooltip('hide');
-        });
-    }
+categoriesMenuDirective = {
+	title : {
+		href : function(params) {
+			return '#Category' + this.id;
+		}
+	}
 };
 
-/* Your custom JavaScript here */
+$(window).load(function() {
+	// transparency.register($);
+	$('.category-nav').render(model.categories, categoriesMenuDirective);
+	// $('.category-nav').render(model.categories);
+	$('#navbar').scrollspy();
+});
