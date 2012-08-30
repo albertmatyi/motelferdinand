@@ -58,13 +58,13 @@ def init_db():
               'Partners', 'Documents', 'About']
     cc = 0
     for title in titles:
-        key = CategoryModel(visible=True, title=title, parent_id= -1, contains_collections=cc % 2 is 0).put()
+        key = CategoryModel(visible=True, title=title, parent_category=None).put()
         cc += 1
         # add random number of subcategories
         for _ in range(0, Random().randint(2, 10)):
             CategoryModel(visible=True,
                           title=get_random_text(Random().randint(10, 15)).replace('\n', '')
-                          .capitalize(), parent_id=key.id()).put()
+                          .capitalize(), parent_category=key).put()
             pass
     pass
 

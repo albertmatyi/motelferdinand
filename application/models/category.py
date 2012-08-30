@@ -52,7 +52,7 @@ class CategoryModel(AbstractModel):
         ''' 
         @return: The query for the root 
         '''
-        qry = CategoryModel.all().filter('parent_id', ROOT_CAT_ID)
+        qry = CategoryModel.all().filter('parent_', ROOT_CAT_ID)
         if visibleOnly:
             qry.filter('visible', True)
         return qry 
@@ -71,7 +71,7 @@ class CategoryModel(AbstractModel):
             @return: True if all is right, otherwise throws exception
             
         '''
-        if self.is_saved() and self.key().id() in self.get_path_ids_to_root():
+        if self.is_saved() and self in self.get_path_ids_to_root():
             raise CircularCategoryException()
         return True
         pass
@@ -89,40 +89,16 @@ class CategoryModel(AbstractModel):
             @return: All of the CategoryModel objects starting with its parent
             until the root. (it does not contain self)  
         '''
-        if self.parent_id == -1:
+        if self.parent_category == None:
             return []
         else:
-            parent = CategoryModel.get_by_id(self.parent_id)
-            if parent is not None:
+            parent = self.parent_category
+            if parent is not None and parent is not self:
                 return parent.get_path_to_root() + [parent]
             else:
                 return [] 
         pass
     
-    @staticmethod
-    def get_categories_info(parent_id):
-        '''
-            Retrieves info related to category identified by parent_id
-            
-            @return (categories, category_path, all_categories)
-                * categories - that have parent_id the same as the param
-                * the path from root to category identified by parent_id
-                * all categories (regardless of parent_id)
-        '''
-        category_path = [ROOT_CAT_DUMMY]
-        category = None
-        if parent_id != ROOT_CAT_ID:
-            category = CategoryModel.get_by_id(parent_id)
-            category_path += category.get_path_to_root() + [category]
-            categories = [c for c in category.get_subcategories(False)]
-        else:
-            category = ROOT_CAT_DUMMY
-            categories = [c for c in CategoryModel.get_root_categories(False)]
-        categories = sorted(categories, key=lambda c: c.order)
-        all_categories = [ROOT_CAT_DUMMY] + [c for c in CategoryModel.all()]
-        return (categories, category_path, all_categories)
-        pass
-
 class CircularCategoryException(Exception):
     def __init__(self):
         self.message = "The category cannot be the subcategory of itself or \

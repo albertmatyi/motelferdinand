@@ -3,8 +3,12 @@
 		<div class="container">
 
 			<a class="brand" href="/">Ferdinand</a>
-			<ul class="category-nav nav" >
-				<li><a href="#" data-bind="title"></a></li>
+			<ul class="category-nav nav">
+				<li data-bind="visible"><a href="#" data-bind="title"></a>
+					<ul class="dropdown-menu" data-bind="subcategories">
+						<li data-bind="subcategory"><a href="#" data-bind="title"></a></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 		<!-- /.navbar .container -->

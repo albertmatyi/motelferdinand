@@ -12,9 +12,8 @@ CategoryForm = model_form(CategoryModel, wtf.Form)
 @app.route("/", methods=["GET"])
 def home():
     return render_template('/main.html',\
-                             js_data = {'categories': [e.to_dict() for e in CategoryModel.all().filter('visible', True)],\
-                                         'contents': [e.to_dict() for e in ContentModel.all().filter('visible', True)],\
-                                         'bookables': [e.to_dict() for e in BookableModel.all().filter('visible', True)],\
+                             js_data = {'categories': [e.to_dict() for e in CategoryModel.all().filter('visible', True)\
+                                                       .filter('parent_category', None)],\
                                          })
 
 @app.route("/admin/categories/", methods=["GET", "POST"])
