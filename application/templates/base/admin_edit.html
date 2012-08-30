@@ -1,4 +1,6 @@
-{% extends "admin_base.html" %} {% block content %}
+{% extends "admin_base.html" %} 
+{% block style_block %}<link href="/static/lib/wysihtml5/css/stylesheet.css" rel="stylesheet" />{% endblock %}
+{% block content %}
 <div class="admin_controls well">
 	<button class="btn" href="#" onclick="history.go(-1);return false;"> <i class="icon-chevron-left"></i> Back</button>
 </div>
@@ -31,4 +33,68 @@
 		</div>
 	</fieldset>
 </form>
+
+<div id="wysihtml5-toolbars">
+	<!-- This is the textarea toolba template -->
+	<div id="wysihtml5-editor-toolbar" class="wysihtml5-editor-toolbar"
+		data-bind="id" style="display: none;">
+		<header>
+			<ul class="commands">
+				<li class="command" title="Make text bold (CTRL + B)"
+					data-wysihtml5-command="bold" href="javascript:;" unselectable="on"></li>
+				<li class="command" title="Make text italic (CTRL + I)"
+					data-wysihtml5-command="italic" href="javascript:;"
+					unselectable="on"></li>
+				<li class="command" title="Insert an unordered list"
+					data-wysihtml5-command="insertUnorderedList" href="javascript:;"
+					unselectable="on"></li>
+				<li class="command" title="Insert an ordered list"
+					data-wysihtml5-command="insertOrderedList" href="javascript:;"
+					unselectable="on"></li>
+				<li class="command" title="Insert a link"
+					data-wysihtml5-command="createLink" href="javascript:;"
+					unselectable="on"></li>
+				<li class="command" title="Insert an image"
+					data-wysihtml5-command="insertImage" href="javascript:;"
+					unselectable="on"></li>
+				<li class="command" title="Insert headline 1"
+					data-wysihtml5-command-value="h1"
+					data-wysihtml5-command="formatBlock" href="javascript:;"
+					unselectable="on"></li>
+				<li class="command" title="Insert headline 2"
+					data-wysihtml5-command-value="h2"
+					data-wysihtml5-command="formatBlock" href="javascript:;"
+					unselectable="on"></li>
+				<li class="command" title="Insert speech"
+					data-wysihtml5-command="insertSpeech" href="javascript:;"
+					unselectable="on" style="display: none;"></li>
+				<li class="action" title="Show HTML"
+					data-wysihtml5-action="change_view" href="javascript:;"
+					unselectable="on"></li>
+			</ul>
+		</header>
+		<div style="display: none;" data-wysihtml5-dialog="createLink">
+			<label> Link: <input value="http://"
+				data-wysihtml5-dialog-field="href">
+			</label> <a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a
+				data-wysihtml5-dialog-action="cancel">Cancel</a>
+		</div>
+
+		<div style="display: none;" data-wysihtml5-dialog="insertImage">
+			<label> Image: <input value="http://"
+				data-wysihtml5-dialog-field="src">
+			</label> <a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a
+				data-wysihtml5-dialog-action="cancel">Cancel</a>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+{% endblock %}
+
+{% block tail_script %}
+	<!-- wysihtml5 parser rules -->
+	<script src="/static/lib/wysihtml5/js/advanced_parser_rules.js"></script>
+	<!-- wysihtml5 Library -->
+	<script src="/static/lib/wysihtml5/js/wysihtml5-0.3.0.min.js"></script>
+	<script src="/static/js/admin_edit.js"></script>
 {% endblock %}
