@@ -53,7 +53,7 @@ def init_db():
         cat.delete()
         pass
     
-    titles = ['Ferdinand motel', 'Booking', 'Guestbook', 'Location',
+    titles = ['Booking', 'Guestbook', 'Location',
               'Rooms', 'Restaurants', 'Sightseeing',
               'Partners', 'Documents', 'About']
     cc = 0
