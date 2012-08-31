@@ -1,4 +1,3 @@
-
-/* Main stylesheet */
-
-/* Your customizations here */
+.dropdown-menu .caret{
+	display: none;
+}

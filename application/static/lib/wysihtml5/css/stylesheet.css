@@ -1,5 +1,8 @@
 .wysihtml5-editor-toolbar {
 	position: relative;
+	zoom: .67;
+	-moz-transform: scale(.67);
+	-moz-transform-origin: 0 0
 }
 
 .wysihtml5-editor-toolbar header {

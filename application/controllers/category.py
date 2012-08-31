@@ -16,6 +16,13 @@ def home():
                                                        .filter('parent_category', None)],\
                                          })
 
+@app.route("/admin/initdb")
+def initdb():
+    init_db()
+    return redirect(url_for('home'), 302)
+    pass
+    
+
 @app.route("/admin/categories/", methods=["GET", "POST"])
 def admin_categories():
     return helpers.admin_list(CategoryModel, CategoryForm, 'admin_categories')

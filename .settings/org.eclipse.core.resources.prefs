@@ -3,3 +3,4 @@ encoding//flask/app.py=utf-8
 encoding//flask/helpers.py=utf-8
 encoding//flask/views.py=utf-8
 encoding//flaskext/wtf/__init__.py=utf-8
+encoding//werkzeug/routing.py=utf-8
