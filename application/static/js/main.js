@@ -3,21 +3,23 @@ categoriesMenuDirective = {
 		href : function(params) {
 			return '#Category' + this.id;
 		},
-		'class': function (params){
+		'class' : function(params) {
 			return this.subcategories.length > 0 ? 'dropdown-toggle' : '';
 		},
-		'data-toggle': function(params){
-			return this.subcategories.length > 0 ? 'dropdown':'';
+		'data-toggle' : function(params) {
+			return this.subcategories.length > 0 ? 'dropdown' : '';
 		},
-		html: function (params){
-			return this.title + (this.subcategories.length > 0 ? '<b class="caret"></b>':'');
+		html : function(params) {
+			return this.title
+					+ (this.subcategories.length > 0 ? '<b class="caret"></b>'
+							: '');
 		}
 	},
 	visible : {
 		'class' : function(params) {
 			return this.subcategories.length > 0 ? 'dropdown' : '';
 		},
-		text: function(params){
+		text : function(params) {
 			return '';
 		}
 	},
@@ -26,22 +28,50 @@ categoriesMenuDirective = {
 			href : function(params) {
 				return '#Category' + this.id;
 			},
-			'class': function (params){
+			'class' : function(params) {
 				return this.subcategories.length > 0 ? 'dropdown-toggle' : '';
 			},
-			'data-toggle': function(params){
-				return this.subcategories.length > 0 ? 'dropdown':'';
+			'data-toggle' : function(params) {
+				return this.subcategories.length > 0 ? 'dropdown' : '';
 			},
-			html: function (params){
-				return this.title + (this.subcategories.length > 0 ? '<b class="caret"></b>':'');
+			html : function(params) {
+				return this.title
+						+ (this.subcategories.length > 0 ? '<b class="caret"></b>'
+								: '');
 			}
 		}
 	}
 };
 
+var categoriesDirective = {
+	id : {
+		id : function(params) {
+			return 'Category' + this.id;
+		},
+		text : function(params) {
+			return '';
+		}
+	},
+	contents : {
+		description : {
+			html : function(params) {
+				return this.description;
+			}
+		}
+	}
+}
 $(window).load(function() {
-	// transparency.register($);
 	$('.category-nav').render(model.categories, categoriesMenuDirective);
-	// $('.category-nav').render(model.categories);
+	$('.categories').render(model.categories, categoriesDirective);
+	$('[data-spy="scroll"]').each(function() {
+		var $spy = $(this).scrollspy('refresh')
+	});
 	$('#navbar').scrollspy();
+	if (window.location.hash.length > 1) {
+		window.location.hash = window.location.hash;
+	} else if (model.categories.length > 0) {
+		window.location.hash = 'Category' + model.categories[0].id;
+	}
+	Galleria.loadTheme('/static/lib/galleria/themes/classic/galleria.classic.min.js');
+    Galleria.run('.galleria');
 });

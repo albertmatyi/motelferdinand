@@ -170,9 +170,6 @@ var wysihtml5ParserRules = {
         "dfn": {
             "rename_tag": "span"
         },
-        "iframe": {
-            "remove": 1
-        },
         "figcaption": {
             "rename_tag": "div"
         },
@@ -244,6 +241,10 @@ var wysihtml5ParserRules = {
             "rename_tag": "span"
         },
         "li": {},
+        "object":{},
+        "param":{"rename_tag":"param"},
+        "embed":{},
+        "iframe":{},
         "td": {
             "check_attributes": {
                 "rowspan": "numbers",
@@ -252,9 +253,6 @@ var wysihtml5ParserRules = {
             "add_class": {
                 "align": "align_text"
             }
-        },
-        "object": {
-            "remove": 1
         },
         "div": {
             "add_class": {
@@ -409,9 +407,6 @@ var wysihtml5ParserRules = {
         "textarea": {
             "rename_tag": "span"
         },
-        "embed": {
-            "remove": 1
-        },
         "hgroup": {
             "rename_tag": "div"
         },
@@ -445,9 +440,6 @@ var wysihtml5ParserRules = {
             "add_class": {
                 "align": "align_text"
             }
-        },
-        "param": {
-            "remove": 1
         },
         "th": {
             "check_attributes": {

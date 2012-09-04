@@ -7,6 +7,10 @@ from application.models import AbstractModel
 from google.appengine.ext import db
 from application.models.content import ContentModel
 
+MEDIA_TYPES={
+             1:'PICASA_GALLERY'
+}
+
 class MediaModel(AbstractModel):
     title = db.StringProperty(required=False, default='')
     url = db.StringProperty(required=True, default='http://www.google.com')

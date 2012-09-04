@@ -17,7 +17,7 @@
 		<tr>
 			<td>{{item.key().id()}}</td>
 			{% for prop in item.properties() %}
-				<td>{{ item[prop] }}</td> 
+				<td>{{ item[prop]|safe }}</td> 
 			{% endfor %}
 			<td> 
 				<form action="{{item.key().id()}}?_method=DELETE" method="post">

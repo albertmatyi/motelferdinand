@@ -52,7 +52,6 @@ def init_db():
     for cat in CategoryModel.all():
         cat.delete()
         pass
-    
     titles = ['Booking', 'Guestbook', 'Location',
               'Rooms', 'Restaurants', 'Sightseeing',
               'Partners', 'Documents', 'About']
@@ -62,10 +61,12 @@ def init_db():
         cc += 1
         # add random number of subcategories
         for _ in range(0, Random().randint(2, 10)):
-            CategoryModel(visible=True,
-                          title=get_random_text(Random().randint(10, 15)).replace('\n', '')
-                          .capitalize(), parent_category=key).put()
-            pass
+#            CategoryModel(visible=True,
+#                          title=get_random_text(Random().randint(10, 15)).replace('\n', '')
+#                          .capitalize(), parent_category=key).put()
+#            pass
+            ContentModel(visible=True, title=get_random_text(Random().randint(10, 15)).replace('\n',''), \
+                         category=key,description=get_random_text(Random().randint(100, len(fixieText)-40)).replace('\n','<br/>')).put()
     pass
 
 def get_random_text(length):

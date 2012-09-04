@@ -1,3 +1,13 @@
 {% extends "base.html" %} {% block content %}
-		
+<div class="categories">
+	<div data-bind="id" class="category">
+		<h2 data-bind="title"></h2>
+		<div class="contents well">
+			<div class="content">
+				<h3 data-bind="title"></h3>
+				<div data-bind="description"></div>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
