@@ -27,22 +27,22 @@
                                "<a class='btn' data-wysihtml5-command='Indent' title='Indent'><i class='icon-indent-left'></i></a>" +
                            "</div>" +
                        "</li>",
-        "link": "<li>" +
-                           "<div class='bootstrap-wysihtml5-insert-link-modal modal hide fade'>" +
-                               "<div class='modal-header'>" +
-                                   "<a class='close' data-dismiss='modal'>&times;</a>" +
-                                   "<h3>Insert Link</h3>" +
-                               "</div>" +
-                               "<div class='modal-body'>" +
-                                   "<input value='http://' class='bootstrap-wysihtml5-insert-link-url input-xlarge'>" +
-                               "</div>" +
-                               "<div class='modal-footer'>" +
-                                   "<a href='#' class='btn' data-dismiss='modal'>Cancel</a>" +
-                                   "<a href='#' class='btn btn-primary' data-dismiss='modal'>Insert link</a>" +
-                               "</div>" +
+       "link": "<li>" +
+                       "<div class='bootstrap-wysihtml5-insert-link-modal modal hide fade'>" +
+                           "<div class='modal-header'>" +
+                               "<a class='close' data-dismiss='modal'>&times;</a>" +
+                               "<h3>Insert Link</h3>" +
                            "</div>" +
-                           "<a class='btn' data-wysihtml5-command='createLink' title='Link'><i class='icon-share'></i></a>" +
-                       "</li>",
+                           "<div class='modal-body'>" +
+                               "<input value='http://' class='bootstrap-wysihtml5-insert-link-url input-xlarge'>" +
+                           "</div>" +
+                           "<div class='modal-footer'>" +
+                               "<a href='#' class='btn' data-dismiss='modal'>Cancel</a>" +
+                               "<a href='#' class='btn btn-primary' data-dismiss='modal'>Insert link</a>" +
+                           "</div>" +
+                       "</div>" +
+                       "<a class='btn' data-wysihtml5-command='createLink' title='Link'><i class='icon-share'></i></a>" +
+                   "</li>",
         "image": "<li>" +
                            "<div class='bootstrap-wysihtml5-insert-image-modal modal hide fade'>" +
                                "<div class='modal-header'>" +
@@ -59,7 +59,22 @@
                            "</div>" +
                            "<a class='btn' data-wysihtml5-command='insertImage' title='Insert image'><i class='icon-picture'></i></a>" +
                        "</li>",
-
+           "insertHTML": "<li>" +
+                       "<div class='bootstrap-wysihtml5-insert-html-modal modal hide fade'>" +
+                           "<div class='modal-header'>" +
+                               "<a class='close' data-dismiss='modal'>&times;</a>" +
+                               "<h3>Embed Html</h3>" +
+                           "</div>" +
+                           "<div class='modal-body'>" +
+                               "<textarea class='bootstrap-wysihtml5-insert-html-content input-xlarge'></textarea>" +
+                           "</div>" +
+                           "<div class='modal-footer'>" +
+                               "<a href='#' class='btn' data-dismiss='modal'>Cancel</a>" +
+                               "<a href='#' class='btn btn-primary' data-dismiss='modal'>Embed</a>" +
+                           "</div>" +
+                       "</div>" +
+                       "<a class='btn' data-wysihtml5-command='insertHTML' title='Embed HTML'><i class='icon-chevron-left'></i><i class='icon-chevron-right'></i></a>" +
+                   "</li>",
         "html":
                        "<li>" +
                            "<div class='btn-group'>" +
@@ -72,13 +87,15 @@
         "font-styles": true,
         "emphasis": true,
         "lists": true,
-        "html": false,
         "link": true,
         "image": true,
+        "insertHTML": true,
+        "html": true,
         events: {},
         parserRules: {
             tags: {
                 "b": {},
+                "span": {},
                 "i": {},
                 "br": {},
                 "ol": {},
@@ -177,6 +194,10 @@ var editor = new wysi.Editor(this.el[0], options);
                     if(key === "image") {
                         this.initInsertImage(toolbar);
                     }
+                    
+                    if(key === "insertHTML") {
+                        this.initInsertHtml(toolbar);
+                    }
                 }
             }
 
@@ -200,6 +221,38 @@ var editor = new wysi.Editor(this.el[0], options);
             var changeViewSelector = "a[data-wysihtml5-action='change_view']";
             toolbar.find(changeViewSelector).click(function(e) {
                 toolbar.find('a.btn').not(changeViewSelector).toggleClass('disabled');
+            });
+        },
+        
+        initInsertHtml: function(toolbar) {
+            var self = this;
+            var insertHtmlModal = toolbar.find('.bootstrap-wysihtml5-insert-html-modal');
+            var textarea = insertHtmlModal.find('.bootstrap-wysihtml5-insert-html-content');
+            var insertButton = insertHtmlModal.find('a.btn-primary');
+            var initialValue = textarea.val();
+
+            var insertHtml = function() {
+                var content = textarea.val();
+                textarea.val(initialValue);
+                self.editor.composer.commands.exec("insertHTML", content);
+            };
+
+            insertButton.click(insertHtml);
+
+            insertHtmlModal.on('shown', function() {
+                textarea.focus();
+            });
+
+            insertHtmlModal.on('hide', function() {
+                self.editor.currentView.element.focus();
+            });
+
+            toolbar.find('a[data-wysihtml5-command=insertHTML]').click(function() {
+                insertHtmlModal.modal('show');
+                insertHtmlModal.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
+e.stopPropagation();
+});
+                return false;
             });
         },
 

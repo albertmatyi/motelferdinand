@@ -72,6 +72,7 @@ $(window).load(function() {
 	} else if (model.categories.length > 0) {
 		window.location.hash = 'Category' + model.categories[0].id;
 	}
-	Galleria.loadTheme('/static/lib/galleria/themes/classic/galleria.classic.min.js');
-    Galleria.run('.galleria');
+//	TODO integrate gallery
+//	Galleria.loadTheme('/static/lib/galleria/themes/classic/galleria.classic.min.js');
+//    Galleria.run('.galleria');
 });

@@ -244,7 +244,19 @@ var wysihtml5ParserRules = {
         "object":{},
         "param":{"rename_tag":"param"},
         "embed":{},
-        "iframe":{},
+        "iframe":{
+        	 "check_attributes": {
+                 "src": "valid",
+                 "width":"valid",
+                 "height":"valid",
+                 "frameborder": "valid",
+                 "scrolling":"valid",
+                 "marginheight":"valid",
+                 "marginwidth": "valid",
+                 "allowfullscreen": "valid"
+             },
+        	
+        },
         "td": {
             "check_attributes": {
                 "rowspan": "numbers",
