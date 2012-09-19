@@ -11,3 +11,27 @@
 	</div>
 </div>
 {% endblock %}
+
+
+{% block style_block %}
+<link type="text/css" rel="stylesheet" href="/static/lib/galleria/themes/classic/galleria.classic.css">
+
+{% endblock %}
+
+{% block tail_script %}
+<script src="/static/lib/galleria/galleria-1.2.8.min.js"></script>
+<script src="/static/lib/galleria/plugins/picasa/galleria.picasa.min.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+	Galleria.loadTheme('/static/lib/galleria/themes/classic/galleria.classic.min.js');
+	$('div.galleria').each(function(idx, el){
+		Galleria.run(el, {
+    		picasa: 'useralbum:'+$(el).attr('data-galleria-username')+'/'+$(el).attr('data-galleria-albumID'), // 'galleriajs' is the username and 'Demo' is the album ID
+    		picasaOptions: {
+        		sort: 'date-posted-asc',
+        		imageSize: $(el).attr('data-galleria-size')
+   			}
+		});
+	});	
+});</script>
+{% endblock %}
