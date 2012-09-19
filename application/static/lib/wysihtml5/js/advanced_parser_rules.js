@@ -255,7 +255,7 @@ var wysihtml5ParserRules = {
                  "marginwidth": "valid",
                  "allowfullscreen": "valid"
              },
-        	
+        
         },
         "td": {
             "check_attributes": {
@@ -269,7 +269,15 @@ var wysihtml5ParserRules = {
         "div": {
             "add_class": {
                 "align": "align_text"
+            },
+            "check_attributes":{
+            	"class": "valid",
+            	"data-galleria-username": "valid",
+            	"data-galleria-albumID": "valid",
+            	"data-galleria-size": "valid",
+            	"style": "valid"
             }
+        
         },
         "option": {
             "rename_tag": "span"

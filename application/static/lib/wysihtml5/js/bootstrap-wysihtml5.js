@@ -4,19 +4,19 @@
     var templates = {
         "font-styles": "<li class='dropdown'>" +
                            "<a class='btn dropdown-toggle' data-toggle='dropdown' href='#'>" +
-                               "<i class='icon-font'></i>&nbsp;<span class='current-font'>Normal text</span>&nbsp;<b class='caret'></b>" +
+                               "<i class='icon-font'></i>&nbsp;<b class='caret'></b>" +
                            "</a>" +
                            "<ul class='dropdown-menu'>" +
-                               "<li><a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='div'>Normal text</a></li>" +
+                               "<li><a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='div'>Normal</a></li>" +
                                "<li><a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='h1'>Heading 1</a></li>" +
                                "<li><a data-wysihtml5-command='formatBlock' data-wysihtml5-command-value='h2'>Heading 2</a></li>" +
                            "</ul>" +
                        "</li>",
         "emphasis": "<li>" +
                            "<div class='btn-group'>" +
-                               "<a class='btn' data-wysihtml5-command='bold' title='CTRL+B'>Bold</a>" +
-                               "<a class='btn' data-wysihtml5-command='italic' title='CTRL+I'>Italic</a>" +
-                               "<a class='btn' data-wysihtml5-command='underline' title='CTRL+U'>Underline</a>" +
+                               "<a class='btn' data-wysihtml5-command='bold' title='CTRL+B'><b>B</b></a>" +
+                               "<a class='btn' data-wysihtml5-command='italic' title='CTRL+I'><i>I</i></a>" +
+                               "<a class='btn' data-wysihtml5-command='underline' title='CTRL+U'><u>U</u></a>" +
                            "</div>" +
                        "</li>",
         "lists": "<li>" +
@@ -59,14 +59,14 @@
                            "</div>" +
                            "<a class='btn' data-wysihtml5-command='insertImage' title='Insert image'><i class='icon-picture'></i></a>" +
                        "</li>",
-           "insertHTML": "<li>" +
+        "insertHTML": "<li>" +
                        "<div class='bootstrap-wysihtml5-insert-html-modal modal hide fade'>" +
                            "<div class='modal-header'>" +
                                "<a class='close' data-dismiss='modal'>&times;</a>" +
                                "<h3>Embed Html</h3>" +
                            "</div>" +
                            "<div class='modal-body'>" +
-                               "<textarea class='bootstrap-wysihtml5-insert-html-content input-xlarge'></textarea>" +
+                               "<textarea class='bootstrap-wysihtml5-insert-html-content' cols='30' rows='5'></textarea>" +
                            "</div>" +
                            "<div class='modal-footer'>" +
                                "<a href='#' class='btn' data-dismiss='modal'>Cancel</a>" +
@@ -75,6 +75,24 @@
                        "</div>" +
                        "<a class='btn' data-wysihtml5-command='insertHTML' title='Embed HTML'><i class='icon-chevron-left'></i><i class='icon-chevron-right'></i></a>" +
                    "</li>",
+        "insertGallery": "<li>" +
+                   "<div class='bootstrap-wysihtml5-insert-gallery-modal modal hide fade'>" +
+                       "<div class='modal-header'>" +
+                           "<a class='close' data-dismiss='modal'>&times;</a>" +
+                           "<h3>Insert Picasa album</h3>" +
+                       "</div>" +
+                       "<div class='modal-body'>" +
+                           "<input class='bootstrap-wysihtml5-insert-gallery-username input-xlarge' placeholder='Picasa Username'/>" +
+                           "<input class='bootstrap-wysihtml5-insert-gallery-albumID input-xlarge' placeholder='Picasa Album ID' />" +
+                           "<input class='bootstrap-wysihtml5-insert-gallery-imageSize input-xlarge' placeholder='Size [small, thumb, medium, big, original]' />" +
+                       "</div>" +
+                       "<div class='modal-footer'>" +
+                           "<a href='#' class='btn' data-dismiss='modal'>Cancel</a>" +
+                           "<a href='#' class='btn btn-primary' data-dismiss='modal'>Insert</a>" +
+                       "</div>" +
+                   "</div>" +
+                   "<a class='btn galleria' data-wysihtml5-command='insertHTML' title='Insert gallery'><img src='/static/img/picasa_s.png' alt='Insert picasa album'/></a>" +
+               "</li>",        
         "html":
                        "<li>" +
                            "<div class='btn-group'>" +
@@ -90,6 +108,7 @@
         "link": true,
         "image": true,
         "insertHTML": true,
+        "insertGallery": true,
         "html": true,
         events: {},
         parserRules: {
@@ -198,6 +217,9 @@ var editor = new wysi.Editor(this.el[0], options);
                     if(key === "insertHTML") {
                         this.initInsertHtml(toolbar);
                     }
+                    if(key === "insertGallery") {
+                        this.initInsertGallery(toolbar);
+                    }
                 }
             }
 
@@ -221,6 +243,49 @@ var editor = new wysi.Editor(this.el[0], options);
             var changeViewSelector = "a[data-wysihtml5-action='change_view']";
             toolbar.find(changeViewSelector).click(function(e) {
                 toolbar.find('a.btn').not(changeViewSelector).toggleClass('disabled');
+            });
+        },
+        
+        initInsertGallery: function(toolbar) {
+            var self = this;
+            var insertGalleryModal = toolbar.find('.bootstrap-wysihtml5-insert-gallery-modal');
+            var usernameInput = insertGalleryModal.find('.bootstrap-wysihtml5-insert-gallery-username');
+            var albumIDInput = insertGalleryModal.find('.bootstrap-wysihtml5-insert-gallery-albumID');
+            var imageSizeInput = insertGalleryModal.find('.bootstrap-wysihtml5-insert-gallery-imageSize');
+            var insertButton = insertGalleryModal.find('a.btn-primary');
+            var initialValue = '';
+            
+            var insertGallery = function() {
+                var username = usernameInput.val();
+                var albumID = albumIDInput.val();
+                var imageSize = imageSizeInput.val();
+                usernameInput.val(initialValue);
+                albumIDInput.val(initialValue);
+                imageSizeInput.val(initialValue);
+                var content='&nbsp;<div class="galleria" style="height: 200px; width: 300px;"'+
+        		' data-galleria-username="'+username+'"'+
+        		' data-galleria-albumID="'+albumID+'"'+
+        		' data-galleria-size="'+imageSize+'"'+
+        		'>[<img src="/static/img/picasa_s.png" alt="Insert picasa album"/> gallery comes here]</div>&nbsp;';
+                self.editor.composer.commands.exec("insertHTML", content);
+            };
+
+            insertButton.click(insertGallery);
+
+            insertGalleryModal.on('shown', function() {
+                usernameInput.focus();
+            });
+
+            insertGalleryModal.on('hide', function() {
+                self.editor.currentView.element.focus();
+            });
+
+            toolbar.find('a[data-wysihtml5-command=insertHTML].galleria').click(function() {
+                insertGalleryModal.modal('show');
+                insertGalleryModal.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
+e.stopPropagation();
+});
+                return false;
             });
         },
         
