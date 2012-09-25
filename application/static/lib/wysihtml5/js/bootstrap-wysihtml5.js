@@ -249,20 +249,22 @@ var editor = new wysi.Editor(this.el[0], options);
         initInsertGallery: function(toolbar) {
             var self = this;
             var insertGalleryModal = toolbar.find('.bootstrap-wysihtml5-insert-gallery-modal');
-            var usernameInput = insertGalleryModal.find('.bootstrap-wysihtml5-insert-gallery-username');
-            var albumIDInput = insertGalleryModal.find('.bootstrap-wysihtml5-insert-gallery-albumID');
+            var urlInput = insertGalleryModal.find('.bootstrap-wysihtml5-insert-gallery-url');
             var imageSizeInput = insertGalleryModal.find('.bootstrap-wysihtml5-insert-gallery-imageSize');
+            var gallerySizeInput = insertGalleryModal.find('.bootstrap-wysihtml5-insert-gallery-gallerySize');
             var insertButton = insertGalleryModal.find('a.btn-primary');
             var initialValue = '';
             
             var insertGallery = function() {
-                var username = usernameInput.val();
-                var albumID = albumIDInput.val();
+                var url = urlInput.val();
+                var username = /.com\/(\d+)/.exec(url)[1];
+                var albumID = /.com\/\d+\/([^#]+)/.exec(url)[1];
+                var gallerySize = gallerySizeInput.val().split(/[x* ]+/);
                 var imageSize = imageSizeInput.val();
-                usernameInput.val(initialValue);
-                albumIDInput.val(initialValue);
+                urlInput.val(initialValue);
+                gallerySizeInput.val(initialValue);
                 imageSizeInput.val(initialValue);
-                var content='&nbsp;<div class="galleria" style="height: 200px; width: 300px;"'+
+                var content='&nbsp;<div class="galleria" style="width: '+gallerySize[0]+'px; height: '+gallerySize[1]+'px;"'+
         		' data-galleria-username="'+username+'"'+
         		' data-galleria-albumID="'+albumID+'"'+
         		' data-galleria-size="'+imageSize+'"'+
@@ -273,7 +275,7 @@ var editor = new wysi.Editor(this.el[0], options);
             insertButton.click(insertGallery);
 
             insertGalleryModal.on('shown', function() {
-                usernameInput.focus();
+                urlInput.focus();
             });
 
             insertGalleryModal.on('hide', function() {
