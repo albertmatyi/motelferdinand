@@ -82,9 +82,9 @@
                            "<h3>Insert Picasa album</h3>" +
                        "</div>" +
                        "<div class='modal-body'>" +
-                           "<input class='bootstrap-wysihtml5-insert-gallery-username input-xlarge' placeholder='Picasa Username'/>" +
-                           "<input class='bootstrap-wysihtml5-insert-gallery-albumID input-xlarge' placeholder='Picasa Album ID' />" +
+                           "<input class='bootstrap-wysihtml5-insert-gallery-url input-xlarge' placeholder='Picasa Gallery URL'/>" +
                            "<input class='bootstrap-wysihtml5-insert-gallery-imageSize input-xlarge' placeholder='Size [small, thumb, medium, big, original]' />" +
+                           "<input class='bootstrap-wysihtml5-insert-gallery-gallerySize input-xlarge' placeholder='Eg. 300x200 or 640x480' />" +
                        "</div>" +
                        "<div class='modal-footer'>" +
                            "<a href='#' class='btn' data-dismiss='modal'>Cancel</a>" +
