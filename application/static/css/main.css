@@ -113,7 +113,7 @@ body {
 	}
 }
 
-#navbar .nav-placeholder {
+.nav-placeholder {
 	height: 3em;
 	display: none;
 }
