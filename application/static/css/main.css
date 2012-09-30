@@ -33,7 +33,7 @@ body {
 }
 
 #navbar {
-	background-color: rgb(211, 28, 53);
+	
 	background-image: none;
 	border: none;
 	margin: 0 auto;
@@ -47,7 +47,6 @@ body {
 #navbar.navbar-fixed-top {
 	top: 7em;
 	position: fixed;
-	box-shadow: 0px 3px 5px rgb(99,99,99);
 }
 
 #navbar:after,#navbar:before {
@@ -95,12 +94,15 @@ body {
 
 #navbar .navbar-inner {
 	background-image: none;
-	background-color: transparent;
 	border: none;
 	box-shadow: none;
-	background-color: transparent;
 	border-radius: 0;
-	padding-top: .1em;
+	padding: .08em 0;
+	background-color: rgb(211, 28, 53);
+}
+
+#navbar.navbar-fixed .navbar-inner{
+	box-shadow: 0px 3px 5px rgb(99,99,99);
 }
 
 @media ( min-width : 1200px) {
@@ -114,6 +116,22 @@ body {
 	height: 3em;
 	display: none;
 }
+
+#navbar .icon-eye-close{
+    float: left;
+    cursor: pointer;
+    font-size: 1.2em;
+    line-height: 1.2em;
+    position: relative;
+    top: .8em;
+    left: -.6em;
+}
+
+#navbar.navbar-fixed-top .icon-eye-close{
+    top: .7em;
+    left: -1.1em;
+}
+
 #navbar .nav {
 	margin-left: 1em;
 }
