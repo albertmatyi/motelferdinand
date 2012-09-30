@@ -93,16 +93,17 @@ body {
 }
 
 #navbar .navbar-inner {
-	background-image: none;
 	border: none;
 	box-shadow: none;
 	border-radius: 0;
 	padding: .08em 0;
 	background-color: rgb(211, 28, 53);
+	background-image:none;
 }
 
 #navbar.navbar-fixed .navbar-inner{
 	box-shadow: 0px 3px 5px rgb(99,99,99);
+	background-image: linear-gradient(to bottom, rgb(231, 28, 53), rgb(211, 48, 63));
 }
 
 @media ( min-width : 1200px) {
@@ -123,13 +124,20 @@ body {
     font-size: 1.2em;
     line-height: 1.2em;
     position: relative;
-    top: .8em;
+    top: -1.7em;
     left: -.6em;
 }
 
 #navbar.navbar-fixed-top .icon-eye-close{
-    top: .7em;
+    top: -1.8em;
     left: -1.1em;
+}
+
+#navbar .inner-placeholder{
+	float:left; 
+	height: 3em;
+	width: 100%;
+	display: none;
 }
 
 #navbar .nav {
