@@ -73,6 +73,7 @@ $(window).load(function() {
 		window.location.hash = 'Category' + model.categories[0].id;
 	}
 	SmoothScroll.activate();
+	HeaderFixer.activate();
 //	TODO integrate gallery
 //	Galleria.loadTheme('/static/lib/galleria/themes/classic/galleria.classic.min.js');
 //    Galleria.run('.galleria');
