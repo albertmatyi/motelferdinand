@@ -72,8 +72,8 @@ $(window).load(function() {
 	} else if (model.categories.length > 0) {
 //		window.location.hash = 'Category' + model.categories[0].id;
 	}
-	SmoothScroll.activate();
 	HeaderFixer.activate();
+	SmoothScroll.activate();
 //	TODO integrate gallery
 //	Galleria.loadTheme('/static/lib/galleria/themes/classic/galleria.classic.min.js');
 //    Galleria.run('.galleria');
