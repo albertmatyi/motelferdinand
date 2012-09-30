@@ -1,48 +1,127 @@
 @font-face {
-  font-family: 'GreatVibes-Regular';
-  src: url('../fonts/Great_Vibes/GreatVibes-Regular.ttf');
+	font-family: 'GreatVibes-Regular';
+	src: url('../fonts/Great_Vibes/GreatVibes-Regular.ttf');
 }
 
-.dropdown-menu .caret{
+@font-face {
+	font-family: 'LifeSavers-Regular';
+	src: url('../fonts/Life_Savers/LifeSavers-Regular.ttf');
+}
+
+.dropdown-menu .caret {
 	display: none;
 }
 
-.category{
+.category {
 	padding-top: 60px;
 }
 
-body{
-	background: url(/static/img/bg0b.png) #FFF8E3 no-repeat fixed;
-	background-size: cover;
-}
-
-.well{
-	background-color: rgba(250, 250, 250, .8);
+body {
+	background: url(/static/img/bg.png) #FFF8E3 fixed;
+	/* 	background-size: cover; */
 }
 
 .brand {
 	font-family: GreatVibes-Regular;
-	
-}
-
-.navbar .brand {
-	font-size: 40px;
-	line-height: 40px;
+	font-size: 80px;
+	line-height: 80px;
 	color: #fff;
-	text-shadow: 1px 0px 0px #efefef;
+	padding: 20px;
+	display: block;
+	/* 	text-shadow: 1px 2px 1px #333, -1px -2px 1px #eee; */
 }
 
-.navbar .nav{
-	padding-top: 20px;
+.brand:hover {
+	color: #fff;
+	text-decoration: none;
 }
 
-.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, .navbar-inverse .nav .active > a:focus {
-	color: #333;
-	background: rgba(255, 255, 255, 1);
+
+#navbar {
+	background-color: rgb(211, 28, 53);
+	background-image: none;
+	border: none;
+	margin: 0 auto;
+	width: 940px;
+	padding-left: .2em;
+	padding-right: .2em;
+	height: 2.4em;
+	position: relative;
+}
+
+#navbar.navbar-fixed-top {
+	top: 7em;
+	position: fixed;
+}
+
+@media ( min-width : 1200px) {
+	#navbar,.container,.navbar-static-top .container,.navbar-fixed-top .container,.navbar-fixed-bottom .container
+		{
+		width: 1170px;
+	}
+}
+
+#navbar:after,#navbar:before {
+	content: '';
+	border: solid 1.3em rgb(201, 28, 53);
+	height: 0;
+	position: absolute;
+	display: block;
+	z-index: -1;
+}
+
+#navbar:after {
+	border-right-color: transparent;
+	bottom: .1em;
+	right: -2.4em;
+}
+
+#navbar:before {
+	border-left-color: transparent;
+	bottom: .1em;
+	left: -2.3em;
 }
 
 #navbar .navbar-inner {
-    background-image: linear-gradient(to bottom, rgba(31, 31, 25, .8), rgba(36, 36, 28, .95));
-    background-color: transparent;
+	background-image: none;
+	background-color: transparent;
+	border: none;
+	box-shadow: none;
+	background-color: transparent;
+	border-radius: 0;
 }
 
+#navbar .nav-placeholder{
+	height: 2.4em;
+	display: none;
+}
+
+#navbar .nav>li>a {
+	font-size: 1.2em;
+	line-height: 1.4em;
+	padding: .5em 1.5em;
+	color: #fff;
+	text-shadow: 1px 1px 3px #666;
+}
+
+.nav .active>a,.nav .active>a:hover,.nav .active>a:focus {
+	color: #333;
+	/* 	background: url(/static/img/bg.png); */
+	outline: dashed 1px rgb(255, 255, 235);
+	background-color: transparent;
+}
+
+.navbar .nav>.active>a,.navbar .nav>.active>a:hover,.navbar .nav>.active>a:focus
+	{
+	text-decoration: none;
+	background-color: transparent;
+}
+
+h1 {
+	font-family: LifeSavers-Regular;
+	margin-left: 1em;
+}
+
+.well {
+	background-color: rgba(250, 250, 250, .8);
+}

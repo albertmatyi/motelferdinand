@@ -70,7 +70,7 @@ $(window).load(function() {
 	if (window.location.hash.length > 1) {
 		window.location.hash = window.location.hash;
 	} else if (model.categories.length > 0) {
-		window.location.hash = 'Category' + model.categories[0].id;
+//		window.location.hash = 'Category' + model.categories[0].id;
 	}
 	SmoothScroll.activate();
 	HeaderFixer.activate();
