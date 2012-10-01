@@ -24,7 +24,7 @@ body {
 	color: #fff;
 	padding: 20px;
 	display: block;
-	/* 	text-shadow: 1px 2px 1px #333, -1px -2px 1px #eee; */
+	text-shadow: 1px 1px 0px #fff, -1px -1px 0px #999;
 }
 
 .brand:hover {
@@ -33,7 +33,6 @@ body {
 }
 
 #navbar {
-	
 	background-image: none;
 	border: none;
 	margin: 0 auto;
@@ -88,8 +87,8 @@ body {
 }
 
 #navbar .container {
-    border-top: dashed 1px rgb(161, 28, 53);
-    border-bottom: dashed 1px rgb(161, 28, 53);
+	border-top: dashed 1px rgb(161, 28, 53);
+	border-bottom: dashed 1px rgb(161, 28, 53);
 }
 
 #navbar .navbar-inner {
@@ -98,12 +97,13 @@ body {
 	border-radius: 0;
 	padding: .08em 0;
 	background-color: rgb(211, 28, 53);
-	background-image:none;
+	background-image: none;
 }
 
-#navbar.navbar-fixed .navbar-inner{
-	box-shadow: 0px 3px 5px rgb(99,99,99);
-	background-image: linear-gradient(to bottom, rgb(231, 28, 53), rgb(211, 48, 63));
+#navbar.navbar-fixed .navbar-inner {
+	box-shadow: 0px 3px 5px rgb(99, 99, 99);
+	background-image: linear-gradient(to bottom, rgb(231, 28, 53),
+		rgb(211, 48, 63) );
 }
 
 @media ( min-width : 1200px) {
@@ -118,23 +118,23 @@ body {
 	display: none;
 }
 
-#navbar .icon-eye-close{
-    float: left;
-    cursor: pointer;
-    font-size: 1.2em;
-    line-height: 1.2em;
-    position: relative;
-    top: -1.7em;
-    left: -.6em;
+#navbar .icon-eye-close {
+	float: left;
+	cursor: pointer;
+	font-size: 1.2em;
+	line-height: 1.2em;
+	position: relative;
+	top: -1.7em;
+	left: -.6em;
 }
 
-#navbar.navbar-fixed-top .icon-eye-close{
-    top: -1.8em;
-    left: -1.1em;
+#navbar.navbar-fixed-top .icon-eye-close {
+	top: -1.8em;
+	left: -1.1em;
 }
 
-#navbar .inner-placeholder{
-	float:left; 
+#navbar .inner-placeholder {
+	float: left;
 	height: 3em;
 	width: 100%;
 	display: none;
@@ -159,10 +159,9 @@ body {
 	box-shadow: none;
 	background-color: transparent;
 	box-shadow: none;
-    background: rgb(181, 28, 43)
-/*		 	background: url(/static/img/bg.png); */
-/*	outline: dashed 1px rgb(255, 255, 235);*/
-
+	background: rgb(181, 28, 43)
+		/*		 	background: url(/static/img/bg.png); */  
+  /*	outline: dashed 1px rgb(255, 255, 235);*/
 }
 
 h1 {
