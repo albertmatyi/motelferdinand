@@ -1,179 +1,125 @@
 @font-face {
-	font-family: 'GreatVibes-Regular';
-	src: url('../fonts/Great_Vibes/GreatVibes-Regular.ttf');
-}
+  font-family: 'GreatVibes-Regular';
+  src: url("../fonts/Great_Vibes/GreatVibes-Regular.ttf"); }
 
 @font-face {
-	font-family: 'LifeSavers-Regular';
-	src: url('../fonts/Life_Savers/LifeSavers-Regular.ttf');
-}
-
-.dropdown-menu .caret {
-	display: none;
-}
-
-body {
-	background: url(/static/img/bg.png) #FFF8E3 fixed;
-	/* 	background-size: cover; */
-}
-
-.brand {
-	font-family: GreatVibes-Regular;
-	font-size: 80px;
-	line-height: 80px;
-	color: #fff;
-	padding: 20px;
-	display: block;
-	text-shadow: 1px 1px 0px #fff, -1px -1px 0px #999;
-}
-
-.brand:hover {
-	color: #fff;
-	text-decoration: none;
-}
+  font-family: 'LifeSavers-Regular';
+  src: url("../fonts/Life_Savers/LifeSavers-Regular.ttf"); }
 
 #navbar {
-	background-image: none;
-	border: none;
-	margin: 0 auto;
-	width: 940px;
-	padding-left: .0em;
-	padding-right: .0em;
-	height: 3em;
-	position: relative;
-}
+  background-image: none;
+  border: none;
+  margin: 0 auto;
+  width: 940px;
+  padding-left: .0em;
+  padding-right: .0em;
+  height: 3em;
+  position: relative; }
+  #navbar:after, #navbar:before {
+    content: '';
+    border: solid 1.5em #d31c35;
+    height: 0;
+    position: absolute;
+    display: block;
+    z-index: -1; }
+  #navbar:after {
+    border-right-color: transparent;
+    bottom: 0em;
+    right: -2.4em; }
+  #navbar:before {
+    border-left-color: transparent;
+    bottom: 0em;
+    left: -2.3em; }
+  #navbar .container {
+    border-top: dashed 1px #a11c35;
+    border-bottom: dashed 1px #a11c35; }
+  #navbar .navbar-inner {
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: .08em 0;
+    background-color: #d31c35;
+    background-image: none; }
+  #navbar .icon-eye-close {
+    float: left;
+    cursor: pointer;
+    font-size: 1.2em;
+    line-height: 1.2em;
+    position: relative;
+    top: -1.7em;
+    left: -0.6em; }
+  #navbar .inner-placeholder {
+    float: left;
+    height: 3em;
+    width: 100%;
+    display: none; }
+  #navbar .nav {
+    margin-left: 1em; }
+  #navbar .nav > li > a {
+    font-size: 1.2em;
+    line-height: 1.2em;
+    padding: .5em 1em;
+    color: #fff;
+    text-shadow: 1px 1px 3px #666; }
+  #navbar.navbar .nav > .active > a, #navbar.navbar .nav > .active > a:hover, #navbar.navbar .nav > .active > a:focus {
+    text-decoration: none;
+    background-color: transparent;
+    box-shadow: none;
+    background-color: transparent;
+    box-shadow: none;
+    background: #b51c2b; }
+  #navbar.navbar-fixed-top {
+    top: 7em;
+    position: fixed; }
+    #navbar.navbar-fixed-top:after, #navbar.navbar-fixed-top:before {
+      border-color: #d31c35;
+      border-width: 1.6em; }
+    #navbar.navbar-fixed-top:after {
+      bottom: .1em;
+      right: -3.1em;
+      border-right-color: transparent; }
+    #navbar.navbar-fixed-top:before {
+      border-left-color: transparent;
+      bottom: .1em;
+      left: -3.1em; }
+    #navbar.navbar-fixed-top .navbar-inner {
+      box-shadow: 0px 3px 5px #636363;
+      background-image: url(/static/img/noise.png); }
+    #navbar.navbar-fixed-top .icon-eye-close {
+      top: -1.8em;
+      left: -1.1em; }
 
-#navbar.navbar-fixed-top {
-	top: 7em;
-	position: fixed;
-}
-
-#navbar:after,#navbar:before {
-	content: '';
-	border: solid 1.5em rgb(211, 28, 53);
-	height: 0;
-	position: absolute;
-	display: block;
-	z-index: -1;
-}
-
-#navbar:after {
-	border-right-color: transparent;
-	bottom: 0em;
-	right: -2.4em;
-}
-
-#navbar:before {
-	border-left-color: transparent;
-	bottom: 0em;
-	left: -2.3em;
-}
-
-#navbar.navbar-fixed-top:after,#navbar.navbar-fixed-top:before {
-	border-color: rgb(191, 28, 53);
-	border-width: 1.6em;
-}
-
-#navbar.navbar-fixed-top:after {
-	bottom: .1em;
-	right: -3.1em;
-	border-right-color: transparent;
-}
-
-#navbar.navbar-fixed-top:before {
-	border-left-color: transparent;
-	bottom: .1em;
-	left: -3.1em;
-}
-
-#navbar .container {
-	border-top: dashed 1px rgb(161, 28, 53);
-	border-bottom: dashed 1px rgb(161, 28, 53);
-}
-
-#navbar .navbar-inner {
-	border: none;
-	box-shadow: none;
-	border-radius: 0;
-	padding: .08em 0;
-	background-color: rgb(211, 28, 53);
-	background-image: none;
-}
-
-#navbar.navbar-fixed .navbar-inner {
-	box-shadow: 0px 3px 5px rgb(99, 99, 99);
-	background-image: linear-gradient(to bottom, rgb(231, 28, 53),
-		rgb(211, 48, 63) );
-}
-
-@media ( min-width : 1200px) {
-	#navbar,.container,.navbar-static-top .container,.navbar-fixed-top .container,.navbar-fixed-bottom .container
-		{
-		width: 1170px;
-	}
-}
-
+@media (min-width: 1200px) {
+  #navbar, .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+    width: 1170px; } }
 .nav-placeholder {
-	height: 3em;
-	display: none;
-}
-
-#navbar .icon-eye-close {
-	float: left;
-	cursor: pointer;
-	font-size: 1.2em;
-	line-height: 1.2em;
-	position: relative;
-	top: -1.7em;
-	left: -.6em;
-}
-
-#navbar.navbar-fixed-top .icon-eye-close {
-	top: -1.8em;
-	left: -1.1em;
-}
-
-#navbar .inner-placeholder {
-	float: left;
-	height: 3em;
-	width: 100%;
-	display: none;
-}
-
-#navbar .nav {
-	margin-left: 1em;
-}
-
-#navbar .nav>li>a {
-	font-size: 1.2em;
-	line-height: 1.2em;
-	padding: .5em 1em;
-	color: #fff;
-	text-shadow: 1px 1px 3px #666;
-}
-
-.navbar .nav>.active>a,.navbar .nav>.active>a:hover,.navbar .nav>.active>a:focus
-	{
-	text-decoration: none;
-	background-color: transparent;
-	box-shadow: none;
-	background-color: transparent;
-	box-shadow: none;
-	background: rgb(181, 28, 43)
-		/*		 	background: url(/static/img/bg.png); */  
-  /*	outline: dashed 1px rgb(255, 255, 235);*/
-}
+  height: 3em;
+  display: none; }
 
 h1 {
-	font-family: LifeSavers-Regular;
-	margin-left: 1em;
-}
+  font-family: LifeSavers-Regular;
+  margin-left: 1em; }
 
 .well {
-	background-color: rgba(250, 250, 250, .8);
-}
+  background-color: rgba(250, 250, 250, 0.8); }
 
 .category {
-	margin-top: 40px;
-	padding-top: 20px;
-}
+  margin-top: 40px;
+  padding-top: 20px; }
+
+body {
+  background: url(/static/img/bg.png) #fff8e3 fixed;
+  /* 	background-size: cover; */ }
+
+.brand {
+  font-family: GreatVibes-Regular;
+  font-size: 80px;
+  line-height: 80px;
+  color: #fff;
+  padding: 20px;
+  display: block;
+  text-shadow: 1px 1px 0px white, -1px -1px 0px #999999; }
+
+.brand:hover {
+  color: #fff;
+  text-decoration: none; }

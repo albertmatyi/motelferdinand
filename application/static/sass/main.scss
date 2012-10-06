@@ -1,0 +1,29 @@
+@import "mixins";
+
+@import "colors";
+
+@import "fonts";
+
+@import "navbar";
+
+@import "category";
+
+body {
+	background: url(/static/img/bg.png) #FFF8E3 fixed;
+	/* 	background-size: cover; */
+}
+
+.brand {
+	font-family: GreatVibes-Regular;
+	font-size: 80px;
+	line-height: 80px;
+	color: #fff;
+	padding: 20px;
+	display: block;
+	text-shadow: 1px 1px 0px #fff, -1px -1px 0px #999;
+}
+
+.brand:hover {
+	color: #fff;
+	text-decoration: none;
+}
