@@ -8,7 +8,7 @@ from flask.templating import render_template
 from flask.helpers import flash, url_for
 from werkzeug.utils import redirect
 
-def admin_list(Model, Form, successURL):
+def admin_list(Model, Form, successURL, template='/base/admin_list.html', filtr=lambda qry: qry):
     '''
     GET: Renders a list of all the objs in the model
     POST: Creates a new entity in the model
@@ -16,9 +16,10 @@ def admin_list(Model, Form, successURL):
     @param Model: The model class to read all entities from / to persist the new one to
     @param Form: The form class that will help to load the data from the request in case of save
     @param successURL: The url a successful save redirects to
+    @param template: The path to the template to be rendered (default: /base/admin_list.html )
+    @param filtr: A custom method that receives a query and returns it filtered (default: lambda q:q)
     @return: The rendered list of the objects 
     '''
-    objs = Model.all()
     form = Form(request.form)
     if request.method == "POST":
         if form.validate_on_submit():
@@ -31,7 +32,8 @@ def admin_list(Model, Form, successURL):
         else:
             flash("Invalid data. Check description near fields.", "error")
             return render_template('/base/admin_edit.html', form=form)
-    return render_template('/base/admin_list.html', list=objs, properties=Model.properties())
+    objs = filtr(Model.all())
+    return render_template(template, list=objs, properties=Model.properties())
     pass
 
 
