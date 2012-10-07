@@ -13,16 +13,16 @@ $(window).load(function() {
 		var $spy = $(this).scrollspy('refresh')
 	});
 	$('#navbar').scrollspy();
+	$('div.picaslide').each(function(idx, el) {
+		$(el).picaslide({play: 3500, pause: 5000, hoverPause: false, slideSpeed: 850});
+	});
+	HeaderFixer.activate();
+	SmoothScroll.activate();
 	if (window.location.hash.length > 1) {
 		window.location.hash = window.location.hash;
 	} else if (model.categories.length > 0) {
 		// window.location.hash = 'Category' + model.categories[0].id;
 	}
-	$('div.picaslide').each(function(idx, el) {
-		$(el).picaslide();
-	});
-	HeaderFixer.activate();
-	SmoothScroll.activate();
 });
 
 categoriesMenuDirective = {

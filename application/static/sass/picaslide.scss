@@ -1,4 +1,5 @@
 .picaslide {
+	padding: 0;
 	&>.slides_container{
 		display: none;
 		& > *{
@@ -7,31 +8,39 @@
 	}
 	ul.pagination {
 		float: right;
-		height: auto;
+		height: 0;
+		position: relative; 
+		top: -20px;
 		padding: 0;
 		margin: 0;
+		z-index: 100;
 		li {
-			width: 10px;
-			height: 10px;
+			width: 6px;
+			height: 6px;
 			margin: 3px;
-			border-radius: 5px;
-			&, &>a{
-				float: left;
-				padding: 0;
-				overflow: hidden;
-				border: none;
-				background: #222;
+			border-radius: 6px;
+			float: left;
+			padding: 0;
+			overflow: hidden;
+			background: transparent;
+			border: solid 2px #eee;
+			&.current{
+				background: dd0;
 			}
-			a{
-				background: #fff;
-				border-radius: 3px;
-				width: 6px;
-				height: 6px;
-				margin: 2px;
-			}
-			&.current a{
-				display: none;
+			&> a{
+				line-height: 0; 
+			    font-size: 0;
+			    color: transparent; 
+			    border: none;
+			    display: block;
+			    height: 100%;
+			    width: 100%;
+			    background: transparent;
 			}
 		}
+	}
+	&:after{
+		display: block;
+		clear: both;
 	}
 }

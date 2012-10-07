@@ -16,7 +16,7 @@ var HeaderFixer = {
 	'activate' : function() {
 		HeaderFixer.$header = $('#header .navbar');
 		HeaderFixer.$palceholder = $('#header .nav-placeholder');
-		HeaderFixer.headerPos = 5;//HeaderFixer.$header.offset().top;
+		HeaderFixer.headerPos = 100;//HeaderFixer.$header.offset().top;
 		HeaderFixer.$headerContent = $('.navbar-inner', HeaderFixer.$header);
 		HeaderFixer.$innerPlaceholder = $('.inner-placeholder', HeaderFixer.$header);
 		$(window).scroll(HeaderFixer.scrollListener);

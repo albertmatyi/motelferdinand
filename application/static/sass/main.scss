@@ -16,7 +16,12 @@ body {
 	color: #fff;
 	padding: 20px;
 	display: block;
-	text-shadow: 1px 1px 0px #fff, -1px -1px 0px #999;
+	//text-shadow: 1px 1px 0px #fff, -1px -1px 0px #999;
+	height: 0px;
+	position: relative;
+	top: 140px;
+	z-index: 1000;
+	padding: 0;	
 }
 
 .brand:hover {

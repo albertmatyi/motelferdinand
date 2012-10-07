@@ -6,31 +6,41 @@
   font-family: 'LifeSavers-Regular';
   src: url("../fonts/Life_Savers/LifeSavers-Regular.ttf"); }
 
-.picaslide > .slides_container {
-  display: none; }
-  .picaslide > .slides_container > * {
-    display: block; }
-.picaslide ul.pagination {
-  float: right;
-  height: auto;
-  padding: 0;
-  margin: 0; }
-  .picaslide ul.pagination li {
-    width: 10px;
-    height: 10px;
-    margin: 3px;
-    border-radius: 5px; }
-    .picaslide ul.pagination li, .picaslide ul.pagination li > a {
+.picaslide {
+  padding: 0; }
+  .picaslide > .slides_container {
+    display: none; }
+    .picaslide > .slides_container > * {
+      display: block; }
+  .picaslide ul.pagination {
+    float: right;
+    height: 0;
+    position: relative;
+    top: -20px;
+    padding: 0;
+    margin: 0;
+    z-index: 100; }
+    .picaslide ul.pagination li {
+      width: 6px;
+      height: 6px;
+      margin: 3px;
+      border-radius: 6px;
       float: left;
       padding: 0;
       overflow: hidden;
-      border: none;
-      background: #222; }
-    .picaslide ul.pagination li a {
-      background: #fff;
-      border-radius: 3px;
-      width: 6px;
-      height: 6px;
-      margin: 2px; }
-    .picaslide ul.pagination li.current a {
-      display: none; }
+      background: transparent;
+      border: solid 2px #eee; }
+      .picaslide ul.pagination li.current {
+        background: dd0; }
+      .picaslide ul.pagination li > a {
+        line-height: 0;
+        font-size: 0;
+        color: transparent;
+        border: none;
+        display: block;
+        height: 100%;
+        width: 100%;
+        background: transparent; }
+  .picaslide:after {
+    display: block;
+    clear: both; }

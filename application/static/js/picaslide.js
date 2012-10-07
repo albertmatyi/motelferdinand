@@ -1,5 +1,5 @@
 (function($){
-	$.fn.picaslide = function(successCallback){
+	$.fn.picaslide = function(slideOpts, successCallback){
 		var scope = $(this);
 		var user = scope.attr('data-picaslide-username');
 		var album = scope.attr('data-picaslide-albumid');
@@ -21,7 +21,7 @@
 	        });
 	        picasaAlbum += "</div>";
 	        scope.html(picasaAlbum);
-	        scope.slides();
+	        scope.slides(slideOpts);
 	        if (successCallback) {
 		        successCallback.apply(scope, images);
 	        }
