@@ -8,6 +8,27 @@ from flask.templating import render_template
 from flask.helpers import flash, url_for
 from werkzeug.utils import redirect
 
+def admin_handle_post(Model, Form, successURL):
+    '''
+    POST: If it was a post method, it will save the posted entity data to the model
+    
+    @param Model: The model class to read all entities from / to persist the new one to
+    @param Form: The form class that will help to load the data from the request in case of save
+    @param successURL: The url a successful save redirects to
+    '''
+    if request.method == "POST":
+        form = Form(request.form)
+        if form.validate_on_submit():
+            db_obj = Model()
+            form.populate_obj(db_obj)
+            db_obj.put()
+            flash("Data saved successfully!", "success")
+            return redirect(url_for(successURL))
+            pass
+        else:
+            flash("Invalid data. Check description near fields.", "error")
+            return render_template('/base/admin_edit.html', form=form)
+
 def admin_list(Model, Form, successURL, template='/base/admin_list.html', filtr=lambda qry: qry):
     '''
     GET: Renders a list of all the objs in the model

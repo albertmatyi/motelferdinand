@@ -10,3 +10,14 @@ div.galleria{
 	height: 200px;
 	width: 300px;
 }
+
+.admin-controls * {
+	float: left;
+	margin-right: 1em;
+}
+
+.cat-selector *{
+	float: left;
+	margin-right: 1em;
+	line-height: 2em;
+}

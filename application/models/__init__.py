@@ -60,7 +60,7 @@ def init_db():
         key = CategoryModel(visible=True, title=title, parent_category=None).put()
         cc += 1
         # add random number of subcategories
-        for _ in range(0, Random().randint(2, 10)):
+        for _ in range(0, Random().randint(2, 5)):
 #            CategoryModel(visible=True,
 #                          title=get_random_text(Random().randint(10, 15)).replace('\n', '')
 #                          .capitalize(), parent_category=key).put()

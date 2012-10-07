@@ -1,6 +1,7 @@
 {% extends "admin_base.html" %} {% block content %}
-<div class="admin_controls well">
-	<a class="btn btn-primary" href="new"><i class="icon-plus icon-white"></i> New</a>
+<div class="admin-controls well">
+	<div><a class="btn btn-primary" href="new"><i class="icon-plus icon-white"></i> New</a></div>
+	{% block admin_controls %} {% endblock %}
 </div>
 <table class="table table-borderd table-striped well">
 	<thead>
@@ -39,8 +40,8 @@
 {% endblock %}
 
 {% block tail_script %}
-<script src="/static/lib/galleria/galleria-1.2.8.min.js"></script>
-<script src="/static/lib/galleria/plugins/picasa/galleria.picasa.min.js"></script>
+<script src="/static/lib/picasa.js"></script>
+<script src="/static/lib/slides.min.jquery.js"></script>
 <script type="text/javascript">
 $(window).load(function(){
 	Galleria.loadTheme('/static/lib/galleria/themes/classic/galleria.classic.min.js');

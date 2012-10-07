@@ -257,8 +257,8 @@ var editor = new wysi.Editor(this.el[0], options);
             
             var insertGallery = function() {
                 var url = urlInput.val();
-                var username = /.com\/(\d+)/.exec(url)[1];
-                var albumID = /.com\/\d+\/([^#]+)/.exec(url)[1];
+                var username = /.com(\/photos)?\/(\d+)/.exec(url)[2];
+                var albumID = /.com(\/photos)?\/\d+(\/albums)?\/([^\/#]+)/.exec(url)[3];
                 var gallerySize = gallerySizeInput.val().split(/[x* ]+/);
                 var imageSize = imageSizeInput.val();
                 urlInput.val(initialValue);

@@ -40,7 +40,7 @@ class CategoryModel(AbstractModel):
     title = db.StringProperty(required=False, default='')
     description = db.TextProperty(required=False, default='')
     parent_category = db.SelfReferenceProperty(collection_name='subcategories')
-    order = db.IntegerProperty(required=True, default=0)
+    order = db.IntegerProperty(required=False, default=0)
     visible = db.BooleanProperty(required=True, default=False)
     dependencies=['contents', 'subcategories', 'bookables']
     

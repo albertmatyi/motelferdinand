@@ -8,14 +8,16 @@ from wtforms.ext.appengine.db import model_form
 from application.models import * 
 from flaskext import wtf
 from application.controllers import helpers
+from flask.templating import render_template
+
 
 BookableForm = model_form(BookableModel, wtf.Form)
 
 @app.route("/admin/bookables/", methods=["GET", "POST"])
-def admin_bookables():
-    return helpers.admin_list(BookableModel, BookableForm, 'admin_bookables')
+def admin_bookables(filtr=lambda qry:qry):
+    helpers.admin_handle_post(BookableModel, BookableForm, 'admin_bookables')
+    return render_template('bookables/list.html', list=filtr(BookableModel.all()), properties=BookableModel.properties(), categories=CategoryModel.all())  
     pass
-
 
 @app.route("/admin/bookables/new", methods=["GET"])
 def admin_new_bookable():

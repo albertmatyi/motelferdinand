@@ -3,12 +3,14 @@ from wtforms.ext.appengine.db import model_form
 from application.models import * 
 from flaskext import wtf
 from application.controllers import helpers
+from flask.templating import render_template
 
 ContentForm = model_form(ContentModel, wtf.Form)
 
 @app.route("/admin/contents/", methods=["GET", "POST"])
 def admin_contents():
-    return helpers.admin_list(ContentModel, ContentForm, 'admin_contents')
+    helpers.admin_handle_post(ContentModel, ContentForm, 'admin_contents')
+    return render_template('contents/list.html', list=ContentModel.all(), properties=ContentModel.properties(), categories=CategoryModel.all())
     pass
 
 
