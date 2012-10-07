@@ -87,6 +87,12 @@
     position: relative;
     top: -1.7em;
     left: -0.6em; }
+  #navbar .home-btn {
+    float: left;
+    position: relative;
+    top: 10px;
+    left: 10px;
+    cursor: pointer; }
   #navbar .inner-placeholder {
     float: left;
     height: 3em;
@@ -127,6 +133,8 @@
     #navbar.navbar-fixed-top .icon-eye-close {
       top: -1.8em;
       left: -1.1em; }
+    #navbar.navbar-fixed-top .home-btn {
+      left: 14px; }
 
 @media (min-width: 1200px) {
   #navbar, .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {

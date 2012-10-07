@@ -53,6 +53,14 @@
 		left: -.6em;
 	}
 	
+	.home-btn{
+		float: left;
+		position: relative;
+		top: 10px;
+		left: 10px;
+		cursor: pointer;
+	}
+	
 	.inner-placeholder {
 		float: left;
 		height: 3em;
@@ -108,6 +116,9 @@
 		.icon-eye-close {
 			top: -1.8em;
 			left: -1.1em;
+		}
+		.home-btn {
+			left: 14px;
 		}
 	}
 }
