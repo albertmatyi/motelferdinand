@@ -83,7 +83,6 @@
                        "</div>" +
                        "<div class='modal-body'>" +
                            "<input class='bootstrap-wysihtml5-insert-gallery-url input-xlarge' placeholder='Picasa Gallery URL'/>" +
-                           "<input class='bootstrap-wysihtml5-insert-gallery-imageSize input-xlarge' placeholder='Size [small, thumb, medium, big, original]' />" +
                            "<input class='bootstrap-wysihtml5-insert-gallery-gallerySize input-xlarge' placeholder='Eg. 300x200 or 640x480' />" +
                        "</div>" +
                        "<div class='modal-footer'>" +
@@ -91,7 +90,7 @@
                            "<a href='#' class='btn btn-primary' data-dismiss='modal'>Insert</a>" +
                        "</div>" +
                    "</div>" +
-                   "<a class='btn galleria' data-wysihtml5-command='insertHTML' title='Insert gallery'><img src='/static/img/picasa_s.png' alt='Insert picasa album'/></a>" +
+                   "<a class='btn picaslide' data-wysihtml5-command='insertHTML' title='Insert gallery'><img src='/static/img/picasa_s.png' alt='Insert picasa album'/></a>" +
                "</li>",        
         "html":
                        "<li>" +
@@ -250,7 +249,6 @@ var editor = new wysi.Editor(this.el[0], options);
             var self = this;
             var insertGalleryModal = toolbar.find('.bootstrap-wysihtml5-insert-gallery-modal');
             var urlInput = insertGalleryModal.find('.bootstrap-wysihtml5-insert-gallery-url');
-            var imageSizeInput = insertGalleryModal.find('.bootstrap-wysihtml5-insert-gallery-imageSize');
             var gallerySizeInput = insertGalleryModal.find('.bootstrap-wysihtml5-insert-gallery-gallerySize');
             var insertButton = insertGalleryModal.find('a.btn-primary');
             var initialValue = '';
@@ -259,15 +257,14 @@ var editor = new wysi.Editor(this.el[0], options);
                 var url = urlInput.val();
                 var username = /.com(\/photos)?\/(\d+)/.exec(url)[2];
                 var albumID = /.com(\/photos)?\/\d+(\/albums)?\/([^\/#]+)/.exec(url)[3];
-                var gallerySize = gallerySizeInput.val().split(/[x* ]+/);
-                var imageSize = imageSizeInput.val();
+                var gallerySize = gallerySizeInput.val().split(/[* ]+/);
                 urlInput.val(initialValue);
                 gallerySizeInput.val(initialValue);
-                imageSizeInput.val(initialValue);
-                var content='&nbsp;<div class="galleria" style="width: '+gallerySize[0]+'px; height: '+gallerySize[1]+'px;"'+
-        		' data-galleria-username="'+username+'"'+
-        		' data-galleria-albumID="'+albumID+'"'+
-        		' data-galleria-size="'+imageSize+'"'+
+                var content='&nbsp;<div class="picaslide"'+
+                ' data-picaslide-width="'+gallerySize[0]+'"'+
+                ' data-picaslide-height="'+gallerySize[1]+'"'+
+        		' data-picaslide-username="'+username+'"'+
+        		' data-picaslide-albumid="'+albumID+'"'+
         		'>[<img src="/static/img/picasa_s.png" alt="Insert picasa album"/> gallery comes here]</div>&nbsp;';
                 self.editor.composer.commands.exec("insertHTML", content);
             };
@@ -282,7 +279,7 @@ var editor = new wysi.Editor(this.el[0], options);
                 self.editor.currentView.element.focus();
             });
 
-            toolbar.find('a[data-wysihtml5-command=insertHTML].galleria').click(function() {
+            toolbar.find('a[data-wysihtml5-command=insertHTML].picaslide').click(function() {
                 insertGalleryModal.modal('show');
                 insertGalleryModal.on('click.dismiss.modal', '[data-dismiss="modal"]', function(e) {
 e.stopPropagation();

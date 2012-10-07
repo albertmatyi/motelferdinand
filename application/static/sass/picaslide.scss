@@ -1,0 +1,37 @@
+.picaslide {
+	&>.slides_container{
+		display: none;
+		& > *{
+			display: block;
+		}
+	}
+	ul.pagination {
+		float: right;
+		height: auto;
+		padding: 0;
+		margin: 0;
+		li {
+			width: 10px;
+			height: 10px;
+			margin: 3px;
+			border-radius: 5px;
+			&, &>a{
+				float: left;
+				padding: 0;
+				overflow: hidden;
+				border: none;
+				background: #222;
+			}
+			a{
+				background: #fff;
+				border-radius: 3px;
+				width: 6px;
+				height: 6px;
+				margin: 2px;
+			}
+			&.current a{
+				display: none;
+			}
+		}
+	}
+}

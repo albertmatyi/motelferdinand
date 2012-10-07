@@ -23,7 +23,7 @@
     },
 
     images: function(user, album, callback) {
-      var url = "http://picasaweb.google.com/data/feed/base/user/:user_id/albumid/:album_id?alt=json&kind=photo&hl=en_US&fields=entry(title,gphoto:numphotos,media:group(media:content,media:thumbnail))";
+      var url = "http://picasaweb.google.com/data/feed/base/user/:user_id/album"+(album.match(/\d{6,}/) != null ? "id":"")+"/:album_id?alt=json&kind=photo&hl=en_US&fields=entry(title,gphoto:numphotos,media:group(media:content,media:thumbnail))";
       url = url.replace(/:user_id/, user).replace(/:album_id/, album);
       var image = null;
       var images = [];

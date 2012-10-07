@@ -34,18 +34,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
     <script src="/static/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/static/lib/galleria/galleria-1.2.8.min.js"></script>
-    <script src="/static/lib/transparency.min.js"></script>
-    <script src="/static/js/smooth_scroll.js"></script>
-    <script src="/static/js/header_fixer.js"></script>
-    <script src="/static/js/main.js"></script>
     <script type="text/javascript">
     {% if js_data %}
     	model = {{js_data|tojson|safe}};
     {% endif %}
     </script>
     {% block tail_script %}<!-- defer-capable JS block -->{% endblock %}
-
 </body>
 </html>
 

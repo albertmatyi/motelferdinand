@@ -272,9 +272,10 @@ var wysihtml5ParserRules = {
             },
             "check_attributes":{
             	"class": "valid",
-            	"data-galleria-username": "valid",
-            	"data-galleria-albumID": "valid",
-            	"data-galleria-size": "valid",
+            	"data-picaslide-username": "valid",
+            	"data-picaslide-albumID": "valid",
+            	"data-picaslide-width": "valid",
+            	"data-picaslide-height": "valid",
             	"style": "valid"
             }
         
