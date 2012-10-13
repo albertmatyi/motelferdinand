@@ -23,9 +23,9 @@
 			padding: 0;
 			overflow: hidden;
 			background: transparent;
-			border: solid 2px #eee;
+			border: solid 2px #000;
 			&.current{
-				background: dd0;
+				background: #dd1;
 			}
 			&> a{
 				line-height: 0; 

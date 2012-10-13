@@ -29,9 +29,9 @@
       padding: 0;
       overflow: hidden;
       background: transparent;
-      border: solid 2px #eee; }
+      border: solid 2px #000; }
       .picaslide ul.pagination li.current {
-        background: dd0; }
+        background: #dd1; }
       .picaslide ul.pagination li > a {
         line-height: 0;
         font-size: 0;
@@ -138,7 +138,7 @@
 
 @media (min-width: 1200px) {
   #navbar, .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
-    width: 1170px; } }
+    width: 940px; } }
 .nav-placeholder {
   height: 3em;
   display: none; }
