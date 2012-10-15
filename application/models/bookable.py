@@ -9,6 +9,7 @@ from application.models.category import CategoryModel
 
 class BookableModel(AbstractContentModel):
     beds=db.IntegerProperty(required=True, default=1)
+    quantity=db.IntegerProperty(required=True, default=1)
     category = db.ReferenceProperty(CategoryModel, collection_name='bookables')
-    
-    dependencies=['bookings']
+    album_url = db.StringProperty(required=False, default='')
+    dependencies=['booking_entries']

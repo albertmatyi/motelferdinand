@@ -9,7 +9,7 @@
         scope.css('height', height);
         width = width.indexOf('%') != -1 ? scope.width() * width.split('%')[0]*1./100 + 'px':width;
 	    $.picasa.images(user, album, function(images) {
-	        var picasaAlbum = "<div class='picasa-album slides_container' style=\"height: "+height+"; width: "+width+";\">\n";
+	        var picasaAlbum = "<div class='picasa-album picaslides-container' style=\"height: "+height+"; width: "+width+";\">\n";
 	        $.each(images, function(i, element) {
 	          picasaAlbum += "  <div class='picasa-image' style=\"width: "+width+"; height: "+height+";"+
 	          " background-image: url("+element.url.replace(/(\/)([^\/]+)$/, '$1s'+Math.max(parseInt(height), parseInt(width))+'/$2')+"); background-size: cover; background-position: center;\""+
@@ -21,6 +21,8 @@
 	        });
 	        picasaAlbum += "</div>";
 	        scope.html(picasaAlbum);
+	        slideOpts['container'] = 'picaslides-container';
+	        slideOpts['paginationClass'] = 'picaslide-pagination';
 	        scope.slides(slideOpts);
 	        if (successCallback) {
 		        successCallback.apply(scope, images);

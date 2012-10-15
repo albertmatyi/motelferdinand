@@ -4,8 +4,10 @@
 
 @import "category";
 
+@import "bookable";
+
 body {
-	background: url(/static/img/bg.png) #FFF8E3 fixed;
+	background: $background;
 	/* 	background-size: cover; */
 }
 

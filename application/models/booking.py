@@ -9,13 +9,17 @@ from application.models.user import UserModel
 from application.models.bookable import BookableModel
 
 class BookingModel(AbstractModel):
-    fr0m = db.DateProperty(required=True, auto_now_add=True)
-    until = db.DateProperty(required=True, auto_now_add=True)
-    places = db.IntegerProperty(required=True, default=1)
+    bookfrom = db.DateProperty(required=True, auto_now_add=True)
+    bookuntil = db.DateProperty(required=True, auto_now_add=True)
+    people = db.IntegerProperty(required=True, default=1)
     feedback = db.TextProperty()
     accepted = db.BooleanProperty()
     paid = db.BooleanProperty()
-    feedback = db.TextProperty()
     user = db.ReferenceProperty(UserModel, collection_name='bookings')
-    bookable = db.ReferenceProperty(BookableModel, collection_name='bookings')
+    dependencies=['booking_entries']
+    pass
+
+class BookingEntryModel(AbstractModel):
+    bookable = db.ReferenceProperty(BookableModel, collection_name='booking_entries')
+    booking = db.ReferenceProperty(BookingModel, collection_name='booking_entries')
     pass

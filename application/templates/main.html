@@ -1,8 +1,46 @@
 {% extends "base.html" %} {% block content %}
 <div class="categories">
 	<div data-bind="id" class="category">
+		<div class="page-header">
 		<h1 data-bind="title"></h1>
-		<div class="contents well">
+		</div>
+		<div class="bookables-wrapper">
+			<div class="bookables">
+				<div class="bookable">
+					<h3 data-bind="title"></h3>
+					<h4>Beds: <span data-bind="beds"></span></h4>
+					<div data-bind="album_url"></div>
+					<div data-bind="description"></div>
+				</div>
+			</div>
+		</div>
+		<div class="booking-form well ">
+			<form action="/bookings/new" method="post" class="form-horizontal">
+				<div class="control-group">
+					<label class="control-label">Book</label>
+					<div class="controls controls-row bookable-selects" data-bind="bookables">
+						<select data-bind="quantity"></select>
+						<label data-bind="title"></label>
+					</div> 
+				</div>
+				<div class="control-group">
+					<label class="control-label for="bookfrom">Arrival date</label>
+					<div class="controls controls-row">
+						<input type="date" class="datepicker" name="bookfrom"/>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="bookuntil">Departure date</label>
+					<div class="controls controls-row">
+						<input type="date" class="datepicker" name="bookuntil"/>
+					</div>
+				</div>
+				<div class="form-actions">
+					<button class="btn btn-primary btn-large">Book</button>
+				</div>
+			</form>
+		</div>
+		<div class="contents">
 			<div class="content">
 				<h3 data-bind="title"></h3>
 				<div data-bind="description"></div>
@@ -14,15 +52,18 @@
 
 
 {% block style_block %}
-
+<link href="/static/lib/bootstrap-datepicker/datepicker.css" rel="stylesheet" />
 {% endblock %}
 
 {% block tail_script %}
 <script src="/static/lib/transparency.min.js"></script>
+<!--     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script> -->
+<script src="/static/lib/jquery-ui-1.8.20.custom.min.js"></script>
 <script src="/static/js/smooth_scroll.js"></script>
 <script src="/static/js/header_fixer.js"></script>
 <script src="/static/lib/slides.min.jquery.js"></script>
 <script src="/static/lib/picasa.js"></script>
 <script src="/static/js/picaslide.js"></script>
+<script src="/static/lib/bootstrap-datepicker/datepicker.js"></script>
 <script src="/static/js/main.js"></script>
 {% endblock %}

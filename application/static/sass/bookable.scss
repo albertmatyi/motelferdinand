@@ -1,0 +1,29 @@
+.bookables-wrapper{
+	.bookables {
+		&, .bookable{
+			//width: 100%;
+		}
+		.bookable {
+			//float: left;
+			.picaslide {
+				float: left;
+				margin-right: 1em;
+			}
+		}
+	}
+}
+.booking-form {
+	label, input, select {
+		float: left;
+	}
+	select{
+		width: 3em;
+		margin: 0 1em 0 2em;
+	}
+	label { 
+		//width: 300px;
+	}
+	& > form > div {
+		clear: both;
+	}
+}

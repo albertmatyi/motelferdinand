@@ -8,19 +8,19 @@
 
 .picaslide {
   padding: 0; }
-  .picaslide > .slides_container {
+  .picaslide > .picaslides-container {
     display: none; }
-    .picaslide > .slides_container > * {
+    .picaslide > .picaslides-container > * {
       display: block; }
-  .picaslide ul.pagination {
+  .picaslide ul.picaslide-pagination {
     float: right;
     height: 0;
     position: relative;
-    top: -20px;
+    top: 0px;
     padding: 0;
     margin: 0;
     z-index: 100; }
-    .picaslide ul.pagination li {
+    .picaslide ul.picaslide-pagination li {
       width: 6px;
       height: 6px;
       margin: 3px;
@@ -30,9 +30,9 @@
       overflow: hidden;
       background: transparent;
       border: solid 2px #000; }
-      .picaslide ul.pagination li.current {
-        background: #dd1; }
-      .picaslide ul.pagination li > a {
+      .picaslide ul.picaslide-pagination li.current {
+        background: #000; }
+      .picaslide ul.picaslide-pagination li > a {
         line-height: 0;
         font-size: 0;
         color: transparent;
@@ -114,7 +114,7 @@
     box-shadow: none;
     background: #b51c2b; }
   #navbar.navbar-fixed-top {
-    top: 7em;
+    top: 6em;
     position: fixed; }
     #navbar.navbar-fixed-top:after, #navbar.navbar-fixed-top:before {
       border-color: #d31c35;
@@ -145,14 +145,35 @@
 
 h1 {
   font-family: LifeSavers-Regular;
-  margin-left: 1em; }
+  margin-left: 1em;
+  margin-bottom: 1.5em; }
 
 .well {
   background-color: rgba(250, 250, 250, 0.8); }
 
 .category {
   margin-top: 40px;
-  padding-top: 20px; }
+  padding-top: 20px;
+  background: #e4e4e4;
+  background-image: linear-gradient(to right, #eeeeee, #dddddd);
+  border-radius: 5px;
+  text-shadow: 1px 1px 0px #fff;
+  box-shadow: 1px 1px 2px #333; }
+  .category > * {
+    padding-left: 1em;
+    padding-right: 1em; }
+
+.bookables-wrapper .bookables .bookable .picaslide {
+  float: left;
+  margin-right: 1em; }
+
+.booking-form label, .booking-form input, .booking-form select {
+  float: left; }
+.booking-form select {
+  width: 3em;
+  margin: 0 1em 0 2em; }
+.booking-form > form > div {
+  clear: both; }
 
 body {
   background: url(/static/img/bg.png) #fff8e3 fixed;
