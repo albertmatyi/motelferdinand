@@ -56,14 +56,7 @@
 {% endblock %}
 
 {% block tail_script %}
-<script src="/static/lib/transparency.min.js"></script>
-<!--     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script> -->
-<script src="/static/lib/jquery-ui-1.8.20.custom.min.js"></script>
-<script src="/static/js/smooth_scroll.js"></script>
-<script src="/static/js/header_fixer.js"></script>
-<script src="/static/lib/slides.min.jquery.js"></script>
-<script src="/static/lib/picasa.js"></script>
-<script src="/static/js/picaslide.js"></script>
-<script src="/static/lib/bootstrap-datepicker/datepicker.js"></script>
-<script src="/static/js/main.js"></script>
+<script>
+	require(["main"]);
+</script>
 {% endblock %}

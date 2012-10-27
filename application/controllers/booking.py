@@ -11,9 +11,10 @@ from application.controllers import helpers
 from flaskext.wtf.html5 import DateField
 from flask.globals import request
 from flaskext.wtf.form import Form
-from flask.helpers import flash
+from flask.helpers import flash, url_for
 import time
 import datetime
+from werkzeug.utils import redirect
 
 BookingFormBase = model_form(BookingModel, wtf.Form, exclude=['fr0m', 'until'])
 
@@ -22,7 +23,7 @@ class BookingForm(BookingFormBase):
     until = DateField('Until')
     pass
 
-@app.route("/bookings/new", methods=["POST"])
+@app.route("/bookings/", methods=["POST"])
 def bookings_new():
     form=request.form
     form.csrf_enabled=False
@@ -33,7 +34,7 @@ def bookings_new():
     db_obj.bookuntil = datetime.date(tm.tm_year, tm.tm_mon, tm.tm_mday)
     db_obj.put()
     flash("Data saved successfully!", "success")
-    return 'what'
+    return redirect(url_for("home"))
     pass
 
 @app.route("/admin/bookings/", methods=["GET", "POST"])

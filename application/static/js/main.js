@@ -1,160 +1,85 @@
-$(window).load(function() {
-	model.categories.sort(function(c0, c1) {
-		return c0.order - c1.order;
-	});
-	model.categories.map(function(c) {
-		c.contents.sort(function(c0, c1) {
+define(
+	[
+	 	"http://code.jquery.com/jquery-latest.min.js"
+	],
+    function(){
+	require(["/static/lib/jquery-ui-1.8.20.custom.min.js",
+	         "/static/lib/bootstrap/js/bootstrap.min.js",
+	         "/static/lib/slides.min.jquery.js",
+			"/static/lib/picasa.js",
+			"/static/lib/transparency.min.js"],function(){
+	require(["/static/lib/bootstrap-datepicker/datepicker.js",
+	         "smooth_scroll",	
+	 		"header_fixer",
+			"picaslide",
+			"transparency_directives/menu",
+			"transparency_directives/content",
+			"switches"
+			],function(dp, ss, hf, ps, tdm, tdc, sw){
+		model.categories.sort(function(c0, c1) {
 			return c0.order - c1.order;
 		});
-	});
-	$('.category-nav').render(model.categories, categoriesMenuDirective);
-	$('.categories').render(model.categories, categoriesDirective);
-	$('[data-spy="scroll"]').each(function() {
-		var $spy = $(this).scrollspy('refresh')
-	});
-	$('#navbar').scrollspy();
-	$('.contents div.picaslide').each(function(idx, el) {
-		$(el).picaslide({play: 3500, pause: 5000, hoverPause: true, slideSpeed: 850});
-	});
-	$('#header .picaslide').each(function(idx, el) {
-		$(el).picaslide({play: 5000, pause: 5000, hoverPause: true, slideSpeed: 1850});
-	});
-	$('.bookables .bookable-picaslide').each(function(idx, el) {
-		$(el).picaslide({effect: 'fade', play: 3500, pause: 5000, hoverPause: true, slideSpeed: 850});
-	});
-	$('.datepicker').datepicker({
-	    format: 'mm-dd-yyyy'
-	});
-	$('.bookables-wrapper').each(function(idx, el){
-		$el = $(el);
-		l = $('.bookable', el).length; 
-		if(l > 0){
-			$('.bookable', el).css('width', $el.width()+'px');
-			$('.bookables', el).css('width', $el.width()+'px');
-			$('.bookable, .bookables', el).css('height', '430px');
-			$el.slides({container: 'bookables'});
-		} else{
-			$el.remove();
-		}
-	});
-	$('.booking-form').each(function(idx, el){
-		$el = $(el);
-		l = $('select', el).length; 
-		if(l == 0){
-			$el.remove();
-		}
-	});
-	
-	HeaderFixer.activate();
-	SmoothScroll.activate();
-	if (window.location.hash.length > 1) {
-		window.location.hash = window.location.hash;
-	} else if (model.categories.length > 0) {
-		// window.location.hash = 'Category' + model.categories[0].id;
-	}
-});
-
-categoriesMenuDirective = {
-	title : {
-		href : function(params) {
-			return '#Category' + this.id;
-		},
-		'class' : function(params) {
-			return this.subcategories.length > 0 ? 'dropdown-toggle' : '';
-		},
-		'data-toggle' : function(params) {
-			return this.subcategories.length > 0 ? 'dropdown' : '';
-		},
-		html : function(params) {
-			return this.title
-					+ (this.subcategories.length > 0 ? '<b class="caret"></b>'
-							: '');
-		}
-	},
-	visible : {
-		'class' : function(params) {
-			return this.subcategories.length > 0 ? 'dropdown' : '';
-		},
-		text : function(params) {
-			return '';
-		}
-	},
-	subcategories : {
-		title : {
-			href : function(params) {
-				return '#Category' + this.id;
-			},
-			'class' : function(params) {
-				return this.subcategories.length > 0 ? 'dropdown-toggle' : '';
-			},
-			'data-toggle' : function(params) {
-				return this.subcategories.length > 0 ? 'dropdown' : '';
-			},
-			html : function(params) {
-				return this.title
-						+ (this.subcategories.length > 0 ? '<b class="caret"></b>'
-								: '');
+		model.categories.map(function(c) {
+			c.contents.sort(function(c0, c1) {
+				return c0.order - c1.order;
+			});
+		});
+		$('.category-nav').render(model.categories, tdm.menuDirective);
+		sw.RENDER_CONTENT &&
+		$('.categories').render(model.categories, tdc.contentDirective);
+		
+		sw.RENDER_GALLERIES && 
+		$('.contents div.picaslide').each(function(idx, el) {
+			$(el).picaslide({play: 3500, pause: 5000, hoverPause: true, slideSpeed: 850});
+		});
+		sw.RENDER_HEADER && 
+		$('#header .picaslide').each(function(idx, el) {
+			$(el).picaslide({play: 5000, pause: 5000, hoverPause: true, slideSpeed: 1850});
+		});
+		sw.RENDER_BOOKING_GALLERIES && 
+		$('.bookables .bookable-picaslide').each(function(idx, el) {
+			$(el).picaslide({effect: 'fade', play: 3500, pause: 5000, hoverPause: true, slideSpeed: 850});
+		});
+		
+		$('.datepicker').datepicker({
+		    format: 'mm-dd-yyyy',
+		    todayHighlight : true,
+		    todayBtn : true,
+		    autoclose : true
+		});
+		sw.RENDER_BOOKING &&
+		$('.bookables-wrapper').each(function(idx, el){
+			$el = $(el);
+			l = $('.bookable', el).length; 
+			if(l > 0){
+				$('.bookable', el).css('width', $el.width()+'px');
+				$('.bookables', el).css('width', $el.width()+'px');
+				$('.bookable, .bookables', el).css('height', '430px');
+				$el.slides({container: 'bookables'});
+			} else{
+				$el.remove();
 			}
-		}
-	}
-};
-
-var categoriesDirective = {
-	id : {
-		id : function(params) {
-			return 'Category' + this.id;
-		},
-		text : function(params) {
-			return '';
-		}
-	},
-	contents : {
-		description : {
-			html : function(params) {
-				return this.description;
+		});
+		sw.RENDER_BOOKING &&
+		$('.booking-form').each(function(idx, el){
+			$el = $(el);
+			l = $('select', el).length; 
+			if(l == 0){
+				$el.remove();
 			}
+		});
+		
+		$('[data-spy="scroll"]').each(function() {
+			var $spy = $(this).scrollspy('refresh')
+		});
+		HeaderFixer.activate();
+		SmoothScroll.activate();
+		if (window.location.hash.length > 1) {
+			window.location.hash = window.location.hash;
+		} else if (model.categories.length > 0) {
+			//window.location.hash = 'Category' + model.categories[0].id;
 		}
-	},
-	bookables : {
-		description : {
-			html : function(params) {
-				return this.description;
-			}
-		},
-		album_url : {
-			text : function(params){
-				return '';
-			},
-			'class' : function(params){
-				return 'bookable-picaslide picaslide';
-			},
-			'data-picaslide-username' : function(params){
-				 return /.com(\/photos)?\/(\d+)/.exec(this.album_url)[2];
-			},
-			'data-picaslide-albumid' : function(params){
-				return /.com(\/photos)?\/\d+(\/albums)?\/([^\/#]+)/.exec(this.album_url)[3]; 
-			},
-			'data-picaslide-width' : function(params){
-				return '400px';
-			},
-			'data-picaslide-height' : function(params){
-				return '300px';
-			}
-		},
-		quantity : {
-			html : function(params) {
-				var html = '';
-				for( var i = 0; i <= this.quantity; i++){
-					html += '<option value="'+i+'">'+i+'</option>'
-				}
-				return html;
-			},
-			name : function(params) {
-				return 'bookable'+this.id+'quantity';
-			},
-			id : function(params) {
-				return 'bookable'+this.id+'quantity';
-			} 
-		}
-	}
-}
+	// close the ordered requires
+	});	});	
+	//close the function & define
+	});
