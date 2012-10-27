@@ -6,4 +6,5 @@ encoding//flask/sessions.py=utf-8
 encoding//flask/templating.py=utf-8
 encoding//flask/views.py=utf-8
 encoding//flaskext/wtf/__init__.py=utf-8
+encoding//werkzeug/datastructures.py=utf-8
 encoding//werkzeug/routing.py=utf-8

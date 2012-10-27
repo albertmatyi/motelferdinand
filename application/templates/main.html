@@ -15,30 +15,7 @@
 			</div>
 		</div>
 		<div class="booking-form well ">
-			<form action="/bookings/new" method="post" class="form-horizontal">
-				<div class="control-group">
-					<label class="control-label">Book</label>
-					<div class="controls controls-row bookable-selects" data-bind="bookables">
-						<select data-bind="quantity"></select>
-						<label data-bind="title"></label>
-					</div> 
-				</div>
-				<div class="control-group">
-					<label class="control-label for="bookfrom">Arrival date</label>
-					<div class="controls controls-row">
-						<input type="date" class="datepicker" name="bookfrom"/>
-					</div>
-				</div>
-				<div class="control-group">
-					<label class="control-label" for="bookuntil">Departure date</label>
-					<div class="controls controls-row">
-						<input type="date" class="datepicker" name="bookuntil"/>
-					</div>
-				</div>
-				<div class="form-actions">
-					<button class="btn btn-primary btn-large">Book</button>
-				</div>
-			</form>
+			{% include "booking_form.html" %}
 		</div>
 		<div class="contents">
 			<div class="content">

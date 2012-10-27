@@ -12,8 +12,8 @@ ROLE_USER = 3
 
 
 class UserModel(AbstractModel):
-    full_name=db.StringProperty(required=False, default='')
-    email = db.StringProperty(required=False, default='')
+    full_name=db.StringProperty(required=True, default='')
+    email = db.StringProperty(required=True, default='')
     auth_domain = db.StringProperty(required=False, default='')
     federated_identity = db.StringProperty(required=False, default='')
     federated_provider = db.StringProperty(required=False, default='')
@@ -25,3 +25,15 @@ class UserModel(AbstractModel):
     
     def __repr__(self, *args, **kwargs):
         return self.full_name;
+
+    @staticmethod
+    def create_or_retrieve(email, full_name):
+        usr = UserModel.all().filter('email', email).get()
+        if not usr:
+            usr = UserModel(
+            email = email,
+            full_name = full_name).put()
+        return usr
+        pass
+    
+    

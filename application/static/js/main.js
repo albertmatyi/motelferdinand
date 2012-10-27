@@ -42,7 +42,7 @@ define(
 		});
 		
 		$('.datepicker').datepicker({
-		    format: 'mm-dd-yyyy',
+		    format: 'dd-mm-yyyy',
 		    todayHighlight : true,
 		    todayBtn : true,
 		    autoclose : true

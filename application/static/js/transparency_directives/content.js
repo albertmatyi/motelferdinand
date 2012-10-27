@@ -53,10 +53,10 @@ define({
 					return html;
 				},
 				name : function(params) {
-					return 'bookable' + this.id + 'quantity';
+					return 'Bookable-' + this.id + '-quantity';
 				},
 				id : function(params) {
-					return 'bookable' + this.id + 'quantity';
+					return 'Bookable-' + this.id + '-quantity';
 				}
 			}
 		}

@@ -1,0 +1,36 @@
+<form action="/bookings/" method="post" class="form-horizontal">
+	<div class="control-group">
+		<label class="control-label" for="User-full_name">Full Name</label>
+		<div class="controls controls-row">
+			<input type="text"  name="User-full_name"/>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="User-email">Email</label>
+		<div class="controls controls-row">
+			<input type="email" class="email" name="User-email"/>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label">Book</label>
+		<div class="controls controls-row bookable-selects" data-bind="bookables">
+			<select data-bind="quantity"></select>
+			<label data-bind="title"></label>
+		</div> 
+	</div>
+	<div class="control-group">
+		<label class="control-label for="Booking-bookfrom">Arrival date</label>
+		<div class="controls controls-row">
+			<input type="date" class="datepicker" name="Booking-bookfrom"/>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="Booking-bookuntil">Departure date</label>
+		<div class="controls controls-row">
+			<input type="date" class="datepicker" name="Booking-bookuntil"/>
+		</div>
+	</div>
+	<div class="form-actions">
+		<button class="btn btn-primary btn-large">Book</button>
+	</div>
+</form>

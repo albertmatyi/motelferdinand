@@ -21,5 +21,6 @@ class BookingModel(AbstractModel):
 
 class BookingEntryModel(AbstractModel):
     bookable = db.ReferenceProperty(BookableModel, collection_name='booking_entries')
+    quantity = db.IntegerProperty(required=True, default = 1)
     booking = db.ReferenceProperty(BookingModel, collection_name='booking_entries')
     pass

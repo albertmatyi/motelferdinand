@@ -7,7 +7,7 @@ from application import app
 from wtforms.ext.appengine.db import model_form
 from application.models import * 
 from flaskext import wtf
-from application.controllers import helpers
+from application.controllers import helpers, user
 from flaskext.wtf.html5 import DateField
 from flask.globals import request
 from flaskext.wtf.form import Form
@@ -16,24 +16,32 @@ import time
 import datetime
 from werkzeug.utils import redirect
 
-BookingFormBase = model_form(BookingModel, wtf.Form, exclude=['fr0m', 'until'])
-
-class BookingForm(BookingFormBase):
-    fr0m = DateField('From')
-    until = DateField('Until')
-    pass
+BookingForm = model_form(BookingModel, wtf.Form)
 
 @app.route("/bookings/", methods=["POST"])
 def bookings_new():
     form=request.form
     form.csrf_enabled=False
-    db_obj = BookingModel()
-    tm = time.strptime(form['bookfrom'], "%d-%m-%Y")
-    db_obj.bookfrom = datetime.date(tm.tm_year, tm.tm_mon, tm.tm_mday)
-    tm = time.strptime(form['bookuntil'], "%d-%m-%Y")
-    db_obj.bookuntil = datetime.date(tm.tm_year, tm.tm_mon, tm.tm_mday)
-    db_obj.put()
-    flash("Data saved successfully!", "success")
+    usr = UserModel.create_or_retrieve(form['User-email'], form['User-full_name'])
+    
+    booking = BookingModel()
+    tm = time.strptime(form['Booking-bookfrom'], "%d-%m-%Y")
+    booking.bookfrom = datetime.date(tm.tm_year, tm.tm_mon, tm.tm_mday)
+    tm = time.strptime(form['Booking-bookuntil'], "%d-%m-%Y")
+    booking.bookuntil = datetime.date(tm.tm_year, tm.tm_mon, tm.tm_mday)
+    booking.user = usr
+    booking.put()
+    
+    for bookable in BookableModel.all():
+        quant = form['Bookable-'+str(bookable.key().id())+'-quantity']
+        if quant:
+            be = BookingEntryModel(bookable = bookable, booking = booking, quantity = int( quant ))
+            be.put()
+            pass
+        pass
+    
+    
+    flash("Booking successfully saved!", "success")
     return redirect(url_for("home"))
     pass
 
