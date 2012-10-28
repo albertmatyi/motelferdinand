@@ -10,7 +10,6 @@ define(
 			"/static/lib/transparency.min.js"],function(){
 	require(["/static/lib/bootstrap-datepicker/datepicker.js",
 	         "smooth_scroll",	
-	 		"header_fixer",
 			"picaslide",
 			"transparency_directives/menu",
 			"transparency_directives/content",

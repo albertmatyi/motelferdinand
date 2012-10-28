@@ -1,8 +1,12 @@
 @import "base";
 
-@import "navbar";
+// @import "navbar";
+
+@import "navbar2";
 
 @import "category";
+
+@import "content";
 
 @import "bookable";
 
@@ -13,21 +17,6 @@ body {
 
 .brand {
 	font-family: GreatVibes-Regular;
-	font-size: 80px;
-	line-height: 80px;
-	color: #fff;
-	padding: 20px;
-	display: block;
 	//text-shadow: 1px 1px 0px #fff, -1px -1px 0px #999;
-	height: 0px;
-	position: relative;
-	top: 80px;
-	left: 50px;
-	z-index: 1000;
-	padding: 0;	
 }
 
-.brand:hover {
-	color: #fff;
-	text-decoration: none;
-}
