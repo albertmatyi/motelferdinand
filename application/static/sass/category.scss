@@ -1,12 +1,48 @@
-h1 {
-/* 	font-family: LifeSavers-Regular; */
-}
+html, body, #maincontent, #body_content, .categories, .category {
+	height: 100%;
+	overflow: hidden;
+} 
 
 .category {
-	background-image: linear-gradient(to bottom, #e2e2e2, #FFF); 
-	padding-top: 2em;
+	padding-top: 3em;
+	height: 100%;
+	
+	.category-content {
+		height: 100%;
+		overflow-y: auto;
+		overflow-x: visible;
+	}
+	
+	.category-info {
+	
+		@include tile;
+		
+		color: #efefef;
+		margin-top: 10em;
+/* 		background: rgba(0,0,0,.3); */
+		
+		.category-title, .category-description{
+			@include tile-content;
+		}
+		
+		.category-title{
+			font-family: LifeSavers-Regular;
+			padding-bottom: 0;
+		}
+		
+		.page-header{
+			border-bottom: 1px dashed rgba(0,0,0,.4);
+		}
+		
+		.category-description{
+			
+		}	
+	}
+	
+	.picaslide {
+		margin-left: 0;
+		position: relative;
+		left: -$contentPadding;
+	}
 }
 
-.picaslide {
-	margin-left: 0;
-}

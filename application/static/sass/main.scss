@@ -2,6 +2,8 @@
 
 @import "navbar2";
 
+$contentPadding: 1em;
+
 @import "category";
 
 @import "content";
@@ -9,6 +11,8 @@
 @import "bookable";
 
 body {
-/* 	background: $background; */
-	/* 	background-size: cover; */
+/* 	background-image: linear-gradient(to bottom, #346, #333);  */
+	background: url(/static/img/noise.png) #333;
+//	background: url(/static/img/bg2.png) fixed;
+//	background-size: cover;
 }

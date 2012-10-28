@@ -27,13 +27,14 @@ define(
 		$('.category-nav').render(model.categories, tdm.menuDirective);
 
 		sw.RENDER_CONTENT &&
-		$('.categories').render(model.categories, tdc.contentDirective);
+		$('.categories').render(model.categories, tdc.contentDirective) &&
+		$('.content.span4').css('margin-left',parseInt($('.content.span4').css('margin-left'))*.5+'px');
 		
 		sw.RENDER_GALLERIES && 
 		$('.content-description div.picaslide, .category-description div.picaslide').each(function(idx, el) {
 			$el = $(el);
 			$el.addClass('span4');
-			$el.picaslide({play: 3500, pause: 5000, hoverPause: true, slideSpeed: 850});
+			$el.picaslide({pause: 5000, hoverPause: true, slideSpeed: 850});
 		});
 		
 		// BOOKING 
@@ -63,7 +64,7 @@ define(
 		$('.bookables .bookable-picaslide').each(function(idx, el) {
 			$el = $(el);
 			$el.addClass('span8');
-			$el.picaslide({effect: 'fade', play: 3500, pause: 5000, hoverPause: true, slideSpeed: 850});
+			$el.picaslide({effect: 'fade', pause: 5000, hoverPause: true, slideSpeed: 850});
 		});
 		
 		sw.RENDER_DATEPICKERS && 

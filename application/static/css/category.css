@@ -1,9 +1,74 @@
-h1 {
-  /* 	font-family: LifeSavers-Regular; */ }
+/*
+Syntax error: Undefined mixin 'tile'.
+        on line 18 of sass/category.scss, in `tile'
+        from line 18 of sass/category.scss
 
-.category {
-  background-image: linear-gradient(to bottom, #e2e2e2, white);
-  padding-top: 2em; }
+13: 		overflow-x: visible;
+14: 	}
+15: 	
+16: 	.category-info {
+17: 	
+18: 		@include tile;
+19: 		
+20: 		color: #efefef;
+21: 		margin-top: 10em;
+22: /* 		background: rgba(0,0,0,.3); */
+23: 		
 
-.picaslide {
-  margin-left: 0; }
+Backtrace:
+sass/category.scss:18:in `tile'
+sass/category.scss:18
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:249:in `visit_mixin'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `map'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:107:in `block in visit_children'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:119:in `with_environment'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:106:in `visit_children'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:316:in `visit_rule'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `map'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:107:in `block in visit_children'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:119:in `with_environment'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:106:in `visit_children'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:316:in `visit_rule'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `map'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:107:in `block in visit_children'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:119:in `with_environment'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:106:in `visit_children'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:126:in `visit_root'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:7:in `visit'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/tree/root_node.rb:20:in `render'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/engine.rb:315:in `_render'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/engine.rb:262:in `render'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/plugin/compiler.rb:340:in `update_stylesheet'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/plugin/compiler.rb:202:in `block in update_stylesheets'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/plugin/compiler.rb:200:in `each'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/plugin/compiler.rb:200:in `update_stylesheets'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/plugin.rb:81:in `update_stylesheets'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/exec.rb:411:in `watch_or_update'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/exec.rb:302:in `process_result'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/exec.rb:41:in `parse'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/lib/sass/exec.rb:21:in `parse!'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/gems/sass-3.2.1/bin/sass:8:in `<top (required)>'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/bin/sass:19:in `load'
+/home/matyas/.rvm/gems/ruby-1.9.3-p125/bin/sass:19:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Undefined mixin 'tile'.\A         on line 18 of sass/category.scss, in `tile'\A         from line 18 of sass/category.scss\A \A 13: 		overflow-x: visible;\A 14: 	}\A 15: 	\A 16: 	.category-info {\A 17: 	\A 18: 		@include tile;\A 19: 		\A 20: 		color: #efefef;\A 21: 		margin-top: 10em;\A 22: /* 		background: rgba(0,0,0,.3); */\A 23: 		"; }

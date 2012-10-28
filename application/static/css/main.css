@@ -48,15 +48,45 @@
 .brand {
   font-family: GreatVibes-Regular; }
 
-h1 {
-  /* 	font-family: LifeSavers-Regular; */ }
+html, body, #maincontent, #body_content, .categories, .category {
+  height: 100%;
+  overflow: hidden; }
 
 .category {
-  background-image: linear-gradient(to bottom, #e2e2e2, white);
-  padding-top: 2em; }
+  padding-top: 3em;
+  height: 100%; }
+  .category .category-content {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: visible; }
+  .category .category-info {
+    border-radius: 5px;
+    padding-bottom: 1.1em;
+    color: #efefef;
+    margin-top: 10em;
+    /* 		background: rgba(0,0,0,.3); */ }
+    .category .category-info .category-title, .category .category-info .category-description {
+      padding: 0 1em; }
+    .category .category-info .category-title {
+      font-family: LifeSavers-Regular;
+      padding-bottom: 0; }
+    .category .category-info .page-header {
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.4); }
+  .category .picaslide {
+    margin-left: 0;
+    position: relative;
+    left: -1em; }
 
-.picaslide {
-  margin-left: 0; }
+.content {
+  border-radius: 5px;
+  padding-bottom: 1.1em;
+  margin-top: 2em;
+  background-image: linear-gradient(to bottom, #e2e2e2, white);
+  /* 	margin-left: 15px; */ }
+  .content .content-description, .content .content-title {
+    padding: 0 1em; }
+  .content .content-title {
+    border-bottom: dashed 1px #ccc; }
 
 .bookables-wrapper .bookables .bookable .picaslide {
   float: left;
@@ -71,5 +101,5 @@ h1 {
   clear: both; }
 
 body {
-  /* 	background: $background; */
-  /* 	background-size: cover; */ }
+  /* 	background-image: linear-gradient(to bottom, #346, #333);  */
+  background: url(/static/img/noise.png) #333333; }

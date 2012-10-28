@@ -1,0 +1,14 @@
+.content {
+	@include tile;
+	margin-top: 2em;
+	background-image: linear-gradient(to bottom, #e2e2e2, #FFF);
+/* 	margin-left: 15px; */
+	
+	.content-description, .content-title{
+		@include tile-content; 
+	}
+	
+	.content-title{
+		border-bottom: dashed 1px #ccc;
+	}
+}
