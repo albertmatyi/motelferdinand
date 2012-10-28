@@ -14,7 +14,7 @@ define(
 			"transparency_directives/menu",
 			"transparency_directives/content",
 			"switches"
-			],function(dp, ss, hf, ps, tdm, tdc, sw){
+			],function(dp, ss, ps, tdm, tdc, sw){
 		model.categories.sort(function(c0, c1) {
 			return c0.order - c1.order;
 		});
@@ -23,7 +23,10 @@ define(
 				return c0.order - c1.order;
 			});
 		});
+		
+		sw.RENDER_HEADER &&
 		$('.category-nav').render(model.categories, tdm.menuDirective);
+
 		sw.RENDER_CONTENT &&
 		$('.categories').render(model.categories, tdc.contentDirective);
 		
@@ -31,6 +34,7 @@ define(
 		$('.contents div.picaslide').each(function(idx, el) {
 			$(el).picaslide({play: 3500, pause: 5000, hoverPause: true, slideSpeed: 850});
 		});
+		
 		sw.RENDER_HEADER && 
 		$('#header .picaslide').each(function(idx, el) {
 			$(el).picaslide({play: 5000, pause: 5000, hoverPause: true, slideSpeed: 1850});
@@ -40,12 +44,6 @@ define(
 			$(el).picaslide({effect: 'fade', play: 3500, pause: 5000, hoverPause: true, slideSpeed: 850});
 		});
 		
-		$('.datepicker').datepicker({
-		    format: 'dd-mm-yyyy',
-		    todayHighlight : true,
-		    todayBtn : true,
-		    autoclose : true
-		});
 		sw.RENDER_BOOKING &&
 		$('.bookables-wrapper').each(function(idx, el){
 			$el = $(el);
@@ -59,6 +57,15 @@ define(
 				$el.remove();
 			}
 		});
+		
+		sw.RENDER_DATEPICKERS && 
+		$('.datepicker').datepicker({
+		    format: 'dd-mm-yyyy',
+		    todayHighlight : true,
+		    todayBtn : true,
+		    autoclose : true
+		});
+		
 		sw.RENDER_BOOKING &&
 		$('.booking-form').each(function(idx, el){
 			$el = $(el);

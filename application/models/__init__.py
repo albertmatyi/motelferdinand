@@ -56,17 +56,18 @@ def init_db():
               'Rooms', 'Restaurants', 'Sightseeing',
               'Partners', 'Documents', 'About']
     room_title=['Sleep with  style', 'The Apartment', 'Bed & breakfast']
-    room_description=['<div data-picaslide-height="300px" data-picaslide-width="400px" data-picaslide-albumid="FerdinandRoom3" data-picaslide-username="110836571215849032642" class="picaslide">[<img src="http://localhost:8080/static/img/picasa_s.png" alt="Insert picasa album"> gallery comes here]</div><br><p>Party tassel brew art organic brony. Of helvetica brooklyn liberal dumpster gastropub anim Carles. Ut magna gluten-free fixie fresh before. Letterpress chillwave non-ethical wes gluten-free ethical. Fresh viraliphone dubstep sriracha twee wayfarers farm-to-table. Bennie art suntincididunt hog.</p><p>Beer frado delectus original sunt delectus.Delectus classy local selvage whatever bushwick. Vegan letterpresswayfarers wayfarers chowder.</p>',
-                      '<div data-picaslide-height="300px" data-picaslide-width="400px" data-picaslide-albumid="FerdinandRoom2" data-picaslide-username="110836571215849032642" class="picaslide">[<img src="http://localhost:8080/static/img/picasa_s.png" alt="Insert picasa album"> gallery comes here]</div>&nbsp;<br>Wes whatever anim trust-fund fin party original vinyl fixie. Polaroid <b>street-art</b> frado chowder Instagram sriracha. Art beer beer whatever dumpster <i>voluptate</i> <i>Pinterest</i>. Sriracha yr original farm-to-table. Brooklyn reprehenderit hog placeat incididunt Carles sriracha.',
-                      'Capitalism incididunt shot liberal viral art local beer. Bushwick sint Pinterest latte trust-fund sint. Daisy Pinterest vintage frado Carles delectus.</p><p>&nbsp;</p><div data-picaslide-height="300px" data-picaslide-width="400px" data-picaslide-albumid="FerdinandRoom1" data-picaslide-username="110836571215849032642" class="picaslide">[<img src="http://localhost:8080/static/img/picasa_s.png" alt="Insert picasa album"> gallery comes here]</div>&nbsp;<ul><li>Ethical 8-bit non brew delectus</li><li>Wayfarers daisy non delectus</li><li>Local dumpster capitalism</li></ul>'
+    room_gallery=['https://picasaweb.google.com/110836571215849032642/FerdinandRoom3', 'https://picasaweb.google.com/110836571215849032642/FerdinandRoom2', 'https://picasaweb.google.com/110836571215849032642/FerdinandRoom1'];
+    room_description=['<p>Party tassel brew art organic brony. Of helvetica brooklyn liberal dumpster gastropub anim Carles. Ut magna gluten-free fixie fresh before. Letterpress chillwave non-ethical wes gluten-free ethical. Fresh viraliphone dubstep sriracha twee wayfarers farm-to-table. Bennie art suntincididunt hog.</p><p>Beer frado delectus original sunt delectus.Delectus classy local selvage whatever bushwick. Vegan letterpresswayfarers wayfarers chowder.</p>',
+                      '<br>Wes whatever anim trust-fund fin party original vinyl fixie. Polaroid <b>street-art</b> frado chowder Instagram sriracha. Art beer beer whatever dumpster <i>voluptate</i> <i>Pinterest</i>. Sriracha yr original farm-to-table. Brooklyn reprehenderit hog placeat incididunt Carles sriracha.',
+                      'Capitalism incididunt shot liberal viral art local beer. Bushwick sint Pinterest latte trust-fund sint. Daisy Pinterest vintage frado Carles delectus.</p><p>&nbsp;</p><ul><li>Ethical 8-bit non brew delectus</li><li>Wayfarers daisy non delectus</li><li>Local dumpster capitalism</li></ul>'
                       ]
     cc = 0
     for title in titles:
-        key = CategoryModel(visible=True, title=title, parent_category=None).put()
+        key = CategoryModel(visible=True, title=title, parent_category=None,description=get_random_text(Random().randint(100, len(fixieText)-40)).replace('\n','<br/>')).put()
         cc += 1
         if title is 'Rooms':
             for i in range(0,3):
-                BookableModel(visible=True, title=room_title[i], category=key, description=room_description[i]).put()
+                BookableModel(visible=True, title=room_title[i], category=key, description=room_description[i],album_url=room_gallery[i]).put()
         # add random number of subcategories
         for _ in range(0, Random().randint(2, 5)):
 #            CategoryModel(visible=True,

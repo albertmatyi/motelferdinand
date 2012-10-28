@@ -20,7 +20,7 @@ define({
 			'class' : function(params) {
 				return this.subcategories.length > 0 ? 'dropdown' : '';
 			},
-			text : function(params) {
+			html : function(params) {
 				return '';
 			}
 		},
