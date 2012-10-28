@@ -1,26 +1,32 @@
 {% extends "base.html" %} {% block content %}
 <div class="categories">
-	<div data-bind="id" class="category">
-		<div class="page-header">
-		<h1 data-bind="title"></h1>
-		</div>
-		<div class="bookables-wrapper">
-			<div class="bookables">
-				<div class="bookable">
-					<h3 data-bind="title"></h3>
-					<h4>Beds: <span data-bind="beds"></span></h4>
-					<div data-bind="album_url"></div>
-					<div data-bind="description"></div>
-				</div>
+	<div data-bind="id" class="category row">
+		<div class="category-info span4"/>
+			<div class="page-header">
+				<h1 class="category-title"></h1>
+			</div>
+			<div class="category-description">
 			</div>
 		</div>
-		<div class="booking-form well ">
-			{% include "booking_form.html" %}
-		</div>
-		<div class="contents">
-			<div class="content">
-				<h3 data-bind="title"></h3>
-				<div data-bind="description"></div>
+		<div class="span8 category-content">
+			<div class="bookables-wrapper">
+				<div class="bookables">
+					<div class="bookable">
+						<h3 class="bookable-title"></h3>
+						<h4>Beds: <span data-bind="beds"></span></h4>
+						<div data-bind="album_url"></div>
+						<div class="bookable-description"></div>
+					</div>
+				</div>
+			</div>
+			<div class="booking-form ">
+				{% include "booking_form.html" %}
+			</div>
+			<div class="contents row">
+				<div class="content span4" data-bind="id">
+					<h3 class="content-title"></h3>
+					<div class="content-description"></div>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -1,7 +1,5 @@
 @import "base";
 
-// @import "navbar";
-
 @import "navbar2";
 
 @import "category";
@@ -11,12 +9,6 @@
 @import "bookable";
 
 body {
-	background: $background;
+/* 	background: $background; */
 	/* 	background-size: cover; */
 }
-
-.brand {
-	font-family: GreatVibes-Regular;
-	//text-shadow: 1px 1px 0px #fff, -1px -1px 0px #999;
-}
-

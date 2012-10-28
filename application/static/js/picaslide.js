@@ -3,11 +3,11 @@
 		var scope = $(this);
 		var user = scope.attr('data-picaslide-username');
 		var album = scope.attr('data-picaslide-albumid');
-		var width = scope.attr('data-picaslide-width');
-		var height = scope.attr('data-picaslide-height');
+		var w=scope.width();
+		var width = w+'px';
+		var height = w*3/4+'px';
 		scope.css('width', width);
         scope.css('height', height);
-        width = width.indexOf('%') != -1 ? scope.width() * width.split('%')[0]*1./100 + 'px':width;
 	    $.picasa.images(user, album, function(images) {
 	        var picasaAlbum = "<div class='picasa-album picaslides-container' style=\"height: "+height+"; width: "+width+";\">\n";
 	        $.each(images, function(i, element) {
