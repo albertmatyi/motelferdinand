@@ -52,35 +52,45 @@ html, body, #maincontent, #body_content, .categories, .category {
   height: 100%;
   overflow: hidden; }
 
-.category {
-  padding-top: 3em;
+.category .category-content {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: visible;
+  padding-bottom: 2em; }
+.category .category-info {
+  border-radius: 5px;
+  padding-bottom: 1.1em;
+  height: 100%;
+  color: #efefef; }
+  .category .category-info .category-title, .category .category-info .category-description {
+    padding: 0 1em; }
+  .category .category-info .category-title {
+    font-family: LifeSavers-Regular;
+    padding-bottom: 0;
+    padding-top: 5em; }
+  .category .category-info .page-header {
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.4); }
+.category .info-container {
   height: 100%; }
-  .category .category-content {
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: visible; }
-  .category .category-info {
-    border-radius: 5px;
-    padding-bottom: 1.1em;
-    color: #efefef;
-    margin-top: 10em;
-    /* 		background: rgba(0,0,0,.3); */ }
-    .category .category-info .category-title, .category .category-info .category-description {
-      padding: 0 1em; }
-    .category .category-info .category-title {
-      font-family: LifeSavers-Regular;
-      padding-bottom: 0; }
-    .category .category-info .page-header {
-      border-bottom: 1px dashed rgba(0, 0, 0, 0.4); }
-  .category .picaslide {
-    margin-left: 0;
-    position: relative;
-    left: -1em; }
+.category .social-icons {
+  border-top: 1px dashed rgba(0, 0, 0, 0.4);
+  text-align: center;
+  margin-top: -10em;
+  padding-top: 3em;
+  color: #000; }
+  .category .social-icons span {
+    display: block; }
+  .category .social-icons a:hover img {
+    /*		box-shadow: 0px 0px 5px #666; */ }
+.category .picaslide {
+  margin-left: 0;
+  position: relative;
+  left: -1em; }
 
 .content {
   border-radius: 5px;
   padding-bottom: 1.1em;
-  margin-top: 2em;
+  margin-top: 5em;
   background-image: linear-gradient(to bottom, #e2e2e2, white);
   /* 	margin-left: 15px; */ }
   .content .content-description, .content .content-title {
@@ -88,17 +98,28 @@ html, body, #maincontent, #body_content, .categories, .category {
   .content .content-title {
     border-bottom: dashed 1px #ccc; }
 
-.bookables-wrapper .bookables .bookable .picaslide {
-  float: left;
-  margin-right: 1em; }
+.bookables-wrapper {
+  border-radius: 5px;
+  padding-bottom: 1.1em;
+  margin-top: 2em;
+  background-image: linear-gradient(to bottom, #e2e2e2, white);
+  padding: 0 1em; }
+  .bookables-wrapper .bookables .bookable .picaslide {
+    float: left;
+    margin-right: 1em; }
 
-.booking-form label, .booking-form input, .booking-form select {
-  float: left; }
-.booking-form select {
-  width: 3em;
-  margin: 0 1em 0 2em; }
-.booking-form > form > div {
-  clear: both; }
+.booking-form {
+  border-radius: 5px;
+  padding-bottom: 1.1em;
+  margin-top: 2em;
+  background-image: linear-gradient(to bottom, #e2e2e2, white); }
+  .booking-form label, .booking-form input, .booking-form select {
+    float: left; }
+  .booking-form select {
+    width: 3em;
+    margin: 0 1em 0 2em; }
+  .booking-form > form > div {
+    clear: both; }
 
 body {
   /* 	background-image: linear-gradient(to bottom, #346, #333);  */

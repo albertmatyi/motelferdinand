@@ -2,10 +2,21 @@
 <div class="categories">
 	<div data-bind="id" class="category row">
 		<div class="category-info span4"/>
+		<div class="info-container">
 			<div class="page-header">
 				<h1 class="category-title"></h1>
 			</div>
 			<div class="category-description">
+			</div>
+		</div>
+			<div class="social-icons">
+				<span > Find us on: </span>
+				
+				<a href="#"><img src="/static/img/social/google.png" alt="Google+" title="Share on Google+"/></a>
+				<a href="#"><img src="/static/img/social/facebook.png" alt="facebook" title="Share on Facebook"/></a>
+				<a href="#"><img src="/static/img/social/twitter.png" alt="twitter" title="Share on Twitter"/></a>
+				<a href="#"><img src="/static/img/social/linkedIn.png" alt="LinkedIn" title="Share on LinkedIn"/></a>
+				<a href="#"><img src="/static/img/social/stumbleUpon.png" alt="StumbleUpon" title="Share on Stumble Upon"/></a>
 			</div>
 		</div>
 		<div class=" category-content">
@@ -18,10 +29,11 @@
 						<div class="bookable-description"></div>
 					</div>
 				</div>
+				<div class="booking-form ">
+					{% include "booking_form.html" %}
+				</div>
 			</div>
-			<div class="booking-form ">
-				{% include "booking_form.html" %}
-			</div>
+			
 			<div class="contents ">
 				<div class="content span4" data-bind="id">
 					<h3 class="content-title"></h3>

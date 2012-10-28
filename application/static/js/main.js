@@ -63,7 +63,7 @@ define(
 		sw.RENDER_BOOKING_GALLERIES && 
 		$('.bookables .bookable-picaslide').each(function(idx, el) {
 			$el = $(el);
-			$el.addClass('span8');
+			$el.addClass('span4');
 			$el.picaslide({effect: 'fade', pause: 5000, hoverPause: true, slideSpeed: 850});
 		});
 		
@@ -75,12 +75,6 @@ define(
 		    autoclose : true
 		});
 
-		// SCROLL SPY
-		
-		$('[data-spy="scroll"]').each(function() {
-			var $spy = $(this).scrollspy('refresh')
-		});
-		
 		// DEFAULT SELECTION
 		
 		if (window.location.hash.length > 1) {

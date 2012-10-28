@@ -1,7 +1,9 @@
 .bookables-wrapper{
+	@include tile;
+	margin-top: 2em;
+	background-image: linear-gradient(to bottom, #e2e2e2, #FFF);
+	@include tile-content;
 	.bookables {
-		&, .bookable{
-		}
 		.bookable {
 			.picaslide {
 				float: left;
@@ -11,6 +13,9 @@
 	}
 }
 .booking-form {
+	@include tile;
+	margin-top: 2em;
+	background-image: linear-gradient(to bottom, #e2e2e2, #FFF);
 	label, input, select {
 		float: left;
 	}
