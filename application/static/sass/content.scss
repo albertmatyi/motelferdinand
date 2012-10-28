@@ -1,8 +1,8 @@
 .content {
 	@include tile;
 	margin-top: 5em;
-	background: #efefef;
-	background-image: linear-gradient(to bottom, #e2e2e2, #FFF);
+	background: #f4f4f4;
+	@include gradient(#e7e7e7, #FFF);
 /* 	margin-left: 15px; */
 	
 	.content-description, .content-title{

@@ -91,8 +91,11 @@ html, body, #maincontent, #body_content, .categories, .category {
   border-radius: 5px;
   padding-bottom: 1.1em;
   margin-top: 5em;
-  background: #efefef;
-  background-image: linear-gradient(to bottom, #e2e2e2, white);
+  background: #f4f4f4;
+  background-image: linear-gradient(to bottom, #e7e7e7, white);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#e7e7e7), to(white));
+  background-image: -moz-linear-gradient(top, #e7e7e7, white);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e7e7e7', endColorstr='white');
   /* 	margin-left: 15px; */ }
   .content .content-description, .content .content-title {
     padding: 0 1em; }
