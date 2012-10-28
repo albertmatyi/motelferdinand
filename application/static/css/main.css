@@ -91,6 +91,7 @@ html, body, #maincontent, #body_content, .categories, .category {
   border-radius: 5px;
   padding-bottom: 1.1em;
   margin-top: 5em;
+  background: #efefef;
   background-image: linear-gradient(to bottom, #e2e2e2, white);
   /* 	margin-left: 15px; */ }
   .content .content-description, .content .content-title {
@@ -102,6 +103,7 @@ html, body, #maincontent, #body_content, .categories, .category {
   border-radius: 5px;
   padding-bottom: 1.1em;
   margin-top: 2em;
+  background: #efefef;
   background-image: linear-gradient(to bottom, #e2e2e2, white);
   padding: 0 1em; }
   .bookables-wrapper .bookables .bookable .picaslide {
