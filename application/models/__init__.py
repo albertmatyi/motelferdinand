@@ -65,7 +65,7 @@ def init_db():
     cc = 0
     gallAdded=False;
     for title in titles:
-        key = CategoryModel(visible=True, title=title, parent_category=None,description=get_random_text(Random().randint(100, 300)).replace('\n','<br/>')).put()
+        key = CategoryModel(order=cc, visible=True, title=title, parent_category=None,description=get_random_text(Random().randint(100, 300)).replace('\n','<br/>')).put()
         cc += 1
         if title is 'Rooms':
             for i in range(0,3):
