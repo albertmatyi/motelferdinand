@@ -161,3 +161,26 @@ html, body, #maincontent, #body_content, .categories, .category {
 
 body {
   background: url(/static/img/noise.png) #333333; }
+
+#loading-overlay {
+  background: url(/static/img/noise.png) #333333;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 9999; }
+  #loading-overlay .loading-spacer {
+    width: 100%;
+    height: 50%; }
+  #loading-overlay .loading {
+    position: relative;
+    margin: -64px auto;
+    height: 96px;
+    padding-top: 32px;
+    width: 300px;
+    padding-left: 128px;
+    background: url(/static/img/coffeecup.png) 0 0 no-repeat;
+    text-align: center;
+    color: #efefef;
+    font-size: 1.5em; }

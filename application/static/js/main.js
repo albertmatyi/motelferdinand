@@ -90,6 +90,9 @@ define(
 		} else if (model.categories.length > 0) {
 			//window.location.hash = 'Category' + model.categories[0].id;
 		}
+		$('#loading-overlay').fadeOut(300, function(){
+			$(this).remove();
+		});
 	// close the ordered requires
 	});	});	
 	//close the function & define

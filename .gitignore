@@ -1,2 +1,3 @@
 *.pyc
 secret_keys.py
+.sass-cache/

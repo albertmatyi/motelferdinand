@@ -13,3 +13,29 @@ $contentPadding: 1em;
 body {
 	background: $background;
 }
+
+#loading-overlay {
+	background: $background;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9999;
+	.loading-spacer{
+		width: 100%;
+		height: 50%;
+	}
+	.loading {
+		position: relative;
+		margin: -64px auto;
+		height: 96px;
+		padding-top: 32px;
+		width: 300px;
+		padding-left: 128px;
+		background: url(/static/img/coffeecup.png) 0 0 no-repeat;
+		text-align: center;
+		color: #efefef;
+		font-size: 1.5em;
+	}
+}

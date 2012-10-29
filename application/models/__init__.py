@@ -52,8 +52,8 @@ def init_db():
     for cat in CategoryModel.all():
         cat.delete()
         pass
-    titles = ['Guestbook', 'Location',
-              'Rooms']#, 'Restaurants', 'Sightseeing',
+    titles = ['About', 'Location',
+              'Rooms', 'Guestbook']#, 'Restaurants', 'Sightseeing',
     #'Partners', 'Documents', 'About']
     room_title=['Sleep with  style', 'The Apartment', 'Bed & breakfast']
     room_gallery=['https://picasaweb.google.com/110836571215849032642/FerdinandRoom3', 'https://picasaweb.google.com/110836571215849032642/FerdinandRoom2', 'https://picasaweb.google.com/110836571215849032642/FerdinandRoom1'];
