@@ -1,14 +1,14 @@
-@mixin noise{
+@mixin noise {
 	background-image: url(/static/img/noise.png);
 }
 
-@mixin tile-content{
+@mixin tile-content {
 	padding: 0 $contentPadding;
 }
 
-@mixin tile{
+@mixin tile {
 	border-radius: 5px;	
-	padding-bottom: $contentPadding+.1em;
+	padding-bottom: $contentPadding + .1em;
 }
 
 @mixin gradient($from, $to) {

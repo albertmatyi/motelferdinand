@@ -47,6 +47,9 @@ define(
 				$('.bookables', el).css('width', $el.width()+'px');
 				$('.bookable, .bookables', el).css('height', '430px');
 				$el.slides({container: 'bookables'});
+				mgl = parseInt($el.css('margin-left'))*.5;
+				$el.width($el.width()-mgl);
+				$el.css('margin-left', mgl+'px');
 			} else{
 				$el.remove();
 			}
@@ -55,7 +58,10 @@ define(
 		$('.booking-form').each(function(idx, el){
 			$el = $(el);
 			l = $('select', el).length; 
-			if(!sw.RENDER_BOOKING || l == 0){
+			if(sw.RENDER_BOOKING && l > 0){
+				$el.appendTo($el.parent())
+			}
+			else{
 				$el.remove();
 			}
 		});

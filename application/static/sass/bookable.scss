@@ -1,16 +1,43 @@
 .bookables-wrapper{
 	@include tile;
-	margin-top: 2em;
 	background: #efefef;
 	background-image: linear-gradient(to bottom, #e2e2e2, #FFF);
-	@include tile-content;
+	margin-top: 5em;
 	.bookables {
 		.bookable {
+			h3, h4, .bookable-description{
+				padding-left: $contentPadding;
+				padding-right: $contentPadding;
+			}
 			.picaslide {
 				float: left;
 				margin-right: 1em;
 			}
 		}
+	}
+	.pagination
+	{
+		list-style: none;
+		li {
+			margin-left: 2em;
+			float: left;
+			
+			a {
+				border-radius: 35px;
+				background: $background;
+				border: none;
+				box-shadow: inset 2px 2px 3px #000;
+				color: #EFEFEF;
+				font-weight: bold;
+				text-shadow: 2px 2px 3px #000000;
+			}
+			
+			a:hover, &.current a {
+				background: #1A80E6;
+				box-shadow: none;
+				text-shadow: none;
+			}
+		}	
 	}
 }
 .booking-form {

@@ -5,11 +5,11 @@ Syntax error: Undefined mixin 'tile'.
 
 1: .bookables-wrapper{
 2: 	@include tile;
-3: 	margin-top: 2em;
-4: 	background: #efefef;
-5: 	background-image: linear-gradient(to bottom, #e2e2e2, #FFF);
-6: 	@include tile-content;
-7: 	.bookables {
+3: 	background: #efefef;
+4: 	background-image: linear-gradient(to bottom, #e2e2e2, #FFF);
+5: 	margin-top: 5em;
+6: 	.bookables {
+7: 		.bookable {
 
 Backtrace:
 sass/bookable.scss:2:in `tile'
@@ -57,4 +57,4 @@ sass/bookable.scss:2
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined mixin 'tile'.\A         on line 2 of sass/bookable.scss, in `tile'\A         from line 2 of sass/bookable.scss\A \A 1: .bookables-wrapper{\A 2: 	@include tile;\A 3: 	margin-top: 2em;\A 4: 	background: #efefef;\A 5: 	background-image: linear-gradient(to bottom, #e2e2e2, #FFF);\A 6: 	@include tile-content;\A 7: 	.bookables {"; }
+  content: "Syntax error: Undefined mixin 'tile'.\A         on line 2 of sass/bookable.scss, in `tile'\A         from line 2 of sass/bookable.scss\A \A 1: .bookables-wrapper{\A 2: 	@include tile;\A 3: 	background: #efefef;\A 4: 	background-image: linear-gradient(to bottom, #e2e2e2, #FFF);\A 5: 	margin-top: 5em;\A 6: 	.bookables {\A 7: 		.bookable {"; }

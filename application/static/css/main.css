@@ -105,13 +105,32 @@ html, body, #maincontent, #body_content, .categories, .category {
 .bookables-wrapper {
   border-radius: 5px;
   padding-bottom: 1.1em;
-  margin-top: 2em;
   background: #efefef;
   background-image: linear-gradient(to bottom, #e2e2e2, white);
-  padding: 0 1em; }
+  margin-top: 5em; }
+  .bookables-wrapper .bookables .bookable h3, .bookables-wrapper .bookables .bookable h4, .bookables-wrapper .bookables .bookable .bookable-description {
+    padding-left: 1em;
+    padding-right: 1em; }
   .bookables-wrapper .bookables .bookable .picaslide {
     float: left;
     margin-right: 1em; }
+  .bookables-wrapper .pagination {
+    list-style: none; }
+    .bookables-wrapper .pagination li {
+      margin-left: 2em;
+      float: left; }
+      .bookables-wrapper .pagination li a {
+        border-radius: 35px;
+        background: url(/static/img/noise.png) #333333;
+        border: none;
+        box-shadow: inset 2px 2px 3px #000;
+        color: #EFEFEF;
+        font-weight: bold;
+        text-shadow: 2px 2px 3px #000000; }
+      .bookables-wrapper .pagination li a:hover, .bookables-wrapper .pagination li.current a {
+        background: #1A80E6;
+        box-shadow: none;
+        text-shadow: none; }
 
 .booking-form {
   border-radius: 5px;
@@ -127,5 +146,4 @@ html, body, #maincontent, #body_content, .categories, .category {
     clear: both; }
 
 body {
-  /* 	background-image: linear-gradient(to bottom, #346, #333);  */
   background: url(/static/img/noise.png) #333333; }

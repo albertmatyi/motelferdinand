@@ -11,8 +11,5 @@ $contentPadding: 1em;
 @import "bookable";
 
 body {
-/* 	background-image: linear-gradient(to bottom, #346, #333);  */
-	background: url(/static/img/noise.png) #333;
-//	background: url(/static/img/bg2.png) fixed;
-//	background-size: cover;
+	background: $background;
 }
