@@ -59,7 +59,9 @@ define(
 			$el = $(el);
 			l = $('select', el).length; 
 			if(sw.RENDER_BOOKING && l > 0){
-				$el.appendTo($el.parent())
+				prnt = $el.parent();
+				$el.remove();
+				$el.appendTo(prnt);
 			}
 			else{
 				$el.remove();

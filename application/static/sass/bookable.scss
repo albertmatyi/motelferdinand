@@ -1,7 +1,8 @@
 .bookables-wrapper{
 	@include tile;
-	background: #efefef;
-	background-image: linear-gradient(to bottom, #e2e2e2, #FFF);
+	background: #f4f4f4;
+	@include gradient(#e7e7e7, #FFF);
+	
 	margin-top: 5em;
 	.bookables {
 		.bookable {
@@ -30,6 +31,9 @@
 				color: #EFEFEF;
 				font-weight: bold;
 				text-shadow: 2px 2px 3px #000000;
+				&:focus {
+					outline: none;
+				}
 			}
 			
 			a:hover, &.current a {
@@ -42,8 +46,14 @@
 }
 .booking-form {
 	@include tile;
+	background: #f4f4f4;
+	@include gradient(#e7e7e7, #FFF);
 	margin-top: 2em;
+	
+	padding-top: 2em;
+	
 	background-image: linear-gradient(to bottom, #e2e2e2, #FFF);
+	
 	label, input, select {
 		float: left;
 	}

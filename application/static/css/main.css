@@ -95,8 +95,7 @@ html, body, #maincontent, #body_content, .categories, .category {
   background-image: linear-gradient(to bottom, #e7e7e7, white);
   background-image: -webkit-gradient(linear, left top, left bottom, from(#e7e7e7), to(white));
   background-image: -moz-linear-gradient(top, #e7e7e7, white);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e7e7e7', endColorstr='white');
-  /* 	margin-left: 15px; */ }
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e7e7e7', endColorstr='white'); }
   .content .content-description, .content .content-title {
     padding: 0 1em; }
   .content .content-title {
@@ -105,8 +104,11 @@ html, body, #maincontent, #body_content, .categories, .category {
 .bookables-wrapper {
   border-radius: 5px;
   padding-bottom: 1.1em;
-  background: #efefef;
-  background-image: linear-gradient(to bottom, #e2e2e2, white);
+  background: #f4f4f4;
+  background-image: linear-gradient(to bottom, #e7e7e7, white);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#e7e7e7), to(white));
+  background-image: -moz-linear-gradient(top, #e7e7e7, white);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e7e7e7', endColorstr='white');
   margin-top: 5em; }
   .bookables-wrapper .bookables .bookable h3, .bookables-wrapper .bookables .bookable h4, .bookables-wrapper .bookables .bookable .bookable-description {
     padding-left: 1em;
@@ -127,6 +129,8 @@ html, body, #maincontent, #body_content, .categories, .category {
         color: #EFEFEF;
         font-weight: bold;
         text-shadow: 2px 2px 3px #000000; }
+        .bookables-wrapper .pagination li a:focus {
+          outline: none; }
       .bookables-wrapper .pagination li a:hover, .bookables-wrapper .pagination li.current a {
         background: #1A80E6;
         box-shadow: none;
@@ -135,7 +139,13 @@ html, body, #maincontent, #body_content, .categories, .category {
 .booking-form {
   border-radius: 5px;
   padding-bottom: 1.1em;
+  background: #f4f4f4;
+  background-image: linear-gradient(to bottom, #e7e7e7, white);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#e7e7e7), to(white));
+  background-image: -moz-linear-gradient(top, #e7e7e7, white);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e7e7e7', endColorstr='white');
   margin-top: 2em;
+  padding-top: 2em;
   background-image: linear-gradient(to bottom, #e2e2e2, white); }
   .booking-form label, .booking-form input, .booking-form select {
     float: left; }
