@@ -53,43 +53,46 @@
   padding-bottom: 20px; }
 
 html, body, #maincontent, #body_content, .categories, .category {
-  height: 100%;
-  overflow: hidden; }
+  /* 	height: 100%; */
+  /* 	overflow: hidden; */ }
 
-.category .category-content {
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: visible;
-  padding-bottom: 2em; }
-.category .category-info {
-  border-radius: 5px;
-  padding-bottom: 1.1em;
-  height: 100%;
-  color: #efefef; }
-  .category .category-info .category-title, .category .category-info .category-description {
-    padding: 0 1em; }
-  .category .category-info .category-title {
-    font-family: LifeSavers-Regular;
-    padding-bottom: 0;
-    padding-top: 5em; }
-  .category .category-info .page-header {
-    border-bottom: 1px dashed rgba(0, 0, 0, 0.4); }
-.category .info-container {
-  height: 100%; }
-.category .social-icons {
-  border-top: 1px dashed rgba(0, 0, 0, 0.4);
-  text-align: center;
-  margin-top: -10em;
-  padding-top: 3em;
-  color: #000; }
-  .category .social-icons span {
-    display: block; }
-  .category .social-icons a:hover img {
-    /*		box-shadow: 0px 0px 5px #666; */ }
-.category .picaslide {
-  margin-left: 0;
-  position: relative;
-  left: -1em; }
+.category {
+  /* 	overflow: auto;	 */ }
+  .category .category-content {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: visible;
+    padding-bottom: 2em; }
+  .category .category-info {
+    position: absolute;
+    border-radius: 5px;
+    padding-bottom: 1.1em;
+    height: 100%;
+    color: #efefef; }
+    .category .category-info .category-title, .category .category-info .category-description {
+      padding: 0 1em; }
+    .category .category-info .category-title {
+      font-family: LifeSavers-Regular;
+      padding-bottom: 0;
+      padding-top: 5em; }
+    .category .category-info .page-header {
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.4); }
+  .category .info-container {
+    height: 100%; }
+  .category .social-icons {
+    border-top: 1px dashed rgba(0, 0, 0, 0.4);
+    text-align: center;
+    margin-top: -10em;
+    padding-top: 3em;
+    color: #000; }
+    .category .social-icons span {
+      display: block; }
+    .category .social-icons a:hover img {
+      /*		box-shadow: 0px 0px 5px #666; */ }
+  .category .picaslide {
+    margin-left: 0;
+    position: relative;
+    left: -1em; }
 
 .content {
   border-radius: 5px;

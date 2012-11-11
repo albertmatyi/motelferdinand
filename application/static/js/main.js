@@ -12,8 +12,9 @@ define(
 			"picaslide",
 			"transparency_directives/menu",
 			"transparency_directives/content",
-			"switches"
-			],function(dp, ps, tdm, tdc, sw){
+			"switches",
+			"category/info_scroller"
+			],function(dp, ps, tdm, tdc, sw, cis){
 		model.categories.sort(function(c0, c1) {
 			return c0.order - c1.order;
 		});
@@ -90,7 +91,8 @@ define(
 		} else if (model.categories.length > 0) {
 			//window.location.hash = 'Category' + model.categories[0].id;
 		}
-		$('#loading-overlay').fadeOut(300, function(){
+		cis.init();
+		$('#loading-overlay').fadeOut(500, function(){
 			$(this).remove();
 		});
 	// close the ordered requires
