@@ -23,26 +23,20 @@ def bookings_new():
     form=request.form
     form.csrf_enabled=False
     usr = UserModel.create_or_retrieve(form['User-email'], form['User-full_name'])
-    
+    print form
     booking = BookingModel()
-    tm = time.strptime(form['Booking-bookfrom'], "%d-%m-%Y")
-    booking.bookfrom = datetime.date(tm.tm_year, tm.tm_mon, tm.tm_mday)
-    tm = time.strptime(form['Booking-bookuntil'], "%d-%m-%Y")
-    booking.bookuntil = datetime.date(tm.tm_year, tm.tm_mon, tm.tm_mday)
     booking.user = usr
     booking.put()
     
-    for bookable in BookableModel.all():
-        quant = form['Bookable-'+str(bookable.key().id())+'-quantity']
-        if quant:
-            be = BookingEntryModel(bookable = bookable, booking = booking, quantity = int( quant ))
-            be.put()
-            pass
-        pass
-    
-    
-    flash("Booking successfully saved!", "success")
-    return redirect(url_for("home"))
+    # for bookable in BookableModel.all():
+        # quant = form['Bookable-'+str(bookable.key().id())+'-quantity']
+        # if quant:
+        #     be = BookingEntryModel(bookable = bookable, booking = booking, quantity = int( quant ))
+        #     be.put()
+        #     pass
+        # pass
+
+    return '{ hello: "world" }';
     pass
 
 @app.route("/admin/bookings/", methods=["GET", "POST"])

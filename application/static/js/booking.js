@@ -152,8 +152,7 @@ define(
 						$formContainer.appentTo($('body'));
 						// show the original button
 						$('.showBookingFormButton', $controlContainer).show();
-					},
-					dataType: 'json'
+					}					
 				});
 			}
 			// block the default behavior
