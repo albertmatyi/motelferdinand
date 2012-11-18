@@ -3,10 +3,11 @@ define(
 	 	"/static/lib/jquery-1.7.2.min.js"
 	],
 	function(){
+		var $formContainer = $('#booking-form');
 		/**
 		 * The jQuery ref to the form to be handled
 		 */
-		var $form = $('#booking-form');
+		var $form = $('form', $formContainer);
 		/**
 		 * The tbody that contains selected rooms
 		 */
@@ -54,26 +55,26 @@ define(
 			$bookedRooms.append('<tr id="BookingEntry'+idx+'">'
 				+ '<td>' + (idx+1)+  '</td>'
 				+ '<td> <input type="hidden" '
-			            + 'name="BookingEntry['+idx+']["bookable_id"]" '
+			            + 'name="BookingEntry['+idx+'][bookable_id]" '
 			            + 'value="'+$roomSelect.val()+'" />' 
 				    + $('option:selected', $roomSelect).text() 
 			 	+  '</td>'
 				+ '<td> <input type="hidden" '
-			            + 'name="BookingEntry['+idx+']["quantity"]" '
+			            + 'name="BookingEntry['+idx+'][quantity]" '
 			            + 'value="'+$quantitySelect.val()+'" />' 
 				    + $quantitySelect.val() 
 			 	+  '</td>'
 			 	+ '<td> <input type="hidden" '
-			            + 'name="BookingEntry['+idx+']["book_from"]" '
+			            + 'name="BookingEntry['+idx+'][book_from]" '
 			            + 'value="'+$bookFrom.val()+'" />' 
 				    + $bookFrom.val()
 			 	+  '</td>'
 			 	+ '<td> <input type="hidden" '
-			            + 'name="BookingEntry['+idx+']["book_until"]" '
+			            + 'name="BookingEntry['+idx+'][book_until]" '
 						+ 'value="'+$bookUntil.val()+'" />' 
 				    + $bookUntil.val()
 			 	+  '</td>'
-			 	+ '<td> <a href="#" class="btn btn-danger" id="removeBooking'+idx+'Button">'
+			 	+ '<td> <a href="#" class="btn btn-danger" id="removeBooking'+idx+'Button" title="Remove entry">'
 			 		+ '<i class="icon-remove icon-white"></i>'
 			 	+ '</a></td>'
 				+ '</tr>');
@@ -84,6 +85,79 @@ define(
 				$('#BookingEntry'+idx, $bookedRooms).remove();
 				return false;
 			});
+		});
+		/**
+		 * The input for the username
+		 */
+		var $userFullName = $('input[name="User-full_name"]', $form);
+		/**
+		 * The input for the email
+		 */
+		var $userEmail = $('input[name="User-email"]', $form);
+		/**
+		 * The button used for submitting a booking
+		 */
+		var $submitBookingButton = $('#submitBookingButton', $form);
+		/**
+		 * Does validations, and shows validation messages
+		 * @return True if all is ok. False otherwise
+		 */
+		function validate(){
+			var ok = true;
+			if($userFullName.val().match(/[\w -]{3,}/) == null){
+				$userFullName.tooltip('show');
+				ok = false;
+			}else{
+				$userFullName.tooltip('hide');
+			}
+			if($userEmail.val().match(/[\w.\-_]{1,}@([\w\-_]+.){1,}\w{3,5}/) == null){
+				$userEmail.tooltip('show');
+				ok = false;
+			}else{
+				$userEmail.tooltip('hide');
+			}
+			var $tc = $('.tableAddControl', $form);
+			if($bookedRooms.children().length < 1){
+				$tc.tooltip('show');
+				ok = false;
+			}else{
+				$tc.tooltip('hide');
+			}
+			$submitBookingButton.tooltip(!ok ? 'show':'hide');
+			return ok;
+		}
+
+		/**
+		 * Do a validation before submitting. If all ok. Submit the form.
+		 */
+		$submitBookingButton.click(function(){
+			// do validation
+			// if validation fails, show message
+			var dataOk = validate();
+			if(dataOk){
+				// if all OK send the form
+				var data = $form.serialize();
+				$.ajax({
+					type: 'POST',
+					url: '/bookings/',
+					data: data,
+					success: function(){
+						// show success message
+						var $controlContainer = $formContainer.parent().parent();
+						$controlContainer.append('<div class="alert alert-success">'
+						        +'<button type="button" class="close" data-dismiss="alert">×</button>'
+						        	+'Booking successfully saved! Stand by for a confirmation email.'
+						        +'</div>')
+						// on response hide the form
+						$formContainer.appentTo($('body'));
+						// show the original button
+						$('.showBookingFormButton', $controlContainer).show();
+					},
+					dataType: 'json'
+				});
+			}
+			// block the default behavior
+			return false;
 		});
 
 		return {
@@ -102,6 +176,10 @@ define(
 				};
 				// trigger the populating of the quantities
 				$roomSelect.change();
+				var d = new Date();
+				$bookFrom.val(d.getDate()+'-'+(d.getMonth()+1)+'-'+d.getFullYear());
+				d.setDate(d.getDate()+1);
+				$bookUntil.val(d.getDate()+'-'+(d.getMonth()+1)+'-'+d.getFullYear());
 			}
 		}
     }

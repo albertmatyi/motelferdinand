@@ -154,6 +154,8 @@ html, body, #maincontent, #body_content, .categories, .category {
   /*background-image: linear-gradient(to bottom, #e2e2e2, #FFF);*/ }
   .booking-controls .booking-form > form > div {
     clear: both; }
+  .booking-controls .booking-form .tableAddControl {
+    text-align: center; }
 
 #footer {
   position: fixed;

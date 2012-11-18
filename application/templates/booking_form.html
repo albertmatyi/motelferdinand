@@ -3,13 +3,19 @@
 		<div class="control-group">
 			<label class="control-label" for="User-full_name">Full Name</label>
 			<div class="controls controls-row">
-				<input type="text" name="User-full_name"/>
+				<div class="input-prepend">
+					<span class="add-on"><i class="icon-user"></i></span>
+					<input type="text" name="User-full_name" rel="tooltip" data-title="Specify a valid full name" data-placement="right"/>
+				</div>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label" for="User-email">Email</label>
 			<div class="controls controls-row">
-				<input type="email" class="email" name="User-email"/>
+				<div class="input-prepend">
+					<span class="add-on"><i class="icon-envelope"></i></span>
+					<input type="email" class="email" name="User-email"  rel="tooltip" data-title="Specify a valid email address" data-placement="right"/>
+				</div>
 			</div>
 		</div>
 		<div class="control-group">
@@ -31,8 +37,8 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<th colspan="6">
-								<a href="#bookingAddRoomModal" role="button" class="btn btn-success" data-toggle="modal"><i class="icon-plus icon-white"></i> Add room </a>
+							<th colspan="6" class="tableAddControl" rel="tooltip" data-title="Add at least one room" data-placement="bottom">
+								<a href="#bookingAddRoomModal" class="btn btn-success" id="#bookingAddRoomModalTrigger" data-toggle="modal"><i class="icon-plus icon-white"></i> Add room </a>
 							</th>
 						</tr>
 					</tfoot>
@@ -40,9 +46,12 @@
 			</div>
 		</div>
 		<div class="form-actions">
-			<button class="btn btn-primary btn-large booking-btn"> Book</button>
+			<button class="btn btn-primary btn-large booking-btn" id="submitBookingButton" rel="tooltip" data-title="Invalid data! See fields above." data-placement="left"> Book</button>
 		</div>
 	</form>
+</div>
+<div class="bookingFormTooltips">
+	<div id="wrongFullNameTooltip">Please provide a valid name </div>
 </div>
 
 <div class="modal hide fade" class tabindex="-1" id="bookingAddRoomModal" role="dialog" aria-labelledby="bookingAddRoomModalTitle" aria-hidden="true">	
