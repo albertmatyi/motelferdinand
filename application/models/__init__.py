@@ -48,12 +48,12 @@ def init_db():
         Deletes existing categories and creates new ones
         with a random number of subcategories that are or are not non-menu-entries
     '''
-    
+        
     for cat in CategoryModel.all():
         cat.delete()
         pass
-    titles = ['About', 'Location',
-              'Rooms', 'Guestbook']#, 'Restaurants', 'Sightseeing',
+    titles = [#'About', 'Location',
+              'Rooms']#, 'Guestbook']#, 'Restaurants', 'Sightseeing',
     #'Partners', 'Documents', 'About']
     room_title=['Sleep with  style', 'The Apartment', 'Bed & breakfast']
     room_gallery=['https://picasaweb.google.com/110836571215849032642/FerdinandRoom3', 'https://picasaweb.google.com/110836571215849032642/FerdinandRoom2', 'https://picasaweb.google.com/110836571215849032642/FerdinandRoom1'];
@@ -69,7 +69,7 @@ def init_db():
         cc += 1
         if title is 'Rooms':
             for i in range(0,3):
-                BookableModel(visible=True, title=room_title[i], category=key, description=room_description[i],album_url=room_gallery[i]).put()
+                BookableModel(visible=True, title=room_title[i], category=key, description=room_description[i],album_url=room_gallery[i], quantity=i+2).put()
         # add random number of subcategories
         for i in range(0, Random().randint(2, 5)):
             ContentModel(visible=True, title=get_random_text(Random().randint(10, 15)).replace('\n',''), \

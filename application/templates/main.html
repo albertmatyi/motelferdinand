@@ -11,21 +11,8 @@
 			</div>
 		</div>
 		<div class=" category-content offset4">
-			<div class="bookables-wrapper span8">
-				<div class="bookables">
-					<div class="bookable">
-						<h3 class="bookable-title"></h3>
-						<h4>Beds: <span data-bind="beds"></span></h4>
-						<div data-bind="album_url"></div>
-						<div class="bookable-description"></div>
-					</div>
-				</div>
-				<div class="booking-form ">
-					{% include "booking_form.html" %}
-				</div>
-			</div>
-			
-			<div class="contents ">
+			{% include "bookables/bookables.html" %}
+			<div class="contents">
 				<div class="content span4" data-bind="id">
 					<h3 class="content-title"></h3>
 					<div class="content-description"></div>
@@ -34,6 +21,9 @@
 		</div>
 	</div>
 </div>
+
+{% include "booking_form.html" %}
+
 {% endblock %}
 
 

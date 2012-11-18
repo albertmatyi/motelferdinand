@@ -61,7 +61,7 @@ html, body, #maincontent, #body_content, .categories, .category {
   .category .category-content {
     height: 100%;
     overflow-y: auto;
-    overflow-x: visible;
+    overflow-x: hidden;
     padding-bottom: 2em; }
   .category .category-info {
     position: absolute;
@@ -134,6 +134,14 @@ html, body, #maincontent, #body_content, .categories, .category {
         text-shadow: none; }
 
 .booking-form {
+  display: none; }
+
+.booking-controls .booking-btn {
+  float: right;
+  margin-right: 5em;
+  padding: 0.7em 3em; }
+.booking-controls .booking-form {
+  display: block;
   border-radius: 5px;
   padding-bottom: 1.1em;
   background: #f4f4f4;
@@ -143,13 +151,8 @@ html, body, #maincontent, #body_content, .categories, .category {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='white');
   margin-top: 2em;
   padding-top: 2em;
-  background-image: linear-gradient(to bottom, #e2e2e2, white); }
-  .booking-form label, .booking-form input, .booking-form select {
-    float: left; }
-  .booking-form select {
-    width: 3em;
-    margin: 0 1em 0 2em; }
-  .booking-form > form > div {
+  /*background-image: linear-gradient(to bottom, #e2e2e2, #FFF);*/ }
+  .booking-controls .booking-form > form > div {
     clear: both; }
 
 #footer {

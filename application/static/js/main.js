@@ -45,30 +45,19 @@ define(
 			$el = $(el);
 			l = $('.bookable', el).length; 
 			if(sw.RENDER_BOOKING && l > 0 ){
-				$('.bookable', el).css('width', $el.width()+'px');
-				$('.bookables', el).css('width', $el.width()+'px');
+				var tmpW = $el.width();
+				$('.bookable', el).css('width', tmpW+'px');
+				$('.bookables', el).css('width', tmpW+'px');
+				$('.bookables-slide-wrapper', el).css('width', tmpW + 'px');
 				$('.bookable, .bookables', el).css('height', '430px');
-				$el.slides({container: 'bookables'});
+				$('.bookables-slide-wrapper', el).slides({container: 'bookables'});
 				mgl = parseInt($el.css('margin-left'))*.5;
 				$el.width($el.width()-mgl);
 				$el.css('margin-left', mgl+'px');
 			} else{
 				$el.remove();
 			}
-		});
-		// delete forms for unused bookings in categories
-		$('.booking-form').each(function(idx, el){
-			$el = $(el);
-			l = $('select', el).length; 
-			if(sw.RENDER_BOOKING && l > 0){
-				prnt = $el.parent();
-				$el.remove();
-				$el.appendTo(prnt);
-			}
-			else{
-				$el.remove();
-			}
-		});
+		});		
 		
 		sw.RENDER_BOOKING_GALLERIES && 
 		$('.bookables .bookable-picaslide').each(function(idx, el) {

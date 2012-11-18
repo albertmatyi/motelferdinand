@@ -1,4 +1,4 @@
-define(function() {
+define(['booking'], function(booking) {
 	var descriptionDecorator = {
 		text : function (params) {
 			return '';
@@ -61,22 +61,22 @@ define(function() {
 					'data-picaslide-height' : function(params) {
 						return '300px';
 					}
+				}
+			},
+			'category-booking-id' :{
+				id : function(params) {
+					return 'bookBtn'+this.id;
 				},
-				quantity : {
-					html : function(params) {
-						var html = '';
-						for ( var i = 0; i <= this.quantity; i++) {
-							html += '<option value="' + i + '">' + i
-									+ '</option>'
-						}
-						return html;
-					},
-					name : function(params) {
-						return 'Bookable-' + this.id + '-quantity';
-					},
-					id : function(params) {
-						return 'Bookable-' + this.id + '-quantity';
-					}
+				text : function (params){
+					return params.element.text;
+				},
+				onclick : function(params){
+					var categoryId = this.id;
+					$(params.element).click(function(){
+						booking.showForm(categoryId);
+						$(this).hide();
+						return false;
+					});
 				}
 			}
 		}
