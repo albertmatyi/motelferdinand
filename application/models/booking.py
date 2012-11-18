@@ -21,6 +21,6 @@ class BookingEntryModel(AbstractModel):
     bookable = db.ReferenceProperty(BookableModel, collection_name='booking_entries')
     quantity = db.IntegerProperty(required=True, default = 1)
     booking = db.ReferenceProperty(BookingModel, collection_name='booking_entries')
-    bookfrom = db.DateProperty(required=True, auto_now_add=True)
-    bookuntil = db.DateProperty(required=True, auto_now_add=True)
+    book_from = db.DateProperty(required=True, auto_now_add=True)
+    book_until = db.DateProperty(required=True, auto_now_add=True)
     pass

@@ -6,21 +6,32 @@ define(
 		/**
 		 * The jQuery ref to the form to be handled
 		 */
-		$form = $('#booking-form');
+		var $form = $('#booking-form');
 		/**
 		 * The tbody that contains selected rooms
 		 */
-		$bookedItems = $('tbody', $form);
+		var $bookedRooms = $('tbody', $form);
 		/**
 		 * The modal through which we can add rooms to the 
 		 * booking
 		 */
-		$addRoomModal = $('#bookingAddRoomModal');
+		var $addRoomModal = $('#bookingAddRoomModal');
 		/**
 		 * The select element using which we can select a room
 		 */
-		$roomSelect = $('#addRoomBookable', $addRoomModal);
-		$quantitySelect = $('#addRoomQuantity', $addRoomModal);
+		var $roomSelect = $('#addRoomBookable', $addRoomModal);
+		/**
+		 * The select element containing options for quantity
+		 */
+		var $quantitySelect = $('#addRoomQuantity', $addRoomModal);
+		/**
+		 * Input that contains the arrival date
+		 */
+		var $bookFrom = $('#addRoomFrom', $addRoomModal);
+		/**
+		 * Input containing the departure date 
+		 */
+		var $bookUntil = $('#addRoomUntil', $addRoomModal);
 		/**
 		 * The method to be ran when changing a room.
 		 * Should update the selectable quantity dropdown
@@ -33,12 +44,46 @@ define(
 				$quantitySelect.append('<option value="'+j+'">'+j+'</option>');
 			};
 		});
+
 		/**
 		 * When we click the addRoomButton, the data from the form should be collected and 
-		 * added to the bookedItems
+		 * added to the bookedRooms
 		 */
-		$('#addRoomButton', $form).click(function(){
-
+		$('#addRoomButton', $addRoomModal).click(function(){
+			var idx = ($bookedRooms.children().length);
+			$bookedRooms.append('<tr id="BookingEntry'+idx+'">'
+				+ '<td>' + (idx+1)+  '</td>'
+				+ '<td> <input type="hidden" '
+			            + 'name="BookingEntry['+idx+']["bookable_id"]" '
+			            + 'value="'+$roomSelect.val()+'" />' 
+				    + $('option:selected', $roomSelect).text() 
+			 	+  '</td>'
+				+ '<td> <input type="hidden" '
+			            + 'name="BookingEntry['+idx+']["quantity"]" '
+			            + 'value="'+$quantitySelect.val()+'" />' 
+				    + $quantitySelect.val() 
+			 	+  '</td>'
+			 	+ '<td> <input type="hidden" '
+			            + 'name="BookingEntry['+idx+']["book_from"]" '
+			            + 'value="'+$bookFrom.val()+'" />' 
+				    + $bookFrom.val()
+			 	+  '</td>'
+			 	+ '<td> <input type="hidden" '
+			            + 'name="BookingEntry['+idx+']["book_until"]" '
+						+ 'value="'+$bookUntil.val()+'" />' 
+				    + $bookUntil.val()
+			 	+  '</td>'
+			 	+ '<td> <a href="#" class="btn btn-danger" id="removeBooking'+idx+'Button">'
+			 		+ '<i class="icon-remove icon-white"></i>'
+			 	+ '</a></td>'
+				+ '</tr>');
+			/**
+			 * Upon clicking the remove button remove the row from the bookedRooms table
+			 */
+			$('#removeBooking'+idx+'Button', $bookedRooms).click(function(){
+				$('#BookingEntry'+idx, $bookedRooms).remove();
+				return false;
+			});
 		});
 
 		return {
@@ -48,9 +93,9 @@ define(
 			 */
 			showForm: function(categoryId){
 				$('#Category'+ categoryId + ' .booking-form-container').append($form);
-				bookables = model.categories.filter(function(el){return el.id == categoryId; })[0].bookables;
+				var bookables = model.categories.filter(function(el){return el.id == categoryId; })[0].bookables;
 				$roomSelect.html('');
-				$bookedItems.html('');
+				$bookedRooms.html('');
 				for (var i = bookables.length - 1; i >= 0; i--) {
 					$roomSelect.append('<option value="'+bookables[i].id+'" data-quantity="'+bookables[i].quantity+'">' 
 						+ bookables[i].title+'</option>');
