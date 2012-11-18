@@ -57,7 +57,7 @@ html, body, #maincontent, #body_content, .categories, .category {
   /* 	overflow: hidden; */ }
 
 .category {
-  /* 	overflow: auto;	 */ }
+  margin-bottom: 350px; }
   .category .category-content {
     height: 100%;
     overflow-y: auto;
@@ -79,16 +79,6 @@ html, body, #maincontent, #body_content, .categories, .category {
       border-bottom: 1px dashed rgba(0, 0, 0, 0.4); }
   .category .info-container {
     height: 100%; }
-  .category .social-icons {
-    border-top: 1px dashed rgba(0, 0, 0, 0.4);
-    text-align: center;
-    margin-top: -10em;
-    padding-top: 3em;
-    color: #000; }
-    .category .social-icons span {
-      display: block; }
-    .category .social-icons a:hover img {
-      /*		box-shadow: 0px 0px 5px #666; */ }
   .category .picaslide {
     margin-left: 0;
     position: relative;
@@ -161,6 +151,22 @@ html, body, #maincontent, #body_content, .categories, .category {
     margin: 0 1em 0 2em; }
   .booking-form > form > div {
     clear: both; }
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+  #footer .social-icons {
+    border-top: 1px dashed rgba(0, 0, 0, 0.4);
+    text-align: left;
+    margin-top: -10em;
+    padding-top: 3em;
+    color: #000; }
+    #footer .social-icons span {
+      display: block; }
+    #footer .social-icons a:hover img {
+      /*		box-shadow: 0px 0px 5px #666; */ }
 
 body {
   background: url(/static/img/noise.png) #333333; }

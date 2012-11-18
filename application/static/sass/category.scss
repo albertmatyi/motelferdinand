@@ -6,7 +6,7 @@ html, body, #maincontent, #body_content, .categories, .category {
 $ci-border: 1px dashed rgba(0,0,0,.4);
 
 .category {
-/* 	overflow: auto;	 */
+	margin-bottom: 350px;
 	.category-content {
 		height: 100%;
 		overflow-y: auto;
@@ -42,20 +42,7 @@ $ci-border: 1px dashed rgba(0,0,0,.4);
 	.info-container{
 		height:100%;
 	}
-	.social-icons {
-		border-top: $ci-border;
-		text-align: center;
-		margin-top: -10em;
-		padding-top: 3em;
-		color: #000;
-		span {
-			display: block;
-		}
-		
-		a:hover img {
-	/*		box-shadow: 0px 0px 5px #666; */
-		}		
-	}
+	
 	.picaslide {
 		margin-left: 0;
 		position: relative;
