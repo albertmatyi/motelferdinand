@@ -8,7 +8,7 @@ Syntax error: Undefined variable: "$ci-border".
 5: 	right: 0;
 6: 	.social-icons {
 7: 		border-top: $ci-border;
-8: 		text-align: left;
+8: 		text-align: center;
 9: 		margin-top: -10em;
 10: 		padding-top: 3em;
 11: 		color: #000;
@@ -71,4 +71,4 @@ sass/footer.scss:7
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$ci-border\".\A         on line 7 of sass/footer.scss\A \A 2: 	position: fixed;\A 3: 	bottom: 0; \A 4: 	left: 0;\A 5: 	right: 0;\A 6: 	.social-icons {\A 7: 		border-top: $ci-border;\A 8: 		text-align: left;\A 9: 		margin-top: -10em;\A 10: 		padding-top: 3em;\A 11: 		color: #000;\A 12: 		span {"; }
+  content: "Syntax error: Undefined variable: \"$ci-border\".\A         on line 7 of sass/footer.scss\A \A 2: 	position: fixed;\A 3: 	bottom: 0; \A 4: 	left: 0;\A 5: 	right: 0;\A 6: 	.social-icons {\A 7: 		border-top: $ci-border;\A 8: 		text-align: center;\A 9: 		margin-top: -10em;\A 10: 		padding-top: 3em;\A 11: 		color: #000;\A 12: 		span {"; }

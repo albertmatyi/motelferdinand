@@ -159,7 +159,7 @@ html, body, #maincontent, #body_content, .categories, .category {
   right: 0; }
   #footer .social-icons {
     border-top: 1px dashed rgba(0, 0, 0, 0.4);
-    text-align: left;
+    text-align: center;
     margin-top: -10em;
     padding-top: 3em;
     color: #000; }

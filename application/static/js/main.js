@@ -7,13 +7,14 @@ define(
 	         "/static/lib/bootstrap/js/bootstrap.min.js",
 	         "/static/lib/slides.min.jquery.js",
 			"/static/lib/picasa.js",
-			"/static/lib/transparency.min.js"],function(){
+			"/static/lib/transparency.min.js",
+			"social"],function(){
 	require(["/static/lib/bootstrap-datepicker/datepicker.js",
 			"picaslide",
 			"transparency_directives/menu",
 			"transparency_directives/content",
 			"switches",
-			"category/info_scroller"
+			"category/info_scroller",
 			],function(dp, ps, tdm, tdc, sw, cis){
 		model.categories.sort(function(c0, c1) {
 			return c0.order - c1.order;
