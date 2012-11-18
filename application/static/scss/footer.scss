@@ -1,0 +1,20 @@
+#footer {
+	position: fixed;
+	bottom: 0; 
+	left: 0;
+	right: 0;
+	.social-icons {
+		border-top: $ci-border;
+		text-align: center;
+		margin-top: -10em;
+		padding-top: 3em;
+		color: #000;
+		span {
+			display: block;
+		}
+		
+		a:hover img {
+	/*		box-shadow: 0px 0px 5px #666; */
+		}		
+	}
+}

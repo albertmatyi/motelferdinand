@@ -1,0 +1,19 @@
+@import "base";
+
+/* Main stylesheet */
+textarea{
+	height:300px;
+	width: 400px;
+}
+/* Your customizations here */
+
+.admin-controls * {
+	float: left;
+	margin-right: 1em;
+}
+
+.cat-selector *{
+	float: left;
+	margin-right: 1em;
+	line-height: 2em;
+}

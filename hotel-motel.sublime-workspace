@@ -1,0 +1,480 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"vPos",
+				"vPosRel"
+			],
+			[
+				"el",
+				"elY1"
+			],
+			[
+				"vP",
+				"elY1-vPos"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "application/static/js/category/info_scroller.js",
+			"settings":
+			{
+				"buffer_size": 1837,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/static/sass/footer.scss",
+			"settings":
+			{
+				"buffer_size": 282,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/templates/includes/social.html",
+			"settings":
+			{
+				"buffer_size": 689,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/models/booking.py",
+			"settings":
+			{
+				"buffer_size": 954,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/static/js/main.js",
+			"settings":
+			{
+				"buffer_size": 2898,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/static/js/social.js",
+			"settings":
+			{
+				"buffer_size": 269,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "'''\nCreated on Jul 24, 2012\n\n@author: matyas\n'''\nfrom google.appengine.ext import db\nfrom random import Random\n\nclass AbstractModel(db.Model):\n    created = db.DateTimeProperty(auto_now_add=True)\n    \n    def to_dict(self):\n        '''\n            Converts a Model obj, or a model obj array to a dictionary (array of dic\n            tionaries\n        '''\n        arr = [('id',self.key().id())]\n        \n        for key in self.properties():\n            val = getattr(self, key)\n            if val is not None and isinstance(getattr(self.__class__, key), db.ReferenceProperty):\n                val = val.key().id()\n            arr += [(key, unicode(val))]\n        if hasattr(self.__class__, 'dependencies'):\n            for dep in self.__class__.dependencies:\n                val = [el.to_dict() for el in getattr(self, dep)]\n                arr += [(dep, val)]\n        return dict(arr) \n        pass\n    \n    def delete(self):\n        '''\n            Overrides the default delete behaviour and cascades on all categories\n            and images first\n            @return super.delete()\n        '''\n        if hasattr(self.__class__, 'dependencies'):\n            for dep in self.__class__.dependencies:\n                for obj in getattr(self, dep):\n                    obj.delete()\n        super(AbstractModel, self).delete()\n        pass\n    \n    pass\n\ndef init_db():\n    ''' \n        Deletes existing categories and creates new ones\n        with a random number of subcategories that are or are not non-menu-entries\n    '''\n        \n    for cat in CategoryModel.all():\n        cat.delete()\n        pass\n    titles = ['About', 'Location',\n              'Rooms', 'Guestbook']#, 'Restaurants', 'Sightseeing',\n    #'Partners', 'Documents', 'About']\n    room_title=['Sleep with  style', 'The Apartment', 'Bed & breakfast']\n    room_gallery=['https://picasaweb.google.com/110836571215849032642/FerdinandRoom3', 'https://picasaweb.google.com/110836571215849032642/FerdinandRoom2', 'https://picasaweb.google.com/110836571215849032642/FerdinandRoom1'];\n    room_description=['<p>Party tassel brew art organic brony. Of helvetica brooklyn liberal dumpster gastropub anim Carles. Ut magna gluten-free fixie fresh before. Letterpress chillwave non-ethical wes gluten-free ethical. Fresh viraliphone dubstep sriracha twee wayfarers farm-to-table. Bennie art suntincididunt hog.</p><p>Beer frado delectus original sunt delectus.Delectus classy local selvage whatever bushwick. Vegan letterpresswayfarers wayfarers chowder.</p>',\n                      '<br>Wes whatever anim trust-fund fin party original vinyl fixie. Polaroid <b>street-art</b> frado chowder Instagram sriracha. Art beer beer whatever dumpster <i>voluptate</i> <i>Pinterest</i>. Sriracha yr original farm-to-table. Brooklyn reprehenderit hog placeat incididunt Carles sriracha.',\n                      'Capitalism incididunt shot liberal viral art local beer. Bushwick sint Pinterest latte trust-fund sint. Daisy Pinterest vintage frado Carles delectus.</p><p>&nbsp;</p><ul><li>Ethical 8-bit non brew delectus</li><li>Wayfarers daisy non delectus</li><li>Local dumpster capitalism</li></ul>'\n                      ]\n    galleryHtml='<div class=\"picaslide\" data-picaslide-username=\"110836571215849032642\" data-picaslide-albumid=\"LeBike\">[<img alt=\"Insert picasa album\" src=\"http://localhost:8080/static/img/picasa_s.png\"> gallery comes here]</div>'\n    cc = 0\n    gallAdded=False;\n    for title in titles:\n        key = CategoryModel(order=cc, visible=True, title=title, parent_category=None,description=get_random_text(Random().randint(100, 300)).replace('\\n','<br/>')).put()\n        cc += 1\n        if title is 'Rooms':\n            for i in range(0,3):\n                BookableModel(visible=True, title=room_title[i], category=key, description=room_description[i],album_url=room_gallery[i]).put()\n        # add random number of subcategories\n        for i in range(0, Random().randint(2, 5)):\n            ContentModel(visible=True, title=get_random_text(Random().randint(10, 15)).replace('\\n',''), \\\n                         category=key,description=get_random_text(Random().randint(100, len(fixieText)/2-40)).replace('\\n','<br/>')+(galleryHtml if not gallAdded else ''),\\\n                         order=i*2).put()\n            gallAdded = True\n                         \n    pass\n\ndef get_random_text(length):\n    if length > len(fixieText):\n        return fixieText.strip()\n    start = Random().randint(20, len(fixieText) - length)\n    start = fixieText.find(' ', start - 20) + 1\n    return fixieText[start : start + length].capitalize().strip()\n    pass\n\nfixieText = '''Rado 1982 is classy gluten-free ethical esse authentic nulla. Bennie dumpster art reprehenderit DSLR whatever esse. Kale fresh trust-fund vegan beer wes reprehenderit delectus. Kale mollit magna polaroid.\n\n    Instagram anime party ethical\n    Bushwick salvia fresh 1982 moon\n    Beer yr etsy vegan\n    Voluptate wayfarers 8-bit\n    Sriracha delectus magna party\n    Frado gastropub fin daisy is\n    DSLR non beer\n\nLatte wayfarers kale beer viral selvage. Twee 8-bit pony is liberal original capitalism. Anim liberal reprehenderit classy sunt. Sint viral bennie Anderson bushwick frado.\nIs Instagram anime\n\nBrony street-art esse seitan etsy. Delectus salvia delectus bronson placeat liberal narwhal. Mollit vinyl incididunt dreamcatcher DSLR authentic 8-bit. Frado daisy pour-over vinyl clothesline ethical.\n\nHog vegan gluten-free authentic DSLR. Pinterest 8-bit placeat seitan latte fin kale kale. Frado chillwave gastropub authentic non dumpster authentic bushwick. Art narwhal whatever iphone placeat esse letterpress ut liberal. Art mollit sint non fixie authentic classy salvia.\n\nBronson I delectus tassel. Of voluptate vegan mollit. Of fin letterpress art ut Anderson of tassel non-ethical. Party viral fixie chowder fresh.\n\nNon-ethical shot anime sriracha trust-fund iphone brooklyn original fresh. 8-bit magna art etsy gluten-free incididunt party. Helvetica salvia party art vintage fin. Brony gluten-free authentic hog street-art twee viral. Narwhal gluten-free shot art bennie yr hog placeat.\n'''\nfrom category import *\nfrom media import *\nfrom content import *\nfrom bookable import *\nfrom user import *\nfrom booking import *\n\n\n\n\n\n",
+			"file": "application/models/__init__.py",
+			"file_size": 6263,
+			"file_write_time": 1353248604000000,
+			"settings":
+			{
+				"buffer_size": 6267,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 96.0,
+		"selected_items":
+		[
+			[
+				"iPla",
+				"Snippet: Try/Except/Else/Finally"
+			],
+			[
+				"new",
+				"Snippet: While Loop"
+			],
+			[
+				"new ",
+				"Snippet: New Property"
+			],
+			[
+				"open",
+				"View: Toggle Open Files in Side Bar"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/matyas/Work/python/hotelmotel/hotel-motel.sublime-project",
+		"/home/matyas/.config/sublime-text-2/Packages/User/Python.sublime-settings",
+		"/home/matyas/.gitconfig",
+		"/home/matyas/Work/python/hotelmotel/.git/COMMIT_EDITMSG",
+		"/home/matyas/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/matyas/.config/sublime-text-2/Packages/User/JSON.sublime-settings",
+		"/home/matyas/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/picaslide.js",
+		"/home/matyas/Desktop/0913/truthDareDrink.html",
+		"/home/matyas/albertmatyi/txt1.txt",
+		"/home/matyas/Work/java/backprop/readme.txt",
+		"/home/matyas/Work/cpp/3d/main.cpp",
+		"/home/matyas/albertmatyi/txt2.txt",
+		"/home/matyas/Desktop/0913/cardGame.html",
+		"/home/matyas/Work/cpp/3d/test.cpp",
+		"/home/matyas/Work/cpp/demo-isti/2/main.cpp",
+		"/home/matyas/Work/cpp/bubu/src/main.cpp",
+		"/home/matyas/Work/cpp/avl_rbbst/test.cpp",
+		"/home/matyas/Work/cpp/hw/src/helloWorld.cpp",
+		"/home/matyas/Work/cpp/luci/main.cpp",
+		"/home/matyas/Work/cpp/gtk/main.cpp",
+		"/home/matyas/Work/cpp/gtk/porj",
+		"/home/matyas/Work/cpp/test/main.cpp",
+		"/home/matyas/Work/cpp/phonelock/phonelock.cpp",
+		"/home/matyas/Work/cpp/parser/main.cpp"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"1",
+			"){\n",
+			"\"\"",
+			"    \n",
+			"transStart",
+			"h",
+			"elYStart",
+			"= ",
+			"elYEnd",
+			"vPos",
+			"elYEnd",
+			"offset",
+			"vPos"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 6,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "application/static/js/category/info_scroller.js",
+					"settings":
+					{
+						"buffer_size": 1837,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								390,
+								390
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "application/static/sass/footer.scss",
+					"settings":
+					{
+						"buffer_size": 282,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								125,
+								125
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "application/templates/includes/social.html",
+					"settings":
+					{
+						"buffer_size": 689,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								617,
+								617
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "application/models/booking.py",
+					"settings":
+					{
+						"buffer_size": 954,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								796,
+								796
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "application/static/js/main.js",
+					"settings":
+					{
+						"buffer_size": 2898,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								301,
+								301
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "application/static/js/social.js",
+					"settings":
+					{
+						"buffer_size": 269,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								193,
+								193
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "application/models/__init__.py",
+					"settings":
+					{
+						"buffer_size": 6267,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								342,
+								342
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"__init",
+				"models/__init__.py"
+			],
+			[
+				"swi",
+				"static/js/switches.js"
+			],
+			[
+				"pica",
+				"static/js/picaslide.js"
+			],
+			[
+				"main",
+				"static/js/main.js"
+			],
+			[
+				"book",
+				"models/booking.py"
+			],
+			[
+				"soci",
+				"templates/includes/social.html"
+			],
+			[
+				"foot",
+				"static/sass/footer.scss"
+			],
+			[
+				"scroll",
+				"static/js/category/info_scroller.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
