@@ -119,7 +119,7 @@ define(
 			$submitBookingButton.tooltip(!allOk ? 'show':'destroy');
 			return ok;
 		}
-
+		$bookingEntryN = $('input[name="BookingEntryN"]', $form);
 		/**
 		 * Do a validation before submitting. If all ok. Submit the form.
 		 */
@@ -134,6 +134,7 @@ define(
 			} 
 			if(dataOk){
 				// if all OK send the form
+				$bookingEntryN.val($bookedRooms.children().length);
 				var data = $form.serialize();
 				$.ajax({
 					type: 'POST',

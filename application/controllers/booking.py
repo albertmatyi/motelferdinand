@@ -27,13 +27,18 @@ def bookings_new():
     booking.user = usr
     booking.put()
     
-    #FIXME for bookable in BookableModel.all():
-        # quant = form['Bookable-'+str(bookable.key().id())+'-quantity']
-        # if quant:
-        #     be = BookingEntryModel(bookable = bookable, booking = booking, quantity = int( quant ))
-        #     be.put()
-        #     pass
-        # pass
+    n = int ( form['BookingEntryN'] )
+    for i in range(n):
+        i_str = str ( i )  
+        bookable = BookableModel.get_by_id( long ( form['BookingEntry['+i_str+'][bookable_id]'] ) )
+        quant = int ( form['BookingEntry['+i_str+'][bookable_id]'] ) 
+        book_from = form['BookingEntry['+i_str+'][book_from]']
+        book_until = form['BookingEntry['+i_str+'][book_until]']
+        
+        be = BookingEntryModel(bookable = bookable, booking = booking, quantity = quant
+            , book_from = book_from, book_until = book_until)
+        be.put()
+        pass
 
     return '{ hello: "world" }';
     pass
