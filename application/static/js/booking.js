@@ -103,27 +103,21 @@ define(
 		 * @return True if all is ok. False otherwise
 		 */
 		function validate(){
-			var ok = true;
-			if($userFullName.val().match(/[\w -]{3,}/) == null){
-				$userFullName.tooltip('show');
-				ok = false;
-			}else{
-				$userFullName.tooltip('hide');
-			}
-			if($userEmail.val().match(/[\w.\-_]{1,}@([\w\-_]+.){1,}\w{3,5}/) == null){
-				$userEmail.tooltip('show');
-				ok = false;
-			}else{
-				$userEmail.tooltip('hide');
-			}
+			var allOk = true;
+			var ok = $userFullName.val().match(/[\w -]{3,}/) != null;
+			$userFullName.tooltip(!ok ? 'show':'destroy');
+			allOk &= ok;
+			
+			ok = $userEmail.val().match(/[\w.\-_]{1,}@([\w\-_]+.){1,}\w{3,5}/) != null;
+			$userEmail.tooltip(!ok ? 'show':'destroy');
+			allOk &= ok;
+			
 			var $tc = $('.tableAddControl', $form);
-			if($bookedRooms.children().length < 1){
-				$tc.tooltip('show');
-				ok = false;
-			}else{
-				$tc.tooltip('hide');
-			}
-			$submitBookingButton.tooltip(!ok ? 'show':'hide');
+			ok = $bookedRooms.children().length > 0;
+			$tc.tooltip(!ok ? 'show':'destroy');
+			allOk &= ok;
+
+			$submitBookingButton.tooltip(!allOk ? 'show':'destroy');
 			return ok;
 		}
 
@@ -133,7 +127,12 @@ define(
 		$submitBookingButton.click(function(){
 			// do validation
 			// if validation fails, show message
-			var dataOk = validate();
+			try{
+				var dataOk = validate();
+			} catch (e){
+				console.log(e);
+				dataOk = false;
+			} 
 			if(dataOk){
 				// if all OK send the form
 				var data = $form.serialize();
@@ -144,14 +143,14 @@ define(
 					success: function(){
 						// show success message
 						var $controlContainer = $formContainer.parent().parent();
-						$controlContainer.append('<div class="alert alert-success">'
+						$controlContainer.append('<div class="clearfix alert alert-success">'
 						        +'<button type="button" class="close" data-dismiss="alert">×</button>'
 						        	+'Booking successfully saved! Stand by for a confirmation email.'
 						        +'</div>')
 						// on response hide the form
-						$formContainer.appentTo($('body'));
+						$formContainer.appendTo($('body'));
 						// show the original button
-						$('.showBookingFormButton', $controlContainer).show();
+						$('.showBookingFormButton', $controlContainer).appendTo($controlContainer).show().text('Book again');
 					}					
 				});
 			}
@@ -165,7 +164,7 @@ define(
 			 * identified by the id
 			 */
 			showForm: function(categoryId){
-				$('#Category'+ categoryId + ' .booking-form-container').append($form);
+				$('#Category'+ categoryId + ' .booking-form-container').append($formContainer);
 				var bookables = model.categories.filter(function(el){return el.id == categoryId; })[0].bookables;
 				$roomSelect.html('');
 				$bookedRooms.html('');
