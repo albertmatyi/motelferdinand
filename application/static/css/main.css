@@ -136,26 +136,26 @@ html, body, #maincontent, #body_content, .categories, .category {
 .booking-form {
   display: none; }
 
-.booking-controls .booking-btn {
-  float: right;
-  margin-right: 5em;
-  padding: 0.7em 3em; }
-.booking-controls .booking-form {
-  display: block;
-  border-radius: 5px;
-  padding-bottom: 1.1em;
-  background: #f4f4f4;
+.booking-controls {
+  border-top: solid 1px #e5e5e5;
+  padding-top: 1em;
   background-image: linear-gradient(to bottom, #f2f2f2, white);
   background-image: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(white));
   background-image: -moz-linear-gradient(top, #f2f2f2, white);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='white');
-  margin-top: 2em;
-  padding-top: 2em;
-  /*background-image: linear-gradient(to bottom, #e2e2e2, #FFF);*/ }
-  .booking-controls .booking-form > form > div {
-    clear: both; }
-  .booking-controls .booking-form th.tableAddControl {
-    text-align: center; }
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='white'); }
+  .booking-controls .booking-btn {
+    float: right;
+    margin-right: 5em;
+    padding: 0.7em 3em; }
+  .booking-controls #booking-form {
+    display: block;
+    background: #f4f4f4;
+    margin-top: 2em; }
+    .booking-controls #booking-form, .booking-controls #booking-form .form-actions {
+      margin-bottom: 0;
+      padding-bottom: 0; }
+    .booking-controls #booking-form th.tableAddControl {
+      text-align: center; }
 
 #footer {
   position: fixed;
@@ -165,8 +165,9 @@ html, body, #maincontent, #body_content, .categories, .category {
   #footer .social-icons {
     border-top: 1px dashed rgba(0, 0, 0, 0.4);
     text-align: center;
-    margin-top: -10em;
-    padding-top: 3em;
+    margin-top: -7em;
+    margin-left: 0;
+    padding-top: 1em;
     color: #000; }
     #footer .social-icons span {
       display: block; }
@@ -198,3 +199,5 @@ body {
     text-align: center;
     color: #efefef;
     font-size: 1.5em; }
+    #loading-overlay .loading .progress {
+      margin: 1em; }

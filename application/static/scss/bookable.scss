@@ -48,24 +48,23 @@
 	display: none;
 }
 .booking-controls {
+	border-top: solid 1px #e5e5e5;
+	padding-top: 1em;
+	@include gradient($contentGradientFrom, $contentGradientTo);
+
 	.booking-btn {
 		float: right; 
 		margin-right: 5em; 
 		padding: 0.7em 3em;
 	}
-	.booking-form {
+	#booking-form {
 		display: block;
-		@include tile;
 		background: #f4f4f4;
-		@include gradient($contentGradientFrom, $contentGradientTo);
 		margin-top: 2em;
 		
-		padding-top: 2em;
-		
-		/*background-image: linear-gradient(to bottom, #e2e2e2, #FFF);*/
-		
-		& > form > div {
-			clear: both;
+		&, .form-actions {
+			margin-bottom: 0;
+			padding-bottom: 0;
 		}
 		
 		th.tableAddControl {

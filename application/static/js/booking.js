@@ -3,11 +3,10 @@ define(
 	 	"/static/lib/jquery-1.7.2.min.js"
 	],
 	function(){
-		var $formContainer = $('#booking-form');
 		/**
 		 * The jQuery ref to the form to be handled
 		 */
-		var $form = $('form', $formContainer);
+		var $form = $('#booking-form');
 		/**
 		 * The tbody that contains selected rooms
 		 */
@@ -142,13 +141,13 @@ define(
 					data: data,
 					success: function(){
 						// show success message
-						var $controlContainer = $formContainer.parent().parent();
+						var $controlContainer = $form.parent();
 						$controlContainer.append('<div class="clearfix alert alert-success">'
 						        +'<button type="button" class="close" data-dismiss="alert">×</button>'
 						        	+'Booking successfully saved! Stand by for a confirmation email.'
 						        +'</div>')
 						// on response hide the form
-						$formContainer.appendTo($('body'));
+						$form.appendTo($('body'));
 						// show the original button
 						$('.showBookingFormButton', $controlContainer).appendTo($controlContainer).show().text('Book again');
 					}					
@@ -164,7 +163,7 @@ define(
 			 * identified by the id
 			 */
 			showForm: function(categoryId){
-				$('#Category'+ categoryId + ' .booking-form-container').append($formContainer);
+				$('#Category'+ categoryId + ' .booking-controls').append($form);
 				var bookables = model.categories.filter(function(el){return el.id == categoryId; })[0].bookables;
 				$roomSelect.html('');
 				$bookedRooms.html('');
