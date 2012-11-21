@@ -39,7 +39,6 @@ define(
 		$roomSelect.change(function(){
 			var qty = $('option:selected', $roomSelect).data().quantity;
 			$quantitySelect.html('');
-			console.log(qty);
 			for (var j = 1; j <= qty; j++) {
 				$quantitySelect.append('<option value="'+j+'">'+j+'</option>');
 			};
