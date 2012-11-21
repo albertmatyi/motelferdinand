@@ -44,9 +44,6 @@
 		}	
 	}
 }
-.booking-form {
-	display: none;
-}
 .booking-controls {
 	border-top: solid 1px #e5e5e5;
 	padding-top: 1em;
@@ -71,4 +68,7 @@
 			text-align: center;
 		}
 	}
+}
+#booking-form {
+	display: none;
 }
