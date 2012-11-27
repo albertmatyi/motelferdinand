@@ -1,0 +1,65 @@
+@font-face {
+  font-family: 'GreatVibes-Regular';
+  src: url("../fonts/Great_Vibes/GreatVibes-Regular.ttf"); }
+
+@font-face {
+  font-family: 'LifeSavers-Regular';
+  src: url("../fonts/Life_Savers/LifeSavers-Regular.ttf"); }
+
+.picaslide {
+  padding: 0; }
+  .picaslide > .picaslides-container {
+    display: none; }
+    .picaslide > .picaslides-container > * {
+      display: block; }
+  .picaslide ul.picaslide-pagination {
+    float: right;
+    height: 0;
+    position: relative;
+    top: 0px;
+    padding: 0;
+    margin: 0;
+    z-index: 100; }
+    .picaslide ul.picaslide-pagination li {
+      width: 6px;
+      height: 6px;
+      margin: 3px;
+      border-radius: 6px;
+      float: left;
+      padding: 0;
+      overflow: hidden;
+      background: transparent;
+      border: solid 2px #000; }
+      .picaslide ul.picaslide-pagination li.current {
+        background: #000; }
+      .picaslide ul.picaslide-pagination li > a {
+        line-height: 0;
+        font-size: 0;
+        color: transparent;
+        border: none;
+        display: block;
+        height: 100%;
+        width: 100%;
+        background: transparent; }
+  .picaslide:after {
+    display: block;
+    clear: both; }
+
+.admin-controls {
+  float: right; }
+  .admin-controls a {
+    background: #999;
+    background-image: linear-gradient(to bottom, #666666, #999999);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#666666), to(#999999));
+    background-image: -moz-linear-gradient(top, #666666, #999999);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#999999');
+    border-radius: 3px;
+    padding: 0 1px;
+    position: relative;
+    top: -40px; }
+    .admin-controls a:hover {
+      background: #58d;
+      background-image: linear-gradient(to bottom, #3366cc, #6699ff);
+      background-image: -webkit-gradient(linear, left top, left bottom, from(#3366cc), to(#6699ff));
+      background-image: -moz-linear-gradient(top, #3366cc, #6699ff);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3366cc', endColorstr='#6699ff'); }

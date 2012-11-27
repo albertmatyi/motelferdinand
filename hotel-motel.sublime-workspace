@@ -4,6 +4,62 @@
 		"selected_items":
 		[
 			[
+				"book_",
+				"book_until"
+			],
+			[
+				"booking",
+				"bookingEntryN"
+			],
+			[
+				"form",
+				"formContainer"
+			],
+			[
+				"subm",
+				"submitBookingButton"
+			],
+			[
+				"sub",
+				"submitBookingButton"
+			],
+			[
+				"boo",
+				"bookedRooms"
+			],
+			[
+				"user",
+				"userFullName"
+			],
+			[
+				"book",
+				"bookFrom"
+			],
+			[
+				"addR",
+				"addRoomModal"
+			],
+			[
+				"qu",
+				"quantitySelect"
+			],
+			[
+				"add",
+				"addRoomModal"
+			],
+			[
+				"cate",
+				"categoryId"
+			],
+			[
+				"opt",
+				"option	Tag"
+			],
+			[
+				"th",
+				"th	Tag"
+			],
+			[
 				"vPos",
 				"vPosRel"
 			],
@@ -20,26 +76,18 @@
 	"buffers":
 	[
 		{
-			"file": "application/static/js/category/info_scroller.js",
+			"file": "application/static/js/booking.js",
 			"settings":
 			{
-				"buffer_size": 1837,
+				"buffer_size": 5850,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "application/static/sass/footer.scss",
+			"file": "application/controllers/booking.py",
 			"settings":
 			{
-				"buffer_size": 282,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/templates/includes/social.html",
-			"settings":
-			{
-				"buffer_size": 689,
+				"buffer_size": 1965,
 				"line_ending": "Unix"
 			}
 		},
@@ -47,34 +95,31 @@
 			"file": "application/models/booking.py",
 			"settings":
 			{
-				"buffer_size": 954,
+				"buffer_size": 956,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "application/static/js/main.js",
+			"file": "application/templates/booking_form.html",
 			"settings":
 			{
-				"buffer_size": 2898,
+				"buffer_size": 3213,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "application/static/js/social.js",
+			"file": "application/templates/bookables/bookables.html",
 			"settings":
 			{
-				"buffer_size": 269,
+				"buffer_size": 497,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "'''\nCreated on Jul 24, 2012\n\n@author: matyas\n'''\nfrom google.appengine.ext import db\nfrom random import Random\n\nclass AbstractModel(db.Model):\n    created = db.DateTimeProperty(auto_now_add=True)\n    \n    def to_dict(self):\n        '''\n            Converts a Model obj, or a model obj array to a dictionary (array of dic\n            tionaries\n        '''\n        arr = [('id',self.key().id())]\n        \n        for key in self.properties():\n            val = getattr(self, key)\n            if val is not None and isinstance(getattr(self.__class__, key), db.ReferenceProperty):\n                val = val.key().id()\n            arr += [(key, unicode(val))]\n        if hasattr(self.__class__, 'dependencies'):\n            for dep in self.__class__.dependencies:\n                val = [el.to_dict() for el in getattr(self, dep)]\n                arr += [(dep, val)]\n        return dict(arr) \n        pass\n    \n    def delete(self):\n        '''\n            Overrides the default delete behaviour and cascades on all categories\n            and images first\n            @return super.delete()\n        '''\n        if hasattr(self.__class__, 'dependencies'):\n            for dep in self.__class__.dependencies:\n                for obj in getattr(self, dep):\n                    obj.delete()\n        super(AbstractModel, self).delete()\n        pass\n    \n    pass\n\ndef init_db():\n    ''' \n        Deletes existing categories and creates new ones\n        with a random number of subcategories that are or are not non-menu-entries\n    '''\n        \n    for cat in CategoryModel.all():\n        cat.delete()\n        pass\n    titles = ['About', 'Location',\n              'Rooms', 'Guestbook']#, 'Restaurants', 'Sightseeing',\n    #'Partners', 'Documents', 'About']\n    room_title=['Sleep with  style', 'The Apartment', 'Bed & breakfast']\n    room_gallery=['https://picasaweb.google.com/110836571215849032642/FerdinandRoom3', 'https://picasaweb.google.com/110836571215849032642/FerdinandRoom2', 'https://picasaweb.google.com/110836571215849032642/FerdinandRoom1'];\n    room_description=['<p>Party tassel brew art organic brony. Of helvetica brooklyn liberal dumpster gastropub anim Carles. Ut magna gluten-free fixie fresh before. Letterpress chillwave non-ethical wes gluten-free ethical. Fresh viraliphone dubstep sriracha twee wayfarers farm-to-table. Bennie art suntincididunt hog.</p><p>Beer frado delectus original sunt delectus.Delectus classy local selvage whatever bushwick. Vegan letterpresswayfarers wayfarers chowder.</p>',\n                      '<br>Wes whatever anim trust-fund fin party original vinyl fixie. Polaroid <b>street-art</b> frado chowder Instagram sriracha. Art beer beer whatever dumpster <i>voluptate</i> <i>Pinterest</i>. Sriracha yr original farm-to-table. Brooklyn reprehenderit hog placeat incididunt Carles sriracha.',\n                      'Capitalism incididunt shot liberal viral art local beer. Bushwick sint Pinterest latte trust-fund sint. Daisy Pinterest vintage frado Carles delectus.</p><p>&nbsp;</p><ul><li>Ethical 8-bit non brew delectus</li><li>Wayfarers daisy non delectus</li><li>Local dumpster capitalism</li></ul>'\n                      ]\n    galleryHtml='<div class=\"picaslide\" data-picaslide-username=\"110836571215849032642\" data-picaslide-albumid=\"LeBike\">[<img alt=\"Insert picasa album\" src=\"http://localhost:8080/static/img/picasa_s.png\"> gallery comes here]</div>'\n    cc = 0\n    gallAdded=False;\n    for title in titles:\n        key = CategoryModel(order=cc, visible=True, title=title, parent_category=None,description=get_random_text(Random().randint(100, 300)).replace('\\n','<br/>')).put()\n        cc += 1\n        if title is 'Rooms':\n            for i in range(0,3):\n                BookableModel(visible=True, title=room_title[i], category=key, description=room_description[i],album_url=room_gallery[i]).put()\n        # add random number of subcategories\n        for i in range(0, Random().randint(2, 5)):\n            ContentModel(visible=True, title=get_random_text(Random().randint(10, 15)).replace('\\n',''), \\\n                         category=key,description=get_random_text(Random().randint(100, len(fixieText)/2-40)).replace('\\n','<br/>')+(galleryHtml if not gallAdded else ''),\\\n                         order=i*2).put()\n            gallAdded = True\n                         \n    pass\n\ndef get_random_text(length):\n    if length > len(fixieText):\n        return fixieText.strip()\n    start = Random().randint(20, len(fixieText) - length)\n    start = fixieText.find(' ', start - 20) + 1\n    return fixieText[start : start + length].capitalize().strip()\n    pass\n\nfixieText = '''Rado 1982 is classy gluten-free ethical esse authentic nulla. Bennie dumpster art reprehenderit DSLR whatever esse. Kale fresh trust-fund vegan beer wes reprehenderit delectus. Kale mollit magna polaroid.\n\n    Instagram anime party ethical\n    Bushwick salvia fresh 1982 moon\n    Beer yr etsy vegan\n    Voluptate wayfarers 8-bit\n    Sriracha delectus magna party\n    Frado gastropub fin daisy is\n    DSLR non beer\n\nLatte wayfarers kale beer viral selvage. Twee 8-bit pony is liberal original capitalism. Anim liberal reprehenderit classy sunt. Sint viral bennie Anderson bushwick frado.\nIs Instagram anime\n\nBrony street-art esse seitan etsy. Delectus salvia delectus bronson placeat liberal narwhal. Mollit vinyl incididunt dreamcatcher DSLR authentic 8-bit. Frado daisy pour-over vinyl clothesline ethical.\n\nHog vegan gluten-free authentic DSLR. Pinterest 8-bit placeat seitan latte fin kale kale. Frado chillwave gastropub authentic non dumpster authentic bushwick. Art narwhal whatever iphone placeat esse letterpress ut liberal. Art mollit sint non fixie authentic classy salvia.\n\nBronson I delectus tassel. Of voluptate vegan mollit. Of fin letterpress art ut Anderson of tassel non-ethical. Party viral fixie chowder fresh.\n\nNon-ethical shot anime sriracha trust-fund iphone brooklyn original fresh. 8-bit magna art etsy gluten-free incididunt party. Helvetica salvia party art vintage fin. Brony gluten-free authentic hog street-art twee viral. Narwhal gluten-free shot art bennie yr hog placeat.\n'''\nfrom category import *\nfrom media import *\nfrom content import *\nfrom bookable import *\nfrom user import *\nfrom booking import *\n\n\n\n\n\n",
-			"file": "application/models/__init__.py",
-			"file_size": 6263,
-			"file_write_time": 1353248604000000,
+			"file": "application/static/scss/bookable.scss",
 			"settings":
 			{
-				"buffer_size": 6267,
+				"buffer_size": 1244,
 				"line_ending": "Unix"
 			}
 		}
@@ -82,9 +127,21 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 96.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"for",
+				"Snippet: for (…) {…} (Improved Native For-Loop)"
+			],
+			[
+				"sass",
+				"Set Syntax: CSS"
+			],
 			[
 				"iPla",
 				"Snippet: Try/Except/Else/Finally"
@@ -106,7 +163,7 @@
 	},
 	"console":
 	{
-		"height": 0.0
+		"height": 203.0
 	},
 	"distraction_free":
 	{
@@ -119,6 +176,35 @@
 	},
 	"file_history":
 	[
+		"/home/matyas/Work/python/hotelmotel/application/models/__init__.py",
+		"/home/matyas/Desktop/hangout_url",
+		"/home/matyas/Work/python/hotelmotel/application/models/user.py",
+		"/home/matyas/Work/python/hotelmotel/application/static/scss/mixins.scss",
+		"/home/matyas/Work/python/hotelmotel/application/templates/base.html",
+		"/home/matyas/Work/python/hotelmotel/application/static/scss/main.scss",
+		"/home/matyas/Work/python/hotelmotel/application/static/scss/footer.scss",
+		"/home/matyas/Work/python/hotelmotel/application/templates/bookables/bookables.html",
+		"/home/matyas/Work/python/hotelmotel/application/templates/main.html",
+		"/home/matyas/Work/python/hotelmotel/index.yaml",
+		"/home/matyas/Work/python/hotelmotel/app.yaml",
+		"/home/matyas/Work/python/hotelmotel/application/static/scss/bookable.scss",
+		"/home/matyas/Work/python/hotelmotel/application/models/booking.py",
+		"/home/matyas/Work/python/hotelmotel/application/models/bookable.py",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/main.js",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/transparency_directives/content.js",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/booking.js",
+		"/home/matyas/Work/python/hotelmotel/application/templates/booking_form.html",
+		"/home/matyas/Work/python/hotelmotel/application/templates/includes/social.html",
+		"/home/matyas/.config/sublime-text-2/Packages/User/JavaScript.sublime-settings",
+		"/home/matyas/Work/python/hotelmotel/application/static/scss/category.scss",
+		"/home/matyas/Work/python/hotelmotel/application/templates/bookables/list.html",
+		"/home/matyas/Work/python/hotelmotel/application/templates/contents/list.html",
+		"/home/matyas/Work/python/hotelmotel/application/static/sass/bookable.scss",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/switches.js",
+		"/home/matyas/Work/python/hotelmotel/sasswatch.sh",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/social.js",
+		"/home/matyas/Work/python/hotelmotel/application/static/sass/footer.scss",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/category/info_scroller.js",
 		"/home/matyas/Work/python/hotelmotel/hotel-motel.sublime-project",
 		"/home/matyas/.config/sublime-text-2/Packages/User/Python.sublime-settings",
 		"/home/matyas/.gitconfig",
@@ -151,9 +237,14 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			"*.py",
+			"*.html, *.scss",
+			"*.js, *.html, *.css",
+			"*.js, *.html",
+			"*.js"
 		]
 	},
 	"find_state":
@@ -161,6 +252,38 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"]']\n",
+			"datetime",
+			"date",
+			"i",
+			"by_id",
+			"find",
+			";\n",
+			"e5",
+			"controls",
+			"formContainer",
+			"'hide'",
+			"ooltip",
+			"								\n",
+			"bookingAddRoomModal",
+			"userName",
+			"bookedItems",
+			"\\$",
+			"$",
+			"				\n",
+			"('');",
+			"id",
+			"localId",
+			"bookingAddRoomModal",
+			"list.html",
+			"				\n",
+			"category-booking-id",
+			"boOkingAddRoomModalLabel",
+			"myModal",
+			"<th>",
+			"Rooms",
+			"titleDecorator",
+			"	\n",
 			"1",
 			"){\n",
 			"\"\"",
@@ -177,10 +300,15 @@
 		],
 		"highlight": true,
 		"in_selection": false,
-		"preserve_case": false,
+		"preserve_case": true,
 		"regex": true,
 		"replace_history":
 		[
+			"'destroy'",
+			"bookedRooms",
+			"var $",
+			"bookingAddRoomModal",
+			"<div class=\"control-group\">"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -191,23 +319,23 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "application/static/js/category/info_scroller.js",
+					"file": "application/static/js/booking.js",
 					"settings":
 					{
-						"buffer_size": 1837,
+						"buffer_size": 5850,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								390,
-								390
+								569,
+								569
 							]
 						],
 						"settings":
@@ -223,71 +351,46 @@
 				},
 				{
 					"buffer": 1,
-					"file": "application/static/sass/footer.scss",
+					"file": "application/controllers/booking.py",
 					"settings":
 					{
-						"buffer_size": 282,
+						"buffer_size": 1965,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								125,
-								125
+								1552,
+								1552
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 425.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "application/templates/includes/social.html",
-					"settings":
-					{
-						"buffer_size": 689,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								617,
-								617
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "application/models/booking.py",
 					"settings":
 					{
-						"buffer_size": 954,
+						"buffer_size": 956,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								796,
-								796
+								69,
+								69
 							]
 						],
 						"settings":
@@ -303,24 +406,51 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "application/static/js/main.js",
+					"buffer": 3,
+					"file": "application/templates/booking_form.html",
 					"settings":
 					{
-						"buffer_size": 2898,
+						"buffer_size": 3213,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								301,
-								301
+								973,
+								973
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "application/templates/bookables/bookables.html",
+					"settings":
+					{
+						"buffer_size": 497,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								439,
+								439
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
@@ -331,52 +461,24 @@
 				},
 				{
 					"buffer": 5,
-					"file": "application/static/js/social.js",
+					"file": "application/static/scss/bookable.scss",
 					"settings":
 					{
-						"buffer_size": 269,
+						"buffer_size": 1244,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								193,
-								193
+								752,
+								752
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
 							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "application/models/__init__.py",
-					"settings":
-					{
-						"buffer_size": 6267,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								342,
-								342
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -418,9 +520,13 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
 	"replace":
 	{
-		"height": 0.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -428,6 +534,98 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"_ini",
+				"models/__init__.py"
+			],
+			[
+				"init",
+				"models/__init__.py"
+			],
+			[
+				"user",
+				"models/user.py"
+			],
+			[
+				"mixi",
+				"static/scss/mixins.scss"
+			],
+			[
+				"bookables",
+				"templates/bookables/bookables.html"
+			],
+			[
+				"mainsc",
+				"static/scss/main.scss"
+			],
+			[
+				"base",
+				"templates/base.html"
+			],
+			[
+				"footer.sc",
+				"static/scss/footer.scss"
+			],
+			[
+				"main",
+				"templates/main.html"
+			],
+			[
+				"bookscss",
+				"static/scss/bookable.scss"
+			],
+			[
+				"bookin",
+				"models/booking.py"
+			],
+			[
+				"book",
+				"controllers/booking.py"
+			],
+			[
+				"booka",
+				"templates/bookables/bookables.html"
+			],
+			[
+				"bookiform",
+				"templates/booking_form.html"
+			],
+			[
+				"social",
+				"templates/includes/social.html"
+			],
+			[
+				"_init",
+				"models/__init__.py"
+			],
+			[
+				"catego",
+				"static/scss/category.scss"
+			],
+			[
+				"list",
+				"templates/bookables/list.html"
+			],
+			[
+				"swit",
+				"static/js/switches.js"
+			],
+			[
+				"main.js",
+				"static/js/main.js"
+			],
+			[
+				"directi",
+				"static/js/transparency_directives/content.js"
+			],
+			[
+				"content",
+				"static/js/transparency_directives/content.js"
+			],
+			[
+				"booking",
+				"templates/booking_form.html"
+			],
 			[
 				"__init",
 				"models/__init__.py"
@@ -439,14 +637,6 @@
 			[
 				"pica",
 				"static/js/picaslide.js"
-			],
-			[
-				"main",
-				"static/js/main.js"
-			],
-			[
-				"book",
-				"models/booking.py"
 			],
 			[
 				"soci",

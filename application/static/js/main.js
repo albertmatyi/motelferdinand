@@ -15,6 +15,7 @@ define(
 			"transparency_directives/content",
 			"switches",
 			"category/info_scroller",
+			'admin/category'
 			],function(dp, ps, tdm, tdc, sw, cis){
 		model.categories.sort(function(c0, c1) {
 			return c0.order - c1.order;

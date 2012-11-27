@@ -12,8 +12,7 @@ from flaskext.wtf.html5 import DateField
 from flask.globals import request
 from flaskext.wtf.form import Form
 from flask.helpers import flash, url_for
-import time
-import datetime
+from datetime import datetime
 from werkzeug.utils import redirect
 
 BookingForm = model_form(BookingModel, wtf.Form)
@@ -31,9 +30,9 @@ def bookings_new():
     for i in range(n):
         i_str = str ( i )  
         bookable = BookableModel.get_by_id( long ( form['BookingEntry['+i_str+'][bookable_id]'] ) )
-        quant = int ( form['BookingEntry['+i_str+'][bookable_id]'] ) 
-        book_from = form['BookingEntry['+i_str+'][book_from]']
-        book_until = form['BookingEntry['+i_str+'][book_until]']
+        quant = int ( form['BookingEntry['+i_str+'][quantity]'] ) 
+        book_from = datetime.strptime(form['BookingEntry['+i_str+'][book_from]'], '%d-%m-%Y').date()
+        book_until = datetime.strptime(form['BookingEntry['+i_str+'][book_until]'], '%d-%m-%Y').date()
         
         be = BookingEntryModel(bookable = bookable, booking = booking, quantity = quant
             , book_from = book_from, book_until = book_until)

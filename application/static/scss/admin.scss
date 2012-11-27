@@ -1,0 +1,18 @@
+@import "base";
+
+.admin-controls{
+	float: right;
+	a {
+		background: #999;
+		@include gradient(#666, #999);
+		border-radius: 3px;
+		padding: 0 1px;
+		position: relative;
+		top: -40px;
+
+		&:hover{
+			background: #58d;
+			@include gradient(#36c, #69f);
+		}
+	}
+}

@@ -37,7 +37,8 @@
 			}
 			
 			a:hover, &.current a {
-				background: #1A80E6;
+				background: repeat scroll 0 0 transparent;
+				@include gradient(#3366AA, #6699FF);
 				box-shadow: none;
 				text-shadow: none;
 			}
@@ -68,7 +69,4 @@
 			text-align: center;
 		}
 	}
-}
-#booking-form {
-	display: none;
 }

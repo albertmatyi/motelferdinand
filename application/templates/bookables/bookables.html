@@ -3,6 +3,12 @@
 		<div class="bookables">
 			<div class="bookable">
 				<h3 class="bookable-title"></h3>
+				{% if is_admin %}
+					<div class="admin-controls">
+						<a href="#" class=""><i class="icon-edit"></i></a>
+						<a href="#" class="" ><i class="icon-remove"></i></a>
+					</div>
+				{% endif %}
 				<h4>Beds: <span data-bind="beds"></span></h4>
 				<div data-bind="album_url"></div>
 				<div class="bookable-description"></div>

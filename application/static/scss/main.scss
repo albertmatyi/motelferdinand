@@ -12,6 +12,8 @@ $contentPadding: 1em;
 
 @import "footer";
 
+@import "admin";
+
 body {
 	background: $background;
 }
@@ -42,5 +44,11 @@ body {
 		.progress {
 			margin: 1em;
 		}
+	}
+}
+
+body, #body_content{
+	& > .hidden-on-body{
+		display: none;
 	}
 }
