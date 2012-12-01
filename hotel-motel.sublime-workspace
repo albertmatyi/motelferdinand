@@ -143,9 +143,41 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 327.0,
+		"height": 54.0,
 		"selected_items":
 		[
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"stack",
+				"Stackoverflow: Search from Input"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"Packa",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Discover Packages"
+			],
+			[
+				"Package Control",
+				"Package Control: List Packages"
+			],
 			[
 				"css",
 				"Set Syntax: CSS"
@@ -175,7 +207,7 @@
 				"View: Toggle Open Files in Side Bar"
 			]
 		],
-		"width": 392.0
+		"width": 602.0
 	},
 	"console":
 	{
@@ -254,7 +286,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"*.html",
@@ -391,7 +423,7 @@
 						"settings":
 						{
 							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -499,7 +531,8 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -546,8 +579,8 @@
 						"selection":
 						[
 							[
-								56,
-								56
+								104,
+								104
 							]
 						],
 						"settings":
@@ -570,7 +603,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 33.0
 	},
 	"layout":
 	{
