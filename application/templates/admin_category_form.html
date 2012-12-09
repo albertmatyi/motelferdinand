@@ -1,0 +1,30 @@
+ <div class="modal hide fade" class tabindex="-1" id="categoryEditFormModal" role="dialog" aria-labelledby="categoryEditFormModalTitle" aria-hidden="true">	
+	 <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="categoryEditFormModalTitle">Edit category</h3>
+	</div>
+	<div class="modal-body">
+		<ul class="nav nav-tabs" id="editCategoryFormTabs">
+			<li><a href="#" data-bind="lang_id"></a></li>
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane" data-bind="lang_id">
+				<div class="control-group">
+					<label class="control-label">Title</label>
+					<input name="title" id="categoryTitleInput" type="text" />
+				</div>
+				<div class="control-group">
+					<label class="control-label">Description</label>
+					<textarea name="description" id="categoryDescriptionInput" ></textarea>
+				</div>
+			</div>
+		</div>		
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		<button class="btn btn-primary" data-dismiss="modal" id="submitCategoryEditForm">
+			<i class="icon-ok icon-white"></i> 
+			Save 
+		</button>
+	</div>
+</div>

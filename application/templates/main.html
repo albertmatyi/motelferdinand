@@ -5,12 +5,7 @@
 			<div class="info-container">
 				<div class="page-header">
 					<h1 class="category-title"></h1> 
-					{% if is_admin %}
-					<div class="admin-controls">
-						<a href="#" class=""><i class="icon-edit icon-white"></i></a>
-						<a href="#" class=""><i class="icon-remove icon-white"></i></a>
-					</div>
-					{% endif %}
+					{% include "admin_controls.html" %}
 				</div>
 				<div class="category-description">
 				</div>
@@ -21,12 +16,7 @@
 			<div class="contents">
 				<div class="content span4" data-bind="id">
 					<h3 class="content-title"></h3>
-					{% if is_admin %}
-					<div class="admin-controls">
-						<a href="#" class=""><i class="icon-edit"></i></a>
-						<a href="#" class="" ><i class="icon-remove"></i></a>
-					</div>
-					{% endif %}
+					{% include "admin_controls.html" %}
 					<div class="content-description"></div>
 				</div>
 			</div>
@@ -35,6 +25,7 @@
 </div>
 
 {% include "booking_form.html" %}
+{% include "admin_forms.html" %}
 
 {% endblock %}
 

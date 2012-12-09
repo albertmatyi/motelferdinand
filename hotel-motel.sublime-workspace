@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"fun",
+				"function"
+			],
+			[
 				"book_",
 				"book_until"
 			],
@@ -76,26 +80,26 @@
 	"buffers":
 	[
 		{
-			"file": "application/templates/main.html",
+			"file": "application/static/js/admin/category.js",
 			"settings":
 			{
-				"buffer_size": 1368,
+				"buffer_size": 251,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "application/controllers/category.py",
+			"file": "application/templates/admin_controls.html",
 			"settings":
 			{
-				"buffer_size": 1404,
+				"buffer_size": 198,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "application/templates/bookables/bookables.html",
+			"file": "application/templates/admin_category_form.html",
 			"settings":
 			{
-				"buffer_size": 698,
+				"buffer_size": 1355,
 				"line_ending": "Unix"
 			}
 		},
@@ -103,15 +107,7 @@
 			"file": "application/templates/booking_form.html",
 			"settings":
 			{
-				"buffer_size": 3228,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/static/scss/main.scss",
-			"settings":
-			{
-				"buffer_size": 729,
+				"buffer_size": 3267,
 				"line_ending": "Unix"
 			}
 		},
@@ -119,23 +115,7 @@
 			"file": "application/static/scss/admin.scss",
 			"settings":
 			{
-				"buffer_size": 258,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/static/scss/bookable.scss",
-			"settings":
-			{
-				"buffer_size": 1273,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/static/js/admin/category.js",
-			"settings":
-			{
-				"buffer_size": 104,
+				"buffer_size": 342,
 				"line_ending": "Unix"
 			}
 		}
@@ -143,9 +123,17 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 54.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"change",
+				"Change List: Show"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
 			[
 				"remove",
 				"Package Control: Remove Package"
@@ -156,10 +144,6 @@
 			],
 			[
 				"instal",
-				"Package Control: Install Package"
-			],
-			[
-				"install",
 				"Package Control: Install Package"
 			],
 			[
@@ -224,10 +208,21 @@
 	},
 	"file_history":
 	[
-		"/home/matyas/Work/python/hotelmotel/application/static/scss/mixins.scss",
+		"/home/matyas/Work/python/hotelmotel/application/static/scss/admin_main.scss",
+		"/home/matyas/Work/python/hotelmotel/application/static/css/admin_main.css",
+		"/home/matyas/Work/python/hotelmotel/application/static/scss/admin.scss",
+		"/home/matyas/Work/python/hotelmotel/application/static/scss/main.scss",
 		"/home/matyas/Work/python/hotelmotel/application/static/scss/bookable.scss",
-		"/home/matyas/Work/python/hotelmotel/application/templates/bookables/bookables.html",
+		"/home/matyas/Work/python/hotelmotel/application/templates/admin_controls.html",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/admin/category.js",
+		"/home/matyas/Work/python/hotelmotel/application/templates/main.html",
 		"/home/matyas/Work/python/hotelmotel/application/templates/booking_form.html",
+		"/home/matyas/Work/python/hotelmotel/application/templates/bookables/bookables.html",
+		"/home/matyas/Work/python/hotelmotel/application/controllers/category.py",
+		"/home/matyas/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/matyas/Work/python/hotelmotel/.gitignore",
+		"/home/matyas/Work/python/hotelmotel/startserv",
+		"/home/matyas/Work/python/hotelmotel/application/static/scss/mixins.scss",
 		"/home/matyas/Work/python/hotelmotel/application/models/booking.py",
 		"/home/matyas/Work/python/hotelmotel/application/controllers/booking.py",
 		"/home/matyas/Work/python/hotelmotel/application/static/js/booking.js",
@@ -235,9 +230,7 @@
 		"/home/matyas/Desktop/hangout_url",
 		"/home/matyas/Work/python/hotelmotel/application/models/user.py",
 		"/home/matyas/Work/python/hotelmotel/application/templates/base.html",
-		"/home/matyas/Work/python/hotelmotel/application/static/scss/main.scss",
 		"/home/matyas/Work/python/hotelmotel/application/static/scss/footer.scss",
-		"/home/matyas/Work/python/hotelmotel/application/templates/main.html",
 		"/home/matyas/Work/python/hotelmotel/index.yaml",
 		"/home/matyas/Work/python/hotelmotel/app.yaml",
 		"/home/matyas/Work/python/hotelmotel/application/models/bookable.py",
@@ -258,7 +251,6 @@
 		"/home/matyas/.config/sublime-text-2/Packages/User/Python.sublime-settings",
 		"/home/matyas/.gitconfig",
 		"/home/matyas/Work/python/hotelmotel/.git/COMMIT_EDITMSG",
-		"/home/matyas/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
 		"/home/matyas/.config/sublime-text-2/Packages/User/JSON.sublime-settings",
 		"/home/matyas/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
 		"/home/matyas/Work/python/hotelmotel/application/static/js/picaslide.js",
@@ -286,9 +278,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			"*.scss",
 			"*.html",
 			"*.scss",
 			"*.py",
@@ -303,6 +296,10 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"gradient",
+			"import grad",
+			".admin-controls",
+			"size",
 			"admin_controls",
 			"gradient",
 			"time",
@@ -374,29 +371,28 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "application/templates/main.html",
+					"file": "application/static/js/admin/category.js",
 					"settings":
 					{
-						"buffer_size": 1368,
+						"buffer_size": 251,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								914,
-								914
+								206,
+								206
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -406,25 +402,23 @@
 				},
 				{
 					"buffer": 1,
-					"file": "application/controllers/category.py",
+					"file": "application/templates/admin_controls.html",
 					"settings":
 					{
-						"buffer_size": 1404,
+						"buffer_size": 198,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								693,
-								693
+								95,
+								95
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -434,18 +428,18 @@
 				},
 				{
 					"buffer": 2,
-					"file": "application/templates/bookables/bookables.html",
+					"file": "application/templates/admin_category_form.html",
 					"settings":
 					{
-						"buffer_size": 698,
+						"buffer_size": 1355,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								211,
-								211
+								72,
+								72
 							]
 						],
 						"settings":
@@ -464,15 +458,15 @@
 					"file": "application/templates/booking_form.html",
 					"settings":
 					{
-						"buffer_size": 3228,
+						"buffer_size": 3267,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								63,
-								63
+								1870,
+								1870
 							]
 						],
 						"settings":
@@ -481,111 +475,30 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 765.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "application/static/scss/main.scss",
-					"settings":
-					{
-						"buffer_size": 729,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								15,
-								15
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
 					"file": "application/static/scss/admin.scss",
 					"settings":
 					{
-						"buffer_size": 258,
+						"buffer_size": 342,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								194,
-								194
+								268,
+								268
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "application/static/scss/bookable.scss",
-					"settings":
-					{
-						"buffer_size": 1273,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								792,
-								792
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 320.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "application/static/js/admin/category.js",
-					"settings":
-					{
-						"buffer_size": 104,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								104,
-								104
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
@@ -643,6 +556,42 @@
 		"selected_items":
 		[
 			[
+				"adminscss",
+				"static/scss/admin.scss"
+			],
+			[
+				"admin_scss",
+				"static/scss/admin_main.scss"
+			],
+			[
+				"admin_mainscss",
+				"static/scss/admin_main.scss"
+			],
+			[
+				"admincss",
+				"static/css/admin_main.css"
+			],
+			[
+				"booking_fo",
+				"templates/booking_form.html"
+			],
+			[
+				"main",
+				"templates/main.html"
+			],
+			[
+				"admincontr",
+				"templates/admin_controls.html"
+			],
+			[
+				"catejs",
+				"static/js/admin/category.js"
+			],
+			[
+				"main.",
+				"templates/main.html"
+			],
+			[
 				"main.js",
 				"static/js/main.js"
 			],
@@ -697,10 +646,6 @@
 			[
 				"footer.sc",
 				"static/scss/footer.scss"
-			],
-			[
-				"main",
-				"templates/main.html"
 			],
 			[
 				"bookin",
@@ -789,6 +734,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 233.0,
 	"status_bar_visible": true
 }

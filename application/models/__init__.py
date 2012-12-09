@@ -48,6 +48,13 @@ def init_db():
         Deletes existing categories and creates new ones
         with a random number of subcategories that are or are not non-menu-entries
     '''
+
+    for lang in LanguageModel.all():
+        lang.delete()
+
+    LanguageModel().put()
+    LanguageModel(lang_id="hu", name="Magyar").put()
+    LanguageModel(lang_id="ro", name="Romana").put()
         
     for cat in CategoryModel.all():
         cat.delete()
@@ -108,6 +115,7 @@ Bronson I delectus tassel. Of voluptate vegan mollit. Of fin letterpress art ut 
 
 Non-ethical shot anime sriracha trust-fund iphone brooklyn original fresh. 8-bit magna art etsy gluten-free incididunt party. Helvetica salvia party art vintage fin. Brony gluten-free authentic hog street-art twee viral. Narwhal gluten-free shot art bennie yr hog placeat.
 '''
+from language import *
 from category import *
 from media import *
 from content import *
