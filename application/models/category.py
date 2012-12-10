@@ -4,7 +4,7 @@ Created on Jul 24, 2012
 @author: matyas
 '''
 from google.appengine.ext import db
-from application.models import AbstractModel
+from application.models import I18nableModel
 
 class CategoryDummy(object):
     def __init__(self):
@@ -34,7 +34,7 @@ ROOT_CAT_ID = -1
 '''
 ROOT_CAT_DUMMY = CategoryDummy()
 
-class CategoryModel(AbstractModel):
+class CategoryModel(I18nableModel):
 
     """Category Model"""
     title = db.StringProperty(required=False, default='')
@@ -43,6 +43,7 @@ class CategoryModel(AbstractModel):
     order = db.IntegerProperty(required=False, default=0)
     visible = db.BooleanProperty(required=True, default=False)
     dependencies=['contents', 'subcategories', 'bookables']
+    i18d_fields=['title', 'description']
     
     def __repr__(self, *args, **kwargs):
         return self.title

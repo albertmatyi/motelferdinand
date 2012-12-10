@@ -26,10 +26,10 @@ define(
             lang_id: {
                 html: function(params){
                     var lang_id = this.lang_id;
-                    $('input', params.element).each(function(idx, el){
+                    $('input, textarea', params.element).each(function(idx, el){
                         $el = $(el);
-                        $el.attr('name', $el.attr('name')+'-'+lang_id)
-                        $el.attr('id', $el.attr('id')+'-'+lang_id)
+                        $el.attr('name', $el.attr('name')+lang_id)
+                        $el.attr('id', $el.attr('id')+lang_id)
                     });
                     return '';
                 },
@@ -50,6 +50,17 @@ define(
     	 * Edit button click handler
     	 */
     	$('.admin-controls .edit').click(function (){
+            var cat_idx = $(this).attr('data-category-idx');
+            //populate the form with data
+            for (var i = 0; i < model.languages.length; i++) {
+                var lang_id = model.languages[i].lang_id;
+
+                var titleInp=$('#categoryTitleInput'+lang_id, $form);
+                titleInp.val(model.categories[cat_idx].i18n[lang_id].title);
+
+                var descInp=$('#categoryDescriptionInput'+lang_id, $form);
+                descInp.html(model.categories[cat_idx].i18n[lang_id].description);
+            };
     		//show the edit category form
             $formModal.modal('show')
     	});

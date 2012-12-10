@@ -20,6 +20,17 @@ define(['booking'], function(booking) {
 				},
 				text : function(params) {
 					return '';
+				},
+			},
+			entityId: {
+				text : function (params){
+					return '';
+				},
+				'data-category-id' : function(params){
+					return this.id;
+				},
+				'data-category-idx' : function(params){
+					return params.index;
 				}
 			},
 			'category-title' : titleDecorator,

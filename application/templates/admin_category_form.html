@@ -4,26 +4,29 @@
 		<h3 id="categoryEditFormModalTitle">Edit category</h3>
 	</div>
 	<div class="modal-body">
-		<ul class="nav nav-tabs" id="editCategoryFormTabs">
-			<li><a href="#" data-bind="lang_id"></a></li>
-		</ul>
-		<div class="tab-content">
-			<div class="tab-pane" data-bind="lang_id">
-				<div class="control-group">
-					<label class="control-label">Title</label>
-					<input name="title" id="categoryTitleInput" type="text" />
-				</div>
-				<div class="control-group">
-					<label class="control-label">Description</label>
-					<textarea name="description" id="categoryDescriptionInput" ></textarea>
+		<form action="/admin/categories/" method="post">
+			<ul class="nav nav-tabs" id="editCategoryFormTabs">
+				<li><a href="#" data-bind="lang_id"></a></li>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane" data-bind="lang_id">
+					<div class="control-group">
+						<label class="control-label">Title</label>
+						<input name="title" id="categoryTitleInput" type="text" />
+					</div>
+					<div class="control-group">
+						<label class="control-label">Description</label>
+						<textarea name="description" id="categoryDescriptionInput" ></textarea>
+					</div>
 				</div>
 			</div>
-		</div>		
+		</form>		
 	</div>
 	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-		<button class="btn btn-primary" data-dismiss="modal" id="submitCategoryEditForm">
-			<i class="icon-ok icon-white"></i> 
+		<button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 
+			Cancel
+		</button>
+		<button class="btn btn-primary" data-dismiss="modal" id="submitCategoryEditForm"><i class="icon-ok icon-white"></i> 
 			Save 
 		</button>
 	</div>

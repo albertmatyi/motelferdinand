@@ -38,10 +38,44 @@ class AbstractModel(db.Model):
             for dep in self.__class__.dependencies:
                 for obj in getattr(self, dep):
                     obj.delete()
-        super(AbstractModel, self).delete()
+        return super(AbstractModel, self).delete()
         pass
-    
     pass
+
+class I18nableModel(AbstractModel):
+    i18d_fields={}
+
+    def to_dict(self):
+        # retrieve base dict
+        hm = super(I18nableModel, self).to_dict()
+        # add i18ns
+        for translation in self.translations:
+            if 'i18n' not in hm:
+                hm['i18n'] = {}
+            if translation.lang_id not in hm['i18n']:
+                hm['i18n'][translation.lang_id] = {}
+            hm['i18n'][translation.lang_id][translation.field] = translation.value
+        # return result
+        return hm
+        pass
+    pass
+
+    def put(self):
+        # save translations
+        key = super(I18nableModel, self).put()
+        if hasattr(self, 'i18n'):
+            for (lang_id, lang_fields) in self.i18n:
+                for (field, value) in lang_fields:
+                    I18n(lang_id=lang_id, field=field, value=value, foreign_entity=self).put()
+        return key
+        pass
+
+    def delete(self):
+        # delete the translations
+        for translation in self.translations:
+            translation.delete()
+        return super(I18nableModel, self).delete()
+        pass
 
 def init_db():
     ''' 
@@ -72,18 +106,27 @@ def init_db():
     cc = 0
     gallAdded=False;
     for title in titles:
-        key = CategoryModel(order=cc, visible=True, title=title, parent_category=None,description=get_random_text(Random().randint(100, 300)).replace('\n','<br/>')).put()
+        cm = CategoryModel(order=cc, visible=True, title=title, parent_category=None,description=get_random_text(Random().randint(100, 300)).replace('\n','<br/>'))
+        key = cm.put()
+        add_translations(cm)
         cc += 1
         if title is 'Rooms':
             for i in range(0,3):
-                BookableModel(visible=True, title=room_title[i], category=key, description=room_description[i],album_url=room_gallery[i], quantity=i+2).put()
+                bm = BookableModel(visible=True, title=room_title[i], category=key, description=room_description[i],album_url=room_gallery[i], quantity=i+2).put()
         # add random number of subcategories
         for i in range(0, Random().randint(2, 5)):
-            ContentModel(visible=True, title=get_random_text(Random().randint(10, 15)).replace('\n',''), \
+            cm = ContentModel(visible=True, title=get_random_text(Random().randint(10, 15)).replace('\n',''), \
                          category=key,description=get_random_text(Random().randint(100, len(fixieText)/2-40)).replace('\n','<br/>')+(galleryHtml if not gallAdded else ''),\
-                         order=i*2).put()
+                         order=i*2)
+            cm.put()
+            # add_translations(cm)
             gallAdded = True
-                         
+    pass
+
+def add_translations(entity):
+    for lang in LanguageModel.all():
+        for field_name in entity.__class__.i18d_fields:
+            I18n(field=field_name, value=lang.name +' '+ field_name, lang_id=lang.lang_id, foreign_entity=entity).put()
     pass
 
 def get_random_text(length):
@@ -115,6 +158,7 @@ Bronson I delectus tassel. Of voluptate vegan mollit. Of fin letterpress art ut 
 
 Non-ethical shot anime sriracha trust-fund iphone brooklyn original fresh. 8-bit magna art etsy gluten-free incididunt party. Helvetica salvia party art vintage fin. Brony gluten-free authentic hog street-art twee viral. Narwhal gluten-free shot art bennie yr hog placeat.
 '''
+
 from language import *
 from category import *
 from media import *
