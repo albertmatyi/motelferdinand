@@ -12,9 +12,25 @@ define(['booking'], function(booking) {
 				return this.i18n[model.language].title;
 			},
 		};
+
+	function getEntityDirective(type){
+		var dir = {
+			text : function (params){
+				return '';
+			}
+		};
+		dir['data-'+type+'-id'] = function(params){
+				return this.id;
+			};
+		dir['data-'+type+'-idx'] = function(params){
+				return params.index;
+			};
+		return dir;
+	}
+
 	return {
-		contentDirective : {
-			id : {
+		'contentDirective' : {
+			'id' : {
 				id : function(params) {
 					return 'Category' + this.id;
 				},
@@ -22,20 +38,10 @@ define(['booking'], function(booking) {
 					return '';
 				},
 			},
-			entityId: {
-				text : function (params){
-					return '';
-				},
-				'data-category-id' : function(params){
-					return this.id;
-				},
-				'data-category-idx' : function(params){
-					return params.index;
-				}
-			},
+			'entityId' : getEntityDirective('category'),
 			'category-title' : titleDecorator,
 			'category-description' : descriptionDecorator,
-			contents : {
+			'contents' : {
 				id : {
 					id : function(params) {
 						return 'Content' + this.id;
@@ -45,13 +51,15 @@ define(['booking'], function(booking) {
 					}
 				},
 				'content-title' : titleDecorator,
-				'content-description' : descriptionDecorator
+				'content-description' : descriptionDecorator,
+				'entityId' : getEntityDirective('content')
 			},
-			bookables : {
+			'bookables' : {
 				'bookable-title' : titleDecorator,
 				'bookable-description' : descriptionDecorator,
-				album_url : {
-					text : function(params) {
+				'entityId' : getEntityDirective('bookable'),
+				'album_url' : {
+					'text' : function(params) {
 						return '';
 					},
 					'class' : function(params) {
@@ -75,13 +83,13 @@ define(['booking'], function(booking) {
 				}
 			},
 			'category-booking-id' :{
-				id : function(params) {
+				'id' : function(params) {
 					return 'bookBtn'+this.id;
 				},
-				text : function (params){
+				'text' : function (params){
 					return params.element.text;
 				},
-				onclick : function(params){
+				'onclick' : function(params){
 					var categoryId = this.id;
 					$(params.element).click(function(){
 						booking.showForm(categoryId);

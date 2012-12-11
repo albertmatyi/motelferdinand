@@ -12,11 +12,12 @@ define(
 	require(["/static/lib/bootstrap-datepicker/datepicker.js",
 			"picaslide",
 			"transparency_directives/menu",
-			"transparency_directives/content",
+			"transparency_directives/body_content",
 			"switches",
 			"category/info_scroller",
-			'admin/category'
-			],function(dp, ps, tdm, tdc, sw, cis){
+			'admin/category',
+			'admin/content'
+			],function(dp, ps, tdm, tdc, sw, cis, acat, acont){
 		model.categories.sort(function(c0, c1) {
 			return c0.order - c1.order;
 		});
@@ -86,6 +87,8 @@ define(
 		$('#loading-overlay').fadeOut(500, function(){
 			$(this).remove();
 		});
+		acat.init();
+		acont.init();
 	// close the ordered requires
 	});	});	
 	//close the function & define

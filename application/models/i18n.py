@@ -16,6 +16,7 @@ class I18nableModel(AbstractModel):
     def to_dict(self):
         '''
             Retrieves the translations for a specific model
+            and puts it in the dict returned by super.to_dict
         '''
         # retrieve base dict
         hm = super(I18nableModel, self).to_dict()
