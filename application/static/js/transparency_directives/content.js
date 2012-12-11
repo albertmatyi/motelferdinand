@@ -4,12 +4,12 @@ define(['booking'], function(booking) {
 			return '';
 		},
 		html : function(params) {
-			return this.description;
+			return this.i18n[model.language].description;
 		}
 	};
 	var titleDecorator = {
 			text : function (params) {
-				return this.title;
+				return this.i18n[model.language].title;
 			},
 		};
 	return {

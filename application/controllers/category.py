@@ -14,7 +14,8 @@ def home():
     return render_template('/main.html',\
                              js_data = {'categories': [e.to_dict() for e in CategoryModel.all().filter('visible', True)\
                                                        .filter('parent_category', None)],\
-                                        'languages': [e.to_dict() for e in LanguageModel.all()]
+                                        'languages': [e.to_dict() for e in LanguageModel.all()],
+                                        'language' : 'en'
                             }, is_admin = True)
 
 @app.route("/admin/initdb")

@@ -37,8 +37,6 @@ ROOT_CAT_DUMMY = CategoryDummy()
 class CategoryModel(I18nableModel):
 
     """Category Model"""
-    title = db.StringProperty(required=False, default='')
-    description = db.TextProperty(required=False, default='')
     parent_category = db.SelfReferenceProperty(collection_name='subcategories')
     order = db.IntegerProperty(required=False, default=0)
     visible = db.BooleanProperty(required=True, default=False)

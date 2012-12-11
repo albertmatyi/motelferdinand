@@ -1,46 +1,34 @@
-define({
-	menuDirective : {
-		title : {
-			href : function(params) {
-				return '#Category' + this.id;
-			},
-			'class' : function(params) {
-				return this.subcategories.length > 0 ? 'dropdown-toggle' : '';
-			},
-			'data-toggle' : function(params) {
-				return this.subcategories.length > 0 ? 'dropdown' : '';
-			},
-			html : function(params) {
-				return this.title
-						+ (this.subcategories.length > 0 ? '<b class="caret"></b>'
-								: '');
-			}
+define(function() {
+	titleDirective = {
+		href : function(params) {
+			return '#Category' + this.id;
 		},
-		visible : {
-			'class' : function(params) {
-				return this.subcategories.length > 0 ? 'dropdown' : '';
-			},
-			html : function(params) {
-				return '';
-			}
+		'class' : function(params) {
+			return this.subcategories.length > 0 ? 'dropdown-toggle'
+					: '';
 		},
-		subcategories : {
-			title : {
-				href : function(params) {
-					return '#Category' + this.id;
-				},
+		'data-toggle' : function(params) {
+			return this.subcategories.length > 0 ? 'dropdown' : '';
+		},
+		html : function(params) {
+			return this.i18n[model.language].title
+					+ (this.subcategories.length > 0 ? '<b class="caret"></b>'
+							: '');
+		}
+	};		
+	return {
+		menuDirective : {
+			title : titleDirective,
+			visible : {
 				'class' : function(params) {
-					return this.subcategories.length > 0 ? 'dropdown-toggle'
-							: '';
-				},
-				'data-toggle' : function(params) {
 					return this.subcategories.length > 0 ? 'dropdown' : '';
 				},
 				html : function(params) {
-					return this.title
-							+ (this.subcategories.length > 0 ? '<b class="caret"></b>'
-									: '');
+					return '';
 				}
+			},
+			subcategories : {
+				title : titleDirective
 			}
 		}
 	}
