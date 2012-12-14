@@ -1,21 +1,35 @@
 define(
 	[
 	 	"/static/lib/jquery-1.7.2.min.js",
+        "wysihtml5"
 	],
-    function(js){
+    function(js, w5){
+        var SEPARATOR = '-';
+        var PREFIX = 'i18n-'
         return {
             /**
              * Populates rendered input fields with data from a given entity.
              * The entity should contain a correctly inited i18n field.
              * The directives should be a dictionary with id-valueKey pairs 
              */
-            populateFields: function (entity, directives, $context){
+            populateFields: function (entity, $context){
                 for (var i = 0; i < model.languages.length; i++) {
                     var lang_id = model.languages[i].lang_id;
-                    for (inpId in directives) {
-                        var inp=$('#'+inpId+lang_id, $context);
-                        console.log(inp);
-                        inp.val(entity.i18n[lang_id][directives[inpId]]);
+                    for (field in entity.i18n[lang_id]) {
+                        var tmpId = '[name="'+PREFIX+field+SEPARATOR+lang_id+'"]';
+                        var inp=$('input'+tmpId + ',select'+tmpId, $context);
+                        var value = entity.i18n[lang_id][field];
+                        if(inp.length > 0 ){
+                            inp.val(value);
+                        }else{
+                            inp=$('textarea'+tmpId, $context);
+                            var w5ref = inp.data('wysihtml5');
+                            if(w5ref){
+                                w5ref.editor.setValue(value);
+                            }else{
+                                inp.html(value);    
+                            }
+                        }
                     }
                 }
             },
@@ -39,8 +53,8 @@ define(
                             var lang_id = this.lang_id;
                             $('input, textarea', params.element).each(function(idx, el){
                                 $el = $(el);
-                                $el.attr('name', $el.attr('name')+lang_id)
-                                $el.attr('id', $el.attr('id')+lang_id)
+                                $el.attr('name', PREFIX+$el.attr('name')+SEPARATOR+lang_id)
+                                $el.attr('id', PREFIX+$el.attr('id')+SEPARATOR+lang_id)
                             });
                             return '';
                         },
@@ -56,6 +70,7 @@ define(
                 $('.nav-tabs', $context).render(model.languages, formTabNavDirectives);
                 $('.tab-content', $context).render(model.languages, formTabDirectives);
                 $('.nav-tabs a:first', $context).tab('show');
+                w5.renderTextAreas($context);
             }
         };
 	//close the function & define

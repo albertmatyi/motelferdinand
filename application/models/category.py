@@ -39,12 +39,9 @@ class CategoryModel(I18nableModel):
     """Category Model"""
     parent_category = db.SelfReferenceProperty(collection_name='subcategories')
     order = db.IntegerProperty(required=False, default=0)
-    visible = db.BooleanProperty(required=True, default=False)
+    visible = db.BooleanProperty(required=True, default=True)
     dependencies=['contents', 'subcategories', 'bookables']
     i18d_fields=['title', 'description']
-    
-    def __repr__(self, *args, **kwargs):
-        return self.title
     
     @staticmethod
     def get_root_categories(visibleOnly=True):

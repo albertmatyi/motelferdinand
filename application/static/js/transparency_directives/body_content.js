@@ -8,10 +8,10 @@ define(['booking'], function(booking) {
 		}
 	};
 	var titleDecorator = {
-			text : function (params) {
-				return this.i18n[model.language].title;
-			},
-		};
+		text : function (params) {
+			return this.i18n[model.language].title;
+		}
+	};
 
 	function getEntityDirective(type){
 		var dir = {
@@ -52,7 +52,7 @@ define(['booking'], function(booking) {
 				},
 				'content-title' : titleDecorator,
 				'content-description' : descriptionDecorator,
-				'entityId' : getEntityDirective('content')
+				'entityId' : getEntityDirective('content'),
 			},
 			'bookables' : {
 				'bookable-title' : titleDecorator,

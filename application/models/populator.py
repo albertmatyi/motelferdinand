@@ -65,12 +65,12 @@ def init_db():
         key = cm.put()
         
         # add bookables
-        if title is 'Rooms':
-            init_bookables(key)
+        # if title is 'Rooms':
+            # init_bookables(key)
 
         # add random number of contents
         for i in range(0, Random().randint(2, 5)):
-            init_contents(key, i, not gallAdded)            
+            # init_contents(key, i, not gallAdded)            
             gallAdded = True
         catidx += 1
         pass

@@ -16,8 +16,9 @@ define(
 			"switches",
 			"category/info_scroller",
 			'admin/category',
-			'admin/content'
-			],function(dp, ps, tdm, tdc, sw, cis, acat, acont){
+			'admin/content',
+			'admin/bookables'
+			],function(dp, ps, tdm, tdc, sw, cis, acat, acont, abookables){
 		model.categories.sort(function(c0, c1) {
 			return c0.order - c1.order;
 		});
@@ -89,7 +90,8 @@ define(
 		});
 		acat.init();
 		acont.init();
+		abookables.init();
 	// close the ordered requires
 	});	});	
 	//close the function & define
-	});
+});

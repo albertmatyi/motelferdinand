@@ -5,6 +5,7 @@ Created on Jul 26, 2012
 '''
 from google.appengine.ext import db
 from application.models import AbstractModel
+import pdb
 
 class LanguageModel(AbstractModel):
     lang_id = db.StringProperty(required=True, default='en')
@@ -37,7 +38,13 @@ class I18nableModel(AbstractModel):
         if hasattr(self, 'i18n'):
             for lang_id, lang_fields in self.i18n.items():
                 for field, value in lang_fields.items():
-                    I18n(lang_id=lang_id, field=field, value=value, foreign_entity=self).put()
+                    # pdb.set_trace()
+                    translation = self.translations.filter('lang_id = ', lang_id).filter('field = ', field).get()
+                    if translation :
+                        translation.value = value
+                        translation.put()
+                    else :
+                        I18n(lang_id=lang_id, field=field, value=value, foreign_entity=self).put()
         return key
         pass
 
@@ -46,6 +53,23 @@ class I18nableModel(AbstractModel):
         for translation in self.translations:
             translation.delete()
         return super(I18nableModel, self).delete()
+        pass
+
+    def populate(self, dictionary):
+        '''
+            uses super.populate + populates the i18n dict for it to be used in #put()
+        '''
+        super(I18nableModel, self).populate(dictionary)
+        # pdb.set_trace()
+        setattr(self, 'i18n', {})
+        for key, value in dictionary.items():
+            if key.startswith('i18n'):
+                (_, field_name, lang_id) = key.split('-')
+                if lang_id not in self.i18n:
+                    self.i18n[lang_id] = {}
+                    pass
+                self.i18n[lang_id][field_name] = value
+            pass
         pass
 
 class I18n(AbstractModel):

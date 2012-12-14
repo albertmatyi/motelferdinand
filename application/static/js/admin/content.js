@@ -18,7 +18,7 @@ define(
             	 */
             	$('.content .admin-controls .edit').click(function (){
                     var content_idx = $(this).attr('data-content-idx');
-                    var cat_idx = 0;
+                    var cat_idx = $(this).attr('data-category-idx');;
                     //populate the form with data
                     i18n.populateFields(model.categories[cat_idx].contents[content_idx], {
                         'contentTitleInput' : 'title', 

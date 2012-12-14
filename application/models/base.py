@@ -1,4 +1,5 @@
 from google.appengine.ext import db
+import pdb
 
 class AbstractModel(db.Model):
     created = db.DateTimeProperty(auto_now_add=True)
@@ -36,3 +37,16 @@ class AbstractModel(db.Model):
         return super(AbstractModel, self).delete()
         pass
     pass
+
+    def populate(self, dictionary):
+        '''
+            Populates the properties of the instance from the 
+            given dictionary
+        '''
+        for key in self.properties():
+            if key in dictionary:
+                setattr(self, key, dictionary[key])
+                pass
+            pass
+        pass
+    

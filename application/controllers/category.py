@@ -6,6 +6,8 @@ from werkzeug.utils import redirect
 from flask.helpers import url_for
 from flaskext import wtf
 from flask.templating import render_template
+from flask.globals import request
+import pdb
 
 CategoryForm = model_form(CategoryModel, wtf.Form)
 
@@ -15,8 +17,9 @@ def home():
                              js_data = {'categories': [e.to_dict() for e in CategoryModel.all().filter('visible', True)\
                                                        .filter('parent_category', None)],\
                                         'languages': [e.to_dict() for e in LanguageModel.all()],
-                                        'language' : 'en'
-                            }, is_admin = True)
+                                        'language' : 'en',
+                                        'is_admin' : True
+                            })
 
 @app.route("/admin/initdb")
 def initdb():
@@ -25,9 +28,16 @@ def initdb():
     pass
     
 
-@app.route("/admin/categories/", methods=["GET", "POST"])
+@app.route("/admin/categories/", methods=["POST"])
 def admin_categories():
-    return helpers.admin_list(CategoryModel, CategoryForm, 'admin_categories')
+    if 'id' in request.form and len(request.form['id']) > 0:
+        db_obj = CategoryModel.get_by_id(int(request.form['id']))
+    else:
+        db_obj = CategoryModel()
+    # pdb.set_trace()
+    db_obj.populate(request.form)
+    db_obj.put()
+    return "{ 'response' : 'SUCKSESS' }"
     pass
 
 
