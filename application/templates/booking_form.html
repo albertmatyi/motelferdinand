@@ -1,34 +1,34 @@
 <form action="/bookings/" method="post" class="form-horizontal hidden-on-body" id="booking-form">
 	<div class="control-group">
-		<label class="control-label" for="User-full_name">Full Name</label>
+		<label class="control-label" for="User-full_name">{{ __('Full Name') }}</label>
 		<div class="controls controls-row">
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-user"></i></span>
-				<input type="text" name="User-full_name" rel="tooltip" data-title="Specify a valid full name" data-placement="right"/>
+				<input type="text" name="User-full_name" rel="tooltip" data-title="{{ __('Specify a valid full name') }}" data-placement="right"/>
 			</div>
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label" for="User-email">Email</label>
+		<label class="control-label" for="User-email">{{ __('Email') }}</label>
 		<div class="controls controls-row">
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-envelope"></i></span>
-				<input type="email" class="email" name="User-email"  rel="tooltip" data-title="Specify a valid email address" data-placement="right"/>
+				<input type="email" class="email" name="User-email"  rel="tooltip" data-title="{{ __('Specify a valid email address') }}" data-placement="right"/>
 			</div>
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label">Booked rooms</label>
+		<label class="control-label">{{ __('Booked rooms') }}</label>
 		<input type="hidden" name="BookingEntryN" value="0"/>
 		<div class="controls controls-row booked-rooms">
 			<table class="table">
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Room type</th>
-						<th>Quantity</th>
-						<th>Date from</th>
-						<th>Date to</th>
+						<th>{{ __('Room type') }}</th>
+						<th>{{ __('Quantity') }}</th>
+						<th>{{ __('Arrival') }}</th>
+						<th>{{ __('Departure') }}</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -37,8 +37,8 @@
 				</tbody>
 				<tfoot>
 					<tr>
-						<th colspan="6" class="tableAddControl" rel="tooltip" data-title="Add at least one room" data-placement="bottom">
-							<a href="#bookingAddRoomModal" class="btn btn-success" id="#bookingAddRoomModalTrigger" data-toggle="modal"><i class="icon-plus icon-white"></i> Add room </a>
+						<th colspan="6" class="tableAddControl" rel="tooltip" data-title="{{ __('Add at least one room') }}" data-placement="bottom">
+							<a href="#bookingAddRoomModal" class="btn btn-success" id="#bookingAddRoomModalTrigger" data-toggle="modal"><i class="icon-plus icon-white"></i> {{ __('Add room') }} </a>
 						</th>
 					</tr>
 				</tfoot>
@@ -46,7 +46,7 @@
 		</div>
 	</div>
 	<div class="form-actions">
-		<button class="btn btn-primary btn-large booking-btn" id="submitBookingButton" rel="tooltip" data-title="Invalid data! See fields above." data-placement="left"> Book</button>
+		<button class="btn btn-primary btn-large booking-btn" id="submitBookingButton" rel="tooltip" data-title="{{ __('Invalid data! See fields above.') }}" data-placement="left"> {{ __('Book') }}</button>
 	</div>
 </form>
 
@@ -55,34 +55,35 @@
 <div class="modal hide fade" tabindex="-1" id="bookingAddRoomModal" role="dialog" aria-labelledby="bookingAddRoomModalTitle" aria-hidden="true">	
 	 <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="bookingAddRoomModalTitle">Add room to booking</h3>
+		<h3 id="bookingAddRoomModalTitle">{{ __('Add room to booking') }}</h3>
 	</div>
 	<div class="modal-body">
 		<div class="control-group">
-			<label class="control-label">Type of room</label>
+			<label class="control-label">{{ __('Type of room') }}</label>
 			<select data-bind="bookables" id="addRoomBookable"> 
 			</select>
 		</div>
 		<div class="control-group">
-			<label class="control-label">Quantity</label>
+			<label class="control-label">{{ __('Quantity') }}</label>
 			<select id="addRoomQuantity">
 			</select>
 		</div>
 		<div class="control-group">
-			<label class="control-label">Arrival date</label>
+			<label class="control-label">{{ __('Arrival date') }}</label>
 			<div class="controls controls-row">
 				<input type="date" class="datepicker bookfrom" id="addRoomFrom"/>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label">Departure date</label>
+			<label class="control-label">{{ __('Departure date') }}</label>
 			<div class="controls controls-row">
 				<input type="date" class="datepicker bookuntil" id="addRoomUntil"/>
 			</div>
 		</div>	
 	</div>
 	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-		<button class="btn btn-primary" data-dismiss="modal" id="addRoomButton"><i class="icon-plus icon-white"></i> Add room to booking</button>
+		<button class="btn" data-dismiss="modal" aria-hidden="true">{{ __('Cancel') }}</button>
+		<button class="btn btn-primary" data-dismiss="modal" id="addRoomButton"><i class="icon-plus icon-white"></i> 
+			{{ __('Add room to booking') }}</button>
 	</div>
 </div>

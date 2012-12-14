@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
-    <title>{% block title%}{% endblock %}Ferdinand Panzio</title>
+    <title>{% block title%}{% endblock %}{{ __('Ferdinand Motel') }}</title>
     {% if js_data.is_admin %}
         <link href="/static/lib/wysihtml5/css/bootstrap-wysihtml5.css" rel="stylesheet" />
     {% endif %}
@@ -32,7 +32,7 @@
 		<div class="loading-spacer"></div>
 		<div class="loading">
             <div>
-                Preparing coffee...
+                {{ __('Greeting') }}
             </div>
 	        <div class="progress progress-striped active">
                 <div class="bar" style="width: 100%;"></div>

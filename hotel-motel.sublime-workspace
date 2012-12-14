@@ -4,12 +4,112 @@
 		"selected_items":
 		[
 			[
-				"for",
-				"foreign_entity	Default"
+				"marin",
+				"margin-right"
+			],
+			[
+				"form",
+				"formModal"
+			],
+			[
+				"admin",
+				"adminControls"
+			],
+			[
+				"c",
+				"controls"
+			],
+			[
+				"fi",
+				"field	Default"
 			],
 			[
 				"lang",
 				"lang_id	Default"
+			],
+			[
+				"I1",
+				"I18n	Default"
+			],
+			[
+				"fie",
+				"field_name	Default"
+			],
+			[
+				"lang_",
+				"lang_id	Default"
+			],
+			[
+				"i",
+				"i18n"
+			],
+			[
+				"dic",
+				"dictionary	Default"
+			],
+			[
+				"set",
+				"setattr()	setattr fn"
+			],
+			[
+				"pro",
+				"properties	Default"
+			],
+			[
+				"Cate",
+				"CategoryModel	Default"
+			],
+			[
+				"hidden",
+				"hiddenIdDirective"
+			],
+			[
+				"succe",
+				"successFunction"
+			],
+			[
+				"catego",
+				"categories"
+			],
+			[
+				"content",
+				"content_idx"
+			],
+			[
+				"cate",
+				"categoryDescriptionInput"
+			],
+			[
+				"category",
+				"categoryTitleInput"
+			],
+			[
+				"dep",
+				"dependencies"
+			],
+			[
+				"depe",
+				"DateTimeProperty"
+			],
+			[
+				"tite",
+				"titleDirective"
+			],
+			[
+				"title",
+				"titleDirective"
+			],
+			[
+				"gall",
+				"gallAdded	Default"
+			],
+			[
+				"categ",
+				"category_key	Default"
+			],
+			[
+				"for",
+				"foreign_entity	Default"
 			],
 			[
 				"I",
@@ -42,10 +142,6 @@
 			[
 				"ca",
 				"catgoryTitleInput"
-			],
-			[
-				"form",
-				"formModal"
 			],
 			[
 				"fun",
@@ -92,10 +188,6 @@
 				"addRoomModal"
 			],
 			[
-				"cate",
-				"categoryId"
-			],
-			[
 				"opt",
 				"option	Tag"
 			],
@@ -119,57 +211,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "application/static/js/admin/category.js",
-			"settings":
-			{
-				"buffer_size": 2327,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/static/js/transparency_directives/content.js",
-			"settings":
-			{
-				"buffer_size": 2152,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "'''\nCreated on Jul 24, 2012\n\n@author: matyas\n'''\nfrom google.appengine.ext import db\nfrom random import Random\n\nclass AbstractModel(db.Model):\n    created = db.DateTimeProperty(auto_now_add=True)\n    \n    def to_dict(self):\n        '''\n            Converts a Model obj, or a model obj array to a dictionary (array of dic\n            tionaries\n        '''\n        arr = [('id',self.key().id())]\n        \n        for key in self.properties():\n            val = getattr(self, key)\n            if val is not None and isinstance(getattr(self.__class__, key), db.ReferenceProperty):\n                val = val.key().id()\n            arr += [(key, unicode(val))]\n        if hasattr(self.__class__, 'dependencies'):\n            for dep in self.__class__.dependencies:\n                val = [el.to_dict() for el in getattr(self, dep)]\n                arr += [(dep, val)]\n        return dict(arr) \n        pass\n    \n    def delete(self):\n        '''\n            Overrides the default delete behaviour and cascades on all categories\n            and images first\n            @return super.delete()\n        '''\n        if hasattr(self.__class__, 'dependencies'):\n            for dep in self.__class__.dependencies:\n                for obj in getattr(self, dep):\n                    obj.delete()\n        return add super(AbstractModel, self).delete()\n        pass\n    pass\n\nclass I18nableModel(AbstractModel):\n    i18d_fields={}\n\n    def to_dict(self):\n        # retrieve base dict\n        hm = super(I18nableModel, self).to_dict()\n        # add i18ns\n        for translation in self.translations:\n            if 'i18n' not in hm:\n                hm['i18n'] = {}\n            if translation.lang_id not in hm['i18n']:\n                hm['i18n'][translation.lang_id] = {}\n            hm['i18n'][translation.lang_id][translation.field] = translation.value\n        # return result\n        return hm\n        pass\n    pass\n\n    def put(self):\n        # save translations\n        key = super(I18nableModel, self).put()\n        if hasattr(self, 'i18n'):\n            for (lang_id, lang_fields) in self.i18n:\n                for (field, value) in lang_fields:\n                    I18n(lang_id=lang_id, field=field, value=value, foreign_entity=self).put()\n        return key\n        pass\n\n    def delete(self):\n        # delete the translations\n        for translation in self.translations:\n            translation.delete()\n        return super(I18nableModel, self).delete()\n        pass\n\ndef init_db():\n    ''' \n        Deletes existing categories and creates new ones\n        with a random number of subcategories that are or are not non-menu-entries\n    '''\n\n    for lang in LanguageModel.all():\n        lang.delete()\n\n    LanguageModel().put()\n    LanguageModel(lang_id=\"hu\", name=\"Magyar\").put()\n    LanguageModel(lang_id=\"ro\", name=\"Romana\").put()\n        \n    for cat in CategoryModel.all():\n        cat.delete()\n        pass\n    titles = [#'About', 'Location',\n              'Rooms']#, 'Guestbook']#, 'Restaurants', 'Sightseeing',\n    #'Partners', 'Documents', 'About']\n    room_title=['Sleep with  style', 'The Apartment', 'Bed & breakfast']\n    room_gallery=['https://picasaweb.google.com/110836571215849032642/FerdinandRoom3', 'https://picasaweb.google.com/110836571215849032642/FerdinandRoom2', 'https://picasaweb.google.com/110836571215849032642/FerdinandRoom1'];\n    room_description=['<p>Party tassel brew art organic brony. Of helvetica brooklyn liberal dumpster gastropub anim Carles. Ut magna gluten-free fixie fresh before. Letterpress chillwave non-ethical wes gluten-free ethical. Fresh viraliphone dubstep sriracha twee wayfarers farm-to-table. Bennie art suntincididunt hog.</p><p>Beer frado delectus original sunt delectus.Delectus classy local selvage whatever bushwick. Vegan letterpresswayfarers wayfarers chowder.</p>',\n                      '<br>Wes whatever anim trust-fund fin party original vinyl fixie. Polaroid <b>street-art</b> frado chowder Instagram sriracha. Art beer beer whatever dumpster <i>voluptate</i> <i>Pinterest</i>. Sriracha yr original farm-to-table. Brooklyn reprehenderit hog placeat incididunt Carles sriracha.',\n                      'Capitalism incididunt shot liberal viral art local beer. Bushwick sint Pinterest latte trust-fund sint. Daisy Pinterest vintage frado Carles delectus.</p><p>&nbsp;</p><ul><li>Ethical 8-bit non brew delectus</li><li>Wayfarers daisy non delectus</li><li>Local dumpster capitalism</li></ul>'\n                      ]\n    galleryHtml='<div class=\"picaslide\" data-picaslide-username=\"110836571215849032642\" data-picaslide-albumid=\"LeBike\">[<img alt=\"Insert picasa album\" src=\"http://localhost:8080/static/img/picasa_s.png\"> gallery comes here]</div>'\n    cc = 0\n    gallAdded=False;\n    for title in titles:\n        cm = CategoryModel(order=cc, visible=True, title=title, parent_category=None,description=get_random_text(Random().randint(100, 300)).replace('\\n','<br/>'))\n        key = cm.put()\n        add_translations(cm)\n        cc += 1\n        if title is 'Rooms':\n            for i in range(0,3):\n                bm = BookableModel(visible=True, title=room_title[i], category=key, description=room_description[i],album_url=room_gallery[i], quantity=i+2).put()\n        # add random number of subcategories\n        for i in range(0, Random().randint(2, 5)):\n            cm = ContentModel(visible=True, title=get_random_text(Random().randint(10, 15)).replace('\\n',''), \\\n                         category=key,description=get_random_text(Random().randint(100, len(fixieText)/2-40)).replace('\\n','<br/>')+(galleryHtml if not gallAdded else ''),\\\n                         order=i*2)\n            cm.put()\n            # add_translations(cm)\n            gallAdded = True\n    pass\n\ndef add_translations(entity):\n    for lang in LanguageModel.all():\n        for field_name in entity.__class__.i18d_fields:\n            I18n(field=field_name, value=lang.name +' '+ field_name, lang_id=lang.lang_id, foreign_entity=entity).put()\n    pass\n\ndef get_random_text(length):\n    if length > len(fixieText):\n        return fixieText.strip()\n    start = Random().randint(20, len(fixieText) - length)\n    start = fixieText.find(' ', start - 20) + 1\n    return fixieText[start : start + length].capitalize().strip()\n    pass\n\nfixieText = '''Rado 1982 is classy gluten-free ethical esse authentic nulla. Bennie dumpster art reprehenderit DSLR whatever esse. Kale fresh trust-fund vegan beer wes reprehenderit delectus. Kale mollit magna polaroid.\n\n    Instagram anime party ethical\n    Bushwick salvia fresh 1982 moon\n    Beer yr etsy vegan\n    Voluptate wayfarers 8-bit\n    Sriracha delectus magna party\n    Frado gastropub fin daisy is\n    DSLR non beer\n\nLatte wayfarers kale beer viral selvage. Twee 8-bit pony is liberal original capitalism. Anim liberal reprehenderit classy sunt. Sint viral bennie Anderson bushwick frado.\nIs Instagram anime\n\nBrony street-art esse seitan etsy. Delectus salvia delectus bronson placeat liberal narwhal. Mollit vinyl incididunt dreamcatcher DSLR authentic 8-bit. Frado daisy pour-over vinyl clothesline ethical.\n\nHog vegan gluten-free authentic DSLR. Pinterest 8-bit placeat seitan latte fin kale kale. Frado chillwave gastropub authentic non dumpster authentic bushwick. Art narwhal whatever iphone placeat esse letterpress ut liberal. Art mollit sint non fixie authentic classy salvia.\n\nBronson I delectus tassel. Of voluptate vegan mollit. Of fin letterpress art ut Anderson of tassel non-ethical. Party viral fixie chowder fresh.\n\nNon-ethical shot anime sriracha trust-fund iphone brooklyn original fresh. 8-bit magna art etsy gluten-free incididunt party. Helvetica salvia party art vintage fin. Brony gluten-free authentic hog street-art twee viral. Narwhal gluten-free shot art bennie yr hog placeat.\n'''\n\nfrom language import *\nfrom category import *\nfrom media import *\nfrom content import *\nfrom bookable import *\nfrom user import *\nfrom booking import *\n\n\n\n\n\n",
-			"file": "application/models/__init__.py",
-			"file_size": 7939,
-			"file_write_time": 1355174289000000,
-			"settings":
-			{
-				"buffer_size": 7943,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/models/category.py",
-			"settings":
-			{
-				"buffer_size": 3060,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/models/language.py",
-			"settings":
-			{
-				"buffer_size": 575,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/templates/admin_category_form.html",
-			"settings":
-			{
-				"buffer_size": 1280,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -267,38 +308,69 @@
 	},
 	"file_history":
 	[
-		"/home/matyas/Work/python/hotelmotel/application/templates/main.html",
-		"/home/matyas/Work/python/hotelmotel/application/templates/admin_category_form.html",
-		"/home/matyas/Work/python/hotelmotel/application/templates/admin_controls.html",
-		"/home/matyas/Work/python/hotelmotel/application/templates/booking_form.html",
-		"/home/matyas/Work/python/hotelmotel/application/static/scss/admin.scss",
-		"/home/matyas/Work/python/hotelmotel/application/controllers/category.py",
-		"/home/matyas/Work/python/hotelmotel/application/models/content.py",
-		"/home/matyas/Work/python/hotelmotel/application/static/js/main.js",
-		"/home/matyas/Work/python/hotelmotel/application/static/js/admin/category.js",
-		"/home/matyas/Work/python/hotelmotel/application/models/language.py",
-		"/home/matyas/Work/python/hotelmotel/application/models/__init__.py",
-		"/home/matyas/.config/sublime-text-2/Packages/SublimeCodeIntel/Base File.sublime-settings",
-		"/home/matyas/Work/python/hotelmotel/application/models/category.py",
-		"/home/matyas/Work/python/hotelmotel/application/static/scss/admin_main.scss",
-		"/home/matyas/Work/python/hotelmotel/application/static/css/admin_main.css",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/helpers/form.js",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/helpers/wysihtml5.js",
+		"/home/matyas/Work/python/hotelmotel/application/templates/admin_content_form.html",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/admin/content.js",
 		"/home/matyas/Work/python/hotelmotel/application/static/scss/main.scss",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/admin/bookables.js",
+		"/home/matyas/Work/python/hotelmotel/application/templates/admin_bookable_form.html",
+		"/home/matyas/Work/python/hotelmotel/application/controllers/content.py",
+		"/home/matyas/Work/python/hotelmotel/application/controllers/bookable.py",
+		"/home/matyas/Work/python/hotelmotel/application/models/base.py",
+		"/home/matyas/Work/python/hotelmotel/application/static/scss/navbar2.scss",
+		"/home/matyas/Work/python/hotelmotel/application/models/populator.py",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/switches.js",
+		"/home/matyas/Work/python/hotelmotel/application/controllers/category.py",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/main.js",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/helpers/i18n.js",
+		"/home/matyas/Work/python/hotelmotel/application/models/bookable.py",
+		"/home/matyas/Work/python/hotelmotel/application/templates/includes/nav.html",
+		"/home/matyas/Work/python/hotelmotel/application/templates/admin_category_form.html",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/transparency_directives/menu.js",
+		"/home/matyas/Work/python/hotelmotel/application/static/scss/fbloading.scss",
+		"/home/matyas/Work/python/hotelmotel/application/templates/main.html",
+		"/home/matyas/Work/python/hotelmotel/application/templates/booking_form.html",
+		"/home/matyas/Work/python/hotelmotel/application/templates/base.html",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/admin/controls.js",
+		"/home/matyas/Work/python/hotelmotel/application/controllers/helpers.py",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/admin/category.js",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/transparency_directives/body_content.js",
+		"/home/matyas/Work/python/hotelmotel/application/models/i18n.py",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/i18n.js",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/wysihtml5.js",
+		"/home/matyas/Work/python/hotelmotel/application/models/category.py",
+		"/home/matyas/Work/python/hotelmotel/application/templates/admin_controls.html",
+		"/home/matyas/Work/python/hotelmotel/application/models/content.py",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/helper/form.js",
+		"/home/matyas/Work/python/hotelmotel/application/static/scss/admin.scss",
+		"/home/matyas/Work/python/hotelmotel/application/static/scss/picaslide.scss",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/admin_edit.js",
+		"/home/matyas/Work/python/hotelmotel/application/static/scss/admin_main.scss",
+		"/home/matyas/Work/python/hotelmotel/application/static/scss/base.scss",
+		"/home/matyas/Work/python/hotelmotel/application/static/lib/wysihtml5/js/bootstrap-wysihtml5.js",
+		"/home/matyas/Work/python/hotelmotel/application/static/lib/wysihtml5/css/bootstrap-wysihtml5.css",
+		"/home/matyas/Work/python/hotelmotel/application/templates/admin_forms.html",
+		"/home/matyas/Work/python/hotelmotel/application/static/js/includes.js",
+		"/home/matyas/Work/python/hotelmotel/app.yaml",
+		"/home/matyas/Work/python/hotelmotel/application/models/media.py",
+		"/home/matyas/Work/python/hotelmotel/application/models/__init__.py",
+		"/home/matyas/Work/python/hotelmotel/application/models/booking.py",
+		"/home/matyas/Work/python/hotelmotel/application/models/language.py",
+		"/home/matyas/.config/sublime-text-2/Packages/SublimeCodeIntel/Base File.sublime-settings",
+		"/home/matyas/Work/python/hotelmotel/application/static/css/admin_main.css",
 		"/home/matyas/Work/python/hotelmotel/application/static/scss/bookable.scss",
 		"/home/matyas/Work/python/hotelmotel/application/templates/bookables/bookables.html",
 		"/home/matyas/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
 		"/home/matyas/Work/python/hotelmotel/.gitignore",
 		"/home/matyas/Work/python/hotelmotel/startserv",
 		"/home/matyas/Work/python/hotelmotel/application/static/scss/mixins.scss",
-		"/home/matyas/Work/python/hotelmotel/application/models/booking.py",
 		"/home/matyas/Work/python/hotelmotel/application/controllers/booking.py",
 		"/home/matyas/Work/python/hotelmotel/application/static/js/booking.js",
 		"/home/matyas/Desktop/hangout_url",
 		"/home/matyas/Work/python/hotelmotel/application/models/user.py",
-		"/home/matyas/Work/python/hotelmotel/application/templates/base.html",
 		"/home/matyas/Work/python/hotelmotel/application/static/scss/footer.scss",
 		"/home/matyas/Work/python/hotelmotel/index.yaml",
-		"/home/matyas/Work/python/hotelmotel/app.yaml",
-		"/home/matyas/Work/python/hotelmotel/application/models/bookable.py",
 		"/home/matyas/Work/python/hotelmotel/application/static/js/transparency_directives/content.js",
 		"/home/matyas/Work/python/hotelmotel/application/templates/includes/social.html",
 		"/home/matyas/.config/sublime-text-2/Packages/User/JavaScript.sublime-settings",
@@ -306,7 +378,6 @@
 		"/home/matyas/Work/python/hotelmotel/application/templates/bookables/list.html",
 		"/home/matyas/Work/python/hotelmotel/application/templates/contents/list.html",
 		"/home/matyas/Work/python/hotelmotel/application/static/sass/bookable.scss",
-		"/home/matyas/Work/python/hotelmotel/application/static/js/switches.js",
 		"/home/matyas/Work/python/hotelmotel/sasswatch.sh",
 		"/home/matyas/Work/python/hotelmotel/application/static/js/social.js",
 		"/home/matyas/Work/python/hotelmotel/application/static/sass/footer.scss",
@@ -345,6 +416,10 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"*.js",
+			"*.html",
+			"*.js",
+			"*.py",
 			"*.html",
 			"*.scss",
 			"*.html",
@@ -361,6 +436,35 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"content",
+			"Content",
+			"content",
+			"ategory",
+			"wysihtml5\"",
+			"w5",
+			"id",
+			"dictionary",
+			"hiddenId",
+			"picaslide",
+			"html",
+			"content",
+			"Content",
+			"is_admin",
+			"wysihtml5ParserRules",
+			"Content",
+			"content",
+			"dp",
+			"console.log",
+			"cis",
+			"ategory",
+			"Category",
+			"category",
+			"MediaModel",
+			"print",
+			"i ",
+			"cc",
+			"galleryHtml",
+			"room_description",
 			"method",
 			"catego",
 			"data-bind",
@@ -423,6 +527,18 @@
 		"regex": true,
 		"replace_history":
 		[
+			"bookable",
+			"Bookable",
+			"bookable",
+			"ontent",
+			"bookable",
+			"Bookable",
+			"bookable",
+			"ontent",
+			"Content",
+			"content",
+			"catIdx",
+			"catIdx\ncatIdx",
 			"admin-controls",
 			"'destroy'",
 			"bookedRooms",
@@ -439,174 +555,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "application/static/js/admin/category.js",
-					"settings":
-					{
-						"buffer_size": 2327,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								817,
-								817
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 153.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "application/static/js/transparency_directives/content.js",
-					"settings":
-					{
-						"buffer_size": 2152,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								648,
-								648
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 51.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "application/models/__init__.py",
-					"settings":
-					{
-						"buffer_size": 7943,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1300,
-								1300
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true,
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 473.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "application/models/category.py",
-					"settings":
-					{
-						"buffer_size": 3060,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1237,
-								1237
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 782.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "application/models/language.py",
-					"settings":
-					{
-						"buffer_size": 575,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								572,
-								572
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "application/templates/admin_category_form.html",
-					"settings":
-					{
-						"buffer_size": 1280,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								975,
-								975
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -656,32 +606,236 @@
 		"selected_items":
 		[
 			[
-				"catefor",
-				"templates/admin_category_form.html"
+				"wys",
+				"static/js/helpers/wysihtml5.js"
+			],
+			[
+				"i18n",
+				"static/js/helpers/i18n.js"
+			],
+			[
+				"wysi",
+				"static/js/helpers/wysihtml5.js"
 			],
 			[
 				"main",
-				"templates/main.html"
+				"static/js/main.js"
+			],
+			[
+				"categ",
+				"controllers/category.py"
+			],
+			[
+				"swit",
+				"static/js/switches.js"
+			],
+			[
+				"popula",
+				"models/populator.py"
+			],
+			[
+				"nav",
+				"static/scss/navbar2.scss"
+			],
+			[
+				"base",
+				"models/base.py"
+			],
+			[
+				"book",
+				"controllers/bookable.py"
 			],
 			[
 				"content",
-				"models/content.py"
+				"controllers/content.py"
 			],
 			[
-				"lang",
-				"models/language.py"
+				"nav2",
+				"static/scss/navbar2.scss"
+			],
+			[
+				"mainscss",
+				"static/scss/main.scss"
+			],
+			[
+				"swi",
+				"static/js/switches.js"
+			],
+			[
+				"pop",
+				"models/populator.py"
+			],
+			[
+				"bookable",
+				"models/bookable.py"
+			],
+			[
+				"bookablsjs",
+				"static/js/admin/bookables.js"
+			],
+			[
+				"contentjs",
+				"static/js/admin/content.js"
+			],
+			[
+				"admin_book",
+				"templates/admin_bookable_form.html"
+			],
+			[
+				"admin_content",
+				"templates/admin_content_form.html"
+			],
+			[
+				"menujs",
+				"static/js/transparency_directives/menu.js"
+			],
+			[
+				"mainjs",
+				"static/js/main.js"
+			],
+			[
+				"loading",
+				"static/scss/fbloading.scss"
+			],
+			[
+				"loadin",
+				"static/scss/fbloading.scss"
+			],
+			[
+				"navbar",
+				"static/scss/navbar2.scss"
+			],
+			[
+				"admin_conte",
+				"templates/admin_content_form.html"
+			],
+			[
+				"admin_cate",
+				"templates/admin_category_form.html"
+			],
+			[
+				"booking",
+				"templates/booking_form.html"
+			],
+			[
+				"controls",
+				"static/js/admin/controls.js"
+			],
+			[
+				"helper",
+				"controllers/helpers.py"
+			],
+			[
+				"catego",
+				"controllers/category.py"
+			],
+			[
+				"popu",
+				"models/populator.py"
+			],
+			[
+				"catejs",
+				"static/js/admin/category.js"
+			],
+			[
+				"bookajs",
+				"static/js/admin/bookables.js"
+			],
+			[
+				"content.js",
+				"static/js/admin/content.js"
+			],
+			[
+				"body",
+				"static/js/transparency_directives/body_content.js"
 			],
 			[
 				"cate",
 				"models/category.py"
 			],
 			[
-				"direc",
-				"static/js/transparency_directives/content.js"
+				"admin_contr",
+				"templates/admin_controls.html"
 			],
 			[
-				"categ",
+				"directi",
+				"static/js/transparency_directives/body_content.js"
+			],
+			[
+				"contenjs",
+				"static/js/admin/content.js"
+			],
+			[
+				"conten",
+				"models/content.py"
+			],
+			[
+				"helpers",
+				"controllers/helpers.py"
+			],
+			[
+				"admin/cate",
 				"static/js/admin/category.js"
+			],
+			[
+				"admincate",
+				"static/js/admin/category.js"
+			],
+			[
+				"picas",
+				"static/scss/picaslide.scss"
+			],
+			[
+				"adminedit",
+				"static/js/admin_edit.js"
+			],
+			[
+				"sw",
+				"static/js/switches.js"
+			],
+			[
+				"adminscss",
+				"static/scss/admin.scss"
+			],
+			[
+				"admin_conten",
+				"templates/admin_content_form.html"
+			],
+			[
+				"ca",
+				"controllers/category.py"
+			],
+			[
+				"bootstrapwyjs",
+				"static/lib/wysihtml5/js/bootstrap-wysihtml5.js"
+			],
+			[
+				"bootstra",
+				"static/lib/wysihtml5/css/bootstrap-wysihtml5.css"
+			],
+			[
+				"admin_form",
+				"templates/admin_forms.html"
+			],
+			[
+				"bookin",
+				"models/booking.py"
+			],
+			[
+				"media",
+				"models/media.py"
+			],
+			[
+				"catefor",
+				"templates/admin_category_form.html"
+			],
+			[
+				"lang",
+				"models/language.py"
+			],
+			[
+				"direc",
+				"static/js/transparency_directives/content.js"
 			],
 			[
 				"catjs",
@@ -696,10 +850,6 @@
 				"models/__init__.py"
 			],
 			[
-				"catego",
-				"models/category.py"
-			],
-			[
 				"booka",
 				"models/bookable.py"
 			],
@@ -710,10 +860,6 @@
 			[
 				"cat",
 				"controllers/category.py"
-			],
-			[
-				"adminscss",
-				"static/scss/admin.scss"
 			],
 			[
 				"admin_scss",
@@ -736,10 +882,6 @@
 				"templates/admin_controls.html"
 			],
 			[
-				"catejs",
-				"static/js/admin/category.js"
-			],
-			[
 				"main.",
 				"templates/main.html"
 			],
@@ -750,10 +892,6 @@
 			[
 				"bookscss",
 				"static/scss/bookable.scss"
-			],
-			[
-				"mainscss",
-				"static/scss/main.scss"
 			],
 			[
 				"bookform",
@@ -784,20 +922,8 @@
 				"static/scss/main.scss"
 			],
 			[
-				"base",
-				"templates/base.html"
-			],
-			[
 				"footer.sc",
 				"static/scss/footer.scss"
-			],
-			[
-				"bookin",
-				"models/booking.py"
-			],
-			[
-				"book",
-				"controllers/booking.py"
 			],
 			[
 				"bookiform",
@@ -816,24 +942,8 @@
 				"templates/bookables/list.html"
 			],
 			[
-				"swit",
-				"static/js/switches.js"
-			],
-			[
-				"directi",
-				"static/js/transparency_directives/content.js"
-			],
-			[
-				"booking",
-				"templates/booking_form.html"
-			],
-			[
 				"__init",
 				"models/__init__.py"
-			],
-			[
-				"swi",
-				"static/js/switches.js"
 			],
 			[
 				"pica",

@@ -4,13 +4,14 @@
 			<div class="bookable">
 				<h3 class="bookable-title"></h3>
 				{% include "admin_controls.html" %}
-				<h4>Beds: <span data-bind="beds"></span></h4>
+				<h4>{{ __('Beds') }}: <span data-bind="beds"></span></h4>
+				<h4>{{ __('Price per night') }}: <span data-bind="price"></span>{{ __('$') }}</h4>
 				<div data-bind="album_url"></div>
 				<div class="bookable-description"></div>
 			</div>
 		</div>
 	</div>
 	<div class="booking-controls"> 
-		<a href="#" class="btn btn-primary btn-large booking-btn showBookingFormButton" data-bind="category-booking-id" >Book</a>
+		<a href="#" class="btn btn-primary btn-large booking-btn showBookingFormButton" data-bind="category-booking-id" >{{ __('Book') }}</a>
 	</div>
 </div>

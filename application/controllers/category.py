@@ -7,13 +7,14 @@ from flask.helpers import url_for
 from flaskext import wtf
 from flask.templating import render_template
 from flask.globals import request
+from application.helpers import si18n 
 import pdb
 
 CategoryForm = model_form(CategoryModel, wtf.Form)
 
 @app.route("/", methods=["GET"])
 def home():
-    lang_id = request.args['lang_id'] if 'lang_id' in request.args else 'en'
+    lang_id = si18n.get_lang_id()
 
     return render_template('/main.html',\
                              js_data = {'categories': [e.to_dict() for e in CategoryModel.all().filter('visible', True)\

@@ -1,4 +1,4 @@
-define(function() {
+define(["helpers/cookies"], function(cookies) {
 	titleDirective = {
 		href : function(params) {
 			return '#Category' + this.id;
@@ -19,8 +19,14 @@ define(function() {
 	return {
 		'languageDirective': {
 			'name' : {
-				'href' : function(params){
-					return '/?lang_id='+this.lang_id;
+				'text' : function(params){
+					var lang_id = this.lang_id;
+					$(params.element).click(function (){
+						cookies.set('lang_id', lang_id);
+						console && console.log && console.log('setting cookie lang_id='+ lang_id);
+						window.location = '/';
+					});
+					return this.name;
 				}
 			}
 		},

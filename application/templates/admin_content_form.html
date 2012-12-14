@@ -1,7 +1,7 @@
  <div class="modal hide fade big-modal" tabindex="-1" id="contentEditFormModal" role="dialog" aria-labelledby="contentEditFormModalTitle" aria-hidden="true">	
 	 <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="contentEditFormModalTitle">Edit content</h3>
+		<h3 id="contentEditFormModalTitle">{{ __('Edit content') }}</h3>
 		<ul class="nav nav-tabs" id="editContentFormTabs">
 			<li><a href="#" data-bind="lang_id"></a></li>
 		</ul>
@@ -12,12 +12,12 @@
 			<div class="tab-content">
 				<div class="tab-pane" data-bind="lang_id">
 					<div class="control-group">
-						<label class="control-label">Title</label>
-						<input name="title" id="contentTitleInput" type="text" />
+						<label class="control-label">{{ __('Title') }}</label>
+						<input name="title" type="text" />
 					</div>
 					<div class="control-group">
-						<label class="control-label">Description</label>
-						<textarea name="description" id="contentDescriptionInput" ></textarea>
+						<label class="control-label">{{ __('Description') }}</label>
+						<textarea name="description"></textarea>
 					</div>
 				</div>
 			</div>
@@ -25,10 +25,10 @@
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 
-			Cancel
+			{{ __('Cancel') }}
 		</button>
 		<button class="btn btn-primary" data-dismiss="modal" id="submitContentEditForm"><i class="icon-ok icon-white"></i>
-			Save 
+			{{ __('Save') }}
 		</button>
 	</div>
 </div>

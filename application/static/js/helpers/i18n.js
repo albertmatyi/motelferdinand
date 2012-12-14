@@ -1,11 +1,9 @@
 define(
 	[
 	 	"/static/lib/jquery-1.7.2.min.js",
-        "/static/lib/wysihtml5/js/advanced_parser_rules.js",
-        "/static/lib/wysihtml5/js/wysihtml5-0.3.0.js",
         "helpers/wysihtml5"
 	],
-    function(js, idk0, idk1, w5){
+    function(js, wysihtml5){
         var SEPARATOR = '-';
         var PREFIX = 'i18n-'
         return {
@@ -72,7 +70,7 @@ define(
                 $('.nav-tabs', $context).render(model.languages, formTabNavDirectives);
                 $('.tab-content', $context).render(model.languages, formTabDirectives);
                 $('.nav-tabs a:first', $context).tab('show');
-                w5.renderTextAreas($context);
+                wysihtml5.renderTextAreas($context);
             }
         };
 	//close the function & define
