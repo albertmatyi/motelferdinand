@@ -16,7 +16,7 @@ define(
                     //populate the form with data
                     i18n.populateFields(cat, $form);
                     //show the edit category form
-                    $formModal.modal('show')
+                    $formModal.modal('show');
                 });
             }
         };

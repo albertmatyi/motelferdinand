@@ -30,24 +30,5 @@ def initdb():
 
 @app.route("/admin/categories/", methods=["POST"])
 def admin_categories():
-    if 'id' in request.form and len(request.form['id']) > 0:
-        db_obj = CategoryModel.get_by_id(int(request.form['id']))
-    else:
-        db_obj = CategoryModel()
-    # pdb.set_trace()
-    db_obj.populate(request.form)
-    db_obj.put()
-    return db_obj.key().id()
-    pass
-
-
-@app.route("/admin/categories/new", methods=["GET"])
-def admin_new_category():
-    return helpers.admin_new(CategoryForm, 'admin_categories')
-    pass
-
-@app.route("/admin/categories/<int:mdl_id>", methods=["GET", "POST", "PUT", "DELETE"])
-def admin_edit_category(mdl_id):
-    return helpers.admin_edit(mdl_id, CategoryModel, CategoryForm, \
-                              'admin_edit_category', 'admin_categories');
+    return helpers.save_obj_from_req(CategoryModel).key().id();
     pass

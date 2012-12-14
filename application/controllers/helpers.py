@@ -8,6 +8,17 @@ from flask.templating import render_template
 from flask.helpers import flash, url_for
 from werkzeug.utils import redirect
 
+def save_obj_from_req(Model):
+    if 'id' in request.form and len(request.form['id']) > 0:
+        db_obj = Model.get_by_id(int(request.form['id']))
+    else:
+        db_obj = Model()
+    # pdb.set_trace()
+    db_obj.populate(request.form)
+    db_obj.put()
+    return db_obj
+    pass
+
 def admin_handle_post(Model, Form, successURL):
     '''
     POST: If it was a post method, it will save the posted entity data to the model

@@ -13,8 +13,8 @@
     <link href="/static/lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
     <link href="/static/css/main.css" rel="stylesheet" />
     <link rel="shortcut icon" href="/static/img/favicon.ico" />
-    <script src="/static/lib/require.js"></script>
-    <script>
+    <script type="text/javascript" src="/static/lib/require.js"></script>
+    <script type="text/javascript">
 		  require.config({
 		    baseUrl: "/static/js",
 		    paths: {
@@ -38,7 +38,6 @@
                 <div class="bar" style="width: 100%;"></div>
             </div>
         </div>
-		</div>
 	</div>
     <div id="header">
         {% include 'includes/nav.html' %} {# pull in navbar #}
