@@ -9,5 +9,5 @@ ContentForm = model_form(ContentModel, wtf.Form)
 
 @app.route("/admin/contents/", methods=["POST"])
 def admin_contents():
-    return helpers.save_obj_from_req(CategoryModel).key().id();
+    return str(helpers.save_obj_from_req(ContentModel).key().id());
     pass

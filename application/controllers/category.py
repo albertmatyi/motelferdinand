@@ -30,5 +30,5 @@ def initdb():
 
 @app.route("/admin/categories/", methods=["POST"])
 def admin_categories():
-    return helpers.save_obj_from_req(CategoryModel).key().id();
+    return str(helpers.save_obj_from_req(CategoryModel).key().id());
     pass

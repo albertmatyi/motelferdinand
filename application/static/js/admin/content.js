@@ -12,8 +12,6 @@ define(
 
         var $form = $('form', $formModal);
 
-        var $controls = $('.content .admin-controls ');
-
         i18n.renderLanguageTabs($formModal, TAB_ID_BASE);
 
         $('#submitContentEditForm').click(function(){
@@ -21,6 +19,7 @@ define(
         });
 
         return {'init': function(){
+                var $controls = $('.content .admin-controls ');
                 adminControls.init($formModal, $form, $controls);
             }
         };
