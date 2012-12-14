@@ -16,6 +16,7 @@ define(['booking'], function(booking) {
 	function getEntityDirective(type){
 		var dir = {
 			text : function (params){
+				$(params.element).data('model', this);
 				return '';
 			}
 		};

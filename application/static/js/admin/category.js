@@ -1,15 +1,18 @@
 define(
 	[
 	 	"/static/lib/jquery-1.7.2.min.js",
-        "i18n",
-        'helpers/form'
+        "helpers/i18n",
+        'helpers/form',
+        "admin/controls"
 	],
-    function(js, i18n, formHelper){
+    function(js, i18n, formHelper, adminControls){
         var TAB_ID_BASE = 'editCategory-';
 
         var $formModal = $('#categoryEditFormModal');
 
         var $form = $('form', $formModal);
+
+        var $controls = $('.page-header .admin-controls');
 
         i18n.renderLanguageTabs($formModal, TAB_ID_BASE);
 
@@ -18,19 +21,7 @@ define(
         });
 
         return {'init': function(){
-                /**
-            	 * Edit button click handler
-            	 */
-            	$('.page-header .admin-controls .edit').click(function (){
-                    var cat_idx = $(this).attr('data-category-idx');
-                    var cat = model.categories[cat_idx];
-
-                    formHelper.populate($form, cat);
-                    //populate the form with data
-                    i18n.populateFields(cat, $form);
-            		//show the edit category form
-                    $formModal.modal('show')
-            	});
+                adminControls.init($formModal, $form, $controls);
             }
         };
 	//close the function & define

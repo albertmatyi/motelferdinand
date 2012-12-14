@@ -1,7 +1,7 @@
 define(
 	[
 	 	"/static/lib/jquery-1.7.2.min.js",
-        "i18n"
+        "helpers/i18n",
 	],
     function(js, i18n){
         var TAB_ID_BASE = 'editContent-';

@@ -37,7 +37,7 @@ def admin_categories():
     # pdb.set_trace()
     db_obj.populate(request.form)
     db_obj.put()
-    return "{ 'response' : 'SUCKSESS' }"
+    return db_obj.key().id()
     pass
 
 

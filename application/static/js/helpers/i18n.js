@@ -1,7 +1,7 @@
 define(
 	[
 	 	"/static/lib/jquery-1.7.2.min.js",
-        "wysihtml5"
+        "helpers/wysihtml5"
 	],
     function(js, w5){
         var SEPARATOR = '-';
