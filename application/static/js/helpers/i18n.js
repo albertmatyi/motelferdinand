@@ -1,9 +1,11 @@
 define(
 	[
 	 	"/static/lib/jquery-1.7.2.min.js",
+        "/static/lib/wysihtml5/js/advanced_parser_rules.js",
+        "/static/lib/wysihtml5/js/wysihtml5-0.3.0.js",
         "helpers/wysihtml5"
 	],
-    function(js, w5){
+    function(js, idk0, idk1, w5){
         var SEPARATOR = '-';
         var PREFIX = 'i18n-'
         return {

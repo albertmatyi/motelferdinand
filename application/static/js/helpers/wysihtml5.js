@@ -1,7 +1,5 @@
 define([
-	"/static/lib/wysihtml5/js/advanced_parser_rules.js",
-    "/static/lib/wysihtml5/js/wysihtml5-0.3.0.js",
-    "/static/lib/wysihtml5/js/bootstrap-wysihtml5.js"
+	"/static/lib/wysihtml5/js/bootstrap-wysihtml5.js"
 	],function(){
 		var toolbarDirective = {
 	        id:{
