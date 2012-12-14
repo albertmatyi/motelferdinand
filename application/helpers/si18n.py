@@ -8,8 +8,9 @@ def get_lang_id():
 		lang_id = 'en'
 	return lang_id
 
-def translate(what):
-	lang_id = get_lang_id()
+def translate(what, lang_id=''):
+	if len(lang_id) == 0:
+		lang_id = get_lang_id()
 	if lang_id in translations and what in translations[lang_id]:
 		return translations[lang_id][what]
 	return 'translations.'+str(lang_id)+'.'+str(what)
@@ -18,7 +19,7 @@ def translate(what):
 translations = {
 	'en' : {
 		# Base
-
+		'LanguageName': u'English',
 		'Ferdinand Motel': u'Ferdinand Motel',
 		'Language': u'Language',
 
@@ -52,6 +53,7 @@ translations = {
 	},
 	'hu' : {
 		# Base
+		'LanguageName': u'Magyar',
 		'Ferdinand Motel': u'Ferdinánd Panzió',
 		'Language': u'Nyelv',
 
@@ -85,7 +87,7 @@ translations = {
 	}, 
 	'ro' : {
 		# Base
-
+		'LanguageName': u'Română',
 		'Ferdinand Motel': u'Motel Ferdinand',
 		'Language': u'Limbă',
 

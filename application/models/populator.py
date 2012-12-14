@@ -1,13 +1,14 @@
 from application.models import LanguageModel, CategoryModel, ContentModel, BookableModel
 from random import Random
+from application.helpers import si18n
 
 def init_langs():
     for lang in LanguageModel.all():
         lang.delete()
 
-    LanguageModel().put()
-    LanguageModel(lang_id="hu", name="Magyar").put()
-    LanguageModel(lang_id="ro", name="Romana").put()
+    LanguageModel(lang_id="en", name=si18n.translate('LanguageName', 'en')).put()
+    LanguageModel(lang_id="hu", name=si18n.translate('LanguageName', 'hu')).put()
+    LanguageModel(lang_id="ro", name=si18n.translate('LanguageName', 'ro')).put()
     pass
 
 def init_bookables(category_key):
