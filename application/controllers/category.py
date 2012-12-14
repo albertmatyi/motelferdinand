@@ -34,10 +34,3 @@ def initdb():
 def admin_categories():
     return str(helpers.save_obj_from_req(CategoryModel).key().id());
     pass
-
-@app.url_defaults
-def add_lang_id(endpoint, values):
-    if 'lang_id' in values or not g.lang_id:
-        return
-    if app.url_map.is_endpoint_expecting(endpoint, 'lang_code'):
-        values['lang_code'] = g.lang_code

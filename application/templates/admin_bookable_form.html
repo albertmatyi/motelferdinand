@@ -8,7 +8,8 @@
 	</div>
 	<div class="modal-body">
 		<form action="/admin/bookables/" method="post">
-			<div class="tab-bookable">
+			<input type="hidden" name="id"/>
+			<div class="tab-content">
 				<div class="tab-pane" data-bind="lang_id">
 					<div class="control-group">
 						<label class="control-label">Title</label>
@@ -19,6 +20,18 @@
 						<textarea name="description" id="bookableDescriptionInput" ></textarea>
 					</div>
 				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">Beds</label>
+				<input name="beds" id="bookableBedsInput" type="text" />
+			</div>
+			<div class="control-group">
+				<label class="control-label">Price per night</label>
+				<input name="price" id="bookablePriceInput" type="text" />
+			</div>
+			<div class="control-group">
+				<label class="control-label">Quantity</label>
+				<input name="quantity" id="bookableQuantityInput" type="text" />
 			</div>
 		</form>		
 	</div>

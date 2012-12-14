@@ -1,9 +1,11 @@
 define(
-	[
-	 	"/static/lib/jquery-1.7.2.min.js",
+    [
+        "/static/lib/jquery-1.7.2.min.js",
         "helpers/i18n",
-	],
-    function(js, i18n){
+        'helpers/form',
+        "admin/controls"
+    ],
+    function(js, i18n, formHelper, adminControls){
         var TAB_ID_BASE = 'editBookable-';
 
         var $formModal = $('#bookableEditFormModal');
@@ -12,22 +14,14 @@ define(
 
         i18n.renderLanguageTabs($formModal, TAB_ID_BASE);
 
+        $('#submitBookableEditForm').click(function(){
+            formHelper.submitForm($form, '/admin/bookables/');
+        });
+
         return {'init': function(){
-                /**
-            	 * Edit button click handler
-            	 */
-            	$('.bookable .admin-controls .edit').click(function (){
-                    var bookable_idx = $(this).attr('data-bookable-idx');
-                    var cat_idx = 0;
-                    //populate the form with data
-                    i18n.populateFields(model.categories[cat_idx].bookables[bookable_idx], {
-                        'bookableTitleInput' : 'title', 
-                        'bookableDescriptionInput' : 'description'
-                    }, $formModal);
-            		//show the edit bookable form
-                    $formModal.modal('show')
-            	});
+                var $controls = $('.bookable .admin-controls ');
+                adminControls.init($formModal, $form, $controls);
             }
         };
-	//close the function & define
-	});
+    //close the function & define
+    });

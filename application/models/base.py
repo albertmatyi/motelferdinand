@@ -45,7 +45,11 @@ class AbstractModel(db.Model):
         '''
         for key in self.properties():
             if key in dictionary:
-                setattr(self, key, dictionary[key])
+                if type(getattr(self, key)) is not str:
+                    val = int(dictionary[key])
+                else:
+                    val = dictionary[key]
+                setattr(self, key, val)
                 pass
             pass
         pass

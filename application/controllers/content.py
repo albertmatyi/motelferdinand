@@ -5,8 +5,6 @@ from flaskext import wtf
 from application.controllers import helpers
 from flask.templating import render_template
 
-ContentForm = model_form(ContentModel, wtf.Form)
-
 @app.route("/admin/contents/", methods=["POST"])
 def admin_contents():
     return str(helpers.save_obj_from_req(ContentModel).key().id());

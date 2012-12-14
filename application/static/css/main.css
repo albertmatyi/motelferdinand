@@ -56,7 +56,7 @@ div.picaslide {
   position: fixed;
   right: 200px;
   top: 15px;
-  z-index: 9999; }
+  z-index: 1030; }
 
 html, body, #maincontent, #body_content, .categories, .category {
   /* 	height: 100%; */
