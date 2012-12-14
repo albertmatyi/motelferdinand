@@ -12,7 +12,7 @@ define(
 
         var $form = $('form', $formModal);
 
-        var $controls = $('.page-header .admin-controls');
+        var $controls = $('.content .admin-controls ');
 
         i18n.renderLanguageTabs($formModal, TAB_ID_BASE);
 
