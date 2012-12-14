@@ -52,6 +52,12 @@ div.picaslide {
   padding-top: 20px;
   padding-bottom: 20px; }
 
+.language.btn-group {
+  position: fixed;
+  right: 200px;
+  top: 15px;
+  z-index: 9999; }
+
 html, body, #maincontent, #body_content, .categories, .category {
   /* 	height: 100%; */
   /* 	overflow: hidden; */ }
@@ -264,7 +270,7 @@ body {
   left: 0;
   height: 100%;
   width: 100%;
-  z-index: 9999; }
+  z-index: 10000; }
   #loading-overlay .loading-spacer {
     width: 100%;
     height: 50%; }

@@ -13,11 +13,13 @@ CategoryForm = model_form(CategoryModel, wtf.Form)
 
 @app.route("/", methods=["GET"])
 def home():
+    lang_id = request.args['lang_id'] if 'lang_id' in request.args else 'en'
+
     return render_template('/main.html',\
                              js_data = {'categories': [e.to_dict() for e in CategoryModel.all().filter('visible', True)\
                                                        .filter('parent_category', None)],\
                                         'languages': [e.to_dict() for e in LanguageModel.all()],
-                                        'language' : 'en',
+                                        'language' : lang_id,
                                         'is_admin' : True
                             })
 
@@ -32,3 +34,10 @@ def initdb():
 def admin_categories():
     return str(helpers.save_obj_from_req(CategoryModel).key().id());
     pass
+
+@app.url_defaults
+def add_lang_id(endpoint, values):
+    if 'lang_id' in values or not g.lang_id:
+        return
+    if app.url_map.is_endpoint_expecting(endpoint, 'lang_code'):
+        values['lang_code'] = g.lang_code

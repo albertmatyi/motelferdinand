@@ -17,6 +17,13 @@ define(function() {
 		}
 	};		
 	return {
+		'languageDirective': {
+			'name' : {
+				'href' : function(params){
+					return '/?lang_id='+this.lang_id;
+				}
+			}
+		},
 		menuDirective : {
 			title : titleDirective,
 			visible : {

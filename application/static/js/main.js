@@ -31,6 +31,8 @@ define(
 		sw.RENDER_HEADER &&
 		$('.category-nav').render(model.categories, tdm.menuDirective);
 
+		$('.language ul').render(model.languages, tdm.languageDirective);
+
 		sw.RENDER_CONTENT &&
 		$('.categories').render(model.categories, tdc.contentDirective) &&
 		$('.content.span4').css('margin-left',parseInt($('.content.span4').css('margin-left'))*.5+'px');
