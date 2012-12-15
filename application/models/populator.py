@@ -32,9 +32,9 @@ def init_contents(category_key, idx, addGallery):
     desc = lambda : get_random_text(Random().randint(100, len(fixieText)/2-40)).replace('\n','<br/>') + \
                     (galleryHtml if addGallery else '')
     tit = lambda : get_random_text(Random().randint(10, 15)).replace('\n','');
-    cm.i18n = {'en': {'title':tit(), 'description': desc()},\
-        'ro':{'title':tit()+'ro', 'description': desc()},\
-        'hu':{'title':tit()+'hu', 'description': desc()}}
+    cm.i18n = {'en': {'title': tit(), 'description': desc()},\
+        'ro':{'title':tit()+' [ro]', 'description': desc()},\
+        'hu':{'title':tit()+' [hu]', 'description': desc()}}
     cm.put()
     pass
 

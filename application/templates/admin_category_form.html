@@ -1,34 +1,16 @@
- <div class="modal hide fade big-modal" tabindex="-1" id="categoryEditFormModal" role="dialog" aria-labelledby="categoryEditFormModalTitle" aria-hidden="true">	
-	 <div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="categoryEditFormModalTitle">{{ __('Edit category') }}</h3>
-		<ul class="nav nav-tabs" id="editCategoryFormTabs">
-			<li><a href="#" data-bind="lang_id"></a></li>
-		</ul>
-	</div>
-	<div class="modal-body">
-		<form action="/admin/categories/" method="post">
-			<input name="id" id="categoryHiddenId" type="hidden" data-bind="hiddenId" />
-			<div class="tab-content">
-				<div class="tab-pane" data-bind="lang_id">
-					<div class="control-group">
-						<label class="control-label">{{ __('Title') }}</label>
-						<input name="title" id="categoryTitleInput" type="text" />
-					</div>
-					<div class="control-group">
-						<label class="control-label">{{ __('Description') }}</label>
-						<textarea name="description" id="categoryDescriptionInput" ></textarea>
-					</div>
-				</div>
-			</div>
-		</form>		
-	</div>
-	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 
-			{{ __('Cancel') }}
-		</button>
-		<button class="btn btn-primary" data-dismiss="modal" id="submitCategoryEditForm"><i class="icon-ok icon-white"></i> 
-			{{ __('Save') }}
-		</button>
-	</div>
+{% set entityName = 'category' %}
+{% set EntityName = 'Category' %}
+{% extends 'admin_form_base.html' %}
+
+{% block i18n_inputs %}
+
+<div class="control-group">
+	<label class="control-label">{{ __('Title') }}</label>
+	<input name="title" type="text" />
 </div>
+<div class="control-group">
+	<label class="control-label">{{ __('Description') }}</label>
+	<textarea name="description"></textarea>
+</div>
+
+{% endblock %}

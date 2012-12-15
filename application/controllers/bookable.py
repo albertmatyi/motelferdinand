@@ -11,6 +11,6 @@ from application.controllers import helpers
 from flask.templating import render_template
 
 @app.route("/admin/bookables/", methods=["POST"])
-def admin_contents():
+def admin_bookables():
     return str(helpers.save_obj_from_req(BookableModel).key().id());
     pass

@@ -23,7 +23,7 @@ define(
             'submitForm': function ($form, action, successFunction){
                 if (!successFunction) {
                     successFunction = function (){
-                        alert('my dick');
+                        alert('Saved');
                     };
                 }
                 var data = $form.serialize();

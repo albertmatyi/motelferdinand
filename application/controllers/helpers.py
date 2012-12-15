@@ -7,6 +7,7 @@ from flask.globals import request
 from flask.templating import render_template
 from flask.helpers import flash, url_for
 from werkzeug.utils import redirect
+import pdb
 
 def save_obj_from_req(Model):
     if 'id' in request.form and len(request.form['id']) > 0:

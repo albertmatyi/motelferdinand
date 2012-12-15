@@ -22,7 +22,7 @@ def home():
                                         'languages': [e.to_dict() for e in LanguageModel.all()],
                                         'language' : lang_id,
                                         'is_admin' : True
-                            })
+                            }, is_admin = True)
 
 @app.route("/admin/initdb")
 def initdb():
