@@ -1,18 +1,20 @@
-@import "base";
-
-@import "navbar";
+// used in footer & category
+$ci-border: 1px dashed rgba(0,0,0,.4);
 
 $contentPadding: 1em;
+
+
+@import "base";
+
+@import "elements/navbar";
+
+@import "elements/footer";
 
 @import "category";
 
 @import "content";
 
 @import "bookable";
-
-@import "footer";
-
-@import "admin";
 
 body {
 	background: $background;

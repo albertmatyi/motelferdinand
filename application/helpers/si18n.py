@@ -23,6 +23,10 @@ translations = {
 		'Ferdinand Motel': u'Ferdinand Motel',
 		'Language': u'Language',
 
+		# Admin
+		'Guestbook entries': u'Guestbook entries',
+		'Bookings': u'Bookings',
+
 		# Booking
 		'Book': u'Book',
 		'Beds': u'Beds',
@@ -49,13 +53,20 @@ translations = {
 		'Edit content': u'Edit content',
 		'Edit bookable': u'Edit bookable',
 		'Description': u'Description',
-		'Title': u'Title'
+		'Title': u'Title',
+
+		#Footer
+		'Find us on': u'Find us on'
 	},
 	'hu' : {
 		# Base
 		'LanguageName': u'Magyar',
 		'Ferdinand Motel': u'Ferdinánd Panzió',
 		'Language': u'Nyelv',
+
+		# Admin
+		'Guestbook entries': u'Bejegyzések',
+		'Bookings': u'Foglalások',
 
 		# Booking
 		'Book': u'Foglalás',
@@ -83,13 +94,20 @@ translations = {
 		'Edit content': u'Tartalom módosítás',
 		'Edit bookable': u'Apartman módosítás',
 		'Description': u'Leírás',
-		'Title': u'Cím'
+		'Title': u'Cím',
+
+		#Footer
+		'Find us on': u'Megtalálhatsz minket'
 	}, 
 	'ro' : {
 		# Base
 		'LanguageName': u'Română',
 		'Ferdinand Motel': u'Motel Ferdinand',
 		'Language': u'Limbă',
+
+		# Admin
+		'Guestbook entries': u'Mesaje clienți',
+		'Bookings': u'Rezervări',
 
 		# Booking
 		'Book': u'Rezervă',
@@ -117,6 +135,9 @@ translations = {
 		'Edit content': u'Modifică conținut',
 		'Edit bookable': u'Modifică cameră',
 		'Description': u'Descriere',
-		'Title': u'Titlu'
+		'Title': u'Titlu',
+
+		#Footer
+		'Find us on': u'Ne poți găsi pe'
 	}
 }

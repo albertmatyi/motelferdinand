@@ -1,18 +1,23 @@
-{% extends "base/base.html" %} {% block content %}
+{% extends "base/base.html" %} 
+{% block content %}
 
-{% include "category/main.html" %}
+	{% include "category/main.html" %}
 
-{% include "booking/form.html" %}
+	{% include "booking/form.html" %}
 
-{% if is_admin %}
-	{% include "admin/forms.html" %}
-{% endif %}
+	{% if is_admin %}
+
+		{% include "admin/forms.html" %}
+
+		{% include "admin/panel.html" %}
+
+	{% endif %}
 
 {% endblock %}
 
 
 {% block style_block %}
-<link href="/static/lib/bootstrap-datepicker/datepicker.css" rel="stylesheet" />
+	<link href="/static/lib/bootstrap-datepicker/datepicker.css" rel="stylesheet" />
 {% endblock %}
 
 {% block tail_script %}

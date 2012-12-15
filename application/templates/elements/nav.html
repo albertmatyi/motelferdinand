@@ -10,11 +10,29 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
+
+			<!-- List of pages -->
+
 			<ul class="category-nav nav nav-collapse">
 				<li>
 					<a href="/" data-bind="title"></a>
 				</li>
 			</ul>
+
+			<!-- Language button -->
+			
+			<div class="language btn-group .btn-small">
+			    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+			    	{{ __('Language') }}
+			    	<span class="caret"></span>
+			    </a>
+			    <ul class="dropdown-menu">
+			    	<li>
+			    		<a href="#" data-bind="name">hello world</a>
+			    	</li>
+				</ul>
+			</div>
+
 		</div>
 		<!-- /.navbar .container -->
 	</div>
@@ -22,14 +40,4 @@
 </div>
 <!-- /navbar -->
 
-<div class="language btn-group .btn-small">
-    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    	{{ __('Language') }}
-    	<span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
-    	<li>
-    		<a href="#" data-bind="name">hello world</a>
-    	</li>
-	</ul>
-</div>
+
