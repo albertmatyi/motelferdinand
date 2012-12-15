@@ -1,135 +1,20 @@
-#navbar {
-	background-image: none;
-	border: none;
-	margin: 0 auto;
-	width: 940px;
-	padding-left: .0em;
-	padding-right: .0em;
-	height: 3em;
-	position: relative;
-	
-	&:after,&:before {
-		content: '';
-		border: solid 1.5em $navbarBgColor;
-		height: 0;
-		position: absolute;
-		display: block;
-		z-index: -1;
+
+.navbar{
+	.brand {
+		font-family: GreatVibes-Regular;
+		font-size: 35px;
+		//text-shadow: 1px 1px 0px #fff, -1px -1px 0px #999;
+	}	
+	.nav > li > a, .brand {
+		padding-top: 20px;
+		padding-bottom: 20px;
 	}
 	
-	&:after {
-		border-right-color: transparent;
-		bottom: 0em;
-		right: -2.4em;
-	}
-	
-	&:before {
-		border-left-color: transparent;
-		bottom: 0em;
-		left: -2.3em;
-	}
-	
-	.container {
-		border-top: dashed 1px $stichColor;
-		border-bottom: dashed 1px $stichColor;
-	}
-	
-	.navbar-inner {
-		border: none;
-		box-shadow: none;
-		border-radius: 0;
-		padding: .08em 0;
-		background-color: $navbarBgColor;
-		background-image: none;
-	}
-	
-	.icon-eye-close {
-		float: left;
-		cursor: pointer;
-		font-size: 1.2em;
-		line-height: 1.2em;
-		position: relative;
-		top: -1.7em;
-		left: -.6em;
-	}
-	
-	.home-btn{
-		float: left;
-		position: relative;
-		top: 10px;
-		left: 10px;
-		cursor: pointer;
-	}
-	
-	.inner-placeholder {
-		float: left;
-		height: 3em;
-		width: 100%;
-		display: none;
-	}
-	
-	.nav {
-		margin-left: 1em;
-	}
-	
-	.nav>li>a {
-		font-size: 1.2em;
-		line-height: 1.2em;
-		padding: .5em 1em;
-		color: #fff;
-		text-shadow: 1px 1px 3px #666;
-	}
-	
-	&.navbar .nav>.active>a,&.navbar .nav>.active>a:hover,&.navbar .nav>.active>a:focus{
-		text-decoration: none;
-		background-color: transparent;
-		box-shadow: none;
-		background-color: transparent;
-		box-shadow: none;
-		background: $navbarSelectedColor;
-	}
-	
-	&.navbar-fixed-top {
-		top: 6em;
-		position: fixed;
-	
-		&:after,&:before {
-			border-color: $navbarFixedEndColor;
-			border-width: 1.6em;
-		}
-		
-		&:after {
-			bottom: .1em;
-			right: -3.1em;
-			border-right-color: transparent;
-		}
-		
-		&:before {
-			border-left-color: transparent;
-			bottom: .1em;
-			left: -3.1em;
-		}
-		.navbar-inner {
-			box-shadow: 0px 3px 5px rgb(99, 99, 99);
-			@include noise;
-		}
-		.icon-eye-close {
-			top: -1.8em;
-			left: -1.1em;
-		}
-		.home-btn {
-			left: 14px;
-		}
-	}
-}
-@media ( min-width : 1200px) {
-	#navbar,.container,.navbar-static-top .container,.navbar-fixed-top .container,.navbar-fixed-bottom .container
-		{
-		width: 940px;
-	}
 }
 
-.nav-placeholder {
-	height: 3em;
-	display: none;
+.language.btn-group{
+	position: fixed; 
+	right: 200px;
+	top: 15px; 
+	z-index: 1030;
 }
