@@ -14,47 +14,43 @@ from flaskext.wtf.form import Form
 from flask.helpers import flash, url_for
 from datetime import datetime
 from werkzeug.utils import redirect
+import pdb
 
 BookingForm = model_form(BookingModel, wtf.Form)
 
 @app.route("/bookings/", methods=["POST"])
 def bookings_new():
-    form=request.form
-    form.csrf_enabled=False
-    usr = UserModel.create_or_retrieve(form['User-email'], form['User-full_name'])
+    form=helpers.dictify_keys(request.form)
+    usr = get_or_create_user(form['user'])
+
     booking = BookingModel()
     booking.user = usr
     booking.put()
     
-    n = int ( form['BookingEntryN'] )
-    for i in range(n):
-        i_str = str ( i )  
-        bookable = BookableModel.get_by_id( long ( form['BookingEntry['+i_str+'][bookable_id]'] ) )
-        quant = int ( form['BookingEntry['+i_str+'][quantity]'] ) 
-        book_from = datetime.strptime(form['BookingEntry['+i_str+'][book_from]'], '%d-%m-%Y').date()
-        book_until = datetime.strptime(form['BookingEntry['+i_str+'][book_until]'], '%d-%m-%Y').date()
+    for i in form['bookingEntries']:
+        bookable = BookableModel.get_by_id( long ( form['bookingEntries'][i]['bookable_id'] ) )
+        quant = int ( form['bookingEntries'][i]['quantity'] ) 
+        book_from = datetime.strptime(form['bookingEntries'][i]['book_from'], '%d-%m-%Y').date()
+        book_until = datetime.strptime(form['bookingEntries'][i]['book_until'], '%d-%m-%Y').date()
         
         be = BookingEntryModel(bookable = bookable, booking = booking, quantity = quant
             , book_from = book_from, book_until = book_until)
         be.put()
         pass
 
-    return '{ hello: "world" }';
+    return '{ "hello": "world" }';
     pass
 
-@app.route("/admin/bookings/", methods=["GET", "POST"])
-def admin_bookings():
-    return helpers.admin_list(BookingModel, BookingForm, 'admin_bookings')
-    pass
+def get_or_create_user(user):
+    email = user['email']
+    usr = UserModel.all().filter('email', email).get()
+    if not usr:
+        usr = UserModel(email = email, phone = user['phone'], full_name = user['full_name'])
+        usr.put()
+    return usr
 
-
-@app.route("/admin/bookings/new", methods=["GET"])
-def admin_new_booking():
-    return helpers.admin_new(BookingForm, 'admin_bookings')
-    pass
-
-@app.route("/admin/bookings/<int:mdl_id>", methods=["GET", "POST", "PUT", "DELETE"])
-def admin_edit_booking(mdl_id):
-    return helpers.admin_edit(mdl_id, BookingModel, BookingForm, \
-                              'admin_edit_booking', 'admin_bookings');
-    pass
+# @app.route("/admin/bookings/<int:mdl_id>", methods=["GET", "POST", "PUT", "DELETE"])
+# def admin_edit_booking(mdl_id):
+#     return helpers.admin_edit(mdl_id, BookingModel, BookingForm, \
+#                               'admin_edit_booking', 'admin_bookings');
+#     pass

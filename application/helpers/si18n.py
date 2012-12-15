@@ -16,6 +16,18 @@ def translate(what, lang_id=''):
 	return 'translations.'+str(lang_id)+'.'+str(what)
 	pass
 
+translations_js = {
+	'en': {
+		'Booking successfully saved! Stand by for a confirmation email.': u'Booking successfully saved! Stand by for a confirmation email.',
+	},
+	'hu': {
+		'Booking successfully saved! Stand by for a confirmation email.': u'Foglalás sikeresen bejegyezve. Kérem várja meg a konfirmáló emailt.',
+	},
+	'ro': {
+		'Booking successfully saved! Stand by for a confirmation email.': u'Rezervarea s-a efectuat cu succes. Vă rugăm să așteptați mailul de confirmare.',
+	}
+}
+
 translations = {
 	'en' : {
 		# Base
@@ -26,6 +38,8 @@ translations = {
 		# Admin
 		'Guestbook entries': u'Guestbook entries',
 		'Bookings': u'Bookings',
+		'Edit': u'Edit',
+		'Delete': u'Delete',
 
 		# Booking
 		'Book': u'Book',
@@ -35,6 +49,7 @@ translations = {
 		'Greeting': u'Preparing coffee',
 		'Full Name': u'Full Name',
 		'Email': u'Email',
+		'Phone': u'Phone',
 		'Booked rooms': u'Booked rooms',
 		'Room type': u'Type',
 		'Quantity': u'Quantity',
@@ -46,6 +61,13 @@ translations = {
 		'Arrival date': u'Arrival date',
 		'Departure date': u'Departure date',
 		'Cancel': u'Cancel',
+
+		#Bookin validation
+		'Specify a valid email address': u'Specify a valid email address',
+		'Add at least one room': u'Add at least one room',
+		'Specify a valid full name': u'Specify a valid full name',
+		'Invalid data! See fields above.': u'Invalid data! See fields above.',
+		'Specify a valid phone number': u'Specify a valid phone number',
 
 		#Forms
 		'Save': u'Save',
@@ -67,15 +89,18 @@ translations = {
 		# Admin
 		'Guestbook entries': u'Bejegyzések',
 		'Bookings': u'Foglalások',
+		'Edit': u'Módosít',
+		'Delete': u'Töröl',
 
 		# Booking
 		'Book': u'Foglalás',
 		'Beds': u'Ágyak száma',
-		'Price per night' : u'Ár/északa',
+		'Price per night' : u'Ár/éjszaka',
 		'$': u'HUF',
 		'Greeting': u'Készül a kávé',
 		'Full Name': u'Teljes név',
 		'Email': u'Email',
+		'Phone': u'Telefonszám',
 		'Booked rooms': u'Foglalásaim',
 		'Room type': u'Típus',
 		'Quantity': u'Mennyiség',
@@ -87,6 +112,13 @@ translations = {
 		'Arrival date': u'Érkezés dátuma',
 		'Departure date': u'Távozás dátuma',
 		'Cancel': u'Mégse',
+
+		#Bookin validation
+		'Specify a valid email address': u'Kérem adjon meg egy helyes email címet!',
+		'Add at least one room': u'Adjon hozzá a foglaláshoz legalább egy szobát!',
+		'Specify a valid full name': u'Kérem teljes és helyes nevet megadni.',
+		'Invalid data! See fields above.': u'Helytelen adatok. Kérem javítsa ki az űrlapot.',
+		'Specify a valid phone number': u'A megadott telefonszám helytelen.',
 
 		#Forms
 		'Save': u'Mentés',
@@ -108,6 +140,8 @@ translations = {
 		# Admin
 		'Guestbook entries': u'Mesaje clienți',
 		'Bookings': u'Rezervări',
+		'Edit': u'Modifică',
+		'Delete': u'Șterge',
 
 		# Booking
 		'Book': u'Rezervă',
@@ -117,6 +151,7 @@ translations = {
 		'Greeting': u'Se prepară cafeaua',
 		'Full Name': u'Nume complet',
 		'Email': u'Email',
+		'Phone': u'Număr de telefon',
 		'Booked rooms': u'Camere rezervate',
 		'Room type': u'Tip',
 		'Quantity': u'Cantitate',
@@ -128,6 +163,13 @@ translations = {
 		'Arrival date': u'Data sosirii',
 		'Departure date': u'Data plecării',
 		'Cancel': u'Anulează',
+
+		#Bookin validation
+		'Specify a valid email address': u'Secificați o adresă de email valid.',
+		'Add at least one room': u'Adăugați cel puțin o cameră.',
+		'Specify a valid full name': u'Introduceți un nume complet și valid.',
+		'Invalid data! See fields above.': u'Date invalide! Vă rugăm verificați câmpurile.',
+		'Specify a valid phone number': u'Numărul specificat este invalid.',
 
 		#Forms
 		'Save': u'Salvează',

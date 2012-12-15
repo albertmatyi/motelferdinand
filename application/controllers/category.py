@@ -28,6 +28,7 @@ def home():
                                         'languages': [e.to_dict() for e in LanguageModel.all()],
                                         'language' : lang_id,
                                         'bookings' : bookings,
+                                        'si18n': si18n.translations_js,
                                         'is_admin' : is_admin
                             }, is_admin = is_admin)
 

@@ -8,6 +8,20 @@ define(
         var PREFIX = 'i18n-'
         return {
             /**
+             * Used for static string translation on the client side. 
+             * defs can be found in si18n.translations_js
+             */
+            translate: function(what, lang_id){
+                if(!lang_id){
+                    lang_id = model.language;
+                }
+                if(model.si18n[lang_id] && model.si18n[lang_id][what]){
+                    return model.si18n[lang_id][what];
+                }
+                return 'translations_js.'+lang_id+'.'+what;
+             
+            },
+            /**
              * Populates rendered input fields with data from a given entity.
              * The entity should contain a correctly inited i18n field.
              * The directives should be a dictionary with id-valueKey pairs 

@@ -11,8 +11,8 @@ from application.models.bookable import BookableModel
 class BookingModel(AbstractModel):
     people = db.IntegerProperty(required=True, default=1)
     feedback = db.TextProperty()
-    accepted = db.BooleanProperty()
-    paid = db.BooleanProperty()
+    accepted = db.BooleanProperty(default=False)
+    paid = db.BooleanProperty(default=False)
     user = db.ReferenceProperty(UserModel, collection_name='bookings')
     dependencies=['booking_entries']
     pass

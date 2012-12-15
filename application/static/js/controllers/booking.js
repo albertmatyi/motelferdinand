@@ -1,8 +1,8 @@
 define(
 	[
-
+		"helpers/i18n"
 	],
-	function(){
+	function(i18n){
 		/**
 		 * The jQuery ref to the form to be handled
 		 */
@@ -53,22 +53,22 @@ define(
 			$bookedRooms.append('<tr id="BookingEntry'+idx+'">'
 				+ '<td>' + (idx+1)+  '</td>'
 				+ '<td> <input type="hidden" '
-			            + 'name="BookingEntry['+idx+'][bookable_id]" '
+			            + 'name="bookingEntries.'+idx+'.bookable_id" '
 			            + 'value="'+$roomSelect.val()+'" />' 
 				    + $('option:selected', $roomSelect).text() 
 			 	+  '</td>'
 				+ '<td> <input type="hidden" '
-			            + 'name="BookingEntry['+idx+'][quantity]" '
+			            + 'name="bookingEntries.'+idx+'.quantity" '
 			            + 'value="'+$quantitySelect.val()+'" />' 
 				    + $quantitySelect.val() 
 			 	+  '</td>'
 			 	+ '<td> <input type="hidden" '
-			            + 'name="BookingEntry['+idx+'][book_from]" '
+			            + 'name="bookingEntries.'+idx+'.book_from" '
 			            + 'value="'+$bookFrom.val()+'" />' 
 				    + $bookFrom.val()
 			 	+  '</td>'
 			 	+ '<td> <input type="hidden" '
-			            + 'name="BookingEntry['+idx+'][book_until]" '
+			            + 'name="bookingEntries.'+idx+'.book_until" '
 						+ 'value="'+$bookUntil.val()+'" />' 
 				    + $bookUntil.val()
 			 	+  '</td>'
@@ -87,15 +87,31 @@ define(
 		/**
 		 * The input for the username
 		 */
-		var $userFullName = $('input[name="User-full_name"]', $form);
+		var $userFullName = $('input[name="user.full_name"]', $form);
 		/**
 		 * The input for the email
 		 */
-		var $userEmail = $('input[name="User-email"]', $form);
+		var $userEmail = $('input[name="user.email"]', $form);
+		/**
+		 * The input for the email
+		 */
+		var $userPhone = $('input[name="user.phone"]', $form);
 		/**
 		 * The button used for submitting a booking
 		 */
 		var $submitBookingButton = $('#submitBookingButton', $form);
+		/**
+		 *	The table containing the booked rooms
+		 */
+		var $bookingsTableControls = $('.tableAddControl', $form);
+
+		/**
+		 * Shows or hides a tooltip on the given element
+		 */
+		function setTooltip($item, show){
+			show && $item.tooltip({'trigger':'manual'});
+			$item.tooltip(show ? 'show':'destroy');
+		}
 		/**
 		 * Does validations, and shows validation messages
 		 * @return True if all is ok. False otherwise
@@ -103,22 +119,24 @@ define(
 		function validate(){
 			var allOk = true;
 			var ok = $userFullName.val().match(/[\w -]{3,}/) != null;
-			$userFullName.tooltip(!ok ? 'show':'destroy');
+			setTooltip($userFullName, !ok);
 			allOk &= ok;
 			
-			ok = $userEmail.val().match(/[\w.\-_]{1,}@([\w\-_]+.){1,}\w{3,5}/) != null;
-			$userEmail.tooltip(!ok ? 'show':'destroy');
-			allOk &= ok;
-			
-			var $tc = $('.tableAddControl', $form);
-			ok = $bookedRooms.children().length > 0;
-			$tc.tooltip(!ok ? 'show':'destroy');
+			ok = $userEmail.val().match(/[\w\.\-_]{1,}@([\w\-_]+.){1,}\w{3,5}/) != null;
+			setTooltip($userEmail, !ok)
 			allOk &= ok;
 
-			$submitBookingButton.tooltip(!allOk ? 'show':'destroy');
-			return ok;
+			ok = $userPhone.val().match(/[\d+\s\-]{5,}/) != null;
+			setTooltip($userPhone, !ok)
+			allOk &= ok;			
+			
+			ok = $bookedRooms.children().length > 0;
+			setTooltip($bookingsTableControls, !ok);
+			allOk &= ok;
+
+			setTooltip($submitBookingButton, !allOk);
+			return allOk;
 		}
-		$bookingEntryN = $('input[name="BookingEntryN"]', $form);
 		/**
 		 * Do a validation before submitting. If all ok. Submit the form.
 		 */
@@ -133,7 +151,6 @@ define(
 			} 
 			if(dataOk){
 				// if all OK send the form
-				$bookingEntryN.val($bookedRooms.children().length);
 				var data = $form.serialize();
 				$.ajax({
 					type: 'POST',
@@ -144,7 +161,7 @@ define(
 						var $controlContainer = $form.parent();
 						$controlContainer.append('<div class="clearfix alert alert-success">'
 						        +'<button type="button" class="close" data-dismiss="alert">×</button>'
-						        	+'Booking successfully saved! Stand by for a confirmation email.'
+						        	+ i18n.translate('Booking successfully saved! Stand by for a confirmation email.')
 						        +'</div>')
 						// on response hide the form
 						$form.appendTo($('body'));
@@ -169,7 +186,7 @@ define(
 				$bookedRooms.html('');
 				for (var i = bookables.length - 1; i >= 0; i--) {
 					$roomSelect.append('<option value="'+bookables[i].id+'" data-quantity="'+bookables[i].quantity+'">' 
-						+ bookables[i].title+'</option>');
+						+ bookables[i].i18n[model.language].title+'</option>');
 				};
 				// trigger the populating of the quantities
 				$roomSelect.change();

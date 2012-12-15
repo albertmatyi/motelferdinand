@@ -225,7 +225,8 @@ body > .hidden-on-body, #body_content > .hidden-on-body {
     border-radius: 3px;
     padding: 0 1px;
     position: relative;
-    top: -40px; }
+    top: -40px;
+    cursor: pointer; }
   .admin-controls .edit:hover {
     background: #58d;
     background-image: linear-gradient(to bottom, #3366cc, #6699ff);

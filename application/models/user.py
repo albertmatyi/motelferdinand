@@ -20,20 +20,9 @@ class UserModel(AbstractModel):
     nickname = db.StringProperty(required=False, default='')
     user_id = db.StringProperty(required=False, default='')
     role_id = db.IntegerProperty(required=True, default=ROLE_USER)
+
     
     dependencies=['bookings']
     
     def __repr__(self, *args, **kwargs):
         return self.full_name;
-
-    @staticmethod
-    def create_or_retrieve(email, full_name):
-        usr = UserModel.all().filter('email', email).get()
-        if not usr:
-            usr = UserModel(
-            email = email,
-            full_name = full_name).put()
-        return usr
-        pass
-    
-    
