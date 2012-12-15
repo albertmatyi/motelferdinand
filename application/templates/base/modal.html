@@ -1,0 +1,16 @@
+ <div class="modal hide fade big-modal" tabindex="-1" id="{{ id }}Modal" role="dialog" aria-labelledby="{{ id }}ModalTitle" aria-hidden="true">	
+	 <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="{{ id }}ModalTitle">{{ title }}</h3>
+		{% block title_content %}
+		{% endblock %}
+	</div>
+	<div class="modal-body">
+		{% block content %}
+		{% endblock %}
+	</div>
+	<div class="modal-footer">
+		{% block footer_content %}
+		{% endblock %}
+	</div>
+</div>

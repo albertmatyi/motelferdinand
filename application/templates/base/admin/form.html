@@ -1,27 +1,26 @@
- <div class="modal hide fade big-modal" tabindex="-1" id="{{ entityName }}EditFormModal" role="dialog" aria-labelledby="{{ entityName }}EditFormModalTitle" aria-hidden="true">	
-	 <div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="{{ entityName }}EditFormModalTitle">{{ __('Edit '+entityName) }}</h3>
-		<ul class="nav nav-tabs" id="edit{{ EntityName }}FormTabs">
-			<li><a href="#" data-bind="lang_id"></a></li>
-		</ul>
-	</div>
-	<div class="modal-body">
-		<form action="/" method="post">
-			<input type="hidden" name="id"/>
-			<div class="tab-content">
-				<div class="tab-pane" data-bind="lang_id">
-				{% block i18n_inputs %} {% endblock %}
-				</div>
+{% set id = entityName+'EditForm' %}
+{% set title = __('Edit '+entityName) %}
+{% extends "base/modal.html" %}
+{% block title_content %}
+	<ul class="nav nav-tabs" id="edit{{ EntityName }}FormTabs">
+		<li><a href="#" data-bind="lang_id"></a></li>
+	</ul>
+{% endblock %}
+{% block content %}		
+	<form action="/" method="post">
+		<input type="hidden" name="id"/>
+		<div class="tab-content">
+			<div class="tab-pane" data-bind="lang_id">
+			{% block i18n_inputs %} {% endblock %}
 			</div>
-		</form>		
-	</div>
-	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 
-			{{ __('Cancel') }}
-		</button>
-		<button class="btn btn-primary" data-dismiss="modal" id="submit{{ EntityName }}EditForm"><i class="icon-ok icon-white"></i>
-			{{ __('Save') }}
-		</button>
-	</div>
-</div>
+		</div>
+	</form>		
+{% endblock %}
+{% block footer_content %}		
+	<button class="btn" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 
+		{{ __('Cancel') }}
+	</button>
+	<button class="btn btn-primary" data-dismiss="modal" id="submit{{ EntityName }}EditForm"><i class="icon-ok icon-white"></i>
+		{{ __('Save') }}
+	</button>
+{% endblock %}
