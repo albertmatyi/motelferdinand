@@ -18,6 +18,7 @@ define(
 			'controllers/admin/category',
 			'controllers/admin/content',
 			'controllers/admin/bookable',
+			'controllers/admin/booking',
 			'controllers/booking'
 			],function(dp, ps, tdm, tdc, sw, cis, acat, acont, abookables){
 		model.categories.sort(function(c0, c1) {

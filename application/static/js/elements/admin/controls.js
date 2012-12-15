@@ -1,10 +1,8 @@
 define(
 	[
-	 	"/static/lib/jquery-1.7.2.min.js",
-        "helpers/i18n",
-        'helpers/form',
+        "helpers/i18n"
 	],
-    function(js, i18n, formHelper){
+    function(i18n){
         return {'init': function($formModal, $controls){
                 var $form = $('form', $formModal);
 

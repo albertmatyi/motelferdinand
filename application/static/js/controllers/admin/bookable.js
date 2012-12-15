@@ -1,11 +1,9 @@
 define(
     [
-        "/static/lib/jquery-1.7.2.min.js",
         "helpers/i18n",
-        'helpers/form',
         "elements/admin/controls"
     ],
-    function(js, i18n, formHelper, adminControls){
+    function(i18n, adminControls){
         var TAB_ID_BASE = 'editBookable-';
 
         var $formModal = $('#bookableEditFormModal');

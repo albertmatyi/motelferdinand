@@ -1,10 +1,9 @@
 define(
 	[
-	 	"/static/lib/jquery-1.7.2.min.js",
         "helpers/form",
         "helpers/wysihtml5"
 	],
-    function(js, formHelper, wysihtml5){
+    function(formHelper, wysihtml5){
         var SEPARATOR = '-';
         var PREFIX = 'i18n-'
         return {

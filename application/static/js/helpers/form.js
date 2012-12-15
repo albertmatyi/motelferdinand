@@ -1,8 +1,8 @@
 define(
     [
-        "/static/lib/jquery-1.7.2.min.js",
+
     ],
-    function(js){
+    function(){
 
         return {
             /**
