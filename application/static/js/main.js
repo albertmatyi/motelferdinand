@@ -8,16 +8,17 @@ define(
 	         "/static/lib/slides.min.jquery.js",
 			"/static/lib/picasa.js",
 			"/static/lib/transparency.min.js",
-			"social"],function(){
+			"elements/social"],function(){
 	require(["/static/lib/bootstrap-datepicker/datepicker.js",
-			"picaslide",
-			"transparency_directives/menu",
-			"transparency_directives/body_content",
+			"helpers/picaslide",
+			"directives/menu",
+			"directives/body_content",
 			"switches",
-			"category/info_scroller",
-			'admin/category',
-			'admin/content',
-			'admin/bookables'
+			"controllers/category",
+			'controllers/admin/category',
+			'controllers/admin/content',
+			'controllers/admin/bookable',
+			'controllers/booking'
 			],function(dp, ps, tdm, tdc, sw, cis, acat, acont, abookables){
 		model.categories.sort(function(c0, c1) {
 			return c0.order - c1.order;

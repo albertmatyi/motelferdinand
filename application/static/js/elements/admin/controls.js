@@ -5,19 +5,20 @@ define(
         'helpers/form',
 	],
     function(js, i18n, formHelper){
-        return {'init': function($formModal, $form, $controls){
+        return {'init': function($formModal, $controls){
+                var $form = $('form', $formModal);
+
                 /**
                  * Edit button click handler
                  */
                 $('span.edit', $controls).click(function (){
                     var cat = $(this).data('model');
-
-                    formHelper.populate($form, cat);
                     //populate the form with data
-                    i18n.populateFields(cat, $form);
+                    i18n.populateForm($form, cat);
                     //show the edit category form
                     $formModal.modal('show');
                 });
+
             }
         };
 	//close the function & define

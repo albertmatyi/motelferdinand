@@ -64,7 +64,7 @@ class I18nableModel(AbstractModel):
         setattr(self, 'i18n', {})
         for key, value in dictionary.items():
             if key.startswith('i18n'):
-                (_, field_name, lang_id) = key.split('-')
+                (_, lang_id, field_name) = key.split('-')
                 if lang_id not in self.i18n:
                     self.i18n[lang_id] = {}
                     pass

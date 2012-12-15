@@ -1,31 +1,12 @@
-{% extends "base.html" %} {% block content %}
-<div class="categories">
-	<div data-bind="id" class="category row">
-		<div class="category-info span4">
-			<div class="info-container">
-				<div class="page-header">
-					<h1 class="category-title"></h1> 
-					{% include "admin_controls.html" %}
-				</div>
-				<div class="category-description">
-				</div>
-			</div>
-		</div>
-		<div class=" category-content offset4">
-			{% include "bookables/bookables.html" %}
-			<div class="contents">
-				<div class="content span4" data-bind="id">
-					<h3 class="content-title"></h3>
-					{% include "admin_controls.html" %}
-					<div class="content-description"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+{% extends "base/base.html" %} {% block content %}
 
-{% include "booking_form.html" %}
-{% include "admin_forms.html" %}
+{% include "category/main.html" %}
+
+{% include "booking/form.html" %}
+
+{% if is_admin %}
+	{% include "admin/forms.html" %}
+{% endif %}
 
 {% endblock %}
 
@@ -41,5 +22,5 @@
 {% endblock %}
 
 {% block footer %}
-	{% include 'includes/social.html' %}
+	{% include 'elements/social.html' %}
 {% endblock %}

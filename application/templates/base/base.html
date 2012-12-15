@@ -40,10 +40,9 @@
         </div>
 	</div>
     <div id="header">
-        {% include 'includes/nav.html' %} {# pull in navbar #}
+        {% include 'elements/nav.html' %} {# pull in navbar #}
     </div>
     <div class="container" id="maincontent">
-        {% include 'includes/flash_message.html' %} {# page-level feedback notices #}
         <div id="body_content" >
             {% block content %}<!-- main content area -->{% endblock %}
         </div>

@@ -8,12 +8,13 @@ define(
             /**
              * Populate the input fields of a form with data
              */
-            'populate' : function ($form, data) {
+            'populate' : function ($form, entity) {
                 $('input, select', $form).each(function(idx, el){
+                    $form.data('entity', entity);
                     $el = $(el);
                     var key = $el.attr('name');
-                    if(data[key]){
-                        $el.val(data[key]);
+                    if(entity[key]){
+                        $el.val(entity[key]);
                     }
                 });
             },
@@ -26,6 +27,7 @@ define(
                         alert('Saved');
                     };
                 }
+                // POST data to server
                 var data = $form.serialize();
                 $.ajax({ 
                     url : action,
@@ -34,6 +36,14 @@ define(
                     data : data,
                     dataType: 'json'
                 });
+                // return collected data in form of a dict
+                var ret = {};
+                var arr = $form.serializeArray();
+                for (var i = arr.length - 1; i >= 0; i--) {
+                    var el = arr[i];
+                    ret[el['name']] = el['value'];
+                }
+                return ret;
             }
         }
     //close the function & define

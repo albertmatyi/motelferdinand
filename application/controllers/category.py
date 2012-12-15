@@ -15,14 +15,21 @@ CategoryForm = model_form(CategoryModel, wtf.Form)
 @app.route("/", methods=["GET"])
 def home():
     lang_id = si18n.get_lang_id()
+    is_admin = True
 
+    qry = CategoryModel.all().filter('parent_category', None)
+    if not is_admin:
+        qry = qry.filter('visible', True)
+    categories = [e.to_dict() for e in qry]
+    bookings = [e.to_dict() for e in BookingModel.all()]
+    
     return render_template('/main.html',\
-                             js_data = {'categories': [e.to_dict() for e in CategoryModel.all().filter('visible', True)\
-                                                       .filter('parent_category', None)],\
+                             js_data = {'categories': categories,\
                                         'languages': [e.to_dict() for e in LanguageModel.all()],
                                         'language' : lang_id,
-                                        'is_admin' : True
-                            }, is_admin = True)
+                                        'bookings' : bookings,
+                                        'is_admin' : is_admin
+                            }, is_admin = is_admin)
 
 @app.route("/admin/initdb")
 def initdb():

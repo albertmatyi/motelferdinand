@@ -1,0 +1,18 @@
+<div class="categories">
+	<div data-bind="id" class="category row">
+		<div class="category-info span4">
+			<div class="info-container">
+				<div class="page-header">
+					<h1 class="category-title"></h1> 
+					{% include "elements/admin/controls.html" %}
+				</div>
+				<div class="category-description">
+				</div>
+			</div>
+		</div>
+		<div class=" category-content offset4">
+			{% include "bookable/main.html" %}
+			{% include "content/main.html" %}
+		</div>
+	</div>
+</div>
