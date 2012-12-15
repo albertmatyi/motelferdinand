@@ -1,0 +1,19 @@
+.admin-controls{
+	float: right;
+	.edit, .delete {
+		background: #999;
+		@include gradient(#666, #999);
+		border-radius: 3px;
+		padding: 0 1px;
+		position: relative;
+		top: -40px;
+	}
+	.edit:hover{
+		background: #58d;
+		@include gradient(#36c, #69f);
+	}
+	.delete:hover{
+		background: #58d;
+		@include gradient(#c63, #f96);
+	}
+}

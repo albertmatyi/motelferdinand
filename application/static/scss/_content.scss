@@ -1,0 +1,14 @@
+.content {
+	@include tile;
+	margin-top: 5em;
+	background: #f4f4f4;
+	@include gradient($contentGradientFrom, $contentGradientTo);
+	
+	.content-description, .content-title{
+		@include tile-content; 
+	}
+	
+	.content-title{
+		border-bottom: dashed 1px #ccc;
+	}
+}
