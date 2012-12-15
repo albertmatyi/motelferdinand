@@ -51,12 +51,8 @@ div.picaslide {
 .navbar .nav > li > a, .navbar .brand {
   padding-top: 20px;
   padding-bottom: 20px; }
-
-.language.btn-group {
-  position: fixed;
-  right: 200px;
-  top: 15px;
-  z-index: 1030; }
+.navbar .nav-pills {
+  float: right; }
 
 #footer {
   position: fixed;

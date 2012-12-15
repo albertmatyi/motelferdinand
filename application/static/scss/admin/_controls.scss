@@ -1,3 +1,10 @@
+#adminButtonGroup{
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	z-index: 1030;
+}
+
 .admin-controls{
 	float: right;
 	.edit, .delete {

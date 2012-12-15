@@ -51,12 +51,8 @@ div.picaslide {
 .navbar .nav > li > a, .navbar .brand {
   padding-top: 20px;
   padding-bottom: 20px; }
-
-.language.btn-group {
-  position: fixed;
-  right: 200px;
-  top: 15px;
-  z-index: 1030; }
+.navbar .nav-pills {
+  float: right; }
 
 #footer {
   position: fixed;
@@ -211,6 +207,37 @@ body {
 
 body > .hidden-on-body, #body_content > .hidden-on-body {
   display: none; }
+
+#adminButtonGroup {
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  z-index: 1030; }
+
+.admin-controls {
+  float: right; }
+  .admin-controls .edit, .admin-controls .delete {
+    background: #999;
+    background-image: linear-gradient(to bottom, #666666, #999999);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#666666), to(#999999));
+    background-image: -moz-linear-gradient(top, #666666, #999999);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#999999');
+    border-radius: 3px;
+    padding: 0 1px;
+    position: relative;
+    top: -40px; }
+  .admin-controls .edit:hover {
+    background: #58d;
+    background-image: linear-gradient(to bottom, #3366cc, #6699ff);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#3366cc), to(#6699ff));
+    background-image: -moz-linear-gradient(top, #3366cc, #6699ff);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3366cc', endColorstr='#6699ff'); }
+  .admin-controls .delete:hover {
+    background: #58d;
+    background-image: linear-gradient(to bottom, #cc6633, #ff9966);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#cc6633), to(#ff9966));
+    background-image: -moz-linear-gradient(top, #cc6633, #ff9966);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc6633', endColorstr='#ff9966'); }
 
 .modal.big-modal {
   width: 80%;
