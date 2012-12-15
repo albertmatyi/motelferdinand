@@ -15,7 +15,12 @@
 
 			<ul class="category-nav nav nav-collapse">
 				<li>
-					<a href="/" data-bind="title"></a>
+					<a href="/" data-bind="title">
+						{% if is_admin %}	
+							<span href="#" class="move" data-bind="entityId"><i class="icon-move icon-white"></i></span>
+							<span href="#" class="visibility" data-bind="entityId"><i class="icon-eye-close icon-white"></i></span>
+						{% endif %}
+					</a>
 				</li>
 			</ul>
 
