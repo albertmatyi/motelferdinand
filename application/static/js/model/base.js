@@ -22,12 +22,12 @@ function(){
 	for (var i = model.categories.length - 1; i >= 0; i--) {
 		var cat = model.categories[i];
 		model.db.category[cat.id] = cat;
-		for (var i = cat.contents.length - 1; i >= 0; i--) {
-			var content = cat.contents[i];
+		for (var j = cat.contents.length - 1; j >= 0; j--) {
+			var content = cat.contents[j];
 			model.db.content[content.id] = content;
 		};
-		for (var i = cat.bookables.length - 1; i >= 0; i--) {
-			var bookable = cat.bookables[i];
+		for (var k = cat.bookables.length - 1; k >= 0; k--) {
+			var bookable = cat.bookables[k];
 			model.db.bookable[bookable.id] = bookable;
 		};
 	};

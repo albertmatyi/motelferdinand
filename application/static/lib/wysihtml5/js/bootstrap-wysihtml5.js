@@ -257,8 +257,16 @@ define([
               
               var insertGallery = function() {
                   var url = urlInput.val();
-                  var username = /.com(\/photos)?\/(\d+)/.exec(url)[2];
-                  var albumID = /.com(\/photos)?\/\d+(\/albums)?\/([^\/#]+)/.exec(url)[3];
+                  // g+
+                  // https://plus.google.com/u/0/photos/110836571215849032642/albums/5628712940161272657
+                  var tmp = /(\d{15,})\/(?:[^\d]\w*\/)*(\d{5,})/.exec(url);
+                  if(!tmp){
+                    //picasa case
+                    // https://picasaweb.google.com/110836571215849032642/WhatI1
+                    tmp = /(\d{15,})\/(\w{5,})/.exec(url);
+                  }
+                  var username = tmp[1];
+                  var albumID = tmp[2];
                   urlInput.val(initialValue);
                   var content='&nbsp;<div class="picaslide"'+
           		' data-picaslide-username="'+username+'"'+

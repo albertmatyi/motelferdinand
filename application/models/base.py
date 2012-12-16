@@ -47,12 +47,15 @@ class AbstractModel(db.Model):
         '''
         for key in self.properties():
             if key in dictionary:
-                if type(getattr(self, key)) is not str:
-                    val = int(dictionary[key])
-                else:
-                    val = dictionary[key]
-                setattr(self, key, val)
+                self.populate_field(dictionary, key)
                 pass
             pass
         pass
+
+    def populate_field(self, dictionary, key):
+        if type(getattr(self, key)) is not str:
+            val = int(dictionary[key])
+        else:
+            val = dictionary[key]
+        setattr(self, key, val)
     

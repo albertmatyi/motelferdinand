@@ -13,9 +13,7 @@ define(
                     $form.data('entity', entity);
                     $el = $(el);
                     var key = $el.attr('name');
-                    if(entity[key]){
-                        $el.val(entity[key]);
-                    }
+                    $el.val(entity[key] ? entity[key]:'');
                 });
             },
             /**

@@ -19,8 +19,8 @@ define([
 		function getEntityDirective(type){
 			var dir = {
 				text : function (params){
-					$(params.element).data('model', this);
-					return '';
+					$(params.element).data('entity', this);
+					return $(params.element).text();
 				}
 			};
 			dir['data-'+type+'-id'] = function(params){

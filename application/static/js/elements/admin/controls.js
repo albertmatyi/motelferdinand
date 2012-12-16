@@ -10,7 +10,7 @@ define(
                  * Edit button click handler
                  */
                 $('span.edit', $controls).click(function (){
-                    var cat = $(this).data('model');
+                    var cat = $(this).data('entity');
                     //populate the form with data
                     i18n.populateForm($form, cat);
                     //show the edit category form

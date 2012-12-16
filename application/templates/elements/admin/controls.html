@@ -1,6 +1,8 @@
 {% if is_admin %}
 	<div class="admin-controls">
-		<span title="{{ __('Edit') }}" class="edit" data-bind="entityId"><i class="icon-edit"></i></span>
-		<span title="{{ __('Delete') }}" class="delete" data-bind="entityId"><i class="icon-trash"></i></span>
+		<span title="{{ __('Edit') }}" class="edit" data-bind="entityId"><i class="icon-edit icon-white"></i></span>
+		<span title="{{ __('Delete') }}" class="delete" data-bind="entityId"><i class="icon-trash icon-white"></i></span>
+		{% block buttons %}
+		{% endblock %}
 	</div>
 {% endif %}

@@ -33,19 +33,21 @@ define(
                 // populate i18n fields
                 for (var i = 0; i < model.languages.length; i++) {
                     var lang_id = model.languages[i].lang_id;
-                    for (field in entity.i18n[lang_id]) {
-                        var tmpId = '[name="'+PREFIX+lang_id+SEPARATOR+field+'"]';
-                        var inp=$('input'+tmpId + ',select'+tmpId, $form);
-                        var value = entity.i18n[lang_id][field];
-                        if(inp.length > 0 ){
-                            inp.val(value);
-                        }else{
-                            inp=$('textarea'+tmpId, $form);
-                            var w5ref = inp.data('wysihtml5');
-                            if(w5ref){
-                                w5ref.editor.setValue(value);
+                    if(entity['i18n']){
+                        for (field in entity.i18n[lang_id]) {
+                            var tmpId = '[name="'+PREFIX+lang_id+SEPARATOR+field+'"]';
+                            var inp=$('input'+tmpId + ',select'+tmpId, $form);
+                            var value = entity.i18n[lang_id][field];
+                            if(inp.length > 0 ){
+                                inp.val(value);
                             }else{
-                                inp.html(value);    
+                                inp=$('textarea'+tmpId, $form);
+                                var w5ref = inp.data('wysihtml5');
+                                if(w5ref){
+                                    w5ref.editor.setValue(value);
+                                }else{
+                                    inp.html(value);    
+                                }
                             }
                         }
                     }

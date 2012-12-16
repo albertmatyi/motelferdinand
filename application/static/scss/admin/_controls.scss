@@ -7,11 +7,11 @@
 
 .admin-controls{
 	float: right;
-	.edit, .delete {
+	&>span {
 		background: #999;
 		@include gradient(#666, #999);
 		border-radius: 3px;
-		padding: 0 1px;
+		padding: 2px 3px;
 		position: relative;
 		top: -40px;
 		cursor: pointer;
@@ -22,6 +22,10 @@
 	}
 	.delete:hover{
 		background: #58d;
-		@include gradient(#c63, #f96);
+		@include gradient(#c63, #f75);
+	}
+	.add:hover{
+		background: #8d5;
+		@include gradient(#393, #6c3);	
 	}
 }

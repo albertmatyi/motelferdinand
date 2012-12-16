@@ -19,12 +19,15 @@ def translate(what, lang_id=''):
 translations_js = {
 	'en': {
 		'Booking successfully saved! Stand by for a confirmation email.': u'Booking successfully saved! Stand by for a confirmation email.',
+		'Add category': u'Add category'
 	},
 	'hu': {
 		'Booking successfully saved! Stand by for a confirmation email.': u'Foglalás sikeresen bejegyezve. Kérem várja meg a konfirmáló emailt.',
+		'Add category': u'Hozzáad kategoriát'
 	},
 	'ro': {
 		'Booking successfully saved! Stand by for a confirmation email.': u'Rezervarea s-a efectuat cu succes. Vă rugăm să așteptați mailul de confirmare.',
+		'Add category': u'Adaugă categorie'
 	}
 }
 
@@ -43,6 +46,8 @@ translations = {
 		'Booking entries': u'Booking entries',
 		'Edit': u'Edit',
 		'Delete': u'Delete',
+		'Add content': u'Add content',
+		'Add bookable': u'Add bookable',
 
 		# Booking
 		'Book': u'Book',
@@ -101,6 +106,8 @@ translations = {
 		'Booking entries': u'Lefoglalt szobák',
 		'Edit': u'Módosít',
 		'Delete': u'Töröl',
+		'Add content': u'Hozzáad tartalmat',
+		'Add bookable': u'Hozzáad szobát',
 
 		# Booking
 		'Book': u'Foglalás',
@@ -159,6 +166,8 @@ translations = {
 		'Booking entries': u'Camere rezervate',
 		'Edit': u'Modifică',
 		'Delete': u'Șterge',
+		'Add content': u'Adaugă conținut',
+		'Add bookable': u'Adaugă cameră',
 
 		# Booking
 		'Book': u'Rezervă',

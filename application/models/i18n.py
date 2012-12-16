@@ -75,5 +75,5 @@ class I18nableModel(AbstractModel):
 class I18n(AbstractModel):
 	lang_id = db.StringProperty(required=True, default='en')
 	field = db.StringProperty(required=True, default='en')
-	value = db.TextProperty(required=True, default='en')
+	value = db.TextProperty(required=False, default='en')
 	foreign_entity = db.ReferenceProperty(AbstractModel, collection_name='translations')

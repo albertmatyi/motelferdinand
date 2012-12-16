@@ -46,5 +46,12 @@ html, body, #maincontent, #body_content, .categories, .category {
 		position: relative;
 		left: -$contentPadding;
 	}
+
+	.admin-controls{
+		&> div {
+			position: relative;
+			top: -36px;
+		}
+	}
 }
 
