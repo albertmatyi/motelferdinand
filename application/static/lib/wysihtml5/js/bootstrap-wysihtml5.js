@@ -1,6 +1,6 @@
 define([
         "/static/lib/wysihtml5/js/advanced_parser_rules.js",
-        "/static/lib/wysihtml5/js/wysihtml5-0.3.0.js"
+        "/static/lib/wysihtml5/js/wysihtml5-0.3.0.min.js"
         ], function(){
     !function($, wysi) {
       "use strict";

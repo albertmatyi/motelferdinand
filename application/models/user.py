@@ -21,8 +21,8 @@ class UserModel(AbstractModel):
     user_id = db.StringProperty(required=False, default='')
     role_id = db.IntegerProperty(required=True, default=ROLE_USER)
 
-    
     dependencies=['bookings']
+    to_dict_exclude=['bookings']
     
     def __repr__(self, *args, **kwargs):
         return self.full_name;

@@ -19,9 +19,11 @@ class AbstractModel(db.Model):
                 val = val.key().id()
             arr += [(key, unicode(val))]
         if hasattr(self.__class__, 'dependencies'):
+            xclusions = self.__class__.to_dict_exclude if hasattr(self.__class__, 'to_dict_exclude') else []
             for dep in self.__class__.dependencies:
-                val = [el.to_dict() for el in getattr(self, dep)]
-                arr += [(dep, val)]
+                if dep not in xclusions:
+                    val = [el.to_dict() for el in getattr(self, dep)]
+                    arr += [(dep, val)]
         return dict(arr) 
         pass
     

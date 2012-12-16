@@ -15,6 +15,16 @@ class BookingModel(AbstractModel):
     paid = db.BooleanProperty(default=False)
     user = db.ReferenceProperty(UserModel, collection_name='bookings')
     dependencies=['booking_entries']
+    def to_dict(self, load_user=False):
+        '''
+            Override and parametrize the default implementation
+            to be able to load (or not) the associated user data.
+        '''
+        ret = super(BookingModel, self).to_dict()
+        if load_user:
+            ret['user'] = self.user.to_dict()
+        return ret;
+        pass
     pass
 
 class BookingEntryModel(AbstractModel):

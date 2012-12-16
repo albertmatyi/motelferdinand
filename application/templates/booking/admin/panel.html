@@ -1,2 +1,41 @@
+{% set id = 'adminBookings' %}
+{% set title = __('Bookings') %}
 {% extends "base/modal.html" %}
 
+{% block title_content %}
+{% endblock %}
+
+{% block content %}
+<table class="table bookings-table">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>{{ __('Name') }}</th>
+			<th>{{ __('Email') }}</th>
+			<th>{{ __('Phone') }}</th>
+			<th>{{ __('Booking entries') }}</th>
+			<th>{{ __('Date') }}</th>
+			<th>{{ __('Accepted') }}</th>
+			<th>{{ __('Paid') }}</th>
+		</tr>
+	</thead>
+	<tbody >
+		<tr>
+			<td data-bind="index"></td>
+			<td data-bind="user.full_name"></td>
+			<td data-bind="user.email"></td>
+			<td data-bind="user.phone"></td>
+			<td data-bind="booking_entries_summary"></td>
+			<td data-bind="created"></td>
+			<td><i class="icon" data-bind="accepted"></i></td>
+			<td><i class="icon" data-bind="paid"></i></td>
+		</tr>
+	</tbody>
+	<tfoot>
+		
+	</tfoot>
+</table>
+{% endblock %}
+
+{% block footer_content %}
+{% endblock %}

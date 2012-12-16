@@ -8,7 +8,8 @@ define(
 	         "/static/lib/slides.min.jquery.js",
 			"/static/lib/picasa.js",
 			"/static/lib/transparency.min.js",
-			"elements/social"],function(){
+			"elements/social",
+			'model/base'],function(){
 	require(["/static/lib/bootstrap-datepicker/datepicker.js",
 			"helpers/picaslide",
 			"directives/menu",
@@ -19,21 +20,13 @@ define(
 			'controllers/admin/content',
 			'controllers/admin/bookable',
 			'controllers/admin/booking',
-			'controllers/booking'
-			],function(dp, ps, tdm, tdc, sw, cis, acat, acont, abookables){
-		model.categories.sort(function(c0, c1) {
-			return c0.order - c1.order;
-		});
-		model.categories.map(function(c) {
-			c.contents.sort(function(c0, c1) {
-				return c0.order - c1.order;
-			});
-		});
-		
+			'controllers/booking',
+			],function(dp, ps, tdm, tdc, sw, cis, acat, acont, abookables){		
+
 		sw.RENDER_HEADER &&
 		$('.category-nav').render(model.categories, tdm.menuDirective);
 
-		$('.language ul').render(model.languages, tdm.languageDirective);
+		$('.language.dropdown-menu').render(model.languages, tdm.languageDirective);
 
 		sw.RENDER_CONTENT &&
 		$('.categories').render(model.categories, tdc.contentDirective) &&

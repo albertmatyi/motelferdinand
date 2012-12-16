@@ -21,7 +21,7 @@ def home():
     if not is_admin:
         qry = qry.filter('visible', True)
     categories = [e.to_dict() for e in qry]
-    bookings = [e.to_dict() for e in BookingModel.all()]
+    bookings = [e.to_dict(is_admin) for e in BookingModel.all()]
     
     return render_template('/main.html',\
                              js_data = {'categories': categories,\

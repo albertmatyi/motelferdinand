@@ -34,10 +34,13 @@ translations = {
 		'LanguageName': u'English',
 		'Ferdinand Motel': u'Ferdinand Motel',
 		'Language': u'Language',
+		'Date': u'Date',
+		'Name': u'Name',
 
 		# Admin
 		'Guestbook entries': u'Guestbook entries',
 		'Bookings': u'Bookings',
+		'Booking entries': u'Booking entries',
 		'Edit': u'Edit',
 		'Delete': u'Delete',
 
@@ -69,6 +72,10 @@ translations = {
 		'Invalid data! See fields above.': u'Invalid data! See fields above.',
 		'Specify a valid phone number': u'Specify a valid phone number',
 
+		#Admin booking
+		'Accepted': u'Accepted',
+		'Paid': u'Paid',
+
 		#Forms
 		'Save': u'Save',
 		'Edit category': u'Edit category',
@@ -85,10 +92,13 @@ translations = {
 		'LanguageName': u'Magyar',
 		'Ferdinand Motel': u'Ferdinánd Panzió',
 		'Language': u'Nyelv',
+		'Date': u'Dátum',
+		'Name': u'Név',
 
 		# Admin
 		'Guestbook entries': u'Bejegyzések',
 		'Bookings': u'Foglalások',
+		'Booking entries': u'Lefoglalt szobák',
 		'Edit': u'Módosít',
 		'Delete': u'Töröl',
 
@@ -120,6 +130,10 @@ translations = {
 		'Invalid data! See fields above.': u'Helytelen adatok. Kérem javítsa ki az űrlapot.',
 		'Specify a valid phone number': u'A megadott telefonszám helytelen.',
 
+		#Admin booking
+		'Accepted': u'Elfogadva',
+		'Paid': u'Kifizetve',
+
 		#Forms
 		'Save': u'Mentés',
 		'Edit category': u'Kategória módosítás',
@@ -136,10 +150,13 @@ translations = {
 		'LanguageName': u'Română',
 		'Ferdinand Motel': u'Motel Ferdinand',
 		'Language': u'Limbă',
+		'Date': u'Data',
+		'Name': u'Nume',
 
 		# Admin
 		'Guestbook entries': u'Mesaje clienți',
 		'Bookings': u'Rezervări',
+		'Booking entries': u'Camere rezervate',
 		'Edit': u'Modifică',
 		'Delete': u'Șterge',
 
@@ -170,6 +187,10 @@ translations = {
 		'Specify a valid full name': u'Introduceți un nume complet și valid.',
 		'Invalid data! See fields above.': u'Date invalide! Vă rugăm verificați câmpurile.',
 		'Specify a valid phone number': u'Numărul specificat este invalid.',
+
+		#Admin booking
+		'Accepted': u'Acceptat',
+		'Paid': u'Plătit',
 
 		#Forms
 		'Save': u'Salvează',
