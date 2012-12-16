@@ -54,7 +54,7 @@ class AbstractModel(db.Model):
 
     def populate_field(self, dictionary, key):
         if type(getattr(self, key)) is not str:
-            val = int(dictionary[key])
+            val = int(dictionary[key]) if len(dictionary[key]) > 0 else 0
         else:
             val = dictionary[key]
         setattr(self, key, val)

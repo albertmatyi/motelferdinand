@@ -14,3 +14,10 @@ class BookableModel(AbstractContentModel):
     category = db.ReferenceProperty(CategoryModel, collection_name='bookables')
     album_url = db.StringProperty(required=False, default='')
     dependencies=['booking_entries']
+    
+    def populate_field(self, dictionary, key):
+    	if key is 'category':
+    		self.category = CategoryModel.get_by_id(long(dictionary[key]))
+    	else:
+    		super(BookableModel, self).populate_field(dictionary, key)
+    	pass
