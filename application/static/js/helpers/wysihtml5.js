@@ -15,6 +15,14 @@ define([
 						$el.wysihtml5({ parserRules: wysihtml5ParserRules });
 					}	
 				);
+	        }, 
+	        'setValue' : function($textarea, value){
+	        	var w5ref = $textarea.data('wysihtml5');
+                if(w5ref){
+                    w5ref.editor.setValue(value);
+                }else{
+                    $textarea.html(value);    
+                }
 	        }
 		};	
 	}

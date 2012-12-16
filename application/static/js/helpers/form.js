@@ -1,8 +1,8 @@
 define(
     [
-
+        "helpers/wysihtml5"
     ],
-    function(){
+    function(wysihtml5){
 
         return {
             /**
@@ -14,6 +14,12 @@ define(
                     $el = $(el);
                     var key = $el.attr('name');
                     $el.val(entity[key] ? entity[key]:'');
+                });
+                $('textarea', $form).each(function(idx, el){
+                    $form.data('entity', entity);
+                    $el = $(el);
+                    var key = $el.attr('name');
+                    wysihtml5.setValue($el, entity[key] ? entity[key]:'');
                 });
             },
             /**

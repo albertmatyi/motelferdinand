@@ -41,13 +41,7 @@ define(
                             if(inp.length > 0 ){
                                 inp.val(value);
                             }else{
-                                inp=$('textarea'+tmpId, $form);
-                                var w5ref = inp.data('wysihtml5');
-                                if(w5ref){
-                                    w5ref.editor.setValue(value);
-                                }else{
-                                    inp.html(value);    
-                                }
+                                wysihtml5.setValue($('textarea'+tmpId, $form), value);
                             }
                         }
                     }
