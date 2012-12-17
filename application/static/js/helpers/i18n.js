@@ -67,6 +67,19 @@ define(
                         delete data[key];
                     }
                 }
+                // update the entity attached to the form 
+                var entity = $form.data('entity');
+                if(entity['i18n']){
+                    for (lang_id in data['i18n']){
+                        if (entity['i18n'][lang_id]){
+                            for (key in data['i18n'][lang_id]){
+                                if(entity['i18n'][lang_id][key]){
+                                    entity['i18n'][lang_id][key] = data['i18n'][lang_id][key];
+                                }
+                            }
+                        }
+                    }
+                }
                 return data;
             },
             /**

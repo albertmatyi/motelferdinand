@@ -6,7 +6,7 @@ define(
 ],
 function(i18n, confirmation){
     
-    return {'init': function($formModal, $controls, entityURL){
+    return {'init': function($formModal, $controls, entityURL, deleteCallback){
             var $form = $('form', $formModal);
 
             /**
@@ -29,6 +29,7 @@ function(i18n, confirmation){
                         'data': '_method=DELETE',
                         'success': function(){
                             alert('Deleted');
+                            deleteCallback && deleteCallback(entityId);
                         }
                     });
                 });

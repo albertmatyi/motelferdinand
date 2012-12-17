@@ -13,12 +13,22 @@ function(i18n, adminControls){
     $('#submitContentEditForm').click(function(){
         var $form = $('form', $formModal);
         var data = i18n.submitForm($form, '/admin/contents/');
-        console.log(data);
+        // update UI
+        if(data.id){
+            var $cont = $('#Content'+data.id);
+            $('.content-title', $cont).text(data.i18n[model.language].title);
+            $('.content-description', $cont).html(data.i18n[model.language].description);
+        }
     });
+
+    var deletedCallback = function (deletedId){
+        //remove the HTML
+        $('#Content'+deletedId).remove();
+    }
 
     return {'init': function(){
             var $controls = $('.content .admin-controls ');
-            adminControls.init($formModal, $controls, 'contents');
+            adminControls.init($formModal, $controls, 'contents', deletedCallback);
 
             var $addContentButton = $('.page-header .admin-controls .addContentButton');
 

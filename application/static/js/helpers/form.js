@@ -9,14 +9,13 @@ define(
              * Populate the input fields of a form with data
              */
             'populate' : function ($form, entity) {
+                $form.data('entity', entity);
                 $('input, select', $form).each(function(idx, el){
-                    $form.data('entity', entity);
                     $el = $(el);
                     var key = $el.attr('name');
                     $el.val(entity[key] ? entity[key]:'');
                 });
                 $('textarea', $form).each(function(idx, el){
-                    $form.data('entity', entity);
                     $el = $(el);
                     var key = $el.attr('name');
                     wysihtml5.setValue($el, entity[key] ? entity[key]:'');
@@ -46,6 +45,13 @@ define(
                 for (var i = arr.length - 1; i >= 0; i--) {
                     var el = arr[i];
                     ret[el['name']] = el['value'];
+                }
+                // update the entity attached to the form 
+                var entity = $form.data('entity');
+                for ( key in ret ){
+                    if (entity[key]){
+                        entity[key] = ret[key];
+                    }
                 }
                 return ret;
             }

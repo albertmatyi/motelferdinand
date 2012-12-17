@@ -59,6 +59,14 @@ define([
 					'entityId' : getEntityDirective('content'),
 				},
 				'bookables' : {
+					id : {
+						id : function(params) {
+							return 'Bookable' + this.id;
+						},
+						text : function(params) {
+							return '';
+						}
+					},
 					'bookable-title' : titleDecorator,
 					'bookable-description' : descriptionDecorator,
 					'entityId' : getEntityDirective('bookable'),
