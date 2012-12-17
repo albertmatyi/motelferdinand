@@ -39,6 +39,9 @@ translations = {
 		'Language': u'Language',
 		'Date': u'Date',
 		'Name': u'Name',
+		'Please confirm your action.' : u'Please confirm your action.',
+		'Are you sure?' : u'Are you sure?',
+		'OK' : u'OK',
 
 		# Admin
 		'Guestbook entries': u'Guestbook entries',
@@ -99,6 +102,9 @@ translations = {
 		'Language': u'Nyelv',
 		'Date': u'Dátum',
 		'Name': u'Név',
+		'Please confirm your action.' : u'Kérem igazolja választását.',
+		'Are you sure?' : u'Biztos benne?',
+		'OK' : u'OK',
 
 		# Admin
 		'Guestbook entries': u'Bejegyzések',
@@ -159,6 +165,9 @@ translations = {
 		'Language': u'Limbă',
 		'Date': u'Data',
 		'Name': u'Nume',
+		'Please confirm your action.' : u'Vă rog să confirmați acțiunea',
+		'Are you sure?' : u'Sunteți sigur?',
+		'OK' : u'OK',
 
 		# Admin
 		'Guestbook entries': u'Mesaje clienți',

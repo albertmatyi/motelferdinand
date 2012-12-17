@@ -18,7 +18,7 @@ function(i18n, adminControls){
 
     return {'init': function(){
             var $controls = $('.page-header .admin-controls ');
-            adminControls.init($formModal, $controls);
+            adminControls.init($formModal, $controls, 'categories');
 
             // add "add category button"
             $('.navbar .category-nav').append('<li>'+

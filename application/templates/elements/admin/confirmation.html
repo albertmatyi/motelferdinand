@@ -1,0 +1,13 @@
+{% set id="confirmation" %}
+{% set title=__('Are you sure?') %}
+
+{% extends "base/modal.html" %}
+
+{% block content %}
+	{{ __('Please confirm your action.') }}
+{% endblock %}
+
+{% block footer_content %}
+	<span class="btn"> {{ __('Cancel') }} </span>
+	<span class="btn btn-primary"> {{ __('OK') }} </span>
+{% endblock %}

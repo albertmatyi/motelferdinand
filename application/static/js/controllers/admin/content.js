@@ -18,7 +18,7 @@ function(i18n, adminControls){
 
     return {'init': function(){
             var $controls = $('.content .admin-controls ');
-            adminControls.init($formModal, $controls);
+            adminControls.init($formModal, $controls, 'contents');
 
             var $addContentButton = $('.page-header .admin-controls .addContentButton');
 

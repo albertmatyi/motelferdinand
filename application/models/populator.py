@@ -28,7 +28,7 @@ def init_bookables(category_key):
 
 def init_contents(category_key, idx, addGallery):
     cm = ContentModel(visible=True, category=category_key, order=idx*2)
-    galleryHtml='<div class="picaslide" data-picaslide-username="110836571215849032642" data-picaslide-albumid="LeBike">[<img alt="Insert picasa album" src="http://localhost:8080/static/img/picasa_s.png"> gallery comes here]</div>'
+    galleryHtml='<div class="picaslide" data-picaslide-username="110836571215849032642" data-picaslide-albumid="LeBike">[<img alt="Insert picasa album" src="/static/img/picasa_s.png"> gallery comes here]</div>'
     desc = lambda : get_random_text(Random().randint(100, len(fixieText)/2-40)).replace('\n','<br/>') + \
                     (galleryHtml if addGallery else '')
     tit = lambda : get_random_text(Random().randint(10, 15)).replace('\n','');

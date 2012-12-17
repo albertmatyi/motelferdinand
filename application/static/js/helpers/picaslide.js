@@ -3,6 +3,9 @@
 		var scope = $(this);
 		var user = scope.attr('data-picaslide-username');
 		var album = scope.attr('data-picaslide-albumid');
+		if(!user || user.length < 3 || !album || album.length < 1){
+			return;
+		}
 		var w=scope.width();
 		var width = w+'px';
 		var height = w*3/4+'px';

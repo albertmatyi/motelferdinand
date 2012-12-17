@@ -1,0 +1,18 @@
+X Kategoria / Tartalom / Szoba torles - 2h
+In place upd8 - 2h
+Bookingok bovitett leirasa az adminnak - 3h
+Booking elfogadas / "kifizetve" bejeloles - 2h
+Tobnyelvusitett email kuldes - 4h
+Admin login (admin gombok: add / edit / delete / bookings / guestbook entries, csak az adminnak jelenjenek meg) - 3h
+
+6. Design - 8-14h (?)
+
+7. Booking datum validalas - 4h
+ne lehessen olyan datumokat valasztani, amire mar az a bizonyos szoba le van foglalva
+ne lehessen multban foglalni
+a foglalsi vegdatum > kezdeti datum
+8. Dokumentum csatolas - 3h
+9. Dokumentum megjelenites siteon - 3h
+10. Lehetoseg a felhasznalonak, hogy visszanezze a foglalasait online (beirja az emailcimet es telefonszamat) - 3h
+11. A felhasznalo tudjon elfogadott & kifizetett foglalas lejarta utan vendgekonyv beirast kuldeni (email ertesites a kliensnek) - 6h
+12. Admin tudja megnezni a vendegkonyv bejegyzeseket - 1h

@@ -18,7 +18,7 @@ function(i18n, adminControls){
 
     return {'init': function(){
             var $controls = $('.bookable .admin-controls ');
-            adminControls.init($formModal, $controls);
+            adminControls.init($formModal, $controls, 'bookables');
 
             var $addBookableButton = $('.page-header .admin-controls .addBookableButton');
 
