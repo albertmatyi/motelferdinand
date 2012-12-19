@@ -52,35 +52,28 @@ define(
              * formats collected i18ned data to conform with the original
              * object
              */
-            'submitForm' : function ($form, action){
-                var data = formHelper.submitForm($form, action);
-                data['i18n'] = {};
-                for (key in data){
-                    var keys = key.split('-');
-                    if(keys.length == 3 && keys[0] == 'i18n'){
-                        if(!data.i18n[keys[1]]){
-                            // eg data.i18n.en
-                            data.i18n[keys[1]] = {};
-                        }
-                        // set data.i18n.en.title = value
-                        data.i18n[keys[1]][keys[2]] = data[key];
-                        delete data[key];
+            'submitForm' : function ($form, action, successCallback){
+                formHelper.submitForm($form, action, function(entity){
+                    var data = $form.serializeArray();
+                    if(!entity.i18n){
+                        entity.i18n = {};
                     }
-                }
-                // update the entity attached to the form 
-                var entity = $form.data('entity');
-                if(entity['i18n']){
-                    for (lang_id in data['i18n']){
-                        if (entity['i18n'][lang_id]){
-                            for (key in data['i18n'][lang_id]){
-                                if(entity['i18n'][lang_id][key]){
-                                    entity['i18n'][lang_id][key] = data['i18n'][lang_id][key];
-                                }
+                    // update the entity attached to the form 
+                    for (var i = data.length - 1; i >= 0; i--) {
+                        key = data[i]['name']
+                        var keys = key.split('-');
+                        if(keys.length == 3 && keys[0] == 'i18n'){
+                            if(!entity.i18n[keys[1]]){
+                                // eg data.i18n.en
+                                entity.i18n[keys[1]] = {};
                             }
+                            // set data.i18n.en.title = value
+                            entity.i18n[keys[1]][keys[2]] = data[i][value];
+                            delete data[key];
                         }
                     }
-                }
-                return data;
+                    successCallback && successCallback(entity);
+                });
             },
             /**
              * Multiplies tabs with inputs for i18n support 

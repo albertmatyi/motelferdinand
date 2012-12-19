@@ -1,9 +1,12 @@
 define(
 [
     "helpers/i18n",
-    "elements/admin/controls"
+    "elements/admin/controls",
+    "directives/menu",
+    "directives/body_content"
+            
 ],
-function(i18n, adminControls){
+function(i18n, adminControls, tdm, tdc){
     var TAB_ID_BASE = 'editCategory-';
 
     var $formModal = $('#categoryEditFormModal');
@@ -12,22 +15,27 @@ function(i18n, adminControls){
 
     $('#submitCategoryEditForm').click(function(){
         var $form = $('form', $formModal);
-        var data = i18n.submitForm($form, '/admin/categories/');
-        if(data.id){
-            var $cat = $('#Category'+data.id);
-            var ttl = data.i18n[model.language].title;
-            $('.nav a[href="#Category"'+data.id+'"]').text(ttl)
-            $('.category-title', $cat).text(ttl);
-            $('.category-description', $cat).html(data.i18n[model.language].description);
-        } else {
-            // TODO
-        }
-        console.log(data);
+        var isNew = $form.data('entity').id > 0;
+        i18n.submitForm($form, '/admin/categories/', function(entity){
+            if(isNew){
+                var $cat = $('#Category'+entity.id);
+                var ttl = entity.i18n[model.language].title;
+                $('.nav a[href="#Category'+entity.id+'"]').text(ttl)
+                $('.category-title', $cat).text(ttl);
+                $('.category-description', $cat).html(entity.i18n[model.language].description);
+            } else {
+                $('.category-nav').render(entity, tdm.menuDirective);
+                $('.categories').render(entity, tdc.contentDirective) &&
+                $('.content.span4').css('margin-left',parseInt($('.content.span4').css('margin-left'))*.5+'px');
+            }
+            console.log(entity);
+        });
     });
 
     var deletedCallback = function (deletedId){
         //remove the HTML
         $('#Category'+deletedId).remove();
+        $('.nav a[href="#Category'+deletedId+'"]').remove();
     }
 
     return {'init': function(){

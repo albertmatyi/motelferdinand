@@ -25,35 +25,32 @@ define(
              *  Submit a form to a url
              */
             'submitForm': function ($form, action, successFunction){
-                if (!successFunction) {
-                    successFunction = function (){
-                        alert('Saved');
-                    };
+                // update the entity attached to the form 
+                // and return it
+                var entity = $form.data('entity');
+                var arr = $form.serializeArray();
+                for (var i = arr.length - 1; i >= 0; i--) {
+                    var el = arr[i];
+                    if(entity[el['name']]){
+                        entity[el['name']] = el['value'];
+                    }
                 }
                 // POST data to server
                 var data = $form.serialize();
                 $.ajax({ 
                     url : action,
-                    success : successFunction,
+                    success : function (result){
+                        entity.id = result.id;
+                        if(successFunction){
+                            successFunction(entity);
+                        }else{
+                            alert(result);
+                        }
+                    },
                     type : 'POST',
                     data : data,
                     dataType: 'json'
                 });
-                // return collected data in form of a dict
-                var ret = {};
-                var arr = $form.serializeArray();
-                for (var i = arr.length - 1; i >= 0; i--) {
-                    var el = arr[i];
-                    ret[el['name']] = el['value'];
-                }
-                // update the entity attached to the form 
-                var entity = $form.data('entity');
-                for ( key in ret ){
-                    if (entity[key]){
-                        entity[key] = ret[key];
-                    }
-                }
-                return ret;
             }
         }
     //close the function & define

@@ -4,15 +4,15 @@ define(["helpers/cookies"], function(cookies) {
 			return '#Category' + this.id;
 		},
 		'class' : function(params) {
-			return this.subcategories.length > 0 ? 'dropdown-toggle'
+			return this.subcategories && this.subcategories.length > 0 ? 'dropdown-toggle'
 					: '';
 		},
 		'data-toggle' : function(params) {
-			return this.subcategories.length > 0 ? 'dropdown' : '';
+			return this.subcategories && this.subcategories.length > 0 ? 'dropdown' : '';
 		},
 		html : function(params) {
 			return this.i18n[model.language].title
-					+ (this.subcategories.length > 0 ? '<b class="caret"></b>'
+					+ (this.subcategories && this.subcategories.length > 0 ? '<b class="caret"></b>'
 							: '');
 		}
 	};		
@@ -34,7 +34,7 @@ define(["helpers/cookies"], function(cookies) {
 			title : titleDirective,
 			visible : {
 				'class' : function(params) {
-					return this.subcategories.length > 0 ? 'dropdown' : '';
+					return this.subcategories && this.subcategories.length > 0 ? 'dropdown' : '';
 				},
 				html : function(params) {
 					return '';

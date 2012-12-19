@@ -41,7 +41,7 @@ def initdb():
 
 @app.route("/admin/categories/", methods=["POST"])
 def admin_categories():
-    return str(helpers.save_obj_from_req(CategoryModel).key().id());
+    return "{ 'id' : '"+str(helpers.save_obj_from_req(CategoryModel).key().id()) + "' P}";
     pass
 
 @app.route('/admin/categories/<int:entityId>', methods=['POST', 'DELETE'])
