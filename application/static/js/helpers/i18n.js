@@ -53,7 +53,7 @@ define(
              * object
              */
             'submitForm' : function ($form, action, successCallback){
-                formHelper.submitForm($form, action, function(entity){
+                formHelper.submitForm($form, action, function(entity, isNew){
                     var data = $form.serializeArray();
                     if(!entity.i18n){
                         entity.i18n = {};
@@ -68,11 +68,11 @@ define(
                                 entity.i18n[keys[1]] = {};
                             }
                             // set data.i18n.en.title = value
-                            entity.i18n[keys[1]][keys[2]] = data[i][value];
-                            delete data[key];
+                            var value = data[i]['value'];
+                            entity.i18n[keys[1]][keys[2]] = value;
                         }
                     }
-                    successCallback && successCallback(entity);
+                    successCallback && successCallback(entity, isNew);
                 });
             },
             /**
@@ -97,7 +97,7 @@ define(
                         html: function(params){
                             var lang_id = this.lang_id;
                             $('input, textarea', params.element).each(function(idx, el){
-                                $el = $(el);
+                                var $el = $(el);
                                 $el.attr('name', PREFIX+lang_id+SEPARATOR+$el.attr('name'))
                             });
                             return '';

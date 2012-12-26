@@ -41,12 +41,12 @@ def initdb():
 
 @app.route("/admin/categories/", methods=["POST"])
 def admin_categories():
-    return "{ 'id' : '"+str(helpers.save_obj_from_req(CategoryModel).key().id()) + "' P}";
+    return "{ \"id\" : \""+str(helpers.save_obj_from_req(CategoryModel).key().id()) + "\" }";
     pass
 
 @app.route('/admin/categories/<int:entityId>', methods=['POST', 'DELETE'])
 def admin_delete_category(entityId):
     if request.method == 'DELETE' or request.values['_method'] == 'DELETE':
         CategoryModel.get_by_id(entityId).delete()
-        return "{ 'value' : 'OK' }"
+        return "{ \"value\" : \"OK\" }"
     pass

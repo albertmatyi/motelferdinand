@@ -12,36 +12,43 @@ function(i18n, adminControls){
 
     $('#submitBookableEditForm').click(function(){
         var $form = $('form', $formModal);
-        var data = i18n.submitForm($form, '/admin/bookables/');
-        // update UI
-        if(data.id){
-            var $bkbl = $('#Bookable'+data.id);
-            $('.bookable-title', $bkbl).text(data.i18n[model.language].title);
-            $('.bookable-description', $bkbl).html(data.i18n[model.language].description);
-            $('*[data-bind="beds"]', $bkbl).text(data.beds);
-            $('*[data-bind="price"]', $bkbl).text(data.price);
-        }
+        i18n.submitForm($form, '/admin/bookables/', function(entity, isNew){
+            // update UI
+            if(!isNew){
+                var $cont = $('#Bookable'+data.id);
+                $('.bookable-title', $cont).text(data.i18n[model.language].title);
+                $('.bookable-description', $cont).html(data.i18n[model.language].description);
+            }
+        });
     });
 
     var deletedCallback = function (deletedId){
         //remove the HTML
-        $('#Content'+deletedId).remove();
+        $('#Bookable'+deletedId).remove();
     }
+
+    var initAddButton = function($context){
+        if(typeof($context) === "undefined"){
+            $context = $('body');
+        }
+        var $addBookableButton = $('.page-header .admin-controls .addBookableButton', $context);
+
+        $addBookableButton.click(function(){
+            //populate the form with data
+            i18n.populateForm($('form', $formModal), {category: $(this).data('entity').id});
+            //show the edit bookable form
+            $formModal.modal('show');
+
+        });
+    };
 
     return {'init': function(){
             var $controls = $('.bookable .admin-controls ');
-            adminControls.init($formModal, $controls, 'bookables');
+            adminControls.init($formModal, $controls, 'bookables', deletedCallback);
 
-            var $addBookableButton = $('.page-header .admin-controls .addBookableButton');
-
-            $addBookableButton.click(function(){
-                //populate the form with data
-                i18n.populateForm($('form', $formModal), {category: $(this).data('entity').id});
-                //show the edit category form
-                $formModal.modal('show');
-
-            });
-        }
+            initAddButton();
+        },
+        'initAddButton':initAddButton
     };
 //close the function & define
 });

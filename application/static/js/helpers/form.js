@@ -11,12 +11,12 @@ define(
             'populate' : function ($form, entity) {
                 $form.data('entity', entity);
                 $('input, select', $form).each(function(idx, el){
-                    $el = $(el);
+                    var $el = $(el);
                     var key = $el.attr('name');
                     $el.val(entity[key] ? entity[key]:'');
                 });
                 $('textarea', $form).each(function(idx, el){
-                    $el = $(el);
+                    var $el = $(el);
                     var key = $el.attr('name');
                     wysihtml5.setValue($el, entity[key] ? entity[key]:'');
                 });
@@ -40,9 +40,12 @@ define(
                 $.ajax({ 
                     url : action,
                     success : function (result){
+                        var tmp = $form.data('entity');
+                        var isNew = entity == null || isNaN(entity.id);
+        
                         entity.id = result.id;
                         if(successFunction){
-                            successFunction(entity);
+                            successFunction(entity, isNew);
                         }else{
                             alert(result);
                         }

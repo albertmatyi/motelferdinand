@@ -59,7 +59,7 @@ define(function() {
 	return {
 		init : function() {
 			$(objSelector).each(function(idx, el) {
-				$el = $(el);
+				var $el = $(el);
 				positions.push([$el, $el.offset().top]);
 			});
 			$(document).scroll(scrollChanged);

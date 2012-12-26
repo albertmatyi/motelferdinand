@@ -1,5 +1,6 @@
 {% set id = entityName + 'EditForm' %}
 {% set title = __('Edit ' + entityName) %}
+{% set big_modal=True %}
 {% extends "base/modal.html" %}
 {% block title_content %}
 	<ul class="nav nav-tabs" id="edit{{ EntityName }}FormTabs">
@@ -8,13 +9,15 @@
 {% endblock %}
 {% block content %}		
 	<form action="/" method="post">
-		<input type="hidden" name="id"/>
 		<div class="tab-content">
 			<div class="tab-pane" data-bind="lang_id">
 			{% block i18n_inputs %} {% endblock %}
 			</div>
 		</div>
-		{% block inputs %} {% endblock %}
+		{% block inputs %} 
+		
+		{% endblock %}
+		<input type="hidden" name="id"/>
 	</form>		
 {% endblock %}
 {% block footer_content %}		

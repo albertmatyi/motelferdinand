@@ -1,6 +1,6 @@
 define(
 [
-	'directives/admin/booking'
+	'view/directives/admin/booking'
 ],
 function(directive){
 	var $bookingsModal = $('#adminBookingsModal');

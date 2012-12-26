@@ -1,4 +1,4 @@
- <div class="modal hide fade big-modal" tabindex="-1" id="{{ id }}Modal" role="dialog" aria-labelledby="{{ id }}ModalTitle" aria-hidden="true">	
+ <div class="modal hide fade{% if big_modal %} big-modal {% endif %}" tabindex="-1" id="{{ id }}Modal" role="dialog" aria-labelledby="{{ id }}ModalTitle" aria-hidden="true">	
 	 <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		<h3 id="{{ id }}ModalTitle">{{ title }}</h3>
