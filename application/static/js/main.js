@@ -1,13 +1,13 @@
 requirejs.config({
 	paths : {
-		'lib/jquery': '/static/lib/jquery-1.7.2.min',
-		'lib/jquery-ui': '/static/lib/jquery-ui-1.8.20.custom.min',
-		'lib/bootstrap': '/static/lib/bootstrap/js/bootstrap.min',
-		'lib/slides': '/static/lib/slides.min.jquery',
-		'lib/picasa': '/static/lib/picasa',
-		'lib/transparency': '/static/lib/transparency.min',
-		'lib/datepicker': '/static/lib/bootstrap-datepicker/datepicker',
-		'lib/bootstrap-wysihtml5': '/static/lib/wysihtml5/js/bootstrap-wysihtml5'
+		'lib/jquery': '../lib/jquery-1.7.2.min',
+		'lib/jquery-ui': '../lib/jquery-ui-1.8.20.custom.min',
+		'lib/bootstrap': '../lib/bootstrap/js/bootstrap.min',
+		'lib/slides': '../lib/slides.min.jquery',
+		'lib/picasa': '../lib/picasa',
+		'lib/transparency': '../lib/transparency.min',
+		'lib/datepicker': '../lib/bootstrap-datepicker/datepicker',
+		'lib/bootstrap-wysihtml5': '../lib/wysihtml5/js/bootstrap-wysihtml5'
 	},
 
     shim: {
