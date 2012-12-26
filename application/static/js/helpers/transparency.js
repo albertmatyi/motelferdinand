@@ -1,6 +1,6 @@
 define(
 [
-    "/static/lib/transparency.min.js"
+    'lib/transparency'
 ],
 function(transparency){
     $('body').append('<div id="transparencyRenderArea" style="display:none;"></div>')

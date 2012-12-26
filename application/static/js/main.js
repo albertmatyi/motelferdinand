@@ -1,28 +1,33 @@
 requirejs.config({
 	paths : {
-		'jquery': '/static/lib/jquery-1.7.2.min.js',
-		'jquery-ui': '/static/lib/jquery-ui-1.8.20.custom.min.js',
-		'bootstrap': '/static/lib/bootstrap/js/bootstrap.min.js',
-		'slides': '/static/lib/slides.min.jquery.js',
-		'picasa': '/static/lib/picasa.js',
-		'transparency': '/static/lib/transparency.min.js'
+		'lib/jquery': '/static/lib/jquery-1.7.2.min',
+		'lib/jquery-ui': '/static/lib/jquery-ui-1.8.20.custom.min',
+		'lib/bootstrap': '/static/lib/bootstrap/js/bootstrap.min',
+		'lib/slides': '/static/lib/slides.min.jquery',
+		'lib/picasa': '/static/lib/picasa',
+		'lib/transparency': '/static/lib/transparency.min',
+		'lib/datepicker': '/static/lib/bootstrap-datepicker/datepicker',
+		'lib/bootstrap-wysihtml5': '/static/lib/wysihtml5/js/bootstrap-wysihtml5'
 	},
 
     shim: {
-    	'jquery-ui': {
-    	deps: ['jquery']
+    	'lib/jquery-ui': {
+    	deps: ['lib/jquery']
 	    },
-	    'bootstrap': {
-	    	deps: ['jquery']
+	    'lib/bootstrap': {
+	    	deps: ['lib/jquery']
 	    },
-	    'slides': {
-	    	deps: ['jquery']
+	    'lib/slides': {
+	    	deps: ['lib/jquery', 'lib/jquery-ui']
 	    },
-	    'picasa': {
-	    	deps: ['jquery']
+	    'lib/picasa': {
+	    	deps: ['lib/jquery']
 	    },
-	    'transparency' :{
-	    	deps: ['jquery']	
+	    'lib/transparency' :{
+	    	deps: ['lib/jquery']	
+	    },
+	    'lib/datepicker': {
+	    	deps: ['lib/jquery']
 	    }
     }
 });
@@ -31,7 +36,6 @@ define(
 [
 "elements/social",
 'model/base',
-'helpers/picaslide',
 'flags',
 'view/category',
 'view/language',
@@ -41,7 +45,7 @@ define(
 'controllers/admin/booking',
 'controllers/booking'
 ],
-function(categoryView, languageView, categoryAdmin, contentAdmin, bookableAdmin){		
+function(social, modelBase, flags, categoryView, languageView, categoryAdmin, contentAdmin, bookableAdmin){		
 	categoryView.render(model.categories);
 
 	// DEFAULT SELECTION

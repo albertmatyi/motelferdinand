@@ -1,5 +1,7 @@
 define(
 [
+	'lib/jquery',
+	'lib/transparency'
 ], 
 function(){
 	

@@ -1,4 +1,7 @@
-define(function(){
+define([
+	'lib/jquery'
+],
+function(){
 	$('.social-icons a img').hover(function(ev){
 		switch(ev.type){
 			case 'mouseenter':

@@ -1,5 +1,5 @@
 define([
-	"/static/lib/wysihtml5/js/bootstrap-wysihtml5.js"
+	'lib/bootstrap-wysihtml5'
 	],function(){
 		var toolbarDirective = {
 	        id:{

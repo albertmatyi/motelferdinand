@@ -1,7 +1,8 @@
 define(
 	[
-        "helpers/form",
-        "helpers/wysihtml5"
+        'helpers/form',
+        'helpers/wysihtml5',
+        'lib/bootstrap'
 	],
     function(formHelper, wysihtml5){
         var SEPARATOR = '-';

@@ -1,5 +1,6 @@
 define(
 [
+	'lib/transparency',
 	'view/directives/admin/booking'
 ],
 function(directive){

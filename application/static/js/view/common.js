@@ -1,4 +1,7 @@
-define([], function(){
+define(
+[
+	'helpers/picaslide'
+], function(){
 	return{
 		'renderContentGallery' : function (selector){
 			$(selector).each(function(idx, el) {

@@ -1,6 +1,7 @@
 define(
 [
-	"/static/lib/bootstrap-datepicker/datepicker.js"
+	'lib/jquery',
+	'lib/datepicker'
 ],
 function(NAdp){
 	// BOOKING 
