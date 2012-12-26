@@ -18,15 +18,7 @@
         <link href="/static/css/main.css" rel="stylesheet" />
     {% endif %}
     <link rel="shortcut icon" href="/static/img/favicon.ico" />
-    <script type="text/javascript" src="/static/lib/require.js"></script>
-    <script type="text/javascript">
-		  require.config({
-		    baseUrl: "/static/js",
-		    paths: {
-		        "lib": "/static/lib/"
-		    },
-		  });
-  	</script>
+    <script type="text/javascript" src="/static/lib/require.js" data-main="/static/js/main.min"></script>
     {% block style_block %}<!-- page-specific CSS -->{% endblock %}
     {% block head_script %}<!-- defer-incapable JS block -->{% endblock %}
 
