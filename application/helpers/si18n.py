@@ -83,6 +83,7 @@ translations = {
 		#Admin booking
 		'Accepted': u'Accepted',
 		'Paid': u'Paid',
+		'Album url': u'Album URL',
 
 		#Forms
 		'Save': u'Save',
@@ -114,6 +115,7 @@ translations = {
 		'Delete': u'Töröl',
 		'Add content': u'Hozzáad tartalmat',
 		'Add bookable': u'Hozzáad szobát',
+		'Album url': u'Album link',
 
 		# Booking
 		'Book': u'Foglalás',
@@ -209,6 +211,7 @@ translations = {
 		#Admin booking
 		'Accepted': u'Acceptat',
 		'Paid': u'Plătit',
+		'Album url': u'Link către URL',
 
 		#Forms
 		'Save': u'Salvează',

@@ -18,7 +18,15 @@
         <link href="/static/css/main.css" rel="stylesheet" />
     {% endif %}
     <link rel="shortcut icon" href="/static/img/favicon.ico" />
-    <script type="text/javascript" src="/static/lib/require.js" data-main="/static/js/main.min"></script>
+    <script type="text/javascript">
+        var require = {
+            waitSeconds: 60,
+            paths:{
+                'main':'/static/js/main.min'
+            }
+        };
+    </script>
+    <script type="text/javascript" src="/static/lib/require.js"></script>
     {% block style_block %}<!-- page-specific CSS -->{% endblock %}
     {% block head_script %}<!-- defer-incapable JS block -->{% endblock %}
 
@@ -56,7 +64,9 @@
     	model = {{js_data|tojson|safe}};
     {% endif %}
     </script>
+    <script type="text/javascript">require(['main']);</script>
     {% block tail_script %}<!-- defer-capable JS block -->{% endblock %}
+
 </body>
 </html>
 

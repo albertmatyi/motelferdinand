@@ -1,6 +1,7 @@
 define(
 [
-],function(){
+    'lib/jquery'
+],function(jq){
 	var $confirmationModal = $('#confirmationModal');
 	var okCallback = null;
     var $confirmationOkBtn = $('.btn-primary', $confirmationModal);
@@ -21,6 +22,5 @@ define(
     		okCallback = okCb
             $confirmationModal.modal('show');
 	    }
-	};
-            
+	};         
 });

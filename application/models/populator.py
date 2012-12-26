@@ -50,8 +50,8 @@ def init_db():
         # this will cascade on all contents / bookables and their translations
         cat.delete()
         pass
-    titles = [#'About', 'Location',
-              'Rooms']#, 'Guestbook'] 
+    titles = ['About', 'Location',
+              'Rooms', 'Guestbook'] 
               #, 'Restaurants', 'Sightseeing',
     #'Partners', 'Documents', 'About']
     

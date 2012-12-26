@@ -12,9 +12,11 @@ requirejs.config({
 		'lib/wysihtml5-base': '../lib/wysihtml5/js/wysihtml5-0.3.0.min'
 	},
 
+	waitSeconds: 30,
+
     shim: {
     	'lib/jquery-ui': {
-    	deps: ['lib/jquery']
+    		deps: ['lib/jquery']
 	    },
 	    'lib/bootstrap': {
 	    	deps: ['lib/jquery']
@@ -34,7 +36,7 @@ requirejs.config({
     }
 });
 
-define(
+define('main',
 [
 "elements/social",
 'model/base',

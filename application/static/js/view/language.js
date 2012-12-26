@@ -1,9 +1,10 @@
 define(
 [
 	'lib/jquery',
-	'lib/transparency'
+	'lib/transparency',
+	'helpers/cookies'
 ], 
-function(){
+function(jq, tr, cookies){
 	
 	var languageDirective={
 		'name' : {
