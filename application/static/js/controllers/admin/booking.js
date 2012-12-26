@@ -3,7 +3,7 @@ define(
 	'lib/transparency',
 	'view/directives/admin/booking'
 ],
-function(directive){
+function(transp, directive){
 	var $bookingsModal = $('#adminBookingsModal');
 
 	var $bookingsButton = $('#adminBookingsButton');
