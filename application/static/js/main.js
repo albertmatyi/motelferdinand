@@ -1,23 +1,38 @@
+requirejs.config({
+	paths : {
+		'jquery': '/static/lib/jquery-1.7.2.min.js',
+		'jquery-ui': '/static/lib/jquery-ui-1.8.20.custom.min.js',
+		'bootstrap': '/static/lib/bootstrap/js/bootstrap.min.js',
+		'slides': '/static/lib/slides.min.jquery.js',
+		'picasa': '/static/lib/picasa.js',
+		'transparency': '/static/lib/transparency.min.js'
+	},
+
+    shim: {
+    	'jquery-ui': {
+    	deps: ['jquery']
+	    },
+	    'bootstrap': {
+	    	deps: ['jquery']
+	    },
+	    'slides': {
+	    	deps: ['jquery']
+	    },
+	    'picasa': {
+	    	deps: ['jquery']
+	    },
+	    'transparency' :{
+	    	deps: ['jquery']	
+	    }
+    }
+});
+
 define(
 [
- 	"/static/lib/jquery-1.7.2.min.js"
-],
-function(){
-require(
-[
-"/static/lib/jquery-ui-1.8.20.custom.min.js",
-"/static/lib/bootstrap/js/bootstrap.min.js",
-"/static/lib/slides.min.jquery.js",
-"/static/lib/picasa.js",
-"/static/lib/transparency.min.js",
 "elements/social",
 'model/base',
 'helpers/picaslide',
-'flags'
-],
-function(){
-require(
-[
+'flags',
 'view/category',
 'view/language',
 'controllers/admin/category',
@@ -42,8 +57,5 @@ function(categoryView, languageView, categoryAdmin, contentAdmin, bookableAdmin)
 	categoryAdmin.init();
 	contentAdmin.init();
 	bookableAdmin.init();
-// close the ordered requires
-});	
-});	
 //close the function & define
 });
