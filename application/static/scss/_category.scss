@@ -42,9 +42,8 @@ html, body, #maincontent, #body_content, .categories, .category {
 	}
 	
 	.picaslide {
-		margin-left: 0;
-		position: relative;
-		left: -$contentPadding;
+		margin-left: -$contentPadding;
+		margin-right: -$contentPadding;
 	}
 
 	.admin-controls{

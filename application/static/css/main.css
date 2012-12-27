@@ -109,9 +109,8 @@ html, body, #maincontent, #body_content, .categories, .category {
   .category .info-container {
     height: 100%; }
   .category .picaslide {
-    margin-left: 0;
-    position: relative;
-    left: -1em; }
+    margin-left: -1em;
+    margin-right: -1em; }
   .category .admin-controls > div {
     position: relative;
     top: -36px; }
@@ -119,12 +118,16 @@ html, body, #maincontent, #body_content, .categories, .category {
 .content {
   border-radius: 5px;
   padding-bottom: 1.1em;
-  margin-top: 5em;
   background: #f4f4f4;
   background-image: linear-gradient(to bottom, #f2f2f2, white);
   background-image: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(white));
   background-image: -moz-linear-gradient(top, #f2f2f2, white);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='white'); }
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='white');
+  width: 46%;
+  margin-left: 4%;
+  float: left;
+  margin-top: 1em;
+  margin-bottom: 1em; }
   .content .admin-controls {
     margin-right: 1em; }
   .content .content-description, .content .content-title {
@@ -140,6 +143,8 @@ html, body, #maincontent, #body_content, .categories, .category {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(white));
   background-image: -moz-linear-gradient(top, #f2f2f2, white);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='white');
+  width: 96%;
+  margin-left: 4%;
   margin-top: 5em; }
   .bookables-wrapper .bookables .bookable h3, .bookables-wrapper .bookables .bookable h4, .bookables-wrapper .bookables .bookable .bookable-description {
     padding-left: 1em;

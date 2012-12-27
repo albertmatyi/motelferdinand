@@ -1,8 +1,12 @@
 .content {
 	@include tile;
-	margin-top: 5em;
 	background: #f4f4f4;
 	@include gradient($contentGradientFrom, $contentGradientTo);
+	width: 46%;
+	margin-left: 4%;
+	float: left;
+	margin-top: 1em;
+	margin-bottom: 1em;
 
 	.admin-controls{
 		margin-right: 1em;

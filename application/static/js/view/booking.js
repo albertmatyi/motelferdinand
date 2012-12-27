@@ -28,9 +28,6 @@ function(NAdp){
 					$('.bookables-slide-wrapper', el).css('width', tmpW + 'px');
 					$('.bookable, .bookables', el).css('height', '430px');
 					$('.bookables-slide-wrapper', el).slides({container: 'bookables'});
-					mgl = parseInt($el.css('margin-left'))*.5;
-					$el.width($el.width()-mgl);
-					$el.css('margin-left', mgl+'px');
 				} else{
 					$el.remove();
 				}
