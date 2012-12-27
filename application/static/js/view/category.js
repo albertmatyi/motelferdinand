@@ -21,10 +21,8 @@ function(bookingView, navDirective, bodyDirective, common	, transparency, adminC
 			flags.RENDER_HEADER &&
 				$menu.render(data, navDirective);
 
-			if(flags.RENDER_CONTENT){
+			flags.RENDER_CONTENT &&
 				$content.render(data, bodyDirective);
-				// $('.content.span4').contentss('margin-left',parseInt($('.content.span4').css('margin-left'))*.5+'px');
-			}
 			
 			flags.RENDER_GALLERIES && 
 				common.renderContentGallery('.content-description div.picaslide, .category-description div.picaslide');
