@@ -2,8 +2,8 @@
 	@include tile;
 	background: #f4f4f4;
 	@include gradient($contentGradientFrom, $contentGradientTo);
-	width: 46%;
-	margin-left: 4%;
+	width: 50% - $contentMargin;
+	margin-left: $contentMargin;
 	float: left;
 	margin-top: 1em;
 	margin-bottom: 1em;
