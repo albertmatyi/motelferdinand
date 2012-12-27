@@ -1,4 +1,5 @@
-define({
+define(
+{
 	'set' : function(c_name, value, exdays) {
 		if (!exdays){
 			exdays=30;
