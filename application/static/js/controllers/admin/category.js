@@ -1,10 +1,16 @@
 define(
 [
-    "helpers/i18n",
-    "elements/admin/controls",
-    "view/category"
+    'helpers/i18n',
+    'elements/admin/controls',
+    'helpers/transparency',
+    'controllers/admin/content',
+    'controllers/admin/bookable',
+    'view/category',
+    'view/booking',
+    'view/directives/menu',
+    'view/directives/body'
 ],
-function(i18n, adminControls, categoryView){
+function(i18n, adminControls, transparency, adminContent, adminBookable, categoryView, bookingView, navDirective, bodyDirective){
     var TAB_ID_BASE = 'editCategory-';
 
     var $formModal = $('#categoryEditFormModal');
@@ -25,13 +31,28 @@ function(i18n, adminControls, categoryView){
             } else {
                 entity.contents = [];
                 entity.bookables = [];
-                categoryView.add(entity);
+                add(entity);
                 $addCategoryButton.detach().appendTo(categoryView.menu);
                 model.categories.push(entity);
                 model.db.category[entity.id]=entity;
             }
         });
     });
+
+    var add = function(entity){
+        var $el = transparency.render(categoryView.menuTemplate, entity, navDirective);
+        categoryView.menu.append($el);
+        $el = transparency.render(categoryView.categoryTemplate, entity, bodyDirective);
+        
+        categoryView.container.append($el);
+
+        bookingView.render($el);
+        adminContent.initAddButton($el);
+        adminBookable.initAddButton($el);
+        
+        var $controls = $('.page-header .admin-controls ', $el);
+        adminControls.init($formModal, $controls, 'categories', deletedCallback);
+    }
 
     var deletedCallback = function (deletedId){
         //remove the HTML

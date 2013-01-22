@@ -8,7 +8,7 @@ from flask.globals import request
 
 @app.route("/admin/contents/", methods=["POST"])
 def admin_contents():
-    return str(helpers.save_obj_from_req(ContentModel).key().id());
+    return '{ "id" : "'+str(helpers.save_obj_from_req(ContentModel).key().id())+'" }';
     pass
 
 @app.route('/admin/contents/<int:entityId>', methods=['POST', 'DELETE'])

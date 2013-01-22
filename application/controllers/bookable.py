@@ -13,7 +13,7 @@ from flask.globals import request
 
 @app.route("/admin/bookables/", methods=["POST"])
 def admin_bookables():
-    return str(helpers.save_obj_from_req(BookableModel).key().id());
+    return '{ "id" : "'+str(helpers.save_obj_from_req(BookableModel).key().id())+'" }';
     pass
 
 @app.route('/admin/bookables/<int:entityId>', methods=['POST', 'DELETE'])

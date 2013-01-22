@@ -85,6 +85,9 @@ html, body, #maincontent, #body_content, .categories, .category {
   /* 	height: 100%; */
   /* 	overflow: hidden; */ }
 
+#maincontent {
+  padding-top: 60px; }
+
 .category {
   margin-bottom: 350px; }
   .category .category-content {
