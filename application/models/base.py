@@ -1,3 +1,4 @@
+import logging
 from google.appengine.ext import db
 import pdb
 
@@ -53,8 +54,9 @@ class AbstractModel(db.Model):
         pass
 
     def populate_field(self, dictionary, key):
-        if type(getattr(self, key)) is not str:
-            val = int(dictionary[key]) if len(dictionary[key]) > 0 else 0
+        attr_type = type(getattr(self, key))
+        if attr_type in [long, int, float] :
+            val = attr_type(dictionary[key]) if len(dictionary[key]) > 0 else 0
         else:
             val = dictionary[key]
         setattr(self, key, val)

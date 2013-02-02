@@ -58,7 +58,7 @@ function(i18n, adminControls, transparency, adminContent, adminBookable, categor
         //remove the HTML
         $('#Category'+deletedId).remove();
         $('.nav a[href="#Category'+deletedId+'"]').remove();
-        model.db.category.remove(deletedId);
+        delete model.db.category[deletedId];
     };
 
     return {'init': function(){

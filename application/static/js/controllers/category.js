@@ -1,4 +1,8 @@
-define(function() {
+define(
+[
+	'controllers/booking'
+],
+function(booking) {
 	/**
 	 * The selector of the objects to animate 
 	 */
@@ -58,11 +62,12 @@ define(function() {
 
 	return {
 		init : function() {
-			$(objSelector).each(function(idx, el) {
-				var $el = $(el);
-				positions.push([$el, $el.offset().top]);
-			});
-			$(document).scroll(scrollChanged);
+			// $(objSelector).each(function(idx, el) {
+			// 	var $el = $(el);
+			// 	positions.push([$el, $el.offset().top]);
+			// });
+			// $(document).scroll(scrollChanged);
+			booking.setup();
 		}
 	};
 });

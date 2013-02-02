@@ -43,14 +43,17 @@ define('main',
 'flags',
 'view/category',
 'view/language',
+'controllers/category',
 'controllers/admin/category',
 'controllers/admin/content',
 'controllers/admin/bookable',
-'controllers/admin/booking',
-'controllers/booking'
+'controllers/admin/booking'
 ],
-function(social, modelBase, flags, categoryView, languageView, categoryAdmin, contentAdmin, bookableAdmin){		
+function(social, modelBase, flags, categoryView, languageView, 
+	category, 
+	categoryAdmin, contentAdmin, bookableAdmin, bookingAdmin){		
 	categoryView.render(model.categories);
+	category.init();
 
 	// DEFAULT SELECTION
 	if (window.location.hash.length > 1) {

@@ -1,10 +1,9 @@
 define([
-	'controllers/booking',
 	'view/directives/content',
 	'view/directives/bookable',
 	'view/directives/common',
 ], 
-function(booking, contentDirective, bookableDirective, commonDirectives) {
+function(contentDirective, bookableDirective, commonDirectives) {
 	return {
 		'id' : {
 			id : function(params) {
@@ -25,14 +24,6 @@ function(booking, contentDirective, bookableDirective, commonDirectives) {
 			},
 			'text' : function (params){
 				return params.element.text;
-			},
-			'onclick' : function(params){
-				var categoryId = this.id;
-				$(params.element).click(function(){
-					booking.showForm(categoryId);
-					$(this).hide();
-					return false;
-				});
 			}
 		}
 	}

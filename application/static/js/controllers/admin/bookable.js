@@ -6,9 +6,10 @@ define(
     'helpers/transparency',
     'helpers/progress',
     'view/common',
-    'view/bookable'
+    'view/bookable',
+    'controllers/booking',
 ],
-function(i18n, adminControls, directive, transparency, progress, common, view){
+function(i18n, adminControls, directive, transparency, progress, common, view, booking){
     var $bookableWrapper = $('.bookables-wrapper').clone();
     
     var TAB_ID_BASE = 'editBookable-';
@@ -27,6 +28,7 @@ function(i18n, adminControls, directive, transparency, progress, common, view){
                 $('.bookable-description', $cont).html(entity.i18n[model.language].description);
                 $('*[data-bind=price]', $cont).text(entity.price);
                 $('*[data-bind=beds]', $cont).text(entity.beds);
+                booking.reset();
             } else {
                 add(entity);
             }
@@ -50,11 +52,13 @@ function(i18n, adminControls, directive, transparency, progress, common, view){
     }
 
     var rerenderBookables = function(category){
-        var nuBW = $bookableWrapper.clone();
-        $('#Category'+category.id+ ' .bookables-wrapper').replaceWith(nuBW);
-        $('.bookables', nuBW).render(category.bookables, directive);
-        initAdminControls(nuBW);
+        var $newBW = $bookableWrapper.clone();
+        $('#Category'+category.id+ ' .bookables-wrapper').remove();
+        $('#Category'+category.id+ ' .category-content').prepend($newBW);
+        $('.bookables', $newBW).render(category.bookables, directive);
+        initAdminControls($newBW);
         view.render($('#Category'+category.id));
+        booking.setup([category]);
         // var $bookables = transparency.render(containerTemplate, category.bookables, directive);
         // $('#Category'+category.id+ ' .bookables').html('').append($bookables);
         // initAdminControls($bookables);
@@ -88,6 +92,7 @@ function(i18n, adminControls, directive, transparency, progress, common, view){
             initAdminControls();
 
             initAddButton();
+
         },
         'initAddButton':initAddButton
     };

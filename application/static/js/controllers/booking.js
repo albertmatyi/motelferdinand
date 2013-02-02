@@ -174,26 +174,47 @@ define(
 			return false;
 		});
 
+		/**
+		 * The exposed public method, that adds the booking form to the booking section of the Category
+		 * identified by the id
+		 */
+		var showForm = function(categoryId){
+			$('#Category'+ categoryId + ' .booking-controls').append($form);
+			var bookables = model.db.category[categoryId].bookables;
+			$roomSelect.html('');
+			$bookedRooms.html('');
+			for (var i = bookables.length - 1; i >= 0; i--) {
+				$roomSelect.append('<option value="'+bookables[i].id+'" data-quantity="'+bookables[i].quantity+'">' 
+					+ bookables[i].i18n[model.language].title+'</option>');
+			};
+			// trigger the populating of the quantities
+			$roomSelect.change();
+			var d = new Date();
+			$bookFrom.val(d.getDate()+'-'+(d.getMonth()+1)+'-'+d.getFullYear());
+			d.setDate(d.getDate()+1);
+			$bookUntil.val(d.getDate()+'-'+(d.getMonth()+1)+'-'+d.getFullYear());
+		};
+
 		return {
-			/**
-			 * The exposed public method, that adds the booking form to the booking section of the Category
-			 * identified by the id
-			 */
-			showForm: function(categoryId){
-				$('#Category'+ categoryId + ' .booking-controls').append($form);
-				var bookables = model.categories.filter(function(el){return el.id == categoryId; })[0].bookables;
-				$roomSelect.html('');
-				$bookedRooms.html('');
-				for (var i = bookables.length - 1; i >= 0; i--) {
-					$roomSelect.append('<option value="'+bookables[i].id+'" data-quantity="'+bookables[i].quantity+'">' 
-						+ bookables[i].i18n[model.language].title+'</option>');
+			'setup':function(categories){
+				if(typeof(categories) == "undefined"){
+					categories = model.categories;
+				}
+				for (var i = categories.length - 1; i >= 0; i--) {
+					$btn = $('#Category'+categories[i].id + ' .booking-btn');
+					$btn.data('categoryId',categories[i].id);
+					$btn.click(function(){
+						var categoryId = $(this).data('categoryId');
+						showForm(categoryId);
+						$(this).hide();
+						return false;
+					});
 				};
-				// trigger the populating of the quantities
-				$roomSelect.change();
-				var d = new Date();
-				$bookFrom.val(d.getDate()+'-'+(d.getMonth()+1)+'-'+d.getFullYear());
-				d.setDate(d.getDate()+1);
-				$bookUntil.val(d.getDate()+'-'+(d.getMonth()+1)+'-'+d.getFullYear());
+				
+			},
+			'reset':function(){
+				$form.remove();
+				$('.booking-btn').show();
 			}
 		}
     }
