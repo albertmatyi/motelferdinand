@@ -1,9 +1,16 @@
 define(
 [
-    "helpers/i18n",
-    "elements/admin/controls"
+    'helpers/i18n',
+    'elements/admin/controls',
+    'view/directives/bookable',
+    'helpers/transparency',
+    'helpers/progress',
+    'view/common',
+    'view/bookable'
 ],
-function(i18n, adminControls){
+function(i18n, adminControls, directive, transparency, progress, common, view){
+    var $bookableWrapper = $('.bookables-wrapper').clone();
+    
     var TAB_ID_BASE = 'editBookable-';
 
     var $formModal = $('#bookableEditFormModal');
@@ -14,17 +21,44 @@ function(i18n, adminControls){
         var $form = $('form', $formModal);
         i18n.submitForm($form, '/admin/bookables/', function(entity, isNew){
             // update UI
-            if(!isNew){
-                var $cont = $('#Bookable'+data.id);
-                $('.bookable-title', $cont).text(data.i18n[model.language].title);
-                $('.bookable-description', $cont).html(data.i18n[model.language].description);
+            if(!isNew) {
+                var $cont = $('#Bookable'+entity.id);
+                $('.bookable-title', $cont).text(entity.i18n[model.language].title);
+                $('.bookable-description', $cont).html(entity.i18n[model.language].description);
+                $('*[data-bind=price]', $cont).text(entity.price);
+                $('*[data-bind=beds]', $cont).text(entity.beds);
+            } else {
+                add(entity);
             }
         });
     });
 
+    var add = function(entity){
+        model.db.content[entity.id] = entity;
+        var cat = model.db.category[entity.category];
+        cat.bookables.push(entity);
+        rerenderBookables(cat);
+    }
+
     var deletedCallback = function (deletedId){
-        //remove the HTML
-        $('#Bookable'+deletedId).remove();
+        //rerender the bookables
+        var bkbl = model.db.bookable[deletedId];
+        var cat = model.db.category[bkbl.category];
+        cat.bookables.splice(cat.bookables.indexOf(bkbl),1);
+        rerenderBookables(cat);
+        delete model.db.bookable[deletedId];
+    }
+
+    var rerenderBookables = function(category){
+        var nuBW = $bookableWrapper.clone();
+        $('#Category'+category.id+ ' .bookables-wrapper').replaceWith(nuBW);
+        $('.bookables', nuBW).render(category.bookables, directive);
+        initAdminControls(nuBW);
+        view.render($('#Category'+category.id));
+        // var $bookables = transparency.render(containerTemplate, category.bookables, directive);
+        // $('#Category'+category.id+ ' .bookables').html('').append($bookables);
+        // initAdminControls($bookables);
+        // common.renderContentGallery('.content-description div.picaslide', $bookables);
     }
 
     var initAddButton = function($context){
@@ -42,9 +76,16 @@ function(i18n, adminControls){
         });
     };
 
+    var initAdminControls = function($ctxt){
+        if(!$ctxt){
+            $ctxt = $('body');
+        }
+        var $controls = $('.bookable .admin-controls ', $ctxt);
+        adminControls.init($formModal, $controls, 'bookables', deletedCallback);
+    }
+
     return {'init': function(){
-            var $controls = $('.bookable .admin-controls ');
-            adminControls.init($formModal, $controls, 'bookables', deletedCallback);
+            initAdminControls();
 
             initAddButton();
         },

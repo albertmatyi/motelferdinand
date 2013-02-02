@@ -1,6 +1,12 @@
 define(
 [], 
 function(){
+	var EntityMap = function(){
+		var map = {};
+		
+		return map;
+	};
+
 	// sort categories by their order
 	model.categories.sort(function(c0, c1) {
 		return c0.order - c1.order;
@@ -12,11 +18,11 @@ function(){
 		});
 	});
 	model.db = {};
-	model.db.user = {};
-	model.db.category = {};
-	model.db.content = {};
-	model.db.booking = {};
-	model.db.bookable = {};
+	model.db.user = EntityMap();
+	model.db.category = EntityMap();
+	model.db.content = EntityMap();
+	model.db.booking = EntityMap();
+	model.db.bookable = EntityMap();
 	// model.db.bookingEntry = {};
 
 	for (var i = model.categories.length - 1; i >= 0; i--) {

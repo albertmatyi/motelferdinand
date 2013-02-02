@@ -15,12 +15,12 @@ Admin login (admin gombok: add / edit / delete / bookings / guestbook entries, c
 
 6. Design - 8-14h (?)
 
-7. Booking datum validalas - 4h
-ne lehessen olyan datumokat valasztani, amire mar az a bizonyos szoba le van foglalva
-ne lehessen multban foglalni
-a foglalsi vegdatum > kezdeti datum
-8. Dokumentum csatolas - 3h
-9. Dokumentum megjelenites siteon - 3h
-10. Lehetoseg a felhasznalonak, hogy visszanezze a foglalasait online (beirja az emailcimet es telefonszamat) - 3h
-11. A felhasznalo tudjon elfogadott & kifizetett foglalas lejarta utan vendgekonyv beirast kuldeni (email ertesites a kliensnek) - 6h
-12. Admin tudja megnezni a vendegkonyv bejegyzeseket - 1h
+ Booking datum validalas - 4h
+	ne lehessen olyan datumokat valasztani, amire mar az a bizonyos szoba le van foglalva
+	ne lehessen multban foglalni
+	foglalsi vegdatum > kezdeti datum
+ Dokumentum csatolas - 3h
+ Dokumentum megjelenites siteon - 3h
+ Lehetoseg a felhasznalonak, hogy visszanezze a foglalasait online (beirja az emailcimet es telefonszamat) - 3h
+ A felhasznalo tudjon elfogadott & kifizetett foglalas lejarta utan vendgekonyv beirast kuldeni (email ertesites a kliensnek) - 6h
+ Admin tudja megnezni a vendegkonyv bejegyzeseket - 1h

@@ -44,6 +44,7 @@ function(i18n, adminControls, transparency, common, directive){
     var deletedCallback = function (deletedId){
         //remove the HTML
         $('#Content'+deletedId).remove();
+        delete model.db.content[deletedId];
     }
 
     var initAddButton = function($context){

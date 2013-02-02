@@ -1,11 +1,11 @@
 define(
 [
-'view/booking',
+'view/bookable',
 'view/directives/menu',
 'view/directives/body',
 'view/common'
 ], 	
-function(bookingView, navDirective, bodyDirective, common){
+function(bookableView, navDirective, bodyDirective, common){
 	var $menu = $('.category-nav');
 	var $container = $('.categories');
 	var menuTemplate = $menu.html();
@@ -26,7 +26,7 @@ function(bookingView, navDirective, bodyDirective, common){
 			flags.RENDER_GALLERIES && 
 				common.renderContentGallery('.content-description div.picaslide, .category-description div.picaslide');
 
-			bookingView.render();
+			bookableView.render();
 		}
 	};
 });

@@ -6,11 +6,11 @@ define(
     'controllers/admin/content',
     'controllers/admin/bookable',
     'view/category',
-    'view/booking',
+    'view/bookable',
     'view/directives/menu',
     'view/directives/body'
 ],
-function(i18n, adminControls, transparency, adminContent, adminBookable, categoryView, bookingView, navDirective, bodyDirective){
+function(i18n, adminControls, transparency, adminContent, adminBookable, categoryView, bookableView, navDirective, bodyDirective){
     var TAB_ID_BASE = 'editCategory-';
 
     var $formModal = $('#categoryEditFormModal');
@@ -46,7 +46,7 @@ function(i18n, adminControls, transparency, adminContent, adminBookable, categor
         
         categoryView.container.append($el);
 
-        bookingView.render($el);
+        bookableView.render($el);
         adminContent.initAddButton($el);
         adminBookable.initAddButton($el);
         
@@ -58,6 +58,7 @@ function(i18n, adminControls, transparency, adminContent, adminBookable, categor
         //remove the HTML
         $('#Category'+deletedId).remove();
         $('.nav a[href="#Category'+deletedId+'"]').remove();
+        model.db.category.remove(deletedId);
     };
 
     return {'init': function(){
