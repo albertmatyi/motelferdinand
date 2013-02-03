@@ -15,22 +15,26 @@ X		details
 X		accepted
 X		paid
 X		delete booking
-	send simple i18ned mails  2h
-		new booking
-			client
+	send simple mails  2h
+X		new booking
+X			client
 			admin
 		accepted booking
 	admin 
 		login 1h
 		restrictions 1h
 		js 1h
-	design
-		fix 3h
+	design fix 3h
+		datepicker on chrome
+		modal scrollbars
+		pos: fixed cat descr
+		booking button off panel after finish
 
 LAUNCH
 
 	email
-		manage templates 3h	
+		i18n
+		template manager templates 4h	
 	design
 		customize 8-14h
 

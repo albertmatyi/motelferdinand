@@ -1,0 +1,23 @@
+
+<h4>The following reservation enquiry has been made:</h4>
+
+<table>
+<tbody>
+<tr>
+	<th colspan="2">{{ booking.user.full_name }} </th>
+</tr>
+<tr>
+	<td><a href="mailto:{{ booking.user.email }}">{{ booking.user.email }}</a></td>
+	<td>{{ booking.user.phone }}</td>
+</tr>
+</tbody>
+</table>
+ 
+{% include '/mail/booking.html' %}
+<p>	
+<h5>Please access the application to accept the reservation <h5>
+</p>
+<p>
+	Ferdinand Motel
+</p>
+

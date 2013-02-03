@@ -20,6 +20,8 @@ import json
 import pdb
 
 BookingForm = model_form(BookingModel, wtf.Form)
+APP_MAIL_SENDER = 'albertmatyi@gmail.com'
+APP_ADMIN_MAILS = 'albertmatyi@gmail.com'
 
 @app.route("/bookings/", methods=["POST"])
 def bookings_new():
@@ -46,12 +48,20 @@ def bookings_new():
 
 def send_new_booking_mail(booking):
     subject = 'Your booking request at Ferdinand Motel '
-    body = '/mail/bookingClient.html'
-    message = mail.EmailMessage(sender=si18n.translate('Ferdinand Motel')+'<no-reply@ferdinandmotel.appspot.com>',
-                            subject=render_template_string(subject, booking=booking.to_dict(True)))
+    booking_dict = booking.to_dict(True, True)
+    # To client
+    message = mail.EmailMessage(sender=si18n.translate('Ferdinand Motel')+'<'+APP_MAIL_SENDER+'>',
+                            subject=render_template_string(subject, booking=booking_dict))
 
     message.to = booking.user.full_name + '<'+booking.user.email+'>'
-    message.html = render_template(body, booking=booking.to_dict(True, True))
+    message.html = render_template('/mail/bookingNewClient.html', booking=booking_dict)
+    message.send()
+    
+    # To admin
+    subject = 'A new reservation has been made - Ferdinand Motel'
+    message.subject = render_template_string(subject, booking=booking_dict)
+    message.to = APP_ADMIN_MAILS
+    message.html = render_template('/mail/bookingNewAdmin.html', booking=booking_dict)
     message.send()
     pass
 
@@ -62,8 +72,8 @@ def booking_mail(entityId):
     # mail.send(usr.email, 'BOOKING_SUBJ', '/bookingClient.html', booking);
     
     body = '/mail/bookingClient.html'
-    return render_template(body, booking=booking.to_dict(True, True)) + \
-        render_template_string(subject, booking=booking.to_dict(True))
+    body = '/mail/bookingNewClient.html'
+    return render_template(body, booking=booking.to_dict(True, True))
     pass
 
 @app.route('/admin/bookings/<int:entityId>', methods=['POST', 'DELETE'])
