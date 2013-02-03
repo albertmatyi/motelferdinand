@@ -44,11 +44,6 @@ define([
 				return str.substring(2);
 			}
 		},
-		'created' :{
-			'text' : function(params){
-				return this.created.split(' ')[0];
-			}
-		},
 		'accepted' : getStatusDir('accepted'),
 		'paid' : getStatusDir('paid')
 	};

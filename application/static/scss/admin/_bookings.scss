@@ -1,9 +1,13 @@
 .bookings-table{
 	&>tbody>tr{
-		background: #fcc;
+		background: none; //#fcc;
+		font-weight: bold;
 		&:hover {
-			background: #f99;
-		}	
+			background: #eee;//#f99;
+		}
+		&.accepted, &.paid, &.paid.accepted{
+			font-weight: normal;
+		}
 		&.accepted {
 			background: #cef;
 			&:hover{
@@ -13,7 +17,7 @@
 		&.paid {
 			background: #cfc;
 			&:hover{
-				background: #7e5;
+				background: #9c6;
 			}
 		}
 		&.paid.accepted{
@@ -23,11 +27,15 @@
 			}
 		}
 		cursor: pointer;
-		&.bookingDetails{
-			cursor: normal;
+		&.bookingDetails {
+			cursor: default;
+			font-weight: normal;
 		}
 	}
 	.bookingDetails{
+		.name {
+			margin-top: 0;
+		}
 		display: none;
 		&, &:hover {
 			background: #efefff;
@@ -38,14 +46,20 @@
 		}
 		.rightside {
 			float: right;
-			.date{
-				float: right;
-				font-size: 1em;
-				color: #999;
+		}
+
+		.date{
+			float: right;
+			font-size: 1em;
+			color: #999;
+		}
+		.table {
+			td, th {
+				text-align: center;
 			}
+			
 			.status{
 				td {
-					text-align: center;
 					background: #d33;
 					color: #fff;
 				}
@@ -55,32 +69,28 @@
 				.paid {
 					background: #6a3;
 				}
-				thead td {
-					border-radius: 3px 3px 0px 0px;
-    				color: #FFFFFF;
-    				font-weight: bold;
-    				text-align: center;
-    				background: #999;
-				}
-			}
-			.actions{
-				margin-top: 3em;
-				text-align: center;
+				
 			}
 		}
-
+		.actions{
+			margin-top: 10px;
+			float: right;
+			clear: both;
+		}
+		#deleteBooking{
+			float: right;
+			cursor: pointer;
+			padding-left: 1em;
+			padding-right: 1em;
+		}
+		.contact {
+			padding: .5em;
+			.icon-signal {
+				margin-left: 2em;
+			}
+		}
 		.leftside {
 			float: left;
-			.contact {
-			
-				padding: .5em;
-				.icon-signal {
-					margin-left: 2em;
-				}
-			}
-			.entries-table{
-				width: 50%;
-			}
 		}
 	}
 }

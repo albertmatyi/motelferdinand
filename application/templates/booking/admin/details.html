@@ -1,29 +1,30 @@
 <tr class="bookingDetails">
 	<td colspan="8">
 		<div class="leftside">
-			<h3> 
-				<span data-bind="index"></span> 
-				<span data-bind="user.full_name"></span>
-			</h3>
-			<p class="contact well">
-				<i class="icon-envelope"></i> <span data-bind="user.email"></span>
-				<i class="icon-signal"></i> <span data-bind="user.phone"></span>
-			</p>
-			{% include 'booking/admin/entries.html' %}
-		</div>
-		<div class="rightside">
-			<p class="date">
-				<i class="icon-time" title="{{ __('Created') }}"></i> 
-				<span data-bind="created" title="{{ __('Created') }}"></span>
-			</p>
-			<table class="status table">
+			<table class="table">
 				<thead>
 					<tr>
-						<td colspan="2">{{ __('Status') }}</td>
+						<th>
+							<h3 class="name"> 
+								<span data-bind="index"></span> 
+								<span data-bind="user.full_name"></span>
+							</h3>
+						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
+						<td>
+							<i class="icon-envelope"></i> <span data-bind="user.email"></span>
+						</td>
+						<td>
+							<i class="icon-signal"></i> <span data-bind="user.phone"></span>
+						</td>
+					</tr>
+					<tr>
+						<th colspan="2">{{ __('Status') }}</th>
+					</tr>
+					<tr class="status">
 						<td data-bind="accepted"> 
 							<i class="icon-minus-sign" data-bind="accepted"></i> 
 							{{ __('Accepted') }}
@@ -35,12 +36,19 @@
 					</tr>
 				</tbody>
 			</table>
-			<div class="actions">
-				<span class="btn btn-primary" id="acceptBooking">{{ __('Mark as accepted') }}</span>
-				<span class="btn btn-success" id="markAsPaid">{{ __('Mark as paid') }}</span>
-				<span class="btn" id="closeBookingDetails">{{ __('Close') }}</span>
-				<span class="btn btn-link" id="deleteBooking">{{ __('Delete') }}</span>
-			</div>
+		</div>
+		<div class="rightside">
+			<p class="date">
+				<i class="icon-time" title="{{ __('Modified') }}"></i> 
+				<span data-bind="created" title="{{ __('Modified') }}"></span>
+			</p>
+			<span id="deleteBooking"><i class="icon-trash" title="{{ __('Delete') }}"></i></span>
+			{% include 'booking/admin/entries.html' %}
+		</div>
+		<div class="actions btn-group">
+			<span class="btn btn-primary" id="acceptBooking">{{ __('Mark as accepted') }}</span>
+			<span class="btn btn-success" id="markAsPaid">{{ __('Mark as paid') }}</span>
+			<span class="btn" id="closeBookingDetails">{{ __('Close') }}</span>
 		</div>
 	</td>
 </tr>

@@ -1,9 +1,11 @@
 import logging
 from google.appengine.ext import db
+from datetime import datetime
 import pdb
 
 class AbstractModel(db.Model):
     created = db.DateTimeProperty(auto_now_add=True)
+    modified = db.DateTimeProperty(auto_now_add=True)
     
     def to_dict(self):
         '''
@@ -16,8 +18,12 @@ class AbstractModel(db.Model):
         
         for key in self.properties():
             val = getattr(self, key)
-            if val is not None and isinstance(getattr(self.__class__, key), db.ReferenceProperty):
-                val = val.key().id()
+            if val is not None:
+                tp = type(val)
+                if isinstance(getattr(self.__class__, key), db.ReferenceProperty):
+                    val = val.key().id()
+                elif tp is datetime:
+                    val = val.strftime("%d-%m-%Y %H:%M")
             arr += [(key, unicode(val))]
         if hasattr(self.__class__, 'dependencies'):
             xclusions = self.__class__.to_dict_exclude if hasattr(self.__class__, 'to_dict_exclude') else []
@@ -26,6 +32,11 @@ class AbstractModel(db.Model):
                     val = [el.to_dict() for el in getattr(self, dep)]
                     arr += [(dep, val)]
         return dict(arr) 
+        pass
+
+    def put(self):
+        self.modified = datetime.today()
+        return super(AbstractModel, self).put()
         pass
     
     def delete(self):
@@ -41,23 +52,32 @@ class AbstractModel(db.Model):
         pass
     pass
 
-    def populate(self, dictionary):
+    def populate(self, dictionary, update_refs=False):
         '''
             Populates the properties of the instance from the 
             given dictionary
         '''
         for key in self.properties():
             if key in dictionary:
-                self.populate_field(dictionary, key)
+                if isinstance(getattr(self.__class__, key), db.ReferenceProperty):
+                    if update_refs:
+                        getattr(self, key).populate(val)
+                else:
+                    self.populate_field(dictionary, key)
                 pass
             pass
+        return self
         pass
 
     def populate_field(self, dictionary, key):
         attr_type = type(getattr(self, key))
+        val = dictionary[key]
+        if key in ["created", "modified"]: 
+            return
+        logging.info("Populate "+ key + " with " + str(val))
         if attr_type in [long, int, float] :
-            val = attr_type(dictionary[key]) if len(dictionary[key]) > 0 else 0
-        else:
-            val = dictionary[key]
+            val = attr_type(val) if len(val) > 0 else 0
+        elif attr_type is bool:
+            val = val == "True"
         setattr(self, key, val)
     

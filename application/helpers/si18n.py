@@ -89,6 +89,7 @@ translations = {
 		'Close': u'Close',
 		'Mark as accepted': u'Mark as accepted',
 		'Mark as paid': u'Mark as paid',
+		'Contact': u'Contact',
 
 
 		#Forms
@@ -160,6 +161,7 @@ translations = {
 		'Close': u'Bezár',
 		'Mark as accepted': u'Elfogad',
 		'Mark as paid': u'Kifizetve',
+		'Contact': u'Kapcsolat',
 
 
 		#Forms
@@ -230,6 +232,7 @@ translations = {
 		'Close': u'Închide',
 		'Mark as accepted': u'Acceptă',
 		'Mark as paid': u'Marchează plătit',
+		'Contact': u'Contact',
 
 		#Forms
 		'Save': u'Salvează',

@@ -41,27 +41,59 @@ function(transp, bookingsDirective, bookingDetailsDirective, i18n, transparency)
 		$bookingDetails.appendTo($ftr);
 	};
 
+	var updateBooking = function(booking, successFunction, errorFunction){
+		$.ajax({ 
+		    url : 'admin/bookings/',
+		    success : function (result){
+		        booking.modified = result.modified;
+		        if(successFunction){
+		            successFunction();
+		        }else{
+		            alert(result);
+		        }
+		    },
+		    'error' : function(data){
+		    	if(errorFunction){
+		    		errorFunction(data);
+		    	}else{
+		    		alert(data);
+		    	}
+		    },
+		    type : 'POST',
+		    data : {'data' : JSON.stringify(booking) },
+		    dataType: 'json'
+		});
+	};
+
 	var initButtons = function (){
 		if(!buttonsInitialized){
 			$('#acceptBooking', $bookingDetails).click(function(){
 				if(confirm(i18n.translate('Are you sure you wish to accept?\n Once you accept, you can no more undo it, and the client will be notified.'))){
 					var bk = model.db.booking[$bookingDetails.data('bookingId')];
-					//TODO backend call
+					var oldVal =  bk.accepted;
 					bk.accepted = "True";
-					var $row = $('#Booking'+bk.id);
-					$row = transparency.render($row, bk, bookingsDirective);
-					$bookingDetails.before($row);
-					$bookingDetails.render(bk, bookingDetailsDirective);
+					updateBooking(bk, function(){
+						var $row = $('#Booking'+bk.id);
+						$row = transparency.render($row, bk, bookingsDirective);
+						$bookingDetails.before($row);
+						$bookingDetails.render(bk, bookingDetailsDirective);
+					}, function(){
+						bk.accepted = oldVal;
+					});
 				}
 			});
 			$('#markAsPaid', $bookingDetails).click(function(){
 				var bk = model.db.booking[$bookingDetails.data('bookingId')];
-				//TODO backend call
+				var oldVal = bk.paid;
 				bk.paid = bk.paid === "True" ? "False":"True";
-				var $row = $('#Booking'+bk.id);
-				$row = transparency.render($row, bk, bookingsDirective);
-				$bookingDetails.before($row);
-				$bookingDetails.render(bk, bookingDetailsDirective);
+				updateBooking(bk, function(){
+					var $row = $('#Booking'+bk.id);
+					$row = transparency.render($row, bk, bookingsDirective);
+					$bookingDetails.before($row);
+					$bookingDetails.render(bk, bookingDetailsDirective);
+				}, function(){
+					bk.accepted = oldVal;
+				});
 			});
 			$('#closeBookingDetails', $bookingDetails).click(function(){
 				$('#Booking'+$bookingDetails.data('bookingId'), $bookingsModal).show();

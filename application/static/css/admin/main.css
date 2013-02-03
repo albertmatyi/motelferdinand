@@ -249,10 +249,13 @@ body > .hidden-on-body, #body_content > .hidden-on-body {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#339933', endColorstr='#66cc33'); }
 
 .bookings-table > tbody > tr {
-  background: #fcc;
+  background: none;
+  font-weight: bold;
   cursor: pointer; }
   .bookings-table > tbody > tr:hover {
-    background: #f99; }
+    background: #eee; }
+  .bookings-table > tbody > tr.accepted, .bookings-table > tbody > tr.paid, .bookings-table > tbody > tr.paid.accepted {
+    font-weight: normal; }
   .bookings-table > tbody > tr.accepted {
     background: #cef; }
     .bookings-table > tbody > tr.accepted:hover {
@@ -260,15 +263,18 @@ body > .hidden-on-body, #body_content > .hidden-on-body {
   .bookings-table > tbody > tr.paid {
     background: #cfc; }
     .bookings-table > tbody > tr.paid:hover {
-      background: #7e5; }
+      background: #9c6; }
   .bookings-table > tbody > tr.paid.accepted {
     background: none; }
     .bookings-table > tbody > tr.paid.accepted:hover {
       background: #eee; }
   .bookings-table > tbody > tr.bookingDetails {
-    cursor: normal; }
+    cursor: default;
+    font-weight: normal; }
 .bookings-table .bookingDetails {
   display: none; }
+  .bookings-table .bookingDetails .name {
+    margin-top: 0; }
   .bookings-table .bookingDetails, .bookings-table .bookingDetails:hover {
     background: #efefff;
     cursor: normal; }
@@ -276,35 +282,34 @@ body > .hidden-on-body, #body_content > .hidden-on-body {
     width: 48%; }
   .bookings-table .bookingDetails .rightside {
     float: right; }
-    .bookings-table .bookingDetails .rightside .date {
-      float: right;
-      font-size: 1em;
-      color: #999; }
-    .bookings-table .bookingDetails .rightside .status td {
-      text-align: center;
-      background: #d33;
-      color: #fff; }
-    .bookings-table .bookingDetails .rightside .status .accepted {
-      background: #39f; }
-    .bookings-table .bookingDetails .rightside .status .paid {
-      background: #6a3; }
-    .bookings-table .bookingDetails .rightside .status thead td {
-      border-radius: 3px 3px 0px 0px;
-      color: #FFFFFF;
-      font-weight: bold;
-      text-align: center;
-      background: #999; }
-    .bookings-table .bookingDetails .rightside .actions {
-      margin-top: 3em;
-      text-align: center; }
+  .bookings-table .bookingDetails .date {
+    float: right;
+    font-size: 1em;
+    color: #999; }
+  .bookings-table .bookingDetails .table td, .bookings-table .bookingDetails .table th {
+    text-align: center; }
+  .bookings-table .bookingDetails .table .status td {
+    background: #d33;
+    color: #fff; }
+  .bookings-table .bookingDetails .table .status .accepted {
+    background: #39f; }
+  .bookings-table .bookingDetails .table .status .paid {
+    background: #6a3; }
+  .bookings-table .bookingDetails .actions {
+    margin-top: 10px;
+    float: right;
+    clear: both; }
+  .bookings-table .bookingDetails #deleteBooking {
+    float: right;
+    cursor: pointer;
+    padding-left: 1em;
+    padding-right: 1em; }
+  .bookings-table .bookingDetails .contact {
+    padding: .5em; }
+    .bookings-table .bookingDetails .contact .icon-signal {
+      margin-left: 2em; }
   .bookings-table .bookingDetails .leftside {
     float: left; }
-    .bookings-table .bookingDetails .leftside .contact {
-      padding: .5em; }
-      .bookings-table .bookingDetails .leftside .contact .icon-signal {
-        margin-left: 2em; }
-    .bookings-table .bookingDetails .leftside .entries-table {
-      width: 50%; }
 
 .modal.big-modal {
   width: 80%;

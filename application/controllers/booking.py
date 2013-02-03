@@ -14,6 +14,7 @@ from flaskext.wtf.form import Form
 from flask.helpers import flash, url_for
 from datetime import datetime
 from werkzeug.utils import redirect
+import json
 import pdb
 
 BookingForm = model_form(BookingModel, wtf.Form)
@@ -41,6 +42,15 @@ def bookings_new():
     return '{ "hello": "world" }';
     pass
 
+@app.route("/admin/bookings/", methods=["POST"])
+def update_booking():
+    # pdb.set_trace()
+    obj = json.loads(request.form['data'])
+    db_obj = BookingModel.get_by_id(long(obj['id']))
+    db_obj.populate(obj).put()
+    return '{ "modified" : "'+db_obj.to_dict()['modified']+'"}'
+    pass
+
 def get_or_create_user(user):
     email = user['email']
     usr = UserModel.all().filter('email', email).get()
@@ -49,8 +59,3 @@ def get_or_create_user(user):
         usr.put()
     return usr
 
-# @app.route("/admin/bookings/<int:mdl_id>", methods=["GET", "POST", "PUT", "DELETE"])
-# def admin_edit_booking(mdl_id):
-#     return helpers.admin_edit(mdl_id, BookingModel, BookingForm, \
-#                               'admin_edit_booking', 'admin_bookings');
-#     pass

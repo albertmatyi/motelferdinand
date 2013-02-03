@@ -1,7 +1,9 @@
 <table class="table entries-table">
 	<thead>
 		<tr>
-			<th>#</th>
+			<th colspan="5">{{ __('Booked rooms') }}</th>
+		</tr>
+		<tr>
 			<th>{{ __('Room type') }}</th>
 			<th>{{ __('Quantity') }}</th>
 			<th>{{ __('Arrival') }}</th>
@@ -11,11 +13,13 @@
 	</thead>
 	<tbody data-bind="booking_entries">
 		<tr>
-			<td data-bind="index"></td>
 			<td data-bind="bookable"></td>
 			<td data-bind="quantity"></td>
 			<td data-bind="book_from"></td>
 			<td data-bind="book_until"></td>
+			<td>
+				<!-- <i class="icon-trash" title="{{ __('Delete')}}"></i> -->
+			</td>
 		</tr>
 	</tbody>
 	<tfoot>
