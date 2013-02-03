@@ -1,7 +1,7 @@
-<div class="contents">
+<div data-bind="contents" class="contents">
 	<div class="content" data-bind="id">
-		<h3 class="content-title"></h3>
+		<h3 data-bind="content-title" class="content-title"></h3>
 		{% include "elements/admin/controls.html" %}
-		<div class="content-description"></div>
+		<div data-bind="content-description" class="content-description"></div>
 	</div>
 </div>

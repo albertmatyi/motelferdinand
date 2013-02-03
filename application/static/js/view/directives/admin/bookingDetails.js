@@ -10,7 +10,7 @@ define([
 			'class' : function(params){
 				var $el = $(params.element);
 				return $el.is('i') ? 
-					(this[fieldName]==="True" ? "icon-ok-sign":"icon-minus-sign")
+					(this[fieldName]==="True" ? "icon-ok-sign icon-white":"icon-minus-sign icon-white")
 					:
 					(this[fieldName]==="True" ? fieldName:"");
 			}

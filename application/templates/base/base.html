@@ -19,11 +19,13 @@
     {% endif %}
     <link rel="shortcut icon" href="/static/img/favicon.ico" />
     <script type="text/javascript">
+        var PRODUCTION = true;
+        // var PRODUCTION = false;
         var require = {
             waitSeconds: 60,
             baseUrl: '/static/js/',
             paths:{
-                'main':'main'
+                'main':'main'+(PRODUCTION ? '.min':'')
             }
         };
     </script>

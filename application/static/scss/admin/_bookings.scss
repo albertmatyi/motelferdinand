@@ -1,7 +1,31 @@
 .bookings-table{
-	&>tbody>tr:hover{
-		background: #cef;
+	&>tbody>tr{
+		background: #fcc;
+		&:hover {
+			background: #f99;
+		}	
+		&.accepted {
+			background: #cef;
+			&:hover{
+				background: #9cf;
+			}
+		}
+		&.paid {
+			background: #cfc;
+			&:hover{
+				background: #7e5;
+			}
+		}
+		&.paid.accepted{
+			background: none;
+			&:hover{
+				background: #eee;
+			}
+		}
 		cursor: pointer;
+		&.bookingDetails{
+			cursor: normal;
+		}
 	}
 	.bookingDetails{
 		display: none;
@@ -22,9 +46,17 @@
 			.status{
 				td {
 					text-align: center;
+					background: #d33;
+					color: #fff;
+				}
+				.accepted {
+					background: #39f;
+				}
+				.paid {
+					background: #6a3;
 				}
 				thead td {
-					border-radius: 3px 3px 3px 3px;
+					border-radius: 3px 3px 0px 0px;
     				color: #FFFFFF;
     				font-weight: bold;
     				text-align: center;

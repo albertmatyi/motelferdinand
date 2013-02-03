@@ -10,15 +10,15 @@ function(transparency){
         /**
          * It renders a string and returns the reference
          * to the rendered dom elements.
-         * @param strToRender- the string to be rendered
+         * @param thing- the object/string to be rendered
          * @param data - passed to transparency.render
          * @param directive - passed to transparency.render
          * @returns The reference to the rendered element(s). That were detached from the html after 
          * rendering
          */
-        'render': function(strToRender, data, directive){
+        'render': function(thing, data, directive){
             
-            return $('>*', $renderArea.clone().html(strToRender).render(data, directive));
+            return $('>*', $renderArea.clone().html('').append(thing).render(data, directive));
             // return  $renderArea);
         }
     }

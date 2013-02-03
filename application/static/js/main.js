@@ -40,7 +40,7 @@ define('main',
 [
 "elements/social",
 'model/base',
-'flags',
+'config',
 'view/category',
 'view/language',
 'controllers/category',

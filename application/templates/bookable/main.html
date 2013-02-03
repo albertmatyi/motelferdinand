@@ -1,13 +1,13 @@
 <div class="bookables-wrapper">
 	<div class="bookables-slide-wrapper">
-		<div class="bookables">
+		<div data-bind="bookables" class="bookables">
 			<div class="bookable" data-bind="id">
-				<h3 class="bookable-title"></h3>
+				<h3 data-bind="bookable-title" class="bookable-title"></h3>
 				{% include "elements/admin/controls.html" %}
 				<h4>{{ __('Beds') }}: <span data-bind="beds"></span></h4>
 				<h4>{{ __('Price per night') }}: <span data-bind="price"></span>{{ __('$') }}</h4>
 				<div data-bind="album_url"></div>
-				<div class="bookable-description"></div>
+				<div data-bind="bookable-description" class="bookable-description"></div>
 			</div>
 		</div>
 	</div>
