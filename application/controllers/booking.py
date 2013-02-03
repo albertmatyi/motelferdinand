@@ -42,6 +42,13 @@ def bookings_new():
     return '{ "hello": "world" }';
     pass
 
+@app.route('/admin/bookings/<int:entityId>', methods=['POST', 'DELETE'])
+def admin_delete_booking(entityId):
+    if request.method == 'DELETE' or request.values['_method'] == 'DELETE':
+        BookingModel.get_by_id(entityId).delete()
+        return "{ 'value' : 'OK' }"
+    pass
+
 @app.route("/admin/bookings/", methods=["POST"])
 def update_booking():
     # pdb.set_trace()
