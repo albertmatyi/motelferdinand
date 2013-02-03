@@ -4,7 +4,7 @@ define(
 ],
 function(commonDirectives){
 	return {
-		id : {
+		'id' : {
 			id : function(params) {
 				return 'Bookable' + this.id;
 			},

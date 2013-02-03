@@ -1,0 +1,46 @@
+<tr class="bookingDetails">
+	<td colspan="8">
+		<div class="leftside">
+			<h3> 
+				<span data-bind="index"></span> 
+				<span data-bind="user.full_name"></span>
+			</h3>
+			<p class="contact well">
+				<i class="icon-envelope"></i> <span data-bind="user.email"></span>
+				<i class="icon-signal"></i> <span data-bind="user.phone"></span>
+			</p>
+			{% include 'booking/admin/entries.html' %}
+		</div>
+		<div class="rightside">
+			<p class="date">
+				<i class="icon-time" title="{{ __('Created') }}"></i> 
+				<span data-bind="created" title="{{ __('Created') }}"></span>
+			</p>
+			<table class="status table">
+				<thead>
+					<tr>
+						<td colspan="2">{{ __('Status') }}</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td data-bind="accepted"> 
+							<i class="icon-minus-sign" data-bind="accepted"></i> 
+							{{ __('Accepted') }}
+						</td>
+						<td data-bind="paid"> 
+							<i class="icon-minus-sign" data-bind="paid"></i> 
+							{{ __('Paid') }}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="actions">
+				<span class="btn btn-primary" id="markAsAccepted">{{ __('Mark as accepted') }}</span>
+				<span class="btn btn-success" id="markAsPaid">{{ __('Mark as paid') }}</span>
+				<span class="btn" id="closeBookingDetails">{{ __('Close') }}</span>
+				<span class="btn btn-link" id="deleteBooking">{{ __('Delete') }}</span>
+			</div>
+		</div>
+	</td>
+</tr>

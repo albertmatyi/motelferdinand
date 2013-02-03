@@ -20,6 +20,7 @@ class UserModel(AbstractModel):
     nickname = db.StringProperty(required=False, default='')
     user_id = db.StringProperty(required=False, default='')
     role_id = db.IntegerProperty(required=True, default=ROLE_USER)
+    phone = db.StringProperty(required=False, default='')
 
     dependencies=['bookings']
     to_dict_exclude=['bookings']

@@ -248,6 +248,42 @@ body > .hidden-on-body, #body_content > .hidden-on-body {
     background-image: -moz-linear-gradient(top, #339933, #66cc33);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#339933', endColorstr='#66cc33'); }
 
+.bookings-table > tbody > tr:hover {
+  background: #cef;
+  cursor: pointer; }
+.bookings-table .bookingDetails {
+  display: none; }
+  .bookings-table .bookingDetails, .bookings-table .bookingDetails:hover {
+    background: #efefff;
+    cursor: normal; }
+  .bookings-table .bookingDetails .leftside, .bookings-table .bookingDetails .rightside {
+    width: 48%; }
+  .bookings-table .bookingDetails .rightside {
+    float: right; }
+    .bookings-table .bookingDetails .rightside .date {
+      float: right;
+      font-size: 1em;
+      color: #999; }
+    .bookings-table .bookingDetails .rightside .status td {
+      text-align: center; }
+    .bookings-table .bookingDetails .rightside .status thead td {
+      border-radius: 3px 3px 3px 3px;
+      color: #FFFFFF;
+      font-weight: bold;
+      text-align: center;
+      background: #999; }
+    .bookings-table .bookingDetails .rightside .actions {
+      margin-top: 3em;
+      text-align: center; }
+  .bookings-table .bookingDetails .leftside {
+    float: left; }
+    .bookings-table .bookingDetails .leftside .contact {
+      padding: .5em; }
+      .bookings-table .bookingDetails .leftside .contact .icon-signal {
+        margin-left: 2em; }
+    .bookings-table .bookingDetails .leftside .entries-table {
+      width: 50%; }
+
 .modal.big-modal {
   width: 80%;
   max-height: 80%;

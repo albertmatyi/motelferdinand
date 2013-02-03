@@ -1,0 +1,54 @@
+.bookings-table{
+	&>tbody>tr:hover{
+		background: #cef;
+		cursor: pointer;
+	}
+	.bookingDetails{
+		display: none;
+		&, &:hover {
+			background: #efefff;
+			cursor: normal;
+		}
+		.leftside, .rightside{
+			width: 48%;
+		}
+		.rightside {
+			float: right;
+			.date{
+				float: right;
+				font-size: 1em;
+				color: #999;
+			}
+			.status{
+				td {
+					text-align: center;
+				}
+				thead td {
+					border-radius: 3px 3px 3px 3px;
+    				color: #FFFFFF;
+    				font-weight: bold;
+    				text-align: center;
+    				background: #999;
+				}
+			}
+			.actions{
+				margin-top: 3em;
+				text-align: center;
+			}
+		}
+
+		.leftside {
+			float: left;
+			.contact {
+			
+				padding: .5em;
+				.icon-signal {
+					margin-left: 2em;
+				}
+			}
+			.entries-table{
+				width: 50%;
+			}
+		}
+	}
+}

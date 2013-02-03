@@ -29,6 +29,13 @@ function(){
 					return params.index;
 				};
 			return dir;
+		},
+		'prefixDirective' : function (directive, prefix){
+			var nuDir = {};
+			for (var key in directive) {
+				nuDir[prefix+'.'+key] = directive[key];
+			};		
+			return nuDir;	
 		}
 	};
 });

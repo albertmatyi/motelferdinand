@@ -1,0 +1,24 @@
+<table class="table entries-table">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>{{ __('Room type') }}</th>
+			<th>{{ __('Quantity') }}</th>
+			<th>{{ __('Arrival') }}</th>
+			<th>{{ __('Departure') }}</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody data-bind="booking_entries">
+		<tr>
+			<td data-bind="index"></td>
+			<td data-bind="bookable"></td>
+			<td data-bind="quantity"></td>
+			<td data-bind="book_from"></td>
+			<td data-bind="book_until"></td>
+		</tr>
+	</tbody>
+	<tfoot>
+		
+	</tfoot>
+</table>

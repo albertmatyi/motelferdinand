@@ -20,7 +20,7 @@
 		</tr>
 	</thead>
 	<tbody >
-		<tr>
+		<tr data-bind="id">
 			<td data-bind="index"></td>
 			<td data-bind="user.full_name"></td>
 			<td data-bind="user.email"></td>
@@ -32,7 +32,7 @@
 		</tr>
 	</tbody>
 	<tfoot>
-		
+		{% include 'booking/admin/details.html' %}
 	</tfoot>
 </table>
 {% endblock %}

@@ -84,6 +84,12 @@ translations = {
 		'Accepted': u'Accepted',
 		'Paid': u'Paid',
 		'Album url': u'Album URL',
+		'Status': u'Status',
+		'Created': u'Created',
+		'Close': u'Close',
+		'Mark as accepted': u'Mark as accepted',
+		'Mark as paid': u'Mark as paid',
+
 
 		#Forms
 		'Save': u'Save',
@@ -148,6 +154,13 @@ translations = {
 		#Admin booking
 		'Accepted': u'Elfogadva',
 		'Paid': u'Kifizetve',
+		'Album url': u'Album URL',
+		'Status': u'Státus',
+		'Created': u'Létrehozva',
+		'Close': u'Bezár',
+		'Mark as accepted': u'Elfogad',
+		'Mark as paid': u'Kifizetve',
+
 
 		#Forms
 		'Save': u'Mentés',
@@ -211,7 +224,12 @@ translations = {
 		#Admin booking
 		'Accepted': u'Acceptat',
 		'Paid': u'Plătit',
-		'Album url': u'Link către URL',
+		'Album url': u'Link către album',
+		'Status': u'Status',
+		'Created': u'Creat',
+		'Close': u'Închide',
+		'Mark as accepted': u'Acceptă',
+		'Mark as paid': u'Marchează plătit',
 
 		#Forms
 		'Save': u'Salvează',
