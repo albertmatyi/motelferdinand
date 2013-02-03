@@ -1,0 +1,30 @@
+<table class="table entries-table">
+	<thead>
+		<tr>
+			<th colspan="5">{{ __('Booked rooms') }}</th>
+		</tr>
+		<tr>
+			<th>{{ __('Room type') }}</th>
+			<th>{{ __('Quantity') }}</th>
+			<th>{{ __('Arrival') }}</th>
+			<th>{{ __('Departure') }}</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody data-bind="booking_entries">
+		{% for entry in booking.booking_entries %}
+		<tr>
+			<td data-bind="bookable">{{ entry.bookable.i18n[__('lang_id')].title }}</td>
+			<td data-bind="quantity">{{ entry.quantity }}</td>
+			<td data-bind="book_from">{{ entry.book_from }}</td>
+			<td data-bind="book_until">{{ entry.book_until }}</td>
+			<td>
+				<!-- <i class="icon-trash" title="{{ __('Delete')}}"></i> -->
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+	<tfoot>
+		
+	</tfoot>
+</table>

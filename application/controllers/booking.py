@@ -14,6 +14,8 @@ from flaskext.wtf.form import Form
 from flask.helpers import flash, url_for
 from datetime import datetime
 from werkzeug.utils import redirect
+from google.appengine.api import mail
+from flask.templating import render_template, render_template_string
 import json
 import pdb
 
@@ -38,8 +40,30 @@ def bookings_new():
             , book_from = book_from, book_until = book_until)
         be.put()
         pass
-
+    send_new_booking_mail(booking)
     return '{ "hello": "world" }';
+    pass
+
+def send_new_booking_mail(booking):
+    subject = 'Your booking request at Ferdinand Motel '
+    body = '/mail/bookingClient.html'
+    message = mail.EmailMessage(sender=si18n.translate('Ferdinand Motel')+'<no-reply@ferdinandmotel.appspot.com>',
+                            subject=render_template_string(subject, booking=booking.to_dict(True)))
+
+    message.to = booking.user.full_name + '<'+booking.user.email+'>'
+    message.html = render_template(body, booking=booking.to_dict(True, True))
+    message.send()
+    pass
+
+@app.route('/booking-mail/<int:entityId>', methods=['GET'])
+def booking_mail(entityId):
+    booking = BookingModel.get_by_id(long(entityId));
+    # pdb.set_trace()
+    # mail.send(usr.email, 'BOOKING_SUBJ', '/bookingClient.html', booking);
+    
+    body = '/mail/bookingClient.html'
+    return render_template(body, booking=booking.to_dict(True, True)) + \
+        render_template_string(subject, booking=booking.to_dict(True))
     pass
 
 @app.route('/admin/bookings/<int:entityId>', methods=['POST', 'DELETE'])

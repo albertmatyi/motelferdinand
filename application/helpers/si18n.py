@@ -40,6 +40,7 @@ translations_js = {
 
 translations = {
 	'en' : {
+		'lang_id':'en',
 		# Base
 		'LanguageName': u'English',
 		'Ferdinand Motel': u'Ferdinand Motel',
@@ -111,6 +112,7 @@ translations = {
 		'Find us on': u'Find us on'
 	},
 	'hu' : {
+		'lang_id':'hu',
 		# Base
 		'LanguageName': u'Magyar',
 		'Ferdinand Motel': u'Ferdinánd Panzió',
@@ -183,6 +185,7 @@ translations = {
 		'Find us on': u'Megtalálhatsz minket'
 	}, 
 	'ro' : {
+		'lang_id':'ro',
 		# Base
 		'LanguageName': u'Română',
 		'Ferdinand Motel': u'Motel Ferdinand',
@@ -253,3 +256,36 @@ translations = {
 		'Find us on': u'Ne poți găsi pe'
 	}
 }
+
+
+
+
+TEMPLATES = {
+	'BOOKING' : {
+		'subject' : { 
+			'en' : u'Your booking request at Ferdinand Motel',
+			'hu' : u'A foglalása a Ferdinánd Panziónál',
+			'ro' : u'Cererea de rezervare - Pensiune Ferdnand'
+		},
+		'body' : {
+			'en' : u'''
+			''',
+			'hu' : u'''
+	Kedves $NAME,
+Megkaptuk foglalási kérését. Kérem várjon míg munkatársaink felveszik Önnel a kapcsolatot.
+
+	Köszönjük,
+	Ferdinand Panzión
+			''',
+			'ro' : u'''
+	Stimate $NAME,
+Vă rog să ne permiteți să procesăm solicitarea de Dvs. de rezervare. 
+Revenim în curând,
+
+	Cu respect,
+	Pensiunea Ferdinand
+			'''
+		}
+	}
+};
+

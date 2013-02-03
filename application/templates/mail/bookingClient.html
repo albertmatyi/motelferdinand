@@ -1,0 +1,15 @@
+
+<h3> Dear {{ booking.user.full_name }}, </h3>
+
+<p>
+We've received the following reservation request:
+</p>
+{% include '/mail/booking.html' %}
+<p>	
+Please stand by while we process it.
+</p>
+<p>
+	Best regards, <br/>
+	Ferdinand Motel
+</p>
+

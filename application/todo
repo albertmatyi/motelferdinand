@@ -7,7 +7,7 @@ X 		content - 3h
 
 130202
 X		bookable - 6h
-	Bookingok bovitett leirasa az adminnak - 5h/13h
+X	Bookingok bovitett leirasa az adminnak - 5h/13h
 X		phone
 X		booked rooms summary
 X		details
@@ -15,15 +15,23 @@ X		details
 X		accepted
 X		paid
 X		delete booking
-	
-	send i18ned mails
-		send simple mails 2h
-		manage templates 3h
-	Admin login (admin gombok: add / edit / delete / bookings / guestbook entries, csak az adminnak jelenjenek meg) - 3h
-
-	Design
+	send simple i18ned mails  2h
+		new booking
+			client
+			admin
+		accepted booking
+	admin 
+		login 1h
+		restrictions 1h
+		js 1h
+	design
 		fix 3h
+
 LAUNCH
+
+	email
+		manage templates 3h	
+	design
 		customize 8-14h
 
 	update galleries after content update 1h
