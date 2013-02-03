@@ -46,8 +46,8 @@
 			{% include 'booking/admin/entries.html' %}
 		</div>
 		<div class="actions btn-group">
-			<span class="btn btn-primary" id="acceptBooking">{{ __('Mark as accepted') }}</span>
-			<span class="btn btn-success" id="markAsPaid">{{ __('Mark as paid') }}</span>
+			<span class="btn btn-primary" id="acceptBooking" data-bind="accepted-button">{{ __('Mark as accepted') }}</span>
+			<span class="btn btn-success" id="markAsPaid" data-bind="paid-button">{{ __('Mark as paid') }}</span>
 			<span class="btn" id="closeBookingDetails">{{ __('Close') }}</span>
 		</div>
 	</td>

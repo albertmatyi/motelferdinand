@@ -1,7 +1,8 @@
 define([
 	'view/directives/admin/user',
-	'view/directives/common'
-], function(user, common){
+	'view/directives/common',
+	'helpers/i18n'
+], function(user, common, i18n){
 	var getBoolDir = function(fieldName){
 		return {
 			'text' : function(params){
@@ -30,7 +31,23 @@ define([
 			}
 		},
 		'accepted' : getBoolDir('accepted'),
-		'paid' : getBoolDir('paid')
+		'paid' : getBoolDir('paid'),
+		'accepted-button' : {
+			'text' : function(params){
+				return $(params.element).text();
+			},
+			'class' : function(params){
+				return 'btn btn-primary ' + (this.accepted === 'True' ?  'disabled':'');
+			}
+		},
+		'paid-button' : {
+			'text' : function(params){
+				return i18n.translate(this.paid === 'True' ? 'Mark as unpaid':'Mark as paid');
+			},
+			'class' : function(params){
+				return 'btn ' + (this.paid === 'True' ?  'btn-warning':'btn-success');
+			}
+		}
 	};
 	var usrDir = common.prefixDirective(user,'user');
 	for (var key in usrDir){

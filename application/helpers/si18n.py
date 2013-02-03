@@ -19,15 +19,22 @@ def translate(what, lang_id=''):
 translations_js = {
 	'en': {
 		'Booking successfully saved! Stand by for a confirmation email.': u'Booking successfully saved! Stand by for a confirmation email.',
-		'Add category': u'Add category'
+		'Add category': u'Add category',
+		'Mark as paid': u'Mark as paid',
+		'Mark as unpaid': u'Mark as unpaid'
 	},
 	'hu': {
 		'Booking successfully saved! Stand by for a confirmation email.': u'Foglalás sikeresen bejegyezve. Kérem várja meg a konfirmáló emailt.',
-		'Add category': u'Hozzáad kategoriát'
+		'Add category': u'Hozzáad kategoriát',
+		'Mark as paid': u'Kifizetve',
+		'Mark as unpaid': u'Kifizetlen'
+
 	},
 	'ro': {
 		'Booking successfully saved! Stand by for a confirmation email.': u'Rezervarea s-a efectuat cu succes. Vă rugăm să așteptați mailul de confirmare.',
-		'Add category': u'Adaugă categorie'
+		'Add category': u'Adaugă categorie',
+		'Mark as paid': u'Marchează plătit',
+		'Mark as unpaid': u'Marchează neplătit'
 	}
 }
 

@@ -1,7 +1,13 @@
 .bookings-table{
+	&>thead th{
+		text-align: center;
+	}
 	&>tbody>tr{
 		background: none; //#fcc;
 		font-weight: bold;
+		&>td.center{
+			text-align: center;
+		}
 		&:hover {
 			background: #eee;//#f99;
 		}
@@ -73,7 +79,7 @@
 			}
 		}
 		.actions{
-			margin-top: 10px;
+			margin: 10px;
 			float: right;
 			clear: both;
 		}

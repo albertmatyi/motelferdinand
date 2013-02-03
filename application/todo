@@ -4,22 +4,29 @@ X	Update / delete 2h
 X	update UI on add
 X 		category - 3h
 X 		content - 3h
+
 130202
 X		bookable - 6h
-	Bookingok bovitett leirasa az adminnak - 5h
+	Bookingok bovitett leirasa az adminnak - 5h/13h
 X		phone
 X		booked rooms summary
 X		details
-		delete booking
-		accepted
-		paid
-		prices
-	Tobnyelvusitett email kuldes - 4h
+130203
+X		accepted
+X		paid
+X		delete booking
+	
+	send i18ned mails
+		send simple mails 2h
+		manage templates 3h
 	Admin login (admin gombok: add / edit / delete / bookings / guestbook entries, csak az adminnak jelenjenek meg) - 3h
 
-	Design - 8-14h (?)
+	Design
+		fix 3h
+LAUNCH
+		customize 8-14h
 
-	update galleries after content update
+	update galleries after content update 1h
 
 	booking
 		modify booking entry

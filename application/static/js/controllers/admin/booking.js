@@ -4,22 +4,25 @@ define(
 	'view/directives/admin/booking',
 	'view/directives/admin/bookingDetails',
 	'helpers/i18n',
-	'helpers/transparency'
+	'helpers/transparency',
+	'elements/confirmation',
+	'elements/admin/controls'
 ],
-function(transp, bookingsDirective, bookingDetailsDirective, i18n, transparency){
+function(transp, bookingsDirective, bookingDetailsDirective, i18n, transparency, confirmation, adminControls){
 	var $bookingsModal = $('#adminBookingsModal');
 	var $bookingDetails = $('.bookingDetails', $bookingsModal);
 	var $bookingsButton = $('#adminBookingsButton');
 	var $table = $('.bookings-table > tbody', $bookingsModal);
 	var $ftr = $('.bookings-table > tfoot', $bookingsModal)
 	var buttonsInitialized = false;
+	var panelRendered = false;
 
 
 	var render = function(force){
-		if(rendered && !force){
+		if(panelRendered && !force){
 			return;
 		}
-		rendered = true;
+		panelRendered = true;
 		$('.bookings-table > tbody', $bookingsModal).render(model.bookings, bookingsDirective);
 
 		$('tr', $table).click(function(){
@@ -60,7 +63,7 @@ function(transp, bookingsDirective, bookingDetailsDirective, i18n, transparency)
 		    	}
 		    },
 		    type : 'POST',
-		    data : {'data' : JSON.stringify(booking) },
+		    data : {'data' : JSON.stringify(booking)},
 		    dataType: 'json'
 		});
 	};
@@ -68,6 +71,9 @@ function(transp, bookingsDirective, bookingDetailsDirective, i18n, transparency)
 	var initButtons = function (){
 		if(!buttonsInitialized){
 			$('#acceptBooking', $bookingDetails).click(function(){
+				if($(this).hasClass('disabled')){
+					return;
+				}
 				if(confirm(i18n.translate('Are you sure you wish to accept?\n Once you accept, you can no more undo it, and the client will be notified.'))){
 					var bk = model.db.booking[$bookingDetails.data('bookingId')];
 					var oldVal =  bk.accepted;
@@ -77,7 +83,9 @@ function(transp, bookingsDirective, bookingDetailsDirective, i18n, transparency)
 						$row = transparency.render($row, bk, bookingsDirective);
 						$bookingDetails.before($row);
 						$bookingDetails.render(bk, bookingDetailsDirective);
-					}, function(){
+						renderBadge();
+					}, function(data){
+						alert('ERROR: '+data);
 						bk.accepted = oldVal;
 					});
 				}
@@ -91,7 +99,9 @@ function(transp, bookingsDirective, bookingDetailsDirective, i18n, transparency)
 					$row = transparency.render($row, bk, bookingsDirective);
 					$bookingDetails.before($row);
 					$bookingDetails.render(bk, bookingDetailsDirective);
-				}, function(){
+					renderBadge();
+				}, function(data){
+					alert('ERROR: '+data);
 					bk.accepted = oldVal;
 				});
 			});
@@ -102,23 +112,42 @@ function(transp, bookingsDirective, bookingDetailsDirective, i18n, transparency)
 			$('#deleteBooking', $bookingDetails).click(function(){
 				if(confirm(i18n.translate('Are you sure you wish to delete the booking?'))){
 					var bookingId = $bookingDetails.data('bookingId');
-					//TODO backend call
-					delete model.db.booking[bookingId];
-					$bookingDetails.data('bookingId', -1);
-					hideDetails();
-					render(true);
+	                $.ajax({
+	                    'type': 'POST',
+	                    'url': '/admin/bookings/'+bookingId,
+	                    'data': '_method=DELETE',
+	                    'success': function(){
+	                        alert('Deleted');
+	                        delete model.db.booking[bookingId];
+							$bookingDetails.data('bookingId', -1);
+							hideDetails();
+							render(true);
+							renderBadge();
+	                    },
+	                    'error' : function(data){
+	                    	alert('ERROR: '+data);
+	                    }
+	                });
 				}
 			});
 			buttonsInitialized = true;
 		}
-	}
+	};
+
 	var $badge = $('.badge', $bookingsButton);
 
-	$badge.text(model.bookings.reduce(function (sum, el){
-		return sum + (el.accepted === true ? 0:1);
-	}, 0));
-
-	var rendered = false;
+	var renderBadge = function(){
+		$badge.text(model.bookings.reduce(function (sum, el){
+			return [sum[0] + (el.accepted === "True" ? 0:1),
+			sum[1] + (el.paid === "True" ? 0:1)];
+		}, [0,0]).join(' | '));
+		if($badge.text()== '0 | 0'){
+			$badge.hide();
+		}else{
+			$badge.show();
+		}
+	};
+	renderBadge();
 	
 	$bookingsButton.click(function(){
 		render(false);

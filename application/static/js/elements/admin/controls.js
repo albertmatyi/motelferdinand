@@ -2,17 +2,14 @@ define(
 [
     "helpers/i18n",
     "elements/confirmation"
-
 ],
 function(i18n, confirmation){
-
-    var initDelete = function($controls, entityURL, deleteCallback){
-        $('span.delete', $controls).click(function (){
-            var entityId = $(this).data('entity').id;
+    var getDeleteHandler = function (delURL, deleteCallback){
+        return function(){
             confirmation.show(function(){
                 $.ajax({
                     'type': 'POST',
-                    'url': 'admin/'+entityURL+'/'+entityId,
+                    'url': delURL,
                     'data': '_method=DELETE',
                     'success': function(){
                         alert('Deleted');
@@ -20,8 +17,15 @@ function(i18n, confirmation){
                     }
                 });
             });
-        }); 
-    }
+        };
+    };
+
+    var initDelete = function($controls, entityURL, deleteCallback){
+        $('span.delete', $controls).click(function(){
+            var entityId = $(this).data('entity').id;
+            getDeleteHandler('admin/'+entityURL+'/'+entityId, deleteCallback)(); 
+        });
+    };
     
     return {'init': function($formModal, $controls, entityURL, deleteCallback){
             var $form = $('form', $formModal);
@@ -39,7 +43,8 @@ function(i18n, confirmation){
 
             initDelete($controls, entityURL, deleteCallback);
         },
-        'initDelete': initDelete
+        'initDelete' : initDelete,
+        'getDeleteHandler' : getDeleteHandler
     };
 //close the function & define
 });
