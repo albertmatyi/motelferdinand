@@ -41,6 +41,7 @@ translations_js = {
 translations = {
 	'en' : {
 		'lang_id':'en',
+		'Log out': u'Log out',
 		# Base
 		'LanguageName': u'English',
 		'Ferdinand Motel': u'Ferdinand Motel',
@@ -113,6 +114,7 @@ translations = {
 	},
 	'hu' : {
 		'lang_id':'hu',
+		'Log out': u'Kilép',
 		# Base
 		'LanguageName': u'Magyar',
 		'Ferdinand Motel': u'Ferdinánd Panzió',
@@ -186,6 +188,7 @@ translations = {
 	}, 
 	'ro' : {
 		'lang_id':'ro',
+		'Log out': u'Închide sesiunea',
 		# Base
 		'LanguageName': u'Română',
 		'Ferdinand Motel': u'Motel Ferdinand',

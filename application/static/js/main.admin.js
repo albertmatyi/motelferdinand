@@ -44,9 +44,14 @@ define('main',
 'view/category',
 'view/language',
 'controllers/category',
+'controllers/admin/category',
+'controllers/admin/content',
+'controllers/admin/bookable',
+'controllers/admin/booking'
 ],
 function(social, modelBase, flags, categoryView, languageView, 
-	category){		
+	category, 
+	categoryAdmin, contentAdmin, bookableAdmin, bookingAdmin){		
 	categoryView.render(model.categories);
 	category.init();
 
@@ -60,5 +65,8 @@ function(social, modelBase, flags, categoryView, languageView,
 	$('#loading-overlay').fadeOut(500, function(){
 		$(this).remove();
 	});
+	categoryAdmin.init();
+	contentAdmin.init();
+	bookableAdmin.init();
 //close the function & define
 });

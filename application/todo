@@ -18,12 +18,12 @@ X		delete booking
 	send simple mails  2h
 X		new booking
 X			client
-			admin
-		accepted booking
-	admin 
-		login 1h
-		restrictions 1h
-		js 1h
+X			admin
+X		accepted booking
+X	admin 
+X		login 1h
+X		restrictions 1h
+X		js 1h
 	design fix 3h
 		datepicker on chrome
 		modal scrollbars
@@ -32,6 +32,8 @@ X			client
 
 LAUNCH
 
+	progress indicator 2h
+	confirm messages 2h
 	email
 		i18n
 		template manager templates 4h	

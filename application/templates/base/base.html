@@ -25,7 +25,7 @@
             waitSeconds: 60,
             baseUrl: '/static/js/',
             paths:{
-                'main':'main'+(PRODUCTION ? '.min':'')
+                'main':'main{{ '.admin' if is_admin else '' }}'+(PRODUCTION ? '.min':'')
             }
         };
     </script>

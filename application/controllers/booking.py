@@ -15,13 +15,14 @@ from flask.helpers import flash, url_for
 from datetime import datetime
 from werkzeug.utils import redirect
 from google.appengine.api import mail
+from application.decorators import admin_required
 from flask.templating import render_template, render_template_string
 import json
 import pdb
 
 BookingForm = model_form(BookingModel, wtf.Form)
 APP_MAIL_SENDER = 'albertmatyi@gmail.com'
-APP_ADMIN_MAILS = 'albertmatyi@gmail.com'
+APP_ADMIN_MAILS = 'Owner <zozipus@yahoo.com>, Developer <albertmatyi@gmail.com>'
 
 @app.route("/bookings/", methods=["POST"])
 def bookings_new():
@@ -42,7 +43,7 @@ def bookings_new():
             , book_from = book_from, book_until = book_until)
         be.put()
         pass
-    send_new_booking_mail(booking)
+    send_new_booking_mail(BookingModel.get_by_id(booking.key().id()))
     return '{ "hello": "world" }';
     pass
 
@@ -66,6 +67,7 @@ def send_new_booking_mail(booking):
     pass
 
 @app.route('/booking-mail/<int:entityId>', methods=['GET'])
+@admin_required
 def booking_mail(entityId):
     booking = BookingModel.get_by_id(long(entityId));
     # pdb.set_trace()
@@ -73,10 +75,12 @@ def booking_mail(entityId):
     
     body = '/mail/bookingClient.html'
     body = '/mail/bookingNewClient.html'
+    body = '/mail/bookingAcceptedClient.html'
     return render_template(body, booking=booking.to_dict(True, True))
     pass
 
 @app.route('/admin/bookings/<int:entityId>', methods=['POST', 'DELETE'])
+@admin_required
 def admin_delete_booking(entityId):
     if request.method == 'DELETE' or request.values['_method'] == 'DELETE':
         BookingModel.get_by_id(entityId).delete()
@@ -84,13 +88,31 @@ def admin_delete_booking(entityId):
     pass
 
 @app.route("/admin/bookings/", methods=["POST"])
+@admin_required
 def update_booking():
     # pdb.set_trace()
     obj = json.loads(request.form['data'])
-    db_obj = BookingModel.get_by_id(long(obj['id']))
-    db_obj.populate(obj).put()
-    return '{ "modified" : "'+db_obj.to_dict()['modified']+'"}'
+    booking = BookingModel.get_by_id(long(obj['id']))
+    accepted0 = booking.accepted
+
+    booking.populate(obj).put()
+    if accepted0 is False and booking.accepted is True:
+        send_booking_accepted_mail(booking)
+
+    return '{ "modified" : "'+booking.to_dict()['modified']+'"}'
     pass
+
+def send_booking_accepted_mail(booking):
+    subject = 'Your booking request at Ferdinand Motel has been ACCEPTED.'
+    booking_dict = booking.to_dict(True, True)
+    # To client
+    message = mail.EmailMessage(sender=si18n.translate('Ferdinand Motel')+'<'+APP_MAIL_SENDER+'>',
+                            subject=render_template_string(subject, booking=booking_dict))
+
+    message.to = booking.user.full_name + '<'+booking.user.email+'>'
+    message.html = render_template('/mail/bookingAcceptedClient.html', booking=booking_dict)
+    message.send()
+
 
 def get_or_create_user(user):
     email = user['email']
