@@ -1,6 +1,7 @@
 define(
 [
 ], function(){
+	var SAFE_SIDE = 2;
 	return {
 		'init' : function(){
 			$('.modal.big-modal').each(function(i, el){
@@ -9,9 +10,9 @@ define(
 				var eh = $el.height();
 				var marg = -eh / 2 ;
 				$el.css('margin-top', marg+'px');
-				var hh = $('.modal-header', $el).outerHeight()
-				var fh = $('.modal-footer', $el).outerHeight()
-				$('.modal-body', $el).height(eh-(hh+fh));
+				var hh = $('.modal-header', $el).outerHeight();
+				var fh = $('.modal-footer', $el).outerHeight();
+				$('.modal-body', $el).height(eh-(hh+fh)-SAFE_SIDE);
 			});
 		}
 	};

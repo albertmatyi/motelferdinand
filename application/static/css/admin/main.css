@@ -327,7 +327,7 @@ body > .hidden-on-body, #body_content > .hidden-on-body {
     .modal.big-modal .modal-header ul {
       margin-left: 2em; }
   .modal.big-modal .modal-body {
-    max-height: auto;
+    max-height: none;
     padding-top: 0;
     padding-bottom: 0; }
     .modal.big-modal .modal-body > *:firstChild {

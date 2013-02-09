@@ -23,7 +23,7 @@ $modalFooterHeight: 32px;
 		}
 	}
 	.modal-body{
-		max-height: auto;
+		max-height: none;
 		padding-top: 0;
 		padding-bottom: 0;
 		&>*:firstChild{
