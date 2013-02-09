@@ -159,14 +159,14 @@ define(
 					success: function(){
 						// show success message
 						var $controlContainer = $form.parent();
-						$controlContainer.append('<div class="clearfix alert alert-success">'
+						$controlContainer.prepend('<div class="clearfix alert alert-success">'
 						        +'<button type="button" class="close" data-dismiss="alert">×</button>'
 						        	+ i18n.translate('Booking successfully saved! Stand by for a confirmation email.')
 						        +'</div>')
 						// on response hide the form
 						$form.appendTo($('body'));
 						// show the original button
-						$('.showBookingFormButton', $controlContainer).appendTo($controlContainer).show().text('Book again');
+						$('.showBookingFormButton', $controlContainer).show().text('Book again');
 					}					
 				});
 			}
@@ -179,7 +179,10 @@ define(
 		 * identified by the id
 		 */
 		var showForm = function(categoryId){
-			$('#Category'+ categoryId + ' .booking-controls').append($form);
+			var $formCont = $('#Category'+ categoryId + ' .booking-controls');
+			$('.alert', $formCont).remove();
+			$formCont.append($form);
+			
 			var bookables = model.db.category[categoryId].bookables;
 			$roomSelect.html('');
 			$bookedRooms.html('');

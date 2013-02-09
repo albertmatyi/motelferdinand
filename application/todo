@@ -28,9 +28,9 @@ X		js 1h
  	fix
 		design 4h
 X			datepicker on chrome - CRITICAL, cannot book
-			modal issues / scrollbars
-			pos: fixed cat descr
+X			modal issues / scrollbars
 			booking button off panel after finish
+			pos: fixed cat descr
 			room booking validation
 		email 1h
 			only partial booking info is present in new booking mails 
