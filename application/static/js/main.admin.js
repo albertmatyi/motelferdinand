@@ -43,14 +43,15 @@ define('main',
 'config',
 'view/category',
 'view/language',
+'elements/admin/modal',
 'controllers/category',
 'controllers/admin/category',
 'controllers/admin/content',
 'controllers/admin/bookable',
 'controllers/admin/booking'
 ],
-function(social, modelBase, flags, categoryView, languageView, 
-	category, 
+function(social, modelBase, flags,
+	categoryView, languageView, modal, category, 
 	categoryAdmin, contentAdmin, bookableAdmin, bookingAdmin){		
 	categoryView.render(model.categories);
 	category.init();
@@ -68,5 +69,6 @@ function(social, modelBase, flags, categoryView, languageView,
 	categoryAdmin.init();
 	contentAdmin.init();
 	bookableAdmin.init();
+	modal.init();
 //close the function & define
 });

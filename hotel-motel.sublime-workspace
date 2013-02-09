@@ -475,7 +475,7 @@
 			"file": "application/todo",
 			"settings":
 			{
-				"buffer_size": 1409,
+				"buffer_size": 1539,
 				"line_ending": "Unix"
 			}
 		},
@@ -483,7 +483,23 @@
 			"file": "application/controllers/booking.py",
 			"settings":
 			{
-				"buffer_size": 0,
+				"buffer_size": 4579,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/templates/base/base.html",
+			"settings":
+			{
+				"buffer_size": 2566,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/templates/mail/bookingNewAdmin.html",
+			"settings":
+			{
+				"buffer_size": 536,
 				"line_ending": "Unix"
 			}
 		}
@@ -763,7 +779,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"*.py",
@@ -995,7 +1011,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1003,15 +1019,15 @@
 					"file": "application/todo",
 					"settings":
 					{
-						"buffer_size": 1409,
+						"buffer_size": 1539,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								384,
-								384
+								183,
+								183
 							]
 						],
 						"settings":
@@ -1030,20 +1046,76 @@
 					"file": "application/controllers/booking.py",
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 4579,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								769,
+								769
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "application/templates/base/base.html",
+					"settings":
+					{
+						"buffer_size": 2566,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1014,
+								1014
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "application/templates/mail/bookingNewAdmin.html",
+					"settings":
+					{
+						"buffer_size": 536,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								502,
+								502
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1104,16 +1176,20 @@
 		"selected_items":
 		[
 			[
+				"mailbookinadmin",
+				"templates/mail/bookingNewAdmin.html"
+			],
+			[
+				"basehtml",
+				"templates/base/base.html"
+			],
+			[
 				"book",
 				"controllers/booking.py"
 			],
 			[
 				"compile",
 				"static/js/compile_js.js"
-			],
-			[
-				"basehtml",
-				"templates/base/base.html"
 			],
 			[
 				"main.admin",
@@ -1610,10 +1686,6 @@
 			[
 				"bootstra",
 				"static/lib/bootstrap/js/bootstrap.js"
-			],
-			[
-				"baseadminfor",
-				"templates/base/admin/form.html"
 			]
 		],
 		"width": 0.0

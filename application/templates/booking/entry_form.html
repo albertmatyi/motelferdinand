@@ -1,0 +1,35 @@
+<div class="modal hide fade" tabindex="-1" id="bookingAddRoomModal" role="dialog" aria-labelledby="bookingAddRoomModalTitle" aria-hidden="true">	
+	 <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="bookingAddRoomModalTitle">{{ __('Add room to booking') }}</h3>
+	</div>
+	<div class="modal-body">
+		<div class="control-group">
+			<label class="control-label">{{ __('Type of room') }}</label>
+			<select data-bind="bookables" id="addRoomBookable"> 
+			</select>
+		</div>
+		<div class="control-group">
+			<label class="control-label">{{ __('Quantity') }}</label>
+			<select id="addRoomQuantity">
+			</select>
+		</div>
+		<div class="control-group">
+			<label class="control-label">{{ __('Arrival date') }}</label>
+			<div class="controls controls-row">
+				<input type="input" class="datepicker bookfrom" id="addRoomFrom"/>
+			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">{{ __('Departure date') }}</label>
+			<div class="controls controls-row">
+				<input type="input" class="datepicker bookuntil" id="addRoomUntil"/>
+			</div>
+		</div>	
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">{{ __('Cancel') }}</button>
+		<button class="btn btn-primary" data-dismiss="modal" id="addRoomButton"><i class="icon-plus icon-white"></i> 
+			{{ __('Add room to booking') }}</button>
+	</div>
+</div>
