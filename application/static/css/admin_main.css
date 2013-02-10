@@ -1,3 +1,40 @@
+ul.wysihtml5-toolbar {
+  margin: 0;
+  padding: 0;
+  display: block; }
+
+ul.wysihtml5-toolbar::after {
+  clear: both;
+  display: table;
+  content: ""; }
+
+ul.wysihtml5-toolbar > li {
+  float: left;
+  display: list-item;
+  list-style: none;
+  margin: 0 5px 10px 0; }
+
+ul.wysihtml5-toolbar a[data-wysihtml5-command=bold] {
+  font-weight: bold; }
+
+ul.wysihtml5-toolbar a[data-wysihtml5-command=italic] {
+  font-style: italic; }
+
+ul.wysihtml5-toolbar a[data-wysihtml5-command=underline] {
+  text-decoration: underline; }
+
+ul.wysihtml5-toolbar a.btn.wysihtml5-command-active {
+  background-image: none;
+  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+  background-color: #E6E6E6;
+  background-color: #D9D9D9 9;
+  outline: 0; }
+
+ul.wysihtml5-commands-disabled .dropdown-menu {
+  display: none !important; }
+
 /*
  * Bootstrap v2.1.0
  *
@@ -5617,3 +5654,138 @@ body {
 
 body > .hidden-on-body, #body_content > .hidden-on-body {
   display: none; }
+
+#adminButtonGroup {
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  z-index: 1030; }
+
+.admin-controls {
+  margin-top: 1em;
+  float: right; }
+  .admin-controls > span {
+    background: #999;
+    background-image: linear-gradient(to bottom, #666666, #999999);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#666666), to(#999999));
+    background-image: -moz-linear-gradient(top, #666666, #999999);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#999999');
+    border-radius: 3px;
+    padding: 0px 3px;
+    float: left;
+    cursor: pointer;
+    margin-left: 3px; }
+  .admin-controls .edit:hover {
+    background: #58d;
+    background-image: linear-gradient(to bottom, #3366cc, #6699ff);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#3366cc), to(#6699ff));
+    background-image: -moz-linear-gradient(top, #3366cc, #6699ff);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3366cc', endColorstr='#6699ff'); }
+  .admin-controls .delete:hover {
+    background: #58d;
+    background-image: linear-gradient(to bottom, #cc6633, #ff7755);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#cc6633), to(#ff7755));
+    background-image: -moz-linear-gradient(top, #cc6633, #ff7755);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc6633', endColorstr='#ff7755'); }
+  .admin-controls .add:hover {
+    background: #8d5;
+    background-image: linear-gradient(to bottom, #339933, #66cc33);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#339933), to(#66cc33));
+    background-image: -moz-linear-gradient(top, #339933, #66cc33);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#339933', endColorstr='#66cc33'); }
+
+.bookings-table > thead th {
+  text-align: center; }
+.bookings-table > tbody > tr {
+  background: none;
+  font-weight: bold;
+  cursor: pointer; }
+  .bookings-table > tbody > tr > td.center {
+    text-align: center; }
+  .bookings-table > tbody > tr:hover {
+    background: #eee; }
+  .bookings-table > tbody > tr.accepted, .bookings-table > tbody > tr.paid, .bookings-table > tbody > tr.paid.accepted {
+    font-weight: normal; }
+  .bookings-table > tbody > tr.accepted {
+    background: #cef; }
+    .bookings-table > tbody > tr.accepted:hover {
+      background: #9cf; }
+  .bookings-table > tbody > tr.paid {
+    background: #cfc; }
+    .bookings-table > tbody > tr.paid:hover {
+      background: #9c6; }
+  .bookings-table > tbody > tr.paid.accepted {
+    background: none; }
+    .bookings-table > tbody > tr.paid.accepted:hover {
+      background: #eee; }
+  .bookings-table > tbody > tr.bookingDetails {
+    cursor: default;
+    font-weight: normal; }
+.bookings-table .bookingDetails {
+  display: none; }
+  .bookings-table .bookingDetails .name {
+    margin-top: 0; }
+  .bookings-table .bookingDetails, .bookings-table .bookingDetails:hover {
+    background: #efefff;
+    cursor: normal; }
+  .bookings-table .bookingDetails .leftside, .bookings-table .bookingDetails .rightside {
+    width: 48%; }
+  .bookings-table .bookingDetails .rightside {
+    float: right; }
+  .bookings-table .bookingDetails .date {
+    float: right;
+    font-size: 1em;
+    color: #999; }
+  .bookings-table .bookingDetails .table td, .bookings-table .bookingDetails .table th {
+    text-align: center; }
+  .bookings-table .bookingDetails .table .status td {
+    background: #d33;
+    color: #fff; }
+  .bookings-table .bookingDetails .table .status .accepted {
+    background: #39f; }
+  .bookings-table .bookingDetails .table .status .paid {
+    background: #6a3; }
+  .bookings-table .bookingDetails .actions {
+    margin: 10px;
+    float: right;
+    clear: both; }
+  .bookings-table .bookingDetails #deleteBooking {
+    float: right;
+    cursor: pointer;
+    padding-left: 1em;
+    padding-right: 1em; }
+  .bookings-table .bookingDetails .contact {
+    padding: .5em; }
+    .bookings-table .bookingDetails .contact .icon-signal {
+      margin-left: 2em; }
+  .bookings-table .bookingDetails .leftside {
+    float: left; }
+
+.modal.big-modal {
+  width: 80%;
+  height: 80%;
+  margin: -20% 0 0 -40%;
+  overflow: hidden; }
+  .modal.big-modal > .modal-header {
+    height: 28px;
+    overflow-y: hidden; }
+    .modal.big-modal > .modal-header h3, .modal.big-modal > .modal-header ul {
+      float: left; }
+    .modal.big-modal > .modal-header ul {
+      margin-left: 2em; }
+  .modal.big-modal > .modal-body {
+    max-height: none;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: auto; }
+    .modal.big-modal > .modal-body > *:first-child {
+      margin-top: 15px; }
+    .modal.big-modal > .modal-body > *:last-child {
+      margin-bottom: 15px; }
+  .modal.big-modal > .modal-footer {
+    height: 32px;
+    position: static;
+    bottom: 0; }
+  .modal.big-modal textarea {
+    width: 80%;
+    height: 250px; }

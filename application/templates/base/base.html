@@ -5,22 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <title>{% block title%}{% endblock %}{{ __('Ferdinand Motel') }}</title>
-    {% if js_data.is_admin %}
-        <link href="/static/lib/wysihtml5/css/bootstrap-wysihtml5.css" rel="stylesheet" />
-    {% endif %}
-    <link href="/static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <!-- Bootstrap -->
-    <link href="/static/lib/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
     
     {% if is_admin %}
-        <link href="/static/css/admin/main.css" rel="stylesheet" />
+        <link href="/static/css/admin_main.css" rel="stylesheet" />
     {% else %}
         <link href="/static/css/main.css" rel="stylesheet" />
     {% endif %}
     <link rel="shortcut icon" href="/static/img/favicon.ico" />
     <script type="text/javascript">
         var PRODUCTION = true;
-        var PRODUCTION = false;
+        // var PRODUCTION = false;
         var require = {
             waitSeconds: 60,
             baseUrl: '/static/js/',

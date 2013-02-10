@@ -5,6 +5,9 @@ $contentPadding: 1em;
 
 $contentMargin: 4%;
 
+@import "../lib/bootstrap/css/bootstrap.min";
+@import "../lib/bootstrap/css/bootstrap-responsive.min";
+@import "../lib/bootstrap-datepicker/datepicker";
 
 @import "base";
 
