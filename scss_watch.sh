@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sass --watch application/static/scss:application/static/css
+sass --watch application/static/scss:application/static/css --style compressed
