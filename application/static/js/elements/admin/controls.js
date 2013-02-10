@@ -13,7 +13,7 @@ function(i18n, confirmation){
                     'data': '_method=DELETE',
                     'success': function(){
                         alert('Deleted');
-                        deleteCallback && deleteCallback(entityId);
+                        deleteCallback && deleteCallback();
                     }
                 });
             });
@@ -23,7 +23,9 @@ function(i18n, confirmation){
     var initDelete = function($controls, entityURL, deleteCallback){
         $('span.delete', $controls).click(function(){
             var entityId = $(this).data('entity').id;
-            getDeleteHandler('admin/'+entityURL+'/'+entityId, deleteCallback)(); 
+            getDeleteHandler('admin/'+entityURL+'/'+entityId, function(){
+                deleteCallback && deleteCallback(entityId);
+            })(); 
         });
     };
     

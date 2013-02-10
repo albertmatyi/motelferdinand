@@ -71,7 +71,8 @@ function(i18n, adminControls, directive, transparency, progress, common, view, b
         }
         var $addBookableButton = $('.page-header .admin-controls .addBookableButton', $context);
 
-        $addBookableButton.click(function(){
+        $addBookableButton.click(function(e){
+            e.preventDefault();
             //populate the form with data
             i18n.populateForm($('form', $formModal), {category: $(this).data('entity').id});
             //show the edit bookable form

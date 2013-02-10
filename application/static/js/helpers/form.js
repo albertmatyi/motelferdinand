@@ -31,7 +31,7 @@ define(
                 var arr = $form.serializeArray();
                 for (var i = arr.length - 1; i >= 0; i--) {
                     var el = arr[i];
-                    if(entity[el['name']]){
+                    if((typeof(entity.id) === 'undefined' && el['name'] != 'id') || entity[el['name']]){
                         entity[el['name']] = el['value'];
                     }
                 }

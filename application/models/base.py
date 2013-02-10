@@ -60,8 +60,9 @@ class AbstractModel(db.Model):
         for key in self.properties():
             if key in dictionary:
                 if isinstance(getattr(self.__class__, key), db.ReferenceProperty):
-                    if update_refs:
-                        getattr(self, key).populate(val)
+                    if update_refs and False:
+                        getattr(self, key).populate(dictionary[key])
+                    self.populate_field(dictionary, key)
                 else:
                     self.populate_field(dictionary, key)
                 pass

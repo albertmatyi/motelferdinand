@@ -53,7 +53,8 @@ function(i18n, adminControls, transparency, common, directive){
         }
         var $addContentButton = $('.page-header .admin-controls .addContentButton', $context);
 
-        $addContentButton.click(function(){
+        $addContentButton.click(function(e){
+            e.preventDefault();
             //populate the form with data
             i18n.populateForm($('form', $formModal), {category: $(this).data('entity').id});
             //show the edit content form
