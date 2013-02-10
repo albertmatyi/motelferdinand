@@ -103,20 +103,24 @@ html, body, #maincontent, #body_content, .categories, .category {
     color: #efefef; }
     .category .category-info .category-title, .category .category-info .category-description {
       padding: 0 1em; }
-    .category .category-info .category-title {
-      font-family: LifeSavers-Regular;
-      padding-bottom: 0;
-      padding-top: 5em; }
     .category .category-info .page-header {
-      border-bottom: 1px dashed rgba(0, 0, 0, 0.4); }
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.4);
+      padding-top: 5em; }
+      .category .category-info .page-header .category-title {
+        font-family: LifeSavers-Regular;
+        padding-bottom: 0; }
   .category .info-container {
     height: 100%; }
   .category .picaslide {
     margin-left: -1em;
     margin-right: -1em; }
   .category .admin-controls > div {
-    position: relative;
-    top: -36px; }
+    float: left;
+    clear: left;
+    margin-left: 3px;
+    margin-top: 3px; }
+    .category .admin-controls > div > a {
+      width: 29px; }
 
 .content {
   border-radius: 5px;

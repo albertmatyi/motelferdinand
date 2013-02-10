@@ -10,9 +10,10 @@ define(
 				var eh = $el.height();
 				var marg = -eh / 2 ;
 				$el.css('margin-top', marg+'px');
-				var hh = $('.modal-header', $el).outerHeight();
-				var fh = $('.modal-footer', $el).outerHeight();
-				$('.modal-body', $el).height(eh-(hh+fh)-SAFE_SIDE);
+				var hh = $('> .modal-header', $el).outerHeight(true);
+				var fh = $('> .modal-footer', $el).outerHeight(true);
+				console.log($el.attr('id') + eh + '-' + hh + '-' + fh  + '='+(eh-(hh+fh)));
+				$('> .modal-body', $el).height(eh-(hh+fh)-SAFE_SIDE);
 			});
 		}
 	};

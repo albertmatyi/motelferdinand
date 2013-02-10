@@ -1,0 +1,42 @@
+$modalHeaderHeight: 28px;
+$modalFooterHeight: 32px;
+
+.modal.big-modal {
+	width: 80%;
+	height: 80%;
+	margin: -20% 0 0 -40%;
+	overflow: hidden;
+
+	& > .modal-header{
+		height: $modalHeaderHeight;
+		overflow-y: hidden;
+		h3,ul{
+			float: left;
+		}
+		ul{
+			margin-left: 2em;
+		}
+	}
+	& > .modal-body{
+		max-height: none;
+		padding-top: 0;
+		padding-bottom: 0;
+		overflow: auto;
+		& > *:first-child{
+			margin-top: 15px;
+		}
+		& > *:last-child{
+			margin-bottom: 15px;
+		}
+	}
+	& > .modal-footer{
+		height: $modalFooterHeight;
+		position: static;
+		bottom: 0;
+	}
+	
+	textarea {
+		width: 80%;
+		height: 250px;
+	}
+}

@@ -26,14 +26,13 @@ html, body, #maincontent, #body_content, .categories, .category {
 			@include tile-content;
 		}
 		
-		.category-title{
-			font-family: LifeSavers-Regular;
-			padding-bottom: 0;
-			padding-top: 5em;
-		}
-		
 		.page-header{
 			border-bottom: $ci-border;
+			padding-top: 5em;
+			.category-title{
+				font-family: LifeSavers-Regular;
+				padding-bottom: 0;
+			}
 		}
 		
 		.category-description{
@@ -51,9 +50,14 @@ html, body, #maincontent, #body_content, .categories, .category {
 	}
 
 	.admin-controls{
-		&> div {
-			position: relative;
-			top: -36px;
+		& > div {
+			float: left;
+			clear: left;
+			margin-left: $adminControlsMarginL;
+			margin-top: $adminControlsMarginL;
+			& > a {
+				width: 29px;
+			}
 		}
 	}
 }

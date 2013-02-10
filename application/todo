@@ -29,7 +29,8 @@ X		js 1h
 		design 4h
 X			datepicker on chrome - CRITICAL, cannot book
 X			modal issues / scrollbars
-			booking button off panel after finish
+X			booking button off panel after finish
+X			edit buttons (chrome)
 			pos: fixed cat descr
 			room booking validation
 		email 1h

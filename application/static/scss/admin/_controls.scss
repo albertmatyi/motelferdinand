@@ -6,15 +6,16 @@
 }
 
 .admin-controls{
+	margin-top: 1em;
 	float: right;
 	&>span {
 		background: #999;
 		@include gradient(#666, #999);
 		border-radius: 3px;
-		padding: 2px 3px;
-		position: relative;
-		top: -40px;
+		padding: 0px 3px;
+		float: left;
 		cursor: pointer;
+		margin-left: $adminControlsMarginL;
 	}
 	.edit:hover{
 		background: #58d;
