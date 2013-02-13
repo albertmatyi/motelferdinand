@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# For SCSS compilation (get Ruby and its package manager)
+
+# Install ruby 
+sudo apt-get install ruby-full build-essential rubygems
+
+# Install sass
+sudo gem install sass
+
+# For require.js compilation (get nodeJS and its package manager)
+
+sudo apt-get install npm
+
+sudo npm install requirejs
+
+sudo mv ./node_modules /usr/local/lib
