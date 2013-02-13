@@ -1,5 +1,7 @@
 define(
-[], 
+[
+	'lib/jquery'
+], 
 function(){
 	var EntityMap = function(){
 		var map = {};
@@ -12,7 +14,7 @@ function(){
 		return c0.order - c1.order;
 	});
 	// sort contents by their order
-	model.categories.map(function(c) {
+	jQuery.map(model.categories,function(c) {
 		c.contents.sort(function(c0, c1) {
 			return c0.order - c1.order;
 		});
