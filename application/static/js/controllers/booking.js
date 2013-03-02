@@ -80,17 +80,25 @@ define(
 					type: 'POST',
 					url: '/bookings/',
 					data: data,
-					success: function(){
+					dataType: 'json',
+					success: function(data){
 						// show success message
 						var $controlContainer = $form.parent();
-						$controlContainer.prepend('<div class="clearfix alert alert-success">'
+						var message = '<div class="clearfix alert alert-'+(data.success === true ? 'success':'error')+'">'
 						        +'<button type="button" class="close" data-dismiss="alert">×</button>'
-						        	+ i18n.translate('Booking successfully saved! Stand by for a confirmation email.')
-						        +'</div>')
+						        	+ data.message
+						        +'</div>';
+						if(data.success === true){
+							$controlContainer.prepend(message);
+						}else{
+							$submitBookingButton.before(message);
+						}
 						// on response hide the form
-						$form.appendTo($('body'));
-						// show the original button
-						$('.showBookingFormButton', $controlContainer).show().text('Book again');
+						if(data.success){
+							$form.appendTo($('body'));
+							// show the original button
+							$('.showBookingFormButton', $controlContainer).show().text('Book again');
+						}
 					}					
 				});
 			}

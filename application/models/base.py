@@ -80,5 +80,6 @@ class AbstractModel(db.Model):
             val = attr_type(val) if len(val) > 0 else 0
         elif attr_type is bool:
             val = val == "True"
+        # pdb.set_trace()
         setattr(self, key, val)
     

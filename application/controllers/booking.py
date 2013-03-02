@@ -19,22 +19,57 @@ from application.decorators import admin_required
 from flask.templating import render_template, render_template_string
 import json
 import pdb
+import re
+import logging
 
 BookingForm = model_form(BookingModel, wtf.Form)
 APP_MAIL_SENDER = 'albertmatyi@gmail.com'
 APP_ADMIN_MAILS = 'Owner <zozipus@yahoo.com>, Developer <albertmatyi@gmail.com>'
 
 @app.route("/bookings/", methods=["POST"])
-def bookings_new():    
-    booking = save_booking()
+def bookings_new():
+    try:
+        booking = save_booking()
+    except ValidationException as e:
+        logging.warn(e);
+        return '{ "message" : "'+ si18n.translate(e.message) +'" }'
 
     send_new_booking_mail(BookingModel.get_by_id(booking.key().id()))
-    return '{ "hello": "world" }'
+    return '{ "message": "Booking successfully saved! Stand by for a confirmation email." , "success" : true }'
     pass
 
-@db.transactional(xg=True)
+def transform(form):
+    for i in form['bookingEntries']:
+        to_date = lambda sstr: datetime.strptime(sstr, '%d-%m-%Y').date()
+        form['bookingEntries'][i]['quantity'] = int (form['bookingEntries'][i]['quantity'] ) 
+        form['bookingEntries'][i]['book_from'] = to_date(form['bookingEntries'][i]['book_from'])
+        form['bookingEntries'][i]['book_until'] = to_date(form['bookingEntries'][i]['book_until'])
+    pass
+
+def validate(form):
+    valid = re.search('[\w -]{3,}', form['user']['full_name']) is not None
+    valid &= re.search('[\w\.\-_]{1,}@([\w\-_]+.){1,}\w{3,5}', form['user']['email']) is not None
+    valid &= re.search('[\d+\s\-]{5,}', form['user']['phone']) is not None
+    valid &= len(form['bookingEntries']) > 0
+    for i in form['bookingEntries']:
+        tday = form['bookingEntries'][i]['book_from'].today()
+        valid &= form['bookingEntries'][i]['book_from'] < form['bookingEntries'][i]['book_until']
+        valid &= tday <= form['bookingEntries'][i]['book_from'] 
+        pass
+
+    if not valid:
+        raise ValidationException(si18n.translate('Invalid data'));
+    pass
+
+class ValidationException(Exception) :
+    pass
+
 def save_booking():
     form=helpers.dictify_keys(request.form)
+    
+    transform(form)
+    validate(form)
+
     usr = get_or_create_user(form['user'])
 
     booking = BookingModel()
@@ -43,9 +78,9 @@ def save_booking():
     
     for i in form['bookingEntries']:
         bookable = BookableModel.get_by_id( long ( form['bookingEntries'][i]['bookable_id'] ) )
-        quant = int ( form['bookingEntries'][i]['quantity'] ) 
-        book_from = datetime.strptime(form['bookingEntries'][i]['book_from'], '%d-%m-%Y').date()
-        book_until = datetime.strptime(form['bookingEntries'][i]['book_until'], '%d-%m-%Y').date()
+        quant = form['bookingEntries'][i]['quantity'] 
+        book_from = form['bookingEntries'][i]['book_from']
+        book_until = form['bookingEntries'][i]['book_until']
         
         be = BookingEntryModel(bookable = bookable, booking = booking, quantity = quant
             , book_from = book_from, book_until = book_until)
@@ -101,7 +136,7 @@ def update_booking():
     obj = json.loads(request.form['data'])
     booking = BookingModel.get_by_id(long(obj['id']))
     accepted0 = booking.accepted
-
+    del obj['user']
     booking.populate(obj).put()
     if accepted0 is False and booking.accepted is True:
         send_booking_accepted_mail(booking)
