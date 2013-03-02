@@ -28,11 +28,7 @@ APP_ADMIN_MAILS = 'Owner <zozipus@yahoo.com>, Developer <albertmatyi@gmail.com>'
 
 @app.route("/bookings/", methods=["POST"])
 def bookings_new():
-    try:
-        booking = save_booking()
-    except ValidationException as e:
-        logging.warn(e);
-        return '{ "message" : "'+ si18n.translate(e.message) +'" }'
+    booking = save_booking()
 
     send_new_booking_mail(BookingModel.get_by_id(booking.key().id()))
     return '{ "message": "Booking successfully saved! Stand by for a confirmation email." , "success" : true }'
@@ -58,7 +54,7 @@ def validate(form):
         pass
 
     if not valid:
-        raise ValidationException(si18n.translate('Invalid data'));
+        raise ValidationException('Invalid data');
     pass
 
 class ValidationException(Exception) :
@@ -126,7 +122,7 @@ def booking_mail(entityId):
 def admin_delete_booking(entityId):
     if request.method == 'DELETE' or request.values['_method'] == 'DELETE':
         BookingModel.get_by_id(entityId).delete()
-        return "{ 'value' : 'OK' }"
+        return '{ "message" : "'+si18n.translate('Successfully deleted')+'" }'
     pass
 
 @app.route("/admin/bookings/", methods=["POST"])
@@ -141,7 +137,8 @@ def update_booking():
     if accepted0 is False and booking.accepted is True:
         send_booking_accepted_mail(booking)
 
-    return '{ "modified" : "'+booking.to_dict()['modified']+'"}'
+    return '{ "modified" : "'+booking.to_dict()['modified']+'", "message" : "' + \
+        si18n.translate('Modified successfully') +'"}'
     pass
 
 def send_booking_accepted_mail(booking):

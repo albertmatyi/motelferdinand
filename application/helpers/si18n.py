@@ -51,6 +51,9 @@ translations = {
 		'Please confirm your action.' : u'Please confirm your action.',
 		'Are you sure?' : u'Are you sure?',
 		'OK' : u'OK',
+		'Invalid data': u'Invalid data',
+		'Modified successfully': u'Modified successfully',
+		'Successfully deleted': u'Successfully deleted',
 
 		# Admin
 		'Guestbook entries': u'Guestbook entries',
@@ -101,7 +104,6 @@ translations = {
 		'Mark as paid': u'Mark as paid',
 		'Contact': u'Contact',
 
-
 		#Forms
 		'Save': u'Save',
 		'Edit category': u'Edit category',
@@ -125,6 +127,9 @@ translations = {
 		'Please confirm your action.' : u'Kérem igazolja választását.',
 		'Are you sure?' : u'Biztos benne?',
 		'OK' : u'OK',
+		'Invalid data': u'Helytelen adatok',
+		'Modified successfully': u'Módosítás sikeres',
+		'Successfully deleted': u'Törlés sikeres',
 
 		# Admin
 		'Guestbook entries': u'Bejegyzések',
@@ -199,6 +204,9 @@ translations = {
 		'Please confirm your action.' : u'Vă rog să confirmați acțiunea',
 		'Are you sure?' : u'Sunteți sigur?',
 		'OK' : u'OK',
+		'Invalid data': u'Date greșite',
+		'Modified successfully': u'Modificat cu succes',
+		'Successfully deleted': u'Șters cu succes',
 
 		# Admin
 		'Guestbook entries': u'Mesaje clienți',

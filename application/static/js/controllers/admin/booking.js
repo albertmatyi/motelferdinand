@@ -6,16 +6,26 @@ define(
 	'helpers/i18n',
 	'helpers/transparency',
 	'elements/confirmation',
-	'elements/admin/controls'
+	'elements/admin/controls',
+	'helpers/alert'
 ],
-function(transp, bookingsDirective, bookingDetailsDirective, i18n, transparency, confirmation, adminControls){
+function(transp, bookingsDirective, bookingDetailsDirective, i18n, transparency, confirmation, adminControls, alert){
 	var $bookingsModal = $('#adminBookingsModal');
+	var $modalHeader = $('.modal-header', $bookingsModal);
 	var $bookingDetails = $('.bookingDetails', $bookingsModal);
 	var $bookingsButton = $('#adminBookingsButton');
 	var $table = $('.bookings-table > tbody', $bookingsModal);
 	var $ftr = $('.bookings-table > tfoot', $bookingsModal)
 	var buttonsInitialized = false;
 	var panelRendered = false;
+
+	var displayAlert = function(str, type){
+		var $alert = alert.alert(str, type);
+		$modalHeader.append($alert);
+		setTimeout(function(){
+			$alert.remove();
+		}, 5000);
+	};
 
 
 	var render = function(force){
@@ -47,19 +57,19 @@ function(transp, bookingsDirective, bookingDetailsDirective, i18n, transparency,
 	var updateBooking = function(booking, successFunction, errorFunction){
 		$.ajax({ 
 		    url : 'admin/bookings/',
-		    success : function (result){
-		        booking.modified = result.modified;
+		    success : function (data){
+		        booking.modified = data.modified;
 		        if(successFunction){
-		            successFunction();
+		            successFunction(data);
 		        }else{
-		            alert(result);
+		            displayAlert(data.message, 'success');
 		        }
 		    },
 		    'error' : function(data){
 		    	if(errorFunction){
 		    		errorFunction(data);
 		    	}else{
-		    		alert(data);
+		    		displayAlert(JSON.parse(data.responseText).message, 'error');
 		    	}
 		    },
 		    type : 'POST',
@@ -78,14 +88,15 @@ function(transp, bookingsDirective, bookingDetailsDirective, i18n, transparency,
 					var bk = model.db.booking[$bookingDetails.data('bookingId')];
 					var oldVal =  bk.accepted;
 					bk.accepted = "True";
-					updateBooking(bk, function(){
+					updateBooking(bk, function(data){
+						displayAlert(data.message, 'success');
 						var $row = $('#Booking'+bk.id);
 						$row = transparency.render($row, bk, bookingsDirective);
 						$bookingDetails.before($row);
 						$bookingDetails.render(bk, bookingDetailsDirective);
 						renderBadge();
 					}, function(data){
-						alert('ERROR: '+data);
+						displayAlert(JSON.parse(data.responseText).message, 'error');
 						bk.accepted = oldVal;
 					});
 				}
@@ -94,14 +105,15 @@ function(transp, bookingsDirective, bookingDetailsDirective, i18n, transparency,
 				var bk = model.db.booking[$bookingDetails.data('bookingId')];
 				var oldVal = bk.paid;
 				bk.paid = bk.paid === "True" ? "False":"True";
-				updateBooking(bk, function(){
+				updateBooking(bk, function(data){
+					displayAlert(data.message, 'success');
 					var $row = $('#Booking'+bk.id);
 					$row = transparency.render($row, bk, bookingsDirective);
 					$bookingDetails.before($row);
 					$bookingDetails.render(bk, bookingDetailsDirective);
 					renderBadge();
 				}, function(data){
-					alert('ERROR: '+data);
+					displayAlert(JSON.parse(data.responseText).message, 'error');
 					bk.accepted = oldVal;
 				});
 			});
@@ -116,8 +128,9 @@ function(transp, bookingsDirective, bookingDetailsDirective, i18n, transparency,
 	                    'type': 'POST',
 	                    'url': '/admin/bookings/'+bookingId,
 	                    'data': '_method=DELETE',
-	                    'success': function(){
-	                        alert('Deleted');
+	                    'dataType': 'json',
+	                    'success': function(data){
+	                        displayAlert(data.message, 'success');
 	                        delete model.db.booking[bookingId];
 							$bookingDetails.data('bookingId', -1);
 							hideDetails();
@@ -125,7 +138,7 @@ function(transp, bookingsDirective, bookingDetailsDirective, i18n, transparency,
 							renderBadge();
 	                    },
 	                    'error' : function(data){
-	                    	alert('ERROR: '+data);
+	                    	displayAlert(JSON.parse(data.responseText).message, 'error');
 	                    }
 	                });
 				}

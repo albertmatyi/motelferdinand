@@ -2,9 +2,10 @@ define(
 	[
 		'helpers/i18n',
 		'helpers/tooltip',
-		'controllers/booking_entry'
+		'controllers/booking_entry',
+		'helpers/alert'
 	],
-	function(i18n, tooltip, bookingEntry){
+	function(i18n, tooltip, bookingEntry, alert){
 		
 		/**
 		 * The jQuery ref to the form to be handled
@@ -65,6 +66,8 @@ define(
 		 * Do a validation before submitting. If all ok. Submit the form.
 		 */
 		$submitBookingButton.click(function(){
+			var $controlContainer = $form.parent();
+			$('.alert-error, .alert-success', $controlContainer).remove();
 			// do validation
 			// if validation fails, show message
 			try{
@@ -83,23 +86,19 @@ define(
 					dataType: 'json',
 					success: function(data){
 						// show success message
-						var $controlContainer = $form.parent();
-						var message = '<div class="clearfix alert alert-'+(data.success === true ? 'success':'error')+'">'
-						        +'<button type="button" class="close" data-dismiss="alert">×</button>'
-						        	+ data.message
-						        +'</div>';
-						if(data.success === true){
-							$controlContainer.prepend(message);
-						}else{
-							$submitBookingButton.before(message);
-						}
+						var message = alert.alert(data.message, 'success');
+						$controlContainer.prepend(message);
 						// on response hide the form
 						if(data.success){
 							$form.appendTo($('body'));
 							// show the original button
 							$('.showBookingFormButton', $controlContainer).show().text('Book again');
 						}
-					}					
+					},
+					error: function(data){
+						var message = alert.alert(JSON.parse(data.responseText).message, 'error');
+						$submitBookingButton.before(message);
+					}
 				});
 			}
 			// block the default behavior

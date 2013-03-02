@@ -6,6 +6,7 @@ from application.controllers import helpers
 from werkzeug.utils import redirect
 from flask.helpers import url_for
 from flaskext import wtf
+from flask import Response
 from flask.templating import render_template
 from flask.globals import request
 from application.helpers import si18n 
@@ -14,6 +15,16 @@ import os
 import pdb
 
 CategoryForm = model_form(CategoryModel, wtf.Form)
+
+@app.errorhandler(500)
+def page_not_found(error):
+    # if request.is_xhr():
+    data = '{ "message" : "'+ si18n.translate(str(error.message)) +'"}'
+    resp = Response(status=500)
+    resp.mimetype='application/json'
+    resp.data = data
+    return resp
+    # return '{ "message" : "'+ si18n.translate(str(error.message)) +'"}', 500
 
 @app.route("/", methods=["GET"])
 def home():

@@ -34,8 +34,11 @@ X			edit buttons (chrome)
 X			pos: fixed cat descr
 130302
 X			room booking validation
-			server side validation
-			display returned message
+X			server side validation
+X			display returned message
+			notifications
+X				booking admin & client
+				admin forms
 		email 1h
 			only partial booking info is present in new booking mails 
 		error handling (display something)

@@ -16,6 +16,10 @@ $modalFooterHeight: 32px;
 		ul{
 			margin-left: 2em;
 		}
+		.alert{
+			float: left;
+			margin-left: 3em;
+		}
 	}
 	& > .modal-body{
 		max-height: none;
