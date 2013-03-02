@@ -10,6 +10,7 @@ from flask.templating import render_template
 from flask.globals import request
 from application.helpers import si18n 
 from google.appengine.api import users
+import os
 import pdb
 
 CategoryForm = model_form(CategoryModel, wtf.Form)
@@ -32,8 +33,9 @@ def home():
                                         'bookings' : bookings,
                                         'si18n': si18n.translations_js,
                                         'is_admin' : is_admin
-                            }, is_admin = is_admin,
-                            logout_url = users.create_logout_url("/"))
+                            }, is_admin = is_admin
+                            , is_production = os.environ['CURRENT_VERSION_ID'].split('.').pop() is not '1'
+                            , logout_url = users.create_logout_url("/"))
     pass
 
 @app.route("/admin/")

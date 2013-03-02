@@ -32,14 +32,17 @@ X			modal issues / scrollbars
 X			booking button off panel after finish
 X			edit buttons (chrome)
 X			pos: fixed cat descr
-			room booking validation
-			tests
+130302
+X			room booking validation
+			server side validation
+			display returned message
 		email 1h
 			only partial booking info is present in new booking mails 
 		error handling (display something)
 			design
 			server side
 			clientside
+		tests
 
 LAUNCH
 

@@ -88,6 +88,7 @@ translations = {
 		'Specify a valid full name': u'Specify a valid full name',
 		'Invalid data! See fields above.': u'Invalid data! See fields above.',
 		'Specify a valid phone number': u'Specify a valid phone number',
+		'Specify a valid date (dd-mm-yyyy)': u'Sepcify a valid date (dd-mm-yyyy)',
 
 		#Admin booking
 		'Accepted': u'Accepted',
@@ -162,6 +163,7 @@ translations = {
 		'Specify a valid full name': u'Kérem teljes és helyes nevet megadni.',
 		'Invalid data! See fields above.': u'Helytelen adatok. Kérem javítsa ki az űrlapot.',
 		'Specify a valid phone number': u'A megadott telefonszám helytelen.',
+		'Specify a valid date (dd-mm-yyyy)': u'Helytelen dátum. (nn-hh-éééé)',
 
 		#Admin booking
 		'Accepted': u'Elfogadva',
@@ -173,7 +175,6 @@ translations = {
 		'Mark as accepted': u'Elfogad',
 		'Mark as paid': u'Kifizetve',
 		'Contact': u'Kapcsolat',
-
 
 		#Forms
 		'Save': u'Mentés',
@@ -235,6 +236,7 @@ translations = {
 		'Specify a valid full name': u'Introduceți un nume complet și valid.',
 		'Invalid data! See fields above.': u'Date invalide! Vă rugăm verificați câmpurile.',
 		'Specify a valid phone number': u'Numărul specificat este invalid.',
+		'Specify a valid date (dd-mm-yyyy)': u'Dată greșită (zz-ll-aaaa)',
 
 		#Admin booking
 		'Accepted': u'Acceptat',

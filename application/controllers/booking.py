@@ -25,7 +25,15 @@ APP_MAIL_SENDER = 'albertmatyi@gmail.com'
 APP_ADMIN_MAILS = 'Owner <zozipus@yahoo.com>, Developer <albertmatyi@gmail.com>'
 
 @app.route("/bookings/", methods=["POST"])
-def bookings_new():
+def bookings_new():    
+    booking = save_booking()
+
+    send_new_booking_mail(BookingModel.get_by_id(booking.key().id()))
+    return '{ "hello": "world" }'
+    pass
+
+@db.transactional(xg=True)
+def save_booking():
     form=helpers.dictify_keys(request.form)
     usr = get_or_create_user(form['user'])
 
@@ -43,8 +51,7 @@ def bookings_new():
             , book_from = book_from, book_until = book_until)
         be.put()
         pass
-    send_new_booking_mail(BookingModel.get_by_id(booking.key().id()))
-    return '{ "hello": "world" }';
+    return booking 
     pass
 
 def send_new_booking_mail(booking):

@@ -1,8 +1,11 @@
 define(
 	[
-		"helpers/i18n"
+		'helpers/i18n',
+		'helpers/tooltip',
+		'controllers/booking_entry'
 	],
-	function(i18n){
+	function(i18n, tooltip, bookingEntry){
+		
 		/**
 		 * The jQuery ref to the form to be handled
 		 */
@@ -11,79 +14,7 @@ define(
 		 * The tbody that contains selected rooms
 		 */
 		var $bookedRooms = $('tbody', $form);
-		/**
-		 * The modal through which we can add rooms to the 
-		 * booking
-		 */
-		var $addRoomModal = $('#bookingAddRoomModal');
-		/**
-		 * The select element using which we can select a room
-		 */
-		var $roomSelect = $('#addRoomBookable', $addRoomModal);
-		/**
-		 * The select element containing options for quantity
-		 */
-		var $quantitySelect = $('#addRoomQuantity', $addRoomModal);
-		/**
-		 * Input that contains the arrival date
-		 */
-		var $bookFrom = $('#addRoomFrom', $addRoomModal);
-		/**
-		 * Input containing the departure date 
-		 */
-		var $bookUntil = $('#addRoomUntil', $addRoomModal);
-		/**
-		 * The method to be ran when changing a room.
-		 * Should update the selectable quantity dropdown
-		 */
-		$roomSelect.change(function(){
-			var qty = $('option:selected', $roomSelect).data().quantity;
-			$quantitySelect.html('');
-			for (var j = 1; j <= qty; j++) {
-				$quantitySelect.append('<option value="'+j+'">'+j+'</option>');
-			};
-		});
 
-		/**
-		 * When we click the addRoomButton, the data from the form should be collected and 
-		 * added to the bookedRooms
-		 */
-		$('#addRoomButton', $addRoomModal).click(function(){
-			var idx = ($bookedRooms.children().length);
-			$bookedRooms.append('<tr id="BookingEntry'+idx+'">'
-				+ '<td>' + (idx+1)+  '</td>'
-				+ '<td> <input type="hidden" '
-			            + 'name="bookingEntries.'+idx+'.bookable_id" '
-			            + 'value="'+$roomSelect.val()+'" />' 
-				    + $('option:selected', $roomSelect).text() 
-			 	+  '</td>'
-				+ '<td> <input type="hidden" '
-			            + 'name="bookingEntries.'+idx+'.quantity" '
-			            + 'value="'+$quantitySelect.val()+'" />' 
-				    + $quantitySelect.val() 
-			 	+  '</td>'
-			 	+ '<td> <input type="hidden" '
-			            + 'name="bookingEntries.'+idx+'.book_from" '
-			            + 'value="'+$bookFrom.val()+'" />' 
-				    + $bookFrom.val()
-			 	+  '</td>'
-			 	+ '<td> <input type="hidden" '
-			            + 'name="bookingEntries.'+idx+'.book_until" '
-						+ 'value="'+$bookUntil.val()+'" />' 
-				    + $bookUntil.val()
-			 	+  '</td>'
-			 	+ '<td> <a href="#" class="btn btn-danger" id="removeBooking'+idx+'Button" title="Remove entry">'
-			 		+ '<i class="icon-remove icon-white"></i>'
-			 	+ '</a></td>'
-				+ '</tr>');
-			/**
-			 * Upon clicking the remove button remove the row from the bookedRooms table
-			 */
-			$('#removeBooking'+idx+'Button', $bookedRooms).click(function(){
-				$('#BookingEntry'+idx, $bookedRooms).remove();
-				return false;
-			});
-		});
 		/**
 		 * The input for the username
 		 */
@@ -106,35 +37,28 @@ define(
 		var $bookingsTableControls = $('.tableAddControl', $form);
 
 		/**
-		 * Shows or hides a tooltip on the given element
-		 */
-		function setTooltip($item, show){
-			show && $item.tooltip({'trigger':'manual'});
-			$item.tooltip(show ? 'show':'destroy');
-		}
-		/**
 		 * Does validations, and shows validation messages
 		 * @return True if all is ok. False otherwise
 		 */
 		function validate(){
 			var allOk = true;
 			var ok = $userFullName.val().match(/[\w -]{3,}/) != null;
-			setTooltip($userFullName, !ok);
+			tooltip.set($userFullName, !ok);
 			allOk &= ok;
 			
 			ok = $userEmail.val().match(/[\w\.\-_]{1,}@([\w\-_]+.){1,}\w{3,5}/) != null;
-			setTooltip($userEmail, !ok)
+			tooltip.set($userEmail, !ok)
 			allOk &= ok;
 
 			ok = $userPhone.val().match(/[\d+\s\-]{5,}/) != null;
-			setTooltip($userPhone, !ok)
+			tooltip.set($userPhone, !ok)
 			allOk &= ok;			
 			
 			ok = $bookedRooms.children().length > 0;
-			setTooltip($bookingsTableControls, !ok);
+			tooltip.set($bookingsTableControls, !ok);
 			allOk &= ok;
 
-			setTooltip($submitBookingButton, !allOk);
+			tooltip.set($submitBookingButton, !allOk);
 			return allOk;
 		}
 		/**
@@ -174,6 +98,44 @@ define(
 			return false;
 		});
 
+		var entryAdded = function(entry){
+			var idx = ($bookedRooms.children().length);
+			$bookedRooms.append('<tr id="BookingEntry'+idx+'">'
+				+ '<td>' + (idx+1)+  '</td>'
+				+ '<td> <input type="hidden" '
+			            + 'name="bookingEntries.'+idx+'.bookable_id" '
+			            + 'value="'+entry.id+'" />' 
+				    + entry.title
+			 	+  '</td>'
+				+ '<td> <input type="hidden" '
+			            + 'name="bookingEntries.'+idx+'.quantity" '
+			            + 'value="'+entry.quantity+'" />' 
+
+				    + entry.quantity
+			 	+  '</td>'
+			 	+ '<td> <input type="hidden" '
+			            + 'name="bookingEntries.'+idx+'.book_from" '
+			            + 'value="'+entry.from+'" />' 
+				    + entry.from
+			 	+  '</td>'
+			 	+ '<td> <input type="hidden" '
+			            + 'name="bookingEntries.'+idx+'.book_until" '
+						+ 'value="'+entry.until+'" />' 
+				    + entry.until
+			 	+  '</td>'
+			 	+ '<td> <a href="#" class="btn btn-danger" id="removeBooking'+idx+'Button" title="Remove entry">'
+			 		+ '<i class="icon-remove icon-white"></i>'
+			 	+ '</a></td>'
+				+ '</tr>');
+			/**
+			 * Upon clicking the remove button remove the row from the bookedRooms table
+			 */
+			$('#removeBooking'+idx+'Button', $bookedRooms).click(function(){
+				$('#BookingEntry'+idx, $bookedRooms).remove();
+				return false;
+			});
+		};
+
 		/**
 		 * The exposed public method, that adds the booking form to the booking section of the Category
 		 * identified by the id
@@ -184,19 +146,15 @@ define(
 			$formCont.append($form);
 			
 			var bookables = model.db.category[categoryId].bookables;
-			$roomSelect.html('');
 			$bookedRooms.html('');
-			for (var i = bookables.length - 1; i >= 0; i--) {
-				$roomSelect.append('<option value="'+bookables[i].id+'" data-quantity="'+bookables[i].quantity+'">' 
-					+ bookables[i].i18n[model.language].title+'</option>');
-			};
-			// trigger the populating of the quantities
-			$roomSelect.change();
-			var d = new Date();
-			$bookFrom.val(d.getDate()+'-'+(d.getMonth()+1)+'-'+d.getFullYear());
-			d.setDate(d.getDate()+1);
-			$bookUntil.val(d.getDate()+'-'+(d.getMonth()+1)+'-'+d.getFullYear());
+			bookingEntry.init(bookables, entryAdded);
 		};
+		/**
+		 * Hide all tooltips when initializing booking entry modal
+		 */
+		$('#bookingAddRoomModalTrigger', $form).click(function(){
+			tooltip.hideAll();
+		});
 
 		return {
 			'setup':function(categories){
