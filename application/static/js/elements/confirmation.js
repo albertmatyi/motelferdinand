@@ -2,7 +2,7 @@
 /*global $ */
 
 define(
-[], function () {
+[ 'lib/jquery' ], function () {
 	"use strict";
 	var $confirmationModal = $('#confirmationModal');
 	var okCallback = null;

@@ -10,9 +10,10 @@ define(
         'helpers/transparency',
         'view/common',
         'view/bookable',
-        'controllers/booking'
+        'controllers/booking',
+        'view/admin/modal'
     ],
-    function (i18n, adminControls, directive, transparency, common, view, booking) {
+    function (i18n, adminControls, directive, transparency, common, view, booking, modal) {
         "use strict";
         var $bookableWrapper = $('.bookables-wrapper').clone();
 
@@ -93,6 +94,7 @@ define(
         };
         return {
             'init' : function () {
+                modal.init($formModal);
                 initAdminControls();
                 initAddButton();
             },

@@ -49,7 +49,6 @@ define('main',
 	'config',
 	'view/category',
 	'view/language',
-	'elements/admin/modal',
 	'controllers/category',
 	'controllers/admin/category',
 	'controllers/admin/content',
@@ -57,7 +56,7 @@ define('main',
 	'controllers/admin/booking'
 ],
 function (social, modelBase, flags,
-	categoryView, languageView, modal, category,
+	categoryView, languageView, category,
 	categoryAdmin, contentAdmin, bookableAdmin, bookingAdmin) {
 	"use strict";
 	categoryView.render(model.categories);
@@ -74,6 +73,5 @@ function (social, modelBase, flags,
 	categoryAdmin.init();
 	contentAdmin.init();
 	bookableAdmin.init();
-	modal.init();
 //close the function & define
 });
