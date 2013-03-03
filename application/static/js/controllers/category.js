@@ -1,11 +1,15 @@
+/*global define */
+/*global $ */
+
 define(
 [
 	'controllers/booking',
-	'helpers/fixit2'
+	'helpers/fixit'
 ],
-function(booking, fixit) {
+function (booking, fixit) {
+	"use strict";
 	return {
-		init : function() {
+		init : function () {
 			fixit.setup($('.category-info'));
 			booking.setup();
 		}

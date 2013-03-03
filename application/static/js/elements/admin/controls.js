@@ -1,41 +1,49 @@
+/*global define */
+/*global $ */
+
 define(
 [
     "helpers/i18n",
     "elements/confirmation"
 ],
-function(i18n, confirmation){
-    var getDeleteHandler = function (delURL, deleteCallback){
-        return function(){
-            confirmation.show(function(){
+function (i18n, confirmation) {
+    "use strict";
+    var getDeleteHandler = function (delURL, deleteCallback) {
+        return function () {
+            confirmation.show(function () {
                 $.ajax({
                     'type': 'POST',
                     'url': delURL,
                     'data': '_method=DELETE',
-                    'success': function(){
+                    'success': function () {
                         alert('Deleted');
-                        deleteCallback && deleteCallback();
+                        if (deleteCallback) {
+                            deleteCallback();
+                        }
                     }
                 });
             });
         };
     };
 
-    var initDelete = function($controls, entityURL, deleteCallback){
-        $('span.delete', $controls).click(function(){
+    var initDelete = function ($controls, entityURL, deleteCallback) {
+        $('span.delete', $controls).click(function () {
             var entityId = $(this).data('entity').id;
-            getDeleteHandler('admin/'+entityURL+'/'+entityId, function(){
-                deleteCallback && deleteCallback(entityId);
-            })(); 
+            getDeleteHandler('admin/' + entityURL + '/' + entityId, function () {
+                if (deleteCallback) {
+                    deleteCallback(entityId);
+                }
+            })();
         });
     };
-    
-    return {'init': function($formModal, $controls, entityURL, deleteCallback){
+
+    return {'init': function ($formModal, $controls, entityURL, deleteCallback) {
             var $form = $('form', $formModal);
 
             /**
              * Edit button click handler
              */
-            $('span.edit', $controls).click(function (){
+            $('span.edit', $controls).click(function () {
                 var cat = $(this).data('entity');
                 //populate the form with data
                 i18n.populateForm($form, cat);

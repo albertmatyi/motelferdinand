@@ -1,14 +1,17 @@
+/*global define */
+
 define(
 [
 	'view/directives/common'
 ],
-function(commonDirectives){
+function (commonDirectives) {
+	"use strict";
 	return {
 		'id' : {
-			id : function(params) {
+			id : function (params) {
 				return 'Bookable' + this.id;
 			},
-			text : function(params) {
+			text : function (params) {
 				return '';
 			}
 		},
@@ -16,25 +19,25 @@ function(commonDirectives){
 		'bookable-description' : commonDirectives.descriptionDirective,
 		'entityId' : commonDirectives.getEntityDirective('bookable'),
 		'album_url' : {
-			'text' : function(params) {
+			'text' : function (params) {
 				return '';
 			},
-			'class' : function(params) {
+			'class' : function (params) {
 				return 'bookable-picaslide picaslide';
 			},
-			'data-picaslide-username' : function(params) {
+			'data-picaslide-username' : function (params) {
 				return this.album_url ? /.com(\/photos)?\/(\d+)/
 						.exec(this.album_url)[2] : '';
 			},
-			'data-picaslide-albumid' : function(params) {
+			'data-picaslide-albumid' : function (params) {
 				return this.album_url ? /.com(\/photos)?\/\d+(\/albums)?\/([^\/#]+)/
 						.exec(this.album_url)[3]
 						: '';
 			},
-			'data-picaslide-width' : function(params) {
+			'data-picaslide-width' : function (params) {
 				return '400px';
 			},
-			'data-picaslide-height' : function(params) {
+			'data-picaslide-height' : function (params) {
 				return '300px';
 			}
 		}

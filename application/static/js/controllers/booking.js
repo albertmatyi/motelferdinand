@@ -1,12 +1,20 @@
+/*global define */
+/*global $ */
+/*global model */
+/*global console */
+
 define(
 	[
 		'helpers/i18n',
 		'helpers/tooltip',
 		'controllers/booking_entry',
-		'helpers/alert'
+		'view/alert',
+		'view/directives/booking_entry',
+		'helpers/transparency'
 	],
-	function(i18n, tooltip, bookingEntry, alert){
-		
+	function (i18n, tooltip, bookingEntry, alert, entryDirective, transparency) {
+		"use strict";
+
 		/**
 		 * The jQuery ref to the form to be handled
 		 */
@@ -36,28 +44,32 @@ define(
 		 *	The table containing the booked rooms
 		 */
 		var $bookingsTableControls = $('.tableAddControl', $form);
+		/**
+		 *
+		 */
+		var $entryRowTemplate = $('.bookingEntryRowTemplate');
 
 		/**
 		 * Does validations, and shows validation messages
 		 * @return True if all is ok. False otherwise
 		 */
-		function validate(){
+		function validate() {
 			var allOk = true;
-			var ok = $userFullName.val().match(/[\w -]{3,}/) != null;
+			var ok = $userFullName.val().match(/[\w -]{3,}/) !== null;
 			tooltip.set($userFullName, !ok);
-			allOk &= ok;
-			
-			ok = $userEmail.val().match(/[\w\.\-_]{1,}@([\w\-_]+.){1,}\w{3,5}/) != null;
-			tooltip.set($userEmail, !ok)
-			allOk &= ok;
+			allOk = allOk && ok;
 
-			ok = $userPhone.val().match(/[\d+\s\-]{5,}/) != null;
-			tooltip.set($userPhone, !ok)
-			allOk &= ok;			
-			
+			ok = $userEmail.val().match(/[\w\.\-_]{1,}@([\w\-_]+.) {1,}\w{3,5}/) !== null;
+			tooltip.set($userEmail, !ok);
+			allOk = allOk && ok;
+
+			ok = $userPhone.val().match(/[\d+\s\-]{5,}/) !== null;
+			tooltip.set($userPhone, !ok);
+			allOk = allOk && ok;
+
 			ok = $bookedRooms.children().length > 0;
 			tooltip.set($bookingsTableControls, !ok);
-			allOk &= ok;
+			allOk = allOk && ok;
 
 			tooltip.set($submitBookingButton, !allOk);
 			return allOk;
@@ -65,18 +77,13 @@ define(
 		/**
 		 * Do a validation before submitting. If all ok. Submit the form.
 		 */
-		$submitBookingButton.click(function(){
+		$submitBookingButton.click(function () {
 			var $controlContainer = $form.parent();
 			$('.alert-error, .alert-success', $controlContainer).remove();
 			// do validation
 			// if validation fails, show message
-			try{
-				var dataOk = validate();
-			} catch (e){
-				console.log(e);
-				dataOk = false;
-			} 
-			if(dataOk){
+			try {
+				validate();
 				// if all OK send the form
 				var data = $form.serialize();
 				$.ajax({
@@ -84,62 +91,41 @@ define(
 					url: '/bookings/',
 					data: data,
 					dataType: 'json',
-					success: function(data){
+					success: function (data) {
 						// show success message
 						var message = alert.alert(data.message, 'success');
 						$controlContainer.prepend(message);
 						// on response hide the form
-						if(data.success){
+						if (data.success) {
 							$form.appendTo($('body'));
 							// show the original button
 							$('.showBookingFormButton', $controlContainer).show().text('Book again');
 						}
 					},
-					error: function(data){
+					error: function (data) {
 						var message = alert.alert(JSON.parse(data.responseText).message, 'error');
 						$submitBookingButton.before(message);
 					}
 				});
+			} catch (e) {
+				console.log(e);
 			}
+
 			// block the default behavior
 			return false;
 		});
 
-		var entryAdded = function(entry){
-			var idx = ($bookedRooms.children().length);
-			$bookedRooms.append('<tr id="BookingEntry'+idx+'">'
-				+ '<td>' + (idx+1)+  '</td>'
-				+ '<td> <input type="hidden" '
-			            + 'name="bookingEntries.'+idx+'.bookable_id" '
-			            + 'value="'+entry.id+'" />' 
-				    + entry.title
-			 	+  '</td>'
-				+ '<td> <input type="hidden" '
-			            + 'name="bookingEntries.'+idx+'.quantity" '
-			            + 'value="'+entry.quantity+'" />' 
+		var entryAdded = function (entry) {
+			var idx = $bookedRooms.children().length;
+			entry.index = idx;
 
-				    + entry.quantity
-			 	+  '</td>'
-			 	+ '<td> <input type="hidden" '
-			            + 'name="bookingEntries.'+idx+'.book_from" '
-			            + 'value="'+entry.from+'" />' 
-				    + entry.from
-			 	+  '</td>'
-			 	+ '<td> <input type="hidden" '
-			            + 'name="bookingEntries.'+idx+'.book_until" '
-						+ 'value="'+entry.until+'" />' 
-				    + entry.until
-			 	+  '</td>'
-			 	+ '<td> <a href="#" class="btn btn-danger" id="removeBooking'+idx+'Button" title="Remove entry">'
-			 		+ '<i class="icon-remove icon-white"></i>'
-			 	+ '</a></td>'
-				+ '</tr>');
+			var $entryRow = transparency.render($entryRowTemplate.clone(), entry, entryDirective);
+			$bookedRooms.append($entryRow);
 			/**
 			 * Upon clicking the remove button remove the row from the bookedRooms table
 			 */
-			$('#removeBooking'+idx+'Button', $bookedRooms).click(function(){
-				$('#BookingEntry'+idx, $bookedRooms).remove();
-				return false;
+			$('.btn-danger', $entryRow).click(function () {
+				$entryRow.remove();
 			});
 		};
 
@@ -147,11 +133,11 @@ define(
 		 * The exposed public method, that adds the booking form to the booking section of the Category
 		 * identified by the id
 		 */
-		var showForm = function(categoryId){
-			var $formCont = $('#Category'+ categoryId + ' .booking-controls');
+		var showForm = function (categoryId) {
+			var $formCont = $('#Category' + categoryId + ' .booking-controls');
 			$('.alert', $formCont).remove();
 			$formCont.append($form);
-			
+
 			var bookables = model.db.category[categoryId].bookables;
 			$bookedRooms.html('');
 			bookingEntry.init(bookables, entryAdded);
@@ -159,31 +145,32 @@ define(
 		/**
 		 * Hide all tooltips when initializing booking entry modal
 		 */
-		$('#bookingAddRoomModalTrigger', $form).click(function(){
+		$('#bookingAddRoomModalTrigger', $form).click(function () {
 			tooltip.hideAll();
 		});
 
 		return {
-			'setup':function(categories){
-				if(typeof(categories) == "undefined"){
+			'setup' : function (categories) {
+				if (typeof (categories) === "undefined") {
 					categories = model.categories;
 				}
-				for (var i = categories.length - 1; i >= 0; i--) {
-					$btn = $('#Category'+categories[i].id + ' .booking-btn');
-					$btn.data('categoryId',categories[i].id);
-					$btn.click(function(){
+				var btns = [];
+				for (var i = categories.length - 1; i >= 0; i -= 1) {
+					var $btn = $('#Category' + categories[i].id + ' .booking-btn');
+					$btn.data('categoryId', categories[i].id);
+					btns.push($btn);
+				}
+				$(btns).click(function () {
 						var categoryId = $(this).data('categoryId');
 						showForm(categoryId);
 						$(this).hide();
 						return false;
 					});
-				};
-				
 			},
-			'reset':function(){
+			'reset' : function () {
 				$form.remove();
 				$('.booking-btn').show();
 			}
-		}
-    }
-);	
+		};
+	}
+);

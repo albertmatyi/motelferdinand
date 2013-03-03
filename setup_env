@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # For SCSS compilation (get Ruby and its package manager)
 
@@ -12,6 +12,12 @@ sudo gem install sass
 
 sudo apt-get install npm
 
+sudo npm install jslint
+
 sudo npm install requirejs
 
 sudo mv ./node_modules /usr/local/lib
+
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+
+sudo ln -s /usr/local/lib/node_modules/jslint/bin/jslint.js /usr/bin/jslint

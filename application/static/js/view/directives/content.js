@@ -1,14 +1,18 @@
+/*global define */
+/*global $ */
+
 define(
 [
 	'view/directives/common'
 ],
-function(commonDirectives){
+function (commonDirectives) {
+	"use strict";
 	return {
 		id : {
-			id : function(params) {
+			id : function (params) {
 				return 'Content' + this.id;
 			},
-			text : function(params) {
+			text : function (params) {
 				return '';
 			}
 		},

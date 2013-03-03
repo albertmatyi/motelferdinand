@@ -1,11 +1,16 @@
+/*global define */
+/*global $ */
+/*global flags */
+
 define(
 [
-'view/bookable',
-'view/directives/menu',
-'view/directives/body',
-'view/common'
-], 	
-function(bookableView, navDirective, bodyDirective, common){
+	'view/bookable',
+	'view/directives/menu',
+	'view/directives/body',
+	'view/common'
+],
+function (bookableView, navDirective, bodyDirective, common) {
+	"use strict";
 	var $menu = $('.category-nav');
 	var $container = $('.categories');
 	var menuTemplate = $menu.html();
@@ -16,16 +21,18 @@ function(bookableView, navDirective, bodyDirective, common){
 		'container': $container,
 		'menuTemplate' : menuTemplate,
 		'categoryTemplate' : categoryTemplate,
-		'render': function(data){
-			flags.RENDER_HEADER &&
+		'render': function (data) {
+			if (flags.RENDER_HEADER) {
 				$menu.render(data, navDirective);
+			}
 
-			flags.RENDER_CONTENT &&
+			if (flags.RENDER_CONTENT) {
 				$container.render(data, bodyDirective);
-			
-			flags.RENDER_GALLERIES && 
-				common.renderContentGallery('.content-description div.picaslide, .category-description div.picaslide');
+			}
 
+			if (flags.RENDER_GALLERIES) {
+				common.renderContentGallery('.content-description div.picaslide, .category-description div.picaslide');
+			}
 			bookableView.render();
 		}
 	};

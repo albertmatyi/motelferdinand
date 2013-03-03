@@ -1,3 +1,9 @@
+/*global define */
+/*global $ */
+/*global requirejs */
+/*global model */
+/*global window */
+
 requirejs.config({
 	paths : {
 		'lib/jquery': '../lib/jquery-1.7.2.min',
@@ -14,56 +20,55 @@ requirejs.config({
 
 	waitSeconds: 30,
 
-    shim: {
-    	'lib/jquery-ui': {
-    		deps: ['lib/jquery']
-	    },
-	    'lib/bootstrap': {
-	    	deps: ['lib/jquery']
-	    },
-	    'lib/slides': {
-	    	deps: ['lib/jquery', 'lib/jquery-ui']
-	    },
-	    'lib/picasa': {
-	    	deps: ['lib/jquery']
-	    },
-	    'lib/transparency' :{
-	    	deps: ['lib/jquery']	
-	    },
-	    'lib/datepicker': {
-	    	deps: ['lib/jquery']
-	    }
-    }
+	shim: {
+		'lib/jquery-ui': {
+			deps: ['lib/jquery']
+		},
+		'lib/bootstrap': {
+			deps: ['lib/jquery']
+		},
+		'lib/slides': {
+			deps: ['lib/jquery', 'lib/jquery-ui']
+		},
+		'lib/picasa': {
+			deps: ['lib/jquery']
+		},
+		'lib/transparency' : {
+			deps: ['lib/jquery']	
+		},
+		'lib/datepicker': {
+			deps: ['lib/jquery']
+		}
+	}
 });
 
 define('main',
 [
-"elements/social",
-'model/base',
-'config',
-'view/category',
-'view/language',
-'elements/admin/modal',
-'controllers/category',
-'controllers/admin/category',
-'controllers/admin/content',
-'controllers/admin/bookable',
-'controllers/admin/booking'
+	'elements/social',
+	'model/base',
+	'config',
+	'view/category',
+	'view/language',
+	'elements/admin/modal',
+	'controllers/category',
+	'controllers/admin/category',
+	'controllers/admin/content',
+	'controllers/admin/bookable',
+	'controllers/admin/booking'
 ],
-function(social, modelBase, flags,
-	categoryView, languageView, modal, category, 
-	categoryAdmin, contentAdmin, bookableAdmin, bookingAdmin){		
+function (social, modelBase, flags,
+	categoryView, languageView, modal, category,
+	categoryAdmin, contentAdmin, bookableAdmin, bookingAdmin) {
+	"use strict";
 	categoryView.render(model.categories);
 	category.init();
 
 	// DEFAULT SELECTION
 	if (window.location.hash.length > 1) {
 		window.location.hash = window.location.hash;
-	} else if (model.categories.length > 0) {
-		//window.location.hash = 'Category' + model.categories[0].id;
 	}
-	
-	$('#loading-overlay').fadeOut(500, function(){
+
+	$('#loading-overlay').fadeOut(500, function () {
 		$(this).remove();
 	});
 	categoryAdmin.init();

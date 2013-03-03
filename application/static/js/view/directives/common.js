@@ -1,12 +1,17 @@
+/*global define */
+/*global $ */
+/*global model */
+
 define([
 ],
-function(){
-	return { 
+function () {
+	"use strict";
+	return {
 		'descriptionDirective' : {
 			text : function (params) {
 				return '';
 			},
-			html : function(params) {
+			html : function (params) {
 				return this.i18n[model.language].description;
 			}
 		},
@@ -15,27 +20,29 @@ function(){
 				return this.i18n[model.language].title;
 			}
 		},
-		'getEntityDirective' : function (type){
+		'getEntityDirective' : function (type) {
 			var dir = {
-				text : function (params){
+				text : function (params) {
 					$(params.element).data('entity', this);
 					return $(params.element).text();
 				}
 			};
-			dir['data-'+type+'-id'] = function(params){
+			dir['data-' + type + '-id'] = function (params) {
 					return this.id;
 				};
-			dir['data-'+type+'-idx'] = function(params){
+			dir['data-' + type + '-idx'] = function (params) {
 					return params.index;
 				};
 			return dir;
 		},
-		'prefixDirective' : function (directive, prefix){
+		'prefixDirective' : function (directive, prefix) {
 			var nuDir = {};
 			for (var key in directive) {
-				nuDir[prefix+'.'+key] = directive[key];
-			};		
-			return nuDir;	
+				if (directive.hasOwnProperty(key)) {
+					nuDir[prefix + '.' + key] = directive[key];
+				}
+			}
+			return nuDir;
 		}
 	};
 });
