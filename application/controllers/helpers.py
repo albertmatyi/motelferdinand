@@ -7,6 +7,7 @@ from flask.globals import request
 from flask.templating import render_template
 from flask.helpers import flash, url_for
 from werkzeug.utils import redirect
+import logging
 import pdb
 
 def save_obj_from_req(Model):
@@ -29,18 +30,40 @@ def dictify_keys(dictionary):
         { a : { b : { c : val }}}
     '''
     ret = {}
-    for key, value in dictionary.items():
+    # pdb.set_trace()
+    for key, value in dictionary.items(True):
+        logging.info('key: ' + str(key))
         keys = key.split('.')
         kn = len(keys)
         dst = ret
         for i in range(0, kn):
+            # pdb.set_trace()
+            # logging.info('key: ' + str(keys[i]))
+            is_array = keys[i].endswith('[]')
+            # logging.info('keys: ' + str(keys))
+            k = keys[i][0:-2] if is_array else keys[i]
             if i is kn-1:
-                dst[keys[i]] = value
+                if is_array :
+                    # logging.info('adding ' + value + ' to ' + str(dst) + '.' + k )
+                    dst[k] += [value]
+                else:
+                    # logging.info('setting ' + str(dst) + '.' + k + ' to ' + value)
+                    dst[k] = value
             else:
-                if keys[i] not in dst:
-                    dst[keys[i]] = {}
-                dst = dst[keys[i]]
-                pass
+                if k not in dst:
+                    # logging.info('setting ' + str(dst) + '.' + k + ' to a new ' + ('array' if is_array else 'dict'))
+                    dst[k] = [{}] if is_array else {}
+                if is_array:
+                    next_key = keys[i+1]
+                    next_key = next_key[0:-2] if next_key.endswith('[]') else next_key
+                    if next_key in dst[k][-1]:
+                        dst[k] += [{}]
+                    # logging.info('moving head ptr to ' + str(dst) + '.' + k + '[-1]')
+                    dst = dst[k][-1]
+                else:
+                    # logging.info('moving head ptr to ' + str(dst) + '.' + keys[i])
+                    dst = dst[keys[i]]
+            pass
         pass
     return ret
     pass

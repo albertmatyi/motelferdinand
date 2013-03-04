@@ -261,10 +261,13 @@ var editor = new wysi.Editor(this.el[0], options);
               // g+
               // https://plus.google.com/u/0/photos/110836571215849032642/albums/5628712940161272657
               var tmp = /(\d{15,})\/(?:[^\d]\w*\/)*(\d{5,})/.exec(url);
-              if(!tmp){
+              if(!tmp && tmp.length > 2){
                 //picasa case
                 // https://picasaweb.google.com/110836571215849032642/WhatI1
                 tmp = /(\d{15,})\/(\w{5,})/.exec(url);
+              }
+              if(tmp.length < 3) {
+                alert('Invalid url!');
               }
               var username = tmp[1];
               var albumID = tmp[2];

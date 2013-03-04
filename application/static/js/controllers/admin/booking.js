@@ -2,6 +2,7 @@
 /*global $ */
 /*global setTimeout */
 /*global model */
+/*global confirm */
 
 define([
 		'lib/transparency',
@@ -11,7 +12,6 @@ define([
 		'helpers/transparency',
 		'elements/confirmation',
 		'elements/admin/controls',
-		'view/alert',
 		'view/admin/modal'
 	],
 	function (transp, bookingsDirective, bookingDetailsDirective, i18n, transparency, confirmation, adminControls, alert, modal) {
@@ -24,15 +24,6 @@ define([
 		var $ftr = $('.bookings-table > tfoot', $bookingsModal);
 		var buttonsInitialized = false;
 		var panelRendered = false;
-
-		var displayAlert = function (str, type) {
-			var $alert = alert.alert(str, type);
-			$modalHeader.append($alert);
-			setTimeout(function () {
-				$alert.remove();
-			}, 5000);
-		};
-
 
 		var render = function (force) {
 			if (panelRendered && !force) {
@@ -65,16 +56,16 @@ define([
 				success : function (data) {
 					booking.modified = data.modified;
 					if (successFunction) {
-						successfunction(data);
+						successFunction(data);
 					} else {
-						displayAlert(data.message, 'success');
+						modal.displayAlert($bookingsModal, data.message, 'success');
 					}
 				},
 				'error' : function (data) {
 					if (errorFunction) {
-						errorfunction(data);
+						errorFunction(data);
 					} else {
-						displayAlert(JSON.parse(data.responseText).message, 'error');
+						modal.displayAlert($bookingsModal, JSON.parse(data.responseText).message, 'error');
 					}
 				},
 				type : 'POST',
@@ -94,14 +85,14 @@ define([
 						var oldVal =  bk.accepted;
 						bk.accepted = "True";
 						updateBooking(bk, function (data) {
-							displayAlert(data.message, 'success');
+							modal.displayAlert($bookingsModal, data.message, 'success');
 							var $row = $('#Booking' + bk.id);
 							$row = transparency.render($row, bk, bookingsDirective);
 							$bookingDetails.before($row);
 							$bookingDetails.render(bk, bookingDetailsDirective);
 							renderBadge();
 						}, function (data) {
-							displayAlert(JSON.parse(data.responseText).message, 'error');
+							modal.displayAlert($bookingsModal, JSON.parse(data.responseText).message, 'error');
 							bk.accepted = oldVal;
 						});
 					}
@@ -111,14 +102,14 @@ define([
 					var oldVal = bk.paid;
 					bk.paid = bk.paid === "True" ? "False":"True";
 					updateBooking(bk, function (data) {
-						displayAlert(data.message, 'success');
+						modal.displayAlert($bookingsModal, data.message, 'success');
 						var $row = $('#Booking' + bk.id);
 						$row = transparency.render($row, bk, bookingsDirective);
 						$bookingDetails.before($row);
 						$bookingDetails.render(bk, bookingDetailsDirective);
 						renderBadge();
 					}, function (data) {
-						displayAlert(JSON.parse(data.responseText).message, 'error');
+						modal.displayAlert($bookingsModal, JSON.parse(data.responseText).message, 'error');
 						bk.accepted = oldVal;
 					});
 				});
@@ -135,7 +126,7 @@ define([
 							'data': '_method=DELETE',
 							'dataType': 'json',
 							'success': function (data) {
-								displayAlert(data.message, 'success');
+								modal.displayAlert($bookingsModal, data.message, 'success');
 								delete model.db.booking[bookingId];
 								$bookingDetails.data('bookingId', -1);
 								hideDetails();
@@ -143,7 +134,7 @@ define([
 								renderBadge();
 							},
 							'error' : function (data) {
-								displayAlert(JSON.parse(data.responseText).message, 'error');
+								modal.displayAlert($bookingsModal, JSON.parse(data.responseText).message, 'error');
 							}
 						});
 					}

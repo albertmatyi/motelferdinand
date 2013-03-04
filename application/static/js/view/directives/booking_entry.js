@@ -10,7 +10,7 @@ define(
 					return this[key];
 				},
 				'name' : function () {
-					return ['bookingEntries', this.index, name].join('.');
+					return ['bookingEntry', name].join('.');
 				}
 			};
 		};
@@ -23,7 +23,7 @@ define(
 			'booking-entry-bookableId' : getBEDir('bookable_id', 'id'),
 			'booking-entry-quantity' : getBEDir('quantity', 'quantity'),
 			'booking-entry-bookFrom' : getBEDir('book_from', 'from'),
-			'booking-entry-bookUntil' : getBEDir('book_until', 'this.until')
+			'booking-entry-bookUntil' : getBEDir('book_until', 'until')
 		};
 	}
 );

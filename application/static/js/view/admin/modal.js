@@ -3,10 +3,20 @@
 /*global window */
 
 define(
-	[],
-	function () {
+	['view/alert'],
+	function (alert) {
 		"use strict";
 		var SAFE_SIDE = 2;
+
+		var displayAlert = function ($modal, str, type) {
+			var $alert = alert.alert(str, type);
+			$('.modal-header', $modal).append($alert);
+			setTimeout(function () {
+				$alert.remove();
+			}, 5000);
+		};
+
+
 		return {
 			'init' : function (el) {
 				var $el = $(el),
@@ -18,7 +28,8 @@ define(
 				$el.css('margin-top', marg + 'px');
 				$el.height(eh);
 				$('> .modal-body', $el).height(eh - (hh + fh) - SAFE_SIDE);
-			}
+			}, 
+			'displayAlert' : displayAlert
 		};
 	}
 );

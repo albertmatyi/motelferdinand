@@ -26,13 +26,12 @@ function (commonDirectives) {
 				return 'bookable-picaslide picaslide';
 			},
 			'data-picaslide-username' : function (params) {
-				return this.album_url ? /.com(\/photos)?\/(\d+)/
-						.exec(this.album_url)[2] : '';
+				var m = /.com(\/photos)?\/(\d+)/.exec(this.album_url);
+				return this.album_url && m && m.length > 2 ? m[2] : '';
 			},
 			'data-picaslide-albumid' : function (params) {
-				return this.album_url ? /.com(\/photos)?\/\d+(\/albums)?\/([^\/#]+)/
-						.exec(this.album_url)[3]
-						: '';
+				var m = /.com(\/photos)?\/\d+(\/albums)?\/([^\/#]+)/.exec(this.album_url);
+				return this.album_url && m && m.length > 3 ? m[3] : '';
 			},
 			'data-picaslide-width' : function (params) {
 				return '400px';

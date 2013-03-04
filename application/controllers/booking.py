@@ -35,22 +35,24 @@ def bookings_new():
     pass
 
 def transform(form):
-    for i in form['bookingEntries']:
+    for be in form['bookingEntries']:
         to_date = lambda sstr: datetime.strptime(sstr, '%d-%m-%Y').date()
-        form['bookingEntries'][i]['quantity'] = int (form['bookingEntries'][i]['quantity'] ) 
-        form['bookingEntries'][i]['book_from'] = to_date(form['bookingEntries'][i]['book_from'])
-        form['bookingEntries'][i]['book_until'] = to_date(form['bookingEntries'][i]['book_until'])
+        be['bookable_id'] = long (be['bookable_id']) 
+        be['quantity'] = int (be['quantity']) 
+        be['book_from'] = to_date(be['book_from'])
+        be['book_until'] = to_date(be['book_until'])
     pass
 
 def validate(form):
+    # pdb.set_trace()
     valid = re.search('[\w -]{3,}', form['user']['full_name']) is not None
     valid &= re.search('[\w\.\-_]{1,}@([\w\-_]+.){1,}\w{3,5}', form['user']['email']) is not None
     valid &= re.search('[\d+\s\-]{5,}', form['user']['phone']) is not None
     valid &= len(form['bookingEntries']) > 0
-    for i in form['bookingEntries']:
-        tday = form['bookingEntries'][i]['book_from'].today()
-        valid &= form['bookingEntries'][i]['book_from'] < form['bookingEntries'][i]['book_until']
-        valid &= tday <= form['bookingEntries'][i]['book_from'] 
+    for be in form['bookingEntries']:
+        tday = be['book_from'].today()
+        valid &= be['book_from'] < be['book_until']
+        valid &= tday <= be['book_from'] 
         pass
 
     if not valid:
@@ -61,8 +63,9 @@ class ValidationException(Exception) :
     pass
 
 def save_booking():
-    form=helpers.dictify_keys(request.form)
-    
+    # pdb.set_trace()
+    form=json.loads(request.form['data'])
+    logging.info('save booking form: '+ str(form))
     transform(form)
     validate(form)
 
@@ -72,11 +75,11 @@ def save_booking():
     booking.user = usr
     booking.put()
     
-    for i in form['bookingEntries']:
-        bookable = BookableModel.get_by_id( long ( form['bookingEntries'][i]['bookable_id'] ) )
-        quant = form['bookingEntries'][i]['quantity'] 
-        book_from = form['bookingEntries'][i]['book_from']
-        book_until = form['bookingEntries'][i]['book_until']
+    for bef in form['bookingEntries']:
+        bookable = BookableModel.get_by_id( bef['bookable_id'] )
+        quant = bef['quantity'] 
+        book_from = bef['book_from']
+        book_until = bef['book_until']
         
         be = BookingEntryModel(bookable = bookable, booking = booking, quantity = quant
             , book_from = book_from, book_until = book_until)

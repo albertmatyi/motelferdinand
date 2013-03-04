@@ -59,7 +59,7 @@ define(
 			tooltip.set($userFullName, !ok);
 			allOk = allOk && ok;
 
-			ok = $userEmail.val().match(/[\w\.\-_]{1,}@([\w\-_]+.) {1,}\w{3,5}/) !== null;
+			ok = $userEmail.val().match(/[\w\.\-_]{1,}@([\w\-_]+.){1,}\w{3,5}/) !== null;
 			tooltip.set($userEmail, !ok);
 			allOk = allOk && ok;
 
@@ -74,22 +74,49 @@ define(
 			tooltip.set($submitBookingButton, !allOk);
 			return allOk;
 		}
+
+		var stripDomain = function (map) {
+			for (var k in map) {
+				if (map.hasOwnProperty(k)) {
+					map[k.split('.')[1]] = map[k];
+					delete map[k];
+				}
+			}
+			return map;
+		};
+
+		var gatherData = function () {
+			var data = {};
+			data.user = stripDomain($('input[name*=user]', $form).serializeObject());
+			data.bookingEntries = [];
+			$('tr').each(function (i, el) {
+				var be = stripDomain($(':input', el).serializeObject());
+				if (!$.isEmptyObject(be)) {
+					data.bookingEntries.push(be);
+				}
+			});
+			return data;
+		};
+
 		/**
 		 * Do a validation before submitting. If all ok. Submit the form.
 		 */
-		$submitBookingButton.click(function () {
+		$submitBookingButton.click(function (ev) {
 			var $controlContainer = $form.parent();
 			$('.alert-error, .alert-success', $controlContainer).remove();
 			// do validation
 			// if validation fails, show message
 			try {
-				validate();
+				if (!validate()) {
+					ev.stopImmediatePropagation();
+					return false;
+				}
 				// if all OK send the form
-				var data = $form.serialize();
+				var booking = gatherData();
 				$.ajax({
 					type: 'POST',
 					url: '/bookings/',
-					data: data,
+					data: {'data' : JSON.stringify(booking)},
 					dataType: 'json',
 					success: function (data) {
 						// show success message
@@ -154,18 +181,16 @@ define(
 				if (typeof (categories) === "undefined") {
 					categories = model.categories;
 				}
-				var btns = [];
 				for (var i = categories.length - 1; i >= 0; i -= 1) {
 					var $btn = $('#Category' + categories[i].id + ' .booking-btn');
 					$btn.data('categoryId', categories[i].id);
-					btns.push($btn);
-				}
-				$(btns).click(function () {
+					$btn.click(function () {
 						var categoryId = $(this).data('categoryId');
 						showForm(categoryId);
 						$(this).hide();
 						return false;
 					});
+				}
 			},
 			'reset' : function () {
 				$form.remove();

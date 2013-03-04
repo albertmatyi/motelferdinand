@@ -1,6 +1,6 @@
 (function($) {
   $.picasa = {
-    albums: function(user, callback) {
+    albums: function(user, callback, err) {
       var url = "http://picasaweb.google.com/data/feed/base/user/:user_id?alt=json&kind=album&hl=en_US&access=visible&fields=entry(id,media:group(media:content,media:description,media:keywords,media:title))"
       url = url.replace(/:user_id/, user);
       $.getJSON(url, function(data) {
@@ -19,6 +19,8 @@
           albums.push(album);
         });
         callback(albums);
+      }).error(function () {
+        console && console.log && console.log("Could not load picasa album");
       });
     },
 

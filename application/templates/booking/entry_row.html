@@ -1,7 +1,7 @@
 <div class="hidden">
 	<table>
 		<tbody>
-			<tr data-bind="entry-id">
+			<tr data-bind="entry-id" class="bookingEntryRowTemplate">
 				<td data-bind="index"></td>
 				<td> <input type="hidden" 
 						data-bind="booking-entry-bookableId" />
@@ -20,9 +20,9 @@
 					<span data-bind="until">entry.until</span>
 				</td>
 				<td> 
-					<a href="#" class="btn btn-danger" title="{{ __('Remove entry') }}">
+					<span href="#" class="btn btn-danger" title="{{ __('Remove entry') }}">
 						<i class="icon-remove icon-white"></i>
-					</a>
+					</span>
 				</td>
 			</tr>
 	</tbody>

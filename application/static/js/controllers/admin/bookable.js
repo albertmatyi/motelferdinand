@@ -50,8 +50,6 @@ define(
             booking.setup([category]);
         };
 
-
-
         var add = function (entity) {
             model.db.content[entity.id] = entity;
             var cat = model.db.category[entity.category];
@@ -70,10 +68,12 @@ define(
                     $('.bookable-description', $cont).html(entity.i18n[model.language].description);
                     $('*[data-bind=price]', $cont).text(entity.price);
                     $('*[data-bind=beds]', $cont).text(entity.beds);
+                    $('*[data-bind=beds]', $cont).text(entity.beds);
                     booking.reset();
                 } else {
                     add(entity);
                 }
+                modal.displayAlert($formModal, 'Modified successfully!', 'success');
             });
         });
 

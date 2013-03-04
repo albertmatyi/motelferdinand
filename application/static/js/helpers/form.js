@@ -47,7 +47,7 @@ define(
 
 						entity.id = result.id;
 						if (successFunction) {
-							successfunction(entity, isNew);
+							successFunction(entity, isNew);
 						} else {
 							alert(result);
 						}
