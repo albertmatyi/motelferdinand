@@ -14,7 +14,7 @@ define([
 		'elements/admin/controls',
 		'view/admin/modal'
 	],
-	function (transp, bookingsDirective, bookingDetailsDirective, i18n, transparency, confirmation, adminControls, alert, modal) {
+	function (transp, bookingsDirective, bookingDetailsDirective, i18n, transparency, confirmation, adminControls, modal) {
 		"use strict";
 		var $bookingsModal = $('#adminBookingsModal');
 		var $modalHeader = $('.modal-header', $bookingsModal);
