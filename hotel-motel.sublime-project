@@ -1,8 +1,11 @@
 {
-	"folders":
+	"folders" :
 	[
 		{
-			"path": "application"
+			"path" : "application",
+			"folder_exclude_patterns" : ["backup"],
+			"file_exclude_patterns" : ["*.css", "*.scssc", "*.min.scss", 
+				"*.min.js", "*-min.js", "require.js"]
 		}
 	]
 }

@@ -15,5 +15,7 @@
 	background-image: linear-gradient(to bottom, $from, $to);
 	background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
 	background-image: -moz-linear-gradient(top,  $from, $to);
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
+	$iefrom: ie-hex-str($from);
+	$ieto: ie-hex-str($to);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$iefrom}', endColorstr='#{$ieto}');
 }

@@ -146,7 +146,7 @@ define([
 		var $badge = $('.badge', $bookingsButton);
 
 		var renderBadge = function () {
-			$badge.text(model.bookings.reduce(function (sum, el) {
+			$badge.text(_.reduce(model.bookings, function (sum, el) {
 				return [sum[0] + (el.accepted === "True" ? 0 : 1),
 				sum[1] + (el.paid === "True" ? 0 : 1)];
 			}, [0, 0]).join(' | '));

@@ -23,9 +23,9 @@ div.picaslide {
 			padding: 0;
 			overflow: hidden;
 			background: transparent;
-			border: solid 2px #000;
+			border: solid 2px #000000;
 			&.current{
-				background: #000;
+				background: #000000;
 			}
 			&> a{
 				line-height: 0; 

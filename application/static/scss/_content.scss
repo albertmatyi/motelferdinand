@@ -1,6 +1,6 @@
 .content {
 	@include tile;
-	background: #f4f4f4;
+	background-color: #F4F4F4;
 	@include gradient($contentGradientFrom, $contentGradientTo);
 	width: 50% - $contentMargin;
 	margin-left: $contentMargin;
@@ -17,6 +17,6 @@
 	}
 	
 	.content-title{
-		border-bottom: dashed 1px #ccc;
+		border-bottom: dashed 1px #CCCCCC;
 	}
 }

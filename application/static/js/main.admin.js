@@ -15,7 +15,8 @@ requirejs.config({
 		'lib/datepicker': '../lib/bootstrap-datepicker/datepicker',
 		'lib/bootstrap-wysihtml5': '../lib/wysihtml5/js/bootstrap-wysihtml5',
 		'lib/wysihtml5-parserrules': '../lib/wysihtml5/js/advanced_parser_rules',
-		'lib/wysihtml5-base': '../lib/wysihtml5/js/wysihtml5-0.3.0.min'
+		'lib/wysihtml5-base': '../lib/wysihtml5/js/wysihtml5-0.3.0.min',
+		'lib/underscore': '../lib/underscore.min'
 	},
 
 	waitSeconds: 30,
@@ -44,6 +45,7 @@ requirejs.config({
 
 define('main',
 [
+	'lib/underscore',
 	'elements/social',
 	'model/base',
 	'config',
@@ -55,7 +57,7 @@ define('main',
 	'controllers/admin/bookable',
 	'controllers/admin/booking'
 ],
-function (social, modelBase, flags,
+function (us, social, modelBase, flags,
 	categoryView, languageView, category,
 	categoryAdmin, contentAdmin, bookableAdmin, bookingAdmin) {
 	"use strict";

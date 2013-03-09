@@ -3,33 +3,33 @@
 		text-align: center;
 	}
 	&>tbody>tr{
-		background: none; //#fcc;
+		background: none; //#FFcccc;
 		font-weight: bold;
 		&>td.center{
 			text-align: center;
 		}
 		&:hover {
-			background: #eee;//#f99;
+			background: #EEEEEE;//#FF9999;
 		}
 		&.accepted, &.paid, &.paid.accepted{
 			font-weight: normal;
 		}
 		&.accepted {
-			background: #cef;
+			background: #CCEEFF;
 			&:hover{
-				background: #9cf;
+				background: #99CCFF;
 			}
 		}
 		&.paid {
-			background: #cfc;
+			background: #CCFFCC;
 			&:hover{
-				background: #9c6;
+				background: #99CC66;
 			}
 		}
 		&.paid.accepted{
 			background: none;
 			&:hover{
-				background: #eee;
+				background: #EEEEEE;
 			}
 		}
 		cursor: pointer;
@@ -44,7 +44,7 @@
 		}
 		display: none;
 		&, &:hover {
-			background: #efefff;
+			background: #EFEFFF;
 			cursor: normal;
 		}
 		.leftside, .rightside{
@@ -57,7 +57,7 @@
 		.date{
 			float: right;
 			font-size: 1em;
-			color: #999;
+			color: #999999;
 		}
 		.table {
 			td, th {
@@ -66,14 +66,14 @@
 			
 			.status{
 				td {
-					background: #d33;
-					color: #fff;
+					background: #DD3333;
+					color: #FFFFFF;
 				}
 				.accepted {
-					background: #39f;
+					background: #3399ff;
 				}
 				.paid {
-					background: #6a3;
+					background: #66AA33;
 				}
 				
 			}

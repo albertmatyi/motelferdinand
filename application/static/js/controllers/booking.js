@@ -78,8 +78,11 @@ define(
 		var stripDomain = function (map) {
 			for (var k in map) {
 				if (map.hasOwnProperty(k)) {
-					map[k.split('.')[1]] = map[k];
-					delete map[k];
+					var ks=k.split('.');
+					if(ks.length > 1){
+						map[ks[1]] = map[k];
+						delete map[k];
+					}
 				}
 			}
 			return map;
