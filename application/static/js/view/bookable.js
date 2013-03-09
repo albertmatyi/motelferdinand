@@ -42,6 +42,10 @@ function () {
 				$('.bookables-slide-wrapper', el).css('width', tmpW + 'px');
 				$('.bookable, .bookables', el).css('height', '430px');
 				$('.bookables-slide-wrapper', el).slides({container: 'bookables'});
+				var paginatorWrapper = $('<div></div>');
+				var paginator = $('.pagination', el);
+				paginator.removeClass('pagination').before(paginatorWrapper);
+				paginatorWrapper.append(paginator).addClass('pagination');
 			} else {
 				$el.remove();
 			}

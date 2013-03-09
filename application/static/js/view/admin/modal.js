@@ -25,8 +25,8 @@ define(
 					marg = -eh / 2,
 					hh = $('> .modal-header', $el).outerHeight(true),
 					fh = $('> .modal-footer', $el).outerHeight(true);
-				$el.css('margin-top', marg + 'px');
-				$el.height(eh);
+				// $el.css('margin-top', marg + 'px');
+				// $el.height(eh);
 				$('> .modal-body', $el).height(eh - (hh + fh) - SAFE_SIDE);
 			}, 
 			'displayAlert' : displayAlert

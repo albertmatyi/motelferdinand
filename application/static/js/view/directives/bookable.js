@@ -30,7 +30,7 @@ function (commonDirectives) {
 				return this.album_url && m && m.length > 2 ? m[2] : '';
 			},
 			'data-picaslide-albumid' : function (params) {
-				var m = /.com(\/photos)?\/\d+(\/albums)?\/([^\/#]+)/.exec(this.album_url);
+				var m = /.com(\/photos)?\/\d+(\/albums)?\/([^\/?#]+)/.exec(this.album_url);
 				return this.album_url && m && m.length > 3 ? m[3] : '';
 			},
 			'data-picaslide-width' : function (params) {

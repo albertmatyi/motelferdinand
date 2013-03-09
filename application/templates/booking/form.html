@@ -4,7 +4,7 @@
 		<div class="controls controls-row">
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-user"></i></span>
-				<input type="text" name="user.full_name" rel="tooltip" data-title="{{ __('Specify a valid full name') }}" data-placement="right"/>
+				<input type="text" id="user.full_name" name="user.full_name" data-toggle="tooltip" data-title="{{ __('Specify a valid full name') }}" data-placement="right"/>
 			</div>
 		</div>
 	</div>
@@ -13,7 +13,7 @@
 		<div class="controls controls-row">
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-envelope"></i></span>
-				<input type="email" class="email" name="user.email"  rel="tooltip" data-title="{{ __('Specify a valid email address') }}" data-placement="right"/>
+				<input type="email" id="user.email" class="email" name="user.email"  data-toggle="tooltip" data-title="{{ __('Specify a valid email address') }}" data-placement="right"/>
 			</div>
 		</div>
 	</div>
@@ -22,7 +22,7 @@
 		<div class="controls controls-row">
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-signal"></i></span>
-				<input type="text" class="phone" name="user.phone"  rel="tooltip" data-title="{{ __('Specify a valid phone number') }}" data-placement="right"/>
+				<input type="text" class="phone" id="user.phone" name="user.phone"  data-toggle="tooltip" data-title="{{ __('Specify a valid phone number') }}" data-placement="right"/>
 			</div>
 		</div>
 	</div>
@@ -45,7 +45,7 @@
 				</tbody>
 				<tfoot>
 					<tr>
-						<th colspan="6" class="tableAddControl" rel="tooltip" data-title="{{ __('Add at least one room') }}" data-placement="left">
+						<th colspan="6" class="tableAddControl" data-toggle="tooltip" data-title="{{ __('Add at least one room') }}" data-placement="left">
 							<a href="#bookingAddRoomModal" class="btn btn-success" id="bookingAddRoomModalTrigger" data-toggle="modal"><i class="icon-plus icon-white"></i> {{ __('Add room') }} </a>
 						</th>
 					</tr>
@@ -54,7 +54,7 @@
 		</div>
 	</div>
 	<div class="form-actions">
-		<button class="btn btn-primary btn-large booking-btn" id="submitBookingButton" rel="tooltip" data-title="{{ __('Invalid data! See fields above.') }}" data-placement="left"> {{ __('Book') }}</button>
+		<button class="btn btn-primary btn-large booking-btn" id="submitBookingButton" data-toggle="tooltip" data-title="{{ __('Invalid data! See fields above.') }}" data-placement="left"> {{ __('Book') }}</button>
 	</div>
 </form>
 

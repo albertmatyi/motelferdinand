@@ -1,5 +1,6 @@
 /*global define */
 /*global $ */
+/*global alert*/
 
 define(
 	[
@@ -16,12 +17,12 @@ define(
 				$('input, select', $form).each(function (idx, el) {
 					var $el = $(el);
 					var key = $el.attr('name');
-					$el.val(entity[key] ? entity[key] : '');
+					$el.val(entity[key] || '');
 				});
 				$('textarea', $form).each(function (idx, el) {
 					var $el = $(el);
 					var key = $el.attr('name');
-					wysihtml5.setValue($el, entity[key] ? entity[key] : '');
+					wysihtml5.setValue($el, entity[key] || '');
 				});
 			},
 			/**
@@ -34,7 +35,7 @@ define(
 				var arr = $form.serializeArray();
 				for (var i = arr.length - 1; i >= 0; i--) {
 					var el = arr[i];
-					if ((typeof(entity.id) === 'undefined' && el.name !== 'id') || entity[el.name]) {
+					if ((typeof(entity.id) === 'undefined' && el.name !== 'id') || typeof(entity[el.name]) !== 'undefined') {
 						entity[el.name] = el.value;
 					}
 				}
