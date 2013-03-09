@@ -80,7 +80,7 @@ define(
                      "</div>" +
                      "<a class='btn' data-wysihtml5-command='insertHTML' title='Embed HTML'><i class='icon-chevron-left'></i><i class='icon-chevron-right'></i></a>" +
                  "</li>",
-      "insertGallery": "<li>" +
+      "insertGallery": "<li class=\"picaslideButton\">" +
                  "<div class='bootstrap-wysihtml5-insert-gallery-modal modal hide fade'>" +
                      "<div class='modal-header'>" +
                          "<a class='close' data-dismiss='modal'>&times;</a>" +
@@ -97,7 +97,7 @@ define(
                  "<a class='btn picaslide' data-wysihtml5-command='insertHTML' title='Insert gallery'><img src='/static/img/picasa_s.png' alt='Insert picasa album'/></a>" +
              "</li>",        
       "html":
-                     "<li>" +
+                     "<li class=\"editHtmlButton\">" +
                          "<div class='btn-group'>" +
                              "<a class='btn' data-wysihtml5-action='change_view' title='Edit HTML'><i class='icon-pencil'></i></a>" +
                          "</div>" +
@@ -260,8 +260,9 @@ var editor = new wysi.Editor(this.el[0], options);
               var url = urlInput.val();
               // g+
               // https://plus.google.com/u/0/photos/110836571215849032642/albums/5628712940161272657
+              https://picasaweb.google.com/116008649935898699063/Apartman#5842106216603462370
               var tmp = /(\d{15,})\/(?:[^\d]\w*\/)*(\d{5,})/.exec(url);
-              if(!tmp && tmp.length > 2){
+              if(!tmp || tmp.length < 3){
                 //picasa case
                 // https://picasaweb.google.com/110836571215849032642/WhatI1
                 tmp = /(\d{15,})\/(\w{5,})/.exec(url);

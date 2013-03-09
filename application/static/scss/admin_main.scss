@@ -7,3 +7,15 @@
 @import "admin/bookings";
 
 @import "admin/modal";
+
+#bookableEditFormModal {
+	.picaslideButton {
+		display: none;
+	}
+}
+
+.wysihtml5-toolbar {
+	.editHtmlButton {
+		display: none;
+	}
+}

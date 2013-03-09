@@ -6139,3 +6139,9 @@ body > .hidden-on-body, #body_content > .hidden-on-body {
   .modal.big-modal textarea {
     width: 80%;
     height: 250px; }
+
+#bookableEditFormModal .picaslideButton {
+  display: none; }
+
+.wysihtml5-toolbar .editHtmlButton {
+  display: none; }
