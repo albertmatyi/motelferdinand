@@ -6038,6 +6038,7 @@ body > .hidden-on-body, #body_content > .hidden-on-body {
     background-image: -moz-linear-gradient(top, #339933, #66cc33);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF339933', endColorstr='#FF66CC33'); }
 
+.table
 .bookings-table > thead th {
   text-align: center; }
 .bookings-table > tbody > tr {
@@ -6080,15 +6081,17 @@ body > .hidden-on-body, #body_content > .hidden-on-body {
     float: right;
     font-size: 1em;
     color: #999999; }
-  .bookings-table .bookingDetails .table td, .bookings-table .bookingDetails .table th {
-    text-align: center; }
-  .bookings-table .bookingDetails .table .status td {
-    background: #DD3333;
-    color: #FFFFFF; }
-  .bookings-table .bookingDetails .table .status .accepted {
-    background: #3399ff; }
-  .bookings-table .bookingDetails .table .status .paid {
-    background: #66AA33; }
+  .bookings-table .bookingDetails .table {
+    background: none; }
+    .bookings-table .bookingDetails .table td, .bookings-table .bookingDetails .table th {
+      text-align: center; }
+    .bookings-table .bookingDetails .table .status td {
+      background: #DD3333;
+      color: #FFFFFF; }
+    .bookings-table .bookingDetails .table .status .accepted {
+      background: #3399ff; }
+    .bookings-table .bookingDetails .table .status .paid {
+      background: #66AA33; }
   .bookings-table .bookingDetails .actions {
     margin: 10px;
     float: right;

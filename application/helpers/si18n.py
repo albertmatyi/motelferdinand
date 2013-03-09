@@ -84,6 +84,7 @@ translations = {
 		'Type of room': u'Type of room',
 		'Arrival date': u'Arrival date',
 		'Departure date': u'Departure date',
+		'Custom message': u'Custom message',
 		'Cancel': u'Cancel',
 
 		#Bookin validation
@@ -162,6 +163,7 @@ translations = {
 		'Type of room': u'Szoba típusa',
 		'Arrival date': u'Érkezés dátuma',
 		'Departure date': u'Távozás dátuma',
+		'Custom message': u'További infók',
 		'Cancel': u'Mégse',
 
 		#Bookin validation
@@ -238,6 +240,7 @@ translations = {
 		'Add room to booking': u'Adaugă o cameră la rezervare',
 		'Type of room': u'Tipul camerei',
 		'Arrival date': u'Data sosirii',
+		'Custom message': u'Informații adiționale',
 		'Departure date': u'Data plecării',
 		'Cancel': u'Anulează',
 

@@ -10,6 +10,7 @@ from application.models.bookable import BookableModel
 
 class BookingModel(AbstractModel):
     people = db.IntegerProperty(required=True, default=1)
+    message = db.TextProperty()
     feedback = db.TextProperty()
     accepted = db.BooleanProperty(default=False)
     paid = db.BooleanProperty(default=False)

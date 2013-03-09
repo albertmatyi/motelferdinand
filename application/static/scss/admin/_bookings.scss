@@ -1,4 +1,5 @@
 .bookings-table{
+	.table
 	&>thead th{
 		text-align: center;
 	}
@@ -60,6 +61,7 @@
 			color: #999999;
 		}
 		.table {
+			background: none;
 			td, th {
 				text-align: center;
 			}

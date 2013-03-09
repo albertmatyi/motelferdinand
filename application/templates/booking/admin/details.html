@@ -44,6 +44,11 @@
 			</p>
 			<span id="deleteBooking"><i class="icon-trash" title="{{ __('Delete') }}"></i></span>
 			{% include 'booking/admin/entries.html' %}
+			<div class="message">
+				<h5>{{ __('Custom message') }}</h5>
+				<p data-bind="message">
+				</p>
+			</div>
 		</div>
 		<div class="actions btn-group">
 			<span class="btn btn-primary" id="acceptBooking" data-bind="accepted-button">{{ __('Mark as accepted') }}</span>

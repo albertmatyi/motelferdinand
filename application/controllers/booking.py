@@ -72,6 +72,7 @@ def save_booking():
     usr = get_or_create_user(form['user'])
 
     booking = BookingModel()
+    booking.message = form['booking']['message']
     booking.user = usr
     booking.put()
     

@@ -90,7 +90,8 @@ define(
 
 		var gatherData = function () {
 			var data = {};
-			data.user = stripDomain($('input[name*=user]', $form).serializeObject());
+			data.user = stripDomain($('input[name*="user."]', $form).serializeObject());
+			data.booking = stripDomain($('*[name*="booking."]', $form).serializeObject());
 			data.bookingEntries = [];
 			$('tr').each(function (i, el) {
 				var be = stripDomain($(':input', el).serializeObject());
@@ -138,7 +139,7 @@ define(
 					}
 				});
 			} catch (e) {
-				console.log(e);
+				console.error(e);
 			}
 
 			// block the default behavior
