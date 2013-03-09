@@ -28,14 +28,22 @@
 			
 			<ul class="pull-right nav nav-pills">
 				{% if is_admin %}
-					{% include "elements/admin/buttons.html" %}
+				<li class="dropdown">
+				    <a class="dropdown-toggle" data-toggle="dropdown" data-target="adminMenu" href="#">
+				    	{{ __('Admin') }}
+				    	<span class="caret"></span>
+				    </a>
+				    <ul id="adminMenu" class="admin dropdown-menu">
+						{% include "elements/admin/buttons.html" %}
+					</ul>
+				</li>
 				{% endif %}
-				<li>
-				    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+				<li class="dropdown">
+				    <a class="dropdown-toggle" data-toggle="dropdown" data-target="languageMenu" href="#">
 				    	{{ __('Language') }}
 				    	<span class="caret"></span>
 				    </a>
-				    <ul class="language dropdown-menu">
+				    <ul class="language dropdown-menu" id="languageMenu">
 				    	<li>
 				    		<a href="#" data-bind="name">hello world</a>
 				    	</li>

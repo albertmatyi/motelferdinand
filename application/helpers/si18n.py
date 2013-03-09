@@ -56,6 +56,7 @@ translations = {
 		'Successfully deleted': u'Successfully deleted',
 
 		# Admin
+		'Admin':u'Admin',
 		'Guestbook entries': u'Guestbook entries',
 		'Bookings': u'Bookings',
 		'Booking entries': u'Booking entries',
@@ -132,6 +133,7 @@ translations = {
 		'Successfully deleted': u'Törlés sikeres',
 
 		# Admin
+		'Admin': u'Admin',
 		'Guestbook entries': u'Bejegyzések',
 		'Bookings': u'Foglalások',
 		'Booking entries': u'Lefoglalt szobák',
@@ -209,6 +211,7 @@ translations = {
 		'Successfully deleted': u'Șters cu succes',
 
 		# Admin
+		'Admin': u'Admin',
 		'Guestbook entries': u'Mesaje clienți',
 		'Bookings': u'Rezervări',
 		'Booking entries': u'Camere rezervate',
