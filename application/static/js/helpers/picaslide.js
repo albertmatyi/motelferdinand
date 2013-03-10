@@ -32,7 +32,7 @@ function (jquery, picasa, slides, fullscreen) {
 				var picasaAlbum = "<div class='picasa-album picaslides-container' style=\"height: " + height + "; width: " + width + ";\">\n";
 				$.each(images, function (i, element) {
 					picasaAlbum += "  <div class='picasa-image' style=\"width: " + width + "; height: " + height + ";" +
-					" background-image: url(" +
+					" background-repeat: no-repeat; background-image: url(" +
 						element.url.replace(/(\/)([^\/]+)$/, '$1s' +
 						Math.max(parseInt(height, 10), parseInt(width, 10)) +
 						'/$2') + "); background-size: cover; background-position: center;\"" +
