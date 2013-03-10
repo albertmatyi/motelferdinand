@@ -62,7 +62,8 @@ define(['lib/jquery'],
 			$('article', $fsContext).hide();
 			infoWP = 0;
 		}
-		var windowW = $(window).width() * (1 - infoWP);
+		var oww = $(window).width();
+		var windowW = oww * (1 - infoWP);
 		var windowH = $(window).height();
 		var w = windowW * 0.80;
 		var mult = 1;
@@ -75,9 +76,12 @@ define(['lib/jquery'],
 		w = DATA.width * mult * 0.95;
 		// console.log('mult: ' + mult + ' w: ' + w);
 		var ic = $(".image-container", $fsContext);
-		ic.css('right', ((windowW - w) / 2) + 'px');
+		ic.css('left', (oww * infoWP + (windowW - w) / 2) + 'px');
 		ic.css('top', ((windowH - w * DATA.height / DATA.width) / 2) + 'px');
-		ic.html('<img src="' + imageURL + '" alt="' + DATA.title + '" title="' + DATA.title + '" style="width: ' + w + 'px"/>');
+		ic.html('<img src="' + imageURL +
+			'" alt="' + DATA.title +
+			'" title="' + DATA.title +
+			'" style="width: ' + w + 'px" />');
 		$fsContext.fadeIn();
 	};
 
