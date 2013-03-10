@@ -47,6 +47,9 @@ D				booking
 D			header too big
 D		email 1h
 D			only partial booking info is present in new booking mails 
+130310
+D		ie
+D			gallery fix
 		fullscreen image viewer
 		tests
 		error handling (display something)

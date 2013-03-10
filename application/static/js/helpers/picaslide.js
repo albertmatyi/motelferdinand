@@ -1,12 +1,20 @@
 /*global define */
+/*global _ */
 
 define([
 	'lib/jquery',
 	'lib/picasa',
-	'lib/slides'
+	'lib/slides',
+	'elements/fullscreen'
 ],
-function () {
+function (jquery, picasa, slides, fullscreen) {
 	"use strict";
+	var initControls  = function ($context, images) {
+		var $btn = $('<span class="fullscreen-btn btn"><i class="icon-fullscreen"></i></span>');
+		$btn.appendTo($context).click(function () {
+			fullscreen.showImages(_.map(images, function (el) { delete el.title; return el; }), 0);
+		});
+	};
 	(function ($) {
 		$.fn.picaslide = function (slideOpts, successCallback) {
 			var scope = $(this);
@@ -24,7 +32,10 @@ function () {
 				var picasaAlbum = "<div class='picasa-album picaslides-container' style=\"height: " + height + "; width: " + width + ";\">\n";
 				$.each(images, function (i, element) {
 					picasaAlbum += "  <div class='picasa-image' style=\"width: " + width + "; height: " + height + ";" +
-					" background-image: url(" + element.url.replace(/(\/)([^\/]+)$/, '$1s' + Math.max(parseInt(height, 10), parseInt(width, 10)) + '/$2') + "); background-size: cover; background-position: center;\"" +
+					" background-image: url(" +
+						element.url.replace(/(\/)([^\/]+)$/, '$1s' +
+						Math.max(parseInt(height, 10), parseInt(width, 10)) +
+						'/$2') + "); background-size: cover; background-position: center;\"" +
 					">\n";
 					picasaAlbum += "  </div>\n";
 				});
@@ -36,6 +47,7 @@ function () {
 				if (successCallback) {
 					successCallback.apply(scope, images);
 				}
+				initControls(scope, images);
 				scope.show();
 			});
 		};

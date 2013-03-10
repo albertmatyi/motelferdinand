@@ -1,5 +1,15 @@
+@import "elements/fullscreen";
+
 div.picaslide {
 	padding: 0;
+	.fullscreen-btn{
+		padding: 2px 4px;
+		position: relative;
+		top: -25px;
+		z-index: 1000;
+		border-bottom: none;
+		border-radius: 0px 10px 0px 0px;
+	}
 	&>.picaslides-container{
 		display: none;
 		& > *{
@@ -29,13 +39,13 @@ div.picaslide {
 			}
 			&> a{
 				line-height: 0; 
-			    font-size: 0;
-			    color: transparent; 
-			    border: none;
-			    display: block;
-			    height: 100%;
-			    width: 100%;
-			    background: transparent;
+				font-size: 0;
+				color: transparent; 
+				border: none;
+				display: block;
+				height: 100%;
+				width: 100%;
+				background: transparent;
 			}
 		}
 	}
