@@ -4,6 +4,7 @@
       var url = "http://picasaweb.google.com/data/feed/base/user/:user_id?alt=json&kind=album&hl=en_US&access=visible&fields=entry(id,media:group(media:content,media:description,media:keywords,media:title))"
       url = url.replace(/:user_id/, user);
       $.support.cors = true;
+      url += '&callback=?';
       $.getJSON(url, function(data) {
         var album = null;
         var albums = [];
@@ -31,6 +32,7 @@
       var image = null;
       var images = [];
       $.support.cors = true;
+      url += '&callback=?';
       $.getJSON(url, function(data) {
         $.each(data.feed.entry, function(i, element) {
           image = element["media$group"]["media$content"][0];
