@@ -38,20 +38,22 @@ X			server side validation
 X			display returned message
 			notifications
 X				booking admin & client
-				admin forms
+D				admin forms
+130309
 D		fix problems
 D			ie 
 D				display
 D				booking
 D			header too big
+D		email 1h
+D			only partial booking info is present in new booking mails 
 		fullscreen image viewer
-		email 1h
-?			only partial booking info is present in new booking mails 
+		tests
 		error handling (display something)
 			design
 			server side
 			clientside
-		tests
+		
 
 LAUNCH
 
@@ -86,3 +88,5 @@ LAUNCH
 	Lehetoseg a felhasznalonak, hogy visszanezze a foglalasait online (beirja az emailcimet es telefonszamat) - 3h
 	A felhasznalo tudjon elfogadott & kifizetett foglalas lejarta utan vendgekonyv beirast kuldeni (email ertesites a kliensnek) - 6h
 	Admin tudja megnezni a vendegkonyv bejegyzeseket - 1h
+
+	JSON communication for adminedit
