@@ -27,17 +27,7 @@
 			<!-- Language button -->
 			
 			<ul class="pull-right nav nav-pills">
-				{% if is_admin %}
-				<li class="dropdown">
-				    <a class="dropdown-toggle" data-toggle="dropdown" data-target="adminMenu" href="#">
-				    	{{ __('Admin') }}
-				    	<span class="caret"></span>
-				    </a>
-				    <ul id="adminMenu" class="admin dropdown-menu">
-						{% include "elements/admin/buttons.html" %}
-					</ul>
-				</li>
-				{% endif %}
+				{% include "elements/admin/menu.html" %}
 				<li class="dropdown">
 				    <a class="dropdown-toggle" data-toggle="dropdown" data-target="languageMenu" href="#">
 				    	{{ __('Language') }}

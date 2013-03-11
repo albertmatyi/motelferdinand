@@ -45,6 +45,7 @@ requirejs.config({
 
 define('main',
 [
+	'test/integration',
 	'lib/underscore',
 	'elements/social',
 	'model/base',
@@ -57,7 +58,7 @@ define('main',
 	'controllers/admin/bookable',
 	'controllers/admin/booking'
 ],
-function (us, social, modelBase, flags,
+function (test, us, social, modelBase, flags,
 	categoryView, languageView, category,
 	categoryAdmin, contentAdmin, bookableAdmin, bookingAdmin) {
 	"use strict";
