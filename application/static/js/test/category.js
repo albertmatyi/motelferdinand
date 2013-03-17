@@ -1,34 +1,47 @@
 /*global define */
 /*global $ */
-/*global tl */
 
 define([
 		'lib/jquery'
 	], 
 	function (jquery) {
-	var $addButton = $('.category-nav .add');
-	var $catModal = $('#categoryEditFormModal');
+	"use strict";
+	var $addButton;
+	var $catModal;
+	var catTitleStr = "CatTitle";
+	var catDescrStr = "CatDescr";
+	var $saveButton;
 
-	var testAddCategory = function () {
-		tl('click add category');
-		$addButton.click();
-		tl('verify modal visible');
+	
+	var testAddCategory = function (t) {
+		t.l('click add category').click($addButton);
+		
+		t.l('verify modal visible').assertVisible($catModal);
+		
+		t.l('fill form with data').setValue($('*[name=i18n-en-title]', $catModal), catTitleStr);
+		
+		t.l('click submit').click($saveButton);
+		
+		t.waitXHR();
 
-		tl('fill form with data');
-
-		tl('click submit');
-
-		tl('wait for response');
-
-		tl('verify content is present');
+		t.l('verify content is present').assertPresent('h1.category-title:contains(' + catTitleStr + ')');
 	};
 
-	var testDeleteCategory = function () {
+	var testDeleteCategory = function (t) {
 		throw 'Not implemented';
 	};
 
+	var setup = function (t) {
+		$addButton = $('.category-nav .add');
+		$catModal = $('#categoryEditFormModal');
+		$saveButton = $('#submitCategoryEditForm', $catModal);
+	};
+
 	return {
-		'testAddCategory' : testAddCategory,
-		'testDeleteCategory' : testDeleteCategory
+		'setup' : setup,
+		'tests' : [
+			{ 'testAddCategory' : testAddCategory },
+			{ 'testDeleteCategory' : testDeleteCategory }
+		]
 	};
 });
