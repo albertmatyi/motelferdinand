@@ -20,23 +20,25 @@ define(['lib/jquery'], function (jquery) {
 			'timeout' : timeout || 1
 		});
 	};
-	return {
-		'execute' : function (successCB, failCB) {
-			try {
-				if (testSteps.length !== 0) {
-					var step = testSteps.shift();
-					step.f();
-					setTimeout(function () {
-						this.execute(successCB, failCB);
-					}, step.timeout);
-				} else {
-					successCB();
-				}
-			} catch (e) {
-				testSteps = [];
-				failCB(e);
+
+	var execute = function (successCB, failCB) {
+		try {
+			if (testSteps.length !== 0) {
+				var step = testSteps.shift();
+				step.f();
+				setTimeout(function () {
+					execute(successCB, failCB);
+				}, step.timeout, this);
+			} else {
+				successCB();
 			}
-		},
+		} catch (e) {
+			testSteps = [];
+			failCB(e);
+		}
+	};
+	return {
+		'execute' : execute,
 		'l' : function (msg) {
 			a2S(function () {
 				console.log('\t\t' + msg);
@@ -44,8 +46,9 @@ define(['lib/jquery'], function (jquery) {
 			return this;
 		},
 		'assertPresent' : function (selector) {
+			var at = this.assertTrue;
 			a2S(function () {
-				this.assertTrue($(selector).length > 0);
+				at($(selector).length > 0);
 			});
 			return this;
 		},

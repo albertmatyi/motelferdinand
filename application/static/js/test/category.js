@@ -13,7 +13,7 @@ define([
 		var $saveButton;
 
 		var testAddCategory = function (t) {
-			t.l('click add category').click($addButton);
+			t.l('click add category').click($addButton).wait(200);
 
 			t.l('verify modal visible').assertVisible($catModal);
 
