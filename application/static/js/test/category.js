@@ -33,23 +33,23 @@ define([
 			var $delBtn = $('.page-header:contains(' + catTitleStr + ') .admin-controls .delete');
 			var catId = $delBtn.data('category-id');
 			t.l('Deleting Category ' + catId).click($delBtn);
-			
+
 			t.l('Click OK to confirm delete').click(confirm.$ok);
-			
+
 			t.l('wait server response & popup close').wait(2000);
-			
+
 			t.l('Verify category is no more present').assertNotPresent('#Category' + catId);
 		};
 
 		var testEditCategory = function (t) {
 			var $editBtn = $('.page-header:contains(' + catTitleStr + ') .admin-controls .edit');
 			var catId = $editBtn.data('category-id');
-			var editedTitle = catTitleStr+'2';
+			var editedTitle = catTitleStr + '2';
 			var count = $('.category').length;
 
 			t.l('Press edit button.').click($editBtn);
 
-			t.l('Modify title.').setValue($('*[name=i18n-en-title]', $catModal), editedTitle)
+			t.l('Modify title.').setValue($('*[name=i18n-en-title]', $catModal), editedTitle);
 
 			t.l('Click Save.').click($saveButton);
 
