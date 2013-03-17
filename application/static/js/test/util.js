@@ -45,23 +45,26 @@ define(['lib/jquery'], function (jquery) {
 			});
 			return this;
 		},
-		'assertNotPresent' : function (selector) {
-			var at = this.assertTrue;
+		'assertEquals' : function (expected, actual, message) {
 			a2S(function () {
-				at($(selector).length === 0);
+				assertEquals(expected, actual, message);
+			});
+		},
+		'assertNotPresent' : function (selector) {
+			a2S(function () {
+				assertEquals(0, $(selector).length);
 			});
 			return this;
 		},
 		'assertPresent' : function (selector) {
-			var at = this.assertTrue;
 			a2S(function () {
-				at($(selector).length > 0);
+				assertEquals(true, $(selector).length > 0);
 			});
 			return this;
 		},
-		'assertTrue' : function (val) {
+		'assertTrue' : function (val, msg) {
 			a2S(function () {
-				assertEquals(true, val);
+				assertEquals(true, val, msg);
 			});
 			return this;
 		},

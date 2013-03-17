@@ -41,6 +41,25 @@ define([
 			t.l('Verify category is no more present').assertNotPresent('#Category' + catId);
 		};
 
+		var testEditCategory = function (t) {
+			var $editBtn = $('.page-header:contains(' + catTitleStr + ') .admin-controls .edit');
+			var catId = $editBtn.data('category-id');
+			var editedTitle = catTitleStr+'2';
+			var count = $('.category').length;
+
+			t.l('Press edit button.').click($editBtn);
+
+			t.l('Modify title.').setValue($('*[name=i18n-en-title]', $catModal), editedTitle)
+
+			t.l('Click Save.').click($saveButton);
+
+			t.l('Wait for server response.').waitXHR();
+
+			t.l('verify content is present').assertPresent('h1.category-title:contains(' + editedTitle + ')');
+
+			t.l('Verify same number of cats.').assertEquals(count, $('.category').length);
+		};
+
 		var setup = function (t) {
 			$addButton = $('.category-nav .add');
 			$catModal = $('#categoryEditFormModal');
@@ -51,7 +70,7 @@ define([
 			'setup' : setup,
 			'tests' : [
 				{ 'testAddCategory' : testAddCategory },
-				// { 'testDeleteCategory' : testEditCategory },
+				{ 'testEditCategory' : testEditCategory },
 				{ 'testDeleteCategory' : testDeleteCategory }
 			]
 		};
