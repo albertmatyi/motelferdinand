@@ -45,6 +45,13 @@ define(['lib/jquery'], function (jquery) {
 			});
 			return this;
 		},
+		'assertNotPresent' : function (selector) {
+			var at = this.assertTrue;
+			a2S(function () {
+				at($(selector).length === 0);
+			});
+			return this;
+		},
 		'assertPresent' : function (selector) {
 			var at = this.assertTrue;
 			a2S(function () {

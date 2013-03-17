@@ -11,6 +11,9 @@ define([
 		var catTitleStr = "CatTitle";
 		var catDescrStr = "CatDescr";
 		var $saveButton;
+		var confirm = {
+			'$ok' : $("#confirmationModal .modal-footer .btn-primary")
+		};
 
 		var testAddCategory = function (t) {
 			t.l('click add category').click($addButton).wait(200);
@@ -21,13 +24,21 @@ define([
 
 			t.l('click submit').click($saveButton);
 
-			t.waitXHR();
+			t.l('wait for response').waitXHR();
 
 			t.l('verify content is present').assertPresent('h1.category-title:contains(' + catTitleStr + ')');
 		};
 
 		var testDeleteCategory = function (t) {
-			throw 'Not implemented';
+			var $delBtn = $('.page-header:contains(' + catTitleStr + ') .admin-controls .delete');
+			var catId = $delBtn.data('category-id');
+			t.l('Deleting Category ' + catId).click($delBtn);
+			
+			t.l('Click OK to confirm delete').click(confirm.$ok);
+			
+			t.l('wait server response & popup close').wait(2000);
+			
+			t.l('Verify category is no more present').assertNotPresent('#Category' + catId);
 		};
 
 		var setup = function (t) {
@@ -40,6 +51,7 @@ define([
 			'setup' : setup,
 			'tests' : [
 				{ 'testAddCategory' : testAddCategory },
+				// { 'testDeleteCategory' : testEditCategory },
 				{ 'testDeleteCategory' : testDeleteCategory }
 			]
 		};
