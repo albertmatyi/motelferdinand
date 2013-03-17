@@ -18,27 +18,6 @@ define([
 		var success = 0;
 		var fail = 0;
 
-		var function (test) {
-				for (var key in test) {
-					if (test.hasOwnProperty(key) && key !== 'setup') {
-						total += 1;
-						try {
-							if (test.setup) {
-								test.setup(testUtil);
-							}
-							console.info('Run ' + key);
-							test[key](testUtil);
-							console.info('\tOK');
-							success += 1;
-						} catch (e) {
-							console.warn('\tFAIL: ' + e);
-							fail += 1;
-						}
-					}
-				}
-			}
-		};
-
 		var runNext = function () {
 			if (testFileIndex == testFiles.length) {
 				console.info('Test results: ' + success + '/' + total + ' succeeded. ' + fail + ' failed.');
@@ -54,7 +33,7 @@ define([
 			total += 1;
 
 			if (testFile.setup) {
-				test.setup(testUtil);
+				testFile.setup(testUtil);
 			}
 
 			for (var key in test) {

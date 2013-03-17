@@ -16,7 +16,7 @@ define(['lib/jquery'], function (jquery) {
 	};
 	var a2S = function (func, timeout) {
 		testSteps.push({
-			'f' : func, 
+			'f' : func,
 			'timeout' : timeout || 1
 		});
 	};
@@ -24,45 +24,66 @@ define(['lib/jquery'], function (jquery) {
 		'execute' : function (successCB, failCB) {
 			try {
 				if (testSteps.length !== 0) {
-					step = testSteps.shift();
+					var step = testSteps.shift();
 					step.f();
-					setTimeout(function() {
+					setTimeout(function () {
 						this.execute(successCB, failCB);
 					}, step.timeout);
 				} else {
 					successCB();
 				}
 			} catch (e) {
-				testSteps = []
+				testSteps = [];
 				failCB(e);
 			}
 		},
 		'l' : function (msg) {
-			a2S(console.log('\t\t' + msg);
+			a2S(function () {
+				console.log('\t\t' + msg);
+			});
+			return this;
+		},
+		'assertPresent' : function (selector) {
+			a2S(function () {
+				this.assertTrue($(selector).length > 0);
+			});
 			return this;
 		},
 		'assertTrue' : function (val) {
-			assertEquals(true, val);
+			a2S(function () {
+				assertEquals(true, val);
+			});
 			return this;
 		},
-		'assertVisible' : function (el, timeout, nextFunction) {
-			timeout = timeout || 0;
-			function () {
+		'assertVisible' : function (el) {
+			a2S(function () {
 				assertNotEquals('none', el.css('display'),  el + ' should be visible');
 				assertEquals('visible', el.css('visibility'), 'The visibility css property of ' + el + 'should be visible');
-				if (nextFunction) {
-					nextFunction();
-				}
-			};
+			});
+			return this;
+		},
+		'click' : function (el) {
+			a2S(function () {
+				el.click();
+			});
 			return this;
 		},
 		'setValue' : function (el, value) {
-			if (el[0].tagName.toLowerCase() === 'textarea') {
-				el.html(value);
-			} else {
-				el.val(value);
-			}
+			a2S(function () {
+				if (el[0].tagName.toLowerCase() === 'textarea') {
+					el.html(value);
+				} else {
+					el.val(value);
+				}
+			});
 			return this;
+		},
+		'wait' : function (timeout) {
+			a2S(function () {}, timeout);
+			return this;
+		},
+		'waitXHR' : function () {
+			this.wait(2000);
 		}
 	};
 });
