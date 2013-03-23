@@ -27,7 +27,7 @@ define([
 		};
 
 		var after = function (t) {
-			categoryTest.deleteCategory($category.attr('id'));
+			categoryTest.deleteCategory(t, $category.attr('id'));
 		};
 
 		var testAddContent = function (t) {
@@ -85,9 +85,9 @@ define([
 			'before' : before,
 			'after' : after,
 			'tests' : [
-				{ 'testAddContent' : testAddContent },
-				{ 'testEditContent' : testEditContent },
-				{ 'testDeleteContent' : testDeleteContent }
+				// { 'testAddContent' : testAddContent },
+				// { 'testEditContent' : testEditContent },
+				// { 'testDeleteContent' : testDeleteContent }
 			],
 			'createContent' : createContent
 		};

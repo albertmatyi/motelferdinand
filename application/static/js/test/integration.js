@@ -1,6 +1,7 @@
 /*global define */
 /*global $ */
 /*global console */
+/*global _ */
 
 define([
 	'lib/jquery',
@@ -19,18 +20,29 @@ function (jquery, testUtil, category, content) {
 	var success = 0;
 	var fail = 0;
 
+	var testFileFilter = false;
+	var testFilter = false;
+
 	var runNext = function () {
-		if (testFileIndex === testFiles.length) {
+		if (testFileIndex >= testFiles.length) {
 			console.info('Test results: ' + success + '/' + total + ' succeeded. ' + fail + ' failed.');
 			return 0;
 		}
 		var testFile = testFiles[testFileIndex];
+
+		if (testFileFilter && !_.contains(testFileFilter, testFile.name)) {
+			console.log(testFile.name + ' filtered out by ' + testFileFilter);
+			testFileIndex += 1;
+			runNext();
+			return;
+		}
+
 		if (testIndex === TEST_IDX_DEFAULT) {
 			testIndex = 0;
 			runBeforeTestFile(testFile);
 			return;
 		}
-		if (testIndex === testFile.tests.length) {
+		if (testIndex >= testFile.tests.length) {
 			testFileIndex += 1;
 			testIndex = TEST_IDX_DEFAULT;
 			runAfterTestFile(testFile);
@@ -44,19 +56,21 @@ function (jquery, testUtil, category, content) {
 	};
 
 	var runTest = function (testFile, test) {
-		if (testFile.setup) {
-			testFile.setup(testUtil);
-		}
-
 		for (var key in test) {
 			if (test.hasOwnProperty(key)) {
-				console.info('Run ' + testFile.name + '.' + key);
-				test[key](testUtil);
+				if (!testFilter || _.contains(testFilter, key)) {
+					if (testFile.setup) {
+						testFile.setup(testUtil);
+					}
+					console.info('Run ' + testFile.name + '.' + key);
+					test[key](testUtil);
+					if (testFile.teardown) {
+						testFile.teardown(testUtil);
+					}
+				} else {
+					console.log('\t' + key + ' filtered out');
+				}
 			}
-		}
-
-		if (testFile.teardown) {
-			testFile.teardown(testUtil);
 		}
 
 		testUtil.execute(function () {
@@ -73,11 +87,11 @@ function (jquery, testUtil, category, content) {
 	};
 
 	var runBeforeTestFile = function (testFile) {
-		runMisc(testFile.after, testFile.name + '.before');
+		runMisc(testFile.before, testFile.name + '.before');
 	};
 
 	var runAfterTestFile = function (testFile) {
-		runMisc(testFile.before, testFile.name + '.after');
+		runMisc(testFile.after, testFile.name + '.after');
 	};
 
 	var runMisc = function (method, name) {
@@ -97,13 +111,39 @@ function (jquery, testUtil, category, content) {
 		}
 	};
 
-	var runTests = function () {
+	var initFilters = function (tff, tf) {
+		switch (typeof tff) {
+		case 'string':
+			testFileFilter = [tff];
+			break;
+		case 'object':
+			testFileFilter = tff;
+			break;
+		default:
+			testFileFilter = false;
+			break;
+		}
+		switch (typeof tf) {
+		case 'string' :
+			testFilter = [tff];
+			break;
+		case 'object' :
+			testFilter = tff;
+			break;
+		default :
+			testFilter = false;
+			break;
+		}
+	};
+
+	var runTests = function (tff, tf) {
+		initFilters(tff, tf);
 		console.clear();
 		total = 0;
 		success = 0;
 		fail = 0;
 		testFileIndex = 0;
-		testIndex = 0;
+		testIndex = TEST_IDX_DEFAULT;
 
 		runNext();
 	};
