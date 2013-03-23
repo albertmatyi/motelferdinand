@@ -7,14 +7,14 @@ define(['lib/jquery'], function (jquery) {
 	var assertEquals = function (expected, actual, message) {
 		if (actual !== expected) {
 			var msg = (message || '') + ' | Expected ' + expected + ', got: ' + actual;
-			console.warn('\t'+msg);
+			console.warn('\t' + msg);
 			throw new Error(msg);
 		}
 	};
 	var assertNotEquals = function (expected, actual, message) {
 		if (actual === expected) {
 			var msg = (message || '') + ' | Expected something else than: ' + actual;
-			console.warn('\t'+msg);
+			console.warn('\t' + msg);
 			throw new Error(msg);
 		}
 	};
@@ -33,7 +33,7 @@ define(['lib/jquery'], function (jquery) {
 			} else {
 				msg = '\tUndefined variable';
 			}
-			console.warn('\t'+msg);
+			console.warn('\t' + msg);
 			throw new Error(msg);
 		}
 	};
@@ -65,6 +65,11 @@ define(['lib/jquery'], function (jquery) {
 		'assertEquals' : function (expected, actual, message) {
 			a2S(function () {
 				assertEquals(expected, actual, message);
+			});
+		},
+		'assertCount' : function (expectedCount, selector) {
+			a2S(function () {
+				assertEquals(expectedCount, $(selector).length, 'The number of ' + selector + ' doesn\'t match.');
 			});
 		},
 		'assertNotPresent' : function (selector) {

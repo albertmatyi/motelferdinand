@@ -25,7 +25,7 @@ define([
 		var testAddCategory = function (t) {
 			createCategory(t, categoryTitleStr);
 
-			t.l('verify content is present').assertPresent('h1.category-title:contains(' + categoryTitleStr + ')');
+			t.l('verify content is present').assertPresent('.category-title:contains(' + categoryTitleStr + ')');
 		};
 
 		var createCategory = function (t, title, callback) {
@@ -78,9 +78,9 @@ define([
 
 			t.l('Wait for server response.').waitXHR();
 
-			t.l('verify content is present').assertPresent('h1.category-title:contains(' + editedTitle + ')');
+			t.l('verify content is present').assertPresent('.category-title:contains(' + editedTitle + ')');
 
-			t.l('Verify same number of cats.').assertEquals(count, $('.category').length);
+			t.l('Verify same number of cats.').assertCount(count, '.category');
 		};
 
 		return {

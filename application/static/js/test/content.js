@@ -36,37 +36,36 @@ define([
 		var testAddContent = function (t) {
 			createContent(t, contentTitleStr);
 
-			t.l('verify content is present').assertPresent($('h1.content-title:contains(' + contentTitleStr + ')'));
+			t.l('verify content is present').assertPresent('.content-title:contains(' + contentTitleStr + ')');
 		};
 
 		var createContent = function (t, title) {
-			t.l('click add content').click($addButton).wait(200);
+			t.l('click add content').click($addDropdown).wait(100).click($addButton).wait(200);
 
 			t.l('verify modal visible').assertVisible($contentModal);
 
-			t.l('fill form with data').setValue($('*[name=i18n-en-title]', $contentModal), contentTitleStr);
+			t.l('fill form with data').setValue($('*[name=i18n-en-title]', $contentModal), title);
 
 			t.l('click submit').click($saveButton);
 
 			t.l('wait for response').waitXHR();
 
-			return $('.content:contains(' + title + ')').attr('id');
 		};
 
 		var testDeleteContent = function (t) {
-			var $delBtn = $('.page-header:contains(' + contentTitleStr + ') .admin-controls .delete');
-			var catId = $delBtn.data('content-id');
-			t.l('Deleting Content ' + catId).click($delBtn);
+			var $delBtn = $('.content:contains(' + contentTitleStr + ') .admin-controls .delete', $category);
+			var contentId = $delBtn.data('content-id');
+			t.l('Deleting Content ' + contentId).click($delBtn);
 
 			t.l('Click OK to confirm delete').click(confirm.$ok);
 
 			t.l('wait server response & popup close').wait(2000);
 
-			t.l('Verify content is no more present').assertNotPresent($('#Content' + catId));
+			t.l('Verify content is no more present').assertNotPresent('#Content' + contentId);
 		};
 
 		var testEditContent = function (t) {
-			var $editBtn = $('.page-header:contains(' + contentTitleStr + ') .admin-controls .edit');
+			var $editBtn = $('.content:contains(' + contentTitleStr + ') .admin-controls .edit', $category);
 			var editedTitle = contentTitleStr + '2';
 			var count = $('.content').length;
 
@@ -78,9 +77,9 @@ define([
 
 			t.l('Wait for server response.').waitXHR();
 
-			t.l('verify content is present').assertPresent($('h1.content-title:contains(' + editedTitle + ')'));
+			t.l('verify content is present').assertPresent('.content-title:contains(' + editedTitle + ')');
 
-			t.l('Verify same number of cats.').assertEquals(count, $('.content').length);
+			t.l('Verify same number of cats.').assertCount(count, '.content');
 		};
 
 		return {
@@ -88,9 +87,9 @@ define([
 			'before' : before,
 			'after' : after,
 			'tests' : [
-				// { 'testAddContent' : testAddContent },
-				// { 'testEditContent' : testEditContent },
-				// { 'testDeleteContent' : testDeleteContent }
+				{ 'testAddContent' : testAddContent },
+				{ 'testEditContent' : testEditContent },
+				{ 'testDeleteContent' : testDeleteContent }
 			],
 			'createContent' : createContent
 		};
