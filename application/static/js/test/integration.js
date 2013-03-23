@@ -48,12 +48,11 @@ function (jquery, testUtil) {
 		}
 		var test = testFile.tests[testIndex];
 
-		total += 1;
-
 		runTest(testFile, test);
 	};
 
 	var runTest = function (testFile, test) {
+		var filtered = false;
 		for (var key in test) {
 			if (test.hasOwnProperty(key)) {
 				if (!testFilter || _.contains(testFilter, key)) {
@@ -66,24 +65,31 @@ function (jquery, testUtil) {
 						testFile.teardown(testUtil);
 					}
 				} else {
+					filtered = true;
 					console.log('\t' + key + ' filtered out by ' + testFilter);
 				}
 			}
 		}
-
-		testUtil.execute(function () {
-			console.info('\tOK');
-			success += 1;
+		if (!filtered) {
+			testUtil.execute(function () {
+				console.info('\tOK');
+				total += 1;
+				success += 1;
+				testIndex += 1;
+				setTimeout(runNext, 1);
+			}, function (e) {
+				console.warn('\tFAIL: ' + e);
+				total += 1;
+				fail += 1;
+				testIndex += 1;
+				if (!window.config.test.breakOnError) {
+					setTimeout(runNext, 1);
+				}
+			});
+		} else {
 			testIndex += 1;
 			setTimeout(runNext, 1);
-		}, function (e) {
-			console.warn('\tFAIL: ' + e);
-			fail += 1;
-			testIndex += 1;
-			if (!window.config.test.breakOnError) {
-				setTimeout(runNext, 1);
-			}
-		});
+		}
 	};
 
 	var runBeforeTestFile = function (testFile) {
@@ -151,7 +157,14 @@ function (jquery, testUtil) {
 
 	window.config = {
 		'test' : {
-			'breakOnError' : false
+			'breakOnError' : false,
+			'timeouts' : {
+				'animation' : 500, // the time a waitAnimation() should wait for
+				'XHRafter' : 200, // the ammount of time the app is let to respond after an XHR call
+				'XHRcheck' : 100,  // the timeout between two "XHR is finished" checks
+				'word' : 0
+			},
+			'debug' : false
 		}
 	};
 	window.test = runTests;

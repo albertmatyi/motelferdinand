@@ -11,7 +11,7 @@ define([
 		"use strict";
 		var $addButton;
 		var $catModal;
-		var categoryTitleStr = "CatTitle";
+		var categoryTitleStr = "categoryTitleForCategoryTest";
 		var $saveButton;
 
 		var initControls = function () {
@@ -43,10 +43,17 @@ define([
 			if (typeof $addButton === 'undefined') {
 				initControls();
 			}
-			var modelCount0 = _.size(model.db.category);
-			var modelCount1 = _.size(model.categories);
+			t.l('Adding category ' + title);
 
-			t.l('click add category').click($addButton).wait(200);
+			var modelCount0;
+			var modelCount1;
+
+			t.addFunction(function () {
+				modelCount0 = _.size(model.db.category);
+				modelCount1 = _.size(model.categories);
+			});
+
+			t.l('click add category').click($addButton).waitAnimation();
 
 			t.l('verify modal visible').assertVisible($catModal);
 
@@ -74,6 +81,8 @@ define([
 		};
 
 		var deleteCategory = function (t, title) {
+			t.l('Deleting category ' + title);
+
 			t.$('.category:contains(' + title + ')', function (el) {
 				var categoryId = el.attr('id');
 				var $delBtn = $('#' + categoryId + ' .page-header .admin-controls .delete');
@@ -81,11 +90,11 @@ define([
 				var modelCount0 = _.size(model.db.category);
 				var modelCount1 = _.size(model.categories);
 
-				t.l('Deleting ' + categoryId).click($delBtn);
+				t.l('Deleting ' + categoryId).click($delBtn).waitAnimation();
 
 				t.l('Click OK to confirm delete').click(confirm.$ok);
 
-				t.l('wait server response & popup close').waitXHR();
+				t.l('wait server response').waitXHR();
 
 				t.l('Verify category is no more present').assertNotPresent('#' + categoryId);
 
@@ -101,11 +110,11 @@ define([
 			var editedTitle = categoryTitleStr + '2';
 			var count = $('.category').length;
 
-			t.l('Press edit button.').click($editBtn);
+			t.l('Press edit button.').click($editBtn).waitAnimation();
 
 			t.l('Modify title.').setValue($('*[name=i18n-en-title]', $catModal), editedTitle);
 
-			t.l('Click Save.').click($saveButton);
+			t.l('Click Save.').click($saveButton).waitAnimation();
 
 			t.l('Wait for server response.').waitXHR();
 
@@ -119,9 +128,9 @@ define([
 			'before' : before,
 			'tests' : [
 				{ 'testAddCategory' : testAddCategory },
-				// { 'testEditCategory' : testEditCategory },
+				{ 'testEditCategory' : testEditCategory },
 				{ 'testDeleteCategory' : testDeleteCategory },
-				// { 'testAddDelete3Categories' : testAddDelete3Categories }
+				{ 'testAddDelete3Categories' : testAddDelete3Categories }
 			],
 			'createCategory' : createCategory,
 			'deleteCategory' : deleteCategory

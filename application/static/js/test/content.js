@@ -12,7 +12,7 @@ define([
 		var $addButton;
 		var $contentModal;
 		var contentTitleStr = "ContentTitle";
-		var categoryTitleStr = "categoryTitleStr";
+		var categoryTitleStr = "categoryTitleForContentTest";
 		var $saveButton;
 		var $category;
 
@@ -40,13 +40,13 @@ define([
 		};
 
 		var createContent = function (t, title) {
-			t.l('click add content').click($addDropdown).wait(100).click($addButton).wait(200);
+			t.l('click add content').click($addDropdown).waitAnimation().click($addButton).waitAnimation();
 
 			t.l('verify modal visible').assertVisible($contentModal);
 
 			t.l('fill form with data').setValue($('*[name=i18n-en-title]', $contentModal), title);
 
-			t.l('click submit').click($saveButton);
+			t.l('click submit').click($saveButton).waitAnimation();
 
 			t.l('wait for response').waitXHR();
 
@@ -55,11 +55,11 @@ define([
 		var testDeleteContent = function (t) {
 			var $delBtn = $('.content:contains(' + contentTitleStr + ') .admin-controls .delete', $category);
 			var contentId = $delBtn.data('content-id');
-			t.l('Deleting Content ' + contentId).click($delBtn);
+			t.l('Deleting Content ' + contentId).click($delBtn).waitAnimation();
 
-			t.l('Click OK to confirm delete').click(confirm.$ok);
+			t.l('Click OK to confirm delete').click(confirm.$ok).waitAnimation();
 
-			t.l('wait server response & popup close').wait(2000);
+			t.l('wait server response & popup close').waitXHR();
 
 			t.l('Verify content is no more present').assertNotPresent('#Content' + contentId);
 		};
@@ -69,11 +69,11 @@ define([
 			var editedTitle = contentTitleStr + '2';
 			var count = $('.content').length;
 
-			t.l('Press edit button.').click($editBtn);
+			t.l('Press edit button.').click($editBtn).waitAnimation();
 
 			t.l('Modify title.').setValue($('*[name=i18n-en-title]', $contentModal), editedTitle);
 
-			t.l('Click Save.').click($saveButton);
+			t.l('Click Save.').click($saveButton).waitAnimation();
 
 			t.l('Wait for server response.').waitXHR();
 

@@ -53,7 +53,7 @@ function (i18n, adminControls, transparency, common, modal, directive) {
 		$('#Content' + deletedId).remove();
 		var cont = model.db.content[deletedId];
 		delete model.db.content[deletedId];
-		
+
 		var cat = model.db.category[cont.category];
 		var idx = _.indexOf(cat.contents, cont);
         if (idx > -1) {

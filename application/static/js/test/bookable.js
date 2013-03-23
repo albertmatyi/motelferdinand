@@ -12,7 +12,7 @@ define([
 		var $addButton;
 		var $bookableModal;
 		var bookableTitleStr = "BookableTitle";
-		var categoryTitleStr = "categoryTitleStr";
+		var categoryTitleStr = "categoryTitleForBookableTest";
 		var $saveButton;
 		var $category;
 
@@ -40,13 +40,13 @@ define([
 		};
 
 		var createBookable = function (t, title) {
-			t.l('click add bookable').click($addDropdown).wait(100).click($addButton).wait(200);
+			t.l('click add bookable').click($addDropdown).waitAnimation().click($addButton).waitAnimation();
 
 			t.l('verify modal visible').assertVisible($bookableModal);
 
 			t.l('fill form with data').setValue($('*[name=i18n-en-title]', $bookableModal), title);
 
-			t.l('click submit').click($saveButton);
+			t.l('click submit').click($saveButton).waitAnimation();
 
 			t.l('wait for response').waitXHR();
 
@@ -55,11 +55,11 @@ define([
 		var testDeleteBookable = function (t) {
 			var $delBtn = $('.bookable:contains(' + bookableTitleStr + ') .admin-controls .delete', $category);
 			var bookableId = $delBtn.data('bookable-id');
-			t.l('Deleting Bookable ' + bookableId).click($delBtn);
+			t.l('Deleting Bookable ' + bookableId).click($delBtn).waitAnimation();
 
-			t.l('Click OK to confirm delete').click(confirm.$ok);
+			t.l('Click OK to confirm delete').click(confirm.$ok).waitAnimation();
 
-			t.l('wait server response & popup close').wait(2000);
+			t.l('wait server response & popup close').waitXHR();
 
 			t.l('Verify bookable is no more present').assertNotPresent('#Bookable' + bookableId);
 		};
@@ -69,11 +69,11 @@ define([
 			var editedTitle = bookableTitleStr + '2';
 			var count = $('.bookable').length;
 
-			t.l('Press edit button.').click($editBtn);
+			t.l('Press edit button.').click($editBtn).waitAnimation();
 
 			t.l('Modify title.').setValue($('*[name=i18n-en-title]', $bookableModal), editedTitle);
 
-			t.l('Click Save.').click($saveButton);
+			t.l('Click Save.').click($saveButton).waitAnimation();
 
 			t.l('Wait for server response.').waitXHR();
 
