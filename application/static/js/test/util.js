@@ -6,12 +6,16 @@ define(['lib/jquery'], function (jquery) {
 
 	var assertEquals = function (expected, actual, message) {
 		if (actual !== expected) {
-			throw (message || '') + ' | Expected ' + expected + ', got: ' + actual;
+			var msg = (message || '') + ' | Expected ' + expected + ', got: ' + actual;
+			console.warn('\t'+msg);
+			throw new Error(msg);
 		}
 	};
 	var assertNotEquals = function (expected, actual, message) {
 		if (actual === expected) {
-			throw (message || '') + ' | Expected something else than: ' + actual;
+			var msg = (message || '') + ' | Expected something else than: ' + actual;
+			console.warn('\t'+msg);
+			throw new Error(msg);
 		}
 	};
 	var a2S = function (func, timeout) {
@@ -19,6 +23,19 @@ define(['lib/jquery'], function (jquery) {
 			'f' : func,
 			'timeout' : timeout || 1
 		});
+	};
+
+	var assertNotUndef = function (val, descr) {
+		if (typeof val === 'undefined') {
+			var msg = '';
+			if (descr) {
+				msg = '\tArg for ' + descr + ' is undefined';
+			} else {
+				msg = '\tUndefined variable';
+			}
+			console.warn('\t'+msg);
+			throw new Error(msg);
+		}
 	};
 
 	var execute = function (successCB, failCB) {
@@ -52,13 +69,15 @@ define(['lib/jquery'], function (jquery) {
 		},
 		'assertNotPresent' : function (selector) {
 			a2S(function () {
-				assertEquals(0, $(selector).length);
+				var jqEl = $(selector);
+				assertEquals(0, jqEl.length, jqEl.selector + " should not be present.");
 			});
 			return this;
 		},
 		'assertPresent' : function (selector) {
 			a2S(function () {
-				assertEquals(true, $(selector).length > 0);
+				var jqEl = $(selector);
+				assertEquals(true, jqEl.length > 0, jqEl.selector + " cannot be found.");
 			});
 			return this;
 		},
@@ -68,25 +87,28 @@ define(['lib/jquery'], function (jquery) {
 			});
 			return this;
 		},
-		'assertVisible' : function (el) {
+		'assertVisible' : function (selector) {
 			a2S(function () {
-				assertNotEquals('none', el.css('display'),  el + ' should be visible');
-				assertEquals('visible', el.css('visibility'), 'The visibility css property of ' + el + 'should be visible');
+				var jqEl = $(selector);
+				assertEquals(true, jqEl.length > 0, selector + " cannot be found.");
+				assertNotEquals('none', jqEl.css('display'),  jqEl + ' should be visible');
+				assertEquals('visible', jqEl.css('visibility'), 'The visibility css property of ' + jqEl + 'should be visible');
 			});
 			return this;
 		},
-		'click' : function (el) {
+		'click' : function (selector) {
 			a2S(function () {
-				el.click();
+				$(selector).click();
 			});
 			return this;
 		},
-		'setValue' : function (el, value) {
+		'setValue' : function (selector, value) {
 			a2S(function () {
-				if (el[0].tagName.toLowerCase() === 'textarea') {
-					el.html(value);
+				var jqEl = $(selector);
+				if (jqEl[0].tagName.toLowerCase() === 'textarea') {
+					jqEl.html(value);
 				} else {
-					el.val(value);
+					jqEl.val(value);
 				}
 			});
 			return this;
@@ -96,11 +118,11 @@ define(['lib/jquery'], function (jquery) {
 			return this;
 		},
 		'waitXHR' : function () {
-			this.wait(2000);
+			return this.wait(2000);
 		},
 		'addFunction' : function (method, timeout) {
 			a2S(method, timeout);
+			return this;
 		}
-
 	};
 });

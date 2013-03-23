@@ -12,10 +12,14 @@ define([
 		var categoryTitleStr = "CatTitle";
 		var $saveButton;
 
-		var before = function () {
+		var initControls = function () {
 			$addButton = $('.category-nav .add');
 			$catModal = $('#categoryEditFormModal');
 			$saveButton = $('#submitCategoryEditForm', $catModal);
+		};
+
+		var before = function () {
+			initControls();
 		};
 
 		var testAddCategory = function (t) {
@@ -25,18 +29,21 @@ define([
 		};
 
 		var createCategory = function (t, title, callback) {
+			if (typeof $addButton === 'undefined') {
+				initControls();
+			}
 			t.l('click add category').click($addButton).wait(200);
 
 			t.l('verify modal visible').assertVisible($catModal);
 
-			t.l('fill form with data').setValue($('*[name=i18n-en-title]', $catModal), categoryTitleStr);
+			t.l('fill form with data').setValue($('*[name=i18n-en-title]', $catModal), title);
 
 			t.l('click submit').click($saveButton);
 
 			t.l('wait for response').waitXHR();
 
 			if (callback) {
-				t.addFunction(function () {
+				t.l('after createCategory method').addFunction(function () {
 					callback($('.category:contains(' + title + ')').attr('id'));
 				});
 			}
@@ -53,7 +60,7 @@ define([
 
 			t.l('Click OK to confirm delete').click(confirm.$ok);
 
-			t.l('wait server response & popup close').wait(2000);
+			t.l('wait server response & popup close').waitXHR();
 
 			t.l('Verify category is no more present').assertNotPresent('#' + categoryId);
 		};

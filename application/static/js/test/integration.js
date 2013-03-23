@@ -33,7 +33,7 @@ function (jquery, testUtil, category, content) {
 		if (testFileFilter && !_.contains(testFileFilter, testFile.name)) {
 			console.log(testFile.name + ' filtered out by ' + testFileFilter);
 			testFileIndex += 1;
-			runNext();
+			setTimeout(runNext, 1);
 			return;
 		}
 
@@ -68,7 +68,7 @@ function (jquery, testUtil, category, content) {
 						testFile.teardown(testUtil);
 					}
 				} else {
-					console.log('\t' + key + ' filtered out');
+					console.log('\t' + key + ' filtered out by ' + testFilter);
 				}
 			}
 		}
@@ -77,12 +77,12 @@ function (jquery, testUtil, category, content) {
 			console.info('\tOK');
 			success += 1;
 			testIndex += 1;
-			runNext();
+			setTimeout(runNext, 1);
 		}, function (e) {
 			console.warn('\tFAIL: ' + e);
 			fail += 1;
 			testIndex += 1;
-			runNext();
+			setTimeout(runNext, 1);
 		});
 	};
 
@@ -100,14 +100,14 @@ function (jquery, testUtil, category, content) {
 			console.info('Running ' + name);
 			testUtil.execute(function () {
 				console.info('\tOK');
-				runNext();
+				setTimeout(runNext, 1);
 			},
 			function (e) {
 				console.warn('\tFAIL: ' + e);
-				runNext();
+				setTimeout(runNext, 1);
 			});
 		} else {
-			runNext();
+			setTimeout(runNext, 1);
 		}
 	};
 
@@ -125,10 +125,10 @@ function (jquery, testUtil, category, content) {
 		}
 		switch (typeof tf) {
 		case 'string' :
-			testFilter = [tff];
+			testFilter = [tf];
 			break;
 		case 'object' :
-			testFilter = tff;
+			testFilter = tf;
 			break;
 		default :
 			testFilter = false;
@@ -145,7 +145,7 @@ function (jquery, testUtil, category, content) {
 		testFileIndex = 0;
 		testIndex = TEST_IDX_DEFAULT;
 
-		runNext();
+		setTimeout(runNext, 1);
 	};
 
 	$('#testButton').click(runTests);

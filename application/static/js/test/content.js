@@ -18,7 +18,8 @@ define([
 
 		var before = function (t) {
 			categoryTest.createCategory(t, categoryTitleStr, function (categoryId) {
-				$category = $(categoryId);
+				t.l('Got category id ' + categoryId);
+				$category = $('#' + categoryId);
 				$addDropdown = $('.page-header .dropdown-toggle', $category);
 				$addButton = $('.page-header .addContentButton', $category);
 				$contentModal = $('#contentEditFormModal');
@@ -27,13 +28,15 @@ define([
 		};
 
 		var after = function (t) {
-			categoryTest.deleteCategory(t, $category.attr('id'));
+			if ($category) {
+				categoryTest.deleteCategory(t, $category.attr('id'));
+			}
 		};
 
 		var testAddContent = function (t) {
 			createContent(t, contentTitleStr);
 
-			t.l('verify content is present').assertPresent('h1.content-title:contains(' + contentTitleStr + ')');
+			t.l('verify content is present').assertPresent($('h1.content-title:contains(' + contentTitleStr + ')'));
 		};
 
 		var createContent = function (t, title) {
@@ -59,7 +62,7 @@ define([
 
 			t.l('wait server response & popup close').wait(2000);
 
-			t.l('Verify content is no more present').assertNotPresent('#Content' + catId);
+			t.l('Verify content is no more present').assertNotPresent($('#Content' + catId));
 		};
 
 		var testEditContent = function (t) {
@@ -75,7 +78,7 @@ define([
 
 			t.l('Wait for server response.').waitXHR();
 
-			t.l('verify content is present').assertPresent('h1.content-title:contains(' + editedTitle + ')');
+			t.l('verify content is present').assertPresent($('h1.content-title:contains(' + editedTitle + ')'));
 
 			t.l('Verify same number of cats.').assertEquals(count, $('.content').length);
 		};
