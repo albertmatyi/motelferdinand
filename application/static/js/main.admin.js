@@ -35,7 +35,7 @@ requirejs.config({
 			deps: ['lib/jquery']
 		},
 		'lib/transparency' : {
-			deps: ['lib/jquery']	
+			deps: ['lib/jquery']
 		},
 		'lib/datepicker': {
 			deps: ['lib/jquery']
@@ -45,11 +45,11 @@ requirejs.config({
 
 define('main',
 [
-	'test/integration',
 	'lib/underscore',
+	'config',
+	'test/main',
 	'elements/social',
 	'model/base',
-	'config',
 	'view/category',
 	'view/language',
 	'controllers/category',
@@ -58,7 +58,7 @@ define('main',
 	'controllers/admin/bookable',
 	'controllers/admin/booking'
 ],
-function (test, us, social, modelBase, flags,
+function (us, config, test, social, modelBase,
 	categoryView, languageView, category,
 	categoryAdmin, contentAdmin, bookableAdmin, bookingAdmin) {
 	"use strict";

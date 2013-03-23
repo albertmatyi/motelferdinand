@@ -1,6 +1,7 @@
 /*global define */
 /*global $ */
 /*global window */
+/*global setTimeout */
 
 define(
 	['view/alert'],
@@ -16,19 +17,26 @@ define(
 			}, 5000);
 		};
 
+		var setSize = function ($el) {
+			var wh = $(window).height(),
+				eh = wh * 0.8,
+				hh = $('> .modal-header', $el).outerHeight(true),
+				fh = $('> .modal-footer', $el).outerHeight(true);
+			$('> .modal-body', $el).height(eh - (hh + fh) - SAFE_SIDE);
+		};
+
 
 		return {
 			'init' : function (el) {
-				var $el = $(el),
-					wh = $(window).height(),
-					eh = wh * 0.8,
-					marg = -eh / 2,
-					hh = $('> .modal-header', $el).outerHeight(true),
-					fh = $('> .modal-footer', $el).outerHeight(true);
-				// $el.css('margin-top', marg + 'px');
-				// $el.height(eh);
-				$('> .modal-body', $el).height(eh - (hh + fh) - SAFE_SIDE);
-			}, 
+				var $el = $(el);
+				setSize($el);
+				if (!$el.data('boundToResize')) {
+					$(window).resize(function () {
+						setSize($el);
+					});
+					$el.data('boundToResize', true);
+				}
+			},
 			'displayAlert' : displayAlert
 		};
 	}

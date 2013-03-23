@@ -1,5 +1,6 @@
 /*global define */
 /*global $ */
+/*global alert */
 
 define(
 [

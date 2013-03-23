@@ -3,6 +3,8 @@
 define(['lib/jquery'], function (jquery) {
 	"use strict";
 	var testSteps = [];
+	var executing = false;
+	var stepInsertIndex = 0;
 
 	var assertEquals = function (expected, actual, message) {
 		if (actual !== expected) {
@@ -11,46 +13,40 @@ define(['lib/jquery'], function (jquery) {
 			throw new Error(msg);
 		}
 	};
-	var assertNotEquals = function (expected, actual, message) {
-		if (actual === expected) {
-			var msg = (message || '') + ' | Expected something else than: ' + actual;
-			console.warn('\t' + msg);
-			throw new Error(msg);
-		}
-	};
 	var a2S = function (func, timeout) {
-		testSteps.push({
+		var step = {
 			'f' : func,
 			'timeout' : timeout || 1
-		});
-	};
-
-	var assertNotUndef = function (val, descr) {
-		if (typeof val === 'undefined') {
-			var msg = '';
-			if (descr) {
-				msg = '\tArg for ' + descr + ' is undefined';
-			} else {
-				msg = '\tUndefined variable';
-			}
-			console.warn('\t' + msg);
-			throw new Error(msg);
+		};
+		if (executing) {
+			// Inserts steps during execution, at the right place.
+			testSteps.splice(stepInsertIndex, 0, step);
+			stepInsertIndex += 1;
+		} else {
+			// Normal instertion of test steps 
+			testSteps.push(step);
 		}
 	};
 
 	var execute = function (successCB, failCB) {
+		executing = true;
 		try {
 			if (testSteps.length !== 0) {
 				var step = testSteps.shift();
+				stepInsertIndex = stepInsertIndex > 0 ? stepInsertIndex - 1 : 0;
 				step.f();
 				setTimeout(function () {
 					execute(successCB, failCB);
 				}, step.timeout, this);
 			} else {
+				executing = false;
+				stepInsertIndex = 0;
 				successCB();
 			}
 		} catch (e) {
 			testSteps = [];
+			executing = false;
+			stepInsertIndex = 0;
 			failCB(e);
 		}
 	};
@@ -95,9 +91,7 @@ define(['lib/jquery'], function (jquery) {
 		'assertVisible' : function (selector) {
 			a2S(function () {
 				var jqEl = $(selector);
-				assertEquals(true, jqEl.length > 0, selector + " cannot be found.");
-				assertNotEquals('none', jqEl.css('display'),  jqEl + ' should be visible');
-				assertEquals('visible', jqEl.css('visibility'), 'The visibility css property of ' + jqEl + 'should be visible');
+				assertEquals(true, jqEl.is(':visible'), selector + ' should be visible.');
 			});
 			return this;
 		},
@@ -127,6 +121,12 @@ define(['lib/jquery'], function (jquery) {
 		},
 		'addFunction' : function (method, timeout) {
 			a2S(method, timeout);
+			return this;
+		},
+		'$' : function (selector, callback) {
+			a2S( function () {
+				callback($(selector));
+			});
 			return this;
 		}
 	};

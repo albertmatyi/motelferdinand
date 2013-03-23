@@ -1,6 +1,7 @@
 /*global define */
 /*global $ */
 /*global model */
+/*global _ */
 
 define(
 [
@@ -50,7 +51,14 @@ function (i18n, adminControls, transparency, common, modal, directive) {
 	var deletedCallback = function (deletedId) {
 		//remove the HTML
 		$('#Content' + deletedId).remove();
+		var cont = model.db.content[deletedId];
 		delete model.db.content[deletedId];
+		
+		var cat = model.db.category[cont.category];
+		var idx = _.indexOf(cat.contents, cont);
+        if (idx > -1) {
+            cat.contents.splice(idx, 1);
+        }
 	};
 
 	var initAddButton = function ($context) {

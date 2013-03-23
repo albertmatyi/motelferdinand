@@ -1,6 +1,6 @@
 /*global define */
 /*global $ */
-/*global setTimeout */
+/*global _ */
 /*global model */
 /*global confirm */
 

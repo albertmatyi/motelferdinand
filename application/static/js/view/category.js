@@ -1,15 +1,15 @@
 /*global define */
 /*global $ */
-/*global flags */
 
 define(
 [
+	'config',
 	'view/bookable',
 	'view/directives/menu',
 	'view/directives/body',
 	'view/common'
 ],
-function (bookableView, navDirective, bodyDirective, common) {
+function (config, bookableView, navDirective, bodyDirective, common) {
 	"use strict";
 	var $menu = $('.category-nav');
 	var $container = $('.categories');
@@ -22,15 +22,15 @@ function (bookableView, navDirective, bodyDirective, common) {
 		'menuTemplate' : menuTemplate,
 		'categoryTemplate' : categoryTemplate,
 		'render': function (data) {
-			if (flags.RENDER_HEADER) {
+			if (config.RENDER_HEADER) {
 				$menu.render(data, navDirective);
 			}
 
-			if (flags.RENDER_CONTENT) {
+			if (config.RENDER_CONTENT) {
 				$container.render(data, bodyDirective);
 			}
 
-			if (flags.RENDER_GALLERIES) {
+			if (config.RENDER_GALLERIES) {
 				common.renderContentGallery('.content-description div.picaslide, .category-description div.picaslide');
 			}
 			bookableView.render();

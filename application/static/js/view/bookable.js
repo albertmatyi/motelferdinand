@@ -1,12 +1,12 @@
 /*global define */
 /*global $ */
-/*global flags */
 
 define(
 [
+	'config',
 	'lib/datepicker'
 ],
-function () {
+function (config) {
 	"use strict";
 	// BOOKING
 	function renderDatePickers($context) {
@@ -19,7 +19,7 @@ function () {
 	}
 
 	var renderGallery = function ($context) {
-		if (flags.RENDER_BOOKING_GALLERIES) {
+		if (config.RENDER_BOOKING_GALLERIES) {
 			$('.bookable-picaslide', $context).each(function (idx, el) {
 				var $el = $(el);
 				$el.addClass('span4');
@@ -35,7 +35,7 @@ function () {
 		$('.bookables-wrapper', $context).each(function (idx, el) {
 			var $el = $(el);
 			var l = $('.bookable', el).length;
-			if (flags.RENDER_BOOKING && l > 0) {
+			if (config.RENDER_BOOKING && l > 0) {
 				var tmpW = $el.width();
 				$('.bookable', el).css('width', tmpW + 'px');
 				$('.bookables', el).css('width', tmpW + 'px');
@@ -50,10 +50,10 @@ function () {
 				$el.remove();
 			}
 		});
-		
+
 		renderGallery($context);
-		
-		if (flags.RENDER_DATEPICKERS) {
+
+		if (config.RENDER_DATEPICKERS) {
 			renderDatePickers($context);
 		}
 	};

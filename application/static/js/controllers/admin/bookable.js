@@ -1,6 +1,7 @@
 /*global define */
 /*global $ */
 /*global model */
+/*global _ */
 
 define(
     [
@@ -27,9 +28,10 @@ define(
             // rerender the bookables
             var bkbl = model.db.bookable[deletedId];
             var cat = model.db.category[bkbl.category];
-            cat.bookables.splice(cat.bookables.indexOf(bkbl), 1);
+            cat.bookables.splice(_.indexOf(cat.bookables, bkbl), 1);
             rerenderBookables(cat);
             delete model.db.bookable[deletedId];
+
         };
 
         var initAdminControls = function ($ctxt) {
@@ -51,7 +53,7 @@ define(
         };
 
         var add = function (entity) {
-            model.db.content[entity.id] = entity;
+            model.db.bookable[entity.id] = entity;
             var cat = model.db.category[entity.category];
             cat.bookables.push(entity);
             rerenderBookables(cat);

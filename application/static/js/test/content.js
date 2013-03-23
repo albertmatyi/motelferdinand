@@ -29,7 +29,7 @@ define([
 
 		var after = function (t) {
 			if ($category) {
-				categoryTest.deleteCategory(t, $category.attr('id'));
+				categoryTest.deleteCategory(t, categoryTitleStr);
 			}
 		};
 

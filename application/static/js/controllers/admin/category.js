@@ -1,6 +1,7 @@
 /*global define */
 /*global $ */
 /*global model */
+/*global _ */
 
 define(
 [
@@ -64,7 +65,12 @@ function (i18n, adminControls, transparency, adminContent, adminBookable, catego
         //remove the HTML
         $('#Category' + deletedId).remove();
         $('.nav a[href="#Category' + deletedId + '"]').remove();
+        var cat = model.db.category[deletedId];
         delete model.db.category[deletedId];
+        var idx = _.indexOf(model.categories, cat);
+        if (idx > -1) {
+            model.categories.splice(idx, 1);
+        }
     };
 
     return {'init': function () {

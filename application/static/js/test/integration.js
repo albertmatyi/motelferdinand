@@ -5,14 +5,12 @@
 
 define([
 	'lib/jquery',
-	'test/util',
-	'test/category',
-	'test/content'
+	'test/util'
 ],
-function (jquery, testUtil, category, content) {
+function (jquery, testUtil) {
 	"use strict";
 	var TEST_IDX_DEFAULT = -1;
-	var testFiles = [category, content];
+	var testFiles = [];
 	var testFileIndex = 0;
 	var testIndex = TEST_IDX_DEFAULT;
 
@@ -82,7 +80,9 @@ function (jquery, testUtil, category, content) {
 			console.warn('\tFAIL: ' + e);
 			fail += 1;
 			testIndex += 1;
-			setTimeout(runNext, 1);
+			if (!window.config.test.breakOnError) {
+				setTimeout(runNext, 1);
+			}
 		});
 	};
 
@@ -146,8 +146,17 @@ function (jquery, testUtil, category, content) {
 		testIndex = TEST_IDX_DEFAULT;
 
 		setTimeout(runNext, 1);
+		return 'Started tests';
 	};
 
-	$('#testButton').click(runTests);
+	window.config = {
+		'test' : {
+			'breakOnError' : false
+		}
+	};
 	window.test = runTests;
+	$('#testButton').click(runTests);
+	return {
+		'tests': testFiles
+	};
 });

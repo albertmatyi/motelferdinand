@@ -46,14 +46,14 @@ requirejs.config({
 define('main',
 [
 	'lib/underscore',
+	'config',
 	'elements/social',
 	'model/base',
-	'config',
 	'view/category',
 	'view/language',
 	'controllers/category'
 ],
-function (us, social, modelBase, flags, categoryView, languageView,
+function (us, config, social, modelBase, categoryView, languageView,
 	category) {
 	"use strict";
 	categoryView.render(model.categories);

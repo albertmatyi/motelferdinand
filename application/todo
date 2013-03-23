@@ -52,6 +52,17 @@ D		ie
 D			gallery fix
 D		fullscreen image viewer
 		tests
+			category CRUD
+				multiple
+			content CRUD
+				multiple
+				db
+			bookable
+				multiple
+				db
+			booking (client)
+				validation
+
 		caching
 		error handling (display something)
 			design

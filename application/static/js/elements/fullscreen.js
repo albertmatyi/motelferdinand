@@ -1,7 +1,7 @@
 /*global define */
 /*global $ */
 
-define(['lib/jquery'], 
+define(['lib/jquery'],
 	function (jquery) {
 	"use strict";
 	var $fsContext = $('#fullscreen-image');
