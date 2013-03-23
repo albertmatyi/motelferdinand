@@ -2,49 +2,65 @@
 /*global $ */
 
 define([
-		'lib/jquery'
+		'lib/jquery',
+		'test/confirm'
 	],
-	function (jquery) {
+	function (jquery, confirm) {
 		"use strict";
 		var $addButton;
 		var $catModal;
-		var catTitleStr = "CatTitle";
-		var catDescrStr = "CatDescr";
+		var categoryTitleStr = "CatTitle";
 		var $saveButton;
-		var confirm = {
-			'$ok' : $("#confirmationModal .modal-footer .btn-primary")
+
+		var before = function () {
+			$addButton = $('.category-nav .add');
+			$catModal = $('#categoryEditFormModal');
+			$saveButton = $('#submitCategoryEditForm', $catModal);
 		};
 
 		var testAddCategory = function (t) {
+			createCategory(t, categoryTitleStr);
+
+			t.l('verify content is present').assertPresent('h1.category-title:contains(' + categoryTitleStr + ')');
+		};
+
+		var createCategory = function (t, title, callback) {
 			t.l('click add category').click($addButton).wait(200);
 
 			t.l('verify modal visible').assertVisible($catModal);
 
-			t.l('fill form with data').setValue($('*[name=i18n-en-title]', $catModal), catTitleStr);
+			t.l('fill form with data').setValue($('*[name=i18n-en-title]', $catModal), categoryTitleStr);
 
 			t.l('click submit').click($saveButton);
 
 			t.l('wait for response').waitXHR();
 
-			t.l('verify content is present').assertPresent('h1.category-title:contains(' + catTitleStr + ')');
+			if (callback) {
+				t.addFunction(function () {
+					callback($('.category:contains(' + title + ')').attr('id'));
+				});
+			}
 		};
 
 		var testDeleteCategory = function (t) {
-			var $delBtn = $('.page-header:contains(' + catTitleStr + ') .admin-controls .delete');
-			var catId = $delBtn.data('category-id');
-			t.l('Deleting Category ' + catId).click($delBtn);
+			var categoryId =  $('.category:contains(' + categoryTitleStr + ')').attr('id');
+			deleteCategory(t, categoryId);
+		};
+
+		var deleteCategory = function (t, categoryId) {
+			var $delBtn = $('#' + categoryId + ' .page-header .admin-controls .delete');
+			t.l('Deleting ' + categoryId).click($delBtn);
 
 			t.l('Click OK to confirm delete').click(confirm.$ok);
 
 			t.l('wait server response & popup close').wait(2000);
 
-			t.l('Verify category is no more present').assertNotPresent('#Category' + catId);
+			t.l('Verify category is no more present').assertNotPresent('#' + categoryId);
 		};
 
 		var testEditCategory = function (t) {
-			var $editBtn = $('.page-header:contains(' + catTitleStr + ') .admin-controls .edit');
-			var catId = $editBtn.data('category-id');
-			var editedTitle = catTitleStr + '2';
+			var $editBtn = $('.page-header:contains(' + categoryTitleStr + ') .admin-controls .edit');
+			var editedTitle = categoryTitleStr + '2';
 			var count = $('.category').length;
 
 			t.l('Press edit button.').click($editBtn);
@@ -60,19 +76,16 @@ define([
 			t.l('Verify same number of cats.').assertEquals(count, $('.category').length);
 		};
 
-		var setup = function (t) {
-			$addButton = $('.category-nav .add');
-			$catModal = $('#categoryEditFormModal');
-			$saveButton = $('#submitCategoryEditForm', $catModal);
-		};
-
 		return {
-			'setup' : setup,
+			'name' : 'Category',
+			'before' : before,
 			'tests' : [
 				{ 'testAddCategory' : testAddCategory },
 				{ 'testEditCategory' : testEditCategory },
 				{ 'testDeleteCategory' : testDeleteCategory }
-			]
+			],
+			'createCategory' : createCategory,
+			'deleteCategory' : deleteCategory
 		};
 	}
 );

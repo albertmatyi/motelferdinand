@@ -97,6 +97,10 @@ define(['lib/jquery'], function (jquery) {
 		},
 		'waitXHR' : function () {
 			this.wait(2000);
+		},
+		'addFunction' : function (method, timeout) {
+			a2S(method, timeout);
 		}
+
 	};
 });
