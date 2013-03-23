@@ -123,7 +123,7 @@ define(
 
 				$('.nav-tabs', $context).render(model.languages, formTabNavDirectives);
 				$('.tab-content', $context).render(model.languages, formTabDirectives);
-				$('.nav-tabs a:first', $context).tab('show');
+				$('.nav-tabs a[href$=' + model.language + ']', $context).tab('show');
 				wysihtml5.renderTextAreas($context);
 			}
 		};
