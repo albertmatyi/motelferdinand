@@ -1,0 +1,13 @@
+.modal.alert-modal {
+	width: 300px;
+	margin-left: -150px;
+	.modal-header{
+		border-bottom: none;
+	}
+	.modal-body {
+		display: none;
+	}
+	.btn.dismiss {
+		display: none;
+	}
+}

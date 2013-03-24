@@ -78,9 +78,9 @@ function (i18n, adminControls, transparency, common, modal, directive) {
 
 	var initAdminControls = function ($context) {
 		if (typeof($context) === "undefined") {
-			$context = $('body');
+			$context = $('body .contents');
 		}
-		var $controls = $('.content .admin-controls');
+		var $controls = $('.admin-controls', $context);
 		adminControls.init($formModal, $controls, 'contents', deletedCallback);
 	};
 

@@ -6,9 +6,9 @@
 define([
 		'lib/jquery',
 		'test/category',
-		'test/confirm'
+		'test/dialog'
 	],
-	function (jquery, categoryTest, confirm) {
+	function (jquery, categoryTest, dialog) {
 		"use strict";
 		var $addDropdown;
 		var $addButton;
@@ -71,8 +71,11 @@ define([
 		var testMultipleContents = function (t) {
 			createContent(t, contentTitleStr + '1');
 			createContent(t, contentTitleStr + '2');
+
 			deleteContent(t, contentTitleStr + '1');
+
 			createContent(t, contentTitleStr + '3');
+
 			deleteContent(t, contentTitleStr + '3');
 			deleteContent(t, contentTitleStr + '2');
 		};
@@ -91,11 +94,11 @@ define([
 					modelCount1 = _.size(model.db.category[categoryId].contents);
 				});
 				var contentId = $delBtn.data('content-id');
-				t.l('Deleting Content ' + contentId).click($delBtn).waitAnimation();
+				t.l('Deleting Content ' + contentId).click($delBtn);
 
-				t.l('Click OK to confirm delete').click(confirm.$ok).waitAnimation();
+				t.l('Click OK to confirm delete').waitAnimation().click(dialog.confirmation.ok);
 
-				t.l('wait server response & popup close').waitXHR();
+				t.l('wait server response').waitXHR().l('click alert ok').waitAnimation().click(dialog.alert.ok);
 
 				t.l('Verify content is no more present').assertNotPresent('#Content' + contentId);
 				t.l('Verify model entries').addFunction(function () {

@@ -4,16 +4,16 @@
 /*global setTimeout */
 
 define(
-	['view/alert'],
-	function (alert) {
+	['elements/notification'],
+	function (notification) {
 		"use strict";
 		var SAFE_SIDE = 2;
 
-		var displayAlert = function ($modal, str, type) {
-			var $alert = alert.alert(str, type);
-			$('.modal-header', $modal).append($alert);
+		var displayNotification = function ($modal, str, type) {
+			var $notification = notification.createNotification(str, type);
+			$('.modal-header', $modal).append($notification);
 			setTimeout(function () {
-				$alert.remove();
+				$notification.remove();
 			}, 5000);
 		};
 
@@ -37,7 +37,7 @@ define(
 					$el.data('boundToResize', true);
 				}
 			},
-			'displayAlert' : displayAlert
+			'displayNotification' : displayNotification
 		};
 	}
 );

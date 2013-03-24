@@ -5910,6 +5910,16 @@ div.picaslide {
         #footer .social-icons a.skype:hover {
           background-position: 0px 48px; }
 
+.modal.alert-modal {
+  width: 300px;
+  margin-left: -150px; }
+  .modal.alert-modal .modal-header {
+    border-bottom: none; }
+  .modal.alert-modal .modal-body {
+    display: none; }
+  .modal.alert-modal .btn.dismiss {
+    display: none; }
+
 html, body, #maincontent, #body_content, .categories, .category {
   /* 	height: 100%; */
   /* 	overflow: hidden; */ }

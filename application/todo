@@ -55,13 +55,16 @@ D		fullscreen image viewer
 D			category CRUD
 D				multiple
 D			content CRUD
-				multiple
-				db
+D				multiple
+D				db
 			bookable
 				multiple
 				db
 			booking (client)
 				validation
+			booking admin
+				accept
+D		alert
 
 		caching
 		error handling (display something)

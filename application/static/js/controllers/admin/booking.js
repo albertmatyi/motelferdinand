@@ -10,14 +10,13 @@ define([
 		'view/directives/admin/bookingDetails',
 		'helpers/i18n',
 		'helpers/transparency',
-		'elements/confirmation',
+		'elements/dialog',
 		'elements/admin/controls',
 		'view/admin/modal'
 	],
-	function (transp, bookingsDirective, bookingDetailsDirective, i18n, transparency, confirmation, adminControls, modal) {
+	function (transp, bookingsDirective, bookingDetailsDirective, i18n, transparency, dialog, adminControls, modal) {
 		"use strict";
 		var $bookingsModal = $('#adminBookingsModal');
-		var $modalHeader = $('.modal-header', $bookingsModal);
 		var $bookingDetails = $('.bookingDetails', $bookingsModal);
 		var $bookingsButton = $('#adminBookingsButton');
 		var $table = $('.bookings-table > tbody', $bookingsModal);
@@ -58,14 +57,14 @@ define([
 					if (successFunction) {
 						successFunction(data);
 					} else {
-						modal.displayAlert($bookingsModal, data.message, 'success');
+						modal.displayNotification($bookingsModal, data.message, 'success');
 					}
 				},
 				'error' : function (data) {
 					if (errorFunction) {
 						errorFunction(data);
 					} else {
-						modal.displayAlert($bookingsModal, JSON.parse(data.responseText).message, 'error');
+						modal.displayNotification($bookingsModal, JSON.parse(data.responseText).message, 'error');
 					}
 				},
 				type : 'POST',
@@ -80,36 +79,39 @@ define([
 					if ($(this).hasClass('disabled')) {
 						return;
 					}
-					if (confirm(i18n.translate('Are you sure you wish to accept?\n Once you accept, you can no more undo it, and the client will be notified.'))) {
-						var bk = model.db.booking[$bookingDetails.data('bookingId')];
-						var oldVal =  bk.accepted;
-						bk.accepted = "True";
-						updateBooking(bk, function (data) {
-							modal.displayAlert($bookingsModal, data.message, 'success');
-							var $row = $('#Booking' + bk.id);
-							$row = transparency.render($row, bk, bookingsDirective);
-							$bookingDetails.before($row);
-							$bookingDetails.render(bk, bookingDetailsDirective);
-							renderBadge();
-						}, function (data) {
-							modal.displayAlert($bookingsModal, JSON.parse(data.responseText).message, 'error');
-							bk.accepted = oldVal;
-						});
-					}
+					dialog.confirm(
+						i18n.translate('Are you sure you wish to accept?\n Once you accept, you can no more undo it, and the client will be notified.'),
+						function () {
+							var bk = model.db.booking[$bookingDetails.data('bookingId')];
+							var oldVal =  bk.accepted;
+							bk.accepted = "True";
+							updateBooking(bk, function (data) {
+								modal.displayNotification($bookingsModal, data.message, 'success');
+								var $row = $('#Booking' + bk.id);
+								$row = transparency.render($row, bk, bookingsDirective);
+								$bookingDetails.before($row);
+								$bookingDetails.render(bk, bookingDetailsDirective);
+								renderBadge();
+							}, function (data) {
+								modal.displayNotification($bookingsModal, JSON.parse(data.responseText).message, 'error');
+								bk.accepted = oldVal;
+							});
+						}
+					);
 				});
 				$('#markAsPaid', $bookingDetails).click(function () {
 					var bk = model.db.booking[$bookingDetails.data('bookingId')];
 					var oldVal = bk.paid;
 					bk.paid = bk.paid === "True" ? "False":"True";
 					updateBooking(bk, function (data) {
-						modal.displayAlert($bookingsModal, data.message, 'success');
+						modal.displayNotification($bookingsModal, data.message, 'success');
 						var $row = $('#Booking' + bk.id);
 						$row = transparency.render($row, bk, bookingsDirective);
 						$bookingDetails.before($row);
 						$bookingDetails.render(bk, bookingDetailsDirective);
 						renderBadge();
 					}, function (data) {
-						modal.displayAlert($bookingsModal, JSON.parse(data.responseText).message, 'error');
+						modal.displayNotification($bookingsModal, JSON.parse(data.responseText).message, 'error');
 						bk.accepted = oldVal;
 					});
 				});
@@ -126,7 +128,7 @@ define([
 							'data': '_method=DELETE',
 							'dataType': 'json',
 							'success': function (data) {
-								modal.displayAlert($bookingsModal, data.message, 'success');
+								modal.displayNotification($bookingsModal, data.message, 'success');
 								delete model.db.booking[bookingId];
 								$bookingDetails.data('bookingId', -1);
 								hideDetails();
@@ -134,7 +136,7 @@ define([
 								renderBadge();
 							},
 							'error' : function (data) {
-								modal.displayAlert($bookingsModal, JSON.parse(data.responseText).message, 'error');
+								modal.displayNotification($bookingsModal, JSON.parse(data.responseText).message, 'error');
 							}
 						});
 					}

@@ -1,10 +1,10 @@
-{% set id="confirmation" %}
-{% set title=__('Are you sure?') %}
+{% set id="dialog" %}
+{% set title=__('Please confirm your action.') %}
 
 {% extends "base/modal.html" %}
 
 {% block content %}
-	{{ __('Please confirm your action.') }}
+	{{  __('Are you sure?') }}	
 {% endblock %}
 
 {% block footer_content %}

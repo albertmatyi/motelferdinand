@@ -36,9 +36,9 @@ define(
 
         var initAdminControls = function ($ctxt) {
             if (!$ctxt) {
-                $ctxt = $('body');
+                $ctxt = $('body .bookables');
             }
-            var $controls = $('.bookable .admin-controls ', $ctxt);
+            var $controls = $('.admin-controls', $ctxt);
             adminControls.init($formModal, $controls, 'bookables', deletedCallback);
         };
 
@@ -75,7 +75,7 @@ define(
                 } else {
                     add(entity);
                 }
-                modal.displayAlert($formModal, 'Modified successfully!', 'success');
+                modal.displayNotification($formModal, 'Modified successfully!', 'success');
             });
         });
 

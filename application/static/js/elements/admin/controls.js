@@ -1,40 +1,45 @@
 /*global define */
 /*global $ */
-/*global alert */
 
 define(
 [
-    "helpers/i18n",
-    "elements/confirmation"
+    'helpers/i18n',
+    'elements/dialog'
 ],
-function (i18n, confirmation) {
+function (i18n, dialog) {
     "use strict";
     var getDeleteHandler = function (delURL, deleteCallback) {
         return function () {
-            confirmation.show(function () {
-                $.ajax({
-                    'type': 'POST',
-                    'url': delURL,
-                    'data': '_method=DELETE',
-                    'success': function () {
-                        alert('Deleted');
-                        if (deleteCallback) {
-                            deleteCallback();
+            dialog.confirm(
+                i18n.translate('Are you sure you wish to delete?'),
+                function () {
+                    $.ajax({
+                        'type': 'POST',
+                        'url': delURL,
+                        'data': '_method=DELETE',
+                        'success': function () {
+                            dialog.alert('Deleted');
+                            if (deleteCallback) {
+                                deleteCallback();
+                            }
                         }
-                    }
-                });
-            });
+                    });
+                }
+            );
         };
     };
 
     var initDelete = function ($controls, entityURL, deleteCallback) {
         $('span.delete', $controls).click(function () {
             var entityId = $(this).data('entity').id;
-            getDeleteHandler('admin/' + entityURL + '/' + entityId, function () {
-                if (deleteCallback) {
-                    deleteCallback(entityId);
+            var dh = getDeleteHandler('admin/' + entityURL + '/' + entityId,
+                function () {
+                    if (deleteCallback) {
+                        deleteCallback(entityId);
+                    }
                 }
-            })();
+            );
+            dh();
         });
     };
 

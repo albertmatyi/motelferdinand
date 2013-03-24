@@ -158,11 +158,17 @@ function (jquery, testUtil) {
 	window.config = {
 		'test' : {
 			'breakOnError' : false,
+			'xhr' : {
+				'maxRetries' : 50, // the 
+				'timeout' : 200, // the timeout between two "XHR is finished" checks
+				'after' : 200 // the ammount of time the app is let to respond after an XHR call
+			},
 			'timeouts' : {
-				'animation' : 500, // the time a waitAnimation() should wait for
-				'XHRafter' : 200, // the ammount of time the app is let to respond after an XHR call
-				'XHRcheck' : 100,  // the timeout between two "XHR is finished" checks
-				'word' : 0
+				'animation' : 500 // the time a waitAnimation() should wait for
+			},
+			'visibility' : {
+				'timeout' : 100,
+				'maxRetries' : 20
 			},
 			'debug' : false
 		}

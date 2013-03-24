@@ -8,11 +8,11 @@ define(
 		'helpers/i18n',
 		'helpers/tooltip',
 		'controllers/booking_entry',
-		'view/alert',
+		'elements/notification',
 		'view/directives/booking_entry',
 		'helpers/transparency'
 	],
-	function (i18n, tooltip, bookingEntry, alert, entryDirective, transparency) {
+	function (i18n, tooltip, bookingEntry, notification, entryDirective, transparency) {
 		"use strict";
 
 		/**
@@ -107,7 +107,7 @@ define(
 		 */
 		$submitBookingButton.click(function (ev) {
 			var $controlContainer = $form.parent();
-			$('.alert-error, .alert-success', $controlContainer).remove();
+			notification.remove($controlContainer);
 			// do validation
 			// if validation fails, show message
 			try {
@@ -124,7 +124,7 @@ define(
 					dataType: 'json',
 					success: function (data) {
 						// show success message
-						var message = alert.alert(data.message, 'success');
+						var message = notification.createNotification(data.message, 'success');
 						$controlContainer.prepend(message);
 						// on response hide the form
 						if (data.success) {
@@ -134,7 +134,7 @@ define(
 						}
 					},
 					error: function (data) {
-						var message = alert.alert(JSON.parse(data.responseText).message, 'error');
+						var message = notification.createNotification(JSON.parse(data.responseText).message, 'error');
 						$submitBookingButton.before(message);
 					}
 				});
@@ -166,7 +166,7 @@ define(
 		 */
 		var showForm = function (categoryId) {
 			var $formCont = $('#Category' + categoryId + ' .booking-controls');
-			$('.alert', $formCont).remove();
+			notification.remove($formCont);
 			$formCont.append($form);
 
 			var bookables = model.db.category[categoryId].bookables;

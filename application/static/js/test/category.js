@@ -5,9 +5,9 @@
 
 define([
 		'lib/jquery',
-		'test/confirm'
+		'test/dialog'
 	],
-	function (jquery, confirm) {
+	function (jquery, dialog) {
 		"use strict";
 		var $addButton;
 		var $catModal;
@@ -89,11 +89,11 @@ define([
 				var modelCount0 = _.size(model.db.category);
 				var modelCount1 = _.size(model.categories);
 
-				t.l('Deleting ' + categoryId).click($delBtn).waitAnimation();
+				t.l('Deleting ' + categoryId).click($delBtn);
 
-				t.l('Click OK to confirm delete').click(confirm.$ok);
+				t.l('Click OK to confirm delete').waitAnimation().click(dialog.confirmation.ok);
 
-				t.l('wait server response').waitXHR();
+				t.l('wait server response').waitXHR().l('click alert ok').waitAnimation().click(dialog.alert.ok);
 
 				t.l('Verify category is no more present').assertNotPresent('#' + categoryId);
 

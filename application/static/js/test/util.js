@@ -8,11 +8,31 @@ define(['lib/jquery'], function (jquery) {
 	var executing = false;
 	var stepInsertIndex = 0;
 
+	$(document).ajaxError(function () {
+		a2S(function () {
+			throwException('XHR call failed. Stopping execution');
+		}, 'xhrFailed', 1, true);
+	});
+
+	var throwException = function (msg) {
+		dumpSteps();
+		testSteps = [];
+		executing = false;
+		console.warn('\t' + msg);
+		throw new Error(msg);
+	};
+
+	var dumpSteps = function () {
+		var str = _.reduce(testSteps, function (s, step) {
+			return s += ', ' + step.description;
+		}, '');
+		log('Test steps: [' + str + ']');
+	};
+
 	var assertEquals = function (expected, actual, message) {
 		if (actual !== expected) {
 			var msg = (message || '') + ' | Expected ' + expected + ', got: ' + actual;
-			console.warn('\t' + msg);
-			throw new Error(msg);
+			throwException(msg);
 		}
 	};
 	var a2S = function (func, description, timeout, forceAs1st) {
@@ -29,12 +49,6 @@ define(['lib/jquery'], function (jquery) {
 		} else {
 			// Normal instertion of test steps 
 			testSteps.push(step);
-		}
-		if (window.config.test.debug) {
-			var str = _.reduce(testSteps, function (s, step) {
-				return s += ', ' + step.description;
-			}, '');
-			console.log('DEBUG: [' + str + ']');
 		}
 	};
 
@@ -61,6 +75,28 @@ define(['lib/jquery'], function (jquery) {
 
 	var log = function (msg) {
 		console.log('\t\t' + msg);
+	};
+
+	var waitUntilVisible = function (jqEl, msg, callback) {
+		msg = msg || jqEl.selector + ' should be visible.';
+		var maxRetries = window.config.test.visibility.maxRetries;
+		var wuv = function () {
+			var visible = jqEl.is(':visible');
+			if (!visible) {
+				if (maxRetries > 0) {
+					maxRetries -= 1;
+					log('Waiting for element ' + jqEl.selector + ' to become visible');
+					a2S(wuv, 'wuv', window.config.test.timeout, true);
+				} else {
+					throwException(msg);
+				}
+			} else {
+				if (callback) {
+					callback();
+				}
+			}
+		};
+		wuv();
 	};
 
 	return {
@@ -104,27 +140,29 @@ define(['lib/jquery'], function (jquery) {
 		'assertVisible' : function (selector) {
 			a2S(function () {
 				var jqEl = $(selector);
-				assertEquals(true, jqEl.is(':visible'), selector + ' should be visible.');
+				waitUntilVisible(jqEl);
 			}, 'aV');
 			return this;
 		},
 		'click' : function (selector) {
 			a2S(function () {
 				var jqEl = $(selector);
-				assertEquals(true, jqEl.is(':visible'), 'Cannot click on invisible ' + selector);
-				jqEl.click();
+				waitUntilVisible(jqEl, 'Cannot click on invisible ' + selector, function () {
+					jqEl.click();	
+				});				
 			}, 'c');
 			return this;
 		},
 		'setValue' : function (selector, value) {
 			a2S(function () {
 				var jqEl = $(selector);
-				assertEquals(true, jqEl.is(':visible'), 'Cannot set value of an invisible ' + selector);
-				if (jqEl[0].tagName.toLowerCase() === 'textarea') {
-					jqEl.html(value);
-				} else {
-					jqEl.val(value);
-				}
+				waitUntilVisible(jqEl, 'Cannot set value of an invisible ' + selector, function () {
+					if (jqEl[0].tagName.toLowerCase() === 'textarea') {
+						jqEl.html(value);
+					} else {
+						jqEl.val(value);
+					}	
+				});
 			}, 'sV');
 			return this;
 		},
@@ -133,19 +171,26 @@ define(['lib/jquery'], function (jquery) {
 			return this;
 		},
 		'waitXHR' : function () {
-			var lwx = function (wx, forceAs1st) {
+			var maxRetries = window.config.test.xhr.maxRetries;
+			var lwx = function (wxp, forceAs1st) {
 				a2S(function () {
 					if ($.active > 0) {
 						log('Waiting for XHR...');
-						lwx(wx, true);
+						if (maxRetries > 0) {
+							maxRetries -= 1;
+							lwx(wxp, true);
+						} else {
+							throwException('Response timed out. Maximum number of XHR retries' +
+								window.config.test.xhr.maxRetries + ' reached.');
+						}
 					} else {
 						a2S(function () {
 							log('XHR finished.');
 							//let the application respond
 							// that's why the timeout
-						}, 'wXE', window.config.test.timeouts.XHRafter, true);
+						}, 'wXE', window.config.test.xhr.after, true);
 					}
-				}, 'wX', window.config.test.timeouts.XHRcheck, forceAs1st);
+				}, 'wX', window.config.test.xhr.timeout, forceAs1st);
 			};
 			lwx(this.waitXHR, false);
 			return this;

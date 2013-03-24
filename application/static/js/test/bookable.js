@@ -4,9 +4,9 @@
 define([
 		'lib/jquery',
 		'test/category',
-		'test/confirm'
+		'test/dialog'
 	],
-	function (jquery, categoryTest, confirm) {
+	function (jquery, categoryTest, dialog) {
 		"use strict";
 		var $addDropdown;
 		var $addButton;
@@ -55,11 +55,11 @@ define([
 		var testDeleteBookable = function (t) {
 			var $delBtn = $('.bookable:contains(' + bookableTitleStr + ') .admin-controls .delete', $category);
 			var bookableId = $delBtn.data('bookable-id');
-			t.l('Deleting Bookable ' + bookableId).click($delBtn).waitAnimation();
+			t.l('Deleting Bookable ' + bookableId).click($delBtn);
 
-			t.l('Click OK to confirm delete').click(confirm.$ok).waitAnimation();
+			t.l('Click OK to confirm delete').waitAnimation().click(dialog.confirmation.ok);
 
-			t.l('wait server response & popup close').waitXHR();
+			t.l('wait server response').waitXHR().l('click alert ok').waitAnimation().click(dialog.alert.ok);
 
 			t.l('Verify bookable is no more present').assertNotPresent('#Bookable' + bookableId);
 		};
