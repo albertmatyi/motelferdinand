@@ -49,6 +49,7 @@ define('main',
 	'config',
 	'test/main',
 	'elements/social',
+	'elements/modal',
 	'model/base',
 	'view/category',
 	'view/language',
@@ -58,7 +59,7 @@ define('main',
 	'controllers/admin/bookable',
 	'controllers/admin/booking'
 ],
-function (us, config, test, social, modelBase,
+function (us, config, test, social, modal, modelBase,
 	categoryView, languageView, category,
 	categoryAdmin, contentAdmin, bookableAdmin, bookingAdmin) {
 	"use strict";

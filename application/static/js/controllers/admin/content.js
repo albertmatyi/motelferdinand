@@ -9,10 +9,9 @@ define(
 	'elements/admin/controls',
 	'helpers/transparency',
 	'view/common',
-	'view/admin/modal',
 	'view/directives/content'
 ],
-function (i18n, adminControls, transparency, common, modal, directive) {
+function (i18n, adminControls, transparency, common, directive) {
 	"use strict";
 	var TAB_ID_BASE = 'editContent-';
 
@@ -85,7 +84,6 @@ function (i18n, adminControls, transparency, common, modal, directive) {
 	};
 
 	return {'init': function () {
-			modal.init($formModal);
 			initAdminControls();
 			initAddButton();
 		},

@@ -12,7 +12,7 @@ define(
         'view/common',
         'view/bookable',
         'controllers/booking',
-        'view/admin/modal'
+        'elements/modal'
     ],
     function (i18n, adminControls, directive, transparency, common, view, booking, modal) {
         "use strict";
@@ -96,7 +96,6 @@ define(
         };
         return {
             'init' : function () {
-                modal.init($formModal);
                 initAdminControls();
                 initAddButton();
             },

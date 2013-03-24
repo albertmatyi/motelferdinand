@@ -48,12 +48,13 @@ define('main',
 	'lib/underscore',
 	'config',
 	'elements/social',
+	'elements/modal',
 	'model/base',
 	'view/category',
 	'view/language',
 	'controllers/category'
 ],
-function (us, config, social, modelBase, categoryView, languageView,
+function (us, config, social, modal, modelBase, categoryView, languageView,
 	category) {
 	"use strict";
 	categoryView.render(model.categories);

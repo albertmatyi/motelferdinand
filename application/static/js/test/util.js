@@ -78,15 +78,22 @@ define(['lib/jquery'], function (jquery) {
 	};
 
 	var waitUntilVisible = function (jqEl, msg, callback) {
+		waitUntilVisibility(jqEl, true, msg, callback);
+	};
+
+	var waitUntilHidden = function (jqEl, msg, callback) {
+		waitUntilVisibility(jqEl, false, msg, callback);
+	};
+
+	var waitUntilVisibility = function (jqEl, visible, msg, callback) {
 		msg = msg || jqEl.selector + ' should be visible.';
 		var maxRetries = window.config.test.visibility.maxRetries;
 		var wuv = function () {
-			var visible = jqEl.is(':visible');
-			if (!visible) {
+			if (visible !== jqEl.is(':visible')) {
 				if (maxRetries > 0) {
 					maxRetries -= 1;
-					log('Waiting for element ' + jqEl.selector + ' to become visible');
-					a2S(wuv, 'wuv', window.config.test.timeout, true);
+					log('Waiting for element ' + jqEl.selector + ' to become ' + (visible ? '':'in') + 'visible');
+					a2S(wuv, 'wuv', window.config.test.visibility.timeout, true);
 				} else {
 					throwException(msg);
 				}
@@ -144,12 +151,19 @@ define(['lib/jquery'], function (jquery) {
 			}, 'aV');
 			return this;
 		},
+		'assertInvisible' : function (selector) {
+			a2S(function () {
+				var jqEl = $(selector);
+				waitUntilHidden(jqEl);
+			}, 'aI');
+			return this;
+		},
 		'click' : function (selector) {
 			a2S(function () {
 				var jqEl = $(selector);
 				waitUntilVisible(jqEl, 'Cannot click on invisible ' + selector, function () {
-					jqEl.click();	
-				});				
+					jqEl.click();
+				});
 			}, 'c');
 			return this;
 		},
@@ -161,7 +175,7 @@ define(['lib/jquery'], function (jquery) {
 						jqEl.html(value);
 					} else {
 						jqEl.val(value);
-					}	
+					}
 				});
 			}, 'sV');
 			return this;

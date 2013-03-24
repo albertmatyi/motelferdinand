@@ -13,10 +13,9 @@ define(
     'view/category',
     'view/bookable',
     'view/directives/menu',
-    'view/directives/body',
-    'view/admin/modal'
+    'view/directives/body'
 ],
-function (i18n, adminControls, transparency, adminContent, adminBookable, categoryView, bookableView, navDirective, bodyDirective, modal) {
+function (i18n, adminControls, transparency, adminContent, adminBookable, categoryView, bookableView, navDirective, bodyDirective) {
     "use strict";
     var TAB_ID_BASE = 'editCategory-';
 
@@ -74,7 +73,6 @@ function (i18n, adminControls, transparency, adminContent, adminBookable, catego
     };
 
     return {'init': function () {
-            modal.init($formModal);
             var $controls = $('.page-header .admin-controls ');
             adminControls.init($formModal, $controls, 'categories', deletedCallback);
 

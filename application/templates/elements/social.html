@@ -8,14 +8,36 @@
 	</a><a href="https://plus.google.com/101675121296802996485/about?gl=US&amp;hl=en" class="google" target="_blank" title="Google+">
 	</a><a href="skype:albertmatyi?call" class="skype" target="_blank" title="Skype"></a>
 </div>
-
-<div id="mapModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="mapModalTitle" aria-hidden="true">
+<div id="mapModal" class="modal hide fade big-modal" tabindex="-1" role="dialog" aria-labelledby="mapModalTitle" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		<h3 id="mapModalTitle">{{ __('How to get here') }}</h3>
 	</div>
-	<div class="modal-body">
-		<!-- googlemaps inserted here by social.js -->
+	<div class="modal-body row-fluid">
+		<div class="map-iframe span8">
+			<!-- googlemaps inserted here by social.js -->
+		</div>
+		<table class="table span4">
+			<thead>
+				<tr> 
+					<th> {{ __('Address') }} </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Strada 1 Decembrie 1918</td>
+				</tr>
+				<tr>
+					<td>nr. 10 ( {{ __ ('Yard') }} )</td>
+				</tr>
+				<tr>
+					<td>Sfântu Gheorghe 520008</td>
+				</tr>
+				<tr>
+					<td>Covasna, Romania‎</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true"> {{ __('Close') }} </button>
@@ -36,7 +58,7 @@
 				</tr>
 				<tr> 
 					<td> {{ __('Mobile') }} </td>
-					<td> +40 712 345 678 </td>
+					<td> +40 745 304 114 </td>
 				</tr>
 			</tbody>
 		</table>

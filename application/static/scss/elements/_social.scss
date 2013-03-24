@@ -2,11 +2,23 @@
 	background-position: ( - $offsetY - $row * $height) ( - $offsetX - $col * $width);
 }
 #mapModal {
-	iframe {
-		height: 380px;
-		width: 100%;
+	.modal-body .map-iframe {
+		height: 100%;
+		iframe {
+			height: 100%;
+			width: 100%;
+		}
 	}
 }
+
+#phoneModal {
+	.table {
+		tr:first-child td {
+			border-top: none;
+		}
+	}
+}
+
 .social-icons {
 	border-top: $ci-border;
 	text-align: center;

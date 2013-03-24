@@ -63,6 +63,8 @@ translations = {
 		'Mobile': u'Mobile',
 		'How to get here': u'How to get here',
 		'Phone numbers': u'Phone numbers',
+		'Address': u'Address',
+		'Yard': u'Yard',
 
 		# Admin
 		'Admin':u'Admin',
@@ -145,6 +147,8 @@ translations = {
 		'Mobile': u'Mobil',
 		'How to get here': u'Hogyan jut el hozzánk',
 		'Phone numbers': u'Telefonszámok',
+		'Address': u'Cím',
+		'Yard': u'Udvar',
 
 		# Admin
 		'Admin': u'Admin',
@@ -228,6 +232,8 @@ translations = {
 		'Mobile': u'Mobil',
 		'How to get here': u'Cum ajungeți aici',
 		'Phone numbers': u'Numere de telefon',
+		'Address': u'Adresă',
+		'Yard': u'Curte',
 
 		# Admin
 		'Admin': u'Admin',

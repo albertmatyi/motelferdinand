@@ -59,7 +59,9 @@
     </footer>
     
     <!-- alert & confirm dialogs -->
-    {% include "elements/dialog.html" %}
+    {% block modals %}
+        {% include "elements/dialog.html" %}
+    {% endblock %}
 
     <script type="text/javascript">
     {% if js_data %}

@@ -25,19 +25,29 @@ define(
 			$('> .modal-body', $el).height(eh - (hh + fh) - SAFE_SIDE);
 		};
 
+		var fix = function () {
+			$('.modal').appendTo($('body'));
+		};
+
+		var init = function (el) {
+			var $el = el ? $(el):$('.big-modal');
+			setSize($el);
+			if (!$el.data('boundToResize')) {
+				$(window).resize(function () {
+					setSize($el);
+				});
+				$el.data('boundToResize', true);
+			}
+		};
+
+		fix();
+
+		init();
 
 		return {
-			'init' : function (el) {
-				var $el = $(el);
-				setSize($el);
-				if (!$el.data('boundToResize')) {
-					$(window).resize(function () {
-						setSize($el);
-					});
-					$el.data('boundToResize', true);
-				}
-			},
-			'displayNotification' : displayNotification
+			'init' : init,
+			'displayNotification' : displayNotification,
+			'fix' : fix
 		};
 	}
 );

@@ -12,7 +12,7 @@ define([
 		'helpers/transparency',
 		'elements/dialog',
 		'elements/admin/controls',
-		'view/admin/modal'
+		'elements/modal'
 	],
 	function (transp, bookingsDirective, bookingDetailsDirective, i18n, transparency, dialog, adminControls, modal) {
 		"use strict";
@@ -162,7 +162,6 @@ define([
 
 		$bookingsButton.click(function () {
 			render(false);
-			modal.init($bookingsModal);
 			initButtons();
 			$bookingsModal.modal('show');
 		});

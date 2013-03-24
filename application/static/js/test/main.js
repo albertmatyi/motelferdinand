@@ -5,7 +5,8 @@ define(
 		'test/integration',
 		'test/category',
 		'test/content',
-		'test/bookable'
+		'test/bookable',
+		'test/social'
 	], function (integration) {
 		"use strict";
 		window.config.test.breakOnError = true;
