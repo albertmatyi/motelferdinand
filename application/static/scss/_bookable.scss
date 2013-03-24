@@ -4,7 +4,7 @@
 	@include gradient($contentGradientFrom, $contentGradientTo);
 	width: 100% - $contentMargin;
 	margin-left: $contentMargin;
-	margin-top: 5em;
+	margin-bottom: 1em;
 	.bookables {
 		.bookable {
 			h3, h4, .bookable-description{
