@@ -57,6 +57,10 @@
             {% block footer %}<!-- footer -->{% endblock %}
         </div><!-- /footer -->
     </footer>
+    
+    <!-- alert & confirm dialogs -->
+    {% include "elements/dialog.html" %}
+
     <script type="text/javascript">
     {% if js_data %}
     	model = {{js_data|tojson|safe}};

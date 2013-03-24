@@ -21,20 +21,25 @@ translations_js = {
 		'Booking successfully saved! Stand by for a confirmation email.': u'Booking successfully saved! Stand by for a confirmation email.',
 		'Add category': u'Add category',
 		'Mark as paid': u'Mark as paid',
-		'Mark as unpaid': u'Mark as unpaid'
+		'Mark as unpaid': u'Mark as unpaid',
+		'Are you sure you wish to delete?': u'Are you sure you wish to delete?',
+		'Are you sure you wish to accept? Once you accept, you can no more undo it, and the client will be notified.': u'Are you sure you wish to accept? Once you accept, you can no more undo it, and the client will be notified.'
 	},
 	'hu': {
 		'Booking successfully saved! Stand by for a confirmation email.': u'Foglalás sikeresen bejegyezve. Kérem várja meg a konfirmáló emailt.',
 		'Add category': u'Hozzáad kategoriát',
 		'Mark as paid': u'Kifizetve',
-		'Mark as unpaid': u'Kifizetlen'
-
+		'Mark as unpaid': u'Kifizetlen',
+		'Are you sure you wish to delete?': u'Biztos benne, hogy törölni szeretné?',
+		'Are you sure you wish to accept? Once you accept, you can no more undo it, and the client will be notified.': u'Biztos benne, hogy elfogadja a foglalást? Ez művelet nem visszavonható, és a kliens is értesül róla.'
 	},
 	'ro': {
 		'Booking successfully saved! Stand by for a confirmation email.': u'Rezervarea s-a efectuat cu succes. Vă rugăm să așteptați mailul de confirmare.',
 		'Add category': u'Adaugă categorie',
 		'Mark as paid': u'Marchează plătit',
-		'Mark as unpaid': u'Marchează neplătit'
+		'Mark as unpaid': u'Marchează neplătit',
+		'Are you sure you wish to delete?': u'Sunteți siguri că doriți să ștergeți?',
+		'Are you sure you wish to accept? Once you accept, you can no more undo it, and the client will be notified.': u'Sunteți siguri că doriți să acceptați? Această operație nu se poate modifica, iar clientul va fi notificat în urma lui.'
 	}
 }
 
@@ -54,6 +59,10 @@ translations = {
 		'Invalid data': u'Invalid data',
 		'Modified successfully': u'Modified successfully',
 		'Successfully deleted': u'Successfully deleted',
+		'Landline': u'Landline',
+		'Mobile': u'Mobile',
+		'How to get here': u'How to get here',
+		'Phone numbers': u'Phone numbers',
 
 		# Admin
 		'Admin':u'Admin',
@@ -115,7 +124,7 @@ translations = {
 		'Title': u'Title',
 
 		#Footer
-		'Find us on': u'Find us on'
+		'Find us on': u'Find us'
 	},
 	'hu' : {
 		'lang_id':'hu',
@@ -132,6 +141,10 @@ translations = {
 		'Invalid data': u'Helytelen adatok',
 		'Modified successfully': u'Módosítás sikeres',
 		'Successfully deleted': u'Törlés sikeres',
+		'Landline': u'Vezetékes',
+		'Mobile': u'Mobil',
+		'How to get here': u'Hogyan jut el hozzánk',
+		'Phone numbers': u'Telefonszámok',
 
 		# Admin
 		'Admin': u'Admin',
@@ -194,7 +207,7 @@ translations = {
 		'Title': u'Cím',
 
 		#Footer
-		'Find us on': u'Megtalálhatsz minket'
+		'Find us on': u'Itt találsz minket'
 	}, 
 	'ro' : {
 		'lang_id':'ro',
@@ -211,6 +224,10 @@ translations = {
 		'Invalid data': u'Date greșite',
 		'Modified successfully': u'Modificat cu succes',
 		'Successfully deleted': u'Șters cu succes',
+		'Landline': u'Fix',
+		'Mobile': u'Mobil',
+		'How to get here': u'Cum ajungeți aici',
+		'Phone numbers': u'Numere de telefon',
 
 		# Admin
 		'Admin': u'Admin',
@@ -272,7 +289,7 @@ translations = {
 		'Title': u'Titlu',
 
 		#Footer
-		'Find us on': u'Ne poți găsi pe'
+		'Find us on': u'Așa ne poți găsi'
 	}
 }
 
