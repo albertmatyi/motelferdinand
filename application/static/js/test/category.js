@@ -26,11 +26,9 @@ define([
 
 		var testAddCategory = function (t) {
 			createCategory(t, categoryTitleStr);
-
-			t.l('verify content is present').assertPresent('.category-title:contains(' + categoryTitleStr + ')');
 		};
 
-		var testAddDelete3Categories = function (t) {
+		var testMultipleCategories = function (t) {
 			createCategory(t, categoryTitleStr + '1');
 			createCategory(t, categoryTitleStr + '2');
 			deleteCategory(t, categoryTitleStr + '1');
@@ -68,6 +66,7 @@ define([
 				t.assertEquals(modelCount1 + 1, _.size(model.categories), 'We should have ' + (modelCount1 + 1) + ' categories');
 			});
 
+			t.l('verify category is present').assertPresent('.category-title:contains(' + title + ')');
 
 			if (callback) {
 				t.l('after createCategory method').addFunction(function () {
@@ -118,7 +117,7 @@ define([
 
 			t.l('Wait for server response.').waitXHR();
 
-			t.l('verify content is present').assertPresent('.category-title:contains(' + editedTitle + ')');
+			t.l('verify category is present').assertPresent('.category-title:contains(' + editedTitle + ')');
 
 			t.l('Verify same number of cats.').assertCount(count, '.category');
 		};
@@ -130,7 +129,7 @@ define([
 				{ 'testAddCategory' : testAddCategory },
 				{ 'testEditCategory' : testEditCategory },
 				{ 'testDeleteCategory' : testDeleteCategory },
-				{ 'testAddDelete3Categories' : testAddDelete3Categories }
+				{ 'testMultipleCategories' : testMultipleCategories }
 			],
 			'createCategory' : createCategory,
 			'deleteCategory' : deleteCategory

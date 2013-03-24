@@ -40,23 +40,21 @@ define(['lib/jquery'], function (jquery) {
 
 	var execute = function (successCB, failCB) {
 		executing = true;
+		stepInsertIndex = 0;
 		try {
 			if (testSteps.length !== 0) {
 				var step = testSteps.shift();
-				stepInsertIndex = stepInsertIndex > 0 ? stepInsertIndex - 1 : 0;
 				step.f();
 				setTimeout(function () {
 					execute(successCB, failCB);
 				}, step.timeout, this);
 			} else {
 				executing = false;
-				stepInsertIndex = 0;
 				successCB();
 			}
 		} catch (e) {
 			testSteps = [];
 			executing = false;
-			stepInsertIndex = 0;
 			failCB(e);
 		}
 	};
@@ -156,9 +154,9 @@ define(['lib/jquery'], function (jquery) {
 			a2S(method, 'aF', timeout);
 			return this;
 		},
-		'$' : function (selector, callback) {
+		'$' : function (selector, callback, context) {
 			a2S(function () {
-				callback($(selector));
+				callback($(selector, context));
 			}, '$');
 			return this;
 		}

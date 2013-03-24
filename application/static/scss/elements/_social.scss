@@ -1,0 +1,49 @@
+@mixin img($row, $col, $width: 48px, $height: 48px, $offsetX: 0px, $offsetY: 0px){
+	background-position: $offsetY + $row * $height $offsetX + $col * $width;
+}
+
+.social-icons {
+	border-top: $ci-border;
+	text-align: center;
+	margin-top: -7em;
+	margin-left: 0;	
+	padding-top: 1em;
+	color: #000000;
+	span {
+		display: block;
+	}
+
+	a {
+		height: 48px;
+		width: 48px;
+		margin: 16px;
+		display: inline-block;
+
+		background-image: url(../img/social/social_sprite_48.png);
+
+		&.facebook {
+			@include img(2, 0);
+			&:hover {
+				@include img(2, 1);
+			}
+		}
+		&.google {
+			@include img(1, 0);
+			&:hover {
+				@include img(1, 1);
+			}
+		}
+		&.tripadvisor {
+			@include img(3, 0);
+			&:hover {
+				@include img(3, 1);
+			}
+		}
+		&.skype {
+			@include img(0, 0);
+			&:hover {
+				@include img(0, 1);
+			}
+		}
+	}
+}
