@@ -80,7 +80,7 @@ define([
 						return;
 					}
 					dialog.confirm(
-						i18n.translate('Are you sure you wish to accept?\n Once you accept, you can no more undo it, and the client will be notified.'),
+						i18n.translate('Are you sure you wish to accept? Once you accept, you can no more undo it, and the client will be notified.'),
 						function () {
 							var bk = model.db.booking[$bookingDetails.data('bookingId')];
 							var oldVal =  bk.accepted;

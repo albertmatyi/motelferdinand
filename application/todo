@@ -65,7 +65,7 @@ D		css
 D			fix content behind header on navigation
 D 		add valid contact infos
 D			tests
-
+		
 		tests
 			bookable
 				multiple
@@ -74,6 +74,7 @@ D			tests
 				validation
 			booking admin
 				accept
+		fullscreen image quality
 		caching
 
 LAUNCH
