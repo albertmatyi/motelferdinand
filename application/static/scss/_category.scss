@@ -36,7 +36,9 @@ html, body, #maincontent, #body_content, .categories, .category {
 		}
 		
 		.category-description{
-			
+			iframe {
+				width: 100%;
+			}
 		}
 	}
 	

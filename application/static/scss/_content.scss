@@ -6,6 +6,9 @@
 	margin-left: $contentMargin;
 	float: left;
 	margin-bottom: 1em;
+	iframe {
+		width: 100%;
+	}
 
 	.admin-controls{
 		margin-right: 1em;
