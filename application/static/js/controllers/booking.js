@@ -14,11 +14,13 @@ define(
 	],
 	function (i18n, tooltip, bookingEntry, notification, entryDirective, transparency) {
 		"use strict";
+		var FORM_ID = 'booking-form';
 
+		var SHOW_BOOKING_FORM_SEL = '.showBookingFormButton';
 		/**
 		 * The jQuery ref to the form to be handled
 		 */
-		var $form = $('#booking-form');
+		var $form = $('#' + FORM_ID);
 		/**
 		 * The tbody that contains selected rooms
 		 */
@@ -36,10 +38,13 @@ define(
 		 * The input for the email
 		 */
 		var $userPhone = $('input[name="user.phone"]', $form);
+
 		/**
 		 * The button used for submitting a booking
 		 */
 		var $submitBookingButton = $('#submitBookingButton', $form);
+
+		var $cancelBookingButton = $('#cancelBookingButton', $form);
 		/**
 		 *	The table containing the booked rooms
 		 */
@@ -102,10 +107,20 @@ define(
 			return data;
 		};
 
+		var removeForm = function () {
+			var $cat = $form.parents('.category');
+			$('html, body').animate({scrollTop: $cat.offset().top - 5 * 16 /*5em*/}, 1000, function () {
+				$(SHOW_BOOKING_FORM_SEL, $cat).show();
+				$form.appendTo($('body'));
+			});
+		};
+
+		$cancelBookingButton.click(removeForm);
+
 		/**
 		 * Do a validation before submitting. If all ok. Submit the form.
 		 */
-		$submitBookingButton.click(function (ev) {
+		var submitBooking = function (ev) {
 			var $controlContainer = $form.parent();
 			notification.remove($controlContainer);
 			// do validation
@@ -128,9 +143,9 @@ define(
 						$controlContainer.prepend(message);
 						// on response hide the form
 						if (data.success) {
-							$form.appendTo($('body'));
+							removeForm();
 							// show the original button
-							$('.showBookingFormButton', $controlContainer).show().text('Book again');
+							$(SHOW_BOOKING_FORM_SEL, $controlContainer).text('Book again');
 						}
 					},
 					error: function (data) {
@@ -144,7 +159,9 @@ define(
 
 			// block the default behavior
 			return false;
-		});
+		};
+
+		$submitBookingButton.click(submitBooking);
 
 		var entryAdded = function (entry) {
 			var idx = $bookedRooms.children().length;
@@ -172,6 +189,8 @@ define(
 			var bookables = model.db.category[categoryId].bookables;
 			$bookedRooms.html('');
 			bookingEntry.init(bookables, entryAdded);
+
+			$('html, body').animate({scrollTop: $form.offset().top - 5 * 16 /*5em*/}, 1000);
 		};
 		/**
 		 * Hide all tooltips when initializing booking entry modal

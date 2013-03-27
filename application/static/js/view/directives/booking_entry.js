@@ -20,6 +20,11 @@ define(
 					return 'BookingEntry' + this.index;
 				}
 			},
+			'index' : {
+				'text' : function () {
+					return this.index + 1;
+				}
+			},
 			'booking-entry-bookableId' : getBEDir('bookable_id', 'id'),
 			'booking-entry-quantity' : getBEDir('quantity', 'quantity'),
 			'booking-entry-bookFrom' : getBEDir('book_from', 'from'),

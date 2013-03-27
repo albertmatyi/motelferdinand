@@ -2,7 +2,6 @@
 /*global $ */
 /*global _ */
 /*global model */
-/*global confirm */
 
 define([
 		'lib/transparency',
@@ -120,7 +119,7 @@ define([
 					hideDetails();
 				});
 				$('#deleteBooking', $bookingDetails).click(function () {
-					if (confirm(i18n.translate('Are you sure you wish to delete the booking?'))) {
+					dialog.confirm(i18n.translate('Are you sure you wish to delete the booking?'), function () {
 						var bookingId = $bookingDetails.data('bookingId');
 						$.ajax({
 							'type': 'POST',
@@ -139,7 +138,7 @@ define([
 								modal.displayNotification($bookingsModal, JSON.parse(data.responseText).message, 'error');
 							}
 						});
-					}
+					});
 				});
 				buttonsInitialized = true;
 			}
