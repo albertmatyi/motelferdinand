@@ -17,9 +17,6 @@ function (jq, tr, cookies) {
 				var lang_id = this.lang_id;
 				$(params.element).click(function () {
 					cookies.set('lang_id', lang_id);
-					if (console && console.log) {
-						console.log('setting cookie lang_id=' + lang_id);
-					}
 					window.location = '/';
 				});
 				return this.name;

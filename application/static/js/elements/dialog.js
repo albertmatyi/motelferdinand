@@ -21,7 +21,7 @@ define(
 
 	var checkHiddenAndRun = function (method) {
 		if (modalUsed) {
-			// if (console && console.info) { console.log('Trying to show dialog, but there is already one active. Posponing...'); }
+			// if (typeof console !== 'undefined' && console.info) { console.log('Trying to show dialog, but there is already one active. Posponing...'); }
 			setTimeout(function () { checkHiddenAndRun(method); }, 200);
 		} else {
 			modalUsed = true;
@@ -86,7 +86,7 @@ define(
 		return $modal;
 	};
 
-	// okCallback = okCb || function () { if (console && console.log) { console.log('alert: ' + content); } };
+	// okCallback = okCb || function () { if (typeof console !== 'undefined' && console.log) { console.log('alert: ' + content); } };
 	// window.aalert = alert;
 	// aalert('hello'); aalert('world'); aalert('damn'); aalert('yo'); aalert('mama'); aalert('is');
 	// window.cconfirm =  confirm;

@@ -71,10 +71,8 @@ define(['lib/jquery'],
 			mult = 1 / (DATA.width / windowW);
 		} else if (DATA.height) {
 			mult = 1 / (DATA.height / windowH);
-			// //console.log('ERROR FULLSCREEN');
 		}
 		w = DATA.width * mult * 0.95;
-		// console.log('mult: ' + mult + ' w: ' + w);
 		var ic = $(".image-container", $fsContext);
 		ic.css('left', (oww * infoWP + (windowW - w) / 2) + 'px');
 		ic.css('top', ((windowH - w * DATA.height / DATA.width) / 2) + 'px');

@@ -31,7 +31,6 @@ define(
             cat.bookables.splice(_.indexOf(cat.bookables, bkbl), 1);
             rerenderBookables(cat);
             delete model.db.bookable[deletedId];
-
         };
 
         var initAdminControls = function ($ctxt) {

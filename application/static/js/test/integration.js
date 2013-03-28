@@ -28,7 +28,7 @@ function (jquery, testUtil) {
 		}
 		var testFile = testFiles[testFileIndex];
 
-		if (testFileFilter && !_.contains(testFileFilter, testFile.name)) {
+		if (testFileFilter && !_.any(testFileFilter, filterMatches(testFile.name))) {
 			console.log(testFile.name + ' filtered out by ' + testFileFilter);
 			testFileIndex += 1;
 			setTimeout(runNext, 1);
@@ -51,11 +51,15 @@ function (jquery, testUtil) {
 		runTest(testFile, test);
 	};
 
+	var filterMatches = function (value) {
+		return function (filter) { return value.toLowerCase().indexOf(filter.toLowerCase()) !== -1; };
+	};
+
 	var runTest = function (testFile, test) {
 		var filtered = false;
 		for (var key in test) {
 			if (test.hasOwnProperty(key)) {
-				if (!testFilter || _.contains(testFilter, key)) {
+				if (!testFilter || _.any(testFilter, filterMatches(key))) {
 					if (testFile.setup) {
 						testFile.setup(testUtil);
 					}

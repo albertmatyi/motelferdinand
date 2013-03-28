@@ -154,7 +154,9 @@ define(
 					}
 				});
 			} catch (e) {
-				console.error(e);
+				if(typeof console !== 'undefined' ) {
+					console.error(e);
+				}
 			}
 
 			// block the default behavior

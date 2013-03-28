@@ -35,8 +35,6 @@ define([
 
 		var testAddBookable = function (t) {
 			createBookable(t, bookableTitleStr);
-
-			t.l('verify bookable is present').assertPresent('.bookable-title:contains(' + bookableTitleStr + ')');
 		};
 
 		var createBookable = function (t, title) {
@@ -50,18 +48,44 @@ define([
 
 			t.l('wait for response').waitXHR();
 
+			t.l('verify bookable is present').assertPresent('.bookable-title:contains(' + bookableTitleStr + ')');
 		};
 
 		var testDeleteBookable = function (t) {
-			var $delBtn = $('.bookable:contains(' + bookableTitleStr + ') .admin-controls .delete', $category);
-			var bookableId = $delBtn.data('bookable-id');
-			t.l('Deleting Bookable ' + bookableId).click($delBtn);
+			deleteBookable(t, bookableTitleStr);
+		};
 
-			t.l('Click OK to confirm delete').waitAnimation().click(dialog.confirmation.ok);
+		var deleteBookable = function (t, title) {
+			t.$('.bookable:contains(' + title + ') .admin-controls .delete', function ($delBtn) {
+				var bookableId = $delBtn.data('bookable-id');
+				t.l('Deleting Bookable ' + bookableId).click($delBtn);
 
-			t.l('wait server response').waitXHR().l('click alert ok').waitAnimation().click(dialog.alert.ok);
+				t.l('Click OK to confirm delete').waitAnimation().click(dialog.confirmation.ok);
 
-			t.l('Verify bookable is no more present').assertNotPresent('#Bookable' + bookableId);
+				t.l('wait server response').waitXHR().l('click alert ok').waitAnimation().click(dialog.alert.ok);
+
+				t.l('Verify bookable is no more present').assertNotPresent('#Bookable' + bookableId);
+			}, $category);
+		};
+
+		var clickPage = function (t, nr) {
+			t.$('.bookables-wrapper .pagination a:contains(' + nr + ')', function (el) {
+				t.click(el);
+			}, $category);
+		};
+
+		var testMultipleBookables = function (t) {
+			createBookable(t, bookableTitleStr + '1');
+			createBookable(t, bookableTitleStr + '2');
+			clickPage(t, 2);
+			clickPage(t, 1);
+			deleteBookable(t, bookableTitleStr + '1');
+
+			createBookable(t, bookableTitleStr + '3');
+
+			clickPage(t, 2);
+			deleteBookable(t, bookableTitleStr + '3');
+			deleteBookable(t, bookableTitleStr + '2');
 		};
 
 		var testEditBookable = function (t) {
@@ -89,7 +113,8 @@ define([
 			'tests' : [
 				{ 'testAddBookable' : testAddBookable },
 				{ 'testEditBookable' : testEditBookable },
-				{ 'testDeleteBookable' : testDeleteBookable }
+				{ 'testDeleteBookable' : testDeleteBookable },
+				{ 'testMultipleBookables' : testMultipleBookables }
 			],
 			'createBookable' : createBookable
 		};
