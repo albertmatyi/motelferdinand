@@ -1,5 +1,7 @@
 /*global define */
 /*global $ */
+/*global model */
+/*global _ */
 
 define([
 		'lib/jquery',
@@ -15,11 +17,13 @@ define([
 		var categoryTitleStr = "categoryTitleForBookableTest";
 		var $saveButton;
 		var $category;
+		var categoryId;
 
 		var before = function (t) {
-			categoryTest.createCategory(t, categoryTitleStr, function (categoryId) {
-				t.l('Got category id ' + categoryId);
-				$category = $('#' + categoryId);
+			categoryTest.createCategory(t, categoryTitleStr, function (categoryDomId) {
+				t.l('Got category id ' + categoryDomId);
+				$category = $('#' + categoryDomId);
+				categoryId = /\d+/.exec(categoryDomId)[0];
 				$addDropdown = $('.page-header .dropdown-toggle', $category);
 				$addButton = $('.page-header .addBookableButton', $category);
 				$bookableModal = $('#bookableEditFormModal');
@@ -38,6 +42,14 @@ define([
 		};
 
 		var createBookable = function (t, title) {
+			var modelCount0;
+			var modelCount1;
+
+			t.addFunction(function () {
+				modelCount0 = _.size(model.db.bookable);
+				modelCount1 = _.size(model.db.category[categoryId].bookables);
+			});
+
 			t.l('click add bookable').click($addDropdown).waitAnimation().click($addButton).waitAnimation();
 
 			t.l('verify modal visible').assertVisible($bookableModal);
@@ -49,6 +61,11 @@ define([
 			t.l('wait for response').waitXHR();
 
 			t.l('verify bookable is present').assertPresent('.bookable-title:contains(' + bookableTitleStr + ')');
+
+			t.l('Verify model entries').addFunction(function () {
+				t.assertEquals(modelCount0 + 1, _.size(model.db.bookable), 'We should have ' + (modelCount0 + 1) + ' bookables');
+				t.assertEquals(modelCount1 + 1, _.size(model.db.category[categoryId].bookables), 'We should have ' + (modelCount1 + 1) + ' bookables');
+			});
 		};
 
 		var testDeleteBookable = function (t) {
@@ -57,6 +74,14 @@ define([
 
 		var deleteBookable = function (t, title) {
 			t.$('.bookable:contains(' + title + ') .admin-controls .delete', function ($delBtn) {
+				var modelCount0;
+				var modelCount1;
+
+				t.addFunction(function () {
+					modelCount0 = _.size(model.db.bookable);
+					modelCount1 = _.size(model.db.category[categoryId].bookables);
+				});
+
 				var bookableId = $delBtn.data('bookable-id');
 				t.l('Deleting Bookable ' + bookableId).click($delBtn);
 
@@ -65,6 +90,11 @@ define([
 				t.l('wait server response').waitXHR().l('click alert ok').waitAnimation().click(dialog.alert.ok);
 
 				t.l('Verify bookable is no more present').assertNotPresent('#Bookable' + bookableId);
+
+				t.l('Verify model entries').addFunction(function () {
+					t.assertEquals(modelCount0 - 1, _.size(model.db.bookable), 'We should have ' + (modelCount0 - 1) + ' bookables');
+					t.assertEquals(modelCount1 - 1, _.size(model.db.category[categoryId].bookables), 'We should have ' + (modelCount1 - 1) + ' bookables');
+				});
 			}, $category);
 		};
 
