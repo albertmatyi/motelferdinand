@@ -68,9 +68,9 @@ define([
 
 			t.l('verify category is present').assertPresent('.category-title:contains(' + title + ')');
 
-			if (callback) {
+			if (typeof callback !== 'undefined') {
 				t.l('after createCategory method').addFunction(function () {
-					callback($('.category:contains(' + title + ')').attr('id'));
+					callback($('.category:contains(' + title + ')'));
 				});
 			}
 		};

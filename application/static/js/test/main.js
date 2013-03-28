@@ -6,6 +6,7 @@ define(
 		'test/category',
 		'test/content',
 		'test/bookable',
+		'test/booking',
 		'test/social'
 	], function (integration) {
 		"use strict";

@@ -36,13 +36,10 @@ function (jquery, testUtil) {
 		}
 
 		if (testIndex === TEST_IDX_DEFAULT) {
-			testIndex = 0;
 			runBeforeTestFile(testFile);
 			return;
 		}
 		if (testIndex >= testFile.tests.length) {
-			testFileIndex += 1;
-			testIndex = TEST_IDX_DEFAULT;
 			runAfterTestFile(testFile);
 			return;
 		}
@@ -97,24 +94,36 @@ function (jquery, testUtil) {
 	};
 
 	var runBeforeTestFile = function (testFile) {
-		runMisc(testFile.before, testFile.name + '.before');
+		testIndex = 0;
+		runMisc(testFile.before, testFile.name + '.before', function () {}, function () {
+			testIndex = TEST_IDX_DEFAULT;
+			testFileIndex += 1;
+		});
 	};
 
 	var runAfterTestFile = function (testFile) {
+		testFileIndex += 1;
+		testIndex = TEST_IDX_DEFAULT;
 		runMisc(testFile.after, testFile.name + '.after');
 	};
 
-	var runMisc = function (method, name) {
+	var runMisc = function (method, name, successCallback, failCallback) {
 		if (method) {
 			method(testUtil);
 			console.info('Running ' + name);
 			testUtil.execute(function () {
 				console.info('\tOK');
 				setTimeout(runNext, 1);
+				if (typeof successCallback !== 'undefined') {
+					successCallback();
+				}
 			},
 			function (e) {
 				console.warn('\tFAIL: ' + e);
 				setTimeout(runNext, 1);
+				if (typeof failCallback !== 'undefined') {
+					failCallback();
+				}
 			});
 		} else {
 			setTimeout(runNext, 1);

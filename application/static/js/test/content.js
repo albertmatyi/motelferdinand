@@ -20,10 +20,10 @@ define([
 		var categoryId = -1;
 
 		var before = function (t) {
-			categoryTest.createCategory(t, categoryTitleStr, function (categoryDomId) {
-				t.l('Got category id ' + categoryDomId);
-				$category = $('#' + categoryDomId);
-				categoryId = /\d+/.exec(categoryDomId)[0];
+			categoryTest.createCategory(t, categoryTitleStr, function ($cat) {
+				t.l('Got category id ' + $cat.selector);
+				$category = $cat;
+				categoryId = /\d+/.exec($cat.attr('id'))[0];
 				$addDropdown = $('.page-header .dropdown-toggle', $category);
 				$addButton = $('.page-header .addContentButton', $category);
 				$contentModal = $('#contentEditFormModal');
@@ -135,9 +135,7 @@ define([
 				{ 'testEditContent' : testEditContent },
 				{ 'testDeleteContent' : testDeleteContent },
 				{ 'testMultipleContents' : testMultipleContents }
-			],
-			'createContent' : createContent,
-			'deleteContent' : deleteContent
+			]
 		};
 	}
 );
