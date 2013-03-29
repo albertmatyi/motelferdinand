@@ -197,7 +197,7 @@ define(
 		/**
 		 * Hide all tooltips when initializing booking entry modal
 		 */
-		$('#bookingAddRoomModalTrigger', $form).click(function () {
+		$('#bookingEntryAddModalTrigger', $form).click(function () {
 			tooltip.hideAll();
 		});
 

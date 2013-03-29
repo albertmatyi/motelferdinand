@@ -6,15 +6,15 @@
 define([
 		'lib/jquery',
 		'test/category',
-		'test/dialog'
+		'test/elements/dialog'
 	],
 	function (jquery, categoryTest, dialog) {
 		"use strict";
 		var $addDropdown;
 		var $addButton;
 		var $contentModal;
-		var contentTitleStr = "ContentTitle";
-		var categoryTitleStr = "categoryTitleForContentTest";
+		var contentTitleStr = "Content Title";
+		var categoryTitleStr = "Test Category for Content";
 		var $saveButton;
 		var $category;
 		var categoryId = -1;

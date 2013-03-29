@@ -5,13 +5,13 @@
 
 define([
 		'lib/jquery',
-		'test/dialog'
+		'test/elements/dialog'
 	],
 	function (jquery, dialog) {
 		"use strict";
 		var $addButton;
 		var $catModal;
-		var categoryTitleStr = "categoryTitleForCategoryTest";
+		var categoryTitleStr = "Test Category Title";
 		var $saveButton;
 
 		var initControls = function () {

@@ -35,6 +35,11 @@ define(['lib/jquery'], function (jquery) {
 			throwException(msg);
 		}
 	};
+
+	var assertPresentPvt = function (jqEl) {
+		assertEquals(true, jqEl.length > 0, jqEl.selector + " cannot be found.");
+	};
+
 	var a2S = function (func, description, timeout, forceAs1st) {
 		var step = {
 			'f' : func,
@@ -77,7 +82,8 @@ define(['lib/jquery'], function (jquery) {
 		console.log('\t\t' + msg);
 	};
 
-	var waitUntilVisible = function (jqEl, msg, callback) {
+	var waitUntilVisible = function (jqEl, actionDescr, callback) {
+		var msg = actionDescr ? 'Cannot perform ' + actionDescr:null;
 		waitUntilVisibility(jqEl, true, msg, callback);
 	};
 
@@ -86,15 +92,20 @@ define(['lib/jquery'], function (jquery) {
 	};
 
 	var waitUntilVisibility = function (jqEl, visible, msg, callback) {
-		msg = msg || jqEl.selector + ' should be visible.';
+		msg = msg || jqEl.selector + ' should be ' + (visible ? '':'in') + 'visible.';
 		var maxRetries = window.config.test.visibility.maxRetries;
 		var wuv = function () {
 			if (visible !== jqEl.is(':visible')) {
 				if (maxRetries > 0) {
 					maxRetries -= 1;
-					log('Waiting for element ' + jqEl.selector + ' to become ' + (visible ? '':'in') + 'visible');
+					log('Waiting for element ' + jqEl.selector + ' to become ' + (visible ? '':'in') + 'visible.');
 					a2S(wuv, 'wuv', window.config.test.visibility.timeout, true);
 				} else {
+					if (jqEl.length > 0) {
+						msg += ' Element "' + jqEl.selector + '" is invisible.';
+					} else {
+						msg += ' Element "' + jqEl.selector + '" does not exist.';
+					}
 					throwException(msg);
 				}
 			} else {
@@ -131,10 +142,10 @@ define(['lib/jquery'], function (jquery) {
 			}, 'aNP');
 			return this;
 		},
-		'assertPresent' : function (selector) {
+		'assertPresent' : function (selector, context) {
 			a2S(function () {
-				var jqEl = $(selector);
-				assertEquals(true, jqEl.length > 0, jqEl.selector + " cannot be found.");
+				var jqEl = $(selector, context);
+				assertPresentPvt(jqEl);
 			}, 'aP');
 			return this;
 		},
@@ -161,7 +172,7 @@ define(['lib/jquery'], function (jquery) {
 		'click' : function (selector) {
 			a2S(function () {
 				var jqEl = $(selector);
-				waitUntilVisible(jqEl, 'Cannot click on invisible ' + selector, function () {
+				waitUntilVisible(jqEl, 'click', function () {
 					jqEl.click();
 				});
 			}, 'c');
@@ -170,7 +181,7 @@ define(['lib/jquery'], function (jquery) {
 		'setValue' : function (selector, value) {
 			a2S(function () {
 				var jqEl = $(selector);
-				waitUntilVisible(jqEl, 'Cannot set value of an invisible ' + selector, function () {
+				waitUntilVisible(jqEl, 'set value', function () {
 					if (jqEl[0].tagName.toLowerCase() === 'textarea') {
 						jqEl.html(value);
 					} else {
@@ -215,7 +226,9 @@ define(['lib/jquery'], function (jquery) {
 		},
 		'$' : function (selector, callback, context) {
 			a2S(function () {
-				callback($(selector, context));
+				var $el = $(selector, context);
+				assertPresentPvt($el);
+				callback($el);
 			}, '$');
 			return this;
 		}

@@ -1,5 +1,5 @@
 /*global define */
-define(['test/dialog'],
+define(['test/elements/dialog'],
 	function (dialog) {
 		"use strict";
 		var testPhone = function (t) {

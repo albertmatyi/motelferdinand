@@ -6,13 +6,16 @@
 define([
 		'lib/jquery',
 		'test/category',
-		'test/dialog'
+		'test/elements/dialog'
 	],
 	function (jquery, categoryTest, dialog) {
 		"use strict";
 		var $bookableModal;
-		var bookableTitleStr = "BookableTitle";
-		var categoryTitleStr = "categoryTitleForBookableTest";
+		var bookableTitleStr = "Bookable Title";
+		var categoryTitleStr = "Test Category for Bookable";
+		var beds = 3;
+		var quantity = 4;
+		var price = 69;
 		var $saveButton;
 		var $category;
 		var categoryId;
@@ -70,13 +73,25 @@ define([
 
 			t.l('verify modal visible').assertVisible($bookableModal);
 
-			t.l('fill form with data').setValue($('*[name=i18n-en-title]', $bookableModal), title);
+			t.l('fill form title').setValue($('*[name=i18n-en-title]', $bookableModal), title);
+
+			t.l('fill form beds').setValue($('*[name=beds]', $bookableModal), beds);
+
+			t.l('fill form quantity').setValue($('*[name=quantity]', $bookableModal), quantity);
+
+			t.l('fill form price').setValue($('*[name=price]', $bookableModal), price);
 
 			t.l('click submit').click($saveButton).waitAnimation();
 
 			t.l('wait for response').waitXHR();
 
-			t.l('verify bookable is present').assertPresent('.bookable-title:contains(' + title + ')');
+			t.l('verify bookable is present').$('.bookable:contains(' + title + ')', function ($bookable) {
+
+				t.l('verify beds').assertPresent('.beds:contains(' + beds + ')', $bookable);
+
+				t.l('verify price').assertPresent('.price:contains(' + price + ')', $bookable);
+
+			});
 
 			t.l('Verify model entries').addFunction(function () {
 				t.assertEquals(modelCount0 + 1, _.size(model.db.bookable), 'We should have ' + (modelCount0 + 1) + ' bookables');

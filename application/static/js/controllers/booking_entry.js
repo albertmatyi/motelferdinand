@@ -35,7 +35,7 @@ define(['helpers/date', 'helpers/tooltip'],
 		 * The modal through which we can add rooms to the
 		 * booking
 		 */
-		var $addRoomModal = $('#bookingAddRoomModal');
+		var $addRoomModal = $('#bookingEntryAddModal');
 		/**
 		 * The select element using which we can select a room
 		 */
@@ -93,7 +93,7 @@ define(['helpers/date', 'helpers/tooltip'],
 		/**
 		 *	Initializes the add room modal
 		 */
-		var initAddRoomModal = function (bookables, addedCallback) {
+		var initEntryAddModal = function (bookables, addedCallback) {
 			$roomSelect.html('');
 
 			for (var i = bookables.length - 1; i >= 0; i--) {
@@ -111,7 +111,7 @@ define(['helpers/date', 'helpers/tooltip'],
 			entryAddedCallback = addedCallback ? addedCallback:function () {};
 		};
 		return {
-			'init' : initAddRoomModal
+			'init' : initEntryAddModal
 		};
 	}
 );
