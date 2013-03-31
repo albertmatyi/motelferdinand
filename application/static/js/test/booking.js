@@ -23,6 +23,8 @@ define(
 	var $bookable;
 
 	var before = function (t) {
+		categoryTitleStr += t.hash(); 
+		bookableTitleStr += t.hash(); 
 		categoryTest.createCategory(t, categoryTitleStr, function ($cat) {
 			t.l('Got category ' + $cat.selector);
 			var $category = $cat;
@@ -50,7 +52,7 @@ define(
 		t.l('Check the form is invisible.').assertInvisible($form.selector);
 	};
 
-	var testAddBooking = function (t) {
+	var testFillForm = function (t) {
 
 		clickOpenBooking(t);
 
@@ -59,6 +61,13 @@ define(
 		t.l('Fill email').setValue($emailField, email);
 
 		t.l('Fill name').setValue($phoneField, phone);
+
+		clickCancelBooking(t);
+	};
+
+	var testAddBookingEntry = function (t) {
+
+		clickOpenBooking(t);
 
 		t.l('Click add room').click($bookingEntryAddButton.selector);
 
@@ -71,8 +80,14 @@ define(
 		var entry = entryRow(bookableTitleStr);
 
 		t.l('Check entry row').assertPresent(entry.selector);
+	};
 
-		clickCancelBooking(t);
+	var testRemoveBookingEntry = function (t) {
+		var entry = entryRow(bookableTitleStr);
+
+		t.l('Click remove entry').click(entry.removeButton);
+
+		t.l('Check line was deleted.').assertNotPresent(entry.selector);
 	};
 
 	return {
@@ -80,7 +95,9 @@ define(
 		'before' : before,
 		'after' : after,
 		'tests' : [
-			{ 'testAddBooking' : testAddBooking }
+			{ 'testFillForm' : testFillForm },
+			{ 'testAddBookingEntry' : testAddBookingEntry },
+			{ 'testRemoveBookingEntry' : testRemoveBookingEntry }
 		]
 	};
 });

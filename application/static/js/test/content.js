@@ -20,6 +20,8 @@ define([
 		var categoryId = -1;
 
 		var before = function (t) {
+			contentTitleStr += t.hash();
+			categoryTitleStr += t.hash();
 			categoryTest.createCategory(t, categoryTitleStr, function ($cat) {
 				t.l('Got category id ' + $cat.selector);
 				$category = $cat;

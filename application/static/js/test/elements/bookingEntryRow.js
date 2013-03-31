@@ -4,8 +4,11 @@ define(
 ],
 function () {
 	return function (bookableTitleStr) {
+		"use strict";
+		var SELECTOR = '.booking-entries tbody tr:contains(' + bookableTitleStr + ')';
 		return {
-			'selector' : '.booking-entries tbody tr:contains(' + bookableTitleStr + ')'
+			'selector' : SELECTOR,
+			'removeButton' : SELECTOR + ' .btn-danger'
 		};
 	};
 });

@@ -8,10 +8,14 @@ define(['lib/jquery'], function (jquery) {
 	var executing = false;
 	var stepInsertIndex = 0;
 
-	$(document).ajaxError(function () {
+	var fail = function (msg) {
 		a2S(function () {
-			throwException('XHR call failed. Stopping execution');
-		}, 'xhrFailed', 1, true);
+			throwException(msg);
+		}, 'fail', 1, true);
+	};
+
+	$(document).ajaxError(function () {
+		fail('XHR call failed. Stopping execution');
 	});
 
 	var throwException = function (msg) {
@@ -102,7 +106,7 @@ define(['lib/jquery'], function (jquery) {
 					a2S(wuv, 'wuv', window.config.test.visibility.timeout, true);
 				} else {
 					if (jqEl.length > 0) {
-						msg += ' Element "' + jqEl.selector + '" is invisible.';
+						msg += ' Element "' + jqEl.selector + '" is ' + (visible ? 'in':'') + 'visible.';
 					} else {
 						msg += ' Element "' + jqEl.selector + '" does not exist.';
 					}
@@ -220,6 +224,7 @@ define(['lib/jquery'], function (jquery) {
 			lwx(this.waitXHR, false);
 			return this;
 		},
+		'fail' : fail,
 		'addFunction' : function (method, timeout) {
 			a2S(method, 'aF', timeout);
 			return this;
@@ -231,6 +236,12 @@ define(['lib/jquery'], function (jquery) {
 				callback($el);
 			}, '$');
 			return this;
+		},
+		'hash' : function () {
+			var nr = $.now();
+			return String.fromCharCode(97 + nr % 26) +
+				String.fromCharCode(97 + (nr / 26) % 26) +
+				String.fromCharCode(97 + (nr / (26 * 26)) % 26);
 		}
 	};
 });

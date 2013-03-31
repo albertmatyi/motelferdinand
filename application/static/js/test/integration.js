@@ -2,6 +2,7 @@
 /*global $ */
 /*global console */
 /*global _ */
+/*global confirm */
 
 define([
 	'lib/jquery',
@@ -21,9 +22,13 @@ function (jquery, testUtil) {
 	var testFileFilter = false;
 	var testFilter = false;
 
+	var testFileTime;
+	var totalTime;
+
 	var runNext = function () {
 		if (testFileIndex >= testFiles.length) {
-			console.info('Test results: ' + success + '/' + total + ' succeeded. ' + fail + ' failed.');
+			totalTime = $.now() - totalTime;
+			console.info('Test results: ' + success + '/' + total + ' succeeded. ' + fail + ' failed in ' + getTime(totalTime));
 			return 0;
 		}
 		var testFile = testFiles[testFileIndex];
@@ -45,49 +50,65 @@ function (jquery, testUtil) {
 		}
 		var test = testFile.tests[testIndex];
 
-		runTest(testFile, test);
+		filterAndRunTest(testFile, test);
 	};
 
 	var filterMatches = function (value) {
 		return function (filter) { return value.toLowerCase().indexOf(filter.toLowerCase()) !== -1; };
 	};
 
-	var runTest = function (testFile, test) {
-		var filtered = false;
+	var getTestKey = function (test) {
 		for (var key in test) {
 			if (test.hasOwnProperty(key)) {
-				if (!testFilter || _.any(testFilter, filterMatches(key))) {
-					if (testFile.setup) {
-						testFile.setup(testUtil);
-					}
-					console.info('Run ' + testFile.name + '.' + key);
-					test[key](testUtil);
-					if (testFile.teardown) {
-						testFile.teardown(testUtil);
-					}
-				} else {
-					filtered = true;
-					console.log('\t' + key + ' filtered out by ' + testFilter);
-				}
+				return key;
 			}
 		}
-		if (!filtered) {
-			testUtil.execute(function () {
-				console.info('\tOK');
-				total += 1;
-				success += 1;
-				testIndex += 1;
+	};
+
+	var getTime = function (millis) {
+		var seconds = Math.round(millis / 100) / 10;
+		var minutes = Math.round(seconds / 60);
+		return minutes + 'm ' + (seconds % 60) + 's';
+	};
+
+	var runTest = function (testFile, test, key) {
+		var testTime = $.now();
+		if (testFile.setup) {
+			testFile.setup(testUtil);
+		}
+		console.info('Run ' + testFile.name + '.' + key);
+
+		test[key](testUtil);
+
+		if (testFile.teardown) {
+			testFile.teardown(testUtil);
+		}
+
+		testUtil.execute(function () {
+			console.info('\tOK[' + getTime($.now() - testTime) + ']');
+
+			total += 1;
+			success += 1;
+			testIndex += 1;
+			setTimeout(runNext, 1);
+		}, function (e) {
+			console.warn('\tFAIL[' + getTime($.now() - testTime) + ']' + e);
+
+			total += 1;
+			fail += 1;
+			testIndex += 1;
+			if (!window.config.test.breakOnError || confirm('Test ' + key + ' failed. Do you want to continue?')) {
 				setTimeout(runNext, 1);
-			}, function (e) {
-				console.warn('\tFAIL: ' + e);
-				total += 1;
-				fail += 1;
-				testIndex += 1;
-				if (!window.config.test.breakOnError) {
-					setTimeout(runNext, 1);
-				}
-			});
+			}
+		});
+	};
+
+	var filterAndRunTest = function (testFile, test) {
+		var key = getTestKey(test);
+		if (!testFilter || _.any(testFilter, filterMatches(key))) {
+			runTest(testFile, test, key);
 		} else {
+			console.log('\t' + key + ' filtered out by ' + testFilter);
 			testIndex += 1;
 			setTimeout(runNext, 1);
 		}
@@ -95,6 +116,7 @@ function (jquery, testUtil) {
 
 	var runBeforeTestFile = function (testFile) {
 		testIndex = 0;
+		testFileTime = $.now();
 		runMisc(testFile.before, testFile.name + '.before', function () {}, function () {
 			testIndex = TEST_IDX_DEFAULT;
 			testFileIndex += 1;
@@ -104,7 +126,10 @@ function (jquery, testUtil) {
 	var runAfterTestFile = function (testFile) {
 		testFileIndex += 1;
 		testIndex = TEST_IDX_DEFAULT;
-		runMisc(testFile.after, testFile.name + '.after');
+		var logTime = function () {
+			console.log(testFile.name + ' OK[' + getTime($.now() - testFileTime) + ']');
+		};
+		runMisc(testFile.after, testFile.name + '.after', logTime, logTime);
 	};
 
 	var runMisc = function (method, name, successCallback, failCallback) {
@@ -127,6 +152,9 @@ function (jquery, testUtil) {
 			});
 		} else {
 			setTimeout(runNext, 1);
+			if (typeof successCallback !== 'undefined') {
+				successCallback();
+			}
 		}
 	};
 
@@ -162,6 +190,7 @@ function (jquery, testUtil) {
 		success = 0;
 		fail = 0;
 		testFileIndex = 0;
+		totalTime = $.now();
 		testIndex = TEST_IDX_DEFAULT;
 
 		setTimeout(runNext, 1);
@@ -187,6 +216,13 @@ function (jquery, testUtil) {
 		}
 	};
 	window.test = runTests;
+
+	$(window).keyup(function (e) {
+		if (e.which === 27) {
+			testUtil.fail("Test cancelled by user.");
+		}
+	});
+
 	$('#testButton').click(runTests);
 	return {
 		'tests': testFiles

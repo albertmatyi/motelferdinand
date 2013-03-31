@@ -20,7 +20,8 @@ define([
 			$saveButton = $('#submitCategoryEditForm', $catModal);
 		};
 
-		var before = function () {
+		var before = function (t) {
+			categoryTitleStr += t.hash();
 			initControls();
 		};
 

@@ -115,7 +115,7 @@ define(
 			});
 		};
 
-		$cancelBookingButton.click(removeForm);
+		$cancelBookingButton.on('click', removeForm);
 
 		/**
 		 * Do a validation before submitting. If all ok. Submit the form.
@@ -154,7 +154,7 @@ define(
 					}
 				});
 			} catch (e) {
-				if(typeof console !== 'undefined' ) {
+				if (typeof console !== 'undefined') {
 					console.error(e);
 				}
 			}

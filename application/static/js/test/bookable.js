@@ -21,6 +21,8 @@ define([
 		var categoryId;
 
 		var before = function (t) {
+			bookableTitleStr += t.hash();
+			categoryTitleStr += t.hash();
 			categoryTest.createCategory(t, categoryTitleStr, function ($cat) {
 				t.l('Got category id ' + $cat.selector);
 				initVars(t, $cat);
@@ -136,13 +138,13 @@ define([
 		};
 
 		var testMultipleBookables = function (t) {
-			createBookablePvt(t, bookableTitleStr + '1');
-			createBookablePvt(t, bookableTitleStr + '2');
+			createBookablePvt(t, bookableTitleStr + '1', $category);
+			createBookablePvt(t, bookableTitleStr + '2', $category);
 			clickPage(t, 2);
 			clickPage(t, 1);
 			deleteBookable(t, bookableTitleStr + '1');
 
-			createBookablePvt(t, bookableTitleStr + '3');
+			createBookablePvt(t, bookableTitleStr + '3', $category);
 
 			clickPage(t, 2);
 			deleteBookable(t, bookableTitleStr + '3');
