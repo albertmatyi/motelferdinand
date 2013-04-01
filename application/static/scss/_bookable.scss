@@ -1,54 +1,25 @@
-.bookables-wrapper{
-	@include tile;
-	background: #f4f4f4;
-	@include gradient($contentGradientFrom, $contentGradientTo);
-	width: 100% - $contentMargin;
-	margin-left: $contentMargin;
-	margin-bottom: 1em;
-	.bookables {
-		.bookable {
-			h3, h4, .bookable-description{
-				padding-left: $contentPadding;
-				padding-right: $contentPadding;
-			}
-			.picaslide {
-				float: left;
-				margin-right: 1em;
-				margin-left: 0;
-			}
-			.admin-controls{
-				margin-right: 2em;
-			}
-			
+.bookables {
+	.bookable {
+		@include tile;
+		background: #f4f4f4;
+		@include gradient($contentGradientFrom, $contentGradientTo);
+		width: 100% - $contentMargin;
+		margin-left: $contentMargin;
+		margin-bottom: 1em;
+
+		h3, h4, .bookable-description{
+			padding-left: $contentPadding;
+			padding-right: $contentPadding;
 		}
-	}
-	.pagination
-	{
-		// list-style: none;
-		// li {
-		// 	margin-left: 2em;
-		// 	float: left;
-			
-		// 	a {
-		// 		border-radius: 35px;
-		// 		background: $background;
-		// 		border: none;
-		// 		box-shadow: inset 2px 2px 3px #000000;
-		// 		color: #EFEFEF;
-		// 		font-weight: bold;
-		// 		text-shadow: 2px 2px 3px #000000;
-		// 		&:focus {
-		// 			outline: none;
-		// 		}
-		// 	}
-			
-		// 	a:hover, &.current a {
-		// 		background: repeat scroll 0 0 transparent;
-		// 		@include gradient(#3366AA, #6699FF);
-		// 		box-shadow: none;
-		// 		text-shadow: none;
-		// 	}
-		// }	
+		.picaslide {
+			float: left;
+			margin-right: 1em;
+			margin-left: 0;
+		}
+		.admin-controls{
+			margin-right: 2em;
+		}
+		
 	}
 }
 .booking-controls {

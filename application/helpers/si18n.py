@@ -97,6 +97,7 @@ translations = {
 		'Departure date': u'Departure date',
 		'Custom message': u'Custom message',
 		'Cancel': u'Cancel',
+		'Number of guests': u'Number of guests',
 
 		#Bookin validation
 		'Specify a valid email address': u'Specify a valid email address',
@@ -182,6 +183,7 @@ translations = {
 		'Departure date': u'Távozás dátuma',
 		'Custom message': u'További infók',
 		'Cancel': u'Mégse',
+		'Number of guests': u'Vendégek száma',
 
 		#Bookin validation
 		'Specify a valid email address': u'Kérem adjon meg egy helyes email címet!',
@@ -266,6 +268,7 @@ translations = {
 		'Custom message': u'Informații adiționale',
 		'Departure date': u'Data plecării',
 		'Cancel': u'Anulează',
+		'Number of guests': u'Numărul oaspeților',
 
 		#Bookin validation
 		'Specify a valid email address': u'Secificați o adresă de email valid.',

@@ -4,7 +4,7 @@
 		<div class="controls controls-row">
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-user"></i></span>
-				<input type="text" id="user.full_name" name="user.full_name" data-toggle="tooltip" data-title="{{ __('Specify a valid full name') }}" data-placement="right"/>
+				<input type="text" id="user.full_name" data-toggle="tooltip" data-title="{{ __('Specify a valid full name') }}" data-placement="right"/>
 			</div>
 		</div>
 	</div>
@@ -13,7 +13,7 @@
 		<div class="controls controls-row">
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-envelope"></i></span>
-				<input type="email" id="user.email" class="email" name="user.email"  data-toggle="tooltip" data-title="{{ __('Specify a valid email address') }}" data-placement="right"/>
+				<input type="email" id="user.email" class="email"  data-toggle="tooltip" data-title="{{ __('Specify a valid email address') }}" data-placement="right"/>
 			</div>
 		</div>
 	</div>
@@ -22,7 +22,7 @@
 		<div class="controls controls-row">
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-signal"></i></span>
-				<input type="text" class="phone" id="user.phone" name="user.phone"  data-toggle="tooltip" data-title="{{ __('Specify a valid phone number') }}" data-placement="right"/>
+				<input type="text" class="phone" id="user.phone"  data-toggle="tooltip" data-title="{{ __('Specify a valid phone number') }}" data-placement="right"/>
 			</div>
 		</div>
 	</div>
@@ -36,40 +36,45 @@
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label">{{ __('Booked rooms') }}</label>
-		<div class="controls controls-row booking-entries">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>{{ __('Room type') }}</th>
-						<th>{{ __('Quantity') }}</th>
-						<th>{{ __('Arrival') }}</th>
-						<th>{{ __('Departure') }}</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-
-				</tbody>
-				<tfoot>
-					<tr>
-						<th colspan="6" class="tableAddControl" data-toggle="tooltip" data-title="{{ __('Add at least one room') }}" data-placement="left">
-							<a href="#bookingEntryAddModal" class="btn btn-success" id="bookingEntryAddModalTrigger" data-toggle="modal"><i class="icon-plus icon-white"></i> {{ __('Add room') }} </a>
-						</th>
-					</tr>
-				</tfoot>
-			</table>
+		<label class="control-label" for="booking.quantity">{{ __('Quantity') }}</label>
+		<div class="controls controls-row">
+			<div class="input-prepend">
+				<span class="add-on">#</span>
+				<select id="booking.quantity">
+				</select>
+			</div>
 		</div>
 	</div>
+	<div class="control-group">
+		<label class="control-label" for="booking.guests">{{ __('Number of guests') }}</label>
+		<div class="controls controls-row">
+			<div class="input-prepend">
+				<span class="add-on">#</span>
+				<select id="booking.guests">
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="booking.from">{{ __('Arrival date') }}</label>
+		<div class="controls controls-row">
+			<div class="input-prepend">
+				<span class="add-on"><i class="icon-calendar"></i></span>
+				<input type="text" class="datepicker bookfrom" id="booking.from" data-toggle="tooltip" data-title="{{ __('Specify a valid date (dd-mm-yyyy)') }}" data-placement="right"/>
+			</div>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="booking.until">{{ __('Departure date') }}</label>
+		<div class="controls controls-row">
+			<div class="input-prepend">
+				<span class="add-on"><i class="icon-calendar"></i></span>
+				<input type="text" class="datepicker bookuntil" id="booking.until" data-toggle="tooltip" data-title="{{ __('Specify a valid date (dd-mm-yyyy)') }}" data-placement="right"/>
+			</div>
+		</div>
+	</div>	
 	<div class="form-actions">
 		<span class="btn btn-link" id="cancelBookingButton"> {{ __('Cancel') }}</span>
 		<span class="btn btn-primary btn-large booking-btn" id="submitBookingButton" data-toggle="tooltip" data-title="{{ __('Invalid data! See fields above.') }}" data-placement="left"> {{ __('Book') }}</span>
 	</div>
 </form>
-
-<!-- Add room to booking modal form-->
-
-{% include "booking/entry_form.html" %}
-
-{% include "booking/entry_row.html" %}

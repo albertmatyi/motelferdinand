@@ -1,18 +1,16 @@
-<div class="bookables-wrapper">
-	<div class="bookables-slide-wrapper">
-		<div data-bind="bookables" class="bookables">
-			<div class="bookable" data-bind="id">
-				{% include "elements/admin/controls.html" %}
-				<h3 data-bind="bookable-title" class="bookable-title"></h3>
-				<h4 class="beds">{{ __('Beds') }}: <span data-bind="beds"></span></h4>
-				<h4 class="price">{{ __('Price per night') }}: <span data-bind="price"></span>{{ __('$') }}</h4>
-				<div data-bind="album_url"></div>
-				<div data-bind="bookable-description" class="bookable-description"></div>
-			</div>
+<div data-bind="bookables" class="bookables">
+	<div class="bookable" data-bind="id">
+		{% include "elements/admin/controls.html" %}
+		<h3 data-bind="bookable-title" class="bookable-title"></h3>
+		<h4 class="beds">{{ __('Beds') }}: <span data-bind="beds"></span></h4>
+		<h4 class="price">{{ __('Price per night') }}: <span data-bind="price"></span>{{ __('$') }}</h4>
+		<div class="variants clearfix">
+			<div data-bind="album_url"></div>
+			<div data-bind="bookable-description" class="bookable-description"></div>
 		</div>
-	</div>
-	<div class="booking-controls clearfix"> 
-		<a href="#" class="btn btn-primary btn-large booking-btn showBookingFormButton" data-bind="category-booking-id" >	{{ __('Book') }}
-		</a>
+		<div class="booking-controls clearfix"> 
+			<a href="#" class="btn btn-primary btn-large booking-btn showBookingFormButton" data-bind="category-booking-id" >	{{ __('Book') }}
+			</a>
+		</div>
 	</div>
 </div>
