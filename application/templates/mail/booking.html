@@ -1,28 +1,31 @@
 <table class="table entries-table">
 	<thead>
 		<tr>
-			<th colspan="5">{{ __('Booked rooms') }}</th>
-		</tr>
-		<tr>
-			<th>{{ __('Room type') }}</th>
-			<th>{{ __('Quantity') }}</th>
-			<th>{{ __('Arrival') }}</th>
-			<th>{{ __('Departure') }}</th>
-			<th></th>
+			<th colspan="2">{{ __('Booked rooms') }}</th>
 		</tr>
 	</thead>
-	<tbody data-bind="booking_entries">
-		{% for entry in booking.booking_entries %}
+	<tbody>
+		
 		<tr>
-			<td data-bind="bookable">{{ entry.bookable.i18n[__('lang_id')].title }}</td>
-			<td data-bind="quantity">{{ entry.quantity }}</td>
-			<td data-bind="book_from">{{ entry.book_from }}</td>
-			<td data-bind="book_until">{{ entry.book_until }}</td>
-			<td>
-				<!-- <i class="icon-trash" title="{{ __('Delete')}}"></i> -->
-			</td>
+			<td>{{ __('Room type') }}</td>
+			<td>{{ booking.bookable.i18n[__('lang_id')].title }}</td>
 		</tr>
-		{% endfor %}
+		<tr>
+			<td>{{ __('Quantity') }}</td>
+			<td>{{ booking.quantity }}</td>
+		</tr>
+		<tr>
+			<td>{{ __('Guests') }}</td>
+			<td>{{ booking.guests }}</td>
+		</tr>
+		<tr>
+			<td>{{ __('Arrival') }}</td>
+			<td>{{ booking.book_from }}</td>			
+		</tr>
+		<tr>
+			<td>{{ __('Departure') }}</td>
+			<td>{{ booking.book_until }}</td>
+		</tr>
 	</tbody>
 	<tfoot>
 		

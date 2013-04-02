@@ -13,7 +13,7 @@ class BookableModel(AbstractContentModel):
     price=db.IntegerProperty(required=True, default=23)
     category = db.ReferenceProperty(CategoryModel, collection_name='bookables')
     album_url = db.StringProperty(required=False, default='')
-    dependencies=['booking_entries']
+    dependencies=['bookings']
     
     def populate_field(self, dictionary, key):
     	if key is 'category':

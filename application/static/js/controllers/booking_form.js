@@ -35,15 +35,15 @@ define(['helpers/date', 'helpers/tooltip'],
 		/**
 		 * The input for the username
 		 */
-		var $userFullName = $('input[name="user.full_name"]', $form);
+		var $userFullName = $('#user\\.full_name', $form);
 		/**
 		 * The input for the email
 		 */
-		var $userEmail = $('input[name="user.email"]', $form);
+		var $userEmail = $('#user\\.email', $form);
 		/**
 		 * The input for the email
 		 */
-		var $userPhone = $('input[name="user.phone"]', $form);
+		var $userPhone = $('#user\\.phone', $form);
 
 		/**
 		 * The button used for submitting a booking
@@ -53,15 +53,19 @@ define(['helpers/date', 'helpers/tooltip'],
 		/**
 		 * The select element containing options for quantity
 		 */
-		var $quantitySelect = $('#addRoomQuantity', $form);
+		var $quantitySelect = $('#booking\\.quantity', $form);
 		/**
 		 * Input that contains the arrival date
 		 */
-		var $bookFrom = $('#book\\.from', $form);
+		var $bookFrom = $('#booking\\.book_from', $form);
 		/**
 		 * Input containing the departure date
 		 */
-		var $bookUntil = $('#booking\\.until', $form);
+		var $bookUntil = $('#booking\\.book_until', $form);
+		/**
+		 * The hidden input field containnig the reference to the bokable
+		 */
+		var $bookableInput = $('#booking\\.bookable', $form);
 		/**
 		 * Does validations, and shows validation messages
 		 * @return True if all is ok. False otherwise
@@ -104,13 +108,6 @@ define(['helpers/date', 'helpers/tooltip'],
 			var data = {};
 			data.user = stripDomain($('input[name*="user."]', $form).serializeObject());
 			data.booking = stripDomain($('*[name*="booking."]', $form).serializeObject());
-			data.bookingEntries = [];
-			$('tr').each(function (i, el) {
-				var be = stripDomain($(':input', el).serializeObject());
-				if (!$.isEmptyObject(be)) {
-					data.bookingEntries.push(be);
-				}
-			});
 			return data;
 		};
 
@@ -118,6 +115,8 @@ define(['helpers/date', 'helpers/tooltip'],
 		 *	Initializes the add room modal
 		 */
 		var init = function (bookable) {
+			$bookableInput.val(bookable.id);
+
 			var qty = bookable.quantity;
 			$quantitySelect.html('');
 			for (var j = 1; j <= qty; j++) {
@@ -125,7 +124,6 @@ define(['helpers/date', 'helpers/tooltip'],
 			}
 
 			var d = new Date();
-
 			$bookFrom.val(date.toStr(d));
 			d.setDate(d.getDate() + 1);
 			$bookUntil.val(date.toStr(d));

@@ -13,8 +13,6 @@ class AbstractContentModel(I18nableModel):
     dependencies=['medias']
     i18d_fields=['title', 'description']
     
-    def __repr__(self, *args, **kwargs):
-        return self.title
     
 class ContentModel(AbstractContentModel):
     category = db.ReferenceProperty(CategoryModel, collection_name='contents')

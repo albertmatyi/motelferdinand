@@ -4,7 +4,7 @@
 		<div class="controls controls-row">
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-user"></i></span>
-				<input type="text" id="user.full_name" data-toggle="tooltip" data-title="{{ __('Specify a valid full name') }}" data-placement="right"/>
+				<input type="text" id="user.full_name" name="user.full_name" data-toggle="tooltip" data-title="{{ __('Specify a valid full name') }}" data-placement="right"/>
 			</div>
 		</div>
 	</div>
@@ -13,7 +13,7 @@
 		<div class="controls controls-row">
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-envelope"></i></span>
-				<input type="email" id="user.email" class="email"  data-toggle="tooltip" data-title="{{ __('Specify a valid email address') }}" data-placement="right"/>
+				<input type="email" id="user.email" name="user.email" class="email"  data-toggle="tooltip" data-title="{{ __('Specify a valid email address') }}" data-placement="right"/>
 			</div>
 		</div>
 	</div>
@@ -22,7 +22,7 @@
 		<div class="controls controls-row">
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-signal"></i></span>
-				<input type="text" class="phone" id="user.phone"  data-toggle="tooltip" data-title="{{ __('Specify a valid phone number') }}" data-placement="right"/>
+				<input type="text" class="phone" id="user.phone" name="user.phone"  data-toggle="tooltip" data-title="{{ __('Specify a valid phone number') }}" data-placement="right"/>
 			</div>
 		</div>
 	</div>
@@ -35,12 +35,13 @@
 			</div>
 		</div>
 	</div>
+	<input type="hidden" id="booking.bookable" name="booking.bookable" />
 	<div class="control-group">
 		<label class="control-label" for="booking.quantity">{{ __('Quantity') }}</label>
 		<div class="controls controls-row">
 			<div class="input-prepend">
 				<span class="add-on">#</span>
-				<select id="booking.quantity">
+				<select id="booking.quantity" name="booking.quantity">
 				</select>
 			</div>
 		</div>
@@ -50,7 +51,7 @@
 		<div class="controls controls-row">
 			<div class="input-prepend">
 				<span class="add-on">#</span>
-				<select id="booking.guests">
+				<select id="booking.guests" name="booking.guests">
 				</select>
 			</div>
 		</div>
@@ -60,7 +61,7 @@
 		<div class="controls controls-row">
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-calendar"></i></span>
-				<input type="text" class="datepicker bookfrom" id="booking.from" data-toggle="tooltip" data-title="{{ __('Specify a valid date (dd-mm-yyyy)') }}" data-placement="right"/>
+				<input type="text" class="datepicker bookfrom" id="booking.book_from" name="booking.book_from" data-toggle="tooltip" data-title="{{ __('Specify a valid date (dd-mm-yyyy)') }}" data-placement="right"/>
 			</div>
 		</div>
 	</div>
@@ -69,7 +70,7 @@
 		<div class="controls controls-row">
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-calendar"></i></span>
-				<input type="text" class="datepicker bookuntil" id="booking.until" data-toggle="tooltip" data-title="{{ __('Specify a valid date (dd-mm-yyyy)') }}" data-placement="right"/>
+				<input type="text" class="datepicker bookuntil" id="booking.book_until" name="booking.book_until" data-toggle="tooltip" data-title="{{ __('Specify a valid date (dd-mm-yyyy)') }}" data-placement="right"/>
 			</div>
 		</div>
 	</div>	

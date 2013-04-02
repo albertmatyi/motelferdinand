@@ -30,17 +30,17 @@ APP_ADMIN_MAILS = 'Owner <zozipus@yahoo.com>, Developer <albertmatyi@gmail.com>'
 def bookings_new():
     booking = save_booking()
 
-    send_new_booking_mail(BookingModel.get_by_id(booking.key().id()))
+    send_new_booking_mail(booking)
     return '{ "message": "Booking successfully saved! Stand by for a confirmation email." , "success" : true }'
     pass
 
 def transform(form):
-    for be in form['bookingEntries']:
-        to_date = lambda sstr: datetime.strptime(sstr, '%d-%m-%Y').date()
-        be['bookable_id'] = long (be['bookable_id']) 
-        be['quantity'] = int (be['quantity']) 
-        be['book_from'] = to_date(be['book_from'])
-        be['book_until'] = to_date(be['book_until'])
+    to_date = lambda sstr: datetime.strptime(sstr, '%d-%m-%Y').date()
+    bkng = form['booking']
+    bkng['quantity'] = int (bkng['quantity']) 
+    bkng['book_from'] = to_date(bkng['book_from'])
+    bkng['book_until'] = to_date(bkng['book_until'])
+    bkng['bookable'] = bookable = BookableModel.get_by_id( long(bkng['bookable']) )
     pass
 
 def validate(form):
@@ -48,12 +48,11 @@ def validate(form):
     valid = re.search('[\w -]{3,}', form['user']['full_name']) is not None
     valid &= re.search('[\w\.\-_]{1,}@([\w\-_]+.){1,}\w{3,5}', form['user']['email']) is not None
     valid &= re.search('[\d+\s\-]{5,}', form['user']['phone']) is not None
-    valid &= len(form['bookingEntries']) > 0
-    for be in form['bookingEntries']:
-        tday = be['book_from'].today()
-        valid &= be['book_from'] < be['book_until']
-        valid &= tday <= be['book_from'] 
-        pass
+    bkng = form['booking']
+    tday = bkng['book_from'].today()
+    valid &= bkng['book_from'] < bkng['book_until']
+    valid &= tday <= bkng['book_from']
+    valid &= bkng['bookable'] is not None
 
     if not valid:
         raise ValidationException('Invalid data');
@@ -70,28 +69,21 @@ def save_booking():
     validate(form)
 
     usr = get_or_create_user(form['user'])
-
+    bkf = form['booking']
     booking = BookingModel()
-    booking.message = form['booking']['message']
+    booking.message = bkf['message']
     booking.user = usr
+    booking.quantity = bkf['quantity'] 
+    booking.book_from = bkf['book_from'] 
+    booking.book_until = bkf['book_until'] 
+    booking.bookable = bkf['bookable']
     booking.put()
-    
-    for bef in form['bookingEntries']:
-        bookable = BookableModel.get_by_id( bef['bookable_id'] )
-        quant = bef['quantity'] 
-        book_from = bef['book_from']
-        book_until = bef['book_until']
-        
-        be = BookingEntryModel(bookable = bookable, booking = booking, quantity = quant
-            , book_from = book_from, book_until = book_until)
-        be.put()
-        pass
     return booking 
     pass
 
 def send_new_booking_mail(booking):
     subject = 'Your booking request at Ferdinand Motel '
-    booking_dict = booking.to_dict(True, True)
+    booking_dict = BookingDictBuilder(booking).with_user().with_bookable().build()
     # To client
     message = mail.EmailMessage(sender=si18n.translate('Ferdinand Motel')+'<'+APP_MAIL_SENDER+'>',
                             subject=render_template_string(subject, booking=booking_dict))
@@ -111,14 +103,14 @@ def send_new_booking_mail(booking):
 @app.route('/booking-mail/<int:entityId>', methods=['GET'])
 @admin_required
 def booking_mail(entityId):
-    booking = BookingModel.get_by_id(long(entityId));
     # pdb.set_trace()
     # mail.send(usr.email, 'BOOKING_SUBJ', '/bookingClient.html', booking);
     
-    body = '/mail/bookingClient.html'
+    # body = '/mail/bookingClient.html'
     body = '/mail/bookingNewClient.html'
-    body = '/mail/bookingAcceptedClient.html'
-    return render_template(body, booking=booking.to_dict(True, True))
+    # body = '/mail/bookingAcceptedClient.html'
+    booking = BookingDictBuilder(long(entityId)).with_user().with_bookable().build()
+    return render_template(body, booking=booking)
     pass
 
 @app.route('/admin/bookings/<int:entityId>', methods=['POST', 'DELETE'])
@@ -147,7 +139,7 @@ def update_booking():
 
 def send_booking_accepted_mail(booking):
     subject = 'Your booking request at Ferdinand Motel has been ACCEPTED.'
-    booking_dict = booking.to_dict(True, True)
+    booking_dict = booking.to_dict(True)
     # To client
     message = mail.EmailMessage(sender=si18n.translate('Ferdinand Motel')+'<'+APP_MAIL_SENDER+'>',
                             subject=render_template_string(subject, booking=booking_dict))
