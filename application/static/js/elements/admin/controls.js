@@ -7,7 +7,7 @@ define(
     'elements/dialog'
 ],
 function (i18n, dialog) {
-    "use strict";
+    'use strict';
     var getDeleteHandler = function (delURL, deleteCallback) {
         return function () {
             dialog.confirm(

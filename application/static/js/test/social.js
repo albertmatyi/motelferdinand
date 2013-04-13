@@ -1,9 +1,9 @@
 /*global define */
 define(['test/elements/dialog'],
 	function (dialog) {
-		"use strict";
+		'use strict';
 		var testPhone = function (t) {
-			t.l('Click on phone icon').click('.social-icons .phone');
+			t.l('Click on phone icon').click('.social .phone');
 
 			t.l('Verify popup visible').assertVisible('#phoneModal');
 
@@ -11,7 +11,7 @@ define(['test/elements/dialog'],
 		};
 
 		var testMap = function (t) {
-			t.l('Click on map icon').click('.social-icons .map');
+			t.l('Click on map icon').click('.social .map');
 
 			t.l('Verify popup visible').assertVisible('#mapModal iframe');
 
@@ -19,7 +19,7 @@ define(['test/elements/dialog'],
 		};
 
 		var testMail = function (t) {
-			t.l('Click on mail icon').click('.social-icons .mail');
+			t.l('Click on mail icon').click('.social .mail');
 
 			t.l('Verify popup visible').assertVisible(dialog.selector);
 

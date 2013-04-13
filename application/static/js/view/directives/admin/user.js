@@ -2,7 +2,7 @@
 
 define([],
 	function () {
-		"use strict";
+		'use strict';
 		return {
 			'full_name' : {
 				text : function (params) {

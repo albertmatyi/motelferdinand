@@ -6,7 +6,7 @@
 
 requirejs.config({
 	paths : {
-		'lib/jquery' : '../lib/jquery-1.7.2.min',
+		'lib/jquery' : '../lib/jquery-1.9.1.min',
 		'lib/jquery-ui' : '../lib/jquery-ui-1.8.20.custom.min',
 		'lib/bootstrap' : '../lib/bootstrap/js/bootstrap.min',
 		'lib/slides' : '../lib/slides.min.jquery',
@@ -45,6 +45,7 @@ requirejs.config({
 
 define('main',
 [
+	'lib/jquery',
 	'lib/underscore',
 	'config',
 	'elements/social',
@@ -54,9 +55,9 @@ define('main',
 	'view/language',
 	'controllers/category'
 ],
-function (us, config, social, modal, modelBase, categoryView, languageView,
+function ($, us, config, social, modal, modelBase, categoryView, languageView,
 	category) {
-	"use strict";
+	'use strict';
 	categoryView.render(model.categories);
 	category.init();
 

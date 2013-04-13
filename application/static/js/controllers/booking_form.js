@@ -3,7 +3,7 @@
 
 define(['helpers/date', 'helpers/tooltip'],
 	function (date, tooltip) {
-		"use strict";
+		'use strict';
 		var DATE_VALIDATOR = {'isValid' : function ($item) {
 			var valid = date.isValid($item.val());
 			tooltip.set($item, !valid);

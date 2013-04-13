@@ -4,7 +4,7 @@
 define(
 [],
 function () {
-	"use strict";
+	'use strict';
 	var scrollChanged = function ($objs2Fix) {
 		var st = $(document).scrollTop();
 		$objs2Fix.each(function (i, el) {

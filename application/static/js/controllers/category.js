@@ -7,7 +7,7 @@ define(
 	'helpers/fixit'
 ],
 function (booking, fixit) {
-	"use strict";
+	'use strict';
 	return {
 		init : function () {
 			fixit.setup($('.category-info'));

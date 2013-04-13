@@ -15,8 +15,8 @@ define(
         'elements/modal'
     ],
     function (i18n, adminControls, directive, transparency, common, view, booking, modal) {
-        "use strict";
-        var $bookableWrapper = $('.bookables-wrapper').clone();
+        'use strict';
+        var $bookableTemplate = $('.bookables').clone();
 
         var TAB_ID_BASE = 'editBookable-';
 
@@ -29,7 +29,7 @@ define(
             var bkbl = model.db.bookable[deletedId];
             var cat = model.db.category[bkbl.category];
             cat.bookables.splice(_.indexOf(cat.bookables, bkbl), 1);
-            rerenderBookables(cat);
+            $('#Bookable'+deletedId).remove();
             delete model.db.bookable[deletedId];
         };
 
@@ -41,21 +41,21 @@ define(
             adminControls.init($formModal, $controls, 'bookables', deletedCallback);
         };
 
-        var rerenderBookables = function (category) {
-            var $newBW = $bookableWrapper.clone();
-            $('#Category' + category.id + ' .bookables-wrapper').remove();
-            $('#Category' + category.id + ' .category-content').prepend($newBW);
-            $('.bookables', $newBW).render(category.bookables, directive);
-            initAdminControls($newBW);
+        var addNewUI = function (category, bookable) {
+            var $newUI = $bookableTemplate.clone()
+                .render(bookable, directive)
+                .children('.bookable');
+            $('#Category' + category.id + ' .bookables').append($newUI);
+            initAdminControls($newUI);
             view.render($('#Category' + category.id));
-            booking.setup([category]);
+            booking.setup(bookable);
         };
 
         var add = function (entity) {
             model.db.bookable[entity.id] = entity;
             var cat = model.db.category[entity.category];
             cat.bookables.push(entity);
-            rerenderBookables(cat);
+            addNewUI(cat, entity);
         };
 
 

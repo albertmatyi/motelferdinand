@@ -9,7 +9,7 @@ define(
 		'lib/bootstrap'
 	],
 	function (formHelper, wysihtml5) {
-		"use strict";
+		'use strict';
 		var SEPARATOR = '-';
 		var PREFIX = 'i18n-';
 		return {

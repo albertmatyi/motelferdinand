@@ -3,7 +3,7 @@
 
 define(['lib/jquery'],
 	function (jquery) {
-	"use strict";
+	'use strict';
 	var $fsContext = $('#fullscreen-image');
 
 	var images = [];

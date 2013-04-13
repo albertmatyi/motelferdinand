@@ -3,13 +3,14 @@
 /*global console */
 /*global _ */
 /*global confirm */
+/*global window */
 
 define([
 	'lib/jquery',
 	'test/util'
 ],
 function (jquery, testUtil) {
-	"use strict";
+	'use strict';
 	var TEST_IDX_DEFAULT = -1;
 	var testFiles = [];
 	var testFileIndex = 0;
@@ -54,7 +55,10 @@ function (jquery, testUtil) {
 	};
 
 	var filterMatches = function (value) {
-		return function (filter) { return value.toLowerCase().indexOf(filter.toLowerCase()) !== -1; };
+		return function (filter) {
+			var match = value.toLowerCase().indexOf(filter.toLowerCase()) !== -1;
+			return match;
+		};
 	};
 
 	var getTestKey = function (test) {
@@ -219,7 +223,7 @@ function (jquery, testUtil) {
 
 	$(window).keyup(function (e) {
 		if (e.which === 27) {
-			testUtil.fail("Test cancelled by user.");
+			testUtil.fail('Test cancelled by user.');
 		}
 	});
 

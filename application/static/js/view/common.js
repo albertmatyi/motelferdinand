@@ -5,7 +5,7 @@ define(
 [
 	'helpers/picaslide'
 ], function () {
-	"use strict";
+	'use strict';
 	return {
 		'renderContentGallery' : function (selector) {
 			$(selector).each(function (idx, el) {

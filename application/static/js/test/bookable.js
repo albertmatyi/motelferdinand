@@ -9,10 +9,10 @@ define([
 		'test/elements/dialog'
 	],
 	function (jquery, categoryTest, dialog) {
-		"use strict";
+		'use strict';
 		var $bookableModal;
-		var bookableTitleStr = "Bookable Title";
-		var categoryTitleStr = "Test Category for Bookable";
+		var bookableTitleStr;
+		var categoryTitleStr;
 		var beds = 3;
 		var quantity = 4;
 		var price = 69;
@@ -21,8 +21,8 @@ define([
 		var categoryId;
 
 		var before = function (t) {
-			bookableTitleStr += t.hash();
-			categoryTitleStr += t.hash();
+			bookableTitleStr = 'Bookable Title' + t.hash();
+			categoryTitleStr = 'Test Category for Bookable' + t.hash();
 			categoryTest.createCategory(t, categoryTitleStr, function ($cat) {
 				t.l('Got category id ' + $cat.selector);
 				initVars(t, $cat);
@@ -131,22 +131,13 @@ define([
 			}, $category);
 		};
 
-		var clickPage = function (t, nr) {
-			t.$('.bookables-wrapper .pagination a:contains(' + nr + ')', function (el) {
-				t.click(el);
-			}, $category);
-		};
-
 		var testMultipleBookables = function (t) {
 			createBookablePvt(t, bookableTitleStr + '1', $category);
 			createBookablePvt(t, bookableTitleStr + '2', $category);
-			clickPage(t, 2);
-			clickPage(t, 1);
 			deleteBookable(t, bookableTitleStr + '1');
 
 			createBookablePvt(t, bookableTitleStr + '3', $category);
 
-			clickPage(t, 2);
 			deleteBookable(t, bookableTitleStr + '3');
 			deleteBookable(t, bookableTitleStr + '2');
 		};

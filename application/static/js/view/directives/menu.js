@@ -2,7 +2,7 @@
 /*global model */
 
 define(["helpers/cookies"], function () {
-	"use strict";
+	'use strict';
 	var titleDirective = {
 		href : function (params) {
 			return '#Category' + this.id;

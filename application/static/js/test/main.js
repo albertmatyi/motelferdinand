@@ -9,7 +9,7 @@ define(
 		'test/booking',
 		'test/social'
 	], function (integration) {
-		"use strict";
+		'use strict';
 		window.config.test.breakOnError = true;
 		// window.config.test.debug = true;
 		for (var i = 1; i < arguments.length; i++) {

@@ -1,7 +1,7 @@
 /*global define */
 
 define([], function () {
-	"use strict";
+	'use strict';
 	var strToDate = function (str) {
 		var parts = str.split('-');
 		var year = parts[2];

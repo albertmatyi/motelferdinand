@@ -9,7 +9,7 @@ define([
 		'test/elements/dialog'
 	],
 	function (jquery, categoryTest, dialog) {
-		"use strict";
+		'use strict';
 		var $addDropdown;
 		var $addButton;
 		var $contentModal;

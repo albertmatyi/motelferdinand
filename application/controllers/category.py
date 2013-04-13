@@ -12,7 +12,6 @@ from flask.globals import request
 from application.helpers import si18n 
 from google.appengine.api import users
 import os
-import pdb
 
 CategoryForm = model_form(CategoryModel, wtf.Form)
 
@@ -36,7 +35,6 @@ def home():
         qry = qry.filter('visible', True)
     categories = [e.to_dict() for e in qry]
     bookings = [e.to_dict(is_admin) for e in BookingModel.all()]
-    
     return render_template('/main.html',\
                              js_data = {'categories': categories,\
                                         'languages': [e.to_dict() for e in LanguageModel.all()],
@@ -45,7 +43,7 @@ def home():
                                         'si18n': si18n.translations_js,
                                         'is_admin' : is_admin
                             }, is_admin = is_admin
-                            , is_production = os.environ['CURRENT_VERSION_ID'].split('.').pop() is not '1'
+                            , is_production = 'Development' not in os.environ['SERVER_SOFTWARE']
                             , logout_url = users.create_logout_url("/"))
     pass
 

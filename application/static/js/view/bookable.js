@@ -7,7 +7,7 @@ define(
 	'lib/datepicker'
 ],
 function (config) {
-	"use strict";
+	'use strict';
 	// BOOKING
 	function renderDatePickers($context) {
 		$('.datepicker', $context).datepicker({
@@ -29,10 +29,10 @@ function (config) {
 	};
 
 	var render = function ($context) {
-		if (typeof($context) === "undefined") {
+		if (typeof($context) === 'undefined') {
 			$context = $('body');
 		}
-		
+
 		renderGallery($context);
 
 		if (config.RENDER_DATEPICKERS) {

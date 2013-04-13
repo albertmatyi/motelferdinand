@@ -10,7 +10,7 @@ define(
 	'view/common'
 ],
 function (config, bookableView, navDirective, bodyDirective, common) {
-	"use strict";
+	'use strict';
 	var $menu = $('.category-nav');
 	var $container = $('.categories');
 	var menuTemplate = $menu.html();

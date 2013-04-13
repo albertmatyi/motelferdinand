@@ -5,7 +5,7 @@ define(
 	'view/directives/common'
 ],
 function (commonDirectives) {
-	"use strict";
+	'use strict';
 	return {
 		'id' : {
 			id : function (params) {

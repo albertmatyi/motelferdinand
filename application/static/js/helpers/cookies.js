@@ -4,7 +4,7 @@
 define(
 {
 	'set' : function (c_name, value, exdays) {
-		"use strict";
+		'use strict';
 		if (!exdays) {
 			exdays = 30;
 		}

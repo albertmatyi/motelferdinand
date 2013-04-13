@@ -4,7 +4,7 @@
 define(
 	[],
 	function () {
-		"use strict";
+		'use strict';
 		var createNotification = function (str, type, $context) {
 			var $notification = $('<div class="alert ' + (type ? 'alert-' + type : '') + '">' +
 				'<button type="button" class="close" data-dismiss="alert">&times;</button>'	+

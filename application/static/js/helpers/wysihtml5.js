@@ -5,7 +5,7 @@
 define([
 	'lib/bootstrap-wysihtml5'
 ], function () {
-	"use strict";
+	'use strict';
 	return {
 		'renderTextAreas' : function ($context) {
 			$('textarea', $context).each(function (idx, el) {

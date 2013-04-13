@@ -8,10 +8,10 @@ define([
 		'test/elements/dialog'
 	],
 	function (jquery, dialog) {
-		"use strict";
+		'use strict';
 		var $addButton;
 		var $catModal;
-		var categoryTitleStr = "Test Category Title";
+		var categoryTitleStr;
 		var $saveButton;
 
 		var initControls = function () {
@@ -21,7 +21,7 @@ define([
 		};
 
 		var before = function (t) {
-			categoryTitleStr += t.hash();
+			categoryTitleStr = 'Test Category Title' + t.hash();
 			initControls();
 		};
 

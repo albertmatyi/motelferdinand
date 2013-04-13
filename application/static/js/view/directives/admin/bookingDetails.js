@@ -7,7 +7,7 @@ define([
 	'view/directives/common',
 	'helpers/i18n'
 ], function (user, common, i18n) {
-	"use strict";
+	'use strict';
 	var getBoolDir = function (fieldName) {
 		return {
 			'text' : function (params) {

@@ -5,7 +5,7 @@
 define([
 ],
 function () {
-	"use strict";
+	'use strict';
 	return {
 		'descriptionDirective' : {
 			text : function (params) {

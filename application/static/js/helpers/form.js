@@ -7,7 +7,7 @@ define(
 		"helpers/wysihtml5"
 	],
 	function (wysihtml5) {
-		"use strict";
+		'use strict';
 		return {
 			/**
 			 * Populate the input fields of a form with data

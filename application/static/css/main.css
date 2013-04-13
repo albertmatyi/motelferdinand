@@ -5888,7 +5888,7 @@ div.picaslide {
 #phoneModal .table tr:first-child td {
   border-top: none; }
 
-.social-icons {
+.social {
   background: url(/static/img/noise.png) #333333;
   border-top: 1px dashed rgba(0, 0, 0, 0.4);
   text-align: center;
@@ -5896,42 +5896,42 @@ div.picaslide {
   margin-left: 0;
   padding-top: 1em;
   color: #fff; }
-  .social-icons span {
+  .social .header {
     display: block; }
-  .social-icons a {
+  .social .icon {
     height: 48px;
     width: 48px;
     margin: 2px;
     display: inline-block;
     background-image: url(../img/social/social_sprite_48.png);
     background-repeat: no-repeat; }
-    .social-icons a.skype {
+    .social .icon.skype {
       background-position: 0px 0px; }
-      .social-icons a.skype:hover {
+      .social .icon.skype:hover {
         background-position: 0px -48px; }
-    .social-icons a.google {
+    .social .icon.google {
       background-position: -48px 0px; }
-      .social-icons a.google:hover {
+      .social .icon.google:hover {
         background-position: -48px -48px; }
-    .social-icons a.facebook {
+    .social .icon.facebook {
       background-position: -96px 0px; }
-      .social-icons a.facebook:hover {
+      .social .icon.facebook:hover {
         background-position: -96px -48px; }
-    .social-icons a.tripadvisor {
+    .social .icon.tripadvisor {
       background-position: -144px 0px; }
-      .social-icons a.tripadvisor:hover {
+      .social .icon.tripadvisor:hover {
         background-position: -144px -48px; }
-    .social-icons a.map {
+    .social .icon.map {
       background-position: -192px 0px; }
-      .social-icons a.map:hover {
+      .social .icon.map:hover {
         background-position: -192px -48px; }
-    .social-icons a.phone {
+    .social .icon.phone {
       background-position: -240px 0px; }
-      .social-icons a.phone:hover {
+      .social .icon.phone:hover {
         background-position: -240px -48px; }
-    .social-icons a.mail {
+    .social .icon.mail {
       background-position: -288px 0px; }
-      .social-icons a.mail:hover {
+      .social .icon.mail:hover {
         background-position: -288px -48px; }
 
 .modal.alert-modal {

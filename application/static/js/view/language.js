@@ -10,7 +10,7 @@ define(
 	'helpers/cookies'
 ],
 function (jq, tr, cookies) {
-	"use strict";
+	'use strict';
 	var languageDirective = {
 		'name' : {
 			'text' : function (params) {

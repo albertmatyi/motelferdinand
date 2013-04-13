@@ -3,7 +3,7 @@
 
 define(
 [ 'lib/jquery' ], function () {
-	"use strict";
+	'use strict';
 	var $modal = $('#dialogModal');
 	var okCallback = null;
 	var $okButton = $('.btn-primary', $modal);

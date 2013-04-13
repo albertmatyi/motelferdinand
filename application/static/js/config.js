@@ -4,7 +4,7 @@
 define([
 	'lib/transparency'
 ], function (transparency) {
-	"use strict";
+	'use strict';
 	transparency.matcher = function (element, key) {
 		return element.getAttribute('data-bind') === key;
 	};

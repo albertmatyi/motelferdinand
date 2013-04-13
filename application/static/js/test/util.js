@@ -3,7 +3,7 @@
 /*global _ */
 
 define(['lib/jquery'], function (jquery) {
-	"use strict";
+	'use strict';
 	var testSteps = [];
 	var executing = false;
 	var stepInsertIndex = 0;

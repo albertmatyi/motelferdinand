@@ -2,6 +2,7 @@
 /*global $ */
 /*global model */
 /*global console */
+/*global window */
 
 define(
 	[
@@ -11,7 +12,7 @@ define(
 		'elements/notification'
 	],
 	function (i18n, tooltip, bookingForm, notification) {
-		"use strict";
+		'use strict';
 
 		var SHOW_BOOKING_FORM_SEL = '.showBookingFormButton';
 		var BOOK_SHOW_TIME = 500;
@@ -96,26 +97,36 @@ define(
 			$('html, body').animate({scrollTop: bookingForm.element.offset().top - 7 * 16 /*5em*/}, BOOK_SHOW_TIME);
 		};
 
-		return {
-			'setup' : function (categories) {
-				if (typeof (categories) === "undefined") {
-					categories = model.categories;
-				}
-				for (var i = categories.length - 1; i >= 0; i -= 1) {
-					var category = categories[i];
-					for (var j = category.bookables.length - 1; j >= 0; j--) {
-						var bookable = category.bookables[j];
-						var $btn = $('#Category' + category.id + ' #Bookable' + bookable.id + ' .booking-btn');
+		var initBookable = function (bookable) {
+			var $btn = $('#Category' + bookable.category +
+				' #Bookable' + bookable.id + ' .booking-btn');
 
-						$btn.data('categoryId', category.id);
-						$btn.data('bookableId', bookable.id);
-						$btn.click(function () {
-							var bookableId = $(this).data('bookableId');
-							showForm(bookableId);
-							$(this).hide();
-							return false;
-						});
-					}
+			$btn.data('categoryId', bookable.category);
+			$btn.data('bookableId', bookable.id);
+			$btn.click(function () {
+				var bookableId = $(this).data('bookableId');
+				showForm(bookableId);
+				$(this).hide();
+				return false;
+			});
+		};
+
+		var forEveryBookable = function (callback) {
+			var categories = model.categories;
+			for (var i = categories.length - 1; i >= 0; i -= 1) {
+				var category = categories[i];
+				for (var j = category.bookables.length - 1; j >= 0; j -= 1) {
+					callback(category.bookables[j]);
+				}
+			}
+		};
+
+		return {
+			'setup' : function (bookable) {
+				if (typeof bookable === 'undefined') {
+					forEveryBookable(initBookable);
+				} else {
+					initBookable(bookable);
 				}
 			},
 			'reset' : function () {

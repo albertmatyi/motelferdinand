@@ -3,7 +3,7 @@
 
 define([],
 function () {
-	"use strict";
+	'use strict';
 	/**
 	 * Shows or hides a tooltip on the given element
 	 */

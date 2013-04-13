@@ -14,7 +14,7 @@ define([
 		'elements/modal'
 	],
 	function (transp, bookingsDirective, bookingDetailsDirective, i18n, transparency, dialog, adminControls, modal) {
-		"use strict";
+		'use strict';
 		var $bookingsModal = $('#adminBookingsModal');
 		var $bookingDetails = $('.bookingDetails', $bookingsModal);
 		var $bookingsButton = $('#adminBookingsButton');

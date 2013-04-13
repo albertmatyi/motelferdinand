@@ -8,7 +8,7 @@ define([
 	'elements/fullscreen'
 ],
 function (jquery, picasa, slides, fullscreen) {
-	"use strict";
+	'use strict';
 	var initControls  = function ($context, images) {
 		var $btn = $('<span class="fullscreen-btn btn"><i class="icon-fullscreen"></i></span>');
 		$btn.appendTo($context).click(function () {

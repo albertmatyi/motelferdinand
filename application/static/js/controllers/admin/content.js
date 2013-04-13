@@ -12,7 +12,7 @@ define(
 	'view/directives/content'
 ],
 function (i18n, adminControls, transparency, common, directive) {
-	"use strict";
+	'use strict';
 	var TAB_ID_BASE = 'editContent-';
 
 	var $formModal = $('#contentEditFormModal');

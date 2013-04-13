@@ -6,7 +6,7 @@
 
 requirejs.config({
 	paths : {
-		'lib/jquery': '../lib/jquery-1.7.2.min',
+		'lib/jquery': '../lib/jquery-1.9.1.min',
 		'lib/jquery-ui': '../lib/jquery-ui-1.8.20.custom.min',
 		'lib/bootstrap': '../lib/bootstrap/js/bootstrap.min',
 		'lib/slides': '../lib/slides.min.jquery',
@@ -22,6 +22,9 @@ requirejs.config({
 	waitSeconds: 30,
 
 	shim: {
+		'main':{
+			deps: ['lib/jquery']
+		},
 		'lib/jquery-ui': {
 			deps: ['lib/jquery']
 		},
@@ -62,7 +65,7 @@ define('main',
 function (us, config, test, social, modal, modelBase,
 	categoryView, languageView, category,
 	categoryAdmin, contentAdmin, bookableAdmin, bookingAdmin) {
-	"use strict";
+	'use strict';
 	categoryView.render(model.categories);
 	category.init();
 

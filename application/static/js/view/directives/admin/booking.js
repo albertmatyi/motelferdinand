@@ -8,7 +8,7 @@ define(
 		'view/directives/common'
 	],
 	function (user, common) {
-		"use strict";
+		'use strict';
 		var getStatusDir = function (fieldName) {
 			return {
 				'text' : function (params) {

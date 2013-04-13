@@ -16,7 +16,7 @@ define(
     'view/directives/body'
 ],
 function (i18n, adminControls, transparency, adminContent, adminBookable, categoryView, bookableView, navDirective, bodyDirective) {
-    "use strict";
+    'use strict';
     var TAB_ID_BASE = 'editCategory-';
 
     var $formModal = $('#categoryEditFormModal');

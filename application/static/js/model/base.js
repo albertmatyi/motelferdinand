@@ -7,7 +7,7 @@ define(
 	'lib/jquery'
 ],
 function () {
-	"use strict";
+	'use strict';
 
 	$.fn.serializeObject = function () {
 		var o = {};

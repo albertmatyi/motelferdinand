@@ -1,15 +1,14 @@
 /*global define */
+/*global $ */
 
 define(
 [
 	'test/category',
-	'test/bookable',
-	'test/elements/bookingEntry',
-	'test/elements/bookingEntryRow'
-], function (categoryTest, bookableTest, bookingEntryElement, entryRow) {
-	"use strict";
-	var categoryTitleStr = "Test Category for Booking";
-	var bookableTitleStr = "Test Bookable";
+	'test/bookable'
+], function (categoryTest, bookableTest) {
+	'use strict';
+	var categoryTitleStr;
+	var bookableTitleStr;
 	var name = 'John Doe';
 	var email = 'john.doe@mail.com';
 	var phone = '+0123456789';
@@ -17,14 +16,13 @@ define(
 	var $nameField = $('#user\\.full_name', $form);
 	var $emailField = $('#user\\.email', $form);
 	var $phoneField = $('#user\\.phone', $form);
-	var $bookingEntryAddButton = $('#bookingEntryAddModalTrigger', $form);
 	var $cancelButton = $('#cancelBookingButton', $form);
 	var $openBookingButton;
 	var $bookable;
 
 	var before = function (t) {
-		categoryTitleStr += t.hash(); 
-		bookableTitleStr += t.hash(); 
+		categoryTitleStr = 'Test Category for Booking' + t.hash();
+		bookableTitleStr = 'Test Bookable' + t.hash();
 		categoryTest.createCategory(t, categoryTitleStr, function ($cat) {
 			t.l('Got category ' + $cat.selector);
 			var $category = $cat;
@@ -65,39 +63,12 @@ define(
 		clickCancelBooking(t);
 	};
 
-	var testAddBookingEntry = function (t) {
-
-		clickOpenBooking(t);
-
-		t.l('Click add room').click($bookingEntryAddButton.selector);
-
-		t.l('Check add room modal visibility').assertVisible(bookingEntryElement.selector);
-
-		bookingEntryElement.fillForm(t, bookableTitleStr, 1, '31-02-2015', '20-03-2015').submit(t);
-
-		t.l('Check add room modal hidden').assertInvisible(bookingEntryElement.selector);
-
-		var entry = entryRow(bookableTitleStr);
-
-		t.l('Check entry row').assertPresent(entry.selector);
-	};
-
-	var testRemoveBookingEntry = function (t) {
-		var entry = entryRow(bookableTitleStr);
-
-		t.l('Click remove entry').click(entry.removeButton);
-
-		t.l('Check line was deleted.').assertNotPresent(entry.selector);
-	};
-
 	return {
 		'name' : 'Booking',
 		'before' : before,
 		'after' : after,
 		'tests' : [
-			{ 'testFillForm' : testFillForm },
-			{ 'testAddBookingEntry' : testAddBookingEntry },
-			{ 'testRemoveBookingEntry' : testRemoveBookingEntry }
+			{ 'testFillForm' : testFillForm }
 		]
 	};
 });
