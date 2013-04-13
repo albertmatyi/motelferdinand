@@ -1,6 +1,6 @@
 *.pyc
 secret_keys.py
 .sass-cache/
-GAElocal/
+local/
 *.sublime-workspace
 *.css

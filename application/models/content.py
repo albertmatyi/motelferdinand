@@ -10,9 +10,7 @@ from application.models.category import CategoryModel
 
 class AbstractContentModel(I18nableModel):
     order = db.IntegerProperty(required=False, default=0)
-    dependencies=['medias']
     i18d_fields=['title', 'description']
-    
     
 class ContentModel(AbstractContentModel):
     category = db.ReferenceProperty(CategoryModel, collection_name='contents')

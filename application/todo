@@ -78,23 +78,25 @@ D		confirm messages 2h
 D	error handling (display something)
 D		design
 		server side
-		clientside
+		clientside 
 
 		fullscreen image quality
 
 		fix picasa albums
 		
 		bookable
-			beds / 
-				places + different prices for them
-				i18n prices
-			bookables on separate sheets
+D			bookables on separate sheets
+			editing
+				beds / 
+					places + different prices for them
+					i18n prices
+			tests
 		booking
 			fixed booking button
-			booking with default selection
+D			booking with default selection
 			price & total nr of nitghts
-			from & until in the page
-			no booking entry
+D			from & until in the page
+D			no booking entry
 			nr of people
 		content ordering
 		accept booking with mail

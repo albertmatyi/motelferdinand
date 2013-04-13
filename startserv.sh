@@ -1,9 +1,8 @@
 #!/bin/bash
 dev_appserver.py \
-	--debug \
-	--datastore_path=GAElocal/db/ \
-	--use_sqlite \
-	--enable_sendmail \
-	--high_replication \
-	--address=0.0.0.0 \
+	--host 0.0.0.0 \
+	--log_level debug \
+	--storage_path ./local/ \
+	--enable_sendmail True \
+	--port 8080 \
 	.

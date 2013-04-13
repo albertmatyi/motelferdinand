@@ -10,9 +10,6 @@ from i18n import *
 # categories
 from category import *
 
-# external media references for adding to contents
-from media import *
-
 # [abstract] content
 from content import *
 
