@@ -3,9 +3,10 @@
 
 define(
 [
+	'lib/jquery',
 	'test/category',
 	'test/bookable'
-], function (categoryTest, bookableTest) {
+], function (jq, categoryTest, bookableTest) {
 	'use strict';
 	var categoryTitleStr;
 	var bookableTitleStr;

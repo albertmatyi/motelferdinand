@@ -1,8 +1,9 @@
 /*global define */
 /*global $ */
+/*global window */
 
 define(['lib/jquery'],
-	function (jquery) {
+	function (jq) {
 	'use strict';
 	var $fsContext = $('#fullscreen-image');
 
@@ -19,7 +20,7 @@ define(['lib/jquery'],
 
 	$('.next', $fsContext).click(function (event) {
 		event.stopImmediatePropagation();
-		index++;
+		index += 1;
 		if (index >= images.length) {
 			index = 0;
 		}
@@ -29,7 +30,7 @@ define(['lib/jquery'],
 
 	$('.prev', $fsContext).click(function (event) {
 		event.stopImmediatePropagation();
-		index--;
+		index -= 1;
 		if (index < 0) {
 			index = images.length - 1;
 		}
@@ -73,7 +74,7 @@ define(['lib/jquery'],
 			mult = 1 / (DATA.height / windowH);
 		}
 		w = DATA.width * mult * 0.95;
-		var ic = $(".image-container", $fsContext);
+		var ic = $('.image-container', $fsContext);
 		ic.css('left', (oww * infoWP + (windowW - w) / 2) + 'px');
 		ic.css('top', ((windowH - w * DATA.height / DATA.width) / 2) + 'px');
 		ic.html('<img src="' + imageURL +

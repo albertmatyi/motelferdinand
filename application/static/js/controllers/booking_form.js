@@ -112,7 +112,7 @@ define(['helpers/date', 'helpers/tooltip'],
 		};
 
 		/**
-		 *	Initializes the add room modal
+		 *	Initializes the form for the booking
 		 */
 		var init = function (bookable) {
 			$bookableInput.val(bookable.id);

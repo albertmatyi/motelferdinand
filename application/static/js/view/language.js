@@ -1,6 +1,6 @@
 /*global define */
 /*global $ */
-/*global console */
+/*global window */
 /*global model */
 
 define(
@@ -14,9 +14,9 @@ function (jq, tr, cookies) {
 	var languageDirective = {
 		'name' : {
 			'text' : function (params) {
-				var lang_id = this.lang_id;
+				var langId = this.lang_id;
 				$(params.element).click(function () {
-					cookies.set('lang_id', lang_id);
+					cookies.set('lang_id', langId);
 					window.location = '/';
 				});
 				return this.name;

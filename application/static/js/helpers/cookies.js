@@ -1,16 +1,17 @@
 /*global define */
 /*global escape */
+/*global document */
 
 define(
 {
-	'set' : function (c_name, value, exdays) {
+	'set' : function (name, value, exdays) {
 		'use strict';
 		if (!exdays) {
 			exdays = 30;
 		}
 		var exdate = new Date();
 		exdate.setDate(exdate.getDate() + exdays);
-		var c_value = escape(value) + ((exdays === null) ? "" : "; expires=" + exdate.toUTCString());
-		document.cookie = c_name + "=" + c_value;
+		var tval = escape(value) + ((exdays === null) ? '' : '; expires=' + exdate.toUTCString());
+		document.cookie = name + '=' + tval;
 	}
 });

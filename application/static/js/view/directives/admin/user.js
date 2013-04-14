@@ -5,17 +5,17 @@ define([],
 		'use strict';
 		return {
 			'full_name' : {
-				text : function (params) {
+				text : function () {
 					return this.user.full_name;
 				}
 			},
 			'email' : {
-				text : function (params) {
+				text : function () {
 					return this.user.email;
 				}
 			},
 			'phone' : {
-				text : function (params) {
+				text : function () {
 					return this.user.phone;
 				}
 			}

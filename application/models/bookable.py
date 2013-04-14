@@ -10,10 +10,10 @@ from application.models.category import CategoryModel
 class BookableModel(AbstractContentModel):
     places=db.IntegerProperty(required=True, default=1)
     quantity=db.IntegerProperty(required=True, default=1)
-    price=db.IntegerProperty(required=True, default=23)
+    price=db.IntegerProperty(required=True, default=1)
     category = db.ReferenceProperty(CategoryModel, collection_name='bookables')
     album_url = db.StringProperty(required=False, default='')
-    # prices = db.NumberListProperty()
+    # prices = db.ListProperty(float)
     dependencies=['bookings']
     
     def populate_field(self, dictionary, key):

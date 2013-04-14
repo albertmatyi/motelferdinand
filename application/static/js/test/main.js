@@ -1,4 +1,5 @@
 /*global define */
+/*global window */
 
 define(
 	[
@@ -12,7 +13,7 @@ define(
 		'use strict';
 		window.config.test.breakOnError = true;
 		// window.config.test.debug = true;
-		for (var i = 1; i < arguments.length; i++) {
+		for (var i = 1; i < arguments.length; i += 1) {
 			integration.tests.push(arguments[i]);
 		}
 	}

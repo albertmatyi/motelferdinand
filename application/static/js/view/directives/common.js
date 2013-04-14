@@ -8,15 +8,15 @@ function () {
 	'use strict';
 	return {
 		'descriptionDirective' : {
-			text : function (params) {
+			text : function () {
 				return '';
 			},
-			html : function (params) {
+			html : function () {
 				return this.i18n[model.language].description;
 			}
 		},
 		'titleDirective' : {
-			text : function (params) {
+			text : function () {
 				return this.i18n[model.language].title;
 			}
 		},
@@ -27,7 +27,7 @@ function () {
 					return $(params.element).text();
 				}
 			};
-			dir['data-' + type + '-id'] = function (params) {
+			dir['data-' + type + '-id'] = function () {
 					return this.id;
 				};
 			dir['data-' + type + '-idx'] = function (params) {

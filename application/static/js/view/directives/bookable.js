@@ -8,10 +8,10 @@ function (commonDirectives) {
 	'use strict';
 	return {
 		'id' : {
-			id : function (params) {
+			id : function () {
 				return 'Bookable' + this.id;
 			},
-			text : function (params) {
+			text : function () {
 				return '';
 			}
 		},
@@ -19,24 +19,24 @@ function (commonDirectives) {
 		'bookable-description' : commonDirectives.descriptionDirective,
 		'entityId' : commonDirectives.getEntityDirective('bookable'),
 		'album_url' : {
-			'text' : function (params) {
+			'text' : function () {
 				return '';
 			},
-			'class' : function (params) {
+			'class' : function () {
 				return 'bookable-picaslide picaslide';
 			},
-			'data-picaslide-username' : function (params) {
+			'data-picaslide-username' : function () {
 				var m = /.com(\/photos)?\/(\d+)/.exec(this.album_url);
 				return this.album_url && m && m.length > 2 ? m[2] : '';
 			},
-			'data-picaslide-albumid' : function (params) {
+			'data-picaslide-albumid' : function () {
 				var m = /.com(\/photos)?\/\d+(\/albums)?\/([^\/?#]+)/.exec(this.album_url);
 				return this.album_url && m && m.length > 3 ? m[3] : '';
 			},
-			'data-picaslide-width' : function (params) {
+			'data-picaslide-width' : function () {
 				return '400px';
 			},
-			'data-picaslide-height' : function (params) {
+			'data-picaslide-height' : function () {
 				return '300px';
 			}
 		}

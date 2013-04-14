@@ -1,9 +1,10 @@
 /*global define */
 /*global $ */
+/*global document */
 
 define(
-[],
-function () {
+[ 'lib/jquery' ],
+function (jq) {
 	'use strict';
 	var scrollChanged = function ($objs2Fix) {
 		var st = $(document).scrollTop();

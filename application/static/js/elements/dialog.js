@@ -19,6 +19,10 @@ define(
 		modalUsed = false;
 	});
 
+	$modal.on('shown', function () {
+		$okButton.focus();
+	});
+
 	var checkHiddenAndRun = function (method) {
 		if (modalUsed) {
 			// if (typeof console !== 'undefined' && console.info) { console.log('Trying to show dialog, but there is already one active. Posponing...'); }

@@ -1,8 +1,8 @@
 /*global define */
 /*global $ */
 
-define([],
-function () {
+define(['lib/jquery'],
+function (jq) {
 	'use strict';
 	/**
 	 * Shows or hides a tooltip on the given element

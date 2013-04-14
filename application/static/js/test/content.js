@@ -13,15 +13,15 @@ define([
 		var $addDropdown;
 		var $addButton;
 		var $contentModal;
-		var contentTitleStr = "Content Title";
-		var categoryTitleStr = "Test Category for Content";
+		var contentTitleStr;
+		var categoryTitleStr;
 		var $saveButton;
 		var $category;
 		var categoryId = -1;
 
 		var before = function (t) {
-			contentTitleStr += t.hash();
-			categoryTitleStr += t.hash();
+			contentTitleStr = 'Content Title' + t.hash();
+			categoryTitleStr += 'Test Category for Content' + t.hash();
 			categoryTest.createCategory(t, categoryTitleStr, function ($cat) {
 				t.l('Got category id ' + $cat.selector);
 				$category = $cat;

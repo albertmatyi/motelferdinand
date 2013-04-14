@@ -1,20 +1,20 @@
 /*global define */
 /*global model */
 
-define(["helpers/cookies"], function () {
+define(['helpers/cookies'], function () {
 	'use strict';
 	var titleDirective = {
-		href : function (params) {
+		href : function () {
 			return '#Category' + this.id;
 		},
-		'class' : function (params) {
+		'class' : function () {
 			return this.subcategories && this.subcategories.length > 0 ? 'dropdown-toggle'
 					: '';
 		},
-		'data-toggle' : function (params) {
+		'data-toggle' : function () {
 			return this.subcategories && this.subcategories.length > 0 ? 'dropdown' : '';
 		},
-		html : function (params) {
+		html : function () {
 			return this.i18n[model.language].title +
 				(this.subcategories && this.subcategories.length > 0 ? '<b class="caret"></b>' : '');
 		}
@@ -22,10 +22,10 @@ define(["helpers/cookies"], function () {
 	return {
 		title : titleDirective,
 		visible : {
-			'class' : function (params) {
+			'class' : function () {
 				return this.subcategories && this.subcategories.length > 0 ? 'dropdown' : '';
 			},
-			html : function (params) {
+			html : function () {
 				return '';
 			}
 		},

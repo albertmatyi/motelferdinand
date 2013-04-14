@@ -1,8 +1,11 @@
 /*global define */
 /*global console */
 /*global _ */
+/*global $ */
+/*global document */
+/*global window */
 
-define(['lib/jquery'], function (jquery) {
+define(['lib/jquery'], function (jq) {
 	'use strict';
 	var testSteps = [];
 	var executing = false;
@@ -41,7 +44,7 @@ define(['lib/jquery'], function (jquery) {
 	};
 
 	var assertPresentPvt = function (jqEl) {
-		assertEquals(true, jqEl.length > 0, jqEl.selector + " cannot be found.");
+		assertEquals(true, jqEl.length > 0, jqEl.selector + ' cannot be found.');
 	};
 
 	var a2S = function (func, description, timeout, forceAs1st) {
@@ -142,7 +145,7 @@ define(['lib/jquery'], function (jquery) {
 		'assertNotPresent' : function (selector) {
 			a2S(function () {
 				var jqEl = $(selector);
-				assertEquals(0, jqEl.length, jqEl.selector + " should not be present.");
+				assertEquals(0, jqEl.length, jqEl.selector + ' should not be present.');
 			}, 'aNP');
 			return this;
 		},

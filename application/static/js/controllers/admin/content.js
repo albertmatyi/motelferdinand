@@ -5,13 +5,14 @@
 
 define(
 [
+	'lib/jquery',
 	'helpers/i18n',
 	'elements/admin/controls',
 	'helpers/transparency',
 	'view/common',
 	'view/directives/content'
 ],
-function (i18n, adminControls, transparency, common, directive) {
+function (jq, i18n, adminControls, transparency, common, directive) {
 	'use strict';
 	var TAB_ID_BASE = 'editContent-';
 
@@ -55,13 +56,13 @@ function (i18n, adminControls, transparency, common, directive) {
 
 		var cat = model.db.category[cont.category];
 		var idx = _.indexOf(cat.contents, cont);
-        if (idx > -1) {
-            cat.contents.splice(idx, 1);
-        }
+		if (idx > -1) {
+			cat.contents.splice(idx, 1);
+		}
 	};
 
 	var initAddButton = function ($context) {
-		if (typeof($context) === "undefined") {
+		if (typeof($context) === 'undefined') {
 			$context = $('body');
 		}
 		var $addContentButton = $('.page-header .admin-controls .addContentButton', $context);
@@ -76,7 +77,7 @@ function (i18n, adminControls, transparency, common, directive) {
 	};
 
 	var initAdminControls = function ($context) {
-		if (typeof($context) === "undefined") {
+		if (typeof($context) === 'undefined') {
 			$context = $('body .contents');
 		}
 		var $controls = $('.admin-controls', $context);

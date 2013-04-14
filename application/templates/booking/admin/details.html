@@ -43,7 +43,6 @@
 				<span data-bind="created" title="{{ __('Modified') }}"></span>
 			</p>
 			<span id="deleteBooking"><i class="icon-trash" title="{{ __('Delete') }}"></i></span>
-			{% include 'booking/admin/entries.html' %}
 			<div class="message">
 				<h5>{{ __('Custom message') }}</h5>
 				<p data-bind="message">
@@ -51,9 +50,9 @@
 			</div>
 		</div>
 		<div class="actions btn-group">
-			<span class="btn btn-primary" id="acceptBooking" data-bind="accepted-button">{{ __('Mark as accepted') }}</span>
-			<span class="btn btn-success" id="markAsPaid" data-bind="paid-button">{{ __('Mark as paid') }}</span>
-			<span class="btn" id="closeBookingDetails">{{ __('Close') }}</span>
+			<button type="button" class="btn btn-primary" id="acceptBooking" data-bind="accepted-button">{{ __('Mark as accepted') }}</button>
+			<button type="button" class="btn btn-success" id="markAsPaid" data-bind="paid-button">{{ __('Mark as paid') }}</button>
+			<button type="button" class="btn" id="closeBookingDetails">{{ __('Close') }}</button>
 		</div>
 	</td>
 </tr>

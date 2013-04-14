@@ -1,5 +1,4 @@
 /*global define */
-/*global $ */
 
 define(
 [
@@ -9,10 +8,10 @@ function (commonDirectives) {
 	'use strict';
 	return {
 		id : {
-			id : function (params) {
+			id : function () {
 				return 'Content' + this.id;
 			},
-			text : function (params) {
+			text : function () {
 				return '';
 			}
 		},

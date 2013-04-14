@@ -3,13 +3,14 @@
 
 define(
 [
+	'lib/jquery',
 	'config',
 	'view/bookable',
 	'view/directives/menu',
 	'view/directives/body',
 	'view/common'
 ],
-function (config, bookableView, navDirective, bodyDirective, common) {
+function (jq, config, bookableView, navDirective, bodyDirective, common) {
 	'use strict';
 	var $menu = $('.category-nav');
 	var $container = $('.categories');

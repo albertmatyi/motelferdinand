@@ -9,10 +9,10 @@ define([
 		'use strict';
 		return {
 			'id' : {
-				id : function (params) {
+				id : function () {
 					return 'Category' + this.id;
 				},
-				text : function (params) {
+				text : function () {
 					return '';
 				}
 			},
@@ -22,7 +22,7 @@ define([
 			'contents' : contentDirective,
 			'bookables' : bookableDirective,
 			'category-booking-id' : {
-				'id' : function (params) {
+				'id' : function () {
 					return 'bookBtn' + this.id;
 				},
 				'text' : function (params) {

@@ -3,10 +3,11 @@
 
 define(
 [
+	'lib/jquery',
 	'config',
 	'lib/datepicker'
 ],
-function (config) {
+function (jq, config, dp) {
 	'use strict';
 	// BOOKING
 	function renderDatePickers($context) {

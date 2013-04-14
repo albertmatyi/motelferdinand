@@ -77,6 +77,8 @@ function (us, config, test, social, modal, modelBase,
 	$('#loading-overlay').fadeOut(500, function () {
 		$(this).remove();
 	});
+	modal.fix().init();
+
 	categoryAdmin.init();
 	contentAdmin.init();
 	bookableAdmin.init();

@@ -44,10 +44,6 @@ function (notification) {
 		return this;
 	};
 
-	fix();
-
-	init();
-
 	return {
 		'init' : init,
 		'displayNotification' : displayNotification,

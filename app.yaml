@@ -18,8 +18,8 @@ libraries:
 - name: markupsafe
   version: "0.15"
 
-inbound_services:
-- warmup
+# inbound_services:
+# - warmup
 
 handlers:
 - url: /favicon.ico

@@ -22,6 +22,9 @@ requirejs.config({
 	waitSeconds: 30,
 
 	shim: {
+		'main' : {
+			deps : ['lib/jquery']
+		},
 		'lib/jquery-ui' : {
 			deps : ['lib/jquery']
 		},
@@ -45,7 +48,6 @@ requirejs.config({
 
 define('main',
 [
-	'lib/jquery',
 	'lib/underscore',
 	'config',
 	'elements/social',
@@ -55,7 +57,7 @@ define('main',
 	'view/language',
 	'controllers/category'
 ],
-function ($, us, config, social, modal, modelBase, categoryView, languageView,
+function (us, config, social, modal, modelBase, categoryView, languageView,
 	category) {
 	'use strict';
 	categoryView.render(model.categories);

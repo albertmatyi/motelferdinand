@@ -10,27 +10,27 @@ define([
 	'use strict';
 	var getBoolDir = function (fieldName) {
 		return {
-			'text' : function (params) {
+			'text' : function () {
 				return '';
 			},
 			'class' : function (params) {
 				var $el = $(params.element);
 				return $el.is('i') ?
-					(this[fieldName] === "True" ? "icon-ok-sign icon-white" : "icon-minus-sign icon-white")
+					(this[fieldName] === 'True' ? 'icon-ok-sign icon-white' : 'icon-minus-sign icon-white')
 					:
-					(this[fieldName] === "True" ? fieldName : "");
+					(this[fieldName] === 'True' ? fieldName : '');
 			}
 		};
 	};
 	var dir = {
 		'index' : {
-			text : function (params) {
+			text : function () {
 				return this.index;
 			}
 		},
 		'booking_entries' : {
 			'bookable' : {
-				text : function (params) {
+				text : function () {
 					return model.db.bookable[this.bookable].i18n[model.language].title;
 				}
 			}
@@ -41,15 +41,15 @@ define([
 			'text' : function (params) {
 				return $(params.element).text();
 			},
-			'class' : function (params) {
+			'class' : function () {
 				return 'btn btn-primary ' + (this.accepted === 'True' ?  'disabled' : '');
 			}
 		},
 		'paid-button' : {
-			'text' : function (params) {
+			'text' : function () {
 				return i18n.translate(this.paid === 'True' ? 'Mark as unpaid' : 'Mark as paid');
 			},
-			'class' : function (params) {
+			'class' : function () {
 				return 'btn ' + (this.paid === 'True' ?  'btn-warning' : 'btn-success');
 			}
 		}

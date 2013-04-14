@@ -6,7 +6,7 @@ define(
 [
 	'lib/jquery'
 ],
-function () {
+function (jq) {
 	'use strict';
 
 	$.fn.serializeObject = function () {
@@ -36,7 +36,7 @@ function () {
 		return c0.order - c1.order;
 	});
 	// sort contents by their order
-	jQuery.map(model.categories, function (c) {
+	$.map(model.categories, function (c) {
 		c.contents.sort(function (c0, c1) {
 			return c0.order - c1.order;
 		});
@@ -49,19 +49,19 @@ function () {
 	model.db.bookable = new EntityMap();
 	// model.db.bookingEntry = {};
 
-	for (var i = model.categories.length - 1; i >= 0; i--) {
+	for (var i = model.categories.length - 1; i >= 0; i -= 1) {
 		var cat = model.categories[i];
 		model.db.category[cat.id] = cat;
-		for (var j = cat.contents.length - 1; j >= 0; j--) {
+		for (var j = cat.contents.length - 1; j >= 0; j -= 1) {
 			var content = cat.contents[j];
 			model.db.content[content.id] = content;
 		}
-		for (var k = cat.bookables.length - 1; k >= 0; k--) {
+		for (var k = cat.bookables.length - 1; k >= 0; k -= 1) {
 			var bookable = cat.bookables[k];
 			model.db.bookable[bookable.id] = bookable;
 		}
 	}
-	for (i = model.bookings.length - 1; i >= 0; i--) {
+	for (i = model.bookings.length - 1; i >= 0; i -= 1) {
 		var bk = model.bookings[i];
 		model.db.booking[bk.id] = bk;
 		var u = bk.user;
