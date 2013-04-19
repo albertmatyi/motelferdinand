@@ -94,3 +94,11 @@ class AbstractModel(db.Model):
             val = val == "True"
         # pdb.set_trace()
         setattr(self, key, val)
+
+    @staticmethod
+    def load(id):
+        mdl = AbstractModel.get_by_id(id)
+        if mdl is None:
+            raise Exception("Could not find entity")
+                            # self.__class__.__name__.replace('Model', ''))
+        return mdl

@@ -188,6 +188,7 @@ function (jquery, testUtil) {
 	};
 
 	var runTests = function (tff, tf) {
+		console.clear();
 		initFilters(tff, tf);
 		console.clear();
 		total = 0;

@@ -77,30 +77,40 @@ D				db
 D		confirm messages 2h
 D	error handling (display something)
 D		design
-		server side
-		clientside 
+D		server side
+D		clientside 
 
-		fullscreen image quality
+130413
+	bookable
+D		bookables on separate sheets
+	booking
+D		booking with default selection
+D		from & until in the page
+D		no booking entry
+D	JSON saving 
+D		i18n data
+D		all contents
 
-		fix picasa albums
-		
-		bookable
-D			bookables on separate sheets
-			editing
-				beds / 
-					places + different prices for them
-					i18n prices
-			tests
-		booking
-			fixed booking button
-D			booking with default selection
-			price & total nr of nitghts
-D			from & until in the page
-D			no booking entry
-			nr of people
-		content ordering
-		accept booking with mail
-		caching
+
+130419
+	load admin bookings on access
+	fix update bookings
+	test update bookings
+	bookable
+		editing
+			beds / 
+				places + different prices for them
+				i18n prices
+		tests
+	fullscreen image quality
+	fix picasa albums
+	booking
+		fixed booking button
+		price & total nr of nitghts
+		nr of people
+	content ordering
+	accept booking with mail
+	caching
 
 	Booking datum validalas - 4h
 		ne lehessen olyan datumokat valasztani, amire mar az a bizonyos szoba le van foglalva
@@ -111,12 +121,6 @@ D			no booking entry
 
 	Admin tudja megnezni a vendegkonyv bejegyzeseket - 1h
 	
-
-
-
-
-
-
 
 
 
