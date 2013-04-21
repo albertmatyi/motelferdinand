@@ -126,9 +126,9 @@ def booking_mail(entityId):
     # pdb.set_trace()
     # mail.send(usr.email, 'BOOKING_SUBJ', '/bookingClient.html', booking);
 
-    # body = '/mail/bookingClient.html'
     body = '/mail/bookingNewClient.html'
-    # body = '/mail/bookingAcceptedClient.html'
+    body = '/mail/bookingNewAdmin.html'
+    body = '/mail/bookingAcceptedClient.html'
     booking = BookingDictBuilder(long(entityId))\
         .with_user()\
         .with_bookable()\
@@ -147,6 +147,12 @@ def admin_delete_booking(entityId):
     return '{ "message" : "' +\
         si18n.translate('Element does not exist') + '" }'
 
+
+@app.route("/admin/bookings/", methods=["GET"])
+@admin_required
+def get_bookings():
+    bookings = [e.to_dict(True) for e in BookingModel.all()]
+    return json.dumps(bookings);
 
 @app.route("/admin/bookings/", methods=["POST"])
 @admin_required
@@ -168,7 +174,7 @@ def update_booking():
 
 def send_booking_accepted_mail(booking):
     subject = 'Your booking request at Ferdinand Motel has been ACCEPTED.'
-    booking_dict = booking.to_dict(True)
+    booking_dict = BookingDictBuilder(booking).with_bookable().with_user().build();
     # To client
     message = mail.EmailMessage(
         sender=si18n.translate('Ferdinand Motel') +

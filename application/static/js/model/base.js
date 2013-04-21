@@ -61,10 +61,15 @@ function (jq) {
 			model.db.bookable[bookable.id] = bookable;
 		}
 	}
-	for (i = model.bookings.length - 1; i >= 0; i -= 1) {
-		var bk = model.bookings[i];
-		model.db.booking[bk.id] = bk;
-		var u = bk.user;
-		model.db.user[u.id] = u;
-	}
+
+	var mapToDB = function (dataArr, name) {
+		model.db[name] = {};
+		for (i = dataArr.length - 1; i >= 0; i -= 1) {
+			var dt = dataArr[i];
+			model.db[name][dt.id] = dt;
+		}
+	};
+
+	model.mapToDB = mapToDB;
+
 });

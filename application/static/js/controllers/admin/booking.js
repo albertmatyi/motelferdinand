@@ -22,13 +22,8 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 	var $table = $('.bookings-table > tbody', $bookingsModal);
 	var $ftr = $('.bookings-table > tfoot', $bookingsModal);
 	var buttonsInitialized = false;
-	var panelRendered = false;
 
-	var render = function (force) {
-		if (panelRendered && !force) {
-			return;
-		}
-		panelRendered = true;
+	var render = function () {
 		$('.bookings-table > tbody', $bookingsModal).render(model.bookings, bookingsDirective);
 
 		$('tr', $table).click(function () {
@@ -132,7 +127,7 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 							delete model.db.booking[bookingId];
 							$bookingDetails.data('bookingId', -1);
 							hideDetails();
-							render(true);
+							render();
 							renderBadge();
 						},
 						'error' : function (data) {
@@ -161,9 +156,14 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 	renderBadge();
 
 	$bookingsButton.click(function () {
-		render(false);
-		initButtons();
-		$bookingsModal.modal('show');
+		$.getJSON('/admin/bookings/',
+			function (data) {
+				model.mapToDB(data, 'booking');
+				model.bookings = data;
+				render();
+				initButtons();
+				$bookingsModal.modal('show');
+			});
 	});
 //close the function & define
 });

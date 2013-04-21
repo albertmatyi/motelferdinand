@@ -23,9 +23,9 @@ define(
 				$(SHOW_BOOKING_FORM_SEL, $bookable).show();
 				bookingForm.element.appendTo($('body'));
 			});
+			bookingForm.submitButton.off('click', submitBooking);
+			bookingForm.cancelButton.off('click', removeForm);
 		};
-
-		bookingForm.cancelButton.click(removeForm);
 
 		/**
 		 * Do a validation before submitting. If all ok. Submit the form.
@@ -73,8 +73,6 @@ define(
 			return false;
 		};
 
-		bookingForm.submitButton.click(submitBooking);
-
 		/**
 		 * The exposed public method, that adds the booking form to the booking section of the Category
 		 * identified by the id
@@ -95,6 +93,8 @@ define(
 			bookingForm.init(model.db.bookable[bookableId]);
 
 			$('html, body').animate({scrollTop: bookingForm.element.offset().top - 7 * 16 /*5em*/}, BOOK_SHOW_TIME);
+			bookingForm.submitButton.on('click', submitBooking);
+			bookingForm.cancelButton.on('click', removeForm);
 		};
 
 		var initBookable = function (bookable) {

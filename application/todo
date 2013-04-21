@@ -93,8 +93,8 @@ D		all contents
 
 
 130419
-	load admin bookings on access
-	fix update bookings
+D	load admin bookings on access
+D	fix update bookings
 	test update bookings
 	bookable
 		editing

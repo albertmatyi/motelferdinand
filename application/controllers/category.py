@@ -33,7 +33,6 @@ def home():
     if not is_admin:
         qry = qry.filter('visible', True)
     categories = [e.to_dict() for e in qry]
-    bookings = [e.to_dict(is_admin) for e in BookingModel.all()]
     prod = 'Development' not in os.environ['SERVER_SOFTWARE']
     return render_template(
         '/main.html',
@@ -41,7 +40,7 @@ def home():
             'categories': categories,
             'languages': [e.to_dict() for e in LanguageModel.all()],
             'language': lang_id,
-            'bookings': bookings,
+            'bookings': [],
             'si18n': si18n.translations_js,
             'is_admin': is_admin
         }, is_admin=is_admin,
