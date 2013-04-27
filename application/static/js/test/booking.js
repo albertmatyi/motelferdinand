@@ -18,6 +18,7 @@ define(
 	var $emailField = $('#user\\.email', $form);
 	var $phoneField = $('#user\\.phone', $form);
 	var $cancelButton = $('#cancelBookingButton', $form);
+	var $submitButton = $('#submitBookingButton', $form);
 	var $openBookingButton;
 	var $bookable;
 
@@ -51,6 +52,13 @@ define(
 		t.l('Check the form is invisible.').assertInvisible($form.selector);
 	};
 
+	var clickSubmit = function (t) {
+		t.l('Press submit').click($submitButton.selector);
+		t.l('Wait for server response').waitForXHR();
+		t.l('Check the form is invisible.').assertInvisible($form.selector);
+		t.l('Check success message').assertVisible($bookable.selector + ' alert-success');
+	};
+
 	var testFillForm = function (t) {
 
 		clickOpenBooking(t);
@@ -64,12 +72,23 @@ define(
 		clickCancelBooking(t);
 	};
 
+	var testBooking = function (t) {
+		clickOpenBooking(t);
+
+		t.l('Select 2 rooms').setValue($quantityField, 2);
+
+		t.l('Select 3 guests').setValue($guestFields, 3);
+
+		clickSubmit(t);
+	};
+
 	return {
 		'name' : 'Booking',
 		'before' : before,
 		'after' : after,
 		'tests' : [
-			{ 'testFillForm' : testFillForm }
+			{ 'testFillForm' : testFillForm },
+			{ 'testBooking' : testBooking }
 		]
 	};
 });

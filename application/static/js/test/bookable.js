@@ -13,7 +13,7 @@ define([
 		var $bookableModal;
 		var bookableTitleStr;
 		var categoryTitleStr;
-		var beds = 3;
+		var places = 3;
 		var quantity = 4;
 		var price = 69;
 		var $saveButton;
@@ -77,7 +77,7 @@ define([
 
 			t.l('fill form title').setValue($('*[name=i18n-en-title]', $bookableModal), title);
 
-			t.l('fill form beds').setValue($('*[name=beds]', $bookableModal), beds);
+			t.l('fill form places').setValue($('*[name=places]', $bookableModal), places);
 
 			t.l('fill form quantity').setValue($('*[name=quantity]', $bookableModal), quantity);
 
@@ -89,7 +89,7 @@ define([
 
 			t.l('verify bookable is present').$('.bookable:contains(' + title + ')', function ($bookable) {
 
-				t.l('verify beds').assertPresent('.beds:contains(' + beds + ')', $bookable);
+				t.l('verify places').assertPresent('.places:contains(' + places + ')', $bookable);
 
 				t.l('verify price').assertPresent('.price:contains(' + price + ')', $bookable);
 

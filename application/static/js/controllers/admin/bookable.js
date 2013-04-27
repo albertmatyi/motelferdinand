@@ -69,8 +69,7 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 				$('.bookable-title', $cont).text(entity.i18n[model.language].title);
 				$('.bookable-description', $cont).html(entity.i18n[model.language].description);
 				$('*[data-bind=price]', $cont).text(entity.price);
-				$('*[data-bind=beds]', $cont).text(entity.beds);
-				$('*[data-bind=beds]', $cont).text(entity.beds);
+				$('*[data-bind=places]', $cont).text(entity.places);
 				booking.reset();
 			} else {
 				add(entity);

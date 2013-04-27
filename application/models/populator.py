@@ -45,7 +45,7 @@ def init_db():
     '''
 
     init_langs()
-
+    return
     for cat in CategoryModel.all():
         # this will cascade on all contents / bookables and their translations
         cat.delete()

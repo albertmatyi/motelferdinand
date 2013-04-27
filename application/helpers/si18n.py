@@ -78,7 +78,7 @@ translations = {
 
 		# Booking
 		'Book': u'Book',
-		'Beds': u'Beds',
+		'Places': u'Places',
 		'Price per night' : u'Price',
 		'$': u'RON',
 		'Greeting': u'Preparing coffee',
@@ -165,7 +165,7 @@ translations = {
 
 		# Booking
 		'Book': u'Foglalás',
-		'Beds': u'Ágyak száma',
+		'Places': u'Férőhelyek száma',
 		'Price per night' : u'Ár/éjszaka',
 		'$': u'HUF',
 		'Greeting': u'Készül a kávé',
@@ -251,7 +251,7 @@ translations = {
 
 		# Booking
 		'Book': u'Rezervă',
-		'Beds': u'Paturi',
+		'Places': u'Locuri',
 		'Price per night' : u'Preț',
 		'$': u'RON',
 		'Greeting': u'Se prepară cafeaua',

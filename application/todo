@@ -95,7 +95,9 @@ D		all contents
 130419
 D	load admin bookings on access
 D	fix update bookings
-	test update bookings
+	test 
+		add booking
+		accept / update booking
 	bookable
 		editing
 			beds / 
