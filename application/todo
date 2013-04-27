@@ -95,30 +95,39 @@ D		all contents
 130419
 D	load admin bookings on access
 D	fix update bookings
-	test 
+130427
+D	test 
 D		add booking
-		accept / update booking
-	bookable
-		editing
-			beds / 
+D	bookable
+D		editing
+D			beds / 
 D				places
-				different prices for them places 
-				i18n prices
+D				different prices for them places 
+D				i18n prices
+	booking
+D		price 
+D		nr of people
+130428
+		total nr of nitghts
+		save booking price in db
 		tests
+			booking calculus
+	hide modals on save
+	bookable 
+		test prices
+	fixed booking button
+	content ordering
+	admin
+		accept 
+			with message
+		update booking
+		
 	fullscreen image quality
 	fix picasa albums
-	booking
-		fixed booking button
-		price & total nr of nitghts
-		nr of people
-	content ordering
-	accept booking with mail
 	caching
 
 	Booking datum validalas - 4h
 		ne lehessen olyan datumokat valasztani, amire mar az a bizonyos szoba le van foglalva
-		ne lehessen multban foglalni
-		foglalsi vegdatum > kezdeti datum
 
 	A felhasznalo tudjon elfogadott & kifizetett foglalas lejarta utan vendgekonyv beirast kuldeni (email ertesites a kliensnek) - 6h
 

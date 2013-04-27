@@ -4,3 +4,4 @@ secret_keys.py
 local/
 *.sublime-workspace
 *.css
+stats/

@@ -71,5 +71,6 @@ function (us, config, social, modal, modelBase, categoryView, languageView,
 	$('#loading-overlay').fadeOut(500, function () {
 		$(this).remove();
 	});
+	modal.fix().init();
 //close the function & define
 });
