@@ -5976,6 +5976,36 @@ div.picaslide {
     width: 80%;
     height: 250px; }
 
+.booking-controls {
+  border-top: solid 1px #e5e5e5;
+  padding-top: 1em;
+  background-image: linear-gradient(to bottom, #f2f2f2, white);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(white));
+  background-image: -moz-linear-gradient(top, #f2f2f2, white);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF2F2F2', endColorstr='#FFFFFFFF'); }
+  .booking-controls .booking-btn {
+    float: right;
+    margin-right: 1em;
+    padding: 0.7em 3em; }
+  .booking-controls .btn-link {
+    float: right;
+    padding: 1em 0em; }
+  .booking-controls #booking-form {
+    display: block;
+    background: #F4F4F4;
+    margin-top: 2em; }
+    .booking-controls #booking-form, .booking-controls #booking-form .form-actions {
+      margin-bottom: 0;
+      padding-bottom: 0; }
+    .booking-controls #booking-form th.tableAddControl {
+      text-align: center; }
+    .booking-controls #booking-form .prices {
+      height: 0px;
+      position: relative;
+      top: -200px;
+      width: 40%;
+      left: 60%; }
+
 html, body, #maincontent, #body_content, .categories, .category {
   /* 	height: 100%; */
   /* 	overflow: hidden; */ }
@@ -6060,30 +6090,6 @@ html, body, #maincontent, #body_content, .categories, .category {
     margin-left: 0; }
   .bookables .bookable .admin-controls {
     margin-right: 2em; }
-
-.booking-controls {
-  border-top: solid 1px #e5e5e5;
-  padding-top: 1em;
-  background-image: linear-gradient(to bottom, #f2f2f2, white);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(white));
-  background-image: -moz-linear-gradient(top, #f2f2f2, white);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF2F2F2', endColorstr='#FFFFFFFF'); }
-  .booking-controls .booking-btn {
-    float: right;
-    margin-right: 1em;
-    padding: 0.7em 3em; }
-  .booking-controls .btn-link {
-    float: right;
-    padding: 1em 0em; }
-  .booking-controls #booking-form {
-    display: block;
-    background: #F4F4F4;
-    margin-top: 2em; }
-    .booking-controls #booking-form, .booking-controls #booking-form .form-actions {
-      margin-bottom: 0;
-      padding-bottom: 0; }
-    .booking-controls #booking-form th.tableAddControl {
-      text-align: center; }
 
 body {
   background: url(/static/img/noise.png) #333333; }

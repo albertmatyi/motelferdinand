@@ -96,7 +96,7 @@ D		all contents
 D	load admin bookings on access
 D	fix update bookings
 	test 
-		add booking
+D		add booking
 		accept / update booking
 	bookable
 		editing

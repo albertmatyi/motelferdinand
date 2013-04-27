@@ -11,19 +11,26 @@ define([
 	function (jquery, categoryTest, dialog) {
 		'use strict';
 		var $bookableModal;
-		var bookableTitleStr;
-		var categoryTitleStr;
-		var places = 3;
-		var quantity = 4;
-		var price = 69;
+		var bkblInfo = {
+			title: '',
+			places: 3,
+			quantity: 4,
+			price: {
+				'currency': 'CUR',
+				'values': _.range(1, 4)
+			},
+		};
+		var catInfo = {
+			title: ''
+		};
 		var $saveButton;
 		var $category;
 		var categoryId;
 
 		var before = function (t) {
-			bookableTitleStr = 'Bookable Title' + t.hash();
-			categoryTitleStr = 'Test Category for Bookable' + t.hash();
-			categoryTest.createCategory(t, categoryTitleStr, function ($cat) {
+			bkblInfo.title = 'Bookable Title' + t.hash();
+			catInfo.title = 'Test Category for Bookable' + t.hash();
+			categoryTest.createCategory(t, catInfo.title, function ($cat) {
 				t.l('Got category id ' + $cat.selector);
 				initVars(t, $cat);
 			});
@@ -39,12 +46,12 @@ define([
 
 		var after = function (t) {
 			if ($category) {
-				categoryTest.deleteCategory(t, categoryTitleStr);
+				categoryTest.deleteCategory(t, catInfo.title);
 			}
 		};
 
 		var testAddBookable = function (t) {
-			createBookablePvt(t, bookableTitleStr, $category);
+			createBookablePvt(t, bkblInfo, $category);
 		};
 
 		var createBookable = function (t, title, $cat, callback) {
@@ -57,7 +64,8 @@ define([
 			}
 		};
 
-		var createBookablePvt = function (t, title, $cat) {
+		var createBookablePvt = function (t, info, $cat) {
+			info = $.extend({}, bkblInfo, info);
 			t.l('createBookablePvt');
 			var $addDropdown = $('.page-header .dropdown-toggle', $cat);
 			var $addButton = $('.page-header .addBookableButton', $cat);
@@ -75,23 +83,23 @@ define([
 
 			t.l('verify modal visible').assertVisible($bookableModal);
 
-			t.l('fill form title').setValue($('*[name=i18n-en-title]', $bookableModal), title);
+			t.l('fill form title').setValue($('*[name=i18n-en-title]', $bookableModal), info.title);
 
-			t.l('fill form places').setValue($('*[name=places]', $bookableModal), places);
+			t.l('fill form places').setValue($('*[name=places]', $bookableModal), info.places);
 
-			t.l('fill form quantity').setValue($('*[name=quantity]', $bookableModal), quantity);
+			t.l('fill form quantity').setValue($('*[name=quantity]', $bookableModal), info.quantity);
 
-			t.l('fill form price').setValue($('*[name=price]', $bookableModal), price);
+			t.l('fill form price').setValue($('*[name=price]', $bookableModal), info.price);
 
 			t.l('click submit').click($saveButton).waitAnimation();
 
 			t.l('wait for response').waitXHR();
 
-			t.l('verify bookable is present').$('.bookable:contains(' + title + ')', function ($bookable) {
+			t.l('verify bookable is present').$('.bookable:contains(' + info.title + ')', function ($bookable) {
 
-				t.l('verify places').assertPresent('.places:contains(' + places + ')', $bookable);
+				t.l('verify places').assertPresent('.places:contains(' + info.places + ')', $bookable);
 
-				t.l('verify price').assertPresent('.price:contains(' + price + ')', $bookable);
+				t.l('verify price').assertPresent('.price:contains(' + info.price + ')', $bookable);
 
 			});
 
@@ -102,7 +110,7 @@ define([
 		};
 
 		var testDeleteBookable = function (t) {
-			deleteBookable(t, bookableTitleStr);
+			deleteBookable(t, bkblInfo.title);
 		};
 
 		var deleteBookable = function (t, title) {
@@ -132,19 +140,19 @@ define([
 		};
 
 		var testMultipleBookables = function (t) {
-			createBookablePvt(t, bookableTitleStr + '1', $category);
-			createBookablePvt(t, bookableTitleStr + '2', $category);
-			deleteBookable(t, bookableTitleStr + '1');
+			createBookablePvt(t, {title: bkblInfo.title + '1'}, $category);
+			createBookablePvt(t, {title: bkblInfo.title + '2'}, $category);
+			deleteBookable(t, bkblInfo.title + '1');
 
-			createBookablePvt(t, bookableTitleStr + '3', $category);
+			createBookablePvt(t, {title: bkblInfo.title + '3'}, $category);
 
-			deleteBookable(t, bookableTitleStr + '3');
-			deleteBookable(t, bookableTitleStr + '2');
+			deleteBookable(t, bkblInfo.title + '3');
+			deleteBookable(t, bkblInfo.title + '2');
 		};
 
 		var testEditBookable = function (t) {
-			var $editBtn = $('.bookable:contains(' + bookableTitleStr + ') .admin-controls .edit', $category);
-			var editedTitle = bookableTitleStr + '2';
+			var $editBtn = $('.bookable:contains(' + bkblInfo.title + ') .admin-controls .edit', $category);
+			var editedTitle = bkblInfo.title + '2';
 			var count = $('.bookable').length;
 
 			t.l('Press edit button.').click($editBtn).waitAnimation();

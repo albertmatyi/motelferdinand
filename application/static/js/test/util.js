@@ -194,6 +194,7 @@ define(['lib/jquery'], function (jq) {
 					} else {
 						jqEl.val(value);
 					}
+					jqEl.trigger('change');
 				});
 			}, 'sV');
 			return this;

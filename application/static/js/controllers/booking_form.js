@@ -1,5 +1,6 @@
 /*global define */
 /*global $ */
+/*global model */
 
 define(['helpers/date', 'helpers/tooltip'],
 	function (date, tooltip) {
@@ -129,7 +130,7 @@ define(['helpers/date', 'helpers/tooltip'],
 				var qty = $quantitySelect.val();
 				var maxGuests = qty * bookable.places;
 				addNrOptions($guestsSelect, maxGuests);
-				$guestsSelect.val(Math.min(maxGuests, prevVal));
+				$guestsSelect.val(Math.min(maxGuests, prevVal)).trigger('change');
 			};
 			// add listener
 			$quantitySelect.on('change', f);
@@ -144,17 +145,61 @@ define(['helpers/date', 'helpers/tooltip'],
 			}
 		};
 
+		var calcPerNight = function (bookable) {
+			var vals = bookable.prices[model.language].values;
+			var q = parseInt($quantitySelect.val(), 10);
+			var g = parseInt($guestsSelect.val(), 10);
+			var p = parseInt(bookable.places, 10);
+			var price = parseInt(vals[0], 10) * q; // every room should have at least 1 guest
+			g = Math.max(0, g - q); // calculate without these guests
+			var f = p > 1 ? Math.floor(g / (p - 1)):q; // nr of full rooms
+			var rg = p  > 1 ? g % (p - 1):0; // nr of guests that are not in full rooms
+			price = price - f * parseInt(vals[0], 10) + f * parseInt(vals[p - 1], 10); // add prices of full rooms
+			price = price - parseInt(vals[0], 10) + parseInt(vals[rg], 10); // add price of partially filled room
+			return price;
+		};
+
+		var getDays = function () {
+			var from = date.toDate($bookFrom.val());
+			var until = date.toDate($bookUntil.val());
+			return new Date(until - from) / (1000 * 60 * 60 * 24);
+		};
+
+		var addPriceUpdater = function (bookable) {
+			$guestsSelect.off('change');
+			$bookFrom.off('change');
+			$bookUntil.off('change');
+			var pcalc = function () {
+				if (!BOOKING_DATE_VALIDATOR.isValid($bookFrom, $bookUntil)) {
+					return;
+				}
+				var perNight = calcPerNight(bookable);
+				var days = getDays();
+				var total = days * perNight;
+				var curr = ' ' + bookable.prices[model.language].currency;
+				$('.pricePerNight', $form).text(perNight + curr);
+				$('.priceTotal', $form).text(total + curr);
+			};
+
+			$guestsSelect.on('change', pcalc);
+			$bookFrom.on('change', pcalc);
+			$bookUntil.on('change', pcalc);
+		};
+
 		/**
 		 *	Initializes the form for the booking
 		 */
 		var init = function (bookable) {
 			$bookableInput.val(bookable.id);
 
+			setDates();
+
 			addNrOptions($quantitySelect, bookable.quantity);
+
+			addPriceUpdater(bookable);
 
 			addGuestsUpdater(bookable);
 
-			setDates();
 		};
 		return {
 			'init' : init,

@@ -74,6 +74,25 @@
 			</div>
 		</div>
 	</div>	
+	<div class="control-group prices">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th colspan="2"> {{ __('Price') }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td> {{ __('Per night') }}</td>
+					<td class="pricePerNight">50</td>
+				</tr>
+				<tr>
+					<td> {{ __('Total') }}</td>
+					<td class="priceTotal">100</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	<div class="form-actions">
 		<button type="button" class="btn btn-link" id="cancelBookingButton"> {{ __('Cancel') }}</button>
 		<button type="button" class="btn btn-primary btn-large booking-btn" id="submitBookingButton" data-toggle="tooltip" data-title="{{ __('Invalid data! See fields above.') }}" data-placement="left"> {{ __('Book') }}</button>

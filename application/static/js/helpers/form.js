@@ -61,7 +61,7 @@ function (jq, wysihtml5, dialog) {
 				if (failCallback) {
 					failCallback(err);
 				} else {
-					dialog.alert(err);
+					dialog.alert(err.message ? err.message:err);
 				}
 			},
 			type : 'POST',
@@ -79,7 +79,7 @@ function (jq, wysihtml5, dialog) {
 			$('input, select', $form).each(function (idx, el) {
 				var $el = $(el);
 				var key = $el.attr('name');
-				$el.val(entity[key] || '');
+				$el.val(entity[key] || '').trigger('change');
 			});
 			$('textarea', $form).each(function (idx, el) {
 				var $el = $(el);

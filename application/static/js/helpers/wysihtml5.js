@@ -21,6 +21,7 @@ define([
 			} else {
 				$textarea.html(value);
 			}
+			$textarea.trigger('change');
 		}
 	};
 });

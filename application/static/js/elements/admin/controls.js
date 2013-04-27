@@ -43,16 +43,19 @@ function (i18n, dialog) {
 		});
 	};
 
-	return {'init': function ($formModal, $controls, entityURL, deleteCallback) {
+	return {'init': function ($formModal, $controls, entityURL, deleteCallback, populateCallback) {
 			var $form = $('form', $formModal);
 
 			/**
 			 * Edit button click handler
 			 */
 			$('span.edit', $controls).click(function () {
-				var cat = $(this).data('entity');
+				var entity = $(this).data('entity');
 				//populate the form with data
-				i18n.populateForm($form, cat);
+				i18n.populateForm($form, entity);
+				if (typeof populateCallback !== 'undefined'){
+					populateCallback($form, entity);
+				}
 				//show the edit category form
 				$formModal.modal('show');
 			});

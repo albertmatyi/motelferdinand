@@ -15,7 +15,7 @@ requirejs.config({
 		'lib/datepicker' : '../lib/bootstrap-datepicker/datepicker',
 		'lib/bootstrap-wysihtml5' : '../lib/wysihtml5/js/bootstrap-wysihtml5',
 		'lib/wysihtml5-parserrules' : '../lib/wysihtml5/js/advanced_parser_rules',
-		'lib/wysihtml5-base' : '../lib/wysihtml5/js/wysihtml5-0.3.0.min',
+		'lib/wysihtml5-base' : '../lib/wysihtml5/js/wysihtml5-0.3.0',
 		'lib/underscore': '../lib/underscore.min'
 	},
 

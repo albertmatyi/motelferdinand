@@ -18,6 +18,23 @@ function (commonDirectives) {
 		'bookable-title' : commonDirectives.titleDirective,
 		'bookable-description' : commonDirectives.descriptionDirective,
 		'entityId' : commonDirectives.getEntityDirective('bookable'),
+		'price' : {
+			'text': function () {
+				var l = this.prices[model.language].values.length;
+				return this.prices[model.language].values[l - 1];
+			}
+		},
+		'currency' : {
+			'text': function () {
+				return this.prices[model.language].currency;
+			}
+		},
+		'price-for-guests' : {
+			'text': function (params) {
+				var $el = $(params.element);
+				return $el.text().replace(/#NR#/, this.places);
+			}
+		},
 		'album_url' : {
 			'text' : function () {
 				return '';

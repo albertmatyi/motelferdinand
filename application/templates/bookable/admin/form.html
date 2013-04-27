@@ -16,19 +16,42 @@
 {% block inputs %}		
 <input name="category" type="hidden" />
 <div class="control-group">
-	<label class="control-label">{{ __('Places') }}</label>
-	<input name="places" type="text" />
-</div>
-<div class="control-group">
 	<label class="control-label">{{ __('Album url') }}</label>
 	<input name="album_url" type="text" />
 </div>
 <div class="control-group">
-	<label class="control-label">{{ __('Price per night') }}</label>
-	<input name="price" type="text" />
+	<label class="control-label">{{ __('Quantity') }}</label>
+	<select name="quantity">
+		<option data-bind="value">1</option>
+	</select>
 </div>
 <div class="control-group">
-	<label class="control-label">{{ __('Quantity') }}</label>
-	<input name="quantity" type="text" />
+	<label class="control-label">{{ __('Places') }}</label>
+	<select name="places">
+		<option data-bind="value">1</option>
+	</select>
+</div>
+<div class="control-group">
+	<label class="control-label">{{ __('Price per night') }}</label>
+	<table class="table prices">
+		<thead>
+			<tr>
+				<th> {{ __('Language') }} </th>
+				<th> {{ __('Currency') }} </th>
+				<th class="values"> 1 {{ __('Guest(s)') }} </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-bind="lang_id">
+				<td data-bind="name"></td>
+				<td> 
+					<input type="text" name="prices.currency"/>
+				</td>
+				<td class="values">
+					<input type="text" name="prices.values"/>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
 {% endblock %}

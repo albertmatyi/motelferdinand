@@ -18,17 +18,9 @@ class AbstractModel(db.Model):
         arr = [('id', self.key().id())]
 
         for key in self.properties():
-            val = getattr(self, key)
-            if val is not None:
-                tp = type(val)
-                if isinstance(
-                    getattr(self.__class__, key),
-                    db.ReferenceProperty
-                ):
-                    val = val.key().id()
-                elif date_converter.is_date_type(tp):
-                    val = date_converter.to_str(val)
-            arr += [(key, unicode(val))]
+            val = self.to_dict_field(key)
+
+            arr += [(key, val)]
         if hasattr(self.__class__, 'dependencies'):
             xclusions = self.__class__.to_dict_exclude\
                 if hasattr(self.__class__, 'to_dict_exclude')\
@@ -39,6 +31,20 @@ class AbstractModel(db.Model):
                     arr += [(dep, val)]
         return dict(arr)
         pass
+
+    def to_dict_field(self, key):
+        val = getattr(self, key)
+        tp = type(val)
+        if val is not None and isinstance(
+            getattr(self.__class__, key),
+            db.ReferenceProperty
+        ):
+            val = val.key().id()
+        elif date_converter.is_date_type(tp):
+            val = date_converter.to_str(val)
+        else:
+            val = unicode(val)
+        return val
 
     def put(self):
         self.modified = datetime.today()

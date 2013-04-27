@@ -23,6 +23,12 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 
 	var $formModal = $('#bookableEditFormModal');
 
+	var $pricesTable = $('.prices.table', $formModal);
+
+	var $priceCell = $('tbody td.values', $pricesTable).clone();
+
+	var $priceHCell = $('thead th.values', $pricesTable).clone();
+
 	i18n.renderLanguageTabs($formModal, TAB_ID_BASE);
 
 	var deletedCallback = function (deletedId) {
@@ -39,7 +45,7 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 			$ctxt = $('body .bookables');
 		}
 		var $controls = $('.admin-controls', $ctxt);
-		adminControls.init($formModal, $controls, 'bookables', deletedCallback);
+		adminControls.init($formModal, $controls, 'bookables', deletedCallback, populatePrices);
 	};
 
 	var addNewUI = function (category, bookable) {
@@ -60,23 +66,30 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 	};
 
 
-	$('#submitBookableEditForm').click(function () {
+	$('#submitBookableEditForm').click(function (event) {
+		event.preventDefault();
+		event.stopPropagation();
 		var $form = $('form', $formModal);
 		i18n.submitForm($form, '/admin/bookables/', function (entity, isNew) {
+			$formModal.modal('hide');
 			// update UI
 			if (!isNew) {
 				var $cont = $('#Bookable' + entity.id);
-				$('.bookable-title', $cont).text(entity.i18n[model.language].title);
-				$('.bookable-description', $cont).html(entity.i18n[model.language].description);
-				$('*[data-bind=price]', $cont).text(entity.price);
-				$('*[data-bind=places]', $cont).text(entity.places);
+				$cont.render(entity, directive);
 				booking.reset();
 			} else {
 				add(entity);
 			}
 			modal.displayNotification($formModal, 'Modified successfully!', 'success');
-		});
+		}, undefined, formatPrices);
 	});
+
+	var formatPrices = function (data) {
+		delete data['prices.currency'];
+		delete data['prices.values'];
+		data.prices = gatherPrices();
+		return data;
+	};
 
 	var initAddButton = function ($context) {
 		if (typeof ($context) === 'undefined') {
@@ -93,10 +106,119 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 
 		});
 	};
+
+	var initPriceTable = function () {
+		$('tbody', $pricesTable).render(
+				model.languages, {
+				'lang_id' : {
+					'text' : function () {
+						return '';
+					},
+					'class' : function () {
+						return  this.lang_id;
+					}
+				}
+			}
+		);
+	};
+
+	var addOptions = function ($el, n) {
+		$el.render(
+			_.range(1, n + 1),
+			{
+				'value' : {
+					'text' : function () {
+						return this.value;
+					},
+					'value' : function () {
+						return this.value;
+					}
+				}
+			}
+		);
+	};
+
+	var initQuantitySelect = function () {
+		var $el = $('select[name=quantity]', $formModal);
+		addOptions($el, 10);
+	};
+
+	var initPlacesSelect = function () {
+		var $el = $('select[name=places]', $formModal);
+		addOptions($el, 10);
+		$el.on('change', function () {
+			var prices = gatherPrices();
+			renderPrices($el.val());
+			_populatePrices(prices);
+		});
+	};
+
+
+	var initForm = function () {
+		initPriceTable();
+		initQuantitySelect();
+		initPlacesSelect();
+	};
+
+	var renderPrices = function (n) {
+		$('tr', $pricesTable).each(function (idx, tr) {
+			var $tr = $(tr);
+			$('.values', tr).remove();
+			for (var i = 1; i <= n; i += 1) {
+				var c;
+				if (idx === 0) {
+					c = $priceHCell.clone();
+					c.text(c.text().replace(/\d+/, i));
+				} else {
+					c = $priceCell.clone();
+					c.attr('name', c.attr('name'));
+				}
+				$tr.append(c);
+			}
+		});
+	};
+
+	var _populatePrices = function (prices) {
+		for (var langId in prices) {
+			if (prices.hasOwnProperty(langId)) {
+				$('tr.' + langId + ' input[name=prices\\.currency]', $pricesTable)
+					.val(prices[langId].currency);
+				$('tr.' + langId + ' input[name=prices\\.values]', $pricesTable)
+					.each(function (i, input) {
+						if (prices[langId].values.length > i) {
+							$(input).val(prices[langId].values[i]);
+						}
+					});
+			}
+		}
+	};
+
+	var gatherPrices = function () {
+		var prices = {};
+		for (var i = model.languages.length - 1; i >= 0; i -= 1) {
+			var langId = model.languages[i].lang_id;
+			prices[langId] = {};
+			prices[langId].currency =
+				$('tr.' + langId + ' input[name=prices\\.currency]', $pricesTable).val();
+			prices[langId].values =
+				$('tr.' + langId + ' input[name=prices\\.values]', $pricesTable)
+				.serializeObject()['prices.values'];
+			if (typeof prices[langId].values === 'string') {
+				prices[langId].values = [prices[langId].values];
+			}
+		}
+		return prices;
+	};
+
+	var populatePrices = function ($form, bookable) {
+		_populatePrices(bookable.prices);
+	};
+
 	return {
 		'init' : function () {
 			initAdminControls();
 			initAddButton();
+			initForm();
 		},
 		'initAddButton' : initAddButton
 	};

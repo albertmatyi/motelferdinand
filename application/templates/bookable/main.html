@@ -3,7 +3,11 @@
 		{% include "elements/admin/controls.html" %}
 		<h3 data-bind="bookable-title" class="bookable-title"></h3>
 		<h4 class="places">{{ __('Places') }}: <span data-bind="places"></span></h4>
-		<h4 class="price">{{ __('Price per night') }}: <span data-bind="price"></span>{{ __('$') }}</h4>
+		<h4 class="price">{{ __('Price') }}: 
+			<span data-bind="price"></span>
+			<span data-bind="currency"></span>
+			<small data-bind="price-for-guests"> {{ __('For #NR# guests') }} </small>
+		</h4>
 		<div class="variants clearfix">
 			<div data-bind="album_url"></div>
 			<div data-bind="bookable-description" class="bookable-description"></div>
