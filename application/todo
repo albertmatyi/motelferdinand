@@ -101,7 +101,8 @@ D	fix update bookings
 	bookable
 		editing
 			beds / 
-				places + different prices for them
+D				places
+				different prices for them places 
 				i18n prices
 		tests
 	fullscreen image quality

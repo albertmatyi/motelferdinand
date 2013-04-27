@@ -55,6 +55,10 @@ define(['helpers/date', 'helpers/tooltip'],
 		 */
 		var $quantitySelect = $('#booking\\.quantity', $form);
 		/**
+		 * The select element containing options for guests number
+		 */
+		var $guestsSelect = $('#booking\\.guests', $form);
+		/**
 		 * Input that contains the arrival date
 		 */
 		var $bookFrom = $('#booking\\.book_from', $form);
@@ -111,22 +115,46 @@ define(['helpers/date', 'helpers/tooltip'],
 			return data;
 		};
 
+		var setDates = function () {
+			var d = new Date();
+			$bookFrom.val(date.toStr(d));
+			d.setDate(d.getDate() + 1);
+			$bookUntil.val(date.toStr(d));
+		};
+
+		var addGuestsUpdater = function (bookable) {
+			$quantitySelect.off('change');
+			var f = function () {
+				var prevVal = $guestsSelect.val() || 1;
+				var qty = $quantitySelect.val();
+				var maxGuests = qty * bookable.places;
+				addNrOptions($guestsSelect, maxGuests);
+				$guestsSelect.val(Math.min(maxGuests, prevVal));
+			};
+			// add listener
+			$quantitySelect.on('change', f);
+			// initialize
+			f();
+		};
+
+		var addNrOptions = function ($el, n) {
+			$el.html('');
+			for (var j = 1; j <= n; j += 1) {
+				$el.append('<option value="' + j + '">' + j + '</option>');
+			}
+		};
+
 		/**
 		 *	Initializes the form for the booking
 		 */
 		var init = function (bookable) {
 			$bookableInput.val(bookable.id);
 
-			var qty = bookable.quantity;
-			$quantitySelect.html('');
-			for (var j = 1; j <= qty; j++) {
-				$quantitySelect.append('<option value="' + j + '">' + j + '</option>');
-			}
+			addNrOptions($quantitySelect, bookable.quantity);
 
-			var d = new Date();
-			$bookFrom.val(date.toStr(d));
-			d.setDate(d.getDate() + 1);
-			$bookUntil.val(date.toStr(d));
+			addGuestsUpdater(bookable);
+
+			setDates();
 		};
 		return {
 			'init' : init,

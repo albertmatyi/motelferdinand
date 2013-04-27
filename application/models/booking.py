@@ -11,7 +11,7 @@ from application.models.bookable import BookableModel
 class BookingModel(AbstractModel):
     bookable = db.ReferenceProperty(BookableModel, collection_name='bookings')
     user = db.ReferenceProperty(UserModel, collection_name='bookings')
-    people = db.IntegerProperty(required=True, default=1)
+    guests = db.IntegerProperty(required=True, default=1)
     message = db.TextProperty()
     feedback = db.TextProperty()
     accepted = db.BooleanProperty(default=False)

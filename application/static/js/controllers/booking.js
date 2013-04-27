@@ -73,11 +73,7 @@ define(
 			return false;
 		};
 
-		/**
-		 * The exposed public method, that adds the booking form to the booking section of the Category
-		 * identified by the id
-		 */
-		var showForm = function (bookableId) {
+		var hidePreviouslyOpenedForm = function () {
 			if (bookingForm.element.is(':visible')) {
 				if (bookingForm.element.offset().top < $(window).scrollTop()) {
 					var scrollDst = $(window).scrollTop() - bookingForm.element.height();
@@ -87,6 +83,14 @@ define(
 				bookingForm.element.appendTo($('body'));
 				$showBtn.show();
 			}
+		};
+
+		/**
+		 * The exposed public method, that adds the booking form to the booking section of the Category
+		 * identified by the id
+		 */
+		var showForm = function (bookableId) {
+			hidePreviouslyOpenedForm();
 			var $formCont = $('#Bookable' + bookableId + ' .booking-controls');
 			notification.remove($formCont);
 			$formCont.append(bookingForm.element);
