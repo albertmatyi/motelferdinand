@@ -17,5 +17,12 @@
 {% endblock %}
 
 {% block inputs %}
-	<input name="category" type="hidden" />	
+<div class="control-group">
+	<label class="control-label">
+		{{ __('Weight') }} 
+		<small>{{ __('Weight explanation') }}</small>
+	</label>
+	<input name="weight" type="text" value="0" />
+</div>
+<input name="category" type="hidden" />	
 {% endblock%}

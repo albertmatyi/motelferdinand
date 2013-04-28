@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"booka",
+				"bookables"
+			],
+			[
+				"check",
+				"checkPricesForInterval"
+			],
+			[
+				"per",
+				"perNight"
+			],
+			[
+				"bookingF",
+				"booking-form"
+			],
+			[
+				"gues",
+				"guestsField"
+			],
+			[
+				"qu",
+				"quantityField"
+			],
+			[
+				"pric",
+				"priceFunction"
+			],
+			[
 				"data",
 				"data"
 			],
@@ -46,10 +74,6 @@
 			[
 				"from",
 				"bookFrom"
-			],
-			[
-				"gues",
-				"guestsSelect"
 			],
 			[
 				"oaspe",
@@ -110,10 +134,6 @@
 			[
 				"hide",
 				"hidePreviouslyOpenedForm"
-			],
-			[
-				"booka",
-				"bookable"
 			],
 			[
 				"submi",
@@ -494,36 +514,48 @@
 			[
 				"hi",
 				"hide  (function)"
-			],
-			[
-				"re",
-				"rendered"
-			],
-			[
-				"boo",
-				"booking"
-			],
-			[
-				"bo",
-				"bookables"
-			],
-			[
-				"rerender",
-				"rerenderBookables"
-			],
-			[
-				"e",
-				"entity"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "application/todo",
+			"file": "application/templates/content/admin/form.html",
 			"settings":
 			{
-				"buffer_size": 2879,
+				"buffer_size": 679,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/templates/category/admin/form.html",
+			"settings":
+			{
+				"buffer_size": 642,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/templates/bookable/admin/form.html",
+			"settings":
+			{
+				"buffer_size": 1697,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/static/js/model/base.js",
+			"settings":
+			{
+				"buffer_size": 1693,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/static/js/helpers/form.js",
+			"settings":
+			{
+				"buffer_size": 2488,
 				"line_ending": "Unix"
 			}
 		}
@@ -531,9 +563,21 @@
 	"build_system": "Packages/JSHint/JSHint.sublime-build",
 	"command_palette":
 	{
-		"height": 117.0,
+		"height": 264.0,
 		"selected_items":
 		[
+			[
+				"trim",
+				"Trimmer: Remove trailing whitespace from each line."
+			],
+			[
+				"spaces",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"packag",
+				"Package Control: Install Package"
+			],
 			[
 				"disable",
 				"Package Control: Disable Package"
@@ -545,10 +589,6 @@
 			[
 				"package",
 				"Package Control: Install Package"
-			],
-			[
-				"spaces",
-				"Indentation: Convert to Spaces"
 			],
 			[
 				"enable",
@@ -724,18 +764,33 @@
 	},
 	"file_history":
 	[
-		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/bookable.js",
+		"/home/albertmatyi/work/python/hotelmotel/application/helpers/si18n.py",
+		"/home/albertmatyi/work/python/hotelmotel/application/models/bookable.py",
+		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/booking_form.js",
+		"/home/albertmatyi/work/python/hotelmotel/application/todo",
+		"/home/albertmatyi/work/python/hotelmotel/application/controllers/booking.py",
+		"/home/albertmatyi/work/python/hotelmotel/application/models/booking.py",
+		"/home/albertmatyi/work/python/hotelmotel/application/static/js/model/base.js",
+		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/booking.js",
+		"/home/albertmatyi/work/python/hotelmotel/application/templates/category/admin/form.html",
+		"/home/albertmatyi/work/python/hotelmotel/application/models/abstract_content.py",
+		"/home/albertmatyi/work/python/hotelmotel/application/models/category.py",
+		"/home/albertmatyi/work/python/hotelmotel/application/models/content.py",
+		"/home/albertmatyi/work/python/hotelmotel/application/models/__init__.py",
+		"/home/albertmatyi/work/python/hotelmotel/application/templates/booking/form.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/booking.js",
+		"/home/albertmatyi/work/python/hotelmotel/application/static/js/helpers/date.js",
+		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/util.js",
+		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/bookable.js",
+		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/_booking.scss",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/base/admin/form.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/helpers/form.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/view/directives/bookable.js",
-		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/util.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/admin/content.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/admin/category.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/content.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/main.admin.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/main.js",
-		"/home/albertmatyi/work/python/hotelmotel/application/todo",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/admin/bookable.js",
 		"/home/albertmatyi/work/python/hotelmotel/app.yaml",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/elements/admin/controls.html",
@@ -744,38 +799,26 @@
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/elements/admin/menu.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/admin/_bookings.scss",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/main.scss",
-		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/_booking.scss",
-		"/home/albertmatyi/work/python/hotelmotel/application/templates/booking/form.html",
-		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/booking_form.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/_bookable.scss",
-		"/home/albertmatyi/work/python/hotelmotel/application/helpers/si18n.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/bookable/main.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/elements/admin/controls.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/bookable/admin/form.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/helpers/i18n.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/models/i18n.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/helpers/wysihtml5.js",
-		"/home/albertmatyi/work/python/hotelmotel/application/models/bookable.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/lib/wysihtml5/js/wysihtml5-0.3.0.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/lib/wysihtml5/js/advanced_parser_rules.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/models/base.py",
-		"/home/albertmatyi/work/python/hotelmotel/application/models/content.py",
-		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/booking.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/elements/dialog.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/admin/_form.scss",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/admin_main.scss",
-		"/home/albertmatyi/work/python/hotelmotel/application/models/booking.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/models/populator.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/main.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/integration.js",
-		"/home/albertmatyi/work/python/hotelmotel/application/controllers/booking.py",
-		"/home/albertmatyi/work/python/hotelmotel/application/static/js/model/base.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/mail/booking.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/view/directives/admin/booking.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/controllers/category.py",
-		"/home/albertmatyi/work/python/hotelmotel/application/models/__init__.py",
 		"/home/albertmatyi/work/python/test/testmdl/__init__.py",
-		"/home/albertmatyi/work/python/hotelmotel/application/models/category.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/mail/bookingAcceptedClient.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/mail/bookingNewClient.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/models/converters/__init__.py",
@@ -827,7 +870,6 @@
 		"/home/albertmatyi/progz/sdks/google_appengine/google/appengine/tools/devappserver2/http_runtime.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/base/base.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/config.js",
-		"/home/albertmatyi/work/python/hotelmotel/application/static/js/helpers/date.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/elements/bookingEntry.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/elements/bookingEntryRow.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/elements/dialog.js",
@@ -849,9 +891,7 @@
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/dialog.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/googlepics_mock_resp.json",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/helpers/_mixins.scss",
-		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/_content.scss",
-		"/home/albertmatyi/update",
-		"/home/albertmatyi/open_port.sh"
+		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/_content.scss"
 	],
 	"find":
 	{
@@ -859,9 +899,11 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			"*.js",
+			"*.py",
 			"*.js",
 			"*.scss",
 			"*.js",
@@ -957,6 +999,49 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"JSON",
+			"dialog.alert",
+			"Price",
+			"        '",
+			"Price",
+			" per ",
+			"per",
+			"order",
+			"Description",
+			"priority",
+			"10",
+			"currency",
+			"#",
+			"  #",
+			";",
+			"//",
+			"get_lang_id",
+			"float",
+			"quantity",
+			"quantitySelect",
+			"parseInt",
+			"var",
+			"calculate",
+			" + ' ' + EUR",
+			"val",
+			"$el.val()",
+			"dateToStr",
+			"delta",
+			"t.l('Verify per night price').$('.pricePerNight', function ($el) {\n			t.assertEquals($el.val(), perNight);\n		}, $form);",
+			"total",
+			"g",
+			"q",
+			"form",
+			");\n",
+			"n",
+			"priceFunction",
+			"name",
+			"bkngInfo",
+			"bookingInfo",
+			"name",
+			"=",
+			" =",
+			"Total",
 			"X",
 			"bkblInfo",
 			"bookableTitleStr",
@@ -1041,50 +1126,7 @@
 			"mapToDb",
 			"model.db.booking",
 			"model.bookings",
-			"db.bookings",
-			"render",
-			"static",
-			"warmup",
-			"'%d-%m-%Y'",
-			"BookingForm",
-			"transform",
-			"updateBooking",
-			"booking_entries_summary",
-			"entr",
-			"entries",
-			"before",
-			"\"",
-			"\"Content Title\"",
-			"\"([^\"]+)\"",
-			"\"([^\"])\"",
-			"undefined",
-			"\"",
-			"--",
-			"lang_id",
-			"console",
-			"params",
-			"params		",
-			"params",
-			"[\"']",
-			"if",
-			"escape",
-			"c_value",
-			"name",
-			"c_name",
-			"[\"']",
-			"\"",
-			"document",
-			"define",
-			"\\+\\+",
-			"++",
-			"/\\*global[^(]*$[^(]*\\([^qQ{]+\\{[^{$]*\\$",
-			"/\\*global[^(]*$[^(]*\\([^{]+\\{[^{$]*\\$",
-			"/\\*global[^(]*$[^(]*([^qQ\\)]+\\][^{]+\\{[^{$]*\\$",
-			"/\\*global[^(]*\\$[^\\[]*\\[[^qQ)]+\\][^{]+\\{[^{($]*\\$",
-			"jq",
-			"/\\*global[^(]*\\$[^\\[]*\\[[^qQ)]+\\][^{]+\\{[^{($]*\\$",
-			"/\\*global[^(]*\\$[^\\[]*\\[[^qQ)]+\\][^{]+\\{[^{$]*\\$",
-			"/\\*global[^(]*$[^(]*\\([^qQ)]+\\][^{]+\\{[^{$]*\\$"
+			"db.bookings"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1162,32 +1204,138 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "application/todo",
+					"file": "application/templates/content/admin/form.html",
 					"settings":
 					{
-						"buffer_size": 2879,
+						"buffer_size": 679,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								164,
-								164
+								432,
+								432
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "application/templates/category/admin/form.html",
+					"settings":
+					{
+						"buffer_size": 642,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								626,
+								626
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "application/templates/bookable/admin/form.html",
+					"settings":
+					{
+						"buffer_size": 1697,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1682,
+								1682
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 349.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "application/static/js/model/base.js",
+					"settings":
+					{
+						"buffer_size": 1693,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								795,
+								795
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 306.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "application/static/js/helpers/form.js",
+					"settings":
+					{
+						"buffer_size": 2488,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1736,
+								1736
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 803.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1245,28 +1393,112 @@
 		"selected_items":
 		[
 			[
-				"testbookable",
-				"static/js/test/bookable.js"
+				"si1",
+				"helpers/si18n.py"
+			],
+			[
+				"modelbase",
+				"static/js/model/base.js"
+			],
+			[
+				"bookablhtml",
+				"templates/bookable/admin/form.html"
+			],
+			[
+				"catform",
+				"templates/category/admin/form.html"
+			],
+			[
+				"contefo",
+				"templates/content/admin/form.html"
+			],
+			[
+				"modlejs",
+				"static/js/model/base.js"
+			],
+			[
+				"si",
+				"helpers/si18n.py"
+			],
+			[
+				"abs",
+				"models/abstract_content.py"
+			],
+			[
+				"models",
+				"models/__init__.py"
+			],
+			[
+				"content",
+				"models/content.py"
+			],
+			[
+				"bookingjs",
+				"static/js/controllers/booking.js"
+			],
+			[
+				"bookingpy",
+				"models/booking.py"
+			],
+			[
+				"si18n",
+				"helpers/si18n.py"
+			],
+			[
+				"bookablepy",
+				"models/bookable.py"
+			],
+			[
+				"bookingformjs",
+				"static/js/controllers/booking_form.js"
 			],
 			[
 				"todo",
 				"todo"
 			],
 			[
-				"bookingjs",
-				"static/js/test/booking.js"
+				"dat",
+				"static/js/helpers/date.js"
 			],
 			[
-				"formjs",
-				"static/js/helpers/form.js"
+				"datejs",
+				"static/js/helpers/date.js"
 			],
 			[
-				"bookablejs",
-				"static/js/view/directives/bookable.js"
+				"util",
+				"static/js/test/util.js"
 			],
 			[
 				"utiljs",
 				"static/js/test/util.js"
+			],
+			[
+				"bookablejs",
+				"static/js/test/bookable.js"
+			],
+			[
+				"testbookin",
+				"static/js/test/booking.js"
+			],
+			[
+				"bookingscss",
+				"static/scss/_booking.scss"
+			],
+			[
+				"bookform",
+				"static/js/controllers/booking_form.js"
+			],
+			[
+				"bookingform",
+				"templates/booking/form.html"
+			],
+			[
+				"testbookable",
+				"static/js/test/bookable.js"
+			],
+			[
+				"formjs",
+				"static/js/helpers/form.js"
 			],
 			[
 				"testbooka",
@@ -1309,28 +1541,12 @@
 				"static/js/main.admin.js"
 			],
 			[
-				"bookingscss",
-				"static/scss/admin/_bookings.scss"
-			],
-			[
 				"bookamain",
 				"templates/bookable/main.html"
 			],
 			[
-				"si18n",
-				"helpers/si18n.py"
-			],
-			[
 				"bookingfo",
 				"templates/booking/form.html"
-			],
-			[
-				"bookingform",
-				"static/js/controllers/booking_form.js"
-			],
-			[
-				"si1",
-				"helpers/si18n.py"
 			],
 			[
 				"bookablemain",
@@ -1377,10 +1593,6 @@
 				"static/js/elements/admin/controls.js"
 			],
 			[
-				"util",
-				"static/js/test/util.js"
-			],
-			[
 				"bookascss",
 				"static/scss/_bookable.scss"
 			],
@@ -1393,10 +1605,6 @@
 				"static/js/controllers/admin/bookable.js"
 			],
 			[
-				"si",
-				"helpers/si18n.py"
-			],
-			[
 				"bookable",
 				"models/bookable.py"
 			],
@@ -1407,10 +1615,6 @@
 			[
 				"bookinghtml",
 				"templates/booking/form.html"
-			],
-			[
-				"bookingpy",
-				"models/booking.py"
 			],
 			[
 				"booking_form",
@@ -1427,10 +1631,6 @@
 			[
 				"bookablehtml",
 				"templates/bookable/main.html"
-			],
-			[
-				"bookablepy",
-				"models/bookable.py"
 			],
 			[
 				"testmain",
@@ -1703,58 +1903,6 @@
 			[
 				"bokingformj",
 				"static/js/controllers/booking_form.js"
-			],
-			[
-				"helperspy",
-				"controllers/helpers.py"
-			],
-			[
-				"modelbooka",
-				"models/bookable.py"
-			],
-			[
-				"dialog",
-				"templates/elements/dialog.html"
-			],
-			[
-				"modl",
-				"templates/elements/modal.html"
-			],
-			[
-				"admincon",
-				"static/js/elements/admin/controls.js"
-			],
-			[
-				"modal",
-				"static/js/elements/modal.js"
-			],
-			[
-				"integration",
-				"static/js/test/integration.js"
-			],
-			[
-				"socialcss",
-				"static/scss/elements/_social.scss"
-			],
-			[
-				"social",
-				"templates/elements/social.html"
-			],
-			[
-				"testsocia",
-				"static/js/test/social.js"
-			],
-			[
-				"socj",
-				"static/js/elements/social.js"
-			],
-			[
-				"viewbookable",
-				"static/js/view/bookable.js"
-			],
-			[
-				"bookabjs",
-				"static/js/controllers/admin/bookable.js"
 			]
 		],
 		"width": 0.0

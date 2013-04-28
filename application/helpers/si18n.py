@@ -86,6 +86,7 @@ translations = {
         'Guest(s)': u'Guest(s)',
         'Currency': u'Currency',
         'Price': u'Price',
+        'Price per night': u'Price per night',
         'Per night': u'Per night',
         'Total': u'Total',
         'Nights': u'Nights',
@@ -133,6 +134,8 @@ translations = {
         'Edit category': u'Edit category',
         'Edit content': u'Edit content',
         'Edit bookable': u'Edit bookable',
+        'Weight': u'Weight',
+        'Weight explanation': u'The heavier the content, the lower it will appear',
         'Description': u'Description',
         'Title': u'Title',
 
@@ -180,6 +183,7 @@ translations = {
         'Guest(s)': u'Vendég',
         'Currency': u'Pénznem',
         'Price': u'Ár',
+        'Price per night': u'Ár per északa',
         'Per night': u'Per északa',
         'Total': u'Végösszeg',
         'Nights': u'Északa',
@@ -228,6 +232,8 @@ translations = {
         'Edit content': u'Tartalom módosítás',
         'Edit bookable': u'Apartman módosítás',
         'Description': u'Leírás',
+        'Weight': u'Súly',
+        'Weight explanation': u'Minél súlyosabb a tartalom, annál lennebb jelenik meg.',
         'Title': u'Cím',
 
         #Footer
@@ -273,6 +279,7 @@ translations = {
         'Guest(s)': u'Oaspet(i)',
         'Currency': u'Mondeda',
         'Price': u'Preț',
+        'Price per night': u'Preț per noapte',
         'Per night': u'Per noapte',
         'Total': u'Total',
         'Nights': u'Nopți',
@@ -321,6 +328,8 @@ translations = {
         'Edit content': u'Modifică conținut',
         'Edit bookable': u'Modifică cameră',
         'Description': u'Descriere',
+        'Weight': u'Greutate',
+        'Weight explanation': u'Cu cât mai greu este conținutul, cu atât apare mai în josul paginii.',
         'Title': u'Titlu',
 
         #Footer

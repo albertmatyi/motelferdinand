@@ -31,14 +31,17 @@ function (jq) {
 		return map;
 	};
 
-	// sort categories by their order
+	// sort categories by their weight
 	model.categories.sort(function (c0, c1) {
-		return c0.order - c1.order;
+		return c0.weight - c1.weight;
 	});
-	// sort contents by their order
+	// sort contents by their weight
 	$.map(model.categories, function (c) {
 		c.contents.sort(function (c0, c1) {
-			return c0.order - c1.order;
+			return c0.weight - c1.weight;
+		});
+		c.bookables.sort(function (c0, c1) {
+			return c0.weight - c1.weight;
 		});
 	});
 	model.db = {};
@@ -47,7 +50,7 @@ function (jq) {
 	model.db.content = new EntityMap();
 	model.db.booking = new EntityMap();
 	model.db.bookable = new EntityMap();
-	// model.db.bookingEntry = {};
+	
 
 	for (var i = model.categories.length - 1; i >= 0; i -= 1) {
 		var cat = model.categories[i];

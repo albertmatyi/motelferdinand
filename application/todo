@@ -107,15 +107,15 @@ D		nr of people
 
 130428
 D		total nr of nitghts
-		save booking price in db
+D		save booking price in db
 D		tests
 D			booking calculus
 D	hide modals on save
 D		test
 D	bookable 
 D		test prices
-	fixed booking button
 	content ordering
+	fixed booking button
 	admin
 		accept 
 			with message

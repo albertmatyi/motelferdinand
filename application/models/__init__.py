@@ -7,10 +7,13 @@ Created on Jul 24, 2012
 from base import *
 from i18n import *
 
+# abstract content
+from abstract_content import *
+
 # categories
 from category import *
 
-# [abstract] content
+# content
 from content import *
 
 # bookable (dependent on content)

@@ -59,14 +59,19 @@ function (jq, wysihtml5, dialog) {
 				if (successCallback) {
 					successCallback(result.id);
 				} else {
-					dialog.alert('ERROR' + result);
+					dialog.alert('Success! Response: ' + result);
 				}
 			},
 			'error' : function (err) {
 				if (failCallback) {
 					failCallback(err);
 				} else {
-					dialog.alert(err.message ? err.message:err);
+					try {
+						err = JSON.parse(err.responseText);
+						dialog.alert(err.message ? err.message:err);
+					} catch (e) {
+						dialog.alert(err.responseText);
+					}
 				}
 			},
 			type : 'POST',
