@@ -5,3 +5,6 @@ local/
 *.sublime-workspace
 *.css
 stats/
+bulk*
+bulk/
+remote/

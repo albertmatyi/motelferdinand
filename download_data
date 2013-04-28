@@ -1,0 +1,6 @@
+#!/bin/bash -x
+TS=$(date +"%Y%m%d%H%M%S")
+cd bulk
+appcfg.py download_data --url=http://ferdinandmotel.appspot.com/_ah/remote_api --oauth2 --filename="data$TS" --result_db_filename=../remote/datastore.db
+mv bulkloader* ./trash/
+
