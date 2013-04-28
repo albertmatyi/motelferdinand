@@ -15,10 +15,8 @@ define([
 			title: '',
 			places: 3,
 			quantity: 4,
-			price: {
-				'currency': 'CUR',
-				'values': _.range(1, 4)
-			},
+			currency: '$',
+			priceFunction: undefined
 		};
 		var catInfo = {
 			title: ''
@@ -54,12 +52,13 @@ define([
 			createBookablePvt(t, bkblInfo, $category);
 		};
 
-		var createBookable = function (t, title, $cat, callback) {
+		var createBookable = function (t, info, $cat, callback) {
 			initVars(t, $cat);
-			createBookablePvt(t, title, $cat);
+			info = $.extend({}, bkblInfo, info);
+			createBookablePvt(t, info, $cat);
 			if (typeof callback !== 'undefined') {
 				t.l('after createBookable method').addFunction(function () {
-					callback($('.bookable:contains(' + title + ')'));
+					callback($('.bookable:contains(' + info.title + ')'));
 				});
 			}
 		};
@@ -89,7 +88,10 @@ define([
 
 			t.l('fill form quantity').setValue($('*[name=quantity]', $bookableModal), info.quantity);
 
-			t.l('fill form price').setValue($('*[name=price]', $bookableModal), info.price);
+			var expectedPrice = [];
+			t.l('set prices').addFunction(function () {
+				setPrices(t, info, expectedPrice);
+			});
 
 			t.l('click submit').click($saveButton).waitAnimation();
 
@@ -99,7 +101,11 @@ define([
 
 				t.l('verify places').assertPresent('.places:contains(' + info.places + ')', $bookable);
 
-				t.l('verify price').assertPresent('.price:contains(' + info.price + ')', $bookable);
+				t.l('verify price').assertPresent('.price:contains(' + expectedPrice[0] + ')', $bookable);
+
+				t.l('verify price').assertPresent(
+					'.price:contains(' + info.currency + model.language + ')', $bookable
+					);
 
 			});
 
@@ -107,6 +113,28 @@ define([
 				t.assertEquals(modelCount0 + 1, _.size(model.db.bookable), 'We should have ' + (modelCount0 + 1) + ' bookables');
 				t.assertEquals(modelCount1 + 1, _.size(model.db.category[catId].bookables), 'We should have ' + (modelCount1 + 1) + ' bookables');
 			});
+		};
+
+		var setPrices = function (t, info, priceToExpect) {
+			var displayedPrice = '';
+			var pf = info.priceFunction || function (v) { return v; };
+			for (var i = model.languages.length - 1; i >= 0; i -= 1) {
+				var langId = model.languages[i].lang_id;
+				var baseSel = $bookableModal.selector + ' tr.' + langId;
+				var currency = info.currency + langId;
+				t.l('Set currency ' + langId)
+					.setValue(baseSel + ' input[name=prices\\.currency]', currency);
+				for (var j = 0; j < info.places; j += 1) {
+					var $pinput = $($(baseSel + ' input[name=prices\\.values]')[j]);
+					t.l('Set price for ' + langId + j)
+						.setValue($pinput,
+							pf(info.places * i + j + 1));
+				}
+				if (model.language === langId) {
+					priceToExpect.push(pf(info.places * (i + 1)));
+				}
+			}
+			return displayedPrice;
 		};
 
 		var testDeleteBookable = function (t) {

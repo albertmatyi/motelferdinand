@@ -21,7 +21,7 @@ define([
 
 		var before = function (t) {
 			contentTitleStr = 'Content Title' + t.hash();
-			categoryTitleStr += 'Test Category for Content' + t.hash();
+			categoryTitleStr = 'Test Category for Content' + t.hash();
 			categoryTest.createCategory(t, categoryTitleStr, function ($cat) {
 				t.l('Got category id ' + $cat.selector);
 				$category = $cat;
@@ -61,6 +61,8 @@ define([
 			t.l('click submit').click($saveButton).waitAnimation();
 
 			t.l('wait for response').waitXHR();
+
+			t.l('verify modal invisible').assertInvisible($contentModal);
 
 			t.l('verify content is present').assertPresent('.content-title:contains(' + title + ')');
 

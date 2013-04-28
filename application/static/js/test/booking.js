@@ -8,8 +8,8 @@ define(
 	'test/bookable'
 ], function (jq, categoryTest, bookableTest) {
 	'use strict';
-	var categoryTitleStr;
-	var bookableTitleStr;
+	var catInfo = { title: '' };
+	var bkblInfo = { title: '' };
 	var name = 'John Doe';
 	var email = 'john.doe@mail.com';
 	var phone = '+0123456789';
@@ -25,12 +25,12 @@ define(
 	var $bookable;
 
 	var before = function (t) {
-		categoryTitleStr = 'Test Category for Booking' + t.hash();
-		bookableTitleStr = 'Test Bookable' + t.hash();
-		categoryTest.createCategory(t, categoryTitleStr, function ($cat) {
+		catInfo.title = 'Test Category for Booking' + t.hash();
+		bkblInfo.title = 'Test Bookable' + t.hash();
+		categoryTest.createCategory(t, catInfo.title, function ($cat) {
 			t.l('Got category ' + $cat.selector);
 			var $category = $cat;
-			bookableTest.createBookable(t, bookableTitleStr, $category, function ($bkbl) {
+			bookableTest.createBookable(t, bkblInfo, $category, function ($bkbl) {
 				t.l('Got bookable ' + $bkbl.selector);
 				$openBookingButton = $('.showBookingFormButton', $cat);
 				$bookable = $bkbl;
@@ -39,7 +39,7 @@ define(
 	};
 
 	var after = function (t) {
-		categoryTest.deleteCategory(t, categoryTitleStr);
+		categoryTest.deleteCategory(t, catInfo.title);
 	};
 
 	var clickOpenBooking = function (t) {

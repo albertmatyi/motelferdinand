@@ -1,5 +1,6 @@
 /*global define */
 /*global $ */
+/*global _ */
 
 define(
 [
@@ -22,10 +23,14 @@ function (jq, wysihtml5, dialog) {
 		for (var key in data) {
 			if (data.hasOwnProperty(key) && key.indexOf('_') !== 0) {
 				if (typeof data[key] === 'object') {
-					entity[key] = entity[key] || {};
+					entity[key] = entity[key] || (_.isArray(data[key]) ? []:{});
 					updateEntity(entity[key], data[key]);
 				} else {
-					entity[key] = data[key];
+					if (_.isArray(entity)) {
+						entity.push(data[key]);
+					} else {
+						entity[key] = data[key];
+					}
 				}
 			}
 		}

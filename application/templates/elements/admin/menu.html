@@ -7,20 +7,20 @@
 </a>
 <ul id="adminMenu" class="admin dropdown-menu">
 	<li id="adminBookingsButton">
-		<a href="#">
+		<a onclick="return false;" href="#">
 			{{ __('Bookings') }}
 			<span class="badge badge-important">11</span>
 		</a>
 	</li>
 	{% if not is_production %} 
 	<li id="testButton">
-		<a href="#">
+		<a onclick="return false;" href="#">
 			Test
 		</a>
 	</li>
 	{% endif %}
 	<li id="adminGuestbookEntries">
-		<a href="#">
+		<a onclick="return false;" href="#">
 			{{ __('Guestbook entries') }}
 			<span class="badge badge-important">4</span>
 		</a>

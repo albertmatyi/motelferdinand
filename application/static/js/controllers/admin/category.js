@@ -29,6 +29,7 @@ function (jq, i18n, adminControls, transparency, adminContent, adminBookable, ca
 	$('#submitCategoryEditForm').click(function () {
 		var $form = $('form', $formModal);
 		i18n.submitForm($form, '/admin/categories/', function (entity, isNew) {
+			$formModal.modal('hide');
 			if (!isNew) {
 				var $cat = $('#Category' + entity.id);
 				var ttl = entity.i18n[model.language].title;

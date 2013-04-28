@@ -17,6 +17,28 @@ define(
 ],
 function (jq, i18n, adminControls, directive, transparency, common, view, booking, modal) {
 	'use strict';
+	var optionDirective = {
+		'value' : {
+			'text' : function () {
+				return this.value;
+			},
+			'value' : function () {
+				return this.value;
+			}
+		}
+	};
+
+	var languageDirective = {
+		'lang_id' : {
+			'text' : function () {
+				return '';
+			},
+			'class' : function () {
+				return  this.lang_id;
+			}
+		}
+	};
+
 	var $bookableTemplate = $('.bookables').clone();
 
 	var TAB_ID_BASE = 'editBookable-';
@@ -108,33 +130,13 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 	};
 
 	var initPriceTable = function () {
-		$('tbody', $pricesTable).render(
-				model.languages, {
-				'lang_id' : {
-					'text' : function () {
-						return '';
-					},
-					'class' : function () {
-						return  this.lang_id;
-					}
-				}
-			}
-		);
+		$('tbody', $pricesTable).render(model.languages, languageDirective);
 	};
 
 	var addOptions = function ($el, n) {
 		$el.render(
 			_.range(1, n + 1),
-			{
-				'value' : {
-					'text' : function () {
-						return this.value;
-					},
-					'value' : function () {
-						return this.value;
-					}
-				}
-			}
+			optionDirective
 		);
 	};
 

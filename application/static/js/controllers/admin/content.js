@@ -25,6 +25,7 @@ function (jq, i18n, adminControls, transparency, common, directive) {
 	$('#submitContentEditForm').click(function () {
 		var $form = $('form', $formModal);
 		i18n.submitForm($form, '/admin/contents/', function (entity, isNew) {
+			$formModal.modal('hide');
 			// update UI
 			if (!isNew) {
 				var $cont = $('#Content' + entity.id);

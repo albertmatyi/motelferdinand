@@ -62,6 +62,8 @@ define([
 
 			t.l('wait for response').waitXHR();
 
+			t.l('verify modal invisible').assertInvisible($catModal);
+
 			t.l('Verify model entries').addFunction(function () {
 				t.assertEquals(modelCount0 + 1, _.size(model.db.category), 'We should have ' + (modelCount0 + 1) + ' categories');
 				t.assertEquals(modelCount1 + 1, _.size(model.categories), 'We should have ' + (modelCount1 + 1) + ' categories');
