@@ -21,7 +21,7 @@ function (commonDirectives) {
 		'price' : {
 			'text': function () {
 				if (!this.prices || !this.prices[model.language]) {
-					return 'Please define prices';
+					return 'Please define prices!';
 				}
 				var prices = this.prices[model.language];
 				var l = prices.values.length;
@@ -31,7 +31,7 @@ function (commonDirectives) {
 		'currency' : {
 			'text': function () {
 				if (!this.prices || !this.prices[model.language]) {
-					return 'Please define prices';
+					return '';
 				}
 				return this.prices[model.language].currency;
 			}

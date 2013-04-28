@@ -115,6 +115,7 @@ D		test
 D	bookable 
 D		test prices
 D	content ordering
+D 	backup data
 	admin
 		accept 
 			with message
