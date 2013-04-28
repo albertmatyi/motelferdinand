@@ -114,8 +114,7 @@ D	hide modals on save
 D		test
 D	bookable 
 D		test prices
-	content ordering
-	fixed booking button
+D	content ordering
 	admin
 		accept 
 			with message
@@ -124,6 +123,7 @@ D		test prices
 			update (paid)
 			delete
 			accept
+	fixed booking button
 	fullscreen image quality
 	fix picasa albums
 	caching

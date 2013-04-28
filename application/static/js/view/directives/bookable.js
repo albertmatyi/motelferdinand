@@ -20,12 +20,19 @@ function (commonDirectives) {
 		'entityId' : commonDirectives.getEntityDirective('bookable'),
 		'price' : {
 			'text': function () {
-				var l = this.prices[model.language].values.length;
-				return this.prices[model.language].values[l - 1];
+				if (!this.prices || !this.prices[model.language]) {
+					return 'Please define prices';
+				}
+				var prices = this.prices[model.language];
+				var l = prices.values.length;
+				return prices.values[l - 1];
 			}
 		},
 		'currency' : {
 			'text': function () {
+				if (!this.prices || !this.prices[model.language]) {
+					return 'Please define prices';
+				}
 				return this.prices[model.language].currency;
 			}
 		},

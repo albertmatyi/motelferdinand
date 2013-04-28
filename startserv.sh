@@ -1,5 +1,1 @@
-#!/bin/bash
-cat /dev/null > ./server.log
-dev_appserver.py \
-	--debug \
-	. # &> ./server.log
+/home/albertmatyi/work/python/hotelmotel/startserv.sh.new
