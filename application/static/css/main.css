@@ -6005,6 +6005,8 @@ div.picaslide {
       top: -200px;
       width: 40%;
       left: 60%; }
+      .booking-controls #booking-form .prices .total {
+        font-weight: bold; }
 
 html, body, #maincontent, #body_content, .categories, .category {
   /* 	height: 100%; */

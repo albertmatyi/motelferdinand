@@ -82,9 +82,33 @@ def save_booking():
     booking.book_from = bkf['book_from']
     booking.book_until = bkf['book_until']
     booking.bookable = bkf['bookable']
+    map_price(bkf, booking)
     booking.put()
     return booking
     pass
+
+
+def map_price(bookingForm, booking):
+    bk_dict = booking.bookable.get_prices(si18n.get_lang_id())
+    vals = bk_dict['values']
+    q = int(bookingForm['quantity'])
+    g = int(bookingForm['guests'])
+    p = booking.bookable.places
+    # every room should have at least 1 guest
+    price = float(vals[0]) * q
+    # calculate without these guests
+    g = max(0, g - q)
+    # nr of full rooms
+    f = int(g / (p - 1)) if p > 1 else q
+    # nr of guests that are not in full rooms
+    rg = g % (p - 1) if p > 1 else 0
+    # add prices of full rooms
+    price = price - f * float(vals[0]) + f * float(vals[p - 1])
+    # add price of partially filled room
+    price = price - float(vals[0]) + float(vals[rg])
+
+    booking.price = price
+    booking.currency = bk_dict['currency']
 
 
 def send_new_booking_mail(booking):
@@ -152,7 +176,8 @@ def admin_delete_booking(entityId):
 @admin_required
 def get_bookings():
     bookings = [e.to_dict(True) for e in BookingModel.all()]
-    return json.dumps(bookings);
+    return json.dumps(bookings)
+
 
 @app.route("/admin/bookings/", methods=["POST"])
 @admin_required
@@ -174,7 +199,10 @@ def update_booking():
 
 def send_booking_accepted_mail(booking):
     subject = 'Your booking request at Ferdinand Motel has been ACCEPTED.'
-    booking_dict = BookingDictBuilder(booking).with_bookable().with_user().build();
+    booking_dict = BookingDictBuilder(booking)\
+        .with_bookable()\
+        .with_user()\
+        .build()
     # To client
     message = mail.EmailMessage(
         sender=si18n.translate('Ferdinand Motel') +

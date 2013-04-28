@@ -1,24 +1,36 @@
 /*global define */
 /*global $ */
+/*global model */
 
 define(
 [
 	'lib/jquery',
 	'test/category',
-	'test/bookable'
-], function (jq, categoryTest, bookableTest) {
+	'test/bookable',
+	'helpers/date'
+], function (jq, categoryTest, bookableTest, dateHelper) {
 	'use strict';
 	var catInfo = { title: '' };
-	var bkblInfo = { title: '' };
-	var name = 'John Doe';
-	var email = 'john.doe@mail.com';
-	var phone = '+0123456789';
+	var EUR = 'EUR';
+	var bkblInfo = {
+		title: '',
+		places: 3,
+		currency: EUR,
+		priceFunction: function (i, j) { return j; }
+	};
+	var bkngInfo = {
+		name: 'John Doe',
+		email: 'john.doe@mail.com',
+		phone: '+0123456789'
+	};
 	var $form = $('#booking-form');
 	var $nameField = $('#user\\.full_name', $form);
 	var $emailField = $('#user\\.email', $form);
 	var $phoneField = $('#user\\.phone', $form);
 	var $quantityField = $('#booking\\.quantity', $form);
 	var $guestsField = $('#booking\\.guests', $form);
+	var $bookFrom = $('#booking\\.book_from', $form);
+	var $bookUntil = $('#booking\\.book_until', $form);
 	var $cancelButton = $('#cancelBookingButton', $form);
 	var $submitButton = $('#submitBookingButton', $form);
 	var $openBookingButton;
@@ -65,13 +77,45 @@ define(
 
 		clickOpenBooking(t);
 
-		t.l('Fill name').setValue($nameField, name);
+		t.l('Fill name').setValue($nameField, bkngInfo.name);
 
-		t.l('Fill email').setValue($emailField, email);
+		t.l('Fill email').setValue($emailField, bkngInfo.email);
 
-		t.l('Fill name').setValue($phoneField, phone);
+		t.l('Fill name').setValue($phoneField, bkngInfo.phone);
+
+		checkPricesForInterval(t, 1);
+
+		checkPricesForInterval(t, 7);
 
 		clickCancelBooking(t);
+	};
+
+	var checkPricesForInterval = function (t, delta) {
+		var d = new Date();
+		d.setDate(d.getDate() + Math.floor(100 * Math.random()));
+		t.l('Set from date').setValue($bookFrom, dateHelper.toStr(d));
+		d.setDate(d.getDate() + delta);
+		t.l('Set until date').setValue($bookUntil, dateHelper.toStr(d));
+		checkPrices(t, 2, 1, 2, delta);
+
+		checkPrices(t, 2, 2, 2, delta);
+
+		checkPrices(t, 2, 3, 3, delta);
+	};
+
+	var checkPrices = function (t, quant, guests, perNight, days) {
+		t.l('Fill quantity').setValue($quantityField, quant);
+		t.l('Fill guests').setValue($guestsField, guests);
+		var cur = ' ' + EUR + model.language;
+		t.l('Verify per night price').$('.pricePerNight', function ($el) {
+			t.assertEquals(perNight + cur, $el.text());
+		}, $form);
+		t.l('Verify days').$('.nrOfDays', function ($el) {
+			t.assertEquals(days + '', $el.text());
+		}, $form);
+		t.l('Verify total').$('.priceTotal', function ($el) {
+			t.assertEquals(days * perNight + cur, $el.text());
+		}, $form);
 	};
 
 	var testBooking = function (t) {

@@ -60,7 +60,7 @@ define(
 					},
 					error: function (data) {
 						var message = notification.createNotification(JSON.parse(data.responseText).message, 'error');
-						bookingForm.submitButton.before(message);
+						bookingForm.cancelButton.before(message);
 					}
 				});
 			} catch (e) {

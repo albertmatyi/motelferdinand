@@ -47,7 +47,7 @@ class BookableModel(AbstractContentModel):
                 arr += [lid]
                 arr += [pcs[lid]['currency']]
                 for i in range(vn):
-                    arr += [pcs[lid]['values'][i]]
+                    arr += [str(float(pcs[lid]['values'][i]))]
             self.prices = arr
         else:
             super(BookableModel, self).populate_field(dictionary, key)
@@ -71,3 +71,14 @@ class BookableModel(AbstractContentModel):
             return d
         else:
             return super(BookableModel, self).to_dict_field(key)
+
+    def get_prices(self, lang_id):
+        '''
+            Retrieves the prices for a give language id in the form
+            of a dictionary:
+            {
+                values: [1,2,3],
+                currency: 'EUR'
+            }
+        '''
+        return self.to_dict()['prices'][lang_id]

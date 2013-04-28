@@ -1,43 +1,43 @@
-X 	Kategoria / Tartalom / Szoba torles - 2h
-X	In place upd8 - 2h
-X	Update / delete 2h
-X	update UI on add
-X 		category - 3h
-X 		content - 3h
+D 	Kategoria / Tartalom / Szoba torles - 2h
+D	In place upd8 - 2h
+D	Update / delete 2h
+D	update UI on add
+D 		category - 3h
+D 		content - 3h
 
 130202
-X		bookable - 6h
-X	booking details  5h
-X		phone
-X		booked rooms summary
-X		details
+D		bookable - 6h
+D	booking details  5h
+D		phone
+D		booked rooms summary
+D		details
 130203
-X	booking admin 4h
-X		accepted 
-X		paid
-X		delete booking
-	send simple mails  3h
-X		new booking
-X			client
-X			admin
-X		accepted booking
-X	admin 3
-X		login 1h
-X		restrictions 1h
-X		js 1h
+D	booking admin 4h
+D		accepted 
+D		paid
+D		delete booking
+D	send simple mails  3h
+D		new booking
+D			client
+D			admin
+D		accepted booking
+D	admin 3
+D		login 1h
+D		restrictions 1h
+D		js 1h
  	fix
 		design 4h
-X			datepicker on chrome - CRITICAL, cannot book
-X			modal issues / scrollbars
-X			booking button off panel after finish
-X			edit buttons (chrome)
-X			pos: fixed cat descr
+D			datepicker on chrome - CRITICAL, cannot book
+D			modal issues / scrollbars
+D			booking button off panel after finish
+D			edit buttons (chrome)
+D			pos: fixed cat descr
 130302
-X			room booking validation
-X			server side validation
-X			display returned message
+D			room booking validation
+D			server side validation
+D			display returned message
 			notifications
-X				booking admin & client
+D				booking admin & client
 D				admin forms
 130309
 D		fix problems
@@ -70,10 +70,6 @@ D			tests
 D			bookable
 D				multiple
 D				db
-			booking (client)
-				validation
-			booking admin
-				accept
 D		confirm messages 2h
 D	error handling (display something)
 D		design
@@ -95,6 +91,7 @@ D		all contents
 130419
 D	load admin bookings on access
 D	fix update bookings
+
 130427
 D	test 
 D		add booking
@@ -104,24 +101,29 @@ D			beds /
 D				places
 D				different prices for them places 
 D				i18n prices
-	booking
+D	booking
 D		price 
 D		nr of people
+
 130428
-		total nr of nitghts
+D		total nr of nitghts
 		save booking price in db
-		tests
-			booking calculus
-	hide modals on save
-	bookable 
-		test prices
+D		tests
+D			booking calculus
+D	hide modals on save
+D		test
+D	bookable 
+D		test prices
 	fixed booking button
 	content ordering
 	admin
 		accept 
 			with message
 		update booking
-		
+		test
+			update (paid)
+			delete
+			accept
 	fullscreen image quality
 	fix picasa albums
 	caching

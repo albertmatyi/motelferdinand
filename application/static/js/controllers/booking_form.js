@@ -177,6 +177,7 @@ define(['helpers/date', 'helpers/tooltip'],
 				var days = getDays();
 				var total = days * perNight;
 				var curr = ' ' + bookable.prices[model.language].currency;
+				$('.nrOfDays', $form).text(days);
 				$('.pricePerNight', $form).text(perNight + curr);
 				$('.priceTotal', $form).text(total + curr);
 			};

@@ -16,7 +16,7 @@ define([
 			places: 3,
 			quantity: 4,
 			currency: '$',
-			priceFunction: undefined
+			priceFunction: function (i, j, places) { return places * i + j; }
 		};
 		var catInfo = {
 			title: ''
@@ -97,6 +97,8 @@ define([
 
 			t.l('wait for response').waitXHR();
 
+			t.l('verify modal invisible').assertInvisible($bookableModal);
+
 			t.l('verify bookable is present').$('.bookable:contains(' + info.title + ')', function ($bookable) {
 
 				t.l('verify places').assertPresent('.places:contains(' + info.places + ')', $bookable);
@@ -117,7 +119,7 @@ define([
 
 		var setPrices = function (t, info, priceToExpect) {
 			var displayedPrice = '';
-			var pf = info.priceFunction || function (v) { return v; };
+			var pf = info.priceFunction;
 			for (var i = model.languages.length - 1; i >= 0; i -= 1) {
 				var langId = model.languages[i].lang_id;
 				var baseSel = $bookableModal.selector + ' tr.' + langId;
@@ -128,10 +130,10 @@ define([
 					var $pinput = $($(baseSel + ' input[name=prices\\.values]')[j]);
 					t.l('Set price for ' + langId + j)
 						.setValue($pinput,
-							pf(info.places * i + j + 1));
+							pf(i, j + 1, info.places));
 				}
 				if (model.language === langId) {
-					priceToExpect.push(pf(info.places * (i + 1)));
+					priceToExpect.push(pf(i, j, info.places));
 				}
 			}
 			return displayedPrice;
