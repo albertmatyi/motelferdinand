@@ -1,614 +1,237 @@
-INFO     2013-04-28 21:45:02,352 sdk_update_checker.py:244] Checking for updates to the SDK.
-INFO     2013-04-28 21:45:02,568 sdk_update_checker.py:272] The SDK is up to date.
-INFO     2013-04-28 21:45:02,586 api_server.py:152] Starting API server at: http://localhost:40301
-INFO     2013-04-28 21:45:02,708 dispatcher.py:150] Starting server "default" running at: http://0.0.0.0:8080
-INFO     2013-04-28 21:45:02,708 admin_server.py:117] Starting admin server at: http://localhost:8000
-INFO     2013-04-28 21:45:12,578 server.py:561] default: "GET / HTTP/1.1" 200 24495
-INFO     2013-04-28 21:45:12,631 server.py:561] default: "GET /static/css/admin_main.css HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:12,636 server.py:561] default: "GET /static/lib/require.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,183 server.py:561] default: "GET /static/img/coffeecup.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,184 server.py:561] default: "GET /static/img/noise.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,188 server.py:561] default: "GET /static/img/glyphicons-halflings-white.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,188 server.py:561] default: "GET /static/img/social/social_sprite_48.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,189 server.py:561] default: "GET /static/fonts/Great_Vibes/GreatVibes-Regular.ttf HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,191 server.py:561] default: "GET /static/js/main.admin.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,314 server.py:561] default: "GET /static/lib/underscore.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,319 server.py:561] default: "GET /static/js/elements/modal.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,320 server.py:561] default: "GET /static/js/model/base.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,320 server.py:561] default: "GET /static/js/config.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,320 server.py:561] default: "GET /static/js/view/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,322 server.py:561] default: "GET /static/js/elements/social.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,325 server.py:561] default: "GET /static/js/test/main.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,326 server.py:561] default: "GET /static/js/view/language.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,327 server.py:561] default: "GET /static/js/controllers/admin/content.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,327 server.py:561] default: "GET /static/js/controllers/admin/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,328 server.py:561] default: "GET /static/js/controllers/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,328 server.py:561] default: "GET /static/js/controllers/admin/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,328 server.py:561] default: "GET /static/js/controllers/admin/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,463 server.py:561] default: "GET /static/js/elements/notification.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,464 server.py:561] default: "GET /static/js/view/directives/menu.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,465 server.py:561] default: "GET /static/lib/jquery-1.9.1.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,465 server.py:561] default: "GET /static/js/elements/dialog.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,466 server.py:561] default: "GET /static/js/view/directives/body.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,466 server.py:561] default: "GET /static/js/view/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,466 server.py:561] default: "GET /static/js/view/common.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,472 server.py:561] default: "GET /static/js/test/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,473 server.py:561] default: "GET /static/js/test/social.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,473 server.py:561] default: "GET /static/js/test/integration.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,473 server.py:561] default: "GET /static/js/test/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,475 server.py:561] default: "GET /static/js/test/content.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,477 server.py:561] default: "GET /static/js/helpers/cookies.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,477 server.py:561] default: "GET /static/js/test/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,479 server.py:561] default: "GET /static/js/helpers/transparency.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,479 server.py:561] default: "GET /static/js/view/directives/content.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,482 server.py:561] default: "GET /static/js/view/directives/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,483 server.py:561] default: "GET /static/js/helpers/i18n.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,484 server.py:561] default: "GET /static/js/helpers/fixit.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,485 server.py:561] default: "GET /static/js/elements/admin/controls.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,485 server.py:561] default: "GET /static/js/view/directives/admin/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,485 server.py:561] default: "GET /static/js/controllers/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,486 server.py:561] default: "GET /static/js/view/directives/admin/bookingDetails.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,697 server.py:561] default: "GET /static/lib/transparency.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,699 server.py:561] default: "GET /static/js/helpers/picaslide.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,705 server.py:561] default: "GET /static/js/test/elements/dialog.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,706 server.py:561] default: "GET /static/js/test/util.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,707 server.py:561] default: "GET /static/js/view/directives/common.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,706 server.py:561] default: "GET /static/lib/bootstrap-datepicker/datepicker.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,707 server.py:561] default: "GET /static/js/helpers/date.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,709 server.py:561] default: "GET /static/js/helpers/form.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,710 server.py:561] default: "GET /static/js/helpers/wysihtml5.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,711 server.py:561] default: "GET /static/js/view/directives/admin/user.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,712 server.py:561] default: "GET /static/js/helpers/tooltip.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,719 server.py:561] default: "GET /static/js/controllers/booking_form.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,731 server.py:561] default: "GET /static/lib/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,850 server.py:561] default: "GET /static/js/elements/fullscreen.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,860 server.py:561] default: "GET /static/lib/wysihtml5/js/bootstrap-wysihtml5.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,860 server.py:561] default: "GET /static/lib/picasa.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,869 server.py:561] default: "GET /static/lib/jquery-ui-1.8.20.custom.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,921 server.py:561] default: "GET /static/lib/wysihtml5/js/wysihtml5-0.3.0.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,922 server.py:561] default: "GET /static/lib/wysihtml5/js/advanced_parser_rules.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:13,932 server.py:561] default: "GET /static/lib/slides.min.jquery.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:14,738 server.py:561] default: "GET /static/img/picasa_s.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:45:25,030 server.py:561] default: "GET / HTTP/1.1" 200 24495
-INFO     2013-04-28 21:45:25,083 server.py:561] default: "GET /static/css/admin_main.css HTTP/1.1" 200 170557
-INFO     2013-04-28 21:45:25,086 server.py:561] default: "GET /static/lib/require.js HTTP/1.1" 200 14761
-INFO     2013-04-28 21:45:25,677 server.py:561] default: "GET /static/img/noise.png HTTP/1.1" 200 3910
-INFO     2013-04-28 21:45:25,678 server.py:561] default: "GET /static/img/coffeecup.png HTTP/1.1" 200 25879
-INFO     2013-04-28 21:45:25,681 server.py:561] default: "GET /static/img/glyphicons-halflings-white.png HTTP/1.1" 200 8777
-INFO     2013-04-28 21:45:25,682 server.py:561] default: "GET /static/img/social/social_sprite_48.png HTTP/1.1" 200 16398
-INFO     2013-04-28 21:45:25,762 server.py:561] default: "GET /static/js/main.admin.js HTTP/1.1" 200 1957
-INFO     2013-04-28 21:45:25,826 server.py:561] default: "GET /static/js/elements/social.js HTTP/1.1" 200 1375
-INFO     2013-04-28 21:45:25,826 server.py:561] default: "GET /static/lib/underscore.min.js HTTP/1.1" 200 13473
-INFO     2013-04-28 21:45:25,827 server.py:561] default: "GET /static/js/test/main.js HTTP/1.1" 200 387
-INFO     2013-04-28 21:45:25,827 server.py:561] default: "GET /static/js/config.js HTTP/1.1" 200 488
-INFO     2013-04-28 21:45:25,834 server.py:561] default: "GET /static/js/controllers/category.js HTTP/1.1" 200 579
-INFO     2013-04-28 21:45:25,834 server.py:561] default: "GET /static/js/controllers/admin/category.js HTTP/1.1" 200 2946
-INFO     2013-04-28 21:45:25,835 server.py:561] default: "GET /static/js/elements/modal.js HTTP/1.1" 200 1091
-INFO     2013-04-28 21:45:25,837 server.py:561] default: "GET /static/js/model/base.js HTTP/1.1" 200 1693
-INFO     2013-04-28 21:45:25,837 server.py:561] default: "GET /static/js/controllers/admin/content.js HTTP/1.1" 200 2582
-INFO     2013-04-28 21:45:25,837 server.py:561] default: "GET /static/js/view/category.js HTTP/1.1" 200 892
-INFO     2013-04-28 21:45:25,836 server.py:561] default: "GET /static/js/view/language.js HTTP/1.1" 200 514
-INFO     2013-04-28 21:45:25,840 server.py:561] default: "GET /static/js/controllers/admin/bookable.js HTTP/1.1" 200 5600
-INFO     2013-04-28 21:45:25,840 server.py:561] default: "GET /static/js/controllers/admin/booking.js HTTP/1.1" 200 5334
-INFO     2013-04-28 21:45:25,947 server.py:561] default: "GET /static/js/test/bookable.js HTTP/1.1" 200 6858
-INFO     2013-04-28 21:45:25,947 server.py:561] default: "GET /static/js/test/category.js HTTP/1.1" 200 4323
-INFO     2013-04-28 21:45:25,947 server.py:561] default: "GET /static/js/elements/dialog.js HTTP/1.1" 200 1957
-INFO     2013-04-28 21:45:25,947 server.py:561] default: "GET /static/lib/jquery-1.9.1.min.js HTTP/1.1" 200 92629
-INFO     2013-04-28 21:45:25,948 server.py:561] default: "GET /static/js/test/content.js HTTP/1.1" 200 4624
-INFO     2013-04-28 21:45:25,949 server.py:561] default: "GET /static/js/test/integration.js HTTP/1.1" 200 5190
-INFO     2013-04-28 21:45:25,954 server.py:561] default: "GET /static/js/test/social.js HTTP/1.1" 200 1129
-INFO     2013-04-28 21:45:25,954 server.py:561] default: "GET /static/js/elements/notification.js HTTP/1.1" 200 582
-INFO     2013-04-28 21:45:25,955 server.py:561] default: "GET /static/js/controllers/booking.js HTTP/1.1" 200 4135
-INFO     2013-04-28 21:45:25,954 server.py:561] default: "GET /static/js/test/booking.js HTTP/1.1" 200 3876
-INFO     2013-04-28 21:45:25,956 server.py:561] default: "GET /static/js/helpers/fixit.js HTTP/1.1" 200 584
-INFO     2013-04-28 21:45:25,956 server.py:561] default: "GET /static/js/helpers/i18n.js HTTP/1.1" 200 3601
-INFO     2013-04-28 21:45:25,957 server.py:561] default: "GET /static/js/helpers/transparency.js HTTP/1.1" 200 810
-INFO     2013-04-28 21:45:25,958 server.py:561] default: "GET /static/js/elements/admin/controls.js HTTP/1.1" 200 1685
-INFO     2013-04-28 21:45:25,960 server.py:561] default: "GET /static/js/view/bookable.js HTTP/1.1" 200 908
-INFO     2013-04-28 21:45:25,964 server.py:561] default: "GET /static/js/view/directives/body.js HTTP/1.1" 200 781
-INFO     2013-04-28 21:45:25,964 server.py:561] default: "GET /static/js/view/directives/bookable.js HTTP/1.1" 200 1677
-INFO     2013-04-28 21:45:25,964 server.py:561] default: "GET /static/js/view/directives/content.js HTTP/1.1" 200 419
-INFO     2013-04-28 21:45:25,965 server.py:561] default: "GET /static/js/view/common.js HTTP/1.1" 200 305
-INFO     2013-04-28 21:45:25,966 server.py:561] default: "GET /static/js/helpers/cookies.js HTTP/1.1" 200 375
-INFO     2013-04-28 21:45:25,966 server.py:561] default: "GET /static/js/view/directives/menu.js HTTP/1.1" 200 858
-INFO     2013-04-28 21:45:25,968 server.py:561] default: "GET /static/js/view/directives/admin/booking.js HTTP/1.1" 200 1224
-INFO     2013-04-28 21:45:25,968 server.py:561] default: "GET /static/js/view/directives/admin/bookingDetails.js HTTP/1.1" 200 1485
-INFO     2013-04-28 21:45:26,161 server.py:561] default: "GET /static/js/test/elements/dialog.js HTTP/1.1" 200 275
-INFO     2013-04-28 21:45:26,164 server.py:561] default: "GET /static/lib/transparency.min.js HTTP/1.1" 200 5749
-INFO     2013-04-28 21:45:26,164 server.py:561] default: "GET /static/js/test/util.js HTTP/1.1" 200 6253
-INFO     2013-04-28 21:45:26,174 server.py:561] default: "GET /static/js/view/directives/common.js HTTP/1.1" 200 961
-INFO     2013-04-28 21:45:26,175 server.py:561] default: "GET /static/js/helpers/form.js HTTP/1.1" 200 2488
-INFO     2013-04-28 21:45:26,176 server.py:561] default: "GET /static/js/controllers/booking_form.js HTTP/1.1" 200 5931
-INFO     2013-04-28 21:45:26,177 server.py:561] default: "GET /static/js/helpers/tooltip.js HTTP/1.1" 200 673
-INFO     2013-04-28 21:45:26,177 server.py:561] default: "GET /static/js/helpers/wysihtml5.js HTTP/1.1" 200 567
-INFO     2013-04-28 21:45:26,178 server.py:561] default: "GET /static/js/helpers/date.js HTTP/1.1" 200 684
-INFO     2013-04-28 21:45:26,180 server.py:561] default: "GET /static/js/view/directives/admin/user.js HTTP/1.1" 200 333
-INFO     2013-04-28 21:45:26,180 server.py:561] default: "GET /static/js/helpers/picaslide.js HTTP/1.1" 200 1931
-INFO     2013-04-28 21:45:26,181 server.py:561] default: "GET /static/lib/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 28538
-INFO     2013-04-28 21:45:26,181 server.py:561] default: "GET /static/lib/bootstrap-datepicker/datepicker.js HTTP/1.1" 200 25615
-INFO     2013-04-28 21:45:26,337 server.py:561] default: "GET /static/lib/wysihtml5/js/bootstrap-wysihtml5.js HTTP/1.1" 200 17042
-INFO     2013-04-28 21:45:26,337 server.py:561] default: "GET /static/js/elements/fullscreen.js HTTP/1.1" 200 2144
-INFO     2013-04-28 21:45:26,338 server.py:561] default: "GET /static/lib/picasa.js HTTP/1.1" 200 2991
-INFO     2013-04-28 21:45:26,371 server.py:561] default: "GET /static/lib/jquery-ui-1.8.20.custom.min.js HTTP/1.1" 200 17199
-INFO     2013-04-28 21:45:26,415 server.py:561] default: "GET /static/lib/wysihtml5/js/advanced_parser_rules.js HTTP/1.1" 200 14171
-INFO     2013-04-28 21:45:26,417 server.py:561] default: "GET /static/lib/wysihtml5/js/wysihtml5-0.3.0.js HTTP/1.1" 200 332047
-INFO     2013-04-28 21:45:26,424 server.py:561] default: "GET /static/lib/slides.min.jquery.js HTTP/1.1" 200 6784
-INFO     2013-04-28 21:45:27,173 server.py:561] default: "GET /static/img/picasa_s.png HTTP/1.1" 200 565
-INFO     2013-04-28 21:45:34,979 server.py:561] default: "GET / HTTP/1.1" 200 24495
-INFO     2013-04-28 21:45:35,070 server.py:561] default: "GET /static/css/admin_main.css HTTP/1.1" 200 170557
-INFO     2013-04-28 21:45:35,072 server.py:561] default: "GET /static/lib/require.js HTTP/1.1" 200 14761
-INFO     2013-04-28 21:45:35,446 server.py:561] default: "GET /static/img/noise.png HTTP/1.1" 200 3910
-INFO     2013-04-28 21:45:35,448 server.py:561] default: "GET /static/js/main.admin.js HTTP/1.1" 200 1957
-INFO     2013-04-28 21:45:35,451 server.py:561] default: "GET /static/img/glyphicons-halflings-white.png HTTP/1.1" 200 8777
-INFO     2013-04-28 21:45:35,451 server.py:561] default: "GET /static/img/coffeecup.png HTTP/1.1" 200 25879
-INFO     2013-04-28 21:45:35,460 server.py:561] default: "GET /static/img/social/social_sprite_48.png HTTP/1.1" 200 16398
-INFO     2013-04-28 21:45:35,578 server.py:561] default: "GET /static/js/model/base.js HTTP/1.1" 200 1693
-INFO     2013-04-28 21:45:35,579 server.py:561] default: "GET /static/js/elements/modal.js HTTP/1.1" 200 1091
-INFO     2013-04-28 21:45:35,580 server.py:561] default: "GET /static/js/elements/social.js HTTP/1.1" 200 1375
-INFO     2013-04-28 21:45:35,581 server.py:561] default: "GET /static/lib/underscore.min.js HTTP/1.1" 200 13473
-INFO     2013-04-28 21:45:35,582 server.py:561] default: "GET /static/js/config.js HTTP/1.1" 200 488
-INFO     2013-04-28 21:45:35,584 server.py:561] default: "GET /static/js/view/language.js HTTP/1.1" 200 514
-INFO     2013-04-28 21:45:35,584 server.py:561] default: "GET /static/js/test/main.js HTTP/1.1" 200 387
-INFO     2013-04-28 21:45:35,587 server.py:561] default: "GET /static/js/view/category.js HTTP/1.1" 200 892
-INFO     2013-04-28 21:45:35,588 server.py:561] default: "GET /static/js/controllers/admin/category.js HTTP/1.1" 200 2946
-INFO     2013-04-28 21:45:35,589 server.py:561] default: "GET /static/js/controllers/admin/bookable.js HTTP/1.1" 200 5600
-INFO     2013-04-28 21:45:35,589 server.py:561] default: "GET /static/js/controllers/category.js HTTP/1.1" 200 579
-INFO     2013-04-28 21:45:35,589 server.py:561] default: "GET /static/js/controllers/admin/content.js HTTP/1.1" 200 2582
-INFO     2013-04-28 21:45:35,590 server.py:561] default: "GET /static/js/controllers/admin/booking.js HTTP/1.1" 200 5334
-INFO     2013-04-28 21:45:35,914 server.py:561] default: "GET /static/js/elements/notification.js HTTP/1.1" 200 582
-INFO     2013-04-28 21:45:35,915 server.py:561] default: "GET /static/lib/jquery-1.9.1.min.js HTTP/1.1" 200 92629
-INFO     2013-04-28 21:45:35,915 server.py:561] default: "GET /static/js/elements/dialog.js HTTP/1.1" 200 1957
-INFO     2013-04-28 21:45:35,935 server.py:561] default: "GET /static/js/test/bookable.js HTTP/1.1" 200 6858
-INFO     2013-04-28 21:45:35,936 server.py:561] default: "GET /static/js/helpers/cookies.js HTTP/1.1" 200 375
-INFO     2013-04-28 21:45:35,937 server.py:561] default: "GET /static/js/test/booking.js HTTP/1.1" 200 3876
-INFO     2013-04-28 21:45:35,937 server.py:561] default: "GET /static/js/test/integration.js HTTP/1.1" 200 5190
-INFO     2013-04-28 21:45:35,938 server.py:561] default: "GET /static/js/test/category.js HTTP/1.1" 200 4323
-INFO     2013-04-28 21:45:35,939 server.py:561] default: "GET /static/js/test/content.js HTTP/1.1" 200 4624
-INFO     2013-04-28 21:45:35,942 server.py:561] default: "GET /static/js/test/social.js HTTP/1.1" 200 1129
-INFO     2013-04-28 21:45:35,942 server.py:561] default: "GET /static/js/view/bookable.js HTTP/1.1" 200 908
-INFO     2013-04-28 21:45:35,944 server.py:561] default: "GET /static/js/view/directives/body.js HTTP/1.1" 200 781
-INFO     2013-04-28 21:45:35,944 server.py:561] default: "GET /static/js/view/directives/menu.js HTTP/1.1" 200 858
-INFO     2013-04-28 21:45:35,945 server.py:561] default: "GET /static/js/helpers/i18n.js HTTP/1.1" 200 3601
-INFO     2013-04-28 21:45:35,946 server.py:561] default: "GET /static/js/view/common.js HTTP/1.1" 200 305
-INFO     2013-04-28 21:45:35,950 server.py:561] default: "GET /static/js/helpers/transparency.js HTTP/1.1" 200 810
-INFO     2013-04-28 21:45:35,950 server.py:561] default: "GET /static/js/elements/admin/controls.js HTTP/1.1" 200 1685
-INFO     2013-04-28 21:45:35,950 server.py:561] default: "GET /static/js/helpers/fixit.js HTTP/1.1" 200 584
-INFO     2013-04-28 21:45:35,951 server.py:561] default: "GET /static/js/controllers/booking.js HTTP/1.1" 200 4135
-INFO     2013-04-28 21:45:35,952 server.py:561] default: "GET /static/js/view/directives/bookable.js HTTP/1.1" 200 1677
-INFO     2013-04-28 21:45:35,952 server.py:561] default: "GET /static/js/view/directives/content.js HTTP/1.1" 200 419
-INFO     2013-04-28 21:45:35,954 server.py:561] default: "GET /static/js/view/directives/admin/booking.js HTTP/1.1" 200 1224
-INFO     2013-04-28 21:45:35,954 server.py:561] default: "GET /static/js/view/directives/admin/bookingDetails.js HTTP/1.1" 200 1485
-INFO     2013-04-28 21:45:36,369 server.py:561] default: "GET /static/lib/transparency.min.js HTTP/1.1" 200 5749
-INFO     2013-04-28 21:45:36,627 server.py:561] default: "GET /static/js/test/elements/dialog.js HTTP/1.1" 200 275
-INFO     2013-04-28 21:45:36,629 server.py:561] default: "GET /static/js/helpers/date.js HTTP/1.1" 200 684
-INFO     2013-04-28 21:45:36,630 server.py:561] default: "GET /static/js/test/util.js HTTP/1.1" 200 6253
-INFO     2013-04-28 21:45:36,636 server.py:561] default: "GET /static/js/view/directives/common.js HTTP/1.1" 200 961
-INFO     2013-04-28 21:45:36,636 server.py:561] default: "GET /static/js/helpers/form.js HTTP/1.1" 200 2488
-INFO     2013-04-28 21:45:36,644 server.py:561] default: "GET /static/js/helpers/tooltip.js HTTP/1.1" 200 673
-INFO     2013-04-28 21:45:36,644 server.py:561] default: "GET /static/js/controllers/booking_form.js HTTP/1.1" 200 5931
-INFO     2013-04-28 21:45:36,645 server.py:561] default: "GET /static/js/helpers/picaslide.js HTTP/1.1" 200 1931
-INFO     2013-04-28 21:45:36,646 server.py:561] default: "GET /static/js/helpers/wysihtml5.js HTTP/1.1" 200 567
-INFO     2013-04-28 21:45:36,646 server.py:561] default: "GET /static/lib/bootstrap-datepicker/datepicker.js HTTP/1.1" 200 25615
-INFO     2013-04-28 21:45:36,647 server.py:561] default: "GET /static/js/view/directives/admin/user.js HTTP/1.1" 200 333
-INFO     2013-04-28 21:45:36,647 server.py:561] default: "GET /static/lib/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 28538
-INFO     2013-04-28 21:45:37,212 server.py:561] default: "GET /static/js/elements/fullscreen.js HTTP/1.1" 200 2144
-INFO     2013-04-28 21:45:37,214 server.py:561] default: "GET /static/lib/wysihtml5/js/bootstrap-wysihtml5.js HTTP/1.1" 200 17042
-INFO     2013-04-28 21:45:37,248 server.py:561] default: "GET /static/lib/picasa.js HTTP/1.1" 200 2991
-INFO     2013-04-28 21:45:37,324 server.py:561] default: "GET /static/lib/jquery-ui-1.8.20.custom.min.js HTTP/1.1" 200 17199
-INFO     2013-04-28 21:45:37,419 server.py:561] default: "GET /static/lib/wysihtml5/js/advanced_parser_rules.js HTTP/1.1" 200 14171
-INFO     2013-04-28 21:45:37,420 server.py:561] default: "GET /static/lib/wysihtml5/js/wysihtml5-0.3.0.js HTTP/1.1" 200 332047
-INFO     2013-04-28 21:45:37,519 server.py:561] default: "GET /static/lib/slides.min.jquery.js HTTP/1.1" 200 6784
-INFO     2013-04-28 21:45:38,089 server.py:561] default: "GET /static/img/picasa_s.png HTTP/1.1" 200 565
-WARNING  2013-04-28 21:47:07,103 login.py:98] Ignoring invalid login cookie: admin:True:133354741122871651676
-WARNING  2013-04-28 21:47:07,125 login.py:98] Ignoring invalid login cookie: admin:True:133354741122871651676
-WARNING  2013-04-28 21:47:07,126 login.py:98] Ignoring invalid login cookie: admin:True:133354741122871651676
-INFO     2013-04-28 21:47:07,249 server.py:561] default: "GET /_ah/remote_api?rtok=540434141271 HTTP/1.1" 401 57
-WARNING  2013-04-28 21:47:25,590 login.py:98] Ignoring invalid login cookie: admin:True:133354741122871651676
-WARNING  2013-04-28 21:47:25,611 login.py:98] Ignoring invalid login cookie: admin:True:133354741122871651676
-WARNING  2013-04-28 21:47:25,612 login.py:98] Ignoring invalid login cookie: admin:True:133354741122871651676
-INFO     2013-04-28 21:47:25,743 server.py:561] default: "GET /_ah/remote_api?rtok=540434141271 HTTP/1.1" 401 57
-INFO     2013-04-28 21:47:42,122 server.py:561] default: "GET /_ah/remote_api?rtok=203875429185 HTTP/1.1" 200 68
-INFO     2013-04-28 21:47:44,017 server.py:561] default: "GET /_ah/remote_api HTTP/1.1" 200 40
-INFO     2013-04-28 21:47:44,144 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 8
-INFO     2013-04-28 21:47:44,156 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 10
-INFO     2013-04-28 21:47:44,168 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 10
-INFO     2013-04-28 21:47:44,179 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 10
-INFO     2013-04-28 21:47:44,191 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 10
-INFO     2013-04-28 21:47:44,203 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 10
-INFO     2013-04-28 21:47:44,214 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 10
-INFO     2013-04-28 21:47:44,226 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 10
-INFO     2013-04-28 21:47:44,355 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 480
-INFO     2013-04-28 21:47:44,434 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 453
-INFO     2013-04-28 21:47:44,438 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 452
-INFO     2013-04-28 21:47:44,603 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 369
-INFO     2013-04-28 21:47:44,606 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 385
-INFO     2013-04-28 21:47:44,632 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 369
-INFO     2013-04-28 21:47:44,639 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 369
-INFO     2013-04-28 21:47:46,925 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 369
-INFO     2013-04-28 21:47:47,008 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 369
-INFO     2013-04-28 21:47:47,017 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 369
-INFO     2013-04-28 21:47:47,059 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 225
-INFO     2013-04-28 21:47:47,192 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 369
-INFO     2013-04-28 21:47:47,243 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 369
-INFO     2013-04-28 21:47:47,288 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 369
-INFO     2013-04-28 21:47:47,300 server.py:561] default: "POST /_ah/remote_api HTTP/1.1" 200 369
-INFO     2013-04-28 21:48:13,724 server.py:561] default: "GET / HTTP/1.1" 200 48573
-INFO     2013-04-28 21:48:13,784 server.py:561] default: "GET /static/css/admin_main.css HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:13,785 server.py:561] default: "GET /static/lib/require.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:13,961 server.py:561] default: "GET /static/img/noise.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:13,977 server.py:561] default: "GET /static/img/glyphicons-halflings-white.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:13,977 server.py:561] default: "GET /static/img/coffeecup.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:13,978 server.py:561] default: "GET /static/img/social/social_sprite_48.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:13,980 server.py:561] default: "GET /static/js/main.admin.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,015 server.py:561] default: "GET /static/js/elements/social.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,015 server.py:561] default: "GET /static/lib/underscore.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,015 server.py:561] default: "GET /static/js/config.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,018 server.py:561] default: "GET /static/js/test/main.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,020 server.py:561] default: "GET /static/js/view/language.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,020 server.py:561] default: "GET /static/js/view/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,022 server.py:561] default: "GET /static/js/elements/modal.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,022 server.py:561] default: "GET /static/js/controllers/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,025 server.py:561] default: "GET /static/js/controllers/admin/content.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,025 server.py:561] default: "GET /static/js/model/base.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,025 server.py:561] default: "GET /static/js/controllers/admin/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,026 server.py:561] default: "GET /static/js/controllers/admin/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,026 server.py:561] default: "GET /static/js/controllers/admin/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,027 server.py:561] default: "GET /static/lib/jquery-1.9.1.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,029 server.py:561] default: "GET /static/js/elements/dialog.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,080 server.py:561] default: "GET /static/js/test/integration.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,114 server.py:561] default: "GET /static/js/test/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,116 server.py:561] default: "GET /static/js/test/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,117 server.py:561] default: "GET /static/js/test/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,118 server.py:561] default: "GET /static/js/test/content.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,119 server.py:561] default: "GET /static/js/test/social.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,119 server.py:561] default: "GET /static/js/helpers/cookies.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,122 server.py:561] default: "GET /static/js/view/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,124 server.py:561] default: "GET /static/js/view/directives/body.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,126 server.py:561] default: "GET /static/js/view/directives/menu.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,130 server.py:561] default: "GET /static/js/view/common.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,131 server.py:561] default: "GET /static/js/controllers/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,132 server.py:561] default: "GET /static/js/elements/notification.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,133 server.py:561] default: "GET /static/js/helpers/fixit.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,134 server.py:561] default: "GET /static/js/helpers/i18n.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,134 server.py:561] default: "GET /static/js/elements/admin/controls.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,137 server.py:561] default: "GET /static/js/view/directives/admin/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,137 server.py:561] default: "GET /static/js/view/directives/content.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,137 server.py:561] default: "GET /static/js/helpers/transparency.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,138 server.py:561] default: "GET /static/js/view/directives/admin/bookingDetails.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,139 server.py:561] default: "GET /static/js/view/directives/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,155 server.py:561] default: "GET /static/lib/transparency.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,191 server.py:561] default: "GET /static/js/test/util.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,238 server.py:561] default: "GET /static/js/test/elements/dialog.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,240 server.py:561] default: "GET /static/js/helpers/date.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,243 server.py:561] default: "GET /static/js/view/directives/common.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,246 server.py:561] default: "GET /static/js/helpers/picaslide.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,247 server.py:561] default: "GET /static/js/controllers/booking_form.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,249 server.py:561] default: "GET /static/js/helpers/tooltip.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,251 server.py:561] default: "GET /static/js/helpers/form.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,251 server.py:561] default: "GET /static/js/helpers/wysihtml5.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,251 server.py:561] default: "GET /static/lib/bootstrap-datepicker/datepicker.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,252 server.py:561] default: "GET /static/js/view/directives/admin/user.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,258 server.py:561] default: "GET /static/lib/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,290 server.py:561] default: "GET /static/js/elements/fullscreen.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,293 server.py:561] default: "GET /static/lib/wysihtml5/js/bootstrap-wysihtml5.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,294 server.py:561] default: "GET /static/lib/picasa.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,298 server.py:561] default: "GET /static/lib/jquery-ui-1.8.20.custom.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,311 server.py:561] default: "GET /static/lib/wysihtml5/js/advanced_parser_rules.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,313 server.py:561] default: "GET /static/lib/wysihtml5/js/wysihtml5-0.3.0.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:14,314 server.py:561] default: "GET /static/lib/slides.min.jquery.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:15,089 server.py:561] default: "GET /static/img/picasa_s.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:15,105 server.py:561] default: "GET /static/fonts/Life_Savers/LifeSavers-Regular.ttf HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:16,075 server.py:561] default: "GET /static/img/glyphicons-halflings.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,217 server.py:561] default: "GET / HTTP/1.1" 200 48817
-INFO     2013-04-28 21:48:29,290 server.py:561] default: "GET /static/css/admin_main.css HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,291 server.py:561] default: "GET /static/lib/require.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,492 server.py:561] default: "GET /static/img/noise.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,508 server.py:561] default: "GET /static/img/coffeecup.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,511 server.py:561] default: "GET /static/img/glyphicons-halflings-white.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,513 server.py:561] default: "GET /static/js/main.admin.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,515 server.py:561] default: "GET /static/img/social/social_sprite_48.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,564 server.py:561] default: "GET /static/lib/underscore.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,564 server.py:561] default: "GET /static/js/elements/social.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,564 server.py:561] default: "GET /static/js/config.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,565 server.py:561] default: "GET /static/js/test/main.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,567 server.py:561] default: "GET /static/js/elements/modal.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,568 server.py:561] default: "GET /static/js/controllers/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,570 server.py:561] default: "GET /static/js/controllers/admin/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,570 server.py:561] default: "GET /static/js/view/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,572 server.py:561] default: "GET /static/js/model/base.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,572 server.py:561] default: "GET /static/js/controllers/admin/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,573 server.py:561] default: "GET /static/js/view/language.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,573 server.py:561] default: "GET /static/js/controllers/admin/content.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,573 server.py:561] default: "GET /static/js/controllers/admin/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,704 server.py:561] default: "GET /static/js/elements/dialog.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,704 server.py:561] default: "GET /static/lib/jquery-1.9.1.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,720 server.py:561] default: "GET /static/js/test/integration.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,724 server.py:561] default: "GET /static/js/test/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,725 server.py:561] default: "GET /static/js/test/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,726 server.py:561] default: "GET /static/js/test/social.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,727 server.py:561] default: "GET /static/js/test/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,729 server.py:561] default: "GET /static/js/elements/notification.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,731 server.py:561] default: "GET /static/js/helpers/i18n.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,732 server.py:561] default: "GET /static/js/elements/admin/controls.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,732 server.py:561] default: "GET /static/js/helpers/fixit.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,734 server.py:561] default: "GET /static/js/test/content.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,734 server.py:561] default: "GET /static/js/controllers/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,735 server.py:561] default: "GET /static/js/helpers/transparency.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,736 server.py:561] default: "GET /static/js/view/directives/menu.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,737 server.py:561] default: "GET /static/js/view/directives/body.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,737 server.py:561] default: "GET /static/js/view/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,764 server.py:561] default: "GET /static/js/view/common.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,786 server.py:561] default: "GET /static/js/view/directives/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,788 server.py:561] default: "GET /static/js/helpers/cookies.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,791 server.py:561] default: "GET /static/js/view/directives/admin/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,791 server.py:561] default: "GET /static/js/view/directives/admin/bookingDetails.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,792 server.py:561] default: "GET /static/js/view/directives/content.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,928 server.py:561] default: "GET /static/lib/transparency.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,941 server.py:561] default: "GET /static/js/test/util.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,945 server.py:561] default: "GET /static/js/test/elements/dialog.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,946 server.py:561] default: "GET /static/js/helpers/form.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,947 server.py:561] default: "GET /static/js/helpers/date.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,948 server.py:561] default: "GET /static/js/helpers/tooltip.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,949 server.py:561] default: "GET /static/js/helpers/wysihtml5.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,950 server.py:561] default: "GET /static/js/controllers/booking_form.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,950 server.py:561] default: "GET /static/js/view/directives/common.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,950 server.py:561] default: "GET /static/js/helpers/picaslide.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,966 server.py:561] default: "GET /static/lib/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,967 server.py:561] default: "GET /static/lib/bootstrap-datepicker/datepicker.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:29,967 server.py:561] default: "GET /static/js/view/directives/admin/user.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:30,125 server.py:561] default: "GET /static/lib/wysihtml5/js/bootstrap-wysihtml5.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:30,126 server.py:561] default: "GET /static/js/elements/fullscreen.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:30,154 server.py:561] default: "GET /static/lib/picasa.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:30,172 server.py:561] default: "GET /static/lib/jquery-ui-1.8.20.custom.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:30,181 server.py:561] default: "GET /static/lib/wysihtml5/js/wysihtml5-0.3.0.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:30,182 server.py:561] default: "GET /static/lib/wysihtml5/js/advanced_parser_rules.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:30,248 server.py:561] default: "GET /static/lib/slides.min.jquery.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:48:30,897 server.py:561] default: "GET /static/img/picasa_s.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:49:06,374 base.py:94] Populate weight with 0
-INFO     2013-04-28 21:49:06,374 base.py:94] Populate album_url with https://picasaweb.google.com/116008649935898699063/Apartman
-ERROR    2013-04-28 21:49:06,385 app.py:1306] Exception on /admin/bookables/ [POST]
-Traceback (most recent call last):
-  File "/home/albertmatyi/work/python/hotelmotel/flask/app.py", line 1687, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/albertmatyi/work/python/hotelmotel/flask/app.py", line 1360, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/albertmatyi/work/python/hotelmotel/flask/app.py", line 1358, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/albertmatyi/work/python/hotelmotel/flask/app.py", line 1344, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/albertmatyi/work/python/hotelmotel/application/decorators.py", line 29, in decorated_view
-    return func(*args, **kwargs)
-  File "/home/albertmatyi/work/python/hotelmotel/application/controllers/bookable.py", line 18, in admin_bookables
-    return '{ "id" : "'+str(helpers.save_obj_from_req(BookableModel).key().id())+'" }';
-  File "/home/albertmatyi/work/python/hotelmotel/application/controllers/helpers.py", line 16, in save_obj_from_req
-    db_obj.populate(data)
-  File "/home/albertmatyi/work/python/hotelmotel/application/models/i18n.py", line 89, in populate
-    super(I18nableModel, self).populate(dictionary)
-  File "/home/albertmatyi/work/python/hotelmotel/application/models/base.py", line 83, in populate
-    self.populate_field(dictionary, key)
-  File "/home/albertmatyi/work/python/hotelmotel/application/models/bookable.py", line 50, in populate_field
-    arr += [str(float(pcs[lid]['values'][i]))]
-ValueError: could not convert string to float: 
-INFO     2013-04-28 21:49:06,390 server.py:561] default: "POST /admin/bookables/ HTTP/1.1" 500 68
-INFO     2013-04-28 21:50:10,757 server.py:561] default: "GET / HTTP/1.1" 200 48573
-INFO     2013-04-28 21:50:10,862 server.py:561] default: "GET /static/css/admin_main.css HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:10,864 server.py:561] default: "GET /static/lib/require.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,300 server.py:561] default: "GET /static/img/noise.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,300 server.py:561] default: "GET /static/img/coffeecup.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,323 server.py:561] default: "GET /static/img/glyphicons-halflings-white.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,324 server.py:561] default: "GET /static/img/social/social_sprite_48.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,324 server.py:561] default: "GET /static/js/main.admin.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,477 server.py:561] default: "GET /static/js/config.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,479 server.py:561] default: "GET /static/js/test/main.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,479 server.py:561] default: "GET /static/lib/underscore.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,481 server.py:561] default: "GET /static/js/view/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,482 server.py:561] default: "GET /static/js/elements/social.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,485 server.py:561] default: "GET /static/js/elements/modal.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,486 server.py:561] default: "GET /static/js/controllers/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,487 server.py:561] default: "GET /static/js/view/language.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,488 server.py:561] default: "GET /static/js/controllers/admin/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,488 server.py:561] default: "GET /static/js/model/base.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,489 server.py:561] default: "GET /static/js/controllers/admin/content.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,490 server.py:561] default: "GET /static/js/controllers/admin/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,490 server.py:561] default: "GET /static/js/controllers/admin/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,614 server.py:561] default: "GET /static/js/test/integration.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,615 server.py:561] default: "GET /static/js/test/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,617 server.py:561] default: "GET /static/js/test/content.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,617 server.py:561] default: "GET /static/js/test/social.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,618 server.py:561] default: "GET /static/lib/jquery-1.9.1.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,619 server.py:561] default: "GET /static/js/test/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,621 server.py:561] default: "GET /static/js/view/directives/body.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,622 server.py:561] default: "GET /static/js/view/directives/menu.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,621 server.py:561] default: "GET /static/js/test/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,624 server.py:561] default: "GET /static/js/view/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,625 server.py:561] default: "GET /static/js/elements/notification.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,626 server.py:561] default: "GET /static/js/view/common.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,628 server.py:561] default: "GET /static/js/elements/dialog.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,630 server.py:561] default: "GET /static/js/elements/admin/controls.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,630 server.py:561] default: "GET /static/js/helpers/i18n.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,630 server.py:561] default: "GET /static/js/controllers/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,631 server.py:561] default: "GET /static/js/helpers/fixit.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,635 server.py:561] default: "GET /static/js/helpers/cookies.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,635 server.py:561] default: "GET /static/js/helpers/transparency.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,636 server.py:561] default: "GET /static/js/view/directives/content.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,637 server.py:561] default: "GET /static/js/view/directives/admin/bookingDetails.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,637 server.py:561] default: "GET /static/js/view/directives/admin/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,638 server.py:561] default: "GET /static/js/view/directives/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,980 server.py:561] default: "GET /static/js/test/util.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,981 server.py:561] default: "GET /static/js/test/elements/dialog.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,982 server.py:561] default: "GET /static/lib/transparency.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,985 server.py:561] default: "GET /static/js/view/directives/common.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,985 server.py:561] default: "GET /static/js/helpers/picaslide.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,985 server.py:561] default: "GET /static/js/helpers/date.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,994 server.py:561] default: "GET /static/js/controllers/booking_form.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,994 server.py:561] default: "GET /static/js/helpers/tooltip.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,995 server.py:561] default: "GET /static/js/helpers/wysihtml5.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,995 server.py:561] default: "GET /static/js/view/directives/admin/user.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,996 server.py:561] default: "GET /static/js/helpers/form.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:11,999 server.py:561] default: "GET /static/lib/bootstrap-datepicker/datepicker.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:12,000 server.py:561] default: "GET /static/lib/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:12,156 server.py:561] default: "GET /static/js/elements/fullscreen.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:12,158 server.py:561] default: "GET /static/lib/wysihtml5/js/bootstrap-wysihtml5.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:12,178 server.py:561] default: "GET /static/lib/picasa.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:12,204 server.py:561] default: "GET /static/lib/jquery-ui-1.8.20.custom.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:12,221 server.py:561] default: "GET /static/lib/wysihtml5/js/advanced_parser_rules.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:12,222 server.py:561] default: "GET /static/lib/wysihtml5/js/wysihtml5-0.3.0.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:12,264 server.py:561] default: "GET /static/lib/slides.min.jquery.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:12,775 server.py:561] default: "GET /static/img/picasa_s.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:50:25,167 base.py:94] Populate weight with 
-INFO     2013-04-28 21:50:25,283 server.py:561] default: "POST /admin/categories/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:50:27,626 base.py:94] Populate weight with 
-INFO     2013-04-28 21:50:27,764 server.py:561] default: "POST /admin/categories/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:50:30,756 server.py:561] default: "POST /admin/categories/5838406743490560 HTTP/1.1" 200 18
-INFO     2013-04-28 21:50:32,868 base.py:94] Populate weight with 
-INFO     2013-04-28 21:50:32,961 server.py:561] default: "POST /admin/categories/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:50:34,615 base.py:94] Populate weight with 
-INFO     2013-04-28 21:50:34,721 server.py:561] default: "POST /admin/categories/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:50:37,117 server.py:561] default: "POST /admin/categories/4642138092470272 HTTP/1.1" 200 18
-INFO     2013-04-28 21:50:39,367 base.py:94] Populate weight with 
-INFO     2013-04-28 21:50:39,481 server.py:561] default: "POST /admin/categories/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:50:41,140 server.py:561] default: "POST /admin/categories/5627300510957568 HTTP/1.1" 200 18
-INFO     2013-04-28 21:50:43,427 server.py:561] default: "POST /admin/categories/6612462929444864 HTTP/1.1" 200 18
-INFO     2013-04-28 21:50:45,507 base.py:94] Populate weight with 
-INFO     2013-04-28 21:50:45,606 server.py:561] default: "POST /admin/categories/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:50:47,624 base.py:94] Populate weight with 
-INFO     2013-04-28 21:50:47,752 server.py:561] default: "POST /admin/contents/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:50:49,226 base.py:94] Populate weight with 
-INFO     2013-04-28 21:50:49,369 server.py:561] default: "POST /admin/contents/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:50:50,848 server.py:561] default: "POST /admin/contents/4926911604064256 HTTP/1.1" 200 18
-INFO     2013-04-28 21:50:53,563 base.py:94] Populate weight with 
-INFO     2013-04-28 21:50:53,674 server.py:561] default: "POST /admin/contents/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:50:55,884 base.py:94] Populate weight with 
-INFO     2013-04-28 21:50:55,995 server.py:561] default: "POST /admin/contents/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:50:59,043 server.py:561] default: "POST /admin/contents/6263917743439872 HTTP/1.1" 200 18
-INFO     2013-04-28 21:51:01,405 base.py:94] Populate weight with 
-INFO     2013-04-28 21:51:01,519 server.py:561] default: "POST /admin/contents/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:51:04,015 server.py:561] default: "POST /admin/contents/5665783417929728 HTTP/1.1" 200 18
-INFO     2013-04-28 21:51:06,448 server.py:561] default: "POST /admin/contents/5278755324952576 HTTP/1.1" 200 18
-INFO     2013-04-28 21:51:08,524 server.py:561] default: "POST /admin/categories/5912074022551552 HTTP/1.1" 200 18
-INFO     2013-04-28 21:51:10,493 base.py:94] Populate weight with 
-INFO     2013-04-28 21:51:10,589 server.py:561] default: "POST /admin/categories/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:51:13,143 base.py:94] Populate album_url with 
-INFO     2013-04-28 21:51:13,144 base.py:94] Populate places with 3
-INFO     2013-04-28 21:51:13,181 base.py:94] Populate weight with 
-INFO     2013-04-28 21:51:13,181 base.py:94] Populate quantity with 4
-INFO     2013-04-28 21:51:13,280 server.py:561] default: "POST /admin/bookables/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:51:15,282 base.py:94] Populate weight with 
-INFO     2013-04-28 21:51:15,282 base.py:94] Populate places with 3
-INFO     2013-04-28 21:51:15,286 base.py:94] Populate album_url with 
-INFO     2013-04-28 21:51:15,287 base.py:94] Populate quantity with 4
-INFO     2013-04-28 21:51:15,460 server.py:561] default: "POST /admin/bookables/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:51:18,477 server.py:561] default: "POST /admin/bookables/6650945836417024 HTTP/1.1" 200 18
-INFO     2013-04-28 21:51:21,367 base.py:94] Populate album_url with 
-INFO     2013-04-28 21:51:21,367 base.py:94] Populate weight with 
-INFO     2013-04-28 21:51:21,399 base.py:94] Populate places with 3
-INFO     2013-04-28 21:51:21,399 base.py:94] Populate quantity with 4
-INFO     2013-04-28 21:51:21,502 server.py:561] default: "POST /admin/bookables/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:51:23,867 base.py:94] Populate album_url with 
-INFO     2013-04-28 21:51:23,893 base.py:94] Populate places with 3
-INFO     2013-04-28 21:51:23,893 base.py:94] Populate quantity with 4
-INFO     2013-04-28 21:51:23,897 base.py:94] Populate weight with 
-INFO     2013-04-28 21:51:23,999 server.py:561] default: "POST /admin/bookables/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:51:26,160 server.py:561] default: "POST /admin/bookables/5454677185396736 HTTP/1.1" 200 18
-INFO     2013-04-28 21:51:28,898 base.py:94] Populate weight with 
-INFO     2013-04-28 21:51:28,909 base.py:94] Populate places with 3
-INFO     2013-04-28 21:51:28,909 base.py:94] Populate quantity with 4
-INFO     2013-04-28 21:51:28,910 base.py:94] Populate album_url with 
-INFO     2013-04-28 21:51:29,030 server.py:561] default: "POST /admin/bookables/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:51:31,091 server.py:561] default: "POST /admin/bookables/4803766301753344 HTTP/1.1" 200 18
-INFO     2013-04-28 21:51:33,597 server.py:561] default: "POST /admin/bookables/6158364627173376 HTTP/1.1" 200 18
-INFO     2013-04-28 21:51:35,974 server.py:561] default: "POST /admin/categories/4680620999442432 HTTP/1.1" 200 18
-INFO     2013-04-28 21:51:37,740 base.py:94] Populate weight with 
-INFO     2013-04-28 21:51:37,844 server.py:561] default: "POST /admin/categories/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:51:40,257 base.py:94] Populate quantity with 4
-INFO     2013-04-28 21:51:40,257 base.py:94] Populate weight with 
-INFO     2013-04-28 21:51:40,299 base.py:94] Populate places with 3
-INFO     2013-04-28 21:51:40,299 base.py:94] Populate album_url with 
-INFO     2013-04-28 21:51:40,425 server.py:561] default: "POST /admin/bookables/ HTTP/1.1" 200 29
-INFO     2013-04-28 21:51:43,656 booking.py:72] save booking form: {u'booking': {u'message': u'', u'quantity': u'2', u'book_until': u'29-04-2013', u'guests': u'3', u'book_from': u'28-04-2013', u'bookable': u'5155610022641664'}, u'user': {u'email': u'john.doe@mail.com', u'full_name': u'John Doe', u'phone': u'+0123456789'}}
-INFO     2013-04-28 21:51:43,868 mail_stub.py:138] MailService.Send
-  From: Ferdinand Motel<albertmatyi@gmail.com>
-  To: John Doe<john.doe@mail.com>
-  Subject: Your booking request at Ferdinand Motel 
-  Body:
-    Content-type: text/html
-    Data length: 636
-/bin/sh: 1: sendmail: not found
-ERROR    2013-04-28 21:51:43,878 mail_stub.py:253] Error sending mail using sendmail: [Errno 32] Broken pipe
-INFO     2013-04-28 21:51:43,886 mail_stub.py:138] MailService.Send
-  From: Ferdinand Motel<albertmatyi@gmail.com>
-  To: Owner <zozipus@yahoo.com>, Developer <albertmatyi@gmail.com>
-  Subject: A new reservation has been made - Ferdinand Motel
-  Body:
-    Content-type: text/html
-    Data length: 908
-/bin/sh: 1: sendmail: not found
-ERROR    2013-04-28 21:51:43,894 mail_stub.py:253] Error sending mail using sendmail: [Errno 32] Broken pipe
-INFO     2013-04-28 21:51:43,900 server.py:561] default: "POST /bookings/ HTTP/1.1" 200 98
-INFO     2013-04-28 21:51:46,162 server.py:561] default: "POST /admin/categories/6351878673661952 HTTP/1.1" 200 18
-INFO     2013-04-28 21:56:45,296 server.py:561] default: "GET / HTTP/1.1" 200 48573
-INFO     2013-04-28 21:56:45,351 server.py:561] default: "GET /static/css/admin_main.css HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,352 server.py:561] default: "GET /static/lib/require.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,467 server.py:561] default: "GET /static/img/noise.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,472 server.py:561] default: "GET /static/img/coffeecup.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,473 server.py:561] default: "GET /static/img/glyphicons-halflings-white.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,476 server.py:561] default: "GET /static/img/social/social_sprite_48.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,477 server.py:561] default: "GET /static/js/main.admin.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,524 server.py:561] default: "GET /static/js/elements/social.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,525 server.py:561] default: "GET /static/js/config.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,526 server.py:561] default: "GET /static/lib/underscore.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,526 server.py:561] default: "GET /static/js/test/main.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,528 server.py:561] default: "GET /static/js/elements/modal.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,530 server.py:561] default: "GET /static/js/model/base.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,531 server.py:561] default: "GET /static/js/view/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,533 server.py:561] default: "GET /static/js/view/language.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,533 server.py:561] default: "GET /static/js/controllers/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,534 server.py:561] default: "GET /static/js/controllers/admin/content.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,534 server.py:561] default: "GET /static/js/controllers/admin/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,535 server.py:561] default: "GET /static/js/controllers/admin/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,535 server.py:561] default: "GET /static/js/controllers/admin/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,541 server.py:561] default: "GET /static/lib/jquery-1.9.1.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,541 server.py:561] default: "GET /static/js/elements/dialog.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,644 server.py:561] default: "GET /static/js/test/integration.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,644 server.py:561] default: "GET /static/js/test/social.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,645 server.py:561] default: "GET /static/js/test/category.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,646 server.py:561] default: "GET /static/js/test/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,646 server.py:561] default: "GET /static/js/test/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,647 server.py:561] default: "GET /static/js/test/content.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,647 server.py:561] default: "GET /static/js/elements/notification.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,655 server.py:561] default: "GET /static/js/view/common.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,656 server.py:561] default: "GET /static/js/view/directives/menu.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,657 server.py:561] default: "GET /static/js/view/directives/body.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,657 server.py:561] default: "GET /static/js/view/bookable.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,658 server.py:561] default: "GET /static/js/controllers/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,660 server.py:561] default: "GET /static/js/helpers/cookies.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,660 server.py:561] default: "GET /static/js/helpers/fixit.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,662 server.py:561] default: "GET /static/js/helpers/transparency.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,663 server.py:561] default: "GET /static/js/helpers/i18n.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,668 server.py:561] default: "GET /static/js/view/directives/content.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,668 server.py:561] default: "GET /static/js/view/directives/bookable.js HTTP/1.1" 200 1658
-INFO     2013-04-28 21:56:45,669 server.py:561] default: "GET /static/js/elements/admin/controls.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,670 server.py:561] default: "GET /static/js/view/directives/admin/booking.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,670 server.py:561] default: "GET /static/js/view/directives/admin/bookingDetails.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,671 server.py:561] default: "GET /static/lib/transparency.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,796 server.py:561] default: "GET /static/js/test/util.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,798 server.py:561] default: "GET /static/js/test/elements/dialog.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,812 server.py:561] default: "GET /static/js/helpers/date.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,848 server.py:561] default: "GET /static/js/view/directives/common.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,852 server.py:561] default: "GET /static/js/helpers/picaslide.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,863 server.py:561] default: "GET /static/js/controllers/booking_form.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,865 server.py:561] default: "GET /static/js/helpers/tooltip.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,865 server.py:561] default: "GET /static/js/helpers/form.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,865 server.py:561] default: "GET /static/js/helpers/wysihtml5.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,866 server.py:561] default: "GET /static/js/view/directives/admin/user.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,869 server.py:561] default: "GET /static/lib/bootstrap/js/bootstrap.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,870 server.py:561] default: "GET /static/lib/bootstrap-datepicker/datepicker.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,911 server.py:561] default: "GET /static/js/elements/fullscreen.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,911 server.py:561] default: "GET /static/lib/wysihtml5/js/bootstrap-wysihtml5.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,916 server.py:561] default: "GET /static/lib/picasa.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,918 server.py:561] default: "GET /static/lib/jquery-ui-1.8.20.custom.min.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,942 server.py:561] default: "GET /static/lib/wysihtml5/js/advanced_parser_rules.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,943 server.py:561] default: "GET /static/lib/wysihtml5/js/wysihtml5-0.3.0.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:45,950 server.py:561] default: "GET /static/lib/slides.min.jquery.js HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:46,616 server.py:561] default: "GET /static/img/picasa_s.png HTTP/1.1" 304 -
-INFO     2013-04-28 21:56:47,526 server.py:561] default: "GET /static/img/glyphicons-halflings.png HTTP/1.1" 304 -
+INFO     2013-04-28 23:16:40,196 sdk_update_checker.py:244] Checking for updates to the SDK.
+INFO     2013-04-28 23:16:40,579 sdk_update_checker.py:272] The SDK is up to date.
+INFO     2013-04-28 23:16:40,596 api_server.py:152] Starting API server at: http://localhost:34688
+INFO     2013-04-28 23:16:40,654 dispatcher.py:150] Starting server "default" running at: http://0.0.0.0:8080
+INFO     2013-04-28 23:16:40,660 admin_server.py:117] Starting admin server at: http://localhost:8000
+INFO     2013-04-28 23:16:45,182 server.py:561] default: "GET / HTTP/1.1" 200 14067
+INFO     2013-04-28 23:16:45,224 server.py:561] default: "GET /static/css/main.css HTTP/1.1" 200 165204
+INFO     2013-04-28 23:16:45,225 server.py:561] default: "GET /static/lib/require.js HTTP/1.1" 200 14761
+INFO     2013-04-28 23:16:45,295 server.py:561] default: "GET /static/img/noise.png HTTP/1.1" 200 3910
+INFO     2013-04-28 23:16:45,297 server.py:561] default: "GET /static/img/coffeecup.png HTTP/1.1" 200 25879
+INFO     2013-04-28 23:16:45,298 server.py:561] default: "GET /static/img/social/social_sprite_48.png HTTP/1.1" 200 16398
+INFO     2013-04-28 23:16:45,299 server.py:561] default: "GET /static/js/main.js HTTP/1.1" 200 1710
+INFO     2013-04-28 23:16:45,299 server.py:561] default: "GET /static/fonts/Great_Vibes/GreatVibes-Regular.ttf HTTP/1.1" 200 106004
+INFO     2013-04-28 23:16:45,365 server.py:561] default: "GET /static/js/config.js HTTP/1.1" 200 488
+INFO     2013-04-28 23:16:45,365 server.py:561] default: "GET /static/js/elements/modal.js HTTP/1.1" 200 1091
+INFO     2013-04-28 23:16:45,367 server.py:561] default: "GET /static/js/elements/social.js HTTP/1.1" 200 1375
+INFO     2013-04-28 23:16:45,368 server.py:561] default: "GET /static/lib/underscore.min.js HTTP/1.1" 200 13473
+INFO     2013-04-28 23:16:45,368 server.py:561] default: "GET /static/js/model/base.js HTTP/1.1" 200 1693
+INFO     2013-04-28 23:16:45,370 server.py:561] default: "GET /static/js/view/category.js HTTP/1.1" 200 892
+INFO     2013-04-28 23:16:45,370 server.py:561] default: "GET /static/js/controllers/category.js HTTP/1.1" 200 579
+INFO     2013-04-28 23:16:45,371 server.py:561] default: "GET /static/js/view/language.js HTTP/1.1" 200 514
+INFO     2013-04-28 23:16:45,397 server.py:561] default: "GET /static/js/elements/notification.js HTTP/1.1" 200 582
+INFO     2013-04-28 23:16:45,397 server.py:561] default: "GET /static/js/view/bookable.js HTTP/1.1" 200 908
+INFO     2013-04-28 23:16:45,399 server.py:561] default: "GET /static/lib/jquery-1.9.1.min.js HTTP/1.1" 200 92629
+INFO     2013-04-28 23:16:45,399 server.py:561] default: "GET /static/js/view/directives/body.js HTTP/1.1" 200 781
+INFO     2013-04-28 23:16:45,399 server.py:561] default: "GET /static/js/view/directives/menu.js HTTP/1.1" 200 858
+INFO     2013-04-28 23:16:45,400 server.py:561] default: "GET /static/js/elements/dialog.js HTTP/1.1" 200 1957
+INFO     2013-04-28 23:16:45,401 server.py:561] default: "GET /static/js/view/common.js HTTP/1.1" 200 305
+INFO     2013-04-28 23:16:45,403 server.py:561] default: "GET /static/js/controllers/booking.js HTTP/1.1" 200 4135
+INFO     2013-04-28 23:16:45,404 server.py:561] default: "GET /static/js/helpers/fixit.js HTTP/1.1" 200 584
+INFO     2013-04-28 23:16:45,404 server.py:561] default: "GET /static/js/helpers/cookies.js HTTP/1.1" 200 375
+INFO     2013-04-28 23:16:45,475 server.py:561] default: "GET /static/js/view/directives/bookable.js HTTP/1.1" 200 1658
+INFO     2013-04-28 23:16:45,475 server.py:561] default: "GET /static/lib/transparency.min.js HTTP/1.1" 200 5749
+INFO     2013-04-28 23:16:45,477 server.py:561] default: "GET /static/js/helpers/picaslide.js HTTP/1.1" 200 1931
+INFO     2013-04-28 23:16:45,477 server.py:561] default: "GET /static/js/helpers/i18n.js HTTP/1.1" 200 3601
+INFO     2013-04-28 23:16:45,478 server.py:561] default: "GET /static/js/view/directives/content.js HTTP/1.1" 200 419
+INFO     2013-04-28 23:16:45,479 server.py:561] default: "GET /static/js/view/directives/common.js HTTP/1.1" 200 961
+INFO     2013-04-28 23:16:45,481 server.py:561] default: "GET /static/lib/bootstrap-datepicker/datepicker.js HTTP/1.1" 200 25615
+INFO     2013-04-28 23:16:45,482 server.py:561] default: "GET /static/js/controllers/booking_form.js HTTP/1.1" 200 5931
+INFO     2013-04-28 23:16:45,483 server.py:561] default: "GET /static/js/helpers/tooltip.js HTTP/1.1" 200 673
+INFO     2013-04-28 23:16:45,508 server.py:561] default: "GET /static/js/elements/fullscreen.js HTTP/1.1" 200 2144
+INFO     2013-04-28 23:16:45,510 server.py:561] default: "GET /static/lib/picasa.js HTTP/1.1" 200 2991
+INFO     2013-04-28 23:16:45,510 server.py:561] default: "GET /static/js/helpers/form.js HTTP/1.1" 200 2488
+INFO     2013-04-28 23:16:45,511 server.py:561] default: "GET /static/js/helpers/date.js HTTP/1.1" 200 684
+INFO     2013-04-28 23:16:45,510 server.py:561] default: "GET /static/js/helpers/wysihtml5.js HTTP/1.1" 200 567
+INFO     2013-04-28 23:16:45,512 server.py:561] default: "GET /static/lib/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 28538
+INFO     2013-04-28 23:16:45,535 server.py:561] default: "GET /static/lib/jquery-ui-1.8.20.custom.min.js HTTP/1.1" 200 17199
+INFO     2013-04-28 23:16:45,547 server.py:561] default: "GET /static/lib/wysihtml5/js/bootstrap-wysihtml5.js HTTP/1.1" 200 17042
+INFO     2013-04-28 23:16:45,558 server.py:561] default: "GET /static/lib/slides.min.jquery.js HTTP/1.1" 200 6784
+INFO     2013-04-28 23:16:45,559 server.py:561] default: "GET /static/lib/wysihtml5/js/wysihtml5-0.3.0.js HTTP/1.1" 200 332047
+INFO     2013-04-28 23:16:45,559 server.py:561] default: "GET /static/lib/wysihtml5/js/advanced_parser_rules.js HTTP/1.1" 200 14171
+INFO     2013-04-28 23:16:47,872 server.py:561] default: "GET / HTTP/1.1" 200 14067
+INFO     2013-04-28 23:16:47,901 server.py:561] default: "GET /static/css/main.css HTTP/1.1" 200 165204
+INFO     2013-04-28 23:16:47,902 server.py:561] default: "GET /static/lib/require.js HTTP/1.1" 200 14761
+INFO     2013-04-28 23:16:47,988 server.py:561] default: "GET /static/img/coffeecup.png HTTP/1.1" 200 25879
+INFO     2013-04-28 23:16:47,989 server.py:561] default: "GET /static/js/main.js HTTP/1.1" 200 1710
+INFO     2013-04-28 23:16:47,989 server.py:561] default: "GET /static/img/noise.png HTTP/1.1" 200 3910
+INFO     2013-04-28 23:16:47,991 server.py:561] default: "GET /static/img/social/social_sprite_48.png HTTP/1.1" 200 16398
+INFO     2013-04-28 23:16:48,014 server.py:561] default: "GET /static/lib/underscore.min.js HTTP/1.1" 200 13473
+INFO     2013-04-28 23:16:48,018 server.py:561] default: "GET /static/js/elements/modal.js HTTP/1.1" 200 1091
+INFO     2013-04-28 23:16:48,018 server.py:561] default: "GET /static/js/elements/social.js HTTP/1.1" 200 1375
+INFO     2013-04-28 23:16:48,019 server.py:561] default: "GET /static/js/model/base.js HTTP/1.1" 200 1693
+INFO     2013-04-28 23:16:48,020 server.py:561] default: "GET /static/js/config.js HTTP/1.1" 200 488
+INFO     2013-04-28 23:16:48,021 server.py:561] default: "GET /static/js/view/category.js HTTP/1.1" 200 892
+INFO     2013-04-28 23:16:48,022 server.py:561] default: "GET /static/js/view/language.js HTTP/1.1" 200 514
+INFO     2013-04-28 23:16:48,022 server.py:561] default: "GET /static/js/controllers/category.js HTTP/1.1" 200 579
+INFO     2013-04-28 23:16:48,067 server.py:561] default: "GET /static/js/view/bookable.js HTTP/1.1" 200 908
+INFO     2013-04-28 23:16:48,067 server.py:561] default: "GET /static/js/elements/dialog.js HTTP/1.1" 200 1957
+INFO     2013-04-28 23:16:48,069 server.py:561] default: "GET /static/js/elements/notification.js HTTP/1.1" 200 582
+INFO     2013-04-28 23:16:48,070 server.py:561] default: "GET /static/js/view/directives/menu.js HTTP/1.1" 200 858
+INFO     2013-04-28 23:16:48,071 server.py:561] default: "GET /static/lib/jquery-1.9.1.min.js HTTP/1.1" 200 92629
+INFO     2013-04-28 23:16:48,073 server.py:561] default: "GET /static/js/view/directives/body.js HTTP/1.1" 200 781
+INFO     2013-04-28 23:16:48,074 server.py:561] default: "GET /static/js/controllers/booking.js HTTP/1.1" 200 4135
+INFO     2013-04-28 23:16:48,074 server.py:561] default: "GET /static/js/view/common.js HTTP/1.1" 200 305
+INFO     2013-04-28 23:16:48,074 server.py:561] default: "GET /static/js/helpers/fixit.js HTTP/1.1" 200 584
+INFO     2013-04-28 23:16:48,075 server.py:561] default: "GET /static/js/helpers/cookies.js HTTP/1.1" 200 375
+INFO     2013-04-28 23:16:48,155 server.py:561] default: "GET /static/js/view/directives/content.js HTTP/1.1" 200 419
+INFO     2013-04-28 23:16:48,155 server.py:561] default: "GET /static/js/helpers/i18n.js HTTP/1.1" 200 3601
+INFO     2013-04-28 23:16:48,155 server.py:561] default: "GET /static/js/helpers/tooltip.js HTTP/1.1" 200 673
+INFO     2013-04-28 23:16:48,158 server.py:561] default: "GET /static/js/view/directives/bookable.js HTTP/1.1" 200 1658
+INFO     2013-04-28 23:16:48,158 server.py:561] default: "GET /static/js/view/directives/common.js HTTP/1.1" 200 961
+INFO     2013-04-28 23:16:48,159 server.py:561] default: "GET /static/lib/bootstrap-datepicker/datepicker.js HTTP/1.1" 200 25615
+INFO     2013-04-28 23:16:48,160 server.py:561] default: "GET /static/js/helpers/picaslide.js HTTP/1.1" 200 1931
+INFO     2013-04-28 23:16:48,162 server.py:561] default: "GET /static/lib/transparency.min.js HTTP/1.1" 200 5749
+INFO     2013-04-28 23:16:48,163 server.py:561] default: "GET /static/js/controllers/booking_form.js HTTP/1.1" 200 5931
+INFO     2013-04-28 23:16:48,177 server.py:561] default: "GET /static/js/helpers/form.js HTTP/1.1" 200 2488
+INFO     2013-04-28 23:16:48,182 server.py:561] default: "GET /static/js/helpers/wysihtml5.js HTTP/1.1" 200 567
+INFO     2013-04-28 23:16:48,186 server.py:561] default: "GET /static/js/elements/fullscreen.js HTTP/1.1" 200 2144
+INFO     2013-04-28 23:16:48,192 server.py:561] default: "GET /static/lib/picasa.js HTTP/1.1" 200 2991
+INFO     2013-04-28 23:16:48,192 server.py:561] default: "GET /static/lib/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 28538
+INFO     2013-04-28 23:16:48,194 server.py:561] default: "GET /static/js/helpers/date.js HTTP/1.1" 200 684
+INFO     2013-04-28 23:16:48,199 server.py:561] default: "GET /static/lib/wysihtml5/js/bootstrap-wysihtml5.js HTTP/1.1" 200 17042
+INFO     2013-04-28 23:16:48,205 server.py:561] default: "GET /static/lib/jquery-ui-1.8.20.custom.min.js HTTP/1.1" 200 17199
+INFO     2013-04-28 23:16:48,227 server.py:561] default: "GET /static/lib/wysihtml5/js/advanced_parser_rules.js HTTP/1.1" 200 14171
+INFO     2013-04-28 23:16:48,227 server.py:561] default: "GET /static/lib/slides.min.jquery.js HTTP/1.1" 200 6784
+INFO     2013-04-28 23:16:48,230 server.py:561] default: "GET /static/lib/wysihtml5/js/wysihtml5-0.3.0.js HTTP/1.1" 200 332047
+INFO     2013-04-28 23:16:51,154 server.py:561] default: "GET / HTTP/1.1" 200 14067
+INFO     2013-04-28 23:16:51,192 server.py:561] default: "GET /static/css/main.css HTTP/1.1" 200 165204
+INFO     2013-04-28 23:16:51,194 server.py:561] default: "GET /static/lib/require.js HTTP/1.1" 200 14761
+INFO     2013-04-28 23:16:51,513 server.py:561] default: "GET /static/js/main.js HTTP/1.1" 200 1710
+INFO     2013-04-28 23:16:51,515 server.py:561] default: "GET /static/img/noise.png HTTP/1.1" 200 3910
+INFO     2013-04-28 23:16:51,515 server.py:561] default: "GET /static/img/coffeecup.png HTTP/1.1" 200 25879
+INFO     2013-04-28 23:16:51,516 server.py:561] default: "GET /static/img/social/social_sprite_48.png HTTP/1.1" 200 16398
+INFO     2013-04-28 23:16:51,559 server.py:561] default: "GET /static/lib/underscore.min.js HTTP/1.1" 200 13473
+INFO     2013-04-28 23:16:51,563 server.py:561] default: "GET /static/js/config.js HTTP/1.1" 200 488
+INFO     2013-04-28 23:16:51,564 server.py:561] default: "GET /static/js/elements/modal.js HTTP/1.1" 200 1091
+INFO     2013-04-28 23:16:51,564 server.py:561] default: "GET /static/js/model/base.js HTTP/1.1" 200 1693
+INFO     2013-04-28 23:16:51,565 server.py:561] default: "GET /static/js/view/language.js HTTP/1.1" 200 514
+INFO     2013-04-28 23:16:51,566 server.py:561] default: "GET /static/js/elements/social.js HTTP/1.1" 200 1375
+INFO     2013-04-28 23:16:51,567 server.py:561] default: "GET /static/js/controllers/category.js HTTP/1.1" 200 579
+INFO     2013-04-28 23:16:51,568 server.py:561] default: "GET /static/js/view/category.js HTTP/1.1" 200 892
+INFO     2013-04-28 23:16:51,663 server.py:561] default: "GET /static/js/elements/notification.js HTTP/1.1" 200 582
+INFO     2013-04-28 23:16:51,664 server.py:561] default: "GET /static/lib/jquery-1.9.1.min.js HTTP/1.1" 200 92629
+INFO     2013-04-28 23:16:51,665 server.py:561] default: "GET /static/js/helpers/cookies.js HTTP/1.1" 200 375
+INFO     2013-04-28 23:16:51,677 server.py:561] default: "GET /static/js/view/bookable.js HTTP/1.1" 200 908
+INFO     2013-04-28 23:16:51,678 server.py:561] default: "GET /static/js/view/common.js HTTP/1.1" 200 305
+INFO     2013-04-28 23:16:51,680 server.py:561] default: "GET /static/js/view/directives/body.js HTTP/1.1" 200 781
+INFO     2013-04-28 23:16:51,681 server.py:561] default: "GET /static/js/elements/dialog.js HTTP/1.1" 200 1957
+INFO     2013-04-28 23:16:51,682 server.py:561] default: "GET /static/js/view/directives/menu.js HTTP/1.1" 200 858
+INFO     2013-04-28 23:16:51,682 server.py:561] default: "GET /static/js/controllers/booking.js HTTP/1.1" 200 4135
+INFO     2013-04-28 23:16:51,683 server.py:561] default: "GET /static/js/helpers/fixit.js HTTP/1.1" 200 584
+INFO     2013-04-28 23:16:51,842 server.py:561] default: "GET /static/lib/transparency.min.js HTTP/1.1" 200 5749
+INFO     2013-04-28 23:16:51,844 server.py:561] default: "GET /static/js/helpers/picaslide.js HTTP/1.1" 200 1931
+INFO     2013-04-28 23:16:51,845 server.py:561] default: "GET /static/js/view/directives/content.js HTTP/1.1" 200 419
+INFO     2013-04-28 23:16:51,856 server.py:561] default: "GET /static/js/helpers/i18n.js HTTP/1.1" 200 3601
+INFO     2013-04-28 23:16:51,856 server.py:561] default: "GET /static/js/view/directives/bookable.js HTTP/1.1" 200 1658
+INFO     2013-04-28 23:16:51,857 server.py:561] default: "GET /static/js/helpers/tooltip.js HTTP/1.1" 200 673
+INFO     2013-04-28 23:16:51,858 server.py:561] default: "GET /static/js/view/directives/common.js HTTP/1.1" 200 961
+INFO     2013-04-28 23:16:51,860 server.py:561] default: "GET /static/lib/bootstrap-datepicker/datepicker.js HTTP/1.1" 200 25615
+INFO     2013-04-28 23:16:51,861 server.py:561] default: "GET /static/js/controllers/booking_form.js HTTP/1.1" 200 5931
+INFO     2013-04-28 23:16:52,135 server.py:561] default: "GET /static/js/elements/fullscreen.js HTTP/1.1" 200 2144
+INFO     2013-04-28 23:16:52,146 server.py:561] default: "GET /static/lib/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 28538
+INFO     2013-04-28 23:16:52,147 server.py:561] default: "GET /static/js/helpers/form.js HTTP/1.1" 200 2488
+INFO     2013-04-28 23:16:52,147 server.py:561] default: "GET /static/lib/picasa.js HTTP/1.1" 200 2991
+INFO     2013-04-28 23:16:52,147 server.py:561] default: "GET /static/js/helpers/date.js HTTP/1.1" 200 684
+INFO     2013-04-28 23:16:52,148 server.py:561] default: "GET /static/js/helpers/wysihtml5.js HTTP/1.1" 200 567
+INFO     2013-04-28 23:16:52,155 server.py:561] default: "GET /static/lib/jquery-ui-1.8.20.custom.min.js HTTP/1.1" 200 17199
+INFO     2013-04-28 23:16:52,297 server.py:561] default: "GET /static/lib/slides.min.jquery.js HTTP/1.1" 200 6784
+INFO     2013-04-28 23:16:52,298 server.py:561] default: "GET /static/lib/wysihtml5/js/bootstrap-wysihtml5.js HTTP/1.1" 200 17042
+INFO     2013-04-28 23:16:52,366 server.py:561] default: "GET /static/lib/wysihtml5/js/advanced_parser_rules.js HTTP/1.1" 200 14171
+INFO     2013-04-28 23:16:52,368 server.py:561] default: "GET /static/lib/wysihtml5/js/wysihtml5-0.3.0.js HTTP/1.1" 200 332047
+INFO     2013-04-29 05:31:26,016 server.py:561] default: "GET / HTTP/1.1" 200 14067
+INFO     2013-04-29 05:31:26,055 server.py:561] default: "GET /static/css/main.css HTTP/1.1" 200 165204
+INFO     2013-04-29 05:31:26,057 server.py:561] default: "GET /static/lib/require.js HTTP/1.1" 200 14761
+INFO     2013-04-29 05:31:26,417 server.py:561] default: "GET /static/img/noise.png HTTP/1.1" 200 3910
+INFO     2013-04-29 05:31:26,419 server.py:561] default: "GET /static/img/coffeecup.png HTTP/1.1" 200 25879
+INFO     2013-04-29 05:31:26,419 server.py:561] default: "GET /static/img/social/social_sprite_48.png HTTP/1.1" 200 16398
+INFO     2013-04-29 05:31:26,421 server.py:561] default: "GET /static/fonts/Great_Vibes/GreatVibes-Regular.ttf HTTP/1.1" 200 106004
+INFO     2013-04-29 05:31:26,422 server.py:561] default: "GET /static/js/main.js HTTP/1.1" 200 1710
+INFO     2013-04-29 05:31:26,539 server.py:561] default: "GET /static/lib/underscore.min.js HTTP/1.1" 200 13473
+INFO     2013-04-29 05:31:26,541 server.py:561] default: "GET /static/js/elements/social.js HTTP/1.1" 200 1375
+INFO     2013-04-29 05:31:26,542 server.py:561] default: "GET /static/js/model/base.js HTTP/1.1" 200 1693
+INFO     2013-04-29 05:31:26,543 server.py:561] default: "GET /static/js/config.js HTTP/1.1" 200 488
+INFO     2013-04-29 05:31:26,544 server.py:561] default: "GET /static/js/elements/modal.js HTTP/1.1" 200 1091
+INFO     2013-04-29 05:31:26,545 server.py:561] default: "GET /static/js/view/language.js HTTP/1.1" 200 514
+INFO     2013-04-29 05:31:26,545 server.py:561] default: "GET /static/js/view/category.js HTTP/1.1" 200 892
+INFO     2013-04-29 05:31:26,545 server.py:561] default: "GET /static/js/controllers/category.js HTTP/1.1" 200 579
+INFO     2013-04-29 05:31:26,600 server.py:561] default: "GET /static/lib/jquery-1.9.1.min.js HTTP/1.1" 200 92629
+INFO     2013-04-29 05:31:26,600 server.py:561] default: "GET /static/js/elements/dialog.js HTTP/1.1" 200 1957
+INFO     2013-04-29 05:31:26,608 server.py:561] default: "GET /static/js/view/bookable.js HTTP/1.1" 200 908
+INFO     2013-04-29 05:31:26,609 server.py:561] default: "GET /static/js/elements/notification.js HTTP/1.1" 200 582
+INFO     2013-04-29 05:31:26,611 server.py:561] default: "GET /static/js/view/common.js HTTP/1.1" 200 305
+INFO     2013-04-29 05:31:26,611 server.py:561] default: "GET /static/js/view/directives/menu.js HTTP/1.1" 200 858
+INFO     2013-04-29 05:31:26,612 server.py:561] default: "GET /static/js/view/directives/body.js HTTP/1.1" 200 781
+INFO     2013-04-29 05:31:26,613 server.py:561] default: "GET /static/js/helpers/cookies.js HTTP/1.1" 200 375
+INFO     2013-04-29 05:31:26,613 server.py:561] default: "GET /static/js/controllers/booking.js HTTP/1.1" 200 4135
+INFO     2013-04-29 05:31:26,614 server.py:561] default: "GET /static/js/helpers/fixit.js HTTP/1.1" 200 584
+INFO     2013-04-29 05:31:26,693 server.py:561] default: "GET /static/lib/transparency.min.js HTTP/1.1" 200 5749
+INFO     2013-04-29 05:31:26,697 server.py:561] default: "GET /static/js/helpers/picaslide.js HTTP/1.1" 200 1931
+INFO     2013-04-29 05:31:26,698 server.py:561] default: "GET /static/js/view/directives/content.js HTTP/1.1" 200 419
+INFO     2013-04-29 05:31:26,698 server.py:561] default: "GET /static/js/view/directives/bookable.js HTTP/1.1" 200 1658
+INFO     2013-04-29 05:31:26,699 server.py:561] default: "GET /static/js/helpers/i18n.js HTTP/1.1" 200 3601
+INFO     2013-04-29 05:31:26,699 server.py:561] default: "GET /static/js/view/directives/common.js HTTP/1.1" 200 961
+INFO     2013-04-29 05:31:26,701 server.py:561] default: "GET /static/js/helpers/tooltip.js HTTP/1.1" 200 673
+INFO     2013-04-29 05:31:26,702 server.py:561] default: "GET /static/js/controllers/booking_form.js HTTP/1.1" 200 5931
+INFO     2013-04-29 05:31:26,702 server.py:561] default: "GET /static/lib/bootstrap-datepicker/datepicker.js HTTP/1.1" 200 25615
+INFO     2013-04-29 05:31:26,760 server.py:561] default: "GET /static/js/elements/fullscreen.js HTTP/1.1" 200 2144
+INFO     2013-04-29 05:31:26,761 server.py:561] default: "GET /static/js/helpers/wysihtml5.js HTTP/1.1" 200 567
+INFO     2013-04-29 05:31:26,762 server.py:561] default: "GET /static/js/helpers/form.js HTTP/1.1" 200 2488
+INFO     2013-04-29 05:31:26,765 server.py:561] default: "GET /static/js/helpers/date.js HTTP/1.1" 200 684
+INFO     2013-04-29 05:31:26,770 server.py:561] default: "GET /static/lib/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 28538
+INFO     2013-04-29 05:31:26,771 server.py:561] default: "GET /static/lib/picasa.js HTTP/1.1" 200 2991
+INFO     2013-04-29 05:31:26,800 server.py:561] default: "GET /static/lib/jquery-ui-1.8.20.custom.min.js HTTP/1.1" 200 17199
+INFO     2013-04-29 05:31:26,812 server.py:561] default: "GET /static/lib/wysihtml5/js/bootstrap-wysihtml5.js HTTP/1.1" 200 17042
+INFO     2013-04-29 05:31:26,842 server.py:561] default: "GET /static/lib/slides.min.jquery.js HTTP/1.1" 200 6784
+INFO     2013-04-29 05:31:26,842 server.py:561] default: "GET /static/lib/wysihtml5/js/wysihtml5-0.3.0.js HTTP/1.1" 200 332047
+INFO     2013-04-29 05:31:26,842 server.py:561] default: "GET /static/lib/wysihtml5/js/advanced_parser_rules.js HTTP/1.1" 200 14171
+INFO     2013-04-29 05:31:27,086 server.py:561] default: "GET /static/img/favicon.ico HTTP/1.1" 200 198
+INFO     2013-04-29 05:31:57,926 server.py:561] default: "GET /static/img/glyphicons-halflings.png HTTP/1.1" 200 12799
+INFO     2013-04-29 05:39:53,801 server.py:561] default: "GET / HTTP/1.1" 200 14067
+INFO     2013-04-29 05:39:53,831 server.py:561] default: "GET /static/css/main.css HTTP/1.1" 200 165204
+INFO     2013-04-29 05:39:53,833 server.py:561] default: "GET /static/lib/require.js HTTP/1.1" 200 14761
+INFO     2013-04-29 05:39:53,917 server.py:561] default: "GET /static/img/noise.png HTTP/1.1" 200 3910
+INFO     2013-04-29 05:39:53,919 server.py:561] default: "GET /static/img/social/social_sprite_48.png HTTP/1.1" 200 16398
+INFO     2013-04-29 05:39:53,920 server.py:561] default: "GET /static/img/coffeecup.png HTTP/1.1" 200 25879
+INFO     2013-04-29 05:39:54,015 server.py:561] default: "GET /static/img/favicon.ico HTTP/1.1" 200 198
+INFO     2013-04-29 05:39:54,022 server.py:561] default: "GET /static/js/main.js HTTP/1.1" 200 1710
+INFO     2013-04-29 05:39:54,024 server.py:561] default: "GET /static/fonts/Great_Vibes/GreatVibes-Regular.ttf HTTP/1.1" 200 106004
+INFO     2013-04-29 05:39:54,036 server.py:561] default: "GET /static/lib/underscore.min.js HTTP/1.1" 200 13473
+INFO     2013-04-29 05:39:54,037 server.py:561] default: "GET /static/js/config.js HTTP/1.1" 200 488
+INFO     2013-04-29 05:39:54,042 server.py:561] default: "GET /static/js/view/category.js HTTP/1.1" 200 892
+INFO     2013-04-29 05:39:54,043 server.py:561] default: "GET /static/js/view/language.js HTTP/1.1" 200 514
+INFO     2013-04-29 05:39:54,043 server.py:561] default: "GET /static/js/elements/social.js HTTP/1.1" 200 1375
+INFO     2013-04-29 05:39:54,047 server.py:561] default: "GET /static/js/controllers/category.js HTTP/1.1" 200 579
+INFO     2013-04-29 05:39:54,053 server.py:561] default: "GET /static/js/model/base.js HTTP/1.1" 200 1693
+INFO     2013-04-29 05:39:54,054 server.py:561] default: "GET /static/js/elements/modal.js HTTP/1.1" 200 1091
+INFO     2013-04-29 05:39:54,083 server.py:561] default: "GET /static/js/view/directives/menu.js HTTP/1.1" 200 858
+INFO     2013-04-29 05:39:54,083 server.py:561] default: "GET /static/js/view/bookable.js HTTP/1.1" 200 908
+INFO     2013-04-29 05:39:54,083 server.py:561] default: "GET /static/js/helpers/cookies.js HTTP/1.1" 200 375
+INFO     2013-04-29 05:39:54,084 server.py:561] default: "GET /static/js/view/directives/body.js HTTP/1.1" 200 781
+INFO     2013-04-29 05:39:54,086 server.py:561] default: "GET /static/js/view/common.js HTTP/1.1" 200 305
+INFO     2013-04-29 05:39:54,086 server.py:561] default: "GET /static/lib/jquery-1.9.1.min.js HTTP/1.1" 200 92629
+INFO     2013-04-29 05:39:54,093 server.py:561] default: "GET /static/js/helpers/fixit.js HTTP/1.1" 200 584
+INFO     2013-04-29 05:39:54,094 server.py:561] default: "GET /static/js/controllers/booking.js HTTP/1.1" 200 4135
+INFO     2013-04-29 05:39:54,095 server.py:561] default: "GET /static/js/elements/dialog.js HTTP/1.1" 200 1957
+INFO     2013-04-29 05:39:54,096 server.py:561] default: "GET /static/js/elements/notification.js HTTP/1.1" 200 582
+INFO     2013-04-29 05:39:54,122 server.py:561] default: "GET /static/js/helpers/picaslide.js HTTP/1.1" 200 1931
+INFO     2013-04-29 05:39:54,122 server.py:561] default: "GET /static/js/view/directives/content.js HTTP/1.1" 200 419
+INFO     2013-04-29 05:39:54,122 server.py:561] default: "GET /static/js/view/directives/bookable.js HTTP/1.1" 200 1658
+INFO     2013-04-29 05:39:54,123 server.py:561] default: "GET /static/lib/transparency.min.js HTTP/1.1" 200 5749
+INFO     2013-04-29 05:39:54,123 server.py:561] default: "GET /static/js/view/directives/common.js HTTP/1.1" 200 961
+INFO     2013-04-29 05:39:54,140 server.py:561] default: "GET /static/js/helpers/tooltip.js HTTP/1.1" 200 673
+INFO     2013-04-29 05:39:54,140 server.py:561] default: "GET /static/lib/bootstrap-datepicker/datepicker.js HTTP/1.1" 200 25615
+INFO     2013-04-29 05:39:54,142 server.py:561] default: "GET /static/js/controllers/booking_form.js HTTP/1.1" 200 5931
+INFO     2013-04-29 05:39:54,143 server.py:561] default: "GET /static/js/helpers/i18n.js HTTP/1.1" 200 3601
+INFO     2013-04-29 05:39:54,150 server.py:561] default: "GET /static/js/elements/fullscreen.js HTTP/1.1" 200 2144
+INFO     2013-04-29 05:39:54,161 server.py:561] default: "GET /static/js/helpers/wysihtml5.js HTTP/1.1" 200 567
+INFO     2013-04-29 05:39:54,163 server.py:561] default: "GET /static/js/helpers/date.js HTTP/1.1" 200 684
+INFO     2013-04-29 05:39:54,164 server.py:561] default: "GET /static/lib/picasa.js HTTP/1.1" 200 2991
+INFO     2013-04-29 05:39:54,165 server.py:561] default: "GET /static/js/helpers/form.js HTTP/1.1" 200 2488
+INFO     2013-04-29 05:39:54,168 server.py:561] default: "GET /static/lib/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 28538
+INFO     2013-04-29 05:39:54,168 server.py:561] default: "GET /static/lib/jquery-ui-1.8.20.custom.min.js HTTP/1.1" 200 17199
+INFO     2013-04-29 05:39:54,174 server.py:561] default: "GET /static/lib/wysihtml5/js/bootstrap-wysihtml5.js HTTP/1.1" 200 17042
+INFO     2013-04-29 05:39:54,184 server.py:561] default: "GET /static/lib/slides.min.jquery.js HTTP/1.1" 200 6784
+INFO     2013-04-29 05:39:54,188 server.py:561] default: "GET /static/lib/wysihtml5/js/wysihtml5-0.3.0.js HTTP/1.1" 200 332047
+INFO     2013-04-29 05:39:54,189 server.py:561] default: "GET /static/lib/wysihtml5/js/advanced_parser_rules.js HTTP/1.1" 200 14171
+INFO     2013-04-29 05:39:59,585 server.py:561] default: "GET /static/img/glyphicons-halflings.png HTTP/1.1" 200 12799

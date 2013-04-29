@@ -558,6 +558,14 @@
 				"buffer_size": 2488,
 				"line_ending": "Unix"
 			}
+		},
+		{
+			"file": "application/todo",
+			"settings":
+			{
+				"buffer_size": 2898,
+				"line_ending": "Unix"
+			}
 		}
 	],
 	"build_system": "Packages/JSHint/JSHint.sublime-build",
@@ -764,6 +772,8 @@
 	},
 	"file_history":
 	[
+		"/home/albertmatyi/work/python/hotelmotel/application/static/js/view/directives/bookable.js",
+		"/home/albertmatyi/work/python/hotelmotel/app.yaml",
 		"/home/albertmatyi/work/python/hotelmotel/application/helpers/si18n.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/models/bookable.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/booking_form.js",
@@ -785,14 +795,12 @@
 		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/_booking.scss",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/base/admin/form.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/helpers/form.js",
-		"/home/albertmatyi/work/python/hotelmotel/application/static/js/view/directives/bookable.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/admin/content.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/admin/category.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/content.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/main.admin.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/main.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/admin/bookable.js",
-		"/home/albertmatyi/work/python/hotelmotel/app.yaml",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/elements/admin/controls.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/admin/booking.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/category.js",
@@ -902,6 +910,8 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"*.yaml",
+			"*.py",
 			"*.js",
 			"*.py",
 			"*.js",
@@ -999,6 +1009,9 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"login",
+			"remote",
+			"remo",
 			"JSON",
 			"dialog.alert",
 			"Price",
@@ -1123,10 +1136,7 @@
 			"model",
 			"bk",
 			"dataArr",
-			"mapToDb",
-			"model.db.booking",
-			"model.bookings",
-			"db.bookings"
+			"mapToDb"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1204,7 +1214,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 5,
 			"sheets":
 			[
 				{
@@ -1339,6 +1349,33 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "application/todo",
+					"settings":
+					{
+						"buffer_size": 2898,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1936,
+								1936
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1530.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
 				}
 			]
 		}
@@ -1392,6 +1429,14 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"direcbooka",
+				"static/js/view/directives/bookable.js"
+			],
+			[
+				"todo",
+				"todo"
+			],
 			[
 				"si1",
 				"helpers/si18n.py"
@@ -1451,10 +1496,6 @@
 			[
 				"bookingformjs",
 				"static/js/controllers/booking_form.js"
-			],
-			[
-				"todo",
-				"todo"
 			],
 			[
 				"dat",
@@ -1891,10 +1932,6 @@
 			[
 				"directbook",
 				"static/js/view/directives/bookable.js"
-			],
-			[
-				"direcbooka",
-				"static/js/view/directives/admin/bookingDetails.js"
 			],
 			[
 				"formhtml",

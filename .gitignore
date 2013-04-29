@@ -8,3 +8,4 @@ stats/
 bulk*
 bulk/
 remote/
+*.log
