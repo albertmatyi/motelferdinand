@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"dele",
+				"deleteBooking"
+			],
+			[
+				"ask",
+				"askDeleteBooking"
+			],
+			[
+				"accept",
+				"acceptBooking"
+			],
+			[
+				"accep",
+				"acceptBooking"
+			],
+			[
 				"show",
 				"showList"
 			],
@@ -182,10 +198,6 @@
 			[
 				"catego",
 				"category"
-			],
-			[
-				"dele",
-				"deletedId"
 			],
 			[
 				"with_",
@@ -452,10 +464,6 @@
 				"accepted	Default"
 			],
 			[
-				"accept",
-				"accepted0	Default"
-			],
-			[
 				"t",
 				"table	Tag"
 			],
@@ -506,14 +514,6 @@
 			[
 				"transp",
 				"transparency"
-			],
-			[
-				"bookingde",
-				"bookingDetailsDirective"
-			],
-			[
-				"hi",
-				"hide  (function)"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "application/todo",
 			"settings":
 			{
-				"buffer_size": 2892,
+				"buffer_size": 2971,
 				"line_ending": "Unix"
 			}
 		},
@@ -531,23 +531,7 @@
 			"file": "application/static/js/view/directives/admin/bookingDetails.js",
 			"settings":
 			{
-				"buffer_size": 1485,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/static/scss/admin/_bookings.scss",
-			"settings":
-			{
-				"buffer_size": 1736,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/static/js/controllers/admin/booking.js",
-			"settings":
-			{
-				"buffer_size": 5513,
+				"buffer_size": 1452,
 				"line_ending": "Unix"
 			}
 		},
@@ -555,7 +539,7 @@
 			"file": "application/templates/booking/admin/details.html",
 			"settings":
 			{
-				"buffer_size": 1708,
+				"buffer_size": 2428,
 				"line_ending": "Unix"
 			}
 		},
@@ -563,7 +547,31 @@
 			"file": "application/templates/booking/admin/panel.html",
 			"settings":
 			{
-				"buffer_size": 1058,
+				"buffer_size": 1266,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/static/js/controllers/admin/booking.js",
+			"settings":
+			{
+				"buffer_size": 5455,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/static/js/main.admin.js",
+			"settings":
+			{
+				"buffer_size": 1994,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/helpers/si18n.py",
+			"settings":
+			{
+				"buffer_size": 13448,
 				"line_ending": "Unix"
 			}
 		}
@@ -772,19 +780,24 @@
 	},
 	"file_history":
 	[
+		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/admin/_bookings.scss",
+		"/home/albertmatyi/work/python/hotelmotel/application/templates/booking/form.html",
+		"/home/albertmatyi/work/python/hotelmotel/application/models/populator.py",
+		"/home/albertmatyi/work/python/hotelmotel/application/helpers/si18n.py",
+		"/home/albertmatyi/work/python/hotelmotel/application/templates/base/admin/form.html",
+		"/home/albertmatyi/work/python/hotelmotel/application/templates/bookable/admin/form.html",
+		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/admin_main.scss",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/elements/modal.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/booking/admin/details.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/booking/admin/panel.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/main.admin.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/admin/panels.html",
-		"/home/albertmatyi/work/python/hotelmotel/application/templates/bookable/admin/form.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/model/base.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/helpers/form.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/category/admin/form.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/content/admin/form.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/view/directives/bookable.js",
 		"/home/albertmatyi/work/python/hotelmotel/app.yaml",
-		"/home/albertmatyi/work/python/hotelmotel/application/helpers/si18n.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/models/bookable.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/booking_form.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/todo",
@@ -795,13 +808,11 @@
 		"/home/albertmatyi/work/python/hotelmotel/application/models/category.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/models/content.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/models/__init__.py",
-		"/home/albertmatyi/work/python/hotelmotel/application/templates/booking/form.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/booking.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/helpers/date.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/util.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/bookable.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/_booking.scss",
-		"/home/albertmatyi/work/python/hotelmotel/application/templates/base/admin/form.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/admin/content.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/admin/category.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/content.js",
@@ -811,7 +822,6 @@
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/admin/booking.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/category.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/elements/admin/menu.html",
-		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/admin/_bookings.scss",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/main.scss",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/_bookable.scss",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/bookable/main.html",
@@ -824,8 +834,6 @@
 		"/home/albertmatyi/work/python/hotelmotel/application/models/base.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/elements/dialog.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/admin/_form.scss",
-		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/admin_main.scss",
-		"/home/albertmatyi/work/python/hotelmotel/application/models/populator.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/main.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/integration.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/mail/booking.html",
@@ -910,6 +918,7 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"*.scss, *.js",
 			"*.scss",
 			"*.yaml",
 			"*.py",
@@ -1010,6 +1019,21 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"deleteBooking",
+			"span",
+			"Back",
+			"<button type=\"button\" class=\"btn btn-success\" id=\"markAsPaid\" data-bind=\"paid-button\">\n				{{ __('Mark as paid') }}\n			</button>",
+			"guests",
+			"table",
+			"ftr",
+			"bookings-table",
+			"bookings",
+			"table",
+			"bookings-table",
+			"re you sure",
+			"before",
+			"acceptBooking",
+			"detailsButtons",
 			"modal",
 			"bookingsModal",
 			"adminBookingsModal",
@@ -1122,26 +1146,11 @@
 			"place",
 			"openBookingButton",
 			"cancelButton",
-			"submitButton",
-			"nameField",
-			"cancelButton",
-			"clickCancelBooking",
-			"clickOpenBooking",
-			"clickSubmit",
-			"integration",
-			"tests",
-			"testFillForm",
-			");\n",
-			"bookableTest",
-			"createBookable",
-			"BookingDictBuilder",
-			"mail",
-			"render\\(",
-			"render\\)"
+			"submitButton"
 		],
 		"highlight": true,
 		"in_selection": false,
-		"preserve_case": false,
+		"preserve_case": true,
 		"regex": true,
 		"replace_history":
 		[
@@ -1215,7 +1224,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -1223,15 +1232,15 @@
 					"file": "application/todo",
 					"settings":
 					{
-						"buffer_size": 2892,
+						"buffer_size": 2971,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2519,
-								2519
+								2002,
+								2002
 							]
 						],
 						"settings":
@@ -1240,7 +1249,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2015.0,
+						"translation.y": 1641.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1250,15 +1259,15 @@
 					"file": "application/static/js/view/directives/admin/bookingDetails.js",
 					"settings":
 					{
-						"buffer_size": 1485,
+						"buffer_size": 1452,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1485,
-								1485
+								625,
+								625
 							]
 						],
 						"settings":
@@ -1274,45 +1283,72 @@
 				},
 				{
 					"buffer": 2,
-					"file": "application/static/scss/admin/_bookings.scss",
+					"file": "application/templates/booking/admin/details.html",
 					"settings":
 					{
-						"buffer_size": 1736,
+						"buffer_size": 2428,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								826,
-								826
+								2243,
+								2243
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 714.0,
+						"translation.y": 978.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "application/static/js/controllers/admin/booking.js",
+					"file": "application/templates/booking/admin/panel.html",
 					"settings":
 					{
-						"buffer_size": 5513,
+						"buffer_size": 1266,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								296,
-								296
+								1059,
+								1059
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 26.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "application/static/js/controllers/admin/booking.js",
+					"settings":
+					{
+						"buffer_size": 5455,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5455,
+								5455
 							]
 						],
 						"settings":
@@ -1321,58 +1357,59 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "application/templates/booking/admin/details.html",
-					"settings":
-					{
-						"buffer_size": 1708,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1577,
-								1577
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 298.0,
+						"translation.y": 2541.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "application/templates/booking/admin/panel.html",
+					"file": "application/static/js/main.admin.js",
 					"settings":
 					{
-						"buffer_size": 1058,
+						"buffer_size": 1994,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								972,
-								972
+								1944,
+								1944
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 757.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "application/helpers/si18n.py",
+					"settings":
+					{
+						"buffer_size": 13448,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1432,6 +1469,42 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"si18n",
+				"helpers/si18n.py"
+			],
+			[
+				"bookingdetails",
+				"static/js/view/directives/admin/bookingDetails.js"
+			],
+			[
+				"bookinhtml",
+				"templates/booking/form.html"
+			],
+			[
+				"popula",
+				"models/populator.py"
+			],
+			[
+				"si18",
+				"helpers/si18n.py"
+			],
+			[
+				"adminform",
+				"templates/base/admin/form.html"
+			],
+			[
+				"si",
+				"helpers/si18n.py"
+			],
+			[
+				"mainadminjs",
+				"static/js/main.admin.js"
+			],
+			[
+				"adminmain",
+				"static/scss/admin_main.scss"
+			],
 			[
 				"details",
 				"templates/booking/admin/details.html"
@@ -1497,10 +1570,6 @@
 				"static/js/model/base.js"
 			],
 			[
-				"si",
-				"helpers/si18n.py"
-			],
-			[
 				"abs",
 				"models/abstract_content.py"
 			],
@@ -1519,10 +1588,6 @@
 			[
 				"bookingpy",
 				"models/booking.py"
-			],
-			[
-				"si18n",
-				"helpers/si18n.py"
 			],
 			[
 				"bookablepy",
@@ -1653,10 +1718,6 @@
 				"models/bookable.py"
 			],
 			[
-				"adminform",
-				"templates/base/admin/form.html"
-			],
-			[
 				"bookableform",
 				"templates/bookable/admin/form.html"
 			],
@@ -1711,10 +1772,6 @@
 			[
 				"integr",
 				"static/js/test/integration.js"
-			],
-			[
-				"popula",
-				"models/populator.py"
 			],
 			[
 				"mailbooking",
@@ -1829,10 +1886,6 @@
 				"static/js/controllers/admin/content.js"
 			],
 			[
-				"mainadminjs",
-				"static/js/main.admin.js"
-			],
-			[
 				"adminconten",
 				"static/js/controllers/admin/content.js"
 			],
@@ -1927,22 +1980,6 @@
 			[
 				"model",
 				"models/__init__.py"
-			],
-			[
-				"categoryp",
-				"controllers/category.py"
-			],
-			[
-				"menu",
-				"static/js/view/directives/menu.js"
-			],
-			[
-				"modelbookab",
-				"models/bookable.py"
-			],
-			[
-				"helpform",
-				"static/js/helpers/form.js"
 			]
 		],
 		"width": 0.0

@@ -38,6 +38,7 @@ def bookings_new():
 def transform(bkng):
     to_date = lambda sstr: date.to_obj(sstr)
     bkng['quantity'] = int(bkng['quantity'])
+    bkng['guests'] = int(bkng['guests'])
     bkng['book_from'] = to_date(bkng['book_from'])
     bkng['book_until'] = to_date(bkng['book_until'])
     bkng['bookable'] = BookableModel.get_by_id(long(bkng['bookable']))
@@ -79,6 +80,7 @@ def save_booking():
     booking.message = bkf['message']
     booking.user = usr
     booking.quantity = bkf['quantity']
+    booking.guests = bkf['guests']
     booking.book_from = bkf['book_from']
     booking.book_until = bkf['book_until']
     booking.bookable = bkf['bookable']
@@ -95,7 +97,7 @@ def map_price(bookingForm, booking):
     g = int(bookingForm['guests'])
     p = booking.bookable.places
     # every room should have at least 1 guest
-    price = float(vals[0]) * q
+    price_per_day = float(vals[0]) * q
     # calculate without these guests
     g = max(0, g - q)
     # nr of full rooms
@@ -103,11 +105,12 @@ def map_price(bookingForm, booking):
     # nr of guests that are not in full rooms
     rg = g % (p - 1) if p > 1 else 0
     # add prices of full rooms
-    price = price - f * float(vals[0]) + f * float(vals[p - 1])
-    # add price of partially filled room
-    price = price - float(vals[0]) + float(vals[rg])
+    price_per_day = price_per_day - f * float(vals[0]) + f * float(vals[p - 1])
+    # add price_per_day of partially filled room
+    price_per_day = price_per_day - float(vals[0]) + float(vals[rg])
 
-    booking.price = price
+    days = (bookingForm['book_until'] - bookingForm['book_from']).days
+    booking.price = price_per_day * days
     booking.currency = bk_dict['currency']
 
 
@@ -228,7 +231,11 @@ def get_or_create_user(user):
         usr = UserModel(
             email=email,
             phone=user['phone'],
-            full_name=user['full_name']
+            full_name=user['full_name'],
+            language=si18n.get_lang_id()
         )
+        usr.put()
+    else:
+        usr.language = si18n.get_lang_id()
         usr.put()
     return usr

@@ -70,6 +70,7 @@ translations = {
         'For #NR# guests': u'For #NR# guests',
         'Back': u'Back',
         'Update': u'Update',
+        'Preferred language': u'Preferred language',
 
         # Admin
         'Admin': u'Admin',
@@ -80,6 +81,7 @@ translations = {
         'Delete': u'Delete',
         'Add content': u'Add content',
         'Add bookable': u'Add bookable',
+        'Bookable': u'Bookable',
 
         # Booking
         'Book': u'Book',
@@ -168,6 +170,7 @@ translations = {
         'For #NR# guests': u'#NR# Vendég számára',
         'Back': u'Vissza',
         'Update': u'Frissítés',
+        'Preferred language': u'Kedvelt nyelv',
 
         # Admin
         'Admin': u'Admin',
@@ -178,6 +181,7 @@ translations = {
         'Delete': u'Töröl',
         'Add content': u'Hozzáad tartalmat',
         'Add bookable': u'Hozzáad szobát',
+        'Bookable': u'Szoba',
         'Album url': u'Album link',
 
         # Booking
@@ -234,7 +238,7 @@ translations = {
         'Save': u'Mentés',
         'Edit category': u'Kategória módosítás',
         'Edit content': u'Tartalom módosítás',
-        'Edit bookable': u'Apartman módosítás',
+        'Edit bookable': u'Szoba módosítás',
         'Description': u'Leírás',
         'Weight': u'Súly',
         'Weight explanation': u'Minél súlyosabb a tartalom, annál lennebb jelenik meg.',
@@ -267,6 +271,7 @@ translations = {
         'For #NR# guests': u'Pentru #NR# oaspeți',
         'Back': u'Înapoi',
         'Update': u'Actualizare',
+        'Preferred language': u'Limba preferată',
 
         # Admin
         'Admin': u'Admin',
@@ -277,6 +282,7 @@ translations = {
         'Delete': u'Șterge',
         'Add content': u'Adaugă conținut',
         'Add bookable': u'Adaugă cameră',
+        'Bookable': u'Cameră',
 
         # Booking
         'Book': u'Rezervă',

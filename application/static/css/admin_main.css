@@ -6254,11 +6254,6 @@ body > .hidden-on-body, #body_content > .hidden-on-body {
       background: #3399ff; }
     #adminBookingsModal.detailsView .bookingDetails .table .status .paid {
       background: #66AA33; }
-  #adminBookingsModal.detailsView .bookingDetails #deleteBooking {
-    float: right;
-    cursor: pointer;
-    padding-left: 1em;
-    padding-right: 1em; }
   #adminBookingsModal.detailsView .bookingDetails .contact {
     padding: .5em; }
     #adminBookingsModal.detailsView .bookingDetails .contact .icon-signal {

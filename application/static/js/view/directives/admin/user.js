@@ -18,6 +18,11 @@ define([],
 				text : function () {
 					return this.user.phone;
 				}
+			},
+			'language' : {
+				text : function () {
+					return this.user.language;
+				}
 			}
 		};
 	}

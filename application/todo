@@ -117,6 +117,13 @@ D		test prices
 D	content ordering
 D 	backup data
 	admin
+D		show price
+D		show from/to
+D		show language
+		show guests
+		show quantity
+		add note
+		update
 		accept 
 			with message
 		update booking
