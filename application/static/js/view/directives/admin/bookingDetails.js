@@ -28,11 +28,9 @@ define([
 				return this.index;
 			}
 		},
-		'booking_entries' : {
-			'bookable' : {
-				text : function () {
-					return model.db.bookable[this.bookable].i18n[model.language].title;
-				}
+		'bookable' : {
+			text : function () {
+				return model.db.bookable[this.bookable].i18n[model.language].title;
 			}
 		},
 		'accepted' : getBoolDir('accepted'),

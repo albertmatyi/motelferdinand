@@ -21,6 +21,39 @@
 					</td>
 				</tr>
 				<tr>
+					<td>
+						{{ __('Bookable') }}
+					</td>
+					<td data-bind="bookable">
+						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						{{ __('Arrival date') }}
+					</td>
+					<td data-bind="book_from">
+						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						{{ __('Departure date') }}
+					</td>
+					<td data-bind="book_until">
+						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						{{ __('Price') }}
+					</td>
+					<td>
+						<span data-bind="price">1billion</span>
+						<span data-bind="currency"></span>
+					</td>
+				</tr>
+				<tr>
 					<th colspan="2">{{ __('Status') }}</th>
 				</tr>
 				<tr class="status">
@@ -55,6 +88,9 @@
 			</button>
 			<button type="button" class="btn btn-success" id="markAsPaid" data-bind="paid-button">
 				{{ __('Mark as paid') }}
+			</button>
+			<button type="button" class="btn" id="updateBooking">
+				{{ __('Update') }}
 			</button>
 		</div>
 	<button type="button" class="btn btn-link" id="closeBookingDetails">{{ __('Back') }}</button>

@@ -69,6 +69,7 @@ translations = {
         'Yard': u'Yard',
         'For #NR# guests': u'For #NR# guests',
         'Back': u'Back',
+        'Update': u'Update',
 
         # Admin
         'Admin': u'Admin',
@@ -166,6 +167,7 @@ translations = {
         'Yard': u'Udvar',
         'For #NR# guests': u'#NR# Vendég számára',
         'Back': u'Vissza',
+        'Update': u'Frissítés',
 
         # Admin
         'Admin': u'Admin',
@@ -264,6 +266,7 @@ translations = {
         'Yard': u'Curte',
         'For #NR# guests': u'Pentru #NR# oaspeți',
         'Back': u'Înapoi',
+        'Update': u'Actualizare',
 
         # Admin
         'Admin': u'Admin',
