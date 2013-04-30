@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"show",
+				"showList"
+			],
+			[
 				"booka",
 				"bookables"
 			],
@@ -332,10 +336,6 @@
 				"okCb"
 			],
 			[
-				"show",
-				"showModal"
-			],
-			[
 				"hidden",
 				"hiddenModals"
 			],
@@ -520,50 +520,50 @@
 	"buffers":
 	[
 		{
-			"file": "application/templates/content/admin/form.html",
-			"settings":
-			{
-				"buffer_size": 679,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/templates/category/admin/form.html",
-			"settings":
-			{
-				"buffer_size": 642,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/templates/bookable/admin/form.html",
-			"settings":
-			{
-				"buffer_size": 1697,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/static/js/model/base.js",
-			"settings":
-			{
-				"buffer_size": 1693,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "application/static/js/helpers/form.js",
-			"settings":
-			{
-				"buffer_size": 2488,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "application/todo",
 			"settings":
 			{
-				"buffer_size": 2898,
+				"buffer_size": 2892,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/static/js/view/directives/admin/bookingDetails.js",
+			"settings":
+			{
+				"buffer_size": 1485,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/static/scss/admin/_bookings.scss",
+			"settings":
+			{
+				"buffer_size": 1736,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/static/js/controllers/admin/booking.js",
+			"settings":
+			{
+				"buffer_size": 5513,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/templates/booking/admin/details.html",
+			"settings":
+			{
+				"buffer_size": 1708,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "application/templates/booking/admin/panel.html",
+			"settings":
+			{
+				"buffer_size": 1058,
 				"line_ending": "Unix"
 			}
 		}
@@ -772,6 +772,16 @@
 	},
 	"file_history":
 	[
+		"/home/albertmatyi/work/python/hotelmotel/application/templates/elements/modal.html",
+		"/home/albertmatyi/work/python/hotelmotel/application/templates/booking/admin/details.html",
+		"/home/albertmatyi/work/python/hotelmotel/application/templates/booking/admin/panel.html",
+		"/home/albertmatyi/work/python/hotelmotel/application/static/js/main.admin.js",
+		"/home/albertmatyi/work/python/hotelmotel/application/templates/admin/panels.html",
+		"/home/albertmatyi/work/python/hotelmotel/application/templates/bookable/admin/form.html",
+		"/home/albertmatyi/work/python/hotelmotel/application/static/js/model/base.js",
+		"/home/albertmatyi/work/python/hotelmotel/application/static/js/helpers/form.js",
+		"/home/albertmatyi/work/python/hotelmotel/application/templates/category/admin/form.html",
+		"/home/albertmatyi/work/python/hotelmotel/application/templates/content/admin/form.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/view/directives/bookable.js",
 		"/home/albertmatyi/work/python/hotelmotel/app.yaml",
 		"/home/albertmatyi/work/python/hotelmotel/application/helpers/si18n.py",
@@ -780,9 +790,7 @@
 		"/home/albertmatyi/work/python/hotelmotel/application/todo",
 		"/home/albertmatyi/work/python/hotelmotel/application/controllers/booking.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/models/booking.py",
-		"/home/albertmatyi/work/python/hotelmotel/application/static/js/model/base.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/booking.js",
-		"/home/albertmatyi/work/python/hotelmotel/application/templates/category/admin/form.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/models/abstract_content.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/models/category.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/models/content.py",
@@ -794,11 +802,9 @@
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/bookable.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/_booking.scss",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/base/admin/form.html",
-		"/home/albertmatyi/work/python/hotelmotel/application/static/js/helpers/form.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/admin/content.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/admin/category.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/content.js",
-		"/home/albertmatyi/work/python/hotelmotel/application/static/js/main.admin.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/main.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/admin/bookable.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/elements/admin/controls.html",
@@ -810,7 +816,6 @@
 		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/_bookable.scss",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/bookable/main.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/elements/admin/controls.js",
-		"/home/albertmatyi/work/python/hotelmotel/application/templates/bookable/admin/form.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/helpers/i18n.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/models/i18n.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/helpers/wysihtml5.js",
@@ -833,8 +838,6 @@
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/elements/modal.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/views.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/category.js",
-		"/home/albertmatyi/work/python/hotelmotel/application/templates/booking/admin/panel.html",
-		"/home/albertmatyi/work/python/hotelmotel/application/templates/booking/admin/details.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/booking/admin/entries.html",
 		"/home/albertmatyi/work/python/hotelmotel/startserv.sh",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/elements/fullscreen.js",
@@ -860,7 +863,6 @@
 		"/home/albertmatyi/work/python/hotelmotel/application/controllers/bookable.py",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/admin/forms.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/elements/dialog.html",
-		"/home/albertmatyi/work/python/hotelmotel/application/templates/elements/modal.html",
 		"/home/albertmatyi/.local/share/gsettings-data-convert",
 		"/home/albertmatyi/.local/share/gnome-shell/application_state",
 		"/home/albertmatyi/.config/monitors.xml",
@@ -897,9 +899,7 @@
 		"/home/albertmatyi/work/python/hotelmotel/application/templates/booking/entry_row.html",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/controllers/booking_entry.js",
 		"/home/albertmatyi/work/python/hotelmotel/application/static/js/test/dialog.js",
-		"/home/albertmatyi/work/python/hotelmotel/application/static/js/googlepics_mock_resp.json",
-		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/helpers/_mixins.scss",
-		"/home/albertmatyi/work/python/hotelmotel/application/static/scss/_content.scss"
+		"/home/albertmatyi/work/python/hotelmotel/application/static/js/googlepics_mock_resp.json"
 	],
 	"find":
 	{
@@ -910,6 +910,7 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"*.scss",
 			"*.yaml",
 			"*.py",
 			"*.js",
@@ -1009,6 +1010,13 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"modal",
+			"bookingsModal",
+			"adminBookingsModal",
+			"bookingDetails",
+			"hideDetails",
+			"ftr",
+			"bookings-table",
 			"login",
 			"remote",
 			"remo",
@@ -1129,18 +1137,11 @@
 			"BookingDictBuilder",
 			"mail",
 			"render\\(",
-			"render\\)",
-			"render",
-			"model.(db.)?bookings",
-			"model.booking",
-			"model",
-			"bk",
-			"dataArr",
-			"mapToDb"
+			"render\\)"
 		],
 		"highlight": true,
 		"in_selection": false,
-		"preserve_case": true,
+		"preserve_case": false,
 		"regex": true,
 		"replace_history":
 		[
@@ -1214,156 +1215,23 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "application/templates/content/admin/form.html",
-					"settings":
-					{
-						"buffer_size": 679,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								432,
-								432
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "application/templates/category/admin/form.html",
-					"settings":
-					{
-						"buffer_size": 642,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								626,
-								626
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "application/templates/bookable/admin/form.html",
-					"settings":
-					{
-						"buffer_size": 1697,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1682,
-								1682
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 349.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "application/static/js/model/base.js",
-					"settings":
-					{
-						"buffer_size": 1693,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								795,
-								795
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 306.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "application/static/js/helpers/form.js",
-					"settings":
-					{
-						"buffer_size": 2488,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1736,
-								1736
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 803.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
 					"file": "application/todo",
 					"settings":
 					{
-						"buffer_size": 2898,
+						"buffer_size": 2892,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1936,
-								1936
+								2519,
+								2519
 							]
 						],
 						"settings":
@@ -1372,7 +1240,142 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1530.0,
+						"translation.y": 2015.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "application/static/js/view/directives/admin/bookingDetails.js",
+					"settings":
+					{
+						"buffer_size": 1485,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1485,
+								1485
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 366.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "application/static/scss/admin/_bookings.scss",
+					"settings":
+					{
+						"buffer_size": 1736,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								826,
+								826
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SCSS/SCSS.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 714.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "application/static/js/controllers/admin/booking.js",
+					"settings":
+					{
+						"buffer_size": 5513,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								296,
+								296
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "application/templates/booking/admin/details.html",
+					"settings":
+					{
+						"buffer_size": 1708,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1577,
+								1577
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 298.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "application/templates/booking/admin/panel.html",
+					"settings":
+					{
+						"buffer_size": 1058,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								972,
+								972
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1429,6 +1432,38 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"details",
+				"templates/booking/admin/details.html"
+			],
+			[
+				"adminjs",
+				"static/js/main.admin.js"
+			],
+			[
+				"adminbookingjs",
+				"static/js/controllers/admin/booking.js"
+			],
+			[
+				"modalhtml",
+				"templates/elements/modal.html"
+			],
+			[
+				"bookingadminhtml",
+				"templates/booking/admin/panel.html"
+			],
+			[
+				"adminhtml",
+				"templates/admin/panels.html"
+			],
+			[
+				"bookhtml",
+				"templates/bookable/admin/form.html"
+			],
+			[
+				"adminbooking",
+				"static/js/view/directives/admin/bookingDetails.js"
+			],
 			[
 				"direcbooka",
 				"static/js/view/directives/bookable.js"
@@ -1574,10 +1609,6 @@
 				"templates/elements/admin/controls.html"
 			],
 			[
-				"adminjs",
-				"static/js/controllers/admin/booking.js"
-			],
-			[
 				"mainjs",
 				"static/js/main.admin.js"
 			],
@@ -1690,14 +1721,6 @@
 				"templates/mail/booking.html"
 			],
 			[
-				"adminbooking",
-				"static/js/controllers/admin/booking.js"
-			],
-			[
-				"adminbookingjs",
-				"static/js/controllers/admin/booking.js"
-			],
-			[
 				"adminbookjs",
 				"static/js/controllers/admin/bookable.js"
 			],
@@ -1731,10 +1754,6 @@
 			],
 			[
 				"booking",
-				"templates/mail/booking.html"
-			],
-			[
-				"bookhtml",
 				"templates/mail/booking.html"
 			],
 			[
@@ -1924,22 +1943,6 @@
 			[
 				"helpform",
 				"static/js/helpers/form.js"
-			],
-			[
-				"direcadmin",
-				"static/js/view/directives/admin/booking.js"
-			],
-			[
-				"directbook",
-				"static/js/view/directives/bookable.js"
-			],
-			[
-				"formhtml",
-				"templates/base/admin/form.html"
-			],
-			[
-				"bokingformj",
-				"static/js/controllers/booking_form.js"
 			]
 		],
 		"width": 0.0

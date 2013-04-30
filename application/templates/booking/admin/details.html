@@ -1,58 +1,64 @@
-<tr class="bookingDetails">
-	<td colspan="8">
-		<div class="leftside">
-			<table class="table">
-				<thead>
-					<tr>
-						<th colspan="2">
-							<h3 class="name"> 
-								<span data-bind="index"></span> 
-								<span data-bind="user.full_name"></span>
-							</h3>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>
-							<i class="icon-envelope"></i> <span data-bind="user.email"></span>
-						</td>
-						<td>
-							<i class="icon-signal"></i> <span data-bind="user.phone"></span>
-						</td>
-					</tr>
-					<tr>
-						<th colspan="2">{{ __('Status') }}</th>
-					</tr>
-					<tr class="status">
-						<td data-bind="accepted"> 
-							<i class="icon-minus-sign" data-bind="accepted"></i> 
-							{{ __('Accepted') }}
-						</td>
-						<td data-bind="paid"> 
-							<i class="icon-minus-sign" data-bind="paid"></i> 
-							{{ __('Paid') }}
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="rightside">
-			<p class="date">
-				<i class="icon-time" title="{{ __('Modified') }}"></i> 
-				<span data-bind="created" title="{{ __('Modified') }}"></span>
+<div class="bookingDetails">
+	<div class="leftside">
+		<table class="table">
+			<thead>
+				<tr>
+					<th colspan="2">
+						<h3 class="name"> 
+							<span data-bind="index"></span> 
+							<span data-bind="user.full_name"></span>
+						</h3>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<i class="icon-envelope"></i> <span data-bind="user.email"></span>
+					</td>
+					<td>
+						<i class="icon-signal"></i> <span data-bind="user.phone"></span>
+					</td>
+				</tr>
+				<tr>
+					<th colspan="2">{{ __('Status') }}</th>
+				</tr>
+				<tr class="status">
+					<td data-bind="accepted"> 
+						<i class="icon-minus-sign" data-bind="accepted"></i> 
+						{{ __('Accepted') }}
+					</td>
+					<td data-bind="paid"> 
+						<i class="icon-minus-sign" data-bind="paid"></i> 
+						{{ __('Paid') }}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="rightside">
+		<p class="date">
+			<i class="icon-time" title="{{ __('Modified') }}"></i> 
+			<span data-bind="created" title="{{ __('Modified') }}"></span>
+		</p>
+		<span id="deleteBooking"><i class="icon-trash" title="{{ __('Delete') }}"></i></span>
+		<div class="message">
+			<h5>{{ __('Custom message') }}</h5>
+			<p data-bind="message">
 			</p>
-			<span id="deleteBooking"><i class="icon-trash" title="{{ __('Delete') }}"></i></span>
-			<div class="message">
-				<h5>{{ __('Custom message') }}</h5>
-				<p data-bind="message">
-				</p>
-			</div>
 		</div>
+	</div>
+	<div class="bookingDetails footerButtons">
 		<div class="actions btn-group">
-			<button type="button" class="btn btn-primary" id="acceptBooking" data-bind="accepted-button">{{ __('Mark as accepted') }}</button>
-			<button type="button" class="btn btn-success" id="markAsPaid" data-bind="paid-button">{{ __('Mark as paid') }}</button>
-			<button type="button" class="btn" id="closeBookingDetails">{{ __('Close') }}</button>
+			<button type="button" class="btn btn-primary" id="acceptBooking" data-bind="accepted-button">
+				{{ __('Mark as accepted') }}
+			</button>
+			<button type="button" class="btn btn-success" id="markAsPaid" data-bind="paid-button">
+				{{ __('Mark as paid') }}
+			</button>
 		</div>
-	</td>
-</tr>
+	<button type="button" class="btn btn-link" id="closeBookingDetails">{{ __('Back') }}</button>
+</div>
+
+</div>
+

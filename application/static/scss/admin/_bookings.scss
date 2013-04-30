@@ -1,104 +1,110 @@
-.bookings-table{
-	.table
-	&>thead th{
-		text-align: center;
-	}
-	&>tbody>tr{
-		background: none; //#FFcccc;
-		font-weight: bold;
-		&>td.center{
-			text-align: center;
-		}
-		&:hover {
-			background: #EEEEEE;//#FF9999;
-		}
-		&.accepted, &.paid, &.paid.accepted{
-			font-weight: normal;
-		}
-		&.accepted {
-			background: #CCEEFF;
-			&:hover{
-				background: #99CCFF;
-			}
-		}
-		&.paid {
-			background: #CCFFCC;
-			&:hover{
-				background: #99CC66;
-			}
-		}
-		&.paid.accepted{
-			background: none;
-			&:hover{
-				background: #EEEEEE;
-			}
-		}
-		cursor: pointer;
-		&.bookingDetails {
-			cursor: default;
-			font-weight: normal;
-		}
-	}
-	.bookingDetails{
-		.name {
-			margin-top: 0;
-		}
+#adminBookingsModal {
+	.bookingsList, .bookingDetails{
 		display: none;
-		&, &:hover {
-			background: #EFEFFF;
-			cursor: normal;
-		}
-		.leftside, .rightside{
-			width: 48%;
-		}
-		.rightside {
-			float: right;
-		}
-
-		.date{
-			float: right;
-			font-size: 1em;
-			color: #999999;
-		}
-		.table {
-			background: none;
-			td, th {
-				text-align: center;
+	}
+	&.listView {
+		.bookingsList{
+			display: block;
+			& .table {
+				thead th{
+					text-align: center;
+				}
+				&>tbody>tr{
+					background: none; //#FFcccc;
+					font-weight: bold;
+					&>td.center{
+						text-align: center;
+					}
+					&:hover {
+						background: #EEEEEE;//#FF9999;
+					}
+					&.accepted, &.paid, &.paid.accepted{
+						font-weight: normal;
+					}
+					&.accepted {
+						background: #CCEEFF;
+						&:hover{
+							background: #99CCFF;
+						}
+					}
+					&.paid {
+						background: #CCFFCC;
+						&:hover{
+							background: #99CC66;
+						}
+					}
+					&.paid.accepted{
+						background: none;
+						&:hover{
+							background: #EEEEEE;
+						}
+					}
+					cursor: pointer;
+					&.bookingDetails {
+						cursor: default;
+						font-weight: normal;
+					}
+				}
 			}
-			
-			.status{
-				td {
-					background: #DD3333;
-					color: #FFFFFF;
-				}
-				.accepted {
-					background: #3399ff;
-				}
-				.paid {
-					background: #66AA33;
+		}
+	}
+	&.detailsView {
+		.bookingDetails {
+			display: block;
+			.name {
+				margin-top: 0;
+			}
+			&, &:hover {
+				background: #EFEFFF;
+				cursor: normal;
+			}
+			.leftside, .rightside{
+				width: 48%;
+			}
+			.rightside {
+				float: right;
+			}
+
+			.date{
+				float: right;
+				font-size: 1em;
+				color: #999999;
+			}
+			.table {
+				background: none;
+				td, th {
+					text-align: center;
 				}
 				
+				.status{
+					td {
+						background: #DD3333;
+						color: #FFFFFF;
+					}
+					.accepted {
+						background: #3399ff;
+					}
+					.paid {
+						background: #66AA33;
+					}
+					
+				}
 			}
-		}
-		.actions{
-			margin: 10px;
-			float: right;
-			clear: both;
-		}
-		#deleteBooking{
-			float: right;
-			cursor: pointer;
-			padding-left: 1em;
-			padding-right: 1em;
-		}
-		.contact {
-			padding: .5em;
-			.icon-signal {
-				margin-left: 2em;
+			#deleteBooking{
+				float: right;
+				cursor: pointer;
+				padding-left: 1em;
+				padding-right: 1em;
 			}
-		}
-		.leftside {
-			float: left;
+			.contact {
+				padding: .5em;
+				.icon-signal {
+					margin-left: 2em;
+				}
+			}
+			.leftside {
+				float: left;
+			}
 		}
 	}
 }

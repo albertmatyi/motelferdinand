@@ -6,36 +6,41 @@
 {% endblock %}
 
 {% block content %}
-<table class="table bookings-table">
-	<thead>
-		<tr>
-			<th>#</th>
-			<th>{{ __('Name') }}</th>
-			<th>{{ __('Email') }}</th>
-			<th>{{ __('Phone') }}</th>
-			<th>{{ __('Booking entries') }}</th>
-			<th>{{ __('Date') }}</th>
-			<th>{{ __('Accepted') }}</th>
-			<th>{{ __('Paid') }}</th>
-		</tr>
-	</thead>
-	<tbody >
-		<tr data-bind="id">
-			<td data-bind="index"></td>
-			<td data-bind="user.full_name"></td>
-			<td class="center" data-bind="user.email"></td>
-			<td class="center" data-bind="user.phone"></td>
-			<td class="center" data-bind="bookable"></td>
-			<td class="center" data-bind="created"></td>
-			<td class="center"><i class="icon" data-bind="accepted"></i></td>
-			<td class="center"><i class="icon" data-bind="paid"></i></td>
-		</tr>
-	</tbody>
-	<tfoot>
-		{% include 'booking/admin/details.html' %}
-	</tfoot>
-</table>
+<div class="bookingsList">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>{{ __('Name') }}</th>
+				<th>{{ __('Email') }}</th>
+				<th>{{ __('Phone') }}</th>
+				<th>{{ __('Booking entries') }}</th>
+				<th>{{ __('Date') }}</th>
+				<th>{{ __('Accepted') }}</th>
+				<th>{{ __('Paid') }}</th>
+			</tr>
+		</thead>
+		<tbody >
+			<tr data-bind="id">
+				<td data-bind="index"></td>
+				<td data-bind="user.full_name"></td>
+				<td class="center" data-bind="user.email"></td>
+				<td class="center" data-bind="user.phone"></td>
+				<td class="center" data-bind="bookable"></td>
+				<td class="center" data-bind="created"></td>
+				<td class="center"><i class="icon" data-bind="accepted"></i></td>
+				<td class="center"><i class="icon" data-bind="paid"></i></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+{% include 'booking/admin/details.html' %}
 {% endblock %}
 
 {% block footer_content %}
+<div class="bookingsList">
+	<button class="btn btn-link" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 
+		{{ __('Close') }}
+	</button>
+</div>
 {% endblock %}

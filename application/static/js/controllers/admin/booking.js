@@ -16,32 +16,33 @@ define([
 ],
 function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transparency, dialog, adminControls, modal) {
 	'use strict';
+
 	var $bookingsModal = $('#adminBookingsModal');
+	$bookingsModal.footer = $('.modal-footer', $bookingsModal);
 	var $bookingDetails = $('.bookingDetails', $bookingsModal);
+	var $detailsButtons = $('.footerButtons', $bookingDetails);
 	var $bookingsButton = $('#adminBookingsButton');
-	var $table = $('.bookings-table > tbody', $bookingsModal);
-	var $ftr = $('.bookings-table > tfoot', $bookingsModal);
+	var $table = $('.bookingsList .table > tbody', $bookingsModal);
+	var $badge = $('.badge', $bookingsButton);
 	var buttonsInitialized = false;
 
 	var render = function () {
-		$('.bookings-table > tbody', $bookingsModal).render(model.bookings, bookingsDirective);
+		$('.bookingsList .table > tbody', $bookingsModal).render(model.bookings, bookingsDirective);
 
 		$('tr', $table).click(function () {
-			var $row = $(this),
-				booking = model.db.booking[$row.data('bookingId')];
-			$('#Booking' + $bookingDetails.data('bookingId'), $bookingsModal).show();
-			$bookingDetails.hide();
-			$bookingDetails.data('bookingId', booking.id);
-			$bookingDetails.render(booking, bookingDetailsDirective);
-			$row.after($bookingDetails);
-			$row.hide();
-			$bookingDetails.show();
+			showDetails($(this).data('bookingId'));
 		});
 	};
 
-	var hideDetails = function () {
-		$bookingDetails.hide();
-		$bookingDetails.appendTo($ftr);
+	var showList = function () {
+		$bookingsModal.removeClass('detailsView').addClass('listView');
+	};
+
+	var showDetails = function (bookingId) {
+		var booking = model.db.booking[bookingId];
+		$bookingDetails.data('bookingId', booking.id);
+		$bookingDetails.render(booking, bookingDetailsDirective);
+		$bookingsModal.removeClass('listView').addClass('detailsView');
 	};
 
 	var updateBooking = function (booking, successFunction, errorFunction) {
@@ -68,79 +69,86 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 		});
 	};
 
+	var acceptBooking = function () {
+		var bk = model.db.booking[$bookingDetails.data('bookingId')];
+		var oldVal =  bk.accepted;
+		bk.accepted = 'True';
+		updateBooking(bk, function (data) {
+			modal.displayNotification($bookingsModal, data.message, 'success');
+			var $row = $('#Booking' + bk.id);
+			$row = transparency.render($row, bk, bookingsDirective);
+			$bookingDetails.render(bk, bookingDetailsDirective);
+			renderBadge();
+		}, function (data) {
+			modal.displayNotification($bookingsModal, JSON.parse(data.responseText).message, 'error');
+			bk.accepted = oldVal;
+		});
+	};
+
+	var askAcceptBooking = function () {
+		if ($(this).hasClass('disabled')) {
+			return;
+		}
+		dialog.confirm(
+			i18n.translate('Are you sure you wish to accept? Once you accept, you can no more undo it, and the client will be notified.'),
+			acceptBooking
+		);
+	};
+
+	var markAsPaid = function () {
+		var bk = model.db.booking[$bookingDetails.data('bookingId')];
+		var oldVal = bk.paid;
+		bk.paid = bk.paid === 'True' ? 'False':'True';
+		updateBooking(bk, function (data) {
+			modal.displayNotification($bookingsModal, data.message, 'success');
+			var $row = $('#Booking' + bk.id);
+			$row.render(bk, bookingsDirective);
+			$bookingDetails.render(bk, bookingDetailsDirective);
+			renderBadge();
+		}, function (data) {
+			modal.displayNotification($bookingsModal, JSON.parse(data.responseText).message, 'error');
+			bk.accepted = oldVal;
+		});
+	};
+
+	var deleteBooking = function () {
+		var bookingId = $bookingDetails.data('bookingId');
+		$.ajax({
+			'type': 'POST',
+			'url': '/admin/bookings/' + bookingId,
+			'data': '_method=DELETE',
+			'dataType': 'json',
+			'success': function (data) {
+				modal.displayNotification($bookingsModal, data.message, 'success');
+				delete model.db.booking[bookingId];
+				$bookingDetails.data('bookingId', -1);
+				showList();
+				render();
+				renderBadge();
+			},
+			'error' : function (data) {
+				modal.displayNotification($bookingsModal, JSON.parse(data.responseText).message, 'error');
+			}
+		});
+	};
+
+	var askDeleteBooking = function () {
+		dialog.confirm(i18n.translate('Are you sure you wish to delete?'), deleteBooking);
+	};
+
 	var initButtons = function () {
 		if (!buttonsInitialized) {
-			$('#acceptBooking', $bookingDetails).click(function () {
-				if ($(this).hasClass('disabled')) {
-					return;
-				}
-				dialog.confirm(
-					i18n.translate('Are you sure you wish to accept? Once you accept, you can no more undo it, and the client will be notified.'),
-					function () {
-						var bk = model.db.booking[$bookingDetails.data('bookingId')];
-						var oldVal =  bk.accepted;
-						bk.accepted = 'True';
-						updateBooking(bk, function (data) {
-							modal.displayNotification($bookingsModal, data.message, 'success');
-							var $row = $('#Booking' + bk.id);
-							$row = transparency.render($row, bk, bookingsDirective);
-							$bookingDetails.before($row);
-							$bookingDetails.render(bk, bookingDetailsDirective);
-							renderBadge();
-						}, function (data) {
-							modal.displayNotification($bookingsModal, JSON.parse(data.responseText).message, 'error');
-							bk.accepted = oldVal;
-						});
-					}
-				);
-			});
-			$('#markAsPaid', $bookingDetails).click(function () {
-				var bk = model.db.booking[$bookingDetails.data('bookingId')];
-				var oldVal = bk.paid;
-				bk.paid = bk.paid === 'True' ? 'False':'True';
-				updateBooking(bk, function (data) {
-					modal.displayNotification($bookingsModal, data.message, 'success');
-					var $row = $('#Booking' + bk.id);
-					$row = transparency.render($row, bk, bookingsDirective);
-					$bookingDetails.before($row);
-					$bookingDetails.render(bk, bookingDetailsDirective);
-					renderBadge();
-				}, function (data) {
-					modal.displayNotification($bookingsModal, JSON.parse(data.responseText).message, 'error');
-					bk.accepted = oldVal;
-				});
-			});
+			$('#acceptBooking', $bookingDetails).click(askAcceptBooking);
+			$('#markAsPaid', $bookingDetails).click(markAsPaid);
 			$('#closeBookingDetails', $bookingDetails).click(function () {
 				$('#Booking' + $bookingDetails.data('bookingId'), $bookingsModal).show();
-				hideDetails();
+				showList();
 			});
-			$('#deleteBooking', $bookingDetails).click(function () {
-				dialog.confirm(i18n.translate('Are you sure you wish to delete the booking?'), function () {
-					var bookingId = $bookingDetails.data('bookingId');
-					$.ajax({
-						'type': 'POST',
-						'url': '/admin/bookings/' + bookingId,
-						'data': '_method=DELETE',
-						'dataType': 'json',
-						'success': function (data) {
-							modal.displayNotification($bookingsModal, data.message, 'success');
-							delete model.db.booking[bookingId];
-							$bookingDetails.data('bookingId', -1);
-							hideDetails();
-							render();
-							renderBadge();
-						},
-						'error' : function (data) {
-							modal.displayNotification($bookingsModal, JSON.parse(data.responseText).message, 'error');
-						}
-					});
-				});
-			});
+			$('#deleteBooking', $bookingDetails).click(askDeleteBooking);
 			buttonsInitialized = true;
 		}
 	};
 
-	var $badge = $('.badge', $bookingsButton);
 
 	var renderBadge = function () {
 		$badge.text(_.reduce(model.bookings, function (sum, el) {
@@ -153,17 +161,31 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 			$badge.show();
 		}
 	};
-	renderBadge();
 
-	$bookingsButton.click(function () {
+
+	var showBookings = function () {
 		$.getJSON('/admin/bookings/',
 			function (data) {
 				model.mapToDB(data, 'booking');
 				model.bookings = data;
 				render();
 				initButtons();
+				showList();
 				$bookingsModal.modal('show');
-			});
-	});
-//close the function & define
+			}
+		);
+		return this;
+	};
+
+	var init = function () {
+		$detailsButtons.appendTo($bookingsModal.footer);
+		return this;
+	};
+
+	$bookingsButton.click(showBookings);
+
+	return {
+		'showBookings': showBookings,
+		'init': init
+	};
 });
