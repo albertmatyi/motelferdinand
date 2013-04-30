@@ -125,9 +125,9 @@ D 	backup data
 			delete
 			accept
 	fixed booking button
-	fullscreen image quality
 	fix picasa albums
 	caching
+	fullscreen image quality
 
 	Booking datum validalas - 4h
 		ne lehessen olyan datumokat valasztani, amire mar az a bizonyos szoba le van foglalva
@@ -136,12 +136,6 @@ D 	backup data
 
 	Admin tudja megnezni a vendegkonyv bejegyzeseket - 1h
 	
-
-
-
-
-
-
 	progress indicator 2h
 	
 	email 

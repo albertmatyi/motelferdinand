@@ -1,1 +1,1 @@
-/home/albertmatyi/work/python/hotelmotel/startserv.sh.new
+/home/albertmatyi/work/python/hotelmotel/startserv177.sh
