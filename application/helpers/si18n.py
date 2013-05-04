@@ -71,6 +71,8 @@ translations = {
         'Back': u'Back',
         'Update': u'Update',
         'Preferred language': u'Preferred language',
+        'nights': u'nights',
+        'Attached message': u'Attached message',
 
         # Admin
         'Admin': u'Admin',
@@ -171,6 +173,8 @@ translations = {
         'Back': u'Vissza',
         'Update': u'Frissítés',
         'Preferred language': u'Kedvelt nyelv',
+        'nights': u'északa',
+        'Attached message': u'Csatolt üzenet',
 
         # Admin
         'Admin': u'Admin',
@@ -272,6 +276,8 @@ translations = {
         'Back': u'Înapoi',
         'Update': u'Actualizare',
         'Preferred language': u'Limba preferată',
+        'nights': u'nopți',
+        'Attached message': u'Mesaj atașat',
 
         # Admin
         'Admin': u'Admin',

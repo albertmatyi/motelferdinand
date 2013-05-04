@@ -29,6 +29,7 @@ define([], function () {
 	return {
 		'toDate': strToDate,
 		'toStr': dateToStr,
-		'isValid': isValid
+		'isValid': isValid,
+		'SECS_IN_DAY': 1000 * 60 * 60 * 24
 	};
 });

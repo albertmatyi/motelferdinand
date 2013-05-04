@@ -110,7 +110,7 @@ define(
 		t.l('Verify per night price').$('.pricePerNight', function ($el) {
 			t.assertEquals(perNight + cur, $el.text());
 		}, $form);
-		t.l('Verify days').$('.nrOfDays', function ($el) {
+		t.l('Verify days').$('.nrOfNights', function ($el) {
 			t.assertEquals(days + '', $el.text());
 		}, $form);
 		t.l('Verify total').$('.priceTotal', function ($el) {

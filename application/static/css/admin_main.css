@@ -6247,6 +6247,8 @@ body > .hidden-on-body, #body_content > .hidden-on-body {
     background: none; }
     #adminBookingsModal.detailsView .bookingDetails .table td, #adminBookingsModal.detailsView .bookingDetails .table th {
       text-align: center; }
+      #adminBookingsModal.detailsView .bookingDetails .table td small, #adminBookingsModal.detailsView .bookingDetails .table th small {
+        display: block; }
     #adminBookingsModal.detailsView .bookingDetails .table .status td {
       background: #DD3333;
       color: #FFFFFF; }

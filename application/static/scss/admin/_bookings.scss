@@ -74,6 +74,9 @@
 				background: none;
 				td, th {
 					text-align: center;
+					small {
+						display: block;
+					}
 				}
 				
 				.status{

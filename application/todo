@@ -119,10 +119,11 @@ D 	backup data
 	admin
 D		show price
 D		show from/to
-D		show language
-		show guests
-		show quantity
-		add note
+D		show language  (on user)
+?			on booking?
+D		show guests
+D		show quantity
+		discount
 		update
 		accept 
 			with message

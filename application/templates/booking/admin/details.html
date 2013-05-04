@@ -13,6 +13,19 @@
 			</thead>
 			<tbody>
 				<tr>
+					<th colspan="2">{{ __('Status') }}</th>
+				</tr>
+				<tr class="status">
+					<td data-bind="accepted"> 
+						<i class="icon-minus-sign" data-bind="accepted"></i> 
+						{{ __('Accepted') }}
+					</td>
+					<td data-bind="paid"> 
+						<i class="icon-minus-sign" data-bind="paid"></i> 
+						{{ __('Paid') }}
+					</td>
+				</tr>
+				<tr>
 					<td>
 						<i class="icon-envelope"></i> <span data-bind="user.email"></span>
 					</td>
@@ -22,9 +35,27 @@
 				</tr>
 				<tr>
 					<td>{{ __('Preferred language') }}</td>
-					<td data-bind="language"></td>
+					<td data-bind="user.language"></td>
 				</tr>
-				<tr>
+				<tr data-bind="messageVisible">
+					<td colspan="2">
+						<span>
+							{{ __('Attached message') }}
+						</span>
+						<em data-bind="message">
+						</em>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="rightside">
+		<p class="date">
+			<i class="icon-time" title="{{ __('Modified') }}"></i> 
+			<span data-bind="created" title="{{ __('Modified') }}"></span>
+		</p>
+		<table class="table">
+			<tbody>
 				<tr>
 					<td>{{ __('Bookable') }}</td>
 					<td data-bind="bookable"></td>
@@ -44,57 +75,45 @@
 				</tr>
 				<tr>
 					<td>{{ __('Departure date') }}</td>
-					<td data-bind="book_until"></td>
+					<td> 
+						<span data-bind="book_until"></span> 
+						<small>
+							( <span data-bind="nrOfNights"></span>
+							{{ __('nights') }} )
+						</small>
+					</td>
 				</tr>
 				<tr>
 					<td>{{ __('Price') }}</td>
 					<td>
 						<span data-bind="price">1billion</span>
 						<span data-bind="currency"></span>
-					</td>
-				</tr>
-				<tr>
-					<th colspan="2">{{ __('Status') }}</th>
-				</tr>
-				<tr class="status">
-					<td data-bind="accepted"> 
-						<i class="icon-minus-sign" data-bind="accepted"></i> 
-						{{ __('Accepted') }}
-					</td>
-					<td data-bind="paid"> 
-						<i class="icon-minus-sign" data-bind="paid"></i> 
-						{{ __('Paid') }}
+						<small>
+							( <span data-bind="pricePerNight"></span>
+							<span data-bind="currency"></span>
+							{{ __('Per night') }} )
+						</small>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	<div class="rightside">
-		<p class="date">
-			<i class="icon-time" title="{{ __('Modified') }}"></i> 
-			<span data-bind="created" title="{{ __('Modified') }}"></span>
-		</p>
-		<div class="message">
-			<h5>{{ __('Custom message') }}</h5>
-			<p data-bind="message">
-			</p>
-		</div>
-	</div>
 	<div class="bookingDetails footerButtons">
 		<div class="actions btn-group">
-			<button type="button" class="btn" id="acceptBooking" data-bind="accepted-button">
+			<button type="button" class="btn btn-primary" id="acceptBooking" data-bind="accepted-button">
 				{{ __('Mark as accepted') }}
 			</button>
 			<button type="button" class="btn" id="markAsPaid" data-bind="paid-button">
 				{{ __('Mark as paid') }}
 			</button>
-			<button type="button" class="btn" id="updateBooking">
+			<button type="button" class="btn btn-disabled" id="updateBooking">
 				{{ __('Update') }}
 			</button>
-			<button type="button" class="btn btn-danger" id="deleteBooking">
-				<i class="icon-trash icon-white" title="{{ __('Delete') }}"></i>{{ __('Delete') }}
-			</button>
+			
 		</div>
+	<button type="button" class="btn btn-link" id="deleteBooking">
+		<i class="icon-trash" title="{{ __('Delete') }}"></i>{{ __('Delete') }}
+	</button>
 	<button type="button" class="btn btn-link" id="closeBookingDetails">{{ __('Back') }}</button>
 </div>
 

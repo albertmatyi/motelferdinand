@@ -159,7 +159,7 @@ define(['helpers/date', 'helpers/tooltip'],
 			return price;
 		};
 
-		var getDays = function () {
+		var getNights = function () {
 			var from = date.toDate($bookFrom.val());
 			var until = date.toDate($bookUntil.val());
 			return new Date(until - from) / (1000 * 60 * 60 * 24);
@@ -174,10 +174,10 @@ define(['helpers/date', 'helpers/tooltip'],
 					return;
 				}
 				var perNight = calcPerNight(bookable);
-				var days = getDays();
-				var total = days * perNight;
+				var nights = getNights();
+				var total = nights * perNight;
 				var curr = ' ' + bookable.prices[model.language].currency;
-				$('.nrOfDays', $form).text(days);
+				$('.nrOfNights', $form).text(nights);
 				$('.pricePerNight', $form).text(perNight + curr);
 				$('.priceTotal', $form).text(total + curr);
 			};
