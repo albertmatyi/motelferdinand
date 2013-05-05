@@ -123,11 +123,9 @@ D		show language  (on user)
 ?			on booking?
 D		show guests
 D		show quantity
-		discount
-		update
 		accept 
 			with message
-		update booking
+?		discount update booking
 		test
 			update (paid)
 			delete

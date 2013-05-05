@@ -1,4 +1,6 @@
 /*global define */
+/*global model */
+/*global $ */
 
 define(
 [

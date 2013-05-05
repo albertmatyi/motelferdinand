@@ -108,7 +108,9 @@ define([
 				t.l('verify price').assertPresent(
 					'.price:contains(' + info.currency + model.language + ')', $bookable
 					);
+				t.l('Test booking form button').click($bookable.selector + ' .showBookingFormButton');
 
+				t.l('Verify form presence').assertVisible($bookable.selector + ' #submitBookingButton');
 			});
 
 			t.l('Verify model entries').addFunction(function () {

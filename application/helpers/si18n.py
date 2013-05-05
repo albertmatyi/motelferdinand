@@ -134,6 +134,8 @@ translations = {
         'Mark as accepted': u'Mark as accepted',
         'Mark as paid': u'Mark as paid',
         'Contact': u'Contact',
+        'Accept booking': u'Accept booking',
+        'Accept booking and send email': u'Accept booking and send email',
 
         #Forms
         'Save': u'Save',
@@ -237,6 +239,8 @@ translations = {
         'Mark as accepted': u'Elfogad',
         'Mark as paid': u'Kifizetve',
         'Contact': u'Kapcsolat',
+        'Accept booking': u'Foglalást elfogad',
+        'Accept booking and send email': u'Foglalást elfogad és küld emailt.',
 
         #Forms
         'Save': u'Mentés',
@@ -339,6 +343,8 @@ translations = {
         'Mark as accepted': u'Acceptă',
         'Mark as paid': u'Marchează plătit',
         'Contact': u'Contact',
+        'Accept booking': u'Acceptă rezervarea',
+        'Accept booking and send email': u'Acceptă rezervarea și trimite email',
 
         #Forms
         'Save': u'Salvează',

@@ -8,11 +8,13 @@ from flask import render_template
 
 from application import app
 
+
 ## Error handlers
 # Handle 404 errors
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
+
 
 # Handle 500 errors
 @app.errorhandler(500)
@@ -25,5 +27,4 @@ def server_error(e):
 '''
 Read the urls from the following files
 '''
-from controllers import category, content, bookable, booking, user
-
+from controllers import category, content, bookable, booking, user, prop

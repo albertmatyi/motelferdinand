@@ -80,28 +80,28 @@ define(
                      "</div>" +
                      "<a class='btn' data-wysihtml5-command='insertHTML' title='Embed HTML'><i class='icon-chevron-left'></i><i class='icon-chevron-right'></i></a>" +
                  "</li>",
-      "insertGallery": "<li class=\"picaslideButton\">" +
-                 "<div class='bootstrap-wysihtml5-insert-gallery-modal modal hide fade'>" +
-                     "<div class='modal-header'>" +
-                         "<a class='close' data-dismiss='modal'>&times;</a>" +
-                         "<h3>Insert Picasa album</h3>" +
-                     "</div>" +
-                     "<div class='modal-body'>" +
-                         "<input class='bootstrap-wysihtml5-insert-gallery-url input-xlarge' placeholder='Picasa Gallery URL'/>" +
-                     "</div>" +
-                     "<div class='modal-footer'>" +
-                         "<a href='#' class='btn' data-dismiss='modal'>Cancel</a>" +
-                         "<a href='#' class='btn btn-primary' data-dismiss='modal'>Insert</a>" +
-                     "</div>" +
-                 "</div>" +
-                 "<a class='btn picaslide' data-wysihtml5-command='insertHTML' title='Insert gallery'><img src='/static/img/picasa_s.png' alt='Insert picasa album'/></a>" +
-             "</li>",        
-      "html":
-                     "<li class=\"editHtmlButton\">" +
-                         "<div class='btn-group'>" +
-                             "<a class='btn' data-wysihtml5-action='change_view' title='Edit HTML'><i class='icon-pencil'></i></a>" +
-                         "</div>" +
-                     "</li>"
+      "insertGallery": '<li class="picaslideButton">' +
+                 '<div class="bootstrap-wysihtml5-insert-gallery-modal modal hide fade">' +
+                     '<div class="modal-header">' +
+                         '<a class="close" data-dismiss="modal">&times;</a>' +
+                         '<h3>Insert Picasa album</h3>' +
+                     '</div>' +
+                     '<div class="modal-body">' +
+                         '<input class="bootstrap-wysihtml5-insert-gallery-url input-xlarge" placeholder="Picasa Gallery URL"/>' +
+                     '</div>' +
+                     '<div class="modal-footer">' +
+                         '<a href="#" class="btn" data-dismiss="modal">Cancel</a>' +
+                         '<a href="#" class="btn btn-primary" data-dismiss="modal">Insert</a>' +
+                     '</div>' +
+                 '</div>' +
+                 '<a class="btn picaslide" data-wysihtml5-command="insertHTML" title="Insert gallery"><img src="/static/img/picasa_s.png" alt="Insert picasa album"/></a>' +
+             '</li>',        
+      'html':
+                     '<li class="editHtmlButton">' +
+                         '<div class="btn-group">' +
+                             '<a class="btn" data-wysihtml5-action="change_view" title="Edit HTML"><i class="icon-pencil"></i></a>' +
+                         '</div>' +
+                     '</li>'
   };
 
   var defaultOptions = {

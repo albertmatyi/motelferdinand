@@ -53,7 +53,7 @@ function (i18n, dialog) {
 				var entity = $(this).data('entity');
 				//populate the form with data
 				i18n.populateForm($form, entity);
-				if (typeof populateCallback !== 'undefined'){
+				if (typeof populateCallback !== 'undefined') {
 					populateCallback($form, entity);
 				}
 				//show the edit category form

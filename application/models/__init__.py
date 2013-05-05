@@ -7,6 +7,9 @@ Created on Jul 24, 2012
 from base import *
 from i18n import *
 
+# application properties
+from prop import *
+
 # abstract content
 from abstract_content import *
 
@@ -24,5 +27,6 @@ from user import *
 
 # dependent on bookable & user
 from booking import *
+
 
 from populator import *

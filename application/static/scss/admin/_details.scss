@@ -1,0 +1,56 @@
+&.detailsView {
+	.bookingDetails {
+		display: block;
+		.name {
+			margin-top: 0;
+		}
+		&, &:hover {
+			background: #EFEFFF;
+			cursor: normal;
+		}
+		.leftside, .rightside{
+			width: 48%;
+		}
+		.rightside {
+			float: right;
+		}
+
+		.date{
+			float: right;
+			font-size: 1em;
+			color: #999999;
+		}
+		.table {
+			background: none;
+			td, th {
+				text-align: center;
+				small {
+					display: block;
+				}
+			}
+			
+			.status{
+				td {
+					background: #DD3333;
+					color: #FFFFFF;
+				}
+				.accepted {
+					background: #3399ff;
+				}
+				.paid {
+					background: #66AA33;
+				}
+				
+			}
+		}
+		.contact {
+			padding: .5em;
+			.icon-signal {
+				margin-left: 2em;
+			}
+		}
+		.leftside {
+			float: left;
+		}
+	}
+}

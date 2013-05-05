@@ -50,7 +50,7 @@ function (jq) {
 	model.db.content = new EntityMap();
 	model.db.booking = new EntityMap();
 	model.db.bookable = new EntityMap();
-	
+
 
 	for (var i = model.categories.length - 1; i >= 0; i -= 1) {
 		var cat = model.categories[i];

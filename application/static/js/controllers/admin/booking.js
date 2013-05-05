@@ -18,9 +18,11 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 	'use strict';
 
 	var $bookingsModal = $('#adminBookingsModal');
+	var initClass = $bookingsModal.prop('class');
 	$bookingsModal.footer = $('.modal-footer', $bookingsModal);
 	var $bookingDetails = $('.bookingDetails', $bookingsModal);
-	var $detailsButtons = $('.footerButtons', $bookingDetails);
+	var $bookingTextarea = $('#bookingTextarea', $bookingsModal);
+	var $footerButtons = $('.footerButtons', $bookingDetails);
 	var $bookingsButton = $('#adminBookingsButton');
 	var $table = $('.bookingsList .table > tbody', $bookingsModal);
 	var $badge = $('.badge', $bookingsButton);
@@ -35,14 +37,14 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 	};
 
 	var showList = function () {
-		$bookingsModal.removeClass('detailsView').addClass('listView');
+		$bookingsModal.prop('class', initClass + ' listView');
 	};
 
 	var showDetails = function (bookingId) {
 		var booking = model.db.booking[bookingId];
 		$bookingDetails.data('bookingId', booking.id);
 		$bookingDetails.render(booking, bookingDetailsDirective);
-		$bookingsModal.removeClass('listView').addClass('detailsView');
+		$bookingsModal.prop('class', initClass + ' detailsView');
 	};
 
 	var updateBooking = function (booking, successFunction, errorFunction) {
@@ -70,29 +72,34 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 	};
 
 	var acceptBooking = function () {
-		var bk = model.db.booking[$bookingDetails.data('bookingId')];
-		var oldVal =  bk.accepted;
-		bk.accepted = 'True';
-		updateBooking(bk, function (data) {
-			modal.displayNotification($bookingsModal, data.message, 'success');
-			var $row = $('#Booking' + bk.id);
-			$row = transparency.render($row, bk, bookingsDirective);
-			$bookingDetails.render(bk, bookingDetailsDirective);
-			renderBadge();
-		}, function (data) {
-			modal.displayNotification($bookingsModal, JSON.parse(data.responseText).message, 'error');
-			bk.accepted = oldVal;
+		var booking = model.db.booking[$bookingDetails.data('bookingId')];
+		var mail = { 'mail': $bookingTextarea.val() };
+		$.ajax({
+			url : 'admin/bookings/accept/' + booking.id,
+			success : function (data) {
+				booking.accepted = 'True';
+				booking.modified = data.modified;
+				modal.displayNotification($bookingsModal, data.message, 'success');
+				var $row = $('#Booking' + booking.id);
+				showDetails(booking.id);
+				$row = transparency.render($row, booking, bookingsDirective);
+				$bookingDetails.render(booking, bookingDetailsDirective);
+				renderBadge();
+			},
+			'error' : function (data) {
+				modal.displayNotification($bookingsModal, JSON.parse(data.responseText).message, 'error');
+			},
+			type : 'POST',
+			data : {'data' : JSON.stringify(mail)},
+			dataType: 'json'
 		});
 	};
 
-	var askAcceptBooking = function () {
+	var showAcceptBookingForm = function () {
 		if ($(this).hasClass('disabled')) {
 			return;
 		}
-		dialog.confirm(
-			i18n.translate('Are you sure you wish to accept? Once you accept, you can no more undo it, and the client will be notified.'),
-			acceptBooking
-		);
+		$bookingsModal.prop('class', initClass + ' acceptBooking');
 	};
 
 	var markAsPaid = function () {
@@ -138,7 +145,8 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 
 	var initButtons = function () {
 		if (!buttonsInitialized) {
-			$('#acceptBooking', $bookingDetails).click(askAcceptBooking);
+			$('#showAcceptBooking', $bookingDetails).click(showAcceptBookingForm);
+			$('#acceptBooking', $bookingDetails).click(acceptBooking);
 			$('#markAsPaid', $bookingDetails).click(markAsPaid);
 			$('#closeBookingDetails', $bookingDetails).click(function () {
 				$('#Booking' + $bookingDetails.data('bookingId'), $bookingsModal).show();
@@ -178,7 +186,7 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 	};
 
 	var init = function () {
-		$detailsButtons.appendTo($bookingsModal.footer);
+		$footerButtons.appendTo($bookingsModal.footer);
 		return this;
 	};
 
