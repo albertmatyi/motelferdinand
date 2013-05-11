@@ -12,20 +12,31 @@ define([
 	'helpers/transparency',
 	'elements/dialog',
 	'elements/admin/controls',
-	'elements/modal'
+	'elements/modal',
+	'helpers/wysihtml5',
+	'helpers/date'
 ],
-function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transparency, dialog, adminControls, modal) {
+function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transparency, dialog, adminControls, modal, wysihtml5, date) {
 	'use strict';
 
-	var $bookingsModal = $('#adminBookingsModal');
-	var initClass = $bookingsModal.prop('class');
-	$bookingsModal.footer = $('.modal-footer', $bookingsModal);
-	var $bookingDetails = $('.bookingDetails', $bookingsModal);
-	var $bookingTextarea = $('#bookingTextarea', $bookingsModal);
-	var $footerButtons = $('.footerButtons', $bookingDetails);
 	var $bookingsButton = $('#adminBookingsButton');
-	var $table = $('.bookingsList .table > tbody', $bookingsModal);
 	var $badge = $('.badge', $bookingsButton);
+
+	var $bookingsModal = $('#adminBookingsModal');
+	$bookingsModal.footer = $('.modal-footer', $bookingsModal);
+	$bookingsModal.title = $('.modal-header h3', $bookingsModal);
+
+	var $table = $('.bookingsList .table > tbody', $bookingsModal);
+
+	var $bookingDetails = $('.bookingDetails', $bookingsModal);
+
+	var $bookingAccept = $('.bookingAccept', $bookingsModal);
+
+	var $subject = $('#mailSubject', $bookingsModal);
+	var $textarea = $('#bookingTextarea', $bookingsModal);
+
+	var $footerButtons = $('.footerButtons', $bookingsModal);
+
 	var buttonsInitialized = false;
 
 	var render = function () {
@@ -36,17 +47,64 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 		});
 	};
 
+	var activate = function (view) {
+		var cls = $bookingsModal.prop('class');
+		var regex = /^.*(\s\w+View).*$/;
+		if (cls.match(regex)) {
+			$bookingsModal.removeClass(cls.replace(regex, '$1'));
+		}
+		$bookingsModal.addClass(view);
+	};
+
 	var showList = function () {
-		$bookingsModal.prop('class', initClass + ' listView');
+		$('span', $bookingsModal.title).remove();
+		activate('listView');
 	};
 
 	var showDetails = function (bookingId) {
-		var booking = model.db.booking[bookingId];
-		$bookingDetails.data('bookingId', booking.id);
-		$bookingDetails.render(booking, bookingDetailsDirective);
-		$bookingsModal.prop('class', initClass + ' detailsView');
+		if (bookingId) {
+			var booking = model.db.booking[bookingId];
+			$bookingDetails.data('bookingId', booking.id);
+			$bookingDetails.render(booking, bookingDetailsDirective);
+		}
+		$('span', $bookingsModal.title).remove();
+		$bookingsModal.title.prepend('<span>' + $('.panelTitle', $bookingDetails).text() + '</span><span class="separator"></span>');
+		activate('detailsView');
 	};
 
+	var subst = function (dict, str, prefix) {
+		prefix = prefix || '#';
+		for (var key in dict) {
+			if (dict.hasOwnProperty(key)) {
+				var val = dict[key];
+				if (typeof val === 'object') {
+					str = subst(val, str, prefix + key + '\\.');
+				} else {
+					var regex = new RegExp(prefix + key + '\\b', 'g');
+					str = str.replace(regex, val);
+				}
+			}
+		}
+		return str;
+	};
+
+	var showAcceptBookingForm = function () {
+		if ($(this).hasClass('disabled')) {
+			return;
+		}
+		$bookingsModal.title.prepend('<span>' + $('.panelTitle', $bookingAccept).text() + '</span><span class="separator"></span>');
+		var booking = model.db.booking[$bookingDetails.data('bookingId')];
+		var user = booking.user;
+		var bookable = model.db.bookable[booking.bookable];
+		$.getJSON('/props/mail.accept.' + user.language + '.body', function (data) {
+			var val = subst({'lang_id': user.language, 'user': user, 'booking': booking, 'bookable': bookable}, data.value);
+			wysihtml5.setValue($textarea, val);
+		});
+		$.getJSON('/props/mail.accept.' + user.language + '.subject', function (data) {
+			$subject.val(data.value);
+		});
+		activate(' acceptView');
+	};
 	var updateBooking = function (booking, successFunction, errorFunction) {
 		$.ajax({
 			url : 'admin/bookings/',
@@ -73,7 +131,7 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 
 	var acceptBooking = function () {
 		var booking = model.db.booking[$bookingDetails.data('bookingId')];
-		var mail = { 'mail': $bookingTextarea.val() };
+		var mail = { 'mail': $textarea.val() };
 		$.ajax({
 			url : 'admin/bookings/accept/' + booking.id,
 			success : function (data) {
@@ -95,12 +153,6 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 		});
 	};
 
-	var showAcceptBookingForm = function () {
-		if ($(this).hasClass('disabled')) {
-			return;
-		}
-		$bookingsModal.prop('class', initClass + ' acceptBooking');
-	};
 
 	var markAsPaid = function () {
 		var bk = model.db.booking[$bookingDetails.data('bookingId')];
@@ -149,10 +201,13 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 			$('#acceptBooking', $bookingDetails).click(acceptBooking);
 			$('#markAsPaid', $bookingDetails).click(markAsPaid);
 			$('#closeBookingDetails', $bookingDetails).click(function () {
-				$('#Booking' + $bookingDetails.data('bookingId'), $bookingsModal).show();
 				showList();
 			});
+			$('#cancelAccept', $bookingAccept).click(function () {
+				showDetails();
+			});
 			$('#deleteBooking', $bookingDetails).click(askDeleteBooking);
+			wysihtml5.renderTextAreas($bookingsModal);
 			buttonsInitialized = true;
 		}
 	};
@@ -176,6 +231,10 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 			function (data) {
 				model.mapToDB(data, 'booking');
 				model.bookings = data;
+				_.each(data, function (el) {
+					el.nrOfNights = date.getDateDiff(el.book_from, el.book_until);
+					el.pricePerNight = el.price / el.nrOfNights;
+				});
 				render();
 				initButtons();
 				showList();

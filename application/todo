@@ -123,20 +123,28 @@ D		show language  (on user)
 ?			on booking?
 D		show guests
 D		show quantity
-		accept 
+130504
+D		accept 
+D			with message
+		cancel booking
 			with message
-?		discount update booking
+		discount update booking
 		test
 			update (paid)
 			delete
 			accept
+		send offer/message
+	booking
+		nationality
+	Booking datum validalas - 4h
+		ne lehessen olyan datumokat valasztani, amire mar az a bizonyos szoba le van foglalva
+
 	fixed booking button
 	fix picasa albums
+	
 	caching
 	fullscreen image quality
 
-	Booking datum validalas - 4h
-		ne lehessen olyan datumokat valasztani, amire mar az a bizonyos szoba le van foglalva
 
 	A felhasznalo tudjon elfogadott & kifizetett foglalas lejarta utan vendgekonyv beirast kuldeni (email ertesites a kliensnek) - 6h
 

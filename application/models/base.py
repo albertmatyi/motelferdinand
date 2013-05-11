@@ -30,7 +30,6 @@ class AbstractModel(db.Model):
                     val = [el.to_dict() for el in getattr(self, dep)]
                     arr += [(dep, val)]
         return dict(arr)
-        pass
 
     def to_dict_field(self, key):
         val = getattr(self, key)

@@ -147,16 +147,44 @@ def send_new_booking_mail(booking):
     pass
 
 
-@app.route('/booking-mail/<int:entityId>', methods=['GET'])
+@app.route('/bookings/accept/<int:entity_id>', methods=['POST'])
 @admin_required
-def booking_mail(entityId):
+def accept_booking(entity_id):
+    booking = mark_accepted(entity_id)
+    send_acceptance_mail(booking)
+
+
+def mark_accepted(entity_id):
+    booking = BookingModel.get_by_id(entity_id)
+    booking.accepted = True
+    booking.put()
+    return booking
+
+
+def send_acceptance_mail(booking):
+    mail_data = json.loads(request.form['data'])
+    # To client
+    message = mail.EmailMessage(
+        sender=si18n.translate('Ferdinand Motel') +
+        '<' + APP_MAIL_SENDER + '>',
+        subject=mail_data.subject
+    )
+
+    message.to = booking.user.full_name + '<' + booking.user.email + '>'
+    message.html = mail_data.body
+    message.send()
+
+
+@app.route('/booking-mail/<int:entity_id>', methods=['GET'])
+@admin_required
+def booking_mail(entity_id):
     # pdb.set_trace()
     # mail.send(usr.email, 'BOOKING_SUBJ', '/bookingClient.html', booking);
 
     body = '/mail/bookingNewClient.html'
     body = '/mail/bookingNewAdmin.html'
     body = '/mail/bookingAcceptedClient.html'
-    booking = BookingDictBuilder(long(entityId))\
+    booking = BookingDictBuilder(long(entity_id))\
         .with_user()\
         .with_bookable()\
         .build()
@@ -164,11 +192,11 @@ def booking_mail(entityId):
     pass
 
 
-@app.route('/admin/bookings/<int:entityId>', methods=['POST', 'DELETE'])
+@app.route('/admin/bookings/<int:entity_id>', methods=['POST', 'DELETE'])
 @admin_required
-def admin_delete_booking(entityId):
+def admin_delete_booking(entity_id):
     if request.method == 'DELETE' or request.values['_method'] == 'DELETE':
-        BookingModel.get_by_id(entityId).delete()
+        BookingModel.get_by_id(entity_id).delete()
         return '{ "message" : "' +\
             si18n.translate('Successfully deleted') + '" }'
     return '{ "message" : "' +\
@@ -188,40 +216,13 @@ def update_booking():
     # pdb.set_trace()
     obj = transform(json.loads(request.form['data']))
     booking = BookingModel.get_by_id(long(obj['id']))
-    accepted0 = booking.accepted
     del obj['user']
     booking.populate(obj).put()
-    if accepted0 is False and booking.accepted is True:
-        send_booking_accepted_mail(booking)
 
     return '{ "modified" : "' +\
         booking.to_dict()['modified'] +\
         '", "message" : "' + \
         si18n.translate('Modified successfully') + '"}'
-
-
-def send_booking_accepted_mail(booking):
-    subject = 'Your booking request at Ferdinand Motel has been ACCEPTED.'
-    booking_dict = BookingDictBuilder(booking)\
-        .with_bookable()\
-        .with_user()\
-        .build()
-    # To client
-    message = mail.EmailMessage(
-        sender=si18n.translate('Ferdinand Motel') +
-        '<' + APP_MAIL_SENDER + '>',
-        subject=render_template_string(
-            subject,
-            booking=booking_dict
-        )
-    )
-
-    message.to = booking.user.full_name + '<' + booking.user.email + '>'
-    message.html = render_template(
-        '/mail/bookingAcceptedClient.html',
-        booking=booking_dict
-    )
-    message.send()
 
 
 def get_or_create_user(user):

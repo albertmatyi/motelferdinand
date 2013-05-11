@@ -23,9 +23,6 @@ define([
 			}
 		};
 	};
-	var getDays = function (booking) {
-		return (date.toDate(booking.book_until) - date.toDate(booking.book_from)) / date.SECS_IN_DAY;
-	};
 	var dir = {
 		'index' : {
 			text : function () {
@@ -46,12 +43,12 @@ define([
 		'paid' : getBoolDir('paid'),
 		'nrOfNights': {
 			'text': function () {
-				return getDays(this);
+				return this.nrOfNights;
 			}
 		},
 		'pricePerNight': {
 			'text': function () {
-				return this.price / getDays(this);
+				return this.pricePerNight;
 			}
 		},
 		'accepted-button' : {

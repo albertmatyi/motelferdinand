@@ -2,6 +2,28 @@
 	.bookingsList, .bookingDetails, .bookingAccept {
 		display: none;
 	}
+	.modal-header {
+		h3 span {
+			font-size: .6em;
+			float: right;
+			margin: 0 .5em;
+			font-weight: 100;
+			&.separator {
+				border: solid 1px #eee;
+				border-left: none;
+				border-bottom: none;
+				height: 28px;
+				width: 28px;
+				display: block;
+				-moz-transform: rotate(45deg);  /* FF3.5/3.6 */
+				-o-transform: rotate(45deg);  /* Opera 10.5 */
+				-webkit-transform: rotate(45deg);  /* Saf3.1+ */
+				filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476); /* IE6,IE7 */
+				-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(SizingMethod='auto expand', M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476)"; /* IE8 */
+				transform: rotate(45deg);
+			}
+		}
+	}
 	@import "list";
 	@import "details";
 	@import "accept";

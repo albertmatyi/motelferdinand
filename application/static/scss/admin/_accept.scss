@@ -1,5 +1,8 @@
 &.acceptView {
-	.bookingAccept{
+	.bookingAccept {
 		display: block;
+		.panelTitle {
+			display: none;
+		}
 	}
 }

@@ -1,17 +1,26 @@
 <div class="bookingAccept">
-	<h2>
+	<h2 class="panelTitle">
 		{{ __('Accept booking') }}
 	</h2>
-	<h4>Email</h4>
-	<textarea id="bookingTextarea"></textarea>
+	<div class="control-group">
+		<label class="control-label" for="mailSubjectl">{{ __('Subject') }}</label>
+		<div class="controls controls-row">
+			<input id="mailSubject" />
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="bookingTextarea">{{ __('Body') }}</label>
+		<div class="controls controls-row">
+			<textarea id="bookingTextarea"></textarea>
+		</div>
+	</div>
+
 	<div class="bookingAccept footerButtons">
-	<div class="actions btn-group">
 		<button type="button" class="btn btn-primary" id="acceptBooking" data-bind="accepted-button">
 			{{ __('Accept booking and send email') }}
 		</button>
+		<button type="button" class="btn btn-link" id="cancelAccept">{{ __('Back') }}</button>
 	</div>
-	<button type="button" class="btn btn-link" id="cancelAccept">{{ __('Back') }}</button>
-</div>
 
 </div>
 

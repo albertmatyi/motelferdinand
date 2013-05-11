@@ -1,14 +1,72 @@
 
-<h3> Dear {{ booking.user.full_name }}, </h3>
+<h3> Dear #user.full_name, </h3>
 
 <p>
 Your booking enquiry at Ferdinand Motel has been ACCEPTED.
 
-</p>
-{% include '/mail/booking.html' %}
-<p>	
-
-Thank you for your patience, <br/>
+<div>
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th colspan="2">
+						<span>Booking details</span>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<i></i> <span>#user.email</span>
+					</td>
+					<td>
+						<i></i> <span>#user.phone</span>
+					</td>
+				</tr>
+				<tr>
+					<td>Bookable</td>
+					<td>#bookable.i18n.en.title</td>
+				</tr>
+				<tr>
+					<td>Quantity</td>
+					<td>#booking.quantity</td>
+				</tr>
+				<tr>
+					<td>Guests</td>
+					<td>#booking.guests</td>
+				</tr>
+				<tr>
+					<td>Arrival date</td>
+					<td>#booking.book_from</td>
+				</tr>
+				<tr>
+					<td>Departure date</td>
+					<td> 
+						<span>#booking.book_until</span> 
+						<small>
+							( <span>#booking.nrOfNights</span>
+							nights )
+						</small>
+					</td>
+				</tr>
+				<tr>
+					<td>Price</td>
+					<td>
+						<span>#booking.price</span>
+						<span>#booking.currency</span>
+						<small>
+							( <span>#booking.pricePerNight</span>
+							<span>#booking.currency</span>
+							Per night )
+						</small>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<p>
+Thank you for your patience,
 Looking forward to seeing you
 </p>
 <p>

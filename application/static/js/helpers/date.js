@@ -11,6 +11,8 @@ define([], function () {
 		return date;
 	};
 
+	var SECS_IN_DAY = 1000 * 60 * 60 * 24;
+
 	var completeWith0 = function (val) {
 		return val < 10 ? '0' + val : val;
 	};
@@ -26,10 +28,16 @@ define([], function () {
 		return (/^\d{2}-\d{2}-\d{4}$/).exec(str) !== null;
 	};
 
+	var getDateDiff = function (date0, date1) {
+		return (strToDate(date1) - strToDate(date0)) / SECS_IN_DAY;
+	};
+	
+
 	return {
 		'toDate': strToDate,
 		'toStr': dateToStr,
 		'isValid': isValid,
-		'SECS_IN_DAY': 1000 * 60 * 60 * 24
+		'getDateDiff': getDateDiff,
+		'SECS_IN_DAY': SECS_IN_DAY
 	};
 });

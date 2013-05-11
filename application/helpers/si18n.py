@@ -51,6 +51,7 @@ translations = {
         'Log out': u'Log out',
         # Base
         'LanguageName': u'English',
+        'DefaultCurrency': 'EUR',
         'Ferdinand Motel': u'Ferdinand Motel',
         'Language': u'Language',
         'Date': u'Date',
@@ -155,6 +156,7 @@ translations = {
         'Log out': u'Kilép',
         # Base
         'LanguageName': u'Magyar',
+        'DefaultCurrency': 'HUF',
         'Ferdinand Motel': u'Ferdinánd Panzió',
         'Language': u'Nyelv',
         'Date': u'Dátum',
@@ -260,6 +262,7 @@ translations = {
         'Log out': u'Închide sesiunea',
         # Base
         'LanguageName': u'Română',
+        'DefaultCurrency': 'RON',
         'Ferdinand Motel': u'Motel Ferdinand',
         'Language': u'Limbă',
         'Date': u'Data',
