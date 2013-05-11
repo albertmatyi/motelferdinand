@@ -147,11 +147,12 @@ def send_new_booking_mail(booking):
     pass
 
 
-@app.route('/bookings/accept/<int:entity_id>', methods=['POST'])
+@app.route('/admin/bookings/accept/<int:entity_id>', methods=['POST'])
 @admin_required
 def accept_booking(entity_id):
     booking = mark_accepted(entity_id)
     send_acceptance_mail(booking)
+    return '{ "message": "' + si18n.translate('Acceptance mail sent.') + '"}'
 
 
 def mark_accepted(entity_id):
@@ -167,11 +168,11 @@ def send_acceptance_mail(booking):
     message = mail.EmailMessage(
         sender=si18n.translate('Ferdinand Motel') +
         '<' + APP_MAIL_SENDER + '>',
-        subject=mail_data.subject
+        subject=mail_data['subject']
     )
 
     message.to = booking.user.full_name + '<' + booking.user.email + '>'
-    message.html = mail_data.body
+    message.html = mail_data['body']
     message.send()
 
 

@@ -131,9 +131,9 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 
 	var acceptBooking = function () {
 		var booking = model.db.booking[$bookingDetails.data('bookingId')];
-		var mail = { 'mail': $textarea.val() };
+		var mail = { 'body': $textarea.val(), 'subject': $subject.val() };
 		$.ajax({
-			url : 'admin/bookings/accept/' + booking.id,
+			url : '/admin/bookings/accept/' + booking.id,
 			success : function (data) {
 				booking.accepted = 'True';
 				booking.modified = data.modified;
@@ -197,16 +197,16 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective, i18n, transpar
 
 	var initButtons = function () {
 		if (!buttonsInitialized) {
-			$('#showAcceptBooking', $bookingDetails).click(showAcceptBookingForm);
-			$('#acceptBooking', $bookingDetails).click(acceptBooking);
-			$('#markAsPaid', $bookingDetails).click(markAsPaid);
-			$('#closeBookingDetails', $bookingDetails).click(function () {
+			$('#showAcceptBooking', $bookingsModal).click(showAcceptBookingForm);
+			$('#acceptBooking', $bookingsModal).click(acceptBooking);
+			$('#markAsPaid', $bookingsModal).click(markAsPaid);
+			$('#closeBookingDetails', $bookingsModal).click(function () {
 				showList();
 			});
 			$('#cancelAccept', $bookingAccept).click(function () {
 				showDetails();
 			});
-			$('#deleteBooking', $bookingDetails).click(askDeleteBooking);
+			$('#deleteBooking', $bookingsModal).click(askDeleteBooking);
 			wysihtml5.renderTextAreas($bookingsModal);
 			buttonsInitialized = true;
 		}

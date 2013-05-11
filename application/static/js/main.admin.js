@@ -82,6 +82,6 @@ function (us, config, test, social, modal, modelBase,
 	categoryAdmin.init();
 	contentAdmin.init();
 	bookableAdmin.init();
-	bookingAdmin.init().showBookings();
+	bookingAdmin.init();
 //close the function & define
 });
