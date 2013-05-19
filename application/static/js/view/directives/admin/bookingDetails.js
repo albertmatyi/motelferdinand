@@ -17,7 +17,11 @@ define([
 		},
 		'bookable' : {
 			text : function () {
-				return this.bookable ? model.db.bookable[this.bookable].i18n[model.language].title : 'N/A';
+				try {
+					return model.db.bookable[this.bookable].i18n[model.language].title;
+				} catch (e) {
+					return this.bookable;
+				}
 			}
 		},
 		'messageVisible': {
