@@ -1,5 +1,5 @@
 #adminBookingsModal {
-	.bookings-list, .booking-details, .booking-accept, .booking-deny, .email-fields {
+	.bookings-list, .booking-details, .booking-accept, .booking-deny, .email-fields, .booking-send-message {
 		display: none;
 	}
 	.modal-header {
@@ -34,5 +34,6 @@
 	@import "details";
 	@import "accept";
 	@import "deny";
+	@import "send_message";
 	
 }

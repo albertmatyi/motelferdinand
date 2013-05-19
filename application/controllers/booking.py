@@ -3,7 +3,7 @@ Created on Jul 26, 2012
 
 @author: matyas
 '''
-from application import app
+from application import app, APP_MAIL_SENDER, APP_ADMIN_MAILS
 from application.models import\
     BookingModel,\
     BookableModel,\
@@ -18,11 +18,6 @@ from application.models.converters import date
 import json
 import re
 import logging
-
-APP_MAIL_SENDER =\
-    'albertmatyi@gmail.com'
-APP_ADMIN_MAILS =\
-    'Developer <albertmatyi@gmail.com>'  # ', Owner <zozipus@yahoo.com>'
 
 
 @app.route("/bookings/", methods=["POST"])
@@ -134,7 +129,7 @@ def send_new_booking_mail(booking):
     # To admin
     subject = 'A new reservation has been made - Ferdinand Motel'
     message.subject = render_template_string(subject, booking=booking_dict)
-    message.to = APP_ADMIN_MAILS
+    message.to = ', '.join(APP_ADMIN_MAILS)
     message.html = render_template(
         '/mail/bookingNewAdmin.html',
         booking=booking_dict

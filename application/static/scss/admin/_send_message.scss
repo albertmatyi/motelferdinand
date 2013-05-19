@@ -1,0 +1,11 @@
+&.send-message-view {
+	.email-fields {
+		display: block;
+	}
+	.booking-send-message {
+		display: block;
+		.panel-title {
+			display: none;
+		}
+	}
+}

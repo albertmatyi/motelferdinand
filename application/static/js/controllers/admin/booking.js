@@ -52,7 +52,7 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 
 	var activate = function (view) {
 		var cls = $bookingsModal.prop('class');
-		var regex = /^.*(\s\w+-view).*$/;
+		var regex = /^.*(\s[\w-]+-view).*$/;
 		if (cls.match(regex)) {
 			$bookingsModal.removeClass(cls.replace(regex, '$1'));
 		}
@@ -92,7 +92,7 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 		return str;
 	};
 
-	var showMailBookingFormFor = function (action) {
+	var showMailBookingFormFor = function (action, fetchMailContent) {
 		if ($(this).hasClass('disabled')) {
 			return;
 		}
@@ -101,27 +101,31 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 
 		$bookingsModal.title.prepend('<span>' + title + '</span><span class="separator"></span>');
 
-		renderMail(action);
+		renderMail(action, fetchMailContent);
 
 		activate(action);
 	};
 
-	var renderMail = function (action) {
-		progress.show($bookingsModal.body);
-		var booking = model.db.booking[$bookingDetails.data('bookingId')];
-		var user = booking.user;
-		var bookable = model.db.bookable[booking.bookable];
-		$.getJSON('/props/mail.' + action + '.' + user.language + '.body', function (data) {
-			var val = subst({'lang_id': user.language, 'user': user, 'booking': booking, 'bookable': bookable}, data.value);
+	var renderMail = function (action, fetchMailContent) {
+		if (fetchMailContent) {
+			var booking = model.db.booking[$bookingDetails.data('bookingId')];
+			var user = booking.user;
+			var bookable = model.db.bookable[booking.bookable];
+			progress.show($bookingsModal.body);
+			$.getJSON('/props/mail.' + action + '.' + user.language + '.body', function (data) {
+				var val = subst({'lang_id': user.language, 'user': user, 'booking': booking, 'bookable': bookable}, data.value);
 
-			progress.hide();
+				progress.hide();
 
-			wysihtml5.setValue($textarea, val);
-		});
-		$.getJSON('/props/mail.' + action + '.' + user.language + '.subject', function (data) {
-			$subject.val(data.value);
-		});
-
+				wysihtml5.setValue($textarea, val);
+			});
+			$.getJSON('/props/mail.' + action + '.' + user.language + '.subject', function (data) {
+				$subject.val(data.value);
+			});
+		} else {
+			wysihtml5.setValue($textarea, '');
+			$subject.val('');
+		}
 	};
 
 	var acceptBooking = function () {
@@ -161,6 +165,24 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 			dataType: 'json'
 		});
 	};
+
+	var sendMessage = function () {
+		var mail = { 'body': $textarea.val(), 'subject': $subject.val() };
+		var booking = model.db.booking[$bookingDetails.data('bookingId')];
+		$.ajax({
+			url : '/admin/user/message/' + booking.user.id,
+			success : function (data) {
+				modal.displayNotification($bookingsModal, data.message, 'success');
+				activate('details');
+			},
+			'error' : function (data) {
+				handleException(data);
+			},
+			type : 'POST',
+			data : {'data' : JSON.stringify(mail)},
+			dataType: 'json'
+		});
+	}
 
 	var markAsPaid = function () {
 		var booking = model.db.booking[$bookingDetails.data('bookingId')];
@@ -210,11 +232,13 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 
 	var initButtons = function () {
 		if (!buttonsInitialized) {
-			$('#show-accept-booking', $bookingsModal).click(function () { showMailBookingFormFor.call(this, 'accept'); });
-			$('#show-deny-booking', $bookingsModal).click(function () { showMailBookingFormFor.call(this, 'deny'); });
+			$('#show-accept-booking', $bookingsModal).click(function () { showMailBookingFormFor.call(this, 'accept', true); });
+			$('#show-deny-booking', $bookingsModal).click(function () { showMailBookingFormFor.call(this, 'deny', true); });
 			$('#accept-booking', $bookingsModal).click(acceptBooking);
 			$('#deny-booking', $bookingsModal).click(denyBooking);
 			$('#mark-as-paid', $bookingsModal).click(markAsPaid);
+			$('#show-send-message', $bookingsModal).click(function () { showMailBookingFormFor.call(this, 'send-message', false); });
+			$('#send-message-submit', $bookingsModal).click(sendMessage);
 			$('#close-booking-details', $bookingsModal).click(function () {
 				showList();
 			});
@@ -226,7 +250,6 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 			buttonsInitialized = true;
 		}
 	};
-
 
 	var renderBadge = function () {
 		var nu = _.reduce(model.bookings, function (sum, el) {
