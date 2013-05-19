@@ -25,7 +25,11 @@ translations_js = {
         'Mark as paid': u'Mark as paid',
         'Mark as unpaid': u'Mark as unpaid',
         'Are you sure you wish to delete?': u'Are you sure you wish to delete?',
-        'Are you sure you wish to accept? Once you accept, you can no more undo it, and the client will be notified.': u'Are you sure you wish to accept? Once you accept, you can no more undo it, and the client will be notified.'
+        'Are you sure you wish to accept? Once you accept, you can no more undo it, and the client will be notified.': u'Are you sure you wish to accept? Once you accept, you can no more undo it, and the client will be notified.',
+        'Accepted': u'Accepted',
+        'Denied': u'Denied',
+        'New': u'New',
+        'Paid': u'Paid'
     },
     'hu': {
         'Booking successfully saved! Stand by for a confirmation email.': u'Foglalás sikeresen bejegyezve. Kérem várja meg a konfirmáló emailt.',
@@ -33,7 +37,11 @@ translations_js = {
         'Mark as paid': u'Kifizetve',
         'Mark as unpaid': u'Kifizetlen',
         'Are you sure you wish to delete?': u'Biztos benne, hogy törölni szeretné?',
-        'Are you sure you wish to accept? Once you accept, you can no more undo it, and the client will be notified.': u'Biztos benne, hogy elfogadja a foglalást? Ez művelet nem visszavonható, és a kliens is értesül róla.'
+        'Are you sure you wish to accept? Once you accept, you can no more undo it, and the client will be notified.': u'Biztos benne, hogy elfogadja a foglalást? Ez művelet nem visszavonható, és a kliens is értesül róla.',
+        'Accepted': u'Elfogadva',
+        'Denied': u'Elutasítva',
+        'New': u'Új',
+        'Paid': u'Kifizetve'
     },
     'ro': {
         'Booking successfully saved! Stand by for a confirmation email.': u'Rezervarea s-a efectuat cu succes. Vă rugăm să așteptați mailul de confirmare.',
@@ -41,7 +49,11 @@ translations_js = {
         'Mark as paid': u'Marchează plătit',
         'Mark as unpaid': u'Marchează neplătit',
         'Are you sure you wish to delete?': u'Sunteți siguri că doriți să ștergeți?',
-        'Are you sure you wish to accept? Once you accept, you can no more undo it, and the client will be notified.': u'Sunteți siguri că doriți să acceptați? Această operație nu se poate modifica, iar clientul va fi notificat în urma lui.'
+        'Are you sure you wish to accept? Once you accept, you can no more undo it, and the client will be notified.': u'Sunteți siguri că doriți să acceptați? Această operație nu se poate modifica, iar clientul va fi notificat în urma lui.',
+        'Accepted': u'Acceptat',
+        'Denied': u'Refuzat',
+        'New': u'Nou',
+        'Paid': u'Plătit'
     }
 }
 
@@ -49,6 +61,7 @@ translations = {
     'en': {
         'lang_id': 'en',
         'Log out': u'Log out',
+        'Loading': u'Loading',
         # Base
         'LanguageName': u'English',
         'DefaultCurrency': 'EUR',
@@ -85,6 +98,13 @@ translations = {
         'Add content': u'Add content',
         'Add bookable': u'Add bookable',
         'Bookable': u'Bookable',
+        'Accept': u'Accept',
+        'Deny': u'Deny',
+        'Subject': u'Subject',
+        'Body': u'Body',
+        'Mail sent': u'Mail sent',
+        'Deny booking': u'Deny booking',
+        'Deny booking and send email': u'Deny booking and send mail',
 
         # Booking
         'Book': u'Book',
@@ -129,7 +149,7 @@ translations = {
         'Accepted': u'Accepted',
         'Paid': u'Paid',
         'Album url': u'Album URL',
-        'Status': u'Status',
+        'State': u'State',
         'Created': u'Created',
         'Close': u'Close',
         'Mark as accepted': u'Mark as accepted',
@@ -154,6 +174,7 @@ translations = {
     'hu': {
         'lang_id': 'hu',
         'Log out': u'Kilép',
+        'Loading': u'Pillanat',
         # Base
         'LanguageName': u'Magyar',
         'DefaultCurrency': 'HUF',
@@ -191,6 +212,13 @@ translations = {
         'Add bookable': u'Hozzáad szobát',
         'Bookable': u'Szoba',
         'Album url': u'Album link',
+        'Accept': u'Elfogad',
+        'Deny': u'Elutasít',
+        'Subject': u'Cím',
+        'Body': u'Tartalom',
+        'Mail sent': u'Űzenet elküldve',
+        'Deny booking': u'Foglalás elutasítás',
+        'Deny booking and send email': u'Foglalást elutasít és email küldés',
 
         # Booking
         'Book': u'Foglalás',
@@ -235,7 +263,7 @@ translations = {
         'Accepted': u'Elfogadva',
         'Paid': u'Kifizetve',
         'Album url': u'Album URL',
-        'Status': u'Státus',
+        'State': u'Állapot',
         'Created': u'Létrehozva',
         'Close': u'Bezár',
         'Mark as accepted': u'Elfogad',
@@ -260,6 +288,7 @@ translations = {
     'ro': {
         'lang_id': 'ro',
         'Log out': u'Închide sesiunea',
+        'Loading': u'O clipă',
         # Base
         'LanguageName': u'Română',
         'DefaultCurrency': 'RON',
@@ -296,6 +325,13 @@ translations = {
         'Add content': u'Adaugă conținut',
         'Add bookable': u'Adaugă cameră',
         'Bookable': u'Cameră',
+        'Accept': u'Acceptare',
+        'Deny': u'Refuzare',
+        'Subject': u'Subiect',
+        'Body': u'Conținut',
+        'Mail sent': u'Mesaj trimis',
+        'Deny booking': u'Refuzare de rezervare',
+        'Deny booking and send email': u'Refuză rezervarea și trimite email',
 
         # Booking
         'Book': u'Rezervă',
@@ -340,7 +376,7 @@ translations = {
         'Accepted': u'Acceptat',
         'Paid': u'Plătit',
         'Album url': u'Link către album',
-        'Status': u'Status',
+        'State': u'Stare',
         'Created': u'Creat',
         'Close': u'Închide',
         'Mark as accepted': u'Acceptă',

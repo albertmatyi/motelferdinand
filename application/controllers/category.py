@@ -1,7 +1,7 @@
 from application import app
 from application.decorators import admin_required
-from application.models import \
-    CategoryModel, BookingModel, LanguageModel, init_db
+from application.models import\
+    CategoryModel, LanguageModel, init_db
 from application.controllers import helpers
 from werkzeug.utils import redirect
 from flask.helpers import url_for
@@ -15,13 +15,13 @@ import os
 
 @app.errorhandler(500)
 def page_not_found(error):
-    # if request.is_xhr():
-    data = '{ "message" : "' + si18n.translate(str(error.message)) + '"}'
-    resp = Response(status=500)
-    resp.mimetype = 'application/json'
-    resp.data = data
-    return resp
-    # return '{ "message" : "'+ si18n.translate(str(error.message)) +'"}', 500
+    if request.is_xhr:
+        data = '{ "message" : "' + si18n.translate(str(error.message)) + '"}'
+        resp = Response(status=500)
+        resp.mimetype = 'application/json'
+        resp.data = data
+        return resp
+    raise error
 
 
 @app.route("/", methods=["GET"])

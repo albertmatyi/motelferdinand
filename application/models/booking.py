@@ -10,6 +10,18 @@ from application.models.bookable import BookableModel
 
 
 class BookingModel(AbstractModel):
+    class State:
+        INITIAL = 1
+        DENIED = 2
+        ACCEPTED = 3
+        PAID = 4
+        transitions = {
+            (INITIAL, DENIED),
+            (INITIAL, ACCEPTED),
+            (ACCEPTED, PAID),
+            (PAID, ACCEPTED),
+        }
+
     bookable = db.ReferenceProperty(BookableModel, collection_name='bookings')
     user = db.ReferenceProperty(UserModel, collection_name='bookings')
     guests = db.IntegerProperty(required=True, default=1)
@@ -17,8 +29,7 @@ class BookingModel(AbstractModel):
     feedback = db.TextProperty()
     currency = db.StringProperty(required=True, default='RON')
     price = db.FloatProperty(required=True, default=99.9)
-    accepted = db.BooleanProperty(default=False)
-    paid = db.BooleanProperty(default=False)
+    state = db.IntegerProperty(required=True, default=State.INITIAL)
     quantity = db.IntegerProperty(required=True, default=1)
     book_from = db.DateProperty(required=True, auto_now_add=True)
     book_until = db.DateProperty(required=True, auto_now_add=True)

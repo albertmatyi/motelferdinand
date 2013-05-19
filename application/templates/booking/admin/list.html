@@ -1,4 +1,4 @@
-<div class="bookingsList">
+<div class="bookings-list">
 	<table class="table">
 		<thead>
 			<tr>
@@ -8,8 +8,7 @@
 				<th>{{ __('Phone') }}</th>
 				<th>{{ __('Booking entries') }}</th>
 				<th>{{ __('Date') }}</th>
-				<th>{{ __('Accepted') }}</th>
-				<th>{{ __('Paid') }}</th>
+				<th>{{ __('State') }}</th>
 			</tr>
 		</thead>
 		<tbody >
@@ -20,9 +19,16 @@
 				<td class="center" data-bind="user.phone"></td>
 				<td class="center" data-bind="bookable"></td>
 				<td class="center" data-bind="created"></td>
-				<td class="center"><i class="icon" data-bind="accepted"></i></td>
-				<td class="center"><i class="icon" data-bind="paid"></i></td>
+				<td>
+					<i class="icon" data-bind="state-icon"></i>
+					<span data-bind="state"></span>
+				</td>
 			</tr>
 		</tbody>
 	</table>
+</div>
+<div class="bookings-list footer-buttons">
+	<button class="btn btn-link" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 
+		{{ __('Close') }}
+	</button>
 </div>

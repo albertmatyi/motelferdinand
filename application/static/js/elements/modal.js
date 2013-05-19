@@ -13,7 +13,7 @@ function (notification) {
 
 	var displayNotification = function ($modal, str, type) {
 		var $notification = notification.createNotification(str, type);
-		$('.modal-header', $modal).append($notification);
+		$modal.children('.modal-header').append($notification);
 		setTimeout(function () {
 			$notification.remove();
 		}, 5000);

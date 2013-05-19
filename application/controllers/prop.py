@@ -18,7 +18,5 @@ def prop_put(key):
 @admin_required
 def prop_get(key):
     for prop in PropModel.all().filter('kkey = ', key):
-        if prop:
-            return json.dumps(prop.to_dict())
-        else:
-            return '{}'
+        return json.dumps(prop.to_dict())
+    return '{ "value" : "Unknown property: ' + key + '" }'

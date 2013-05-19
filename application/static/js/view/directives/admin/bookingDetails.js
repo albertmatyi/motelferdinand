@@ -9,20 +9,6 @@ define([
 	'helpers/i18n'
 ], function (userDirective, common, date, i18n) {
 	'use strict';
-	var getBoolDir = function (fieldName) {
-		return {
-			'text' : function () {
-				return '';
-			},
-			'class' : function (params) {
-				var $el = $(params.element);
-				return $el.is('i') ?
-					(this[fieldName] === 'True' ? 'icon-ok-sign icon-white' : 'icon-minus-sign icon-white')
-					:
-					(this[fieldName] === 'True' ? fieldName : '');
-			}
-		};
-	};
 	var dir = {
 		'index' : {
 			text : function () {
@@ -39,8 +25,31 @@ define([
 				return !this.message ? 'display: none;':'';
 			}
 		},
-		'accepted' : getBoolDir('accepted'),
-		'paid' : getBoolDir('paid'),
+		'state-icon' : {
+			'class' : function () {
+				var v = 'icon-white ';
+				switch (this.state) { 
+					case 1: v += 'icon-asterisk'; break;
+					case 2: v += 'icon-ban-circle'; break;
+					case 3: 
+					case 4: v += 'icon-ok-circle'; break;
+				}
+				return v;
+			}
+		},
+		'state' : {
+			'text': function () {
+				switch (this.state) { 
+					case 1: return i18n.translate('New');
+					case 2: return i18n.translate('Denied');
+					case 3: return i18n.translate('Accepted');
+					case 4: return i18n.translate('Paid');
+				}
+			},
+			'class': function () {
+				return this.state >= 3 ? 'ok':'';
+			}
+		},
 		'nrOfNights': {
 			'text': function () {
 				return this.nrOfNights;
@@ -51,19 +60,26 @@ define([
 				return this.pricePerNight;
 			}
 		},
-		'accepted-button' : {
+		'acceptance-button' : {
 			'text' : function (params) {
-				if (this.accepted === 'True') {
+				if (this.state > 1) {
 					$(params.element).addClass('disabled');
 				} else {
 					$(params.element).removeClass('disabled');
 				}
+				$(params.element).prop('disabled', this.state > 1);
 				return $(params.element).text();
 			}
 		},
 		'paid-button' : {
-			'text' : function () {
-				return i18n.translate(this.paid === 'True' ? 'Mark as unpaid' : 'Mark as paid');
+			'text' : function (params) {
+				if (this.state < 3) {
+					$(params.element).addClass('disabled');
+				} else {
+					$(params.element).removeClass('disabled');
+				}
+				$(params.element).prop('disabled', this.state < 3);
+				return i18n.translate(this.state === 4 ? 'Mark as unpaid' : 'Mark as paid');
 			}
 		}
 	};

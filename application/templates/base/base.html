@@ -65,14 +65,15 @@
         {% include "elements/dialog.html" %}
     {% endblock %}
 
+    {% include "elements/progress.html" %}
+
     <script type="text/javascript">
     {% if js_data %}
-    	model = {{js_data|tojson|safe}};
+        model = {{js_data|tojson|safe}};
     {% endif %}
     </script>
     <script type="text/javascript">require(['main']);</script>
     {% block tail_script %}<!-- defer-capable JS block -->{% endblock %}
-
 </body>
 </html>
 

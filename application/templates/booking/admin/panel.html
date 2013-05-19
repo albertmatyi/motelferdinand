@@ -9,12 +9,11 @@
 {% include 'booking/admin/list.html' %}
 {% include 'booking/admin/details.html' %}
 {% include 'booking/admin/accept.html' %}
+{% include 'booking/admin/deny.html' %}
+{% include 'booking/admin/email_fields.html' %}
 {% endblock %}
 
 {% block footer_content %}
-<div class="bookingsList">
-	<button class="btn btn-link" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 
-		{{ __('Close') }}
-	</button>
+<div class="footer-buttons">
 </div>
 {% endblock %}

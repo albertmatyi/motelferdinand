@@ -1,5 +1,5 @@
-&.detailsView {
-	.bookingDetails {
+&.details-view {
+	.booking-details {
 		display: block;
 		.username {
 			margin-top: 0;
@@ -31,18 +31,14 @@
 				}
 			}
 			
-			.status{
-				td {
+			.state{
+				td[data-bind="state"] {
 					background: #DD3333;
 					color: #FFFFFF;
 				}
-				.accepted {
+				.ok {
 					background: #3399ff;
 				}
-				.paid {
-					background: #66AA33;
-				}
-				
 			}
 		}
 		.contact {

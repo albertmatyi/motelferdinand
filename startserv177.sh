@@ -5,5 +5,6 @@ dev_appserver.py \
 	--log_level debug \
 	--storage_path ./local/ \
 	--enable_sendmail True \
+	--show_mail_body True \
 	--port 8080 \
 	. &> ./server.log

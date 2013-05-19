@@ -22,7 +22,7 @@ import logging
 APP_MAIL_SENDER =\
     'albertmatyi@gmail.com'
 APP_ADMIN_MAILS =\
-    'Owner <zozipus@yahoo.com>, Developer <albertmatyi@gmail.com>'
+    'Developer <albertmatyi@gmail.com>'  # ', Owner <zozipus@yahoo.com>'
 
 
 @app.route("/bookings/", methods=["POST"])
@@ -59,11 +59,7 @@ def validate(form):
     valid &= bkng['bookable'] is not None
 
     if not valid:
-        raise ValidationException('Invalid data')
-    pass
-
-
-class ValidationException(Exception):
+        raise Exception('Invalid data')
     pass
 
 
@@ -150,19 +146,47 @@ def send_new_booking_mail(booking):
 @app.route('/admin/bookings/accept/<int:entity_id>', methods=['POST'])
 @admin_required
 def accept_booking(entity_id):
-    booking = mark_accepted(entity_id)
-    send_acceptance_mail(booking)
-    return '{ "message": "' + si18n.translate('Acceptance mail sent.') + '"}'
+    return set_state_and_mail(entity_id, BookingModel.State.ACCEPTED)
 
 
-def mark_accepted(entity_id):
+@app.route('/admin/bookings/deny/<int:entity_id>', methods=['POST'])
+@admin_required
+def deny_booking(entity_id):
+    return set_state_and_mail(entity_id, BookingModel.State.DENIED)
+
+
+@app.route('/admin/bookings/paid/<int:entity_id>', methods=['POST'])
+@admin_required
+def mark_as_paid(entity_id):
+    booking = set_state(entity_id, BookingModel.State.PAID)
+    return '{ "message": "' + si18n.translate('Success') + '", ' +\
+        '"state": "' + str(booking.state) + '"}'
+
+
+def set_state_and_mail(entity_id, state):
+    booking = set_state(entity_id, state)
+
+    msg = si18n.translate('Mail sent')\
+        if send_acceptance_mail(booking)\
+        else si18n.translate('Success')
+
+    return '{ "message": "' + msg + '",' +\
+        '"state": "' + str(state) + '"}'
+
+
+def set_state(entity_id, state):
     booking = BookingModel.get_by_id(entity_id)
-    booking.accepted = True
-    booking.put()
-    return booking
+    if (booking.state, state) in BookingModel.State.transitions:
+        booking.state = state
+        booking.put()
+        return booking
+    else:
+        raise Exception("Invalid state change.")
 
 
 def send_acceptance_mail(booking):
+    if 'data' not in request.form:
+        return False
     mail_data = json.loads(request.form['data'])
     # To client
     message = mail.EmailMessage(
@@ -174,6 +198,7 @@ def send_acceptance_mail(booking):
     message.to = booking.user.full_name + '<' + booking.user.email + '>'
     message.html = mail_data['body']
     message.send()
+    return True
 
 
 @app.route('/booking-mail/<int:entity_id>', methods=['GET'])

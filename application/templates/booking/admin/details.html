@@ -1,26 +1,19 @@
-<div class="bookingDetails">
+<div class="booking-details">
 	<div class="leftside">
 		<table class="table">
 			<thead>
 				<tr>
-					<th colspan="2" class="username panelTitle">
+					<th colspan="2" class="username panel-title">
 						<span data-bind="index"></span> 
 						<span data-bind="user.full_name"></span>
 					</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th colspan="2">{{ __('Status') }}</th>
-				</tr>
-				<tr class="status">
-					<td data-bind="accepted"> 
-						<i class="icon-minus-sign" data-bind="accepted"></i> 
-						{{ __('Accepted') }}
-					</td>
-					<td data-bind="paid"> 
-						<i class="icon-minus-sign" data-bind="paid"></i> 
-						{{ __('Paid') }}
+				<tr class="state">
+					<td>{{ __('State') }}</td>
+					<td data-bind="state">
+						<i class="icon-minus-sign" data-bind="state-icon"></i> 
 					</td>
 				</tr>
 				<tr>
@@ -97,24 +90,27 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="bookingDetails footerButtons">
+	<div class="booking-details footer-buttons">
 		<div class="actions btn-group">
-			<button type="button" class="btn btn-primary" id="showAcceptBooking" data-bind="accepted-button">
-				{{ __('Mark as accepted') }}
+			<button type="button" class="btn btn-primary" id="show-accept-booking" data-bind="acceptance-button">
+				{{ __('Accept') }}
 			</button>
-			<button type="button" class="btn" id="markAsPaid" data-bind="paid-button">
+			<button type="button" class="btn" id="show-deny-booking" data-bind="acceptance-button">
+				{{ __('Deny') }}
+			</button>
+			<button type="button" class="btn" id="mark-as-paid" data-bind="paid-button">
 				{{ __('Mark as paid') }}
 			</button>
-			<button type="button" class="btn btn-disabled" id="updateBooking">
+			<button type="button" class="btn btn-disabled" id="update-booking">
 				{{ __('Update') }}
 			</button>
 			
 		</div>
-	<button type="button" class="btn btn-link" id="deleteBooking">
-		<i class="icon-trash" title="{{ __('Delete') }}"></i>{{ __('Delete') }}
-	</button>
-	<button type="button" class="btn btn-link" id="closeBookingDetails">{{ __('Back') }}</button>
-</div>
+		<button type="button" class="btn btn-link" id="delete-booking">
+			<i class="icon-trash" title="{{ __('Delete') }}"></i>{{ __('Delete') }}
+		</button>
+		<button type="button" class="btn btn-link" id="close-booking-details">{{ __('Back') }}</button>
+	</div>
 
 </div>
 

@@ -1,5 +1,5 @@
-&.listView {
-	.bookingsList{
+&.list-view {
+	.bookings-list{
 		display: block;
 		& .table {
 			thead th{
@@ -7,15 +7,14 @@
 			}
 			&>tbody>tr{
 				background: none; //#FFcccc;
-				font-weight: bold;
 				&>td.center{
 					text-align: center;
 				}
 				&:hover {
 					background: #EEEEEE;//#FF9999;
 				}
-				&.accepted, &.paid, &.paid.accepted{
-					font-weight: normal;
+				&.new {
+					font-weight: bold;
 				}
 				&.accepted {
 					background: #CCEEFF;
@@ -29,8 +28,9 @@
 						background: #99CC66;
 					}
 				}
-				&.paid.accepted{
+				&.denied{
 					background: none;
+					color: #999;
 					&:hover{
 						background: #EEEEEE;
 					}

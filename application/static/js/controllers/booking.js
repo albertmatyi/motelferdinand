@@ -9,9 +9,10 @@ define(
 		'helpers/i18n',
 		'helpers/tooltip',
 		'controllers/booking_form',
-		'elements/notification'
+		'elements/notification',
+		'elements/progress'
 	],
-	function (i18n, tooltip, bookingForm, notification) {
+	function (i18n, tooltip, bookingForm, notification, progress) {
 		'use strict';
 
 		var SHOW_BOOKING_FORM_SEL = '.showBookingFormButton';
@@ -42,6 +43,7 @@ define(
 				}
 				// if all OK send the form
 				var booking = bookingForm.getData();
+				progress.show(bookingForm.element);
 				$.ajax({
 					type: 'POST',
 					url: '/bookings/',
@@ -57,10 +59,12 @@ define(
 							// show the original button
 							$(SHOW_BOOKING_FORM_SEL, $bookableControls).text('Book again');
 						}
+						progress.hide();
 					},
 					error: function (data) {
 						var message = notification.createNotification(JSON.parse(data.responseText).message, 'error');
 						bookingForm.cancelButton.before(message);
+						progress.hide();
 					}
 				});
 			} catch (e) {
