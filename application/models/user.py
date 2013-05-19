@@ -15,7 +15,7 @@ ROLE_USER = 3
 class UserModel(AbstractModel):
     full_name = db.StringProperty(required=True, default='')
     email = db.StringProperty(required=True, default='')
-    citizenship = db.StringProperty(required=True, default='')
+    citizenship = db.StringProperty(required=True, default='ro')
     auth_domain = db.StringProperty(required=False, default='')
     federated_identity = db.StringProperty(required=False, default='')
     federated_provider = db.StringProperty(required=False, default='')
