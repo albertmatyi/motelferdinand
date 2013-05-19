@@ -22,7 +22,16 @@
 		<div class="controls controls-row">
 			<div class="input-prepend">
 				<span class="add-on"><i class="icon-signal"></i></span>
-				<input type="text" class="phone" id="user.phone" name="user.phone"  data-toggle="tooltip" data-title="{{ __('Specify a valid phone number') }}" data-placement="right"/>
+				<input type="text" class="phone" id="user.phone" name="user.phone" data-toggle="tooltip" data-title="{{ __('Specify a valid phone number') }}" data-placement="right"/>
+			</div>
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label" for="user.citizenship">{{ __('Citizenship') }}</label>
+		<div class="controls controls-row">
+			<div class="input-prepend">
+				<span class="add-on"><i class="icon-flag"></i></span>
+				<input type="text" class="citizenship" id="user.citizenship" name="user.citizenship" data-toggle="tooltip" data-title="{{ __('Specify your citizenship') }}" data-placement="right"/>
 			</div>
 		</div>
 	</div>
@@ -94,7 +103,9 @@
 		</table>
 	</div>
 	<div class="form-actions">
+		<button type="button" class="btn btn-primary btn-large booking-btn" id="submitBookingButton" data-toggle="tooltip" data-title="{{ __('Invalid data! See fields above.') }}" data-placement="left"> 
+			{{ __('Book') }}
+		</button>
 		<button type="button" class="btn btn-link" id="cancelBookingButton"> {{ __('Cancel') }}</button>
-		<button type="button" class="btn btn-primary btn-large booking-btn" id="submitBookingButton" data-toggle="tooltip" data-title="{{ __('Invalid data! See fields above.') }}" data-placement="left"> {{ __('Book') }}</button>
 	</div>
 </form>

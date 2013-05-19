@@ -259,7 +259,8 @@ def get_or_create_user(user):
             email=email,
             phone=user['phone'],
             full_name=user['full_name'],
-            language=si18n.get_lang_id()
+            language=si18n.get_lang_id(),
+            citizenship=user['citizenship']
         )
         usr.put()
     else:

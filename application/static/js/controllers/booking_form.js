@@ -42,9 +42,11 @@ define(['helpers/date', 'helpers/tooltip'],
 		 */
 		var $userEmail = $('#user\\.email', $form);
 		/**
-		 * The input for the email
+		 * The input for the phone number
 		 */
 		var $userPhone = $('#user\\.phone', $form);
+		
+		var $userCitizenship = $('#user\\.citizenship', $form);
 
 		/**
 		 * The button used for submitting a booking
@@ -81,12 +83,16 @@ define(['helpers/date', 'helpers/tooltip'],
 			tooltip.set($userFullName, !ok);
 			allOk = allOk && ok;
 
-			ok = $userEmail.val().match(/[\w\.\-_]{1,}@([\w\-_]+.){1,}\w{3,5}/) !== null;
+			ok = $userEmail.val().match(/^[\w\.\-_]{1,}@([\w\-_]+.){1,}\w{3,5}$/) !== null;
 			tooltip.set($userEmail, !ok);
 			allOk = allOk && ok;
 
-			ok = $userPhone.val().match(/[\d+\s\-]{5,}/) !== null;
+			ok = $userPhone.val().match(/^[\d+\s\-]{5,}$/) !== null;
 			tooltip.set($userPhone, !ok);
+			allOk = allOk && ok;
+			
+			ok = $userCitizenship.val().match(/^[\w\s]{2,}$/) !== null;
+			tooltip.set($userCitizenship, !ok);
 			allOk = allOk && ok;
 
 			ok = BOOKING_DATE_VALIDATOR.isValid($bookFrom, $bookUntil);

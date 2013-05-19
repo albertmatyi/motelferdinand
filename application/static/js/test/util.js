@@ -106,7 +106,7 @@ define(['lib/jquery'], function (jq) {
 				if (maxRetries > 0) {
 					maxRetries -= 1;
 					log('Waiting for element ' + jqEl.selector + ' to become ' + (visible ? '':'in') + 'visible.');
-					a2S(wuv, 'wuv', window.config.test.visibility.timeout, true);
+					a2S(wuv, 'Wait until visible: ' + jqEl.selector, window.config.test.visibility.timeout, true);
 				} else {
 					if (jqEl.length > 0) {
 						msg += ' Element "' + jqEl.selector + '" is ' + (visible ? 'in':'') + 'visible.';
@@ -129,51 +129,51 @@ define(['lib/jquery'], function (jq) {
 		'l' : function (msg) {
 			a2S(function () {
 				log(msg);
-			}, '_');
+			}, 'Log: ' + msg);
 			return this;
 		},
 		'assertEquals' : function (expected, actual, message) {
 			a2S(function () {
 				assertEquals(expected, actual, message);
-			}, 'aE');
+			}, 'Assert equals: ' + expected + ' == ' + actual + ' msg: ' + message);
 		},
 		'assertCount' : function (expectedCount, selector) {
 			a2S(function () {
 				assertEquals(expectedCount, $(selector).length, 'The number of ' + selector + ' doesn\'t match.');
-			}, 'aC');
+			}, 'Assert count of ' + selector + ' is ' + expectedCount);
 		},
 		'assertNotPresent' : function (selector) {
 			a2S(function () {
 				var jqEl = $(selector);
 				assertEquals(0, jqEl.length, jqEl.selector + ' should not be present.');
-			}, 'aNP');
+			}, 'Assert not present: ' + selector);
 			return this;
 		},
 		'assertPresent' : function (selector, context) {
 			a2S(function () {
 				var jqEl = $(selector, context);
 				assertPresentPvt(jqEl);
-			}, 'aP');
+			}, 'Assert present: ' + selector);
 			return this;
 		},
 		'assertTrue' : function (val, msg) {
 			a2S(function () {
 				assertEquals(true, val, msg);
-			}, 'aT');
+			}, 'Assert true: ' + val + ' msg: ' + msg);
 			return this;
 		},
 		'assertVisible' : function (selector) {
 			a2S(function () {
 				var jqEl = $(selector);
 				waitUntilVisible(jqEl);
-			}, 'aV');
+			}, 'Assert visible: ' + selector);
 			return this;
 		},
 		'assertInvisible' : function (selector) {
 			a2S(function () {
 				var jqEl = $(selector);
 				waitUntilHidden(jqEl);
-			}, 'aI');
+			}, 'Assert invisible: ' + selector);
 			return this;
 		},
 		'click' : function (selector) {
@@ -182,7 +182,7 @@ define(['lib/jquery'], function (jq) {
 				waitUntilVisible(jqEl, 'click', function () {
 					jqEl.click();
 				});
-			}, 'c');
+			}, 'Click on: ' + selector);
 			return this;
 		},
 		'setValue' : function (selector, value) {
@@ -196,11 +196,11 @@ define(['lib/jquery'], function (jq) {
 					}
 					jqEl.trigger('change');
 				});
-			}, 'sV');
+			}, 'Set value: ' + value + ' to: ' + selector);
 			return this;
 		},
 		'waitAnimation' : function () {
-			a2S(function () {}, 'wA', window.config.test.timeouts.animation);
+			a2S(function () {}, 'Wait for animation', window.config.test.timeouts.animation);
 			return this;
 		},
 		'waitXHR' : function () {
@@ -221,16 +221,16 @@ define(['lib/jquery'], function (jq) {
 							log('XHR finished.');
 							//let the application respond
 							// that's why the timeout
-						}, 'wXE', window.config.test.xhr.after, true);
+						}, 'Xhr finished', window.config.test.xhr.after, true);
 					}
-				}, 'wX', window.config.test.xhr.timeout, forceAs1st);
+				}, 'Wait xhr', window.config.test.xhr.timeout, forceAs1st);
 			};
 			lwx(this.waitXHR, false);
 			return this;
 		},
 		'fail' : fail,
 		'addFunction' : function (method, timeout) {
-			a2S(method, 'aF', timeout);
+			a2S(method, 'Add method', timeout);
 			return this;
 		},
 		'$' : function (selector, callback, context) {
@@ -238,7 +238,7 @@ define(['lib/jquery'], function (jq) {
 				var $el = $(selector, context);
 				assertPresentPvt($el);
 				callback($el);
-			}, '$');
+			}, 'LateQuery $:' + selector);
 			return this;
 		},
 		'hash' : function () {

@@ -111,6 +111,10 @@ define([
 				t.l('Test booking form button').click($bookable.selector + ' .showBookingFormButton');
 
 				t.l('Verify form presence').assertVisible($bookable.selector + ' #submitBookingButton');
+
+				t.l('Press cancel').click($bookable.selector + ' #cancelBookingButton');
+
+				t.l('Verify form hidden').assertInvisible($bookable.selector + ' #submitBookingButton');
 			});
 
 			t.l('Verify model entries').addFunction(function () {

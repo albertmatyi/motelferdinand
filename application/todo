@@ -126,14 +126,14 @@ D		show quantity
 130504
 D		accept 
 D			with message
-		cancel booking
-			with message
+D		cancel booking
+D			with message
 		discount update booking
 		test
 			update (paid)
 			delete
 			accept
-		send offer/message
+D		send offer/message
 	booking
 		nationality
 	Booking datum validalas - 4h

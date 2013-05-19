@@ -122,6 +122,7 @@ translations = {
         'Full Name': u'Full Name',
         'Email': u'Email',
         'Phone': u'Phone',
+        'Citizenship': u'Citizenship',
         'Booked rooms': u'Booked rooms',
         'Room type': u'Type',
         'Quantity': u'Quantity',
@@ -143,6 +144,7 @@ translations = {
         'Specify a valid full name': u'Specify a valid full name',
         'Invalid data! See fields above.': u'Invalid data! See fields above.',
         'Specify a valid phone number': u'Specify a valid phone number',
+        'Specify your citizenship': u'Specify your citizenship',
         'Specify a valid date (dd-mm-yyyy)': u'Sepcify a valid date (dd-mm-yyyy)',
 
         #Admin booking
@@ -236,6 +238,7 @@ translations = {
         'Full Name': u'Teljes név',
         'Email': u'Email',
         'Phone': u'Telefonszám',
+        'Citizenship': u'Állampolgárság',
         'Booked rooms': u'Foglalásaim',
         'Room type': u'Típus',
         'Quantity': u'Mennyiség',
@@ -256,6 +259,7 @@ translations = {
         'Add at least one room': u'Adjon hozzá a foglaláshoz legalább egy szobát!',
         'Specify a valid full name': u'Kérem teljes és helyes nevet megadni.',
         'Invalid data! See fields above.': u'Helytelen adatok. Kérem javítsa ki az űrlapot.',
+        'Specify your citizenship': u'Határozza meg állampolgárságát',
         'Specify a valid phone number': u'A megadott telefonszám helytelen.',
         'Specify a valid date (dd-mm-yyyy)': u'Helytelen dátum. (nn-hh-éééé)',
 
@@ -349,6 +353,7 @@ translations = {
         'Full Name': u'Nume complet',
         'Email': u'Email',
         'Phone': u'Număr de telefon',
+        'Citizenship': u'Cetățenie',
         'Booked rooms': u'Camere rezervate',
         'Room type': u'Tip',
         'Quantity': u'Cantitate',
@@ -369,6 +374,7 @@ translations = {
         'Add at least one room': u'Adăugați cel puțin o cameră.',
         'Specify a valid full name': u'Introduceți un nume complet și valid.',
         'Invalid data! See fields above.': u'Date invalide! Vă rugăm verificați câmpurile.',
+        'Specify your citizenship': u'Specificați cetățenia Dvs.',
         'Specify a valid phone number': u'Numărul specificat este invalid.',
         'Specify a valid date (dd-mm-yyyy)': u'Dată greșită (zz-ll-aaaa)',
 

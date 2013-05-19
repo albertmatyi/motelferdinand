@@ -20,6 +20,7 @@ define(
 	};
 	var bkngInfo = {
 		name: 'John Doe',
+		citizenship: 'Estonian',
 		email: 'john.doe@mail.com',
 		phone: '+0123456789'
 	};
@@ -27,6 +28,7 @@ define(
 	var $nameField = $('#user\\.full_name', $form);
 	var $emailField = $('#user\\.email', $form);
 	var $phoneField = $('#user\\.phone', $form);
+	var $citizenshipField = $('#user\\.citizenship', $form);
 	var $quantityField = $('#booking\\.quantity', $form);
 	var $guestsField = $('#booking\\.guests', $form);
 	var $bookFrom = $('#booking\\.book_from', $form);
@@ -44,7 +46,7 @@ define(
 			var $category = $cat;
 			bookableTest.createBookable(t, bkblInfo, $category, function ($bkbl) {
 				t.l('Got bookable ' + $bkbl.selector);
-				$openBookingButton = $('.showBookingFormButton', $cat);
+				$openBookingButton = $('.showBookingFormButton', $bkbl);
 				$bookable = $bkbl;
 			});
 		});
@@ -81,7 +83,9 @@ define(
 
 		t.l('Fill email').setValue($emailField, bkngInfo.email);
 
-		t.l('Fill name').setValue($phoneField, bkngInfo.phone);
+		t.l('Fill phone').setValue($phoneField, bkngInfo.phone);
+		
+		t.l('Fill citizenship').setValue($citizenshipField, bkngInfo.citizenship);
 
 		checkPricesForInterval(t, 1);
 
