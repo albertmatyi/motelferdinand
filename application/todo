@@ -126,6 +126,7 @@ D		show quantity
 130504
 D		accept 
 D			with message
+130519
 D		cancel booking
 D			with message
 		discount update booking
@@ -134,8 +135,8 @@ D			with message
 			delete
 			accept
 D		send offer/message
-	booking
-		nationality
+D	booking
+D		nationality
 	Booking datum validalas - 4h
 		ne lehessen olyan datumokat valasztani, amire mar az a bizonyos szoba le van foglalva
 

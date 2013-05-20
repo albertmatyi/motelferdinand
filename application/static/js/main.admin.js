@@ -22,7 +22,7 @@ requirejs.config({
 	waitSeconds: 30,
 
 	shim: {
-		'main':{
+		'main': {
 			deps: ['lib/jquery']
 		},
 		'lib/jquery-ui': {
@@ -82,6 +82,6 @@ function (us, config, test, social, modal, modelBase,
 	categoryAdmin.init();
 	contentAdmin.init();
 	bookableAdmin.init();
-	bookingAdmin.init().showBookings();
+	bookingAdmin.init();//.showBookings();
 //close the function & define
 });

@@ -4,21 +4,11 @@
 define(
 [
 	'lib/jquery',
-	'config',
-	'lib/datepicker'
+	'config'
 ],
-function (jq, config, dp) {
+function (jq, config) {
 	'use strict';
-	// BOOKING
-	function renderDatePickers($context) {
-		$('.datepicker', $context).datepicker({
-			format: 'dd-mm-yyyy',
-			todayHighlight : true,
-			todayBtn : true,
-			autoclose : true
-		});
-	}
-
+	
 	var renderGallery = function ($context) {
 		if (config.RENDER_BOOKING_GALLERIES) {
 			$('.bookable-picaslide', $context).each(function (idx, el) {
@@ -35,10 +25,6 @@ function (jq, config, dp) {
 		}
 
 		renderGallery($context);
-
-		if (config.RENDER_DATEPICKERS) {
-			renderDatePickers($context);
-		}
 	};
 	return {
 		'render': render,

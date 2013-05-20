@@ -182,7 +182,7 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 			data : {'data' : JSON.stringify(mail)},
 			dataType: 'json'
 		});
-	}
+	};
 
 	var markAsPaid = function () {
 		var booking = model.db.booking[$bookingDetails.data('bookingId')];

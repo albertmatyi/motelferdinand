@@ -2,8 +2,11 @@
 /*global $ */
 /*global model */
 
-define(['helpers/date', 'helpers/tooltip'],
-	function (date, tooltip) {
+define([
+	'helpers/date', 
+	'helpers/tooltip',
+	'controllers/booking_datepicker'],
+	function (date, tooltip, datepicker) {
 		'use strict';
 		var DATE_VALIDATOR = {'isValid' : function ($item) {
 			var valid = date.isValid($item.val());
@@ -206,6 +209,8 @@ define(['helpers/date', 'helpers/tooltip'],
 			addPriceUpdater(bookable);
 
 			addGuestsUpdater(bookable);
+
+			datepicker.init($form, bookable);
 
 		};
 		return {
