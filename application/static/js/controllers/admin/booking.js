@@ -270,7 +270,7 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 				model.mapToDB(data, 'booking');
 				model.bookings = data;
 				_.each(data, function (el) {
-					el.nrOfNights = date.getDateDiff(el.book_from, el.book_until);
+					el.nrOfNights = date.getDateDiff(el.start, el.end);
 					el.pricePerNight = el.price / el.nrOfNights;
 					el.state = parseInt(el.state, 10);
 				});

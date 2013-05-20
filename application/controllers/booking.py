@@ -34,8 +34,8 @@ def transform(bkng):
     to_date = lambda sstr: date.to_obj(sstr)
     bkng['quantity'] = int(bkng['quantity'])
     bkng['guests'] = int(bkng['guests'])
-    bkng['book_from'] = to_date(bkng['book_from'])
-    bkng['book_until'] = to_date(bkng['book_until'])
+    bkng['start'] = to_date(bkng['start'])
+    bkng['end'] = to_date(bkng['end'])
     bkng['bookable'] = BookableModel.get_by_id(long(bkng['bookable']))
     return bkng
     pass
@@ -48,9 +48,9 @@ def validate(form):
                        form['user']['email']) is not None
     valid &= re.search('[\d+\s\-]{5,}', form['user']['phone']) is not None
     bkng = form['booking']
-    tday = bkng['book_from'].today()
-    valid &= bkng['book_from'] < bkng['book_until']
-    valid &= tday <= bkng['book_from']
+    tday = bkng['start'].today()
+    valid &= bkng['start'] < bkng['end']
+    valid &= tday <= bkng['start']
     valid &= bkng['bookable'] is not None
 
     if not valid:
@@ -72,8 +72,8 @@ def save_booking():
     booking.user = usr
     booking.quantity = bkf['quantity']
     booking.guests = bkf['guests']
-    booking.book_from = bkf['book_from']
-    booking.book_until = bkf['book_until']
+    booking.start = bkf['start']
+    booking.end = bkf['end']
     booking.bookable = bkf['bookable']
     map_price(bkf, booking)
     booking.put()
@@ -100,7 +100,7 @@ def map_price(bookingForm, booking):
     # add price_per_day of partially filled room
     price_per_day = price_per_day - float(vals[0]) + float(vals[rg])
 
-    days = (bookingForm['book_until'] - bookingForm['book_from']).days
+    days = (bookingForm['end'] - bookingForm['start']).days
     booking.price = price_per_day * days
     booking.currency = bk_dict['currency']
 

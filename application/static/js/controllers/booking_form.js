@@ -67,11 +67,11 @@ define([
 		/**
 		 * Input that contains the arrival date
 		 */
-		var $bookFrom = $('#booking\\.book_from', $form);
+		var $bookFrom = $('#booking\\.start', $form);
 		/**
 		 * Input containing the departure date
 		 */
-		var $bookUntil = $('#booking\\.book_until', $form);
+		var $bookUntil = $('#booking\\.end', $form);
 		/**
 		 * The hidden input field containnig the reference to the bokable
 		 */

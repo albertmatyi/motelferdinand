@@ -21,7 +21,7 @@ def page_not_found(error):
         resp.mimetype = 'application/json'
         resp.data = data
         return resp
-    raise error
+    return str(error)
 
 
 @app.route("/", methods=["GET"])

@@ -31,8 +31,8 @@ define(
 	var $citizenshipField = $('#user\\.citizenship', $form);
 	var $quantityField = $('#booking\\.quantity', $form);
 	var $guestsField = $('#booking\\.guests', $form);
-	var $bookFrom = $('#booking\\.book_from', $form);
-	var $bookUntil = $('#booking\\.book_until', $form);
+	var $bookFrom = $('#booking\\.start', $form);
+	var $bookUntil = $('#booking\\.end', $form);
 	var $cancelButton = $('#cancelBookingButton', $form);
 	var $submitButton = $('#submitBookingButton', $form);
 	var $openBookingButton;

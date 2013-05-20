@@ -31,8 +31,8 @@ class BookingModel(AbstractModel):
     price = db.FloatProperty(required=True, default=99.9)
     state = db.IntegerProperty(required=True, default=State.INITIAL)
     quantity = db.IntegerProperty(required=True, default=1)
-    book_from = db.DateProperty(required=True, auto_now_add=True)
-    book_until = db.DateProperty(required=True, auto_now_add=True)
+    start = db.DateProperty(required=True, auto_now_add=True)
+    end = db.DateProperty(required=True, auto_now_add=True)
 
     def to_dict(self, load_user=False):
         '''
