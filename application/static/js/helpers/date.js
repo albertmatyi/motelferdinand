@@ -11,7 +11,7 @@ define([], function () {
 		return date;
 	};
 
-	var SECS_IN_DAY = 1000 * 60 * 60 * 24;
+	var MILLIS_IN_DAY = 1000 * 60 * 60 * 24;
 
 	var completeWith0 = function (val) {
 		return val < 10 ? '0' + val : val;
@@ -29,7 +29,7 @@ define([], function () {
 	};
 
 	var getDateDiff = function (date0, date1) {
-		return (strToDate(date1) - strToDate(date0)) / SECS_IN_DAY;
+		return (strToDate(date1) - strToDate(date0)) / MILLIS_IN_DAY;
 	};
 	
 
@@ -38,6 +38,7 @@ define([], function () {
 		'toStr': dateToStr,
 		'isValid': isValid,
 		'getDateDiff': getDateDiff,
-		'SECS_IN_DAY': SECS_IN_DAY
+		'MILLIS_IN_DAY': MILLIS_IN_DAY,
+		'today': strToDate(dateToStr(new Date()))
 	};
 });

@@ -37,7 +37,8 @@ def get_bookings_for_bookable(entity_id):
         .filter('end >', datetime.today())
     bookings = [{
         'start': date.to_str(e.start),
-        'end': date.to_str(e.end)
+        'end': date.to_str(e.end),
+        'quantity': e.quantity
     } for e in bookings]
 
     return json.dumps(bookings)

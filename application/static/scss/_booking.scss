@@ -38,3 +38,9 @@
 		}
 	}
 }
+.datepicker {
+	.not-available.disabled, .not-available.disabled:hover{
+	    @include gradient(#600, #f63);
+	    color: #333;
+	}
+}

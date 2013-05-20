@@ -3,31 +3,12 @@
 /*global model */
 
 define([
-	'helpers/date', 
+	'helpers/date',
 	'helpers/tooltip',
-	'controllers/booking_datepicker'],
+	'controllers/booking_datepicker'
+],
 	function (date, tooltip, datepicker) {
 		'use strict';
-		var DATE_VALIDATOR = {'isValid' : function ($item) {
-			var valid = date.isValid($item.val());
-			tooltip.set($item, !valid);
-			return valid;
-		}};
-
-		var BOOKING_DATE_VALIDATOR = {'isValid' : function ($bookFrom, $bookUntil) {
-			if (!DATE_VALIDATOR.isValid($bookFrom) || !DATE_VALIDATOR.isValid($bookUntil)) {
-				return false;
-			}
-			var startD = date.toDate($bookFrom.val());
-			var endD = date.toDate($bookUntil.val());
-			var valid = startD < endD;
-			tooltip.set($bookUntil, !valid);
-			var yestd = new Date();
-			yestd.setDate(yestd.getDate() - 1);
-			var valid2 = yestd < startD;
-			tooltip.set($bookFrom, !valid2);
-			return valid && valid2;
-		}};
 
 		var FORM_ID = 'booking-form';
 
@@ -48,7 +29,7 @@ define([
 		 * The input for the phone number
 		 */
 		var $userPhone = $('#user\\.phone', $form);
-		
+
 		var $userCitizenship = $('#user\\.citizenship', $form);
 
 		/**
@@ -93,12 +74,12 @@ define([
 			ok = $userPhone.val().match(/^[\d+\s\-]{5,}$/) !== null;
 			tooltip.set($userPhone, !ok);
 			allOk = allOk && ok;
-			
+
 			ok = $userCitizenship.val().match(/^[\w\s]{2,}$/) !== null;
 			tooltip.set($userCitizenship, !ok);
 			allOk = allOk && ok;
 
-			ok = BOOKING_DATE_VALIDATOR.isValid($bookFrom, $bookUntil);
+			ok = datepicker.isValid($bookFrom, $bookUntil);
 			allOk = allOk && ok;
 
 			tooltip.set($submitBookingButton, !allOk);
@@ -140,6 +121,8 @@ define([
 				var maxGuests = qty * bookable.places;
 				addNrOptions($guestsSelect, maxGuests);
 				$guestsSelect.val(Math.min(maxGuests, prevVal)).trigger('change');
+
+				datepicker.setQuantity(qty);
 			};
 			// add listener
 			$quantitySelect.on('change', f);
@@ -179,7 +162,7 @@ define([
 			$bookFrom.off('change');
 			$bookUntil.off('change');
 			var pcalc = function () {
-				if (!BOOKING_DATE_VALIDATOR.isValid($bookFrom, $bookUntil)) {
+				if (!datepicker.isValid($bookFrom, $bookUntil)) {
 					return;
 				}
 				var perNight = calcPerNight(bookable);
