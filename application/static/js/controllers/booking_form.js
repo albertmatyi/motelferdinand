@@ -3,11 +3,10 @@
 /*global model */
 
 define([
-	'helpers/date',
 	'helpers/tooltip',
 	'controllers/booking_datepicker'
 ],
-	function (date, tooltip, datepicker) {
+	function (tooltip, datepicker) {
 		'use strict';
 
 		var FORM_ID = 'booking-form';
@@ -46,14 +45,6 @@ define([
 		 */
 		var $guestsSelect = $('#booking\\.guests', $form);
 		/**
-		 * Input that contains the arrival date
-		 */
-		var $bookFrom = $('#booking\\.start', $form);
-		/**
-		 * Input containing the departure date
-		 */
-		var $bookUntil = $('#booking\\.end', $form);
-		/**
 		 * The hidden input field containnig the reference to the bokable
 		 */
 		var $bookableInput = $('#booking\\.bookable', $form);
@@ -79,7 +70,7 @@ define([
 			tooltip.set($userCitizenship, !ok);
 			allOk = allOk && ok;
 
-			ok = datepicker.isValid($bookFrom, $bookUntil);
+			ok = datepicker.isValid();
 			allOk = allOk && ok;
 
 			tooltip.set($submitBookingButton, !allOk);
@@ -106,30 +97,6 @@ define([
 			return data;
 		};
 
-		var setDates = function () {
-			var d = new Date();
-			$bookFrom.val(date.toStr(d));
-			d.setDate(d.getDate() + 1);
-			$bookUntil.val(date.toStr(d));
-		};
-
-		var addGuestsUpdater = function (bookable) {
-			$quantitySelect.off('change');
-			var f = function () {
-				var prevVal = $guestsSelect.val() || 1;
-				var qty = $quantitySelect.val();
-				var maxGuests = qty * bookable.places;
-				addNrOptions($guestsSelect, maxGuests);
-				$guestsSelect.val(Math.min(maxGuests, prevVal)).trigger('change');
-
-				datepicker.setQuantity(qty);
-			};
-			// add listener
-			$quantitySelect.on('change', f);
-			// initialize
-			f();
-		};
-
 		var addNrOptions = function ($el, n) {
 			$el.html('');
 			for (var j = 1; j <= n; j += 1) {
@@ -151,22 +118,13 @@ define([
 			return price;
 		};
 
-		var getNights = function () {
-			var from = date.toDate($bookFrom.val());
-			var until = date.toDate($bookUntil.val());
-			return new Date(until - from) / (1000 * 60 * 60 * 24);
-		};
-
 		var addPriceUpdater = function (bookable) {
-			$guestsSelect.off('change');
-			$bookFrom.off('change');
-			$bookUntil.off('change');
 			var pcalc = function () {
-				if (!datepicker.isValid($bookFrom, $bookUntil)) {
+				if (!datepicker.isValid()) {
 					return;
 				}
 				var perNight = calcPerNight(bookable);
-				var nights = getNights();
+				var nights = datepicker.getNights();
 				var total = nights * perNight;
 				var curr = ' ' + bookable.prices[model.language].currency;
 				$('.nrOfNights', $form).text(nights);
@@ -175,8 +133,31 @@ define([
 			};
 
 			$guestsSelect.on('change', pcalc);
-			$bookFrom.on('change', pcalc);
-			$bookUntil.on('change', pcalc);
+			datepicker.onchange(pcalc);
+			pcalc();
+		};
+
+		var addGuestsUpdater = function (bookable) {
+
+			var f = function () {
+				var prevVal = $guestsSelect.val() || 1;
+				var qty = $quantitySelect.val();
+
+				datepicker.setQuantity(qty);
+
+				var maxGuests = qty * bookable.places;
+				addNrOptions($guestsSelect, maxGuests);
+				$guestsSelect.val(Math.min(maxGuests, prevVal)).trigger('change');
+			};
+			// add listener
+			$quantitySelect.on('change', f);
+			// initialize
+			f();
+		};
+
+		var resetListeners = function () {
+			$guestsSelect.off('change');
+			$quantitySelect.off('change');
 		};
 
 		/**
@@ -185,15 +166,17 @@ define([
 		var init = function (bookable) {
 			$bookableInput.val(bookable.id);
 
-			setDates();
-
 			addNrOptions($quantitySelect, bookable.quantity);
 
-			addPriceUpdater(bookable);
+			datepicker.init($form, bookable);
+
+			resetListeners();
 
 			addGuestsUpdater(bookable);
 
-			datepicker.init($form, bookable);
+			addPriceUpdater(bookable);
+
+
 
 		};
 		return {

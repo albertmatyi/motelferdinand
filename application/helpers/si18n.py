@@ -29,7 +29,10 @@ translations_js = {
         'Accepted': u'Accepted',
         'Denied': u'Denied',
         'New': u'New',
-        'Paid': u'Paid'
+        'Paid': u'Paid',
+        'End date must be greater than start date': u'End date must be greater than start date',
+        'Start date can\'t be in the past.': u'Start date can\'t be in the past.',
+        'Range can\'t contain overbooked days': u'Range can\'t contain overbooked days'
     },
     'hu': {
         'Booking successfully saved! Stand by for a confirmation email.': u'Foglalás sikeresen bejegyezve. Kérem várja meg a konfirmáló emailt.',
@@ -41,7 +44,10 @@ translations_js = {
         'Accepted': u'Elfogadva',
         'Denied': u'Elutasítva',
         'New': u'Új',
-        'Paid': u'Kifizetve'
+        'Paid': u'Kifizetve',
+        'End date must be greater than start date': u'Végdátum nem lehet kisebb mint a kezdeti.',
+        'Start date can\'t be in the past.': u'Kezdő dátum nem lehet a múltban.',
+        'Range can\'t contain overbooked days': u'Az időtartam túlfoglalt napokat tartalmaz.'
     },
     'ro': {
         'Booking successfully saved! Stand by for a confirmation email.': u'Rezervarea s-a efectuat cu succes. Vă rugăm să așteptați mailul de confirmare.',
@@ -53,7 +59,10 @@ translations_js = {
         'Accepted': u'Acceptat',
         'Denied': u'Refuzat',
         'New': u'Nou',
-        'Paid': u'Plătit'
+        'Paid': u'Plătit',
+        'End date must be greater than start date': u'Data plecării este mai mică decât a sosirii.',
+        'Start date can\'t be in the past.': u'Data sosirii nu poate fi în trecut',
+        'Range can\'t contain overbooked days': u'Selecția conține zile suprarezervate'
     }
 }
 

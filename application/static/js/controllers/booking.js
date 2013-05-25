@@ -70,6 +70,7 @@ define(
 			} catch (e) {
 				if (typeof console !== 'undefined') {
 					console.error(e);
+					throw e;
 				}
 			}
 

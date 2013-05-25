@@ -11,22 +11,33 @@ define([
 	'helpers/i18n'
 ], function (jq, dp, dateHelper, tooltip, i18n) {
 	'use strict';
-    /**
-     * The key - value map of day - booked-quantities
-     */
+	/**
+	 * The key - value map of day - booked-quantities
+	 */
 	var bookedDates;
-    /**
-     * The bookable to calculate availability dates for
-     */
+	/**
+	 * The bookable to calculate availability dates for
+	 */
 	var bookable;
-    /**
-     * The quantity of required rooms
-     */
+	/**
+	 * The quantity of required rooms
+	 */
 	var quantity = 1;
 	/**
-	 * The context the datepickers are in
+	 * The form the datepickers are in
 	 */
-	var $context;
+	var $form;
+
+	/**
+	 * Input that contains the arrival date
+	 */
+	var $bookStart;
+	/**
+	 * Input containing the departure date
+	 */
+	var $bookEnd;
+
+	var initialized;
 
 	var setQuantity = function (q) {
 		quantity = q;
@@ -35,7 +46,7 @@ define([
 
 	var beforeShowDay = function (date) {
 		if (date < dateHelper.today) {
-			return false;
+			return {'enabled': false};
 		}
 		var available = bookable.quantity - (bookedDates[dateHelper.toStr(date)] || 0);
 		var allAvailable = bookable.quantity === available;
@@ -61,12 +72,13 @@ define([
 					bookedDates[k] = bookedDates[k] ? bookedDates[k] + bkng.quantity:bkng.quantity;
 				}
 			});
+			initialized = true;
 			callback();
 		});
 	};
 
 	var refresh = function () {
-		if (!bookable) {
+		if (!initialized) {
 			return;
 		}
 		remove();
@@ -74,34 +86,47 @@ define([
 	};
 
 	var remove = function () {
-		$('.input-daterange', $context).datepicker('remove');
+		$('.datepicker', $form).datepicker('remove');
 	};
 
 	var render = function () {
-		$('.input-daterange', $context).datepicker({
+		$('.datepicker', $form).datepicker({
 			format: 'dd-mm-yyyy',
 			todayHighlight: true,
 			todayBtn: false,
 			autoclose: true,
 			weekStart: 1,
-			startDate: new Date(),
+			startDate: dateHelper.today,
 			endDate: undefined,
 			keyboardNavigation: true,
-			forceParse: true,
+			forceParse: false,
 			beforeShowDay: beforeShowDay
 		});
 	};
 
-	var init = function ($ctxt, bkbl) {
+	var initDates = function () {
+		var d = new Date();
+		$bookStart.val(dateHelper.toStr(d));
+		d.setDate(d.getDate() + 1);
+		$bookEnd.val(dateHelper.toStr(d));
+		render();
+	};
+
+	var init = function ($frm, bkbl) {
+		initialized = false;
+
 		bookable = bkbl;
-		$context = $ctxt;
+		$form = $frm;
+		$bookStart = $('#booking\\.start', $form);
+		$bookEnd = $('#booking\\.end', $form);
+
 		remove();
-		loadBookingDates(render);
+		loadBookingDates(initDates);
 	};
 
 	var validateQuantitiesInRange = function (start, end) {
-		if (!bookable) {
-			return false;
+		if (!initialized) {
+			return;
 		}
 		start = start.getTime();
 		end = end.getTime();
@@ -113,32 +138,52 @@ define([
 		return true;
 	};
 
-	var isValid = function ($bookFrom, $bookUntil) {
+	var isValid = function () {
+		if (!initialized) {
+			return true;
+		}
 		var DATE_VALIDATOR = {'isValid' : function ($item) {
 			var valid = dateHelper.isValid($item.val());
 			tooltip.set($item, !valid);
 			return valid;
 		}};
 
-		if (!DATE_VALIDATOR.isValid($bookFrom) || !DATE_VALIDATOR.isValid($bookUntil)) {
+		if (!DATE_VALIDATOR.isValid($bookStart) || !DATE_VALIDATOR.isValid($bookEnd)) {
 			return false;
 		}
-		var startD = dateHelper.toDate($bookFrom.val());
-		var endD = dateHelper.toDate($bookUntil.val());
+		var startD = dateHelper.toDate($bookStart.val());
+		var endD = dateHelper.toDate($bookEnd.val());
 		var validRange = startD < endD;
-		tooltip.set($bookUntil, !validRange);
-		var yestd = new Date();
-		yestd.setDate(yestd.getDate() - 1);
-		var validStart = yestd < startD;
-		tooltip.set($bookFrom, !validStart);
+		tooltip.set($bookEnd, !validRange,
+			{'title': i18n.translate('End date must be greater than start date')});
+		var validStart = dateHelper.yesterday < startD;
+		tooltip.set($bookStart, !validStart,
+			{'title': i18n.translate('Start date can\'t be in the past.')});
 		var validQRange = validateQuantitiesInRange(startD, endD);
-		tooltip.set($bookFrom, !validQRange);
+		tooltip.set($bookStart, !validQRange,
+			{'title': i18n.translate('Range can\'t contain overbooked days')});
 		return validRange && validStart && validQRange;
 	};
+
+	var getNights = function () {
+		var from = dateHelper.toDate($bookStart.val());
+		var until = dateHelper.toDate($bookEnd.val());
+		return new Date(until - from) / (1000 * 60 * 60 * 24);
+	};
+
+	var onchange = function (callback) {
+		$bookStart.off('change');
+		$bookEnd.off('change');
+		$bookStart.on('change', callback);
+		$bookEnd.on('change', callback);
+	};
+
 
 	return {
 		'init': init,
 		'setQuantity': setQuantity,
-		'isValid': isValid
+		'isValid': isValid,
+		'getNights': getNights,
+		'onchange': onchange
 	};
 });

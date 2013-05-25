@@ -137,8 +137,13 @@ D			with message
 D		send offer/message
 D	booking
 D		nationality
-	Booking datum validalas - 4h
-		ne lehessen olyan datumokat valasztani, amire mar az a bizonyos szoba le van foglalva
+	validate dates
+D		load bookings in ui
+D		mark dates valid / invalid
+130525
+D		display validation messages
+		validate on backend
+	move currency to props
 
 	fixed booking button
 	fix picasa albums

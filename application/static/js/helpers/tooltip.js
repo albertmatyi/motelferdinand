@@ -4,22 +4,28 @@
 define(['lib/jquery'],
 function (jq) {
 	'use strict';
+
+	var defaultOptions = {
+		'trigger' : 'manual'
+	};
+
 	/**
 	 * Shows or hides a tooltip on the given element
 	 */
-	var setTooltip = function ($item, show) {
+	var setTooltip = function ($item, show, options) {
+		options = $.extend({}, defaultOptions, options);
 		if (show) {
-			$item.tooltip({'trigger' : 'manual'});
+			$item.tooltip(options);
 		}
 		$item.tooltip(show ? 'show':'destroy');
 	};
 
-	var hideTooltip = function ($item) {
-		setTooltip($item, false);
+	var hideTooltip = function ($item, options) {
+		setTooltip($item, false, options);
 	};
 
-	var showTooltip = function ($item) {
-		setTooltip($item, true);
+	var showTooltip = function ($item, options) {
+		setTooltip($item, true, options);
 	};
 
 	var hideAll = function ($context) {
