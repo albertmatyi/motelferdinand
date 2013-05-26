@@ -1,7 +1,8 @@
 from application import app
 from application.decorators import admin_required
 from application.models import\
-    CategoryModel, LanguageModel, init_db
+    CategoryModel, init_db
+from application.models import prop
 from application.controllers import helpers
 from werkzeug.utils import redirect
 from flask.helpers import url_for
@@ -38,7 +39,8 @@ def home():
         '/main.html',
         js_data={
             'categories': categories,
-            'languages': [e.to_dict() for e in LanguageModel.all()],
+            'languages': prop.languages,
+            'currencies': prop.currencies,
             'language': lang_id,
             'bookings': [],
             'si18n': si18n.translations_js,

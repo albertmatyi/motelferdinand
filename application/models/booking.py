@@ -6,21 +6,11 @@ Created on Jul 26, 2012
 from application.models import AbstractModel
 from google.appengine.ext import db
 from application.models.user import UserModel
+from application.models.commons import BookingState as State
 from application.models.bookable import BookableModel
 
 
 class BookingModel(AbstractModel):
-    class State:
-        INITIAL = 1
-        DENIED = 2
-        ACCEPTED = 3
-        PAID = 4
-        transitions = {
-            (INITIAL, DENIED),
-            (INITIAL, ACCEPTED),
-            (ACCEPTED, PAID),
-            (PAID, ACCEPTED),
-        }
 
     bookable = db.ReferenceProperty(BookableModel, collection_name='bookings')
     user = db.ReferenceProperty(UserModel, collection_name='bookings')

@@ -48,6 +48,17 @@ define([
 		if (date < dateHelper.today) {
 			return {'enabled': false};
 		}
+		if (this.element.prop('id').indexOf('end') !== -1) {
+			date = dateHelper.previousDay(date);
+			var startDate = dateHelper.toDate($bookStart.val());
+			if (date < startDate) {
+				return {'enabled': false};
+			}
+		}
+		return getAvailabilityData(date);
+	};
+
+	var getAvailabilityData = function (date) {
 		var available = bookable.quantity - (bookedDates[dateHelper.toStr(date)] || 0);
 		var allAvailable = bookable.quantity === available;
 		return {
@@ -77,20 +88,23 @@ define([
 		});
 	};
 
-	var refresh = function () {
+	var refresh = function ($el) {
 		if (!initialized) {
 			return;
 		}
-		remove();
-		render();
+		$el = $el || $('.datepicker', $form);
+		remove($el);
+		render($el);
 	};
 
-	var remove = function () {
-		$('.datepicker', $form).datepicker('remove');
+	var remove = function ($el) {
+		$el = $el || $('.datepicker', $form);
+		$el.datepicker('remove');
 	};
 
-	var render = function () {
-		$('.datepicker', $form).datepicker({
+	var render = function ($el) {
+		$el = $el || $('.datepicker', $form);
+		$el.datepicker({
 			format: 'dd-mm-yyyy',
 			todayHighlight: true,
 			todayBtn: false,
@@ -131,7 +145,7 @@ define([
 		start = start.getTime();
 		end = end.getTime();
 		for (var i = start; i < end; i += dateHelper.MILLIS_IN_DAY) {
-			if (!beforeShowDay(new Date(i)).enabled) {
+			if (!getAvailabilityData(new Date(i)).enabled) {
 				return false;
 			}
 		}
@@ -174,7 +188,19 @@ define([
 	var onchange = function (callback) {
 		$bookStart.off('change');
 		$bookEnd.off('change');
-		$bookStart.on('change', callback);
+		$bookStart.on('change', function () {
+			remove($bookEnd);
+			var startDate = dateHelper.toDate($bookStart.val());
+			var endDate = dateHelper.toDate($bookEnd.val());
+			if (endDate <= startDate) {
+				$bookEnd.val(dateHelper.toStr(
+					dateHelper.nextDay(startDate)
+					)
+				);
+			}
+			render($bookEnd);
+			callback();
+		});
 		$bookEnd.on('change', callback);
 	};
 

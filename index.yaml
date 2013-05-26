@@ -15,6 +15,12 @@ indexes:
   - name: bookable
   - name: end
 
+- kind: BookingModel
+  properties:
+  - name: bookable
+  - name: state
+  - name: end
+
 - kind: CategoryModel
   properties:
   - name: parent_category

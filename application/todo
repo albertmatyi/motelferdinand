@@ -142,8 +142,10 @@ D		load bookings in ui
 D		mark dates valid / invalid
 130525
 D		display validation messages
-		validate on backend
-	move currency to props
+D		validate on backend
+D	move currency to props
+D	move languages to props
+	make accepting overbooked requests impossible
 
 	fixed booking button
 	fix picasa albums

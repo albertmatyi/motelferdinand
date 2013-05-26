@@ -9,12 +9,15 @@ from application.models import\
     BookableModel,\
     BookingDictBuilder,\
     si18n,\
-    UserModel
+    UserModel,\
+    prop
+from application.models.commons import BookingState
 from flask.globals import request
 from google.appengine.api import mail
 from application.decorators import admin_required
 from flask.templating import render_template, render_template_string
 from application.models.converters import date
+from datetime import timedelta
 import json
 import re
 import logging
@@ -42,7 +45,7 @@ def transform(bkng):
 
 
 def validate(form):
-    # pdb.set_trace()
+    msg = ''
     valid = re.search('[\w -]{3,}', form['user']['full_name']) is not None
     valid &= re.search('[\w\.\-_]{1,}@([\w\-_]+.){1,}\w{3,5}',
                        form['user']['email']) is not None
@@ -53,9 +56,29 @@ def validate(form):
     valid &= tday <= bkng['start']
     valid &= bkng['bookable'] is not None
 
+    bookable = bkng['bookable']
+    bookings = bookable.get_bookings_that_end_after(bkng['start'])
+    bookings = [b for b in bookings if b.start < bkng['end']]
+    day = bkng['start']
+    while day < bkng['end']:
+        q = get_quantity_for_date(day, bookings)
+        if q + bkng['quantity'] > bookable.quantity:
+            msg = 'Day ' + str(day) + ' is overbooked'
+            valid &= False
+            break
+        day = day + timedelta(days=1)
+
     if not valid:
-        raise Exception('Invalid data')
+        raise Exception('Invalid data. ' + msg)
     pass
+
+
+def get_quantity_for_date(date, bookings):
+    q = 0
+    for b in bookings:
+        if date >= b.start and date < b.end:
+            q += b.quantity
+    return q
 
 
 def save_booking():
@@ -102,7 +125,7 @@ def map_price(bookingForm, booking):
 
     days = (bookingForm['end'] - bookingForm['start']).days
     booking.price = price_per_day * days
-    booking.currency = bk_dict['currency']
+    booking.currency = prop.currencies[si18n.get_lang_id()]
 
 
 def send_new_booking_mail(booking):
@@ -141,19 +164,19 @@ def send_new_booking_mail(booking):
 @app.route('/admin/bookings/accept/<int:entity_id>', methods=['POST'])
 @admin_required
 def accept_booking(entity_id):
-    return set_state_and_mail(entity_id, BookingModel.State.ACCEPTED)
+    return set_state_and_mail(entity_id, BookingState.ACCEPTED)
 
 
 @app.route('/admin/bookings/deny/<int:entity_id>', methods=['POST'])
 @admin_required
 def deny_booking(entity_id):
-    return set_state_and_mail(entity_id, BookingModel.State.DENIED)
+    return set_state_and_mail(entity_id, BookingState.DENIED)
 
 
 @app.route('/admin/bookings/paid/<int:entity_id>', methods=['POST'])
 @admin_required
 def mark_as_paid(entity_id):
-    booking = set_state(entity_id, BookingModel.State.PAID)
+    booking = set_state(entity_id, BookingState.PAID)
     return '{ "message": "' + si18n.translate('Success') + '", ' +\
         '"state": "' + str(booking.state) + '"}'
 
@@ -171,7 +194,7 @@ def set_state_and_mail(entity_id, state):
 
 def set_state(entity_id, state):
     booking = BookingModel.get_by_id(entity_id)
-    if (booking.state, state) in BookingModel.State.transitions:
+    if (booking.state, state) in BookingState.transitions:
         booking.state = state
         booking.put()
         return booking

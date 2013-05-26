@@ -11,11 +11,10 @@ define(
 ], function (jq, categoryTest, bookableTest, dateHelper) {
 	'use strict';
 	var catInfo = { title: '' };
-	var EUR = 'EUR';
+	var CUR = model.currencies[model.language];
 	var bkblInfo = {
 		title: '',
 		places: 3,
-		currency: EUR,
 		priceFunction: function (i, j) { return j; }
 	};
 	var bkngInfo = {
@@ -31,8 +30,8 @@ define(
 	var $citizenshipField = $('#user\\.citizenship', $form);
 	var $quantityField = $('#booking\\.quantity', $form);
 	var $guestsField = $('#booking\\.guests', $form);
-	var $bookFrom = $('#booking\\.start', $form);
-	var $bookUntil = $('#booking\\.end', $form);
+	var $bookingStart = $('#booking\\.start', $form);
+	var $bookingEnd = $('#booking\\.end', $form);
 	var $cancelButton = $('#cancelBookingButton', $form);
 	var $submitButton = $('#submitBookingButton', $form);
 	var $openBookingButton;
@@ -57,7 +56,7 @@ define(
 	};
 
 	var clickOpenBooking = function (t) {
-		t.l('Press Open Booking button').click($openBookingButton);
+		t.l('Press Open Booking button').click($openBookingButton).waitXHR();
 
 		t.l('Check form\'s visibility.').assertVisible($form.selector);
 	};
@@ -84,7 +83,7 @@ define(
 		t.l('Fill email').setValue($emailField, bkngInfo.email);
 
 		t.l('Fill phone').setValue($phoneField, bkngInfo.phone);
-		
+
 		t.l('Fill citizenship').setValue($citizenshipField, bkngInfo.citizenship);
 
 		checkPricesForInterval(t, 1);
@@ -95,11 +94,18 @@ define(
 	};
 
 	var checkPricesForInterval = function (t, delta) {
-		var d = new Date();
-		d.setDate(d.getDate() + Math.floor(100 * Math.random()));
-		t.l('Set from date').setValue($bookFrom, dateHelper.toStr(d));
-		d.setDate(d.getDate() + delta);
-		t.l('Set until date').setValue($bookUntil, dateHelper.toStr(d));
+		var startDate = new Date();
+		startDate.setDate(startDate.getDate() + Math.floor(100 * Math.random()));
+		t.l('Set from date').setValue($bookingStart.selector, dateHelper.toStr(startDate));
+		t.l('Verify start date').$($bookingStart.selector, function (el) {
+			t.assertEquals(dateHelper.toStr(startDate), el.val());
+		});
+		var endDate = new Date(startDate.getTime());
+		endDate.setDate(endDate.getDate() + delta);
+		t.l('Set until date').setValue($bookingEnd.selector, dateHelper.toStr(endDate));
+		t.l('Verify end date').$($bookingEnd.selector, function (el) {
+			t.assertEquals(dateHelper.toStr(endDate), el.val());
+		});
 		checkPrices(t, 2, 1, 2, delta);
 
 		checkPrices(t, 2, 2, 2, delta);
@@ -110,7 +116,7 @@ define(
 	var checkPrices = function (t, quant, guests, perNight, days) {
 		t.l('Fill quantity').setValue($quantityField, quant);
 		t.l('Fill guests').setValue($guestsField, guests);
-		var cur = ' ' + EUR + model.language;
+		var cur = ' ' + CUR;
 		t.l('Verify per night price').$('.pricePerNight', function ($el) {
 			t.assertEquals(perNight + cur, $el.text());
 		}, $form);

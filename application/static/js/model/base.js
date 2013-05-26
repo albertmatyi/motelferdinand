@@ -31,6 +31,15 @@ function (jq) {
 		return map;
 	};
 
+	var langs = [];
+	for (var lk in model.languages) {
+		if (model.languages.hasOwnProperty(lk)) {
+			langs.push({'lang_id': lk, 'name': model.languages[lk]});
+		}
+	}
+
+	model.languages = langs;
+
 	// sort categories by their weight
 	model.categories.sort(function (c0, c1) {
 		return c0.weight - c1.weight;
@@ -74,5 +83,7 @@ function (jq) {
 	};
 
 	model.mapToDB = mapToDB;
+
+
 
 });

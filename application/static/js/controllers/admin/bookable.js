@@ -107,7 +107,6 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 	});
 
 	var formatPrices = function (data) {
-		delete data['prices.currency'];
 		delete data['prices.values'];
 		data.prices = gatherPrices();
 		return data;
@@ -183,8 +182,8 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 	var _populatePrices = function (prices) {
 		for (var langId in prices) {
 			if (prices.hasOwnProperty(langId)) {
-				$('tr.' + langId + ' input[name=prices\\.currency]', $pricesTable)
-					.val(prices[langId].currency);
+				$('tr.' + langId + ' .currency', $pricesTable)
+					.text(model.currencies[langId]);
 				$('tr.' + langId + ' input[name=prices\\.values]', $pricesTable)
 					.each(function (i, input) {
 						if (prices[langId].values.length > i) {
@@ -200,8 +199,6 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 		for (var i = model.languages.length - 1; i >= 0; i -= 1) {
 			var langId = model.languages[i].lang_id;
 			prices[langId] = {};
-			prices[langId].currency =
-				$('tr.' + langId + ' input[name=prices\\.currency]', $pricesTable).val();
 			prices[langId].values =
 				$('tr.' + langId + ' input[name=prices\\.values]', $pricesTable)
 				.serializeObject()['prices.values'];

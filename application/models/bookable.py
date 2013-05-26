@@ -6,23 +6,19 @@ Created on Jul 26, 2012
 from google.appengine.ext import db
 from application.models import AbstractContentModel
 from application.models.category import CategoryModel
-from application.models.i18n import LanguageModel
+from application.models.commons import BookingState as State
+from application.models import prop
+import json
 
 
 class BookableModel(AbstractContentModel):
     '''
-        Prices are kept in a structure (for 3 places:
-
-        [en, EUR, 1, 2, 3, ro, RON, 3, 2, 1]
-
-        But got(populate) and returned (to_dict_field) like:
+        Prices are kept in a structure like:
         {
             en:{
-                currency: EUR,
                 values: [1,2,3]
             },
             ro:{
-                currency: RON,
                 values: [1,2,3]
             }
         }
@@ -32,43 +28,29 @@ class BookableModel(AbstractContentModel):
     quantity = db.IntegerProperty(required=True, default=1)
     category = db.ReferenceProperty(CategoryModel, collection_name='bookables')
     album_url = db.StringProperty(required=False, default='')
-    prices = db.ListProperty(str)
+    prices = db.TextProperty(str)
     dependencies = ['bookings']
 
     def populate_field(self, dictionary, key):
         if key is 'category':
             self.category = CategoryModel.get_by_id(long(dictionary[key]))
         elif key is 'prices':
-            arr = []
-            pcs = dictionary[key]
-            vn = int(dictionary['places'])
-            for lang in LanguageModel.all():
-                lid = lang.lang_id
-                arr += [lid]
-                arr += [pcs[lid]['currency']]
-                for i in range(vn):
-                    arr += [str(float(pcs[lid]['values'][i]))]
-            self.prices = arr
+            self.validate(dictionary)
+            self.prices = json.dumps(dictionary[key])
         else:
             super(BookableModel, self).populate_field(dictionary, key)
         pass
 
+    def validate(self, dictionary):
+        pcs = dictionary['prices']
+        vn = int(dictionary['places'])
+        for lang_id in prop.languages:
+            for i in range(vn):
+                pcs[lang_id]['values'][i] = float(pcs[lang_id]['values'][i])
+
     def to_dict_field(self, key):
         if key is 'prices':
-            d = {}
-            it = iter(self.prices)
-            while True:
-                try:
-                    d1 = {}
-                    d[it.next()] = d1               # put langid
-                    d1['currency'] = it.next()      # put currency
-                    vs = []
-                    d1['values'] = vs
-                    for i in range(self.places):    # put all price values
-                        vs += [it.next()]
-                except StopIteration:
-                    break
-            return d
+            return json.loads(self.prices)
         else:
             return super(BookableModel, self).to_dict_field(key)
 
@@ -78,7 +60,19 @@ class BookableModel(AbstractContentModel):
             of a dictionary:
             {
                 values: [1,2,3],
-                currency: 'EUR'
             }
         '''
         return self.to_dict()['prices'][lang_id]
+
+    def get_bookings_that_end_after(self, date):
+        res = [
+            k for k in self.bookings
+            .filter('end >', date)
+            .filter('state', State.ACCEPTED)
+        ]
+        res += [
+            k for k in self.bookings
+            .filter('end >', date)
+            .filter('state', State.PAID)
+        ]
+        return res

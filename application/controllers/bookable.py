@@ -5,7 +5,7 @@ Created on Jul 26, 2012
 '''
 from application import app
 from application.decorators import admin_required
-from application.models import BookableModel, BookingModel
+from application.models import BookableModel
 from application.controllers import helpers
 from flask.globals import request
 from datetime import datetime
@@ -32,9 +32,7 @@ def admin_delete_bookable(entity_id):
 @app.route("/bookable/bookings/<int:entity_id>", methods=["GET"])
 def get_bookings_for_bookable(entity_id):
     bookable = BookableModel.get_by_id(entity_id)
-    bookings = BookingModel.all()\
-        .filter('bookable', bookable)\
-        .filter('end >', datetime.today())
+    bookings = bookable.get_bookings_that_end_after(datetime.today())
     bookings = [{
         'start': date.to_str(e.start),
         'end': date.to_str(e.end),

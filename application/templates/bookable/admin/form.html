@@ -37,18 +37,17 @@
 		<thead>
 			<tr>
 				<th> {{ __('Language') }} </th>
-				<th> {{ __('Currency') }} </th>
 				<th class="values"> 1 {{ __('Guest(s)') }} </th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr data-bind="lang_id">
 				<td data-bind="name"></td>
-				<td> 
-					<input type="text" name="prices.currency"/>
-				</td>
 				<td class="values">
-					<input type="text" name="prices.values"/>
+					<div class="input-append">
+						<input type="text" name="prices.values"/>
+						<span class="add-on currency">$$$</span>
+					</div>
 				</td>
 			</tr>
 		</tbody>

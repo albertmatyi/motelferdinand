@@ -69,10 +69,12 @@ translations_js = {
 translations = {
     'en': {
         'lang_id': 'en',
+        '$': 'EUR',
         'Log out': u'Log out',
         'Loading': u'Loading',
         # Base
         'LanguageName': u'English',
+        'Success': u'Success',
         'DefaultCurrency': 'EUR',
         'Ferdinand Motel': u'Ferdinand Motel',
         'Language': u'Language',
@@ -128,7 +130,6 @@ translations = {
         'Per night': u'Per night',
         'Total': u'Total',
         'Nights': u'Nights',
-        '$': u'RON',
         'Greeting': u'Preparing coffee',
         'Full Name': u'Full Name',
         'Email': u'Email',
@@ -186,10 +187,12 @@ translations = {
     },
     'hu': {
         'lang_id': 'hu',
+        '$': 'HUF',
         'Log out': u'Kilép',
         'Loading': u'Pillanat',
         # Base
         'LanguageName': u'Magyar',
+        'Success': u'Sikeres',
         'DefaultCurrency': 'HUF',
         'Ferdinand Motel': u'Ferdinánd Panzió',
         'Language': u'Nyelv',
@@ -246,7 +249,6 @@ translations = {
         'Per night': u'Per északa',
         'Total': u'Végösszeg',
         'Nights': u'Északa',
-        '$': u'HUF',
         'Greeting': u'Készül a kávé',
         'Full Name': u'Teljes név',
         'Email': u'Email',
@@ -304,10 +306,12 @@ translations = {
     },
     'ro': {
         'lang_id': 'ro',
+        '$': 'RON',
         'Log out': u'Închide sesiunea',
         'Loading': u'O clipă',
         # Base
         'LanguageName': u'Română',
+        'Success': u'Success',
         'DefaultCurrency': 'RON',
         'Ferdinand Motel': u'Motel Ferdinand',
         'Language': u'Limbă',
@@ -363,7 +367,6 @@ translations = {
         'Per night': u'Per noapte',
         'Total': u'Total',
         'Nights': u'Nopți',
-        '$': u'RON',
         'Greeting': u'Se prepară cafeaua',
         'Full Name': u'Nume complet',
         'Email': u'Email',

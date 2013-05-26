@@ -1,4 +1,4 @@
-from application.models import LanguageModel,\
+from application.models import\
     CategoryModel,\
     ContentModel,\
     BookableModel,\
@@ -6,8 +6,9 @@ from application.models import LanguageModel,\
     I18n
 from random import Random
 from application.helpers import si18n
-from flask.templating import render_template
+from application.models import prop
 from application.helpers.file import load_file
+import json
 
 
 def init_db():
@@ -16,7 +17,11 @@ def init_db():
         with a random number of subcategories that are or are not non-menu-entries
     '''
 
+    for p in prop.PropModel.all():
+        p.delete()
+
     init_langs()
+
     init_mails()
 
     return
@@ -53,43 +58,46 @@ def init_db():
     pass
 
 
-mails = {
-    'accept': {
-        'subject': 'Your booking at Ferdinand Motel has been ACCEPTED',
-        'body': load_file('/mail/bookingAcceptedClient.html')
-    },
-    'new_client': {
-        'subject': 'You\'ve registered a booking at Ferdinand Motel',
-        'body': load_file('/mail/bookingNewClient.html')
-    },
-    'new_admin': {
-        'subject': 'A new booking has been registered at Ferdinand Motel',
-        'body': load_file('/mail/bookingNewAdmin.html')
-    }
-}
-
-
 def init_mails():
-    for prop in PropModel.all():
-        prop.delete()
+    mails = {
+        'accept': {
+            'subject': 'Your booking at Ferdinand Motel has been ACCEPTED',
+            'body': load_file('/mail/bookingAcceptedClient.html')
+        },
+        'deny': {
+            'subject': 'Your booking at Ferdinand Motel has NOT been ACCEPTED',
+            'body': load_file('/mail/bookingDeniedClient.html')
+        },
+        'new_client': {
+            'subject': 'You\'ve registered a booking at Ferdinand Motel',
+            'body': load_file('/mail/bookingNewClient.html')
+        },
+        'new_admin': {
+            'subject': 'A new booking has been registered at Ferdinand Motel',
+            'body': load_file('/mail/bookingNewAdmin.html')
+        }
+    }
 
-    for lang in LanguageModel.all():
+    for lang_id in prop.languages:
         for mail_type in mails:
-            PropModel(kkey='mail.' + mail_type + '.' + lang.lang_id + '.body',
+            PropModel(kkey='mail.' + mail_type + '.' + lang_id + '.body',
                       value=mails[mail_type]['body'])\
                 .put()
-            PropModel(kkey='mail.' + mail_type + '.' + lang.lang_id + '.subject',
+            PropModel(kkey='mail.' + mail_type + '.' + lang_id + '.subject',
                       value=mails[mail_type]['subject'])\
                 .put()
 
 
 def init_langs():
-    for lang in LanguageModel.all():
-        lang.delete()
-
     initial_lang_ids = ['en', 'hu', 'ro']
+    langs = {}
     for lang_id in initial_lang_ids:
-        LanguageModel(lang_id=lang_id, name=si18n.translate('LanguageName', lang_id)).put()
+        langs[lang_id] = si18n.translate('LanguageName', lang_id)
+        PropModel(kkey='currency.' + lang_id,
+                  value=si18n.translate('$', lang_id))\
+            .put()
+    prop.languages = langs
+    PropModel(kkey='languages', value=json.dumps(langs)).put()
     pass
 
 
@@ -112,20 +120,22 @@ def init_bookables(category_key):
 def init_contents(category_key, idx, addGallery):
     cm = ContentModel(visible=True, category=category_key, order=idx * 2)
     galleryHtml = '<div class="picaslide" data-picaslide-username="110836571215849032642" data-picaslide-albumid="LeBike">[<img alt="Insert picasa album" src="/static/img/picasa_s.png"> gallery comes here]</div>'
-    desc = lambda : get_random_text(Random().randint(100, len(fixieText)/2-40)).replace('\n','<br/>') + \
-                    (galleryHtml if addGallery else '')
-    tit = lambda : get_random_text(Random().randint(10, 15)).replace('\n','');
-    cm.i18n = {'en': {'title': tit(), 'description': desc()},\
-        'ro':{'title':tit()+' [ro]', 'description': desc()},\
-        'hu':{'title':tit()+' [hu]', 'description': desc()}}
+    desc = lambda: get_random_text(
+        Random().randint(100, len(fixieText) / 2 - 40))\
+        .replace('\n', '<br/>') + (galleryHtml if addGallery else '')
+    tit = lambda: get_random_text(Random().randint(10, 15)).replace('\n', '')
+    cm.i18n = {'en': {'title': tit(), 'description': desc()},
+               'ro': {'title': tit() + ' [ro]', 'description': desc()},
+               'hu': {'title': tit() + ' [hu]', 'description': desc()}}
     cm.put()
     pass
 
 
 def add_translations(entity):
-    for lang in LanguageModel.all():
+    for lang_id in prop.languages:
+        lang_name = prop.languages[lang_id]
         for field_name in entity.__class__.i18d_fields:
-            I18n(field=field_name, value=lang.name + ' ' + field_name, lang_id=lang.lang_id, foreign_entity=entity).put()
+            I18n(field=field_name, value=lang_name + ' ' + field_name, lang_id=lang_id, foreign_entity=entity).put()
     pass
 
 

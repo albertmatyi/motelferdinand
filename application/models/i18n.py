@@ -5,11 +5,7 @@ Created on Jul 26, 2012
 '''
 from google.appengine.ext import db
 from application.models import AbstractModel
-
-
-class LanguageModel(AbstractModel):
-    lang_id = db.StringProperty(required=True, default='en')
-    name = db.StringProperty(required=True, default='English')
+from application.models import prop
 
 
 class I18nableModel(AbstractModel):
@@ -23,12 +19,12 @@ class I18nableModel(AbstractModel):
         '''
             Initializes i18n fields for which no translations were found
         '''
-        for lang in LanguageModel.all():
-            if lang.lang_id not in ddct['i18n']:
-                ddct['i18n'][lang.lang_id] = {}
+        for lang_id in prop.languages:
+            if lang_id not in ddct['i18n']:
+                ddct['i18n'][lang_id] = {}
             for fld_name in self.__class__.i18d_fields:
-                if fld_name not in ddct['i18n'][lang.lang_id]:
-                    ddct['i18n'][lang.lang_id][fld_name] = ''
+                if fld_name not in ddct['i18n'][lang_id]:
+                    ddct['i18n'][lang_id][fld_name] = ''
 
     def to_dict(self):
         '''

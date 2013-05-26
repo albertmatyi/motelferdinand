@@ -15,7 +15,6 @@ define([
 			title: '',
 			places: 3,
 			quantity: 4,
-			currency: '$',
 			priceFunction: function (i, j, places) { return places * i + j; }
 		};
 		var catInfo = {
@@ -106,7 +105,7 @@ define([
 				t.l('verify price').assertPresent('.price:contains(' + expectedPrice[0] + ')', $bookable);
 
 				t.l('verify price').assertPresent(
-					'.price:contains(' + info.currency + model.language + ')', $bookable
+					'.price:contains(' + model.currencies[model.language] + ')', $bookable
 					);
 				t.l('Test booking form button').click($bookable.selector + ' .showBookingFormButton');
 
@@ -129,9 +128,6 @@ define([
 			for (var i = model.languages.length - 1; i >= 0; i -= 1) {
 				var langId = model.languages[i].lang_id;
 				var baseSel = $bookableModal.selector + ' tr.' + langId;
-				var currency = info.currency + langId;
-				t.l('Set currency ' + langId)
-					.setValue(baseSel + ' input[name=prices\\.currency]', currency);
 				for (var j = 0; j < info.places; j += 1) {
 					var $pinput = $($(baseSel + ' input[name=prices\\.values]')[j]);
 					t.l('Set price for ' + langId + j)

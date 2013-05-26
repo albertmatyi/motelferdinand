@@ -70,6 +70,7 @@ define(['lib/jquery'], function (jq) {
 		try {
 			if (testSteps.length !== 0) {
 				var step = testSteps.shift();
+				log('\t' + step.description);
 				step.f();
 				setTimeout(function () {
 					execute(successCB, failCB);
@@ -201,6 +202,11 @@ define(['lib/jquery'], function (jq) {
 		},
 		'waitAnimation' : function () {
 			a2S(function () {}, 'Wait for animation', window.config.test.timeouts.animation);
+			return this;
+		},
+		'wait' : function (timeout) {
+			timeout = timeout || 500;
+			a2S(function () {}, 'Wait for ' + timeout + 'ms', timeout);
 			return this;
 		},
 		'waitXHR' : function () {

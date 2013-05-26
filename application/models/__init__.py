@@ -5,10 +5,10 @@ Created on Jul 24, 2012
 '''
 # base stuff
 from base import *
-from i18n import *
-
 # application properties
 from prop import *
+
+from i18n import *
 
 # abstract content
 from abstract_content import *
