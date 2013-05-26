@@ -124,6 +124,7 @@ define([
 		d.setDate(d.getDate() + 1);
 		$bookEnd.val(dateHelper.toStr(d));
 		render();
+		$bookEnd.trigger('change');
 	};
 
 	var init = function ($frm, bkbl) {

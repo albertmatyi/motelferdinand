@@ -12,9 +12,8 @@ APP_MAIL_SENDER =\
     'albertmatyi@gmail.com'
 APP_ADMIN_MAILS = [
     'Developer <albertmatyi@gmail.com>',
-    # ', Owner <zozipus@yahoo.com>'
+    ', Owner <zozipus@yahoo.com>'
 ]
-
 
 import urls
 

@@ -30,6 +30,7 @@ class BookableModel(AbstractContentModel):
     album_url = db.StringProperty(required=False, default='')
     prices = db.TextProperty(str)
     dependencies = ['bookings']
+    to_dict_exclude = ['bookings']
 
     def populate_field(self, dictionary, key):
         if key is 'category':
@@ -50,7 +51,7 @@ class BookableModel(AbstractContentModel):
 
     def to_dict_field(self, key):
         if key is 'prices':
-            return json.loads(self.prices)
+            return json.loads(self.prices) if self.prices else {}
         else:
             return super(BookableModel, self).to_dict_field(key)
 
