@@ -5,9 +5,10 @@
 define([
 	'view/directives/admin/user',
 	'view/directives/common',
+	'view/directives/admin/bookingCommons',
 	'helpers/date',
 	'helpers/i18n'
-], function (userDirective, common, date, i18n) {
+], function (userDirective, common, bookingCommons, date, i18n) {
 	'use strict';
 	var dir = {
 		'index' : {
@@ -30,26 +31,10 @@ define([
 			}
 		},
 		'state-icon' : {
-			'class' : function () {
-				var v = 'icon-white ';
-				switch (this.state) { 
-					case 1: v += 'icon-asterisk'; break;
-					case 2: v += 'icon-ban-circle'; break;
-					case 3: 
-					case 4: v += 'icon-ok-circle'; break;
-				}
-				return v;
-			}
+			'class' : bookingCommons.stateIconClass
 		},
-		'state' : {
-			'text': function () {
-				switch (this.state) { 
-					case 1: return i18n.translate('New');
-					case 2: return i18n.translate('Denied');
-					case 3: return i18n.translate('Accepted');
-					case 4: return i18n.translate('Paid');
-				}
-			},
+		'state': {
+			'text': bookingCommons.stateText,
 			'class': function () {
 				return this.state >= 3 ? 'ok':'';
 			}

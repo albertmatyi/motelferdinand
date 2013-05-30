@@ -37,17 +37,13 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 	var $subject = $('#mail-subject', $bookingsModal);
 	var $textarea = $('#booking-textarea', $bookingsModal);
 
-	var buttonsInitialized = false;
+	var listenersInitialized = false;
 
 	var render = function () {
 		var $nt = $tableTemplate.clone();
 		$table.replaceWith($nt);
 		$table = $nt;
 		$table.render(model.bookings, bookingsDirective);
-
-		$('tr', $table).click(function () {
-			showDetails($(this).data('bookingId'));
-		});
 	};
 
 	var activate = function (view) {
@@ -141,6 +137,15 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 		setState(action, {'data' : JSON.stringify(mail)});
 	};
 
+	var renderRow = function (booking) {
+		var $row = $('#Booking' + booking.id);
+		showDetails(booking.id);
+		$row.replaceWith(
+			transparency.render($row.clone(), booking, bookingsDirective)
+		);
+		$bookingDetails.render(booking, bookingDetailsDirective);
+	};
+
 	var setState = function (action, data) {
 		var booking = model.db.booking[$bookingDetails.data('bookingId')];
 		$.ajax({
@@ -149,12 +154,7 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 				booking.state = parseInt(data.state, 10);
 				booking.modified = data.modified;
 				modal.displayNotification($bookingsModal, data.message, 'success');
-				var $row = $('#Booking' + booking.id);
-				showDetails(booking.id);
-				$row.replaceWith(
-					transparency.render($row.clone(), booking, bookingsDirective)
-				);
-				$bookingDetails.render(booking, bookingDetailsDirective);
+				renderRow(booking);
 				renderBadge();
 			},
 			'error' : function (data) {
@@ -230,8 +230,8 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 		dialog.confirm(i18n.translate('Are you sure you wish to delete?'), deleteBooking);
 	};
 
-	var initButtons = function () {
-		if (!buttonsInitialized) {
+	var initListeners = function () {
+		if (!listenersInitialized) {
 			$('#show-accept-booking', $bookingsModal).click(function () { showMailBookingFormFor.call(this, 'accept', true); });
 			$('#show-deny-booking', $bookingsModal).click(function () { showMailBookingFormFor.call(this, 'deny', true); });
 			$('#accept-booking', $bookingsModal).click(acceptBooking);
@@ -245,9 +245,12 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 			$('#cancel-mail', $bookingsModal).click(function () {
 				showDetails();
 			});
+			$table.on('click', function (event) {
+				showDetails($(event.target).parents('.booking-row').data('bookingId'));
+			});
 			$('#delete-booking', $bookingsModal).click(askDeleteBooking);
 			wysihtml5.renderTextAreas($bookingsModal);
-			buttonsInitialized = true;
+			listenersInitialized = true;
 		}
 	};
 
@@ -275,7 +278,7 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 					el.state = parseInt(el.state, 10);
 				});
 				render();
-				initButtons();
+				initListeners();
 				showList();
 				$bookingsModal.modal('show');
 			}
