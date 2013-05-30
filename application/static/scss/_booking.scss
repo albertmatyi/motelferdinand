@@ -9,8 +9,8 @@
 	}
 	.btn-link {
 		float: right;
-	    padding: 0.7 1em;
-	    margin: 1em;
+		padding: 0.7 1em;
+		margin: 1em;
 	}
 	#booking-form {
 		display: block;
@@ -39,11 +39,17 @@
 	}
 }
 .datepicker {
+	.in-range {
+		&, &.disabled, &.disabled:hover, &.today.disabled, &.today.disabled:hover {
+			@include gradient(#ccf, #9cf);
+			color: #333;
+		}
+	}
 	.not-available.disabled {
 		&, &.active, &.today {
 			&, &:hover{
-			    @include gradient(#600, #f63);
-			    color: #333;
+				@include gradient(#600, #f63);
+				color: #333;
 			}
 		}
 	}

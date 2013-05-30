@@ -11,6 +11,8 @@ define([
 	'helpers/i18n'
 ], function (jq, dp, dateHelper, tooltip, i18n) {
 	'use strict';
+
+	var MESSAGE_END_DATE_VALIDATION = i18n.translate('End date must be greater than start date');
 	/**
 	 * The key - value map of day - booked-quantities
 	 */
@@ -44,18 +46,36 @@ define([
 		refresh();
 	};
 
+	var getStartDate = function () {
+		return dateHelper.toDate($bookStart.val());
+	};
+
+	var getEndDate = function () {
+		return dateHelper.toDate($bookEnd.val());
+	};
+
 	var beforeShowDay = function (date) {
+		date = dateHelper.stripTime(date);
 		if (date < dateHelper.today) {
 			return {'enabled': false};
 		}
-		if (this.element.prop('id').indexOf('end') !== -1) {
+		var isEndDatepicker = this.element.prop('id').indexOf('end') !== -1;
+		// this.date refers to the date that is about to be selected selection
+		var startDate = isEndDatepicker ? getStartDate():dateHelper.stripTime(this.date);
+		var endDate =  isEndDatepicker ? dateHelper.stripTime(this.date):getEndDate();
+		var inRange = date >= startDate && date <= endDate;
+		var ret = null;
+		if (isEndDatepicker) {
 			date = dateHelper.previousDay(date);
-			var startDate = dateHelper.toDate($bookStart.val());
 			if (date < startDate) {
-				return {'enabled': false};
+				ret = {'enabled': false, 'classes': '', 'tooltip': MESSAGE_END_DATE_VALIDATION};
 			}
 		}
-		return getAvailabilityData(date);
+		ret = ret || getAvailabilityData(date);
+		if (inRange) {
+			ret.classes += ' in-range';
+		}
+		return ret;
 	};
 
 	var getAvailabilityData = function (date) {
@@ -166,11 +186,11 @@ define([
 		if (!DATE_VALIDATOR.isValid($bookStart) || !DATE_VALIDATOR.isValid($bookEnd)) {
 			return false;
 		}
-		var startD = dateHelper.toDate($bookStart.val());
-		var endD = dateHelper.toDate($bookEnd.val());
+		var startD = getStartDate();
+		var endD = getEndDate();
 		var validRange = startD < endD;
 		tooltip.set($bookEnd, !validRange,
-			{'title': i18n.translate('End date must be greater than start date')});
+			{'title': MESSAGE_END_DATE_VALIDATION});
 		var validStart = dateHelper.yesterday < startD;
 		tooltip.set($bookStart, !validStart,
 			{'title': i18n.translate('Start date can\'t be in the past.')});
@@ -181,8 +201,8 @@ define([
 	};
 
 	var getNights = function () {
-		var from = dateHelper.toDate($bookStart.val());
-		var until = dateHelper.toDate($bookEnd.val());
+		var from = getStartDate();
+		var until = getEndDate();
 		return new Date(until - from) / (1000 * 60 * 60 * 24);
 	};
 
@@ -191,8 +211,8 @@ define([
 		$bookEnd.off('change');
 		$bookStart.on('change', function () {
 			remove($bookEnd);
-			var startDate = dateHelper.toDate($bookStart.val());
-			var endDate = dateHelper.toDate($bookEnd.val());
+			var startDate = getStartDate();
+			var endDate = getEndDate();
 			if (endDate <= startDate) {
 				$bookEnd.val(dateHelper.toStr(
 					dateHelper.nextDay(startDate)
@@ -202,7 +222,10 @@ define([
 			render($bookEnd);
 			callback();
 		});
-		$bookEnd.on('change', callback);
+		$bookEnd.on('change', function () {
+			refresh($bookStart);
+			callback();
+		});
 	};
 
 

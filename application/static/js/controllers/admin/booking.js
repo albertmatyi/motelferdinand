@@ -245,13 +245,13 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 			$('#cancel-mail', $bookingsModal).click(function () {
 				showDetails();
 			});
-			$table.on('click', function (event) {
-				showDetails($(event.target).parents('.booking-row').data('bookingId'));
-			});
 			$('#delete-booking', $bookingsModal).click(askDeleteBooking);
 			wysihtml5.renderTextAreas($bookingsModal);
 			listenersInitialized = true;
 		}
+		$table.off('click').on('click', function (event) {
+			showDetails($(event.target).parents('.booking-row').data('bookingId'));
+		});
 	};
 
 	var renderBadge = function () {

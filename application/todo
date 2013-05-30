@@ -140,7 +140,7 @@ D		display validation messages
 D		validate on backend
 D	move currency to props
 D	move languages to props
-	add nationality
+D	add nationality
 	mark selected range
 	admin bookings ( 3 | 4 ) notification fix
 	get the emails right

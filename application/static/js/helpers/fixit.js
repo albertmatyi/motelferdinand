@@ -4,23 +4,33 @@
 
 define(
 [ 'lib/jquery' ],
-function (jq) {
+function () {
 	'use strict';
-	var scrollChanged = function ($objs2Fix) {
+
+	var OBJECTS;
+
+	var scrollChanged = function () {
 		var st = $(document).scrollTop();
-		$objs2Fix.each(function (i, el) {
-			var $el = $(el);
-			var $parent = $el.parent();
-			var pos = Math.max(st, $parent.offset().top);
-			pos = Math.min(pos, $parent.offset().top + $parent.outerHeight(true) - $el.outerHeight(true));
+		var lobjs = OBJECTS;
+		for (var i = lobjs.length - 1; i >= 0; i--) {
+			var $el = lobjs[i];
+			var $parent = $el.parent;
+			var parentTopOffset = $parent.offset().top;
+			var pos = Math.max(st, parentTopOffset);
+			pos = Math.min(pos, parentTopOffset + $parent.outerHeight(true) - $el.outerHeight(true));
 			$el.offset({top : pos});
-		});
+		}
 	};
 	return {
 		'setup': function ($objs) {
-			$(document).scroll(function () {
-				scrollChanged($objs);
-			});
+			var arr = [];
+			for (var i = $objs.length - 1; i >= 0; i--) {
+				var $el = $($objs[i]);
+				$el.parent = $el.parent();
+			}
+
+			OBJECTS = arr;
+			$(document).scroll(scrollChanged);
 		}
 	};
 });

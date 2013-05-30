@@ -34,14 +34,16 @@ define([], function () {
 	var previousDay = function (date) {
 		return new Date(date.getTime() - MILLIS_IN_DAY);
 	};
-	
+
 	var nextDay = function (date) {
 		return new Date(date.getTime() + MILLIS_IN_DAY);
 	};
 
+	var stripTime = function (date) {
+		return strToDate(dateToStr(date));
+	};
 	var MILLIS_IN_DAY = 1000 * 60 * 60 * 24;
-	var TODAY = strToDate(dateToStr(new Date()));
-
+	var TODAY = stripTime(new Date());
 	return {
 		'toDate': strToDate,
 		'toStr': dateToStr,
@@ -51,6 +53,7 @@ define([], function () {
 		'today': TODAY,
 		'previousDay': previousDay,
 		'nextDay': nextDay,
-		'yesterday': new Date(TODAY.getTime() - MILLIS_IN_DAY)
+		'yesterday': new Date(TODAY.getTime() - MILLIS_IN_DAY),
+		'stripTime': stripTime
 	};
 });

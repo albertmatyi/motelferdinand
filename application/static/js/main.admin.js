@@ -74,9 +74,7 @@ function (us, config, test, social, modal, modelBase,
 		window.location.hash = window.location.hash;
 	}
 
-	$('#loading-overlay').fadeOut(500, function () {
-		$(this).remove();
-	});
+	$('#loading-overlay').remove();
 	modal.fix().init();
 
 	categoryAdmin.init();
