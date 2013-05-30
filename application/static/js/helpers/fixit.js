@@ -30,7 +30,7 @@ function () {
 			}
 
 			OBJECTS = arr;
-			$(document).scroll(scrollChanged);
+			$(window).scroll(scrollChanged);
 		}
 	};
 });
