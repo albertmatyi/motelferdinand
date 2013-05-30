@@ -23,6 +23,11 @@ define([],
 				text : function () {
 					return this.user.language;
 				}
+			},
+			'citizenship' : {
+				text : function () {
+					return this.user.citizenship;
+				}
 			}
 		};
 	}
