@@ -1,6 +1,7 @@
 /*global define */
 /*global $ */
 /*global document */
+/*global window */
 
 define(
 [ 'lib/jquery' ],
@@ -12,7 +13,7 @@ function () {
 	var scrollChanged = function () {
 		var st = $(document).scrollTop();
 		var lobjs = OBJECTS;
-		for (var i = lobjs.length - 1; i >= 0; i--) {
+		for (var i = lobjs.length - 1; i >= 0; i -= 1) {
 			var $el = lobjs[i];
 			var $parent = $el.parent;
 			var parentTopOffset = $parent.offset().top;
@@ -24,9 +25,10 @@ function () {
 	return {
 		'setup': function ($objs) {
 			var arr = [];
-			for (var i = $objs.length - 1; i >= 0; i--) {
+			for (var i = $objs.length - 1; i >= 0; i -= 1) {
 				var $el = $($objs[i]);
 				$el.parent = $el.parent();
+				arr.push($el);
 			}
 
 			OBJECTS = arr;
