@@ -141,7 +141,12 @@ D		validate on backend
 D	move currency to props
 D	move languages to props
 D	add nationality
-	mark selected range
+130528
+D	mark selected range
+130602
+	show price from
+	currency calculator
+	move content
 	admin bookings ( 3 | 4 ) notification fix
 	get the emails right
 	bugs

@@ -32,7 +32,7 @@ function (commonDirectives) {
 		},
 		'currency' : {
 			'text': function () {
-				return model.currencies[model.language];
+				return model.currency.selected;
 			}
 		},
 		'price-for-guests' : {

@@ -17,7 +17,6 @@ html, body, #maincontent, #body_content, .categories, .category {
 		padding-bottom: 2em;
 	}
 	.category-info {
-		position: absolute;	
 		@include tile;
 		
 		color: #efefef;

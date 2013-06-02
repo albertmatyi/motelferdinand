@@ -105,7 +105,7 @@ define([
 				t.l('verify price').assertPresent('.price:contains(' + expectedPrice[0] + ')', $bookable);
 
 				t.l('verify price').assertPresent(
-					'.price:contains(' + model.currencies[model.language] + ')', $bookable
+					'.price:contains(' + model.currency.selected + ')', $bookable
 					);
 				t.l('Test booking form button').click($bookable.selector + ' .showBookingFormButton');
 

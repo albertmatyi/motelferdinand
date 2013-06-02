@@ -8,6 +8,7 @@ from google.appengine.ext import db
 from application.models.user import UserModel
 from application.models.commons import BookingState as State
 from application.models.bookable import BookableModel
+from application.models.prop import currency_default
 
 
 class BookingModel(AbstractModel):
@@ -17,7 +18,7 @@ class BookingModel(AbstractModel):
     guests = db.IntegerProperty(required=True, default=1)
     message = db.TextProperty()
     feedback = db.TextProperty()
-    currency = db.StringProperty(required=True, default='RON')
+    currency = db.StringProperty(required=True, default=currency_default)
     price = db.FloatProperty(required=True, default=99.9)
     state = db.IntegerProperty(required=True, default=State.INITIAL)
     quantity = db.IntegerProperty(required=True, default=1)

@@ -126,7 +126,7 @@ define([
 				var perNight = calcPerNight(bookable);
 				var nights = datepicker.getNights();
 				var total = nights * perNight;
-				var curr = ' ' + model.currencies[model.language];
+				var curr = ' ' + model.currency.selected;
 				$('.nrOfNights', $form).text(nights);
 				$('.pricePerNight', $form).text(perNight + curr);
 				$('.priceTotal', $form).text(total + curr);

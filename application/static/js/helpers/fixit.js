@@ -19,7 +19,8 @@ function () {
 			var parentTopOffset = $parent.offset().top;
 			var pos = Math.max(st, parentTopOffset);
 			pos = Math.min(pos, parentTopOffset + $parent.outerHeight(true) - $el.outerHeight(true));
-			$el.offset({top : pos});
+			// $el.prop('style', 'position: absolute; top: ' + pos + 'px');
+			$el.offset({'top': pos});
 		}
 	};
 	return {
@@ -27,6 +28,7 @@ function () {
 			var arr = [];
 			for (var i = $objs.length - 1; i >= 0; i -= 1) {
 				var $el = $($objs[i]);
+				$el.css('position', 'absolute');
 				$el.parent = $el.parent();
 				arr.push($el);
 			}

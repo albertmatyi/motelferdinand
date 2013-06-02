@@ -183,7 +183,7 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 		for (var langId in prices) {
 			if (prices.hasOwnProperty(langId)) {
 				$('tr.' + langId + ' .currency', $pricesTable)
-					.text(model.currencies[langId]);
+					.text(model.currency.selected);
 				$('tr.' + langId + ' input[name=prices\\.values]', $pricesTable)
 					.each(function (i, input) {
 						if (prices[langId].values.length > i) {

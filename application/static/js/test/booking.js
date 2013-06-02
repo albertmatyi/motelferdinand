@@ -11,7 +11,7 @@ define(
 ], function (jq, categoryTest, bookableTest, dateHelper) {
 	'use strict';
 	var catInfo = { title: '' };
-	var CUR = model.currencies[model.language];
+	var CUR = model.currency.default;
 	var bkblInfo = {
 		title: '',
 		places: 3,

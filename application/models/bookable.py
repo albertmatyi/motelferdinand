@@ -15,12 +15,7 @@ class BookableModel(AbstractContentModel):
     '''
         Prices are kept in a structure like:
         {
-            en:{
-                values: [1,2,3]
-            },
-            ro:{
-                values: [1,2,3]
-            }
+            values: [1,2,3]
         }
     '''
 
@@ -63,7 +58,7 @@ class BookableModel(AbstractContentModel):
                 values: [1,2,3],
             }
         '''
-        return self.to_dict()['prices'][lang_id]
+        return self.to_dict()['prices']
 
     def get_bookings_that_end_after(self, date):
         res = [

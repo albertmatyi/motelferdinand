@@ -12,6 +12,7 @@ from flask.globals import request
 from application.helpers import si18n
 from google.appengine.api import users
 import os
+from application.helpers import currency
 
 
 @app.errorhandler(500)
@@ -40,7 +41,7 @@ def home():
         js_data={
             'categories': categories,
             'languages': prop.languages,
-            'currencies': prop.currencies,
+            'currency': currency.get_data(),
             'language': lang_id,
             'bookings': [],
             'si18n': si18n.translations_js,

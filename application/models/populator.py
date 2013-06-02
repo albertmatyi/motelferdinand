@@ -93,9 +93,8 @@ def init_langs():
     langs = {}
     for lang_id in initial_lang_ids:
         langs[lang_id] = si18n.translate('LanguageName', lang_id)
-        PropModel(kkey='currency.' + lang_id,
-                  value=si18n.translate('$', lang_id))\
-            .put()
+    PropModel(kkey='currencies', value=json.dumps(['EUR', 'RON', 'HUF'])).put()
+    PropModel(kkey='currency_default', value='RON').put()
     prop.languages = langs
     PropModel(kkey='languages', value=json.dumps(langs)).put()
     pass

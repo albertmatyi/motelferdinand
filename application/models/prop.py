@@ -14,10 +14,12 @@ for p in PropModel.all():
 
 if 'languages' not in all_props:
     languages = {'en': 'English'}
-    currencies = {'en': 'GBP'}
 else:
     languages = json.loads(all_props['languages'])
-    currencies = {}
-    for l in languages:
-        ck = 'currency.' + l
-        currencies[l] = all_props[ck] if ck in all_props else '$' + l
+
+if 'currencies' not in all_props:
+    currencies = ['EUR', 'RON', 'HUF']
+    currency_default = 'RON'
+else:
+    currencies = json.loads(all_props['currencies'])
+    currency_default = all_props['currency_default']

@@ -6,7 +6,7 @@ define(
 [
 	'lib/jquery'
 ],
-function (jq) {
+function () {
 	'use strict';
 
 	$.fn.serializeObject = function () {
@@ -39,6 +39,7 @@ function (jq) {
 	}
 
 	model.languages = langs;
+	model.currency.selected = model.currency.default;
 
 	// sort categories by their weight
 	model.categories.sort(function (c0, c1) {
