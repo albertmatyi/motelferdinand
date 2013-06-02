@@ -22,7 +22,7 @@ function (commonDirectives) {
 		'entityId' : commonDirectives.getEntityDirective('bookable'),
 		'price' : {
 			'text': function () {
-				if (!this.prices || !this.prices[0]) {
+				if (!this.prices || !this.prices.values[0]) {
 					return 'Please define prices!';
 				}
 				return this.prices.values[0];

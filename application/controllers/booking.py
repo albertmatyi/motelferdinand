@@ -4,14 +4,12 @@ Created on Jul 26, 2012
 @author: matyas
 '''
 from application import app, APP_MAIL_SENDER, APP_ADMIN_MAILS
-from application.models import\
-    BookingModel,\
-    BookableModel,\
-    BookingDictBuilder,\
-    si18n,\
-    UserModel,\
-    prop
+from application.models.booking import BookingModel, BookingDictBuilder
+from application.models.bookable import BookableModel
+from application.models.user import UserModel
+from application.models import prop
 from application.models.commons import BookingState
+from application.helpers import si18n
 from flask.globals import request
 from google.appengine.api import mail
 from application.decorators import admin_required

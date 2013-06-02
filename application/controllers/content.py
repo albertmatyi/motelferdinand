@@ -1,17 +1,17 @@
 from application import app
 from application.decorators import admin_required
-from wtforms.ext.appengine.db import model_form
-from application.models import * 
-from flaskext import wtf
+from application.models.content import ContentModel
 from application.controllers import helpers
-from flask.templating import render_template
 from flask.globals import request
+
 
 @app.route("/admin/contents/", methods=["POST"])
 @admin_required
 def admin_contents():
-    return '{ "id" : "'+str(helpers.save_obj_from_req(ContentModel).key().id())+'" }';
+    return '{ "id" : "' +\
+        str(helpers.save_obj_from_req(ContentModel).key().id()) + '" }'
     pass
+
 
 @app.route('/admin/contents/<int:entityId>', methods=['POST', 'DELETE'])
 @admin_required

@@ -4,10 +4,9 @@ Created on Jul 26, 2012
 @author: matyas
 '''
 from google.appengine.ext import db
-from application.models import AbstractContentModel
+from application.models.abstract_content import AbstractContentModel
 from application.models.category import CategoryModel
 from application.models.commons import BookingState as State
-from application.models import prop
 import json
 
 
@@ -40,9 +39,8 @@ class BookableModel(AbstractContentModel):
     def validate(self, dictionary):
         pcs = dictionary['prices']
         vn = int(dictionary['places'])
-        for lang_id in prop.languages:
-            for i in range(vn):
-                pcs[lang_id]['values'][i] = float(pcs[lang_id]['values'][i])
+        for i in range(vn):
+            pcs['values'][i] = float(pcs['values'][i])
 
     def to_dict_field(self, key):
         if key is 'prices':

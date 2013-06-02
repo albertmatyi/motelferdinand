@@ -3,8 +3,7 @@
 /*global model */
 /*global _ */
 
-define(
-[
+define([
 	'lib/jquery',
 	'helpers/i18n',
 	'elements/admin/controls',
@@ -143,9 +142,9 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 
 
 	var initForm = function () {
-		initPriceTable();
 		initQuantitySelect();
 		initPlacesSelect();
+		$('.currency', $priceCell).text(model.currency.default);
 	};
 
 	var renderPrices = function (n) {

@@ -1,4 +1,4 @@
-from application.models import I18nableModel
+from application.models.i18n import I18nableModel
 from google.appengine.ext import db
 
 

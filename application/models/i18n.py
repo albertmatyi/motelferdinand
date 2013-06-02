@@ -4,7 +4,7 @@ Created on Jul 26, 2012
 @author: matyas
 '''
 from google.appengine.ext import db
-from application.models import AbstractModel
+from application.models.base import AbstractModel
 from application.models import prop
 
 

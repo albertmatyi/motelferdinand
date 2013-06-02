@@ -1,9 +1,8 @@
-from application.models import\
-    CategoryModel,\
-    ContentModel,\
-    BookableModel,\
-    PropModel,\
-    I18n
+from application.models.category import CategoryModel
+from application.models.content import ContentModel
+from application.models.bookable import BookableModel
+from application.models.prop import PropModel
+from application.models.i18n import I18n
 from random import Random
 from application.helpers import si18n
 from application.models import prop
@@ -12,28 +11,79 @@ import json
 import logging
 
 
+def migrate_to_version_2():
+    '''
+        Change bookable prices from
+        {
+            'lang_id': {
+                'values: []
+            }
+        }
+
+        To
+
+        {
+            'values': []
+        }
+    '''
+    for bookable in BookableModel.all():
+        if bookable.prices:
+            old_prices = json.loads(bookable.prices)
+            if 'ro' in old_prices:
+                new_prices = old_prices['ro']
+                bookable.prices = json.dumps(new_prices)
+            else:
+                bookable.prices = None
+        else:
+            bookable.prices = None
+        bookable.put()
+
+
+def validate_migration(dst_ver, current_ver):
+    if dst_ver <= current_ver:
+        raise Exception('The current version is: ' + current_ver)
+    if 'migrate_to_version_' + str(dst_ver) not in globals():
+        raise Exception('No migration method to version ' + str(dst_ver)
+                        + '<br/> migrate_to_version_' + str(dst_ver) +
+                        ' not in ' + str(globals()))
+
+
+def get_current_version():
+    if 'db_version' in prop.all_props:
+        db_version = int(prop.all_props['db_version'])
+    else:
+        prop.PropModel(kkey='db_version', value='1').put()
+        db_version = 1
+    return db_version
+
+
 def migrate(ver):
-    db_ver = int(prop.all_props['db_ver'])
-    for v in range(ver, db_ver):
-        logging.info('Migrating to version' + v)
+    db_version = get_current_version()
+    validate_migration(ver, db_version)
+    for v in range(db_version, ver):
+        dst_v = str(v + 1)
+        logging.warn('Migrating to version: ' + dst_v)
+        migr_func = globals()['migrate_to_version_' + dst_v]
+        migr_func()
+        p = prop.PropModel.all().filter('kkey', 'db_version').get()
+        p.value = str(v)
+        p.put()
 
 
 def init():
     '''
-        Deletes existing categories and creates new ones
-        with a random number of subcategories that are or are not non-menu-entries
+        Initializes languages and mails. Sets db version to 1
     '''
 
     for p in prop.PropModel.all():
         p.delete()
 
-    prop.PropModel(kkey='db_ver', value='1').put()
-
     init_langs()
 
     init_mails()
 
-    return
+
+def populate():
 
     for cat in CategoryModel.all():
         # this will cascade on all contents / bookables and their translations

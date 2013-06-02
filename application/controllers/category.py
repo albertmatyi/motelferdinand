@@ -1,6 +1,6 @@
 from application import app
 from application.decorators import admin_required
-from application.models import CategoryModel
+from application.models.category import CategoryModel
 from application.models import prop
 from application.controllers import helpers
 from werkzeug.utils import redirect

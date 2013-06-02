@@ -5,7 +5,7 @@ Created on Jul 26, 2012
 '''
 from application import app
 from application.decorators import admin_required
-from application.models import BookableModel
+from application.models.bookable import BookableModel
 from application.controllers import helpers
 from flask.globals import request
 from datetime import datetime

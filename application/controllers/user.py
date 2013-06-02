@@ -7,9 +7,8 @@ from application import app, APP_MAIL_SENDER
 from google.appengine.api import mail
 from flask.globals import request
 from application.decorators import admin_required
-from application.models import\
-    UserModel,\
-    si18n
+from application.models.user import UserModel
+from application.helpers import si18n
 import json
 
 

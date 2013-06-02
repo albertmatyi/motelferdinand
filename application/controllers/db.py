@@ -17,6 +17,5 @@ def init():
 @admin_required
 def migrate(ver):
     db.migrate(ver)
-    raise Exception(" error")
     return redirect(url_for('home'), 302)
     pass

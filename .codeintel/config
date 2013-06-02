@@ -1,9 +1,9 @@
 {
-    "JavaScript": {
-        "javascriptExtraPaths": []
+    'JavaScript': {
+        'javascriptExtraPaths': []
     },
-    "Python": {
-        "python": '/usr/bin/python',
-        "pythonExtraPaths": ["~/progz/sdks/google_appengine/lib/"]
+    'Python': {
+        'python': '/usr/bin/python',
+        'pythonExtraPaths': ['~/progz/sdks/google_appengine/', '../']
     }    
 }
