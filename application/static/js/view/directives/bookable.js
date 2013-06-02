@@ -22,12 +22,10 @@ function (commonDirectives) {
 		'entityId' : commonDirectives.getEntityDirective('bookable'),
 		'price' : {
 			'text': function () {
-				if (!this.prices || !this.prices[model.language]) {
+				if (!this.prices || !this.prices[0]) {
 					return 'Please define prices!';
 				}
-				var prices = this.prices[model.language];
-				var l = prices.values.length;
-				return prices.values[l - 1];
+				return this.prices.values[0];
 			}
 		},
 		'currency' : {

@@ -17,6 +17,8 @@ define(
 ],
 function (jq, i18n, adminControls, directive, transparency, common, view, booking, modal) {
 	'use strict';
+
+	var PRICES_SELECTOR = 'tbody input[name=prices\\.values]';
 	var optionDirective = {
 		'value' : {
 			'text' : function () {
@@ -24,17 +26,6 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 			},
 			'value' : function () {
 				return this.value;
-			}
-		}
-	};
-
-	var languageDirective = {
-		'lang_id' : {
-			'text' : function () {
-				return '';
-			},
-			'class' : function () {
-				return  this.lang_id;
 			}
 		}
 	};
@@ -128,10 +119,6 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 		});
 	};
 
-	var initPriceTable = function () {
-		$('tbody', $pricesTable).render(model.languages, languageDirective);
-	};
-
 	var addOptions = function ($el, n) {
 		$el.render(
 			_.range(1, n + 1),
@@ -180,31 +167,21 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 	};
 
 	var _populatePrices = function (prices) {
-		for (var langId in prices) {
-			if (prices.hasOwnProperty(langId)) {
-				$('tr.' + langId + ' .currency', $pricesTable)
-					.text(model.currency.selected);
-				$('tr.' + langId + ' input[name=prices\\.values]', $pricesTable)
-					.each(function (i, input) {
-						if (prices[langId].values.length > i) {
-							$(input).val(prices[langId].values[i]);
-						}
-					});
+		var inputs = $(PRICES_SELECTOR, $pricesTable);
+		for (var i = inputs.length - 1; i >= 0; i -= 1) {
+			var input = inputs[i];
+			if (prices.values.length > i) {
+				$(input).val(prices.values[i]);
 			}
 		}
 	};
 
 	var gatherPrices = function () {
 		var prices = {};
-		for (var i = model.languages.length - 1; i >= 0; i -= 1) {
-			var langId = model.languages[i].lang_id;
-			prices[langId] = {};
-			prices[langId].values =
-				$('tr.' + langId + ' input[name=prices\\.values]', $pricesTable)
-				.serializeObject()['prices.values'];
-			if (typeof prices[langId].values === 'string') {
-				prices[langId].values = [prices[langId].values];
-			}
+		prices.values = $(PRICES_SELECTOR, $pricesTable)
+			.serializeObject()['prices.values'];
+		if (typeof prices.values === 'string') {
+			prices.values = [prices.values];
 		}
 		return prices;
 	};

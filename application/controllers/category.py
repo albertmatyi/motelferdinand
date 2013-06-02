@@ -1,7 +1,6 @@
 from application import app
 from application.decorators import admin_required
-from application.models import\
-    CategoryModel, init_db
+from application.models import CategoryModel
 from application.models import prop
 from application.controllers import helpers
 from werkzeug.utils import redirect
@@ -55,14 +54,6 @@ def home():
 @app.route("/admin/")
 @admin_required
 def admin():
-    return redirect(url_for('home'), 302)
-    pass
-
-
-@app.route("/admin/initdb")
-@admin_required
-def initdb():
-    init_db()
     return redirect(url_for('home'), 302)
     pass
 

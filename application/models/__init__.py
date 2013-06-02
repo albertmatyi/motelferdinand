@@ -28,5 +28,4 @@ from user import *
 # dependent on bookable & user
 from booking import *
 
-
-from populator import *
+from db import *

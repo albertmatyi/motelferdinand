@@ -1,7 +1,6 @@
 from application.models.prop import currency_default, currencies
 from google.appengine.api.urlfetch import fetch
 from xml.etree import ElementTree as etree
-import logging
 
 
 def get_rates():
@@ -12,9 +11,7 @@ def get_rates():
         xml_string = rates_string
     tree = etree.fromstring(xml_string)
     rates = {}
-    # logging.warn(tree)
     for rate in tree.findall('.//*[@currency]'):
-        logging.warn(rate)
         cur_name = rate.attrib['currency']
         if cur_name in currencies:
             rates[cur_name] = {

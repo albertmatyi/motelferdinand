@@ -105,7 +105,7 @@ define([
 		};
 
 		var calcPerNight = function (bookable) {
-			var vals = bookable.prices[model.language].values;
+			var vals = bookable.prices.values;
 			var q = parseInt($quantitySelect.val(), 10);
 			var g = parseInt($guestsSelect.val(), 10);
 			var p = parseInt(bookable.places, 10);

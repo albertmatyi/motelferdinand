@@ -9,9 +9,16 @@ from application.helpers import si18n
 from application.models import prop
 from application.helpers.file import load_file
 import json
+import logging
 
 
-def init_db():
+def migrate(ver):
+    db_ver = int(prop.all_props['db_ver'])
+    for v in range(ver, db_ver):
+        logging.info('Migrating to version' + v)
+
+
+def init():
     '''
         Deletes existing categories and creates new ones
         with a random number of subcategories that are or are not non-menu-entries
@@ -19,6 +26,8 @@ def init_db():
 
     for p in prop.PropModel.all():
         p.delete()
+
+    prop.PropModel(kkey='db_ver', value='1').put()
 
     init_langs()
 
