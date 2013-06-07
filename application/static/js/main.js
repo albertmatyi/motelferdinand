@@ -56,10 +56,11 @@ define('main',
 	'view/category',
 	'view/language',
 	'controllers/category',
-	'controllers/booking',
+	'controllers/bookable',
+	'controllers/booking'
 ],
 function (us, config, social, modal, modelBase, categoryView, languageView,
-	category) {
+	category, bookable, booking) {
 	'use strict';
 	categoryView.render(model.categories);
 	category.init();
@@ -71,6 +72,7 @@ function (us, config, social, modal, modelBase, categoryView, languageView,
 
 	$('#loading-overlay').remove();
 	modal.fix().init();
+	bookable.init();
 	booking.setup();
 //close the function & define
 });

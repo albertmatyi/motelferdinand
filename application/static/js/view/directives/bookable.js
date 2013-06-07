@@ -4,9 +4,10 @@
 
 define(
 [
-	'view/directives/common'
+	'view/directives/common',
+	'helpers/currency'
 ],
-function (commonDirectives) {
+function (commonDirectives, currencyHelper) {
 	'use strict';
 	return {
 		'id' : {
@@ -25,7 +26,7 @@ function (commonDirectives) {
 				if (!this.prices || !this.prices.values[0]) {
 					return 'Please define prices!';
 				}
-				return this.prices.values[0];
+				return currencyHelper.convert(this.prices.values[0]);
 			}
 		},
 		'currency' : {
@@ -41,6 +42,7 @@ function (commonDirectives) {
 						);
 					}
 				}
+				$(params.element).data('price', this.prices.values[0]);
 				return opts.join('');
 			}
 		},

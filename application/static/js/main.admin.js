@@ -57,6 +57,7 @@ define('main',
 	'view/category',
 	'view/language',
 	'controllers/category',
+	'controllers/bookable',
 	'controllers/booking',
 	'controllers/admin/category',
 	'controllers/admin/content',
@@ -64,11 +65,12 @@ define('main',
 	'controllers/admin/booking'
 ],
 function (us, config, test, social, modal, modelBase,
-	categoryView, languageView, category, booking,
+	categoryView, languageView, category, bookable, booking,
 	categoryAdmin, contentAdmin, bookableAdmin, bookingAdmin) {
 	'use strict';
 	categoryView.render(model.categories);
 	category.init();
+	bookable.init();
 	booking.setup();
 
 	// DEFAULT SELECTION

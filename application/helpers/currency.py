@@ -1,6 +1,7 @@
 from application.models.prop import currency_default, currencies
 from google.appengine.api.urlfetch import fetch
 from xml.etree import ElementTree as etree
+from flask import request
 import logging
 
 
@@ -32,6 +33,7 @@ def get_rates():
 
 def get_data():
     return {'default': currency_default,
+            'selected': request.cookies.get('currency'),
             'all': currencies,
             'rates': get_rates()}
 

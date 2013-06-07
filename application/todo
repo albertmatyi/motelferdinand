@@ -147,10 +147,14 @@ D	mark selected range
 	currency calculator
 D		load currency in backend
 D		migrate db
-		add 1 price support for bookable
-		show price starting from X ron
-		make price change possible
-		calculate prices based on rates
+D		add 1 price support for bookable
+D		show price starting from X ron
+		bookable change price
+			save
+			load cookie
+		booking 
+			prices with selected currency
+			backend
 	move content
 	admin bookings ( 3 | 4 ) notification fix
 	get the emails right
