@@ -1,13 +1,18 @@
 from application.models.prop import currency_default, currencies
 from google.appengine.api.urlfetch import fetch
 from xml.etree import ElementTree as etree
+import logging
 
 
 def get_rates():
-    ro = fetch('http://www.bnr.ro/nbrfxrates.xml')
-    if int(ro.status_code) < 400:
-        xml_string = ro.content
-    else:
+    xml_string = None
+    try:
+        ro = fetch('http://www.bnr.ro/nbrfxrates.xml')
+        if int(ro.status_code) < 400:
+            xml_string = ro.content
+    except Exception, e:
+        logging.warn('Couldn\'t load currency rates', e)
+    if xml_string is None:
         xml_string = rates_string
     tree = etree.fromstring(xml_string)
     rates = {}

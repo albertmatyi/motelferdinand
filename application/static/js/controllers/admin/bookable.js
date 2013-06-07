@@ -14,7 +14,7 @@ define([
 	'controllers/booking',
 	'elements/modal'
 ],
-function (jq, i18n, adminControls, directive, transparency, common, view, booking, modal) {
+function (jq, i18n, adminControls, bookableDirective, transparency, common, view, booking, modal) {
 	'use strict';
 
 	var PRICES_SELECTOR = 'tbody input[name=prices\\.values]';
@@ -62,7 +62,7 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 
 	var addNewUI = function (category, bookable) {
 		var $newUI = $bookableTemplate.clone()
-			.render(bookable, directive)
+			.render(bookable, bookableDirective)
 			.children('.bookable');
 		$('#Category' + category.id + ' .bookables').append($newUI);
 		initAdminControls($newUI);
@@ -87,7 +87,7 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 			// update UI
 			if (!isNew) {
 				var $cont = $('#Bookable' + entity.id);
-				$cont.render(entity, directive);
+				$cont.render(entity, bookableDirective);
 				booking.reset();
 			} else {
 				add(entity);
@@ -151,7 +151,8 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 		$('tr', $pricesTable).each(function (idx, tr) {
 			var $tr = $(tr);
 			$('.values', tr).remove();
-			for (var i = 1; i <= n; i += 1) {
+			var els = [];
+			for (var i = n; i > 0; i -= 1) {
 				var c;
 				if (idx === 0) {
 					c = $priceHCell.clone();
@@ -160,8 +161,9 @@ function (jq, i18n, adminControls, directive, transparency, common, view, bookin
 					c = $priceCell.clone();
 					c.attr('name', c.attr('name'));
 				}
-				$tr.append(c);
+				els.unshift(c);
 			}
+			$tr.append(els);
 		});
 	};
 

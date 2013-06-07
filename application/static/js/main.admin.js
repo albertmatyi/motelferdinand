@@ -57,17 +57,19 @@ define('main',
 	'view/category',
 	'view/language',
 	'controllers/category',
+	'controllers/booking',
 	'controllers/admin/category',
 	'controllers/admin/content',
 	'controllers/admin/bookable',
 	'controllers/admin/booking'
 ],
 function (us, config, test, social, modal, modelBase,
-	categoryView, languageView, category,
+	categoryView, languageView, category, booking,
 	categoryAdmin, contentAdmin, bookableAdmin, bookingAdmin) {
 	'use strict';
 	categoryView.render(model.categories);
 	category.init();
+	booking.setup();
 
 	// DEFAULT SELECTION
 	if (window.location.hash.length > 1) {

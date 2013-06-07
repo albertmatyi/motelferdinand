@@ -18,18 +18,18 @@ function (jq, wysihtml5, dialog) {
 		return inputs.serializeObject();
 	};
 
-	var updateEntity = function (entity, data) {
-		// update the entity attached to the form
-		for (var key in data) {
-			if (data.hasOwnProperty(key) && key.indexOf('_') !== 0) {
-				if (typeof data[key] === 'object') {
-					entity[key] = entity[key] || (_.isArray(data[key]) ? []:{});
-					updateEntity(entity[key], data[key]);
+	var updateEntity = function (dst, src) {
+		// update the dst attached to the form
+		for (var key in src) {
+			if (src.hasOwnProperty(key) && key.indexOf('_') !== 0) {
+				if (typeof src[key] === 'object') {
+					dst[key] = _.isArray(src[key]) ? []:{};
+					updateEntity(dst[key], src[key]);
 				} else {
-					if (_.isArray(entity)) {
-						entity.push(data[key]);
+					if (_.isArray(dst)) {
+						dst.push(src[key]);
 					} else {
-						entity[key] = data[key];
+						dst[key] = src[key];
 					}
 				}
 			}

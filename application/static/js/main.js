@@ -55,7 +55,8 @@ define('main',
 	'model/base',
 	'view/category',
 	'view/language',
-	'controllers/category'
+	'controllers/category',
+	'controllers/booking',
 ],
 function (us, config, social, modal, modelBase, categoryView, languageView,
 	category) {
@@ -70,5 +71,6 @@ function (us, config, social, modal, modelBase, categoryView, languageView,
 
 	$('#loading-overlay').remove();
 	modal.fix().init();
+	booking.setup();
 //close the function & define
 });

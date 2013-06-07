@@ -29,8 +29,19 @@ function (commonDirectives) {
 			}
 		},
 		'currency' : {
-			'text': function () {
-				return model.currency.selected;
+			'html': function (params) {
+				var opts = [];
+				var rates = model.currency.rates;
+				var selected = model.currency.selected;
+				for (var currency in rates) {
+					if (rates.hasOwnProperty(currency)) {
+						opts.push(['<option value="', currency, '"',
+							(selected === currency ? 'selected="selected"':''), 
+							'>', currency, '</option>'].join('')
+						);
+					}
+				}
+				return opts.join('');
 			}
 		},
 		'price-for-guests' : {

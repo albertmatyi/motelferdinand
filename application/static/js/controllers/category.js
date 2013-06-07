@@ -1,17 +1,16 @@
 /*global define */
 /*global $ */
+/*global window */
 
 define(
 [
-	'controllers/booking',
 	'helpers/fixit'
 ],
-function (booking, fixit) {
+function (fixit) {
 	'use strict';
 	return {
 		init : function () {
 			fixit.setup($('.category-info'));
-			booking.setup();
 			$('.category-nav a').click(function (e) {
 				e.preventDefault();
 				// e.stopImmediatePropagation();

@@ -1,0 +1,5 @@
+#!/bin/bash
+./startserv.sh &
+./scss_watch.sh &
+sublime_text &
+fxn &

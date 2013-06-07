@@ -144,8 +144,13 @@ D	add nationality
 130528
 D	mark selected range
 130602
-	show price from
 	currency calculator
+D		load currency in backend
+D		migrate db
+		add 1 price support for bookable
+		show price starting from X ron
+		make price change possible
+		calculate prices based on rates
 	move content
 	admin bookings ( 3 | 4 ) notification fix
 	get the emails right

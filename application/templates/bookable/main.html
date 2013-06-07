@@ -2,12 +2,13 @@
 	<div class="bookable" data-bind="id">
 		{% include "elements/admin/controls.html" %}
 		<h3 data-bind="bookable-title" class="bookable-title"></h3>
-		<h4 class="places">{{ __('Places') }}: <span data-bind="places"></span></h4>
-		<h4 class="price">{{ __('Price') }}: 
+		<h5 class="places">{{ __('Places') }}: <span data-bind="places"></span></h5>
+		<h5 class="price">{{ __('Prices starting from') }}: 
 			<span data-bind="price"></span>
-			<span data-bind="currency"></span>
+			<select data-bind="currency" class="currency">
+			</select>
 			<small data-bind="price-for-guests"> {{ __('For #NR# guests') }} </small>
-		</h4>
+		</h5>
 		<div class="variants clearfix">
 			<div data-bind="album_url"></div>
 			<div data-bind="bookable-description" class="bookable-description"></div>
