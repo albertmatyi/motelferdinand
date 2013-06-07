@@ -148,10 +148,11 @@ D	mark selected range
 D		load currency in backend
 D		migrate db
 D		add 1 price support for bookable
+130608
 D		show price starting from X ron
-		bookable change price
-			save
-			load cookie
+D		bookable change price
+D			save
+D			load cookie
 		booking 
 			prices with selected currency
 			backend

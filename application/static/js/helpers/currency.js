@@ -7,6 +7,7 @@ define(['helpers/cookies', 'lib/jquery'], function (cookieHelper) {
 	var $el = $('body');
 
 	var change = function (newCurrency) {
+		model.currency.selected = newCurrency;
 		$el.trigger('currencyChange', newCurrency);
 		cookieHelper.set('currency', newCurrency);
 	};
@@ -21,9 +22,25 @@ define(['helpers/cookies', 'lib/jquery'], function (cookieHelper) {
 		return Math.ceil(basePrice / rate.val) * rate.multiplier;
 	};
 
+	var getCurrencyOptions = function () {
+		var opts = [];
+		var rates = model.currency.rates;
+		var selected = model.currency.selected;
+		for (var currency in rates) {
+			if (rates.hasOwnProperty(currency)) {
+				opts.push(['<option value="', currency, '"',
+					(selected === currency ? 'selected="selected"':''),
+					'>', currency, '</option>'].join('')
+				);
+			}
+		}
+		return opts.join('');
+	};
+
 	return {
 		'change': change,
 		'onchange': onchange,
-		'convert': convert
+		'convert': convert,
+		'getCurrencyOptions': getCurrencyOptions
 	};
 });

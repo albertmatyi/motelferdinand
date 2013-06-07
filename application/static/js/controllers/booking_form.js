@@ -4,9 +4,10 @@
 
 define([
 	'helpers/tooltip',
-	'controllers/booking_datepicker'
+	'controllers/booking_datepicker',
+	'helpers/currency'
 ],
-	function (tooltip, datepicker) {
+	function (tooltip, datepicker, currencyHelper) {
 		'use strict';
 
 		var FORM_ID = 'booking-form';
@@ -15,6 +16,8 @@ define([
 		 * The jQuery ref to the form to be handled
 		 */
 		var $form = $('#' + FORM_ID);
+
+		var $currencySelect = $('.priceTotal .currency', $form);
 
 		/**
 		 * The input for the username
@@ -115,11 +118,14 @@ define([
 			var rg = p  > 1 ? g % (p - 1):0; // nr of guests that are not in full rooms
 			price = price - f * parseInt(vals[0], 10) + f * parseInt(vals[p - 1], 10); // add prices of full rooms
 			price = price - parseInt(vals[0], 10) + parseInt(vals[rg], 10); // add price of partially filled room
-			return price;
+			return currencyHelper.convert(price);
 		};
 
 		var addPriceUpdater = function (bookable) {
-			var pcalc = function () {
+			var pcalc = function (currency) {
+				if (currency) {
+					$currencySelect.val(currency);
+				}
 				if (!datepicker.isValid()) {
 					return;
 				}
@@ -129,11 +135,12 @@ define([
 				var curr = ' ' + model.currency.selected;
 				$('.nrOfNights', $form).text(nights);
 				$('.pricePerNight', $form).text(perNight + curr);
-				$('.priceTotal', $form).text(total + curr);
+				$('.priceTotal .value', $form).text(total);
 			};
 
 			$guestsSelect.on('change', pcalc);
 			datepicker.onchange(pcalc);
+			currencyHelper.onchange(pcalc);
 			pcalc();
 		};
 
@@ -160,11 +167,22 @@ define([
 			$quantitySelect.off('change');
 		};
 
+		var renderCurrencies = function () {
+			if ($('option', $currencySelect).length === 0) {
+				$currencySelect.html(currencyHelper.getCurrencyOptions());
+				$currencySelect.on('change', function () {
+					currencyHelper.change($(this).val());
+				});
+			}
+		};
+
 		/**
 		 *	Initializes the form for the booking
 		 */
 		var init = function (bookable) {
 			$bookableInput.val(bookable.id);
+
+			renderCurrencies();
 
 			addNrOptions($quantitySelect, bookable.quantity);
 
@@ -175,9 +193,6 @@ define([
 			addGuestsUpdater(bookable);
 
 			addPriceUpdater(bookable);
-
-
-
 		};
 		return {
 			'init' : init,
