@@ -7,7 +7,6 @@ from application import app, APP_MAIL_SENDER, APP_ADMIN_MAILS
 from application.models.booking import BookingModel, BookingDictBuilder
 from application.models.bookable import BookableModel
 from application.models.user import UserModel
-from application.models import prop
 from application.models.commons import BookingState
 from application.helpers import si18n
 from flask.globals import request
@@ -16,8 +15,10 @@ from application.decorators import admin_required
 from flask.templating import render_template, render_template_string
 from application.models.converters import date
 from datetime import timedelta
+from application.helpers import currency as currency_helper
 import json
 import re
+import math
 import logging
 
 
@@ -103,8 +104,7 @@ def save_booking():
 
 
 def map_price(bookingForm, booking):
-    bk_dict = booking.bookable.get_prices(si18n.get_lang_id())
-    vals = bk_dict['values']
+    vals = booking.bookable.get_prices()['values']
     q = int(bookingForm['quantity'])
     g = int(bookingForm['guests'])
     p = booking.bookable.places
@@ -121,9 +121,11 @@ def map_price(bookingForm, booking):
     # add price_per_day of partially filled room
     price_per_day = price_per_day - float(vals[0]) + float(vals[rg])
 
+    price_per_day = math.ceil(currency_helper.convert(price_per_day))
+
     days = (bookingForm['end'] - bookingForm['start']).days
     booking.price = price_per_day * days
-    booking.currency = prop.currencies[si18n.get_lang_id()]
+    booking.currency = currency_helper.get_selected_currency()
 
 
 def send_new_booking_mail(booking):

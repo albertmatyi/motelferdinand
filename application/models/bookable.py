@@ -48,7 +48,7 @@ class BookableModel(AbstractContentModel):
         else:
             return super(BookableModel, self).to_dict_field(key)
 
-    def get_prices(self, lang_id):
+    def get_prices(self):
         '''
             Retrieves the prices for a give language id in the form
             of a dictionary:

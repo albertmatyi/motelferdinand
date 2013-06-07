@@ -31,9 +31,20 @@ def get_rates():
     return rates
 
 
+def convert(val, currency=None):
+    currency = currency if currency is not None else get_selected_currency()
+    rate = get_rates()[currency]
+    return val / rate['val'] * rate['multiplier']
+
+
+def get_selected_currency():
+    cookie = request.cookies.get('currency')
+    return cookie if cookie is not None else currency_default
+
+
 def get_data():
     return {'default': currency_default,
-            'selected': request.cookies.get('currency'),
+            'selected': get_selected_currency(),
             'all': currencies,
             'rates': get_rates()}
 
