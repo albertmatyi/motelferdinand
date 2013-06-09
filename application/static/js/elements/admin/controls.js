@@ -43,29 +43,31 @@ function (i18n, dialog) {
 		});
 	};
 
-	return {'init': function ($formModal, $controls, entityURL, deleteCallback, populateCallback) {
-			var $form = $('form', $formModal);
+	var init = function ($formModal, $controls, entityURL, deleteCallback, editCallback) {
+		var $form = $('form', $formModal);
 
-			/**
-			 * Edit button click handler
-			 */
-			$('span.edit', $controls).click(function () {
-				var entity = $(this).data('entity');
-				//populate the form with data
-				i18n.populateForm($form, entity);
-				if (typeof populateCallback !== 'undefined') {
-					populateCallback($form, entity);
-				}
-				//show the edit category form
-				$formModal.modal('show');
-			});
+		/**
+		 * Edit button click handler
+		 */
+		$('span.edit', $controls).click(function () {
+			var entity = $(this).data('entity');
+			//populate the form with data
+			i18n.populateForm($form, entity);
+			if (typeof editCallback !== 'undefined') {
+				editCallback($form, entity);
+			}
+			//show the edit category form
+			$formModal.modal('show');
+		});
 
-			$formModal.on('shown', function () {
-				$($('input:visible,textarea:visible', this)[0]).focus();
-			});
+		$formModal.on('shown', function () {
+			$($('input:visible,textarea:visible', this)[0]).focus();
+		});
 
-			initDelete($controls, entityURL, deleteCallback);
-		},
+		initDelete($controls, entityURL, deleteCallback);
+	};
+
+	return {'init': init,
 		'initDelete' : initDelete,
 		'getDeleteHandler' : getDeleteHandler
 	};

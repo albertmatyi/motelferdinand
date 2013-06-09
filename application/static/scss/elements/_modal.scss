@@ -5,11 +5,11 @@ $modalFooterHeight: 32px;
 	width: 80%;
 	height: 80%;
 	margin: 0% 0 0 -40%;
-	overflow: hidden;
+	// overflow: hidden;
 
 	& > .modal-header{
 		height: $modalHeaderHeight;
-		overflow-y: hidden;
+		// overflow-y: hidden;
 		h3,ul{
 			float: left;
 		}
@@ -20,8 +20,15 @@ $modalFooterHeight: 32px;
 			float: left;
 			margin-left: 3em;
 		}
+		.move-to-category {
+			float: right;
+		}
+		.close {
+			margin-left: 2em;
+		}
 	}
 	& > .modal-body{
+		clear: left;
 		max-height: none;
 		padding-top: 0;
 		padding-bottom: 0;

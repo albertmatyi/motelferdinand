@@ -11,11 +11,11 @@ define(
 ], function (jq, categoryTest, bookableTest, dateHelper) {
 	'use strict';
 	var catInfo = { title: '' };
-	var CUR = model.currency.default;
+	var CUR = model.currency.selected;
 	var bkblInfo = {
 		title: '',
 		places: 3,
-		priceFunction: function (i, j) { return j; }
+		priceFunction: function (i) { return i; }
 	};
 	var bkngInfo = {
 		name: 'John Doe',

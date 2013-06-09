@@ -6,6 +6,8 @@
 	<ul class="nav nav-tabs" id="edit{{ EntityName }}FormTabs">
 		<li><a href="#" data-bind="lang_id"></a></li>
 	</ul>
+	{% block header_controls %}
+	{% endblock %}
 {% endblock %}
 {% block content %}		
 	<form action="/" method="post">
@@ -21,6 +23,9 @@
 	</form>		
 {% endblock %}
 {% block footer_content %}		
+	{% block footer_buttons %}
+
+	{% endblock%}
 	<button class="btn btn-primary" id="submit{{ EntityName }}EditForm"><i class="icon-ok icon-white"></i>
 		{{ __('Save') }}
 	</button>
