@@ -37,10 +37,15 @@ define(['helpers/cookies', 'lib/jquery'], function (cookieHelper) {
 		return opts.join('');
 	};
 
+	var isValid = function (currency) {
+		return currency && typeof currency === 'string' && model.currency.rates[currency];
+	};
+
 	return {
 		'change': change,
 		'onchange': onchange,
 		'convert': convert,
+		'isValid': isValid,
 		'getCurrencyOptions': getCurrencyOptions
 	};
 });

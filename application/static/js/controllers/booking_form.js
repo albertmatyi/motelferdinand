@@ -123,7 +123,7 @@ define([
 
 		var addPriceUpdater = function (bookable) {
 			var pcalc = function (currency) {
-				if (currency) {
+				if (currencyHelper.isValid(currency)) {
 					$currencySelect.val(currency);
 				}
 				if (!datepicker.isValid()) {
