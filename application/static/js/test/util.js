@@ -5,7 +5,7 @@
 /*global document */
 /*global window */
 
-define(['lib/jquery'], function (jq) {
+define(['lib/jquery'], function () {
 	'use strict';
 	var testSteps = [];
 	var executing = false;

@@ -159,7 +159,7 @@ D			backend
 ?			confirm admin price view (which currency is paid at the end?)
 	move 
 D		content
-		bookable
+D		bookable
 	admin bookings ( 3 | 4 ) notification fix
 	get the emails right
 	bugs

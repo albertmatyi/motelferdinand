@@ -77,7 +77,6 @@ function (jq, i18n, adminControls, transparency, viewCommons, directive, modal, 
 			//populate the form with data
 			i18n.populateForm($('form', $formModal), {category: $(this).data('entity').id});
 			$moveToCategoryElement.hide();
-			modal.displayNotification($contentEditFormModal, i18n.translate('Moved'), 'success');
 			//show the edit content form
 			$formModal.modal('show');
 		});
@@ -87,6 +86,7 @@ function (jq, i18n, adminControls, transparency, viewCommons, directive, modal, 
 		adminCommons.initMoveToCategory($moveToCategoryElement, entity, 'content', function (categoryId) {
 			var $catContents = $('#Category' + categoryId + '	.contents');
 			$('#Content' + entity.id).appendTo($catContents);
+			modal.displayNotification($formModal, i18n.translate('Moved'), 'success');
 		});
 	};
 

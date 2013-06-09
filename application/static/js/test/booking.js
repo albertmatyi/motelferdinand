@@ -11,7 +11,7 @@ define(
 ], function (jq, categoryTest, bookableTest, dateHelper) {
 	'use strict';
 	var catInfo = { title: '' };
-	var CUR = model.currency.selected;
+	var CUR;
 	var bkblInfo = {
 		title: '',
 		places: 3,
@@ -49,6 +49,7 @@ define(
 				$bookable = $bkbl;
 			});
 		});
+		CUR = model.currency.selected;
 	};
 
 	var after = function (t) {
@@ -123,8 +124,8 @@ define(
 		t.l('Verify days').$('.nrOfNights', function ($el) {
 			t.assertEquals(days + '', $el.text());
 		}, $form);
-		t.l('Verify total').$('.priceTotal', function ($el) {
-			t.assertEquals(days * perNight + cur, $el.text());
+		t.l('Verify total').$('.priceTotal .value', function ($el) {
+			t.assertEquals(days * perNight + '', $el.text());
 		}, $form);
 	};
 

@@ -15,7 +15,7 @@ define([
 			title: '',
 			places: 3,
 			quantity: 4,
-			priceFunction: function (i, places) { return places + i; }
+			priceFunction: function (i) { return i + 1; }
 		};
 		var catInfo = {
 			title: ''
@@ -131,9 +131,9 @@ define([
 			for (var i = 0; i < info.places; i += 1) {
 				var $pinput = $($inputs[i]);
 				t.l('Set price for guest' + (i + 1))
-					.setValue($pinput, pf(i + 1, info.places));
+					.setValue($pinput, pf(i + 1));
 			}
-			priceToExpect.push(pf(0, info.places));
+			priceToExpect.push(pf(1));
 			return displayedPrice;
 		};
 

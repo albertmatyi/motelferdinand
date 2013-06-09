@@ -34,6 +34,10 @@
 			left: 60%;
 			.total {
 				font-weight: bold;
+				.currency {
+					top: -1px;
+					margin-left: .5em;
+				}
 			}
 		}
 	}

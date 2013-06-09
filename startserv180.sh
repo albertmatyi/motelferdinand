@@ -4,7 +4,7 @@ cat /dev/null > ./server.log
 	--host 0.0.0.0 \
 	--log_level debug \
 	--storage_path ./local/ \
-	--enable_sendmail True \
+	--enable_sendmail False \
 	--show_mail_body True \
 	--port 8080 \
 	. &> ./server.log
