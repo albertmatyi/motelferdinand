@@ -157,21 +157,25 @@ D		booking
 D			prices with selected currency
 D			backend
 ?			confirm admin price view (which currency is paid at the end?)
-	move 
+D	move 
 D		content
 D		bookable
+D	make accepting overbooked requests impossible
 	admin bookings ( 3 | 4 ) notification fix
 	get the emails right
 	bugs
 D		admin bookings click row after rerender
 		picasa albums
+		after booking delete list becomes uneditable
+		after acceptance style/icons of booking don't change
+
 	update galleries after content update 1h
 	test
 		update (paid)
 		delete
 		accept
+		move
 	fullscreen image quality
-	make accepting overbooked requests impossible
 	caching
 	add special prices for date ranges
 	discount

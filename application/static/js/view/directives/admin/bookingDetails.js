@@ -51,13 +51,7 @@ define([
 		},
 		'acceptance-button' : {
 			'text' : function (params) {
-				if (this.state > 1) {
-					$(params.element).addClass('disabled');
-				} else {
-					$(params.element).removeClass('disabled');
-				}
 				$(params.element).prop('disabled', this.state > 1);
-				return $(params.element).text();
 			}
 		},
 		'paid-button' : {

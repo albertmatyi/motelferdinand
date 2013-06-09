@@ -66,6 +66,7 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 			$bookingDetails.data('bookingId', booking.id);
 			$bookingDetails.render(booking, bookingDetailsDirective);
 			$('.footer-buttons', $bookingsModal.footer).render(booking, bookingDetailsDirective);
+			// disable accept on overbooking
 		}
 		$('span', $bookingsModal.title).remove();
 		$bookingsModal.title.prepend('<span>' + $('.panel-title', $bookingDetails).text() + '</span><span class="separator"></span>');

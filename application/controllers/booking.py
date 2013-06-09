@@ -56,20 +56,37 @@ def validate(form):
     valid &= bkng['bookable'] is not None
 
     bookable = bkng['bookable']
-    bookings = bookable.get_bookings_that_end_after(bkng['start'])
-    bookings = [b for b in bookings if b.start < bkng['end']]
-    day = bkng['start']
-    while day < bkng['end']:
-        q = get_quantity_for_date(day, bookings)
-        if q + bkng['quantity'] > bookable.quantity:
-            msg = 'Day ' + str(day) + ' is overbooked'
-            valid &= False
-            break
-        day = day + timedelta(days=1)
-
+    valid &= is_valid_quantity_for_range(
+        bookable,
+        bkng['start'],
+        bkng['end'],
+        bkng['quantity'])
     if not valid:
         raise Exception('Invalid data. ' + msg)
     pass
+
+
+@app.route('/admin/booking/valid/<int:booking_id>', methods=['GET'])
+def booking_is_valid(booking_id):
+    booking = BookingModel.get_by_id(booking_id)
+
+    return is_valid_quantity_for_range(
+        booking.bookable,
+        booking.start,
+        booking.end,
+        booking.quantity)
+
+
+def is_valid_quantity_for_range(bookable, start, end, quantity):
+    bookings = bookable.get_bookings_that_end_after(start)
+    bookings = [b for b in bookings if b.start < end]
+    day = start
+    while day < end:
+        q = get_quantity_for_date(day, bookings)
+        if q + quantity > bookable.quantity:
+            return False
+        day = day + timedelta(days=1)
+    return True
 
 
 def get_quantity_for_date(date, bookings):
@@ -195,6 +212,13 @@ def set_state_and_mail(entity_id, state):
 def set_state(entity_id, state):
     booking = BookingModel.get_by_id(entity_id)
     if (booking.state, state) in BookingState.transitions:
+        if state is BookingState.ACCEPTED\
+            and not is_valid_quantity_for_range(
+                booking.bookable,
+                booking.start,
+                booking.end,
+                booking.quantity):
+            raise Exception(si18n.translate('Range is overbooked'))
         booking.state = state
         booking.put()
         return booking
