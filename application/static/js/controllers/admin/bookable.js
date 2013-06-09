@@ -12,9 +12,10 @@ define([
 	'view/common',
 	'view/bookable',
 	'controllers/booking',
-	'elements/modal'
+	'elements/modal',
+	'controllers/admin/commons'
 ],
-function (jq, i18n, adminControls, bookableDirective, transparency, common, view, booking, modal) {
+function (jq, i18n, adminControls, bookableDirective, transparency, common, view, booking, modal, adminCommons) {
 	'use strict';
 
 	var PRICES_SELECTOR = 'tbody input[name=prices\\.values]';
@@ -35,6 +36,8 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 
 	var $formModal = $('#bookableEditFormModal');
 
+	var $moveToCategoryElement = $('.move-to-category', $formModal);
+
 	var $pricesTable = $('.prices.table', $formModal);
 
 	var $priceCell = $('tbody td.values', $pricesTable).clone();
@@ -52,12 +55,21 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 		delete model.db.bookable[deletedId];
 	};
 
+	var editCallback = function ($form, entity) {
+		_populatePrices(entity.prices);
+		adminCommons.initMoveToCategory($moveToCategoryElement, entity, 'bookable', function (categoryId) {
+			var $catContents = $('#Category' + categoryId + '	.bookables');
+			$('#Bookable' + entity.id).appendTo($catContents);
+		});
+	};
+
+
 	var initAdminControls = function ($ctxt) {
 		if (!$ctxt) {
 			$ctxt = $('body .bookables');
 		}
 		var $controls = $('.admin-controls', $ctxt);
-		adminControls.init($formModal, $controls, 'bookables', deletedCallback, populatePrices);
+		adminControls.init($formModal, $controls, 'bookables', deletedCallback, editCallback);
 	};
 
 	var addNewUI = function (category, bookable) {
@@ -144,7 +156,7 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 	var initForm = function () {
 		initQuantitySelect();
 		initPlacesSelect();
-		$('.currency', $priceCell).text(model.currency.default);
+		$('.currency', $priceCell).text(model.currency['default']);
 	};
 
 	var renderPrices = function (n) {
@@ -185,10 +197,6 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 			prices.values = [prices.values];
 		}
 		return prices;
-	};
-
-	var populatePrices = function ($form, bookable) {
-		_populatePrices(bookable.prices);
 	};
 
 	return {

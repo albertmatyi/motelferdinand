@@ -11,9 +11,10 @@ define(
 	'helpers/transparency',
 	'view/common',
 	'view/directives/content',
-	'elements/modal'
+	'elements/modal',
+	'controllers/admin/commons'
 ],
-function (jq, i18n, adminControls, transparency, common, directive, modal) {
+function (jq, i18n, adminControls, transparency, viewCommons, directive, modal, adminCommons) {
 	'use strict';
 	var TAB_ID_BASE = 'editContent-';
 
@@ -49,7 +50,7 @@ function (jq, i18n, adminControls, transparency, common, directive, modal) {
 		$('#Category' + entity.category + ' .contents').append($el);
 
 		initAdminControls($el);
-		common.renderContentGallery('.content-description div.picaslide', $el);
+		viewCommons.renderContentGallery('.content-description div.picaslide', $el);
 	};
 
 	var deletedCallback = function (deletedId) {
@@ -82,35 +83,11 @@ function (jq, i18n, adminControls, transparency, common, directive, modal) {
 		});
 	};
 
-	var moveToCategory = function (entity, categoryId) {
-		$.ajax({
-			'method': 'POST',
-			'url': '/admin/content/move/' + entity.id,
-			'type': 'json', 
-			'data': {'data': JSON.stringify({'id': entity.id, 'category_id': categoryId})},
-			'success': function (data) {
-				var $catContents = $('#Category' + categoryId + '	.contents');
-				$('#Content' + entity.id).appendTo($catContents);
-			}
-		});
-	};
-
 	var editCallback = function ($form, entity) {
-		$moveToCategoryElement.show();
-		var opts = [];
-		for (var i = model.categories.length - 1; i >= 0; i--) {
-			var cat = model.categories[i];
-			opts.unshift('<li data-category="' + cat.id + '"><a href="#">' +
-				cat.i18n[model.language].title +
-				'</a></li>');
-		}
-		$('.dropdown-menu', $moveToCategoryElement)
-			.html(opts.join(''))
-			.off('click')
-			.on('click', 'li', function (event) {
-				event.preventDefault();
-				moveToCategory(entity, $(this).data('category'));
-			});
+		adminCommons.initMoveToCategory($moveToCategoryElement, entity, 'content', function (categoryId) {
+			var $catContents = $('#Category' + categoryId + '	.contents');
+			$('#Content' + entity.id).appendTo($catContents);
+		});
 	};
 
 	var initAdminControls = function ($context) {

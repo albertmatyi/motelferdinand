@@ -6,7 +6,9 @@ Created on Jul 26, 2012
 from application import app
 from application.decorators import admin_required
 from application.models.bookable import BookableModel
+from application.models.category import CategoryModel
 from application.controllers import helpers
+from application.helpers import request as request_helper
 from flask.globals import request
 from datetime import datetime
 from application.models.converters import date
@@ -40,3 +42,13 @@ def get_bookings_for_bookable(entity_id):
     } for e in bookings]
 
     return json.dumps(bookings)
+
+
+@app.route('/admin/bookable/move/<int:entityId>', methods=['POST'])
+@admin_required
+def admin_move_bookable(entityId):
+    bookable = BookableModel.get_by_id(entityId)
+    jsd = request_helper.get_json_data()
+    bookable.category = CategoryModel.get_by_id(long(jsd['category_id']))
+    bookable.put()
+    return json.dumps(bookable.to_dict())
