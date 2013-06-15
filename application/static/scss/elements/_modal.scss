@@ -2,10 +2,10 @@ $modalHeaderHeight: 28px;
 $modalFooterHeight: 32px;
 
 .modal.big-modal {
-	width: 80%;
-	height: 80%;
-	margin: 0% 0 0 -40%;
-	// overflow: hidden;
+	width: 90%;
+	height: 90%;
+	margin: 0% 0 0 -45%;
+	top: 5%;
 
 	& > .modal-header{
 		height: $modalHeaderHeight;

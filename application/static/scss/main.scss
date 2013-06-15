@@ -33,6 +33,10 @@ body {
 	background: $background;
 }
 
+a {
+	cursor: pointer;
+}
+
 #loading-overlay {
 	background: $background;
 	position: fixed;

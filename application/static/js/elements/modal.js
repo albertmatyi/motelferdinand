@@ -10,6 +10,7 @@ define(
 function (notification) {
 	'use strict';
 	var SAFE_SIDE = 2;
+	var MODAL_HEIGHT_PERC = 0.9;
 
 	var displayNotification = function ($modal, str, type) {
 		var $notification = notification.createNotification(str, type);
@@ -21,7 +22,7 @@ function (notification) {
 
 	var setSize = function ($el) {
 		var wh = $(window).height(),
-			eh = wh * 0.8,
+			eh = wh * MODAL_HEIGHT_PERC,
 			hh = $('> .modal-header', $el).outerHeight(true),
 			fh = $('> .modal-footer', $el).outerHeight(true);
 		$('> .modal-body', $el).height(eh - (hh + fh) - SAFE_SIDE);

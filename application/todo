@@ -156,7 +156,7 @@ D			load cookie
 D		booking
 D			prices with selected currency
 D			backend
-?			confirm admin price view (which currency is paid at the end?)
+Z			confirm admin price view (which currency is paid at the end?)
 D	move
 D		content
 D		bookable
