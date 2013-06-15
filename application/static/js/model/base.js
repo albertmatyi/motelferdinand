@@ -39,7 +39,7 @@ function () {
 	}
 
 	model.languages = langs;
-	model.currency.selected = model.currency.selected || model.currency.default;
+	model.currency.selected = model.currency.selected || model.currency['default'];
 
 	// sort categories by their weight
 	model.categories.sort(function (c0, c1) {

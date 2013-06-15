@@ -64,7 +64,7 @@ define([
 		};
 
 		var createBookablePvt = function (t, info, $cat) {
-			currencyHelper.change(model.currency.default);
+			currencyHelper.change(model.currency['default']);
 			info = $.extend({}, bkblInfo, info);
 			t.l('createBookablePvt');
 			var $addDropdown = $('.page-header .dropdown-toggle', $cat);
