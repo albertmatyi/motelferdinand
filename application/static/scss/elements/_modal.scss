@@ -9,7 +9,7 @@ $modalFooterHeight: 32px;
 
 	& > .modal-header{
 		height: $modalHeaderHeight;
-		// overflow-y: hidden;
+		overflow-y: hidden;
 		h3,ul{
 			float: left;
 		}
@@ -45,7 +45,7 @@ $modalFooterHeight: 32px;
 		position: static;
 		bottom: 0;
 	}
-	
+
 	textarea {
 		width: 80%;
 		height: 250px;

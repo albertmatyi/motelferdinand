@@ -12,8 +12,8 @@
 	<textarea name="description" ></textarea>
 </div>
 {% endblock %}
-		
-{% block inputs %}		
+
+{% block inputs %}
 <input name="category" type="hidden" />
 <div class="control-group">
 	<label class="control-label">{{ __('Album url') }}</label>
@@ -53,7 +53,7 @@
 </div>
 <div class="control-group">
 	<label class="control-label">
-		{{ __('Weight') }} 
+		{{ __('Weight') }}
 		<small>{{ __('Weight explanation') }}</small>
 	</label>
 	<input name="weight" type="text" value="0" />
@@ -62,11 +62,11 @@
 
 {% block header_controls %}
 <div class="move-to-category btn-group">
-    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    <a class="btn dropdown-toggle" data-toggle="dropdown">
     	{{ __('Move to category') }}
     	<span class="caret"></span>
     </a>
-    <ul class="dropdown-menu">
+    <ul class="dropdown-menu" >
     </ul>
 </div>
 {% endblock %}

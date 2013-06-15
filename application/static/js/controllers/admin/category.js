@@ -80,7 +80,7 @@ function (jq, i18n, adminControls, transparency, adminContent, adminBookable, ca
 
 			// add "add category button"
 			categoryView.menu.append('<li>' +
-				'<a href="#" title="' + i18n.translate('Add category') + '" class="add">' +
+				'<a title="' + i18n.translate('Add category') + '" class="add">' +
 					'<i class="icon-plus icon-white"></i>' +
 				'</a>' +
 			'</li>');

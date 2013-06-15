@@ -89,23 +89,35 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 		addNewUI(cat, entity);
 	};
 
+	var saveSuccess = function (entity, isNew) {
+		$formModal.modal('hide');
+		// update UI
+		if (!isNew) {
+			var $cont = $('#Bookable' + entity.id);
+			$cont.render(entity, bookableDirective);
+			booking.reset();
+		} else {
+			add(entity);
+		}
+		modal.displayNotification($formModal, 'Modified successfully!', 'success');
+	};
+
+	var saveFail = function (err) {
+		var txt = 'Error while saving.';
+		try {
+			err = JSON.parse(err.responseText);
+			txt = err.message ? err.message:err;
+		} catch (e) {
+			txt = err.responseText;
+		}
+		modal.displayNotification($formModal, txt, 'error');
+	};
 
 	$('#submitBookableEditForm').click(function (event) {
 		event.preventDefault();
 		event.stopPropagation();
 		var $form = $('form', $formModal);
-		i18n.submitForm($form, '/admin/bookables/', function (entity, isNew) {
-			$formModal.modal('hide');
-			// update UI
-			if (!isNew) {
-				var $cont = $('#Bookable' + entity.id);
-				$cont.render(entity, bookableDirective);
-				booking.reset();
-			} else {
-				add(entity);
-			}
-			modal.displayNotification($formModal, 'Modified successfully!', 'success');
-		}, undefined, formatPrices);
+		i18n.submitForm($form, '/admin/bookables/', saveSuccess, saveFail, formatPrices);
 	});
 
 	var formatPrices = function (data) {

@@ -1,7 +1,7 @@
 <div class="navbar navbar-fixed-top ribbon navbar-inverse" id="navbar">
 	<div class="navbar-inner">
 		<div class="container">
-			<a class="brand" 
+			<a class="brand"
 				href="{% if js_data and js_data.categories %} #Category{{js_data.categories[0].id}} {%else%} / {% endif %} ">
 				{{ __('Ferdinand Motel') }}
 			</a>
@@ -15,27 +15,22 @@
 
 			<ul class="category-nav nav nav-collapse">
 				<li>
-					<a href="/" data-bind="title">
-						{% if is_admin %}	
-							<!-- <span href="#" class="move" data-bind="entityId"><i class="icon-move icon-white"></i></span>
-							<span href="#" class="visibility" data-bind="entityId"><i class="icon-eye-close icon-white"></i></span> -->
-						{% endif %}
-					</a>
+					<a href="/" data-bind="title"></a>
 				</li>
 			</ul>
 
 			<!-- Language button -->
-			
+
 			<ul class="pull-right nav nav-pills">
 				{% include "elements/admin/menu.html" %}
 				<li class="dropdown">
-				    <a class="dropdown-toggle" data-toggle="dropdown" data-target="languageMenu" href="#">
+				    <a class="dropdown-toggle" data-toggle="dropdown" data-target="languageMenu">
 				    	{{ __('Language') }}
 				    	<span class="caret"></span>
 				    </a>
 				    <ul class="language dropdown-menu" id="languageMenu">
 				    	<li>
-				    		<a href="#" data-bind="name">hello world</a>
+				    		<a data-bind="name">hello world</a>
 				    	</li>
 					</ul>
 				</li>

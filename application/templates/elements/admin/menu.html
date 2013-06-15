@@ -1,31 +1,31 @@
 
 {% if is_admin %}
 <li class="dropdown">
-<a class="dropdown-toggle" data-toggle="dropdown" data-target="adminMenu" href="#">
+<a class="dropdown-toggle" data-toggle="dropdown" data-target="adminMenu">
 	{{ __('Admin') }}
 	<span class="caret"></span>
 </a>
 <ul id="adminMenu" class="admin dropdown-menu">
 	<li id="adminBookingsButton">
-		<a onclick="return false;" href="#">
+		<a onclick="return false;">
 			{{ __('Bookings') }}
 			<span class="badge badge-important">11</span>
 		</a>
 	</li>
-	{% if not is_production %} 
+	{% if not is_production %}
 	<li id="testButton">
-		<a onclick="return false;" href="#">
+		<a onclick="return false;">
 			Test
 		</a>
 	</li>
 	{% endif %}
 	<li id="adminGuestbookEntries">
-		<a onclick="return false;" href="#">
+		<a onclick="return false;">
 			{{ __('Guestbook entries') }}
 			<span class="badge badge-important">4</span>
 		</a>
 	</li>
-	<li> 
+	<li>
 		<a href="{{ logout_url }}">
 			{{ __('Log out') }}
 		</a>

@@ -19,17 +19,17 @@
 {% block inputs %}
 <div class="control-group">
 	<label class="control-label">
-		{{ __('Weight') }} 
+		{{ __('Weight') }}
 		<small>{{ __('Weight explanation') }}</small>
 	</label>
 	<input name="weight" type="text" value="0" />
 </div>
-<input name="category" type="hidden" />	
+<input name="category" type="hidden" />
 {% endblock%}
 
 {% block header_controls %}
 <div class="move-to-category btn-group">
-    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    <a class="btn dropdown-toggle" data-toggle="dropdown">
     	{{ __('Move to category') }}
     	<span class="caret"></span>
     </a>

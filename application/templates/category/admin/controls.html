@@ -2,18 +2,18 @@
 
 {% block buttons %}
     <div class="btn-group">
-        <a class="btn dropdown-toggle btn-mini btn-success" data-toggle="dropdown" href="#">
+        <a class="btn dropdown-toggle btn-mini btn-success" data-toggle="dropdown">
 	        <i class="icon-plus icon-white"></i>
 	        <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-	        <li> 
-	        	<a href="#" class="addContentButton" data-bind="entityId"> {{ __('Add content') }} </a>
+	        <li>
+	        	<a class="addContentButton" data-bind="entityId"> {{ __('Add content') }} </a>
 	        </li>
-            <li> 
-	        	<a href="#" class="addBookableButton" data-bind="entityId"> {{ __('Add bookable') }} </a>
+            <li>
+	        	<a class="addBookableButton" data-bind="entityId"> {{ __('Add bookable') }} </a>
 	        </li>
         </ul>
     </div>
-	
+
 {% endblock%}

@@ -8,7 +8,7 @@ define(
 
   var templates = {
       "font-styles": "<li class='dropdown'>" +
-                         "<a class='btn dropdown-toggle' data-toggle='dropdown' href='#'>" +
+                         "<a class='btn dropdown-toggle' data-toggle='dropdown'>" +
                              "<i class='icon-font'></i>&nbsp;<b class='caret'></b>" +
                          "</a>" +
                          "<ul class='dropdown-menu'>" +
@@ -42,8 +42,8 @@ define(
                              "<input value='http://' class='bootstrap-wysihtml5-insert-link-url input-xlarge'>" +
                          "</div>" +
                          "<div class='modal-footer'>" +
-                             "<a href='#' class='btn' data-dismiss='modal'>Cancel</a>" +
-                             "<a href='#' class='btn btn-primary' data-dismiss='modal'>Insert link</a>" +
+                             "<a class='btn' data-dismiss='modal'>Cancel</a>" +
+                             "<a class='btn btn-primary' data-dismiss='modal'>Insert link</a>" +
                          "</div>" +
                      "</div>" +
                      "<a class='btn' data-wysihtml5-command='createLink' title='Link'><i class='icon-share'></i></a>" +
@@ -58,8 +58,8 @@ define(
                                  "<input value='http://' class='bootstrap-wysihtml5-insert-image-url input-xlarge'>" +
                              "</div>" +
                              "<div class='modal-footer'>" +
-                                 "<a href='#' class='btn' data-dismiss='modal'>Cancel</a>" +
-                                 "<a href='#' class='btn btn-primary' data-dismiss='modal'>Insert image</a>" +
+                                 "<a class='btn' data-dismiss='modal'>Cancel</a>" +
+                                 "<a class='btn btn-primary' data-dismiss='modal'>Insert image</a>" +
                              "</div>" +
                          "</div>" +
                          "<a class='btn' data-wysihtml5-command='insertImage' title='Insert image'><i class='icon-picture'></i></a>" +
@@ -74,8 +74,8 @@ define(
                              "<textarea class='bootstrap-wysihtml5-insert-html-content' cols='30' rows='5'></textarea>" +
                          "</div>" +
                          "<div class='modal-footer'>" +
-                             "<a href='#' class='btn' data-dismiss='modal'>Cancel</a>" +
-                             "<a href='#' class='btn btn-primary' data-dismiss='modal'>Embed</a>" +
+                             "<a class='btn' data-dismiss='modal'>Cancel</a>" +
+                             "<a class='btn btn-primary' data-dismiss='modal'>Embed</a>" +
                          "</div>" +
                      "</div>" +
                      "<a class='btn' data-wysihtml5-command='insertHTML' title='Embed HTML'><i class='icon-chevron-left'></i><i class='icon-chevron-right'></i></a>" +
@@ -90,12 +90,12 @@ define(
                          '<input class="bootstrap-wysihtml5-insert-gallery-url input-xlarge" placeholder="Picasa Gallery URL"/>' +
                      '</div>' +
                      '<div class="modal-footer">' +
-                         '<a href="#" class="btn" data-dismiss="modal">Cancel</a>' +
-                         '<a href="#" class="btn btn-primary" data-dismiss="modal">Insert</a>' +
+                         '<a class="btn" data-dismiss="modal">Cancel</a>' +
+                         '<a class="btn btn-primary" data-dismiss="modal">Insert</a>' +
                      '</div>' +
                  '</div>' +
                  '<a class="btn picaslide" data-wysihtml5-command="insertHTML" title="Insert gallery"><img src="/static/img/picasa_s.png" alt="Insert picasa album"/></a>' +
-             '</li>',        
+             '</li>',
       'html':
                      '<li class="editHtmlButton">' +
                          '<div class="btn-group">' +
@@ -216,7 +216,7 @@ var editor = new wysi.Editor(this.el[0], options);
                   if(key === "image") {
                       this.initInsertImage(toolbar);
                   }
-                  
+
                   if(key === "insertHTML") {
                       this.initInsertHtml(toolbar);
                   }
@@ -248,14 +248,14 @@ var editor = new wysi.Editor(this.el[0], options);
               toolbar.find('a.btn').not(changeViewSelector).toggleClass('disabled');
           });
       },
-      
+
       initInsertGallery: function(toolbar) {
           var self = this;
           var insertGalleryModal = toolbar.find('.bootstrap-wysihtml5-insert-gallery-modal');
           var urlInput = insertGalleryModal.find('.bootstrap-wysihtml5-insert-gallery-url');
           var insertButton = insertGalleryModal.find('a.btn-primary');
           var initialValue = '';
-          
+
           var insertGallery = function() {
               var url = urlInput.val();
               // g+
@@ -298,7 +298,7 @@ e.stopPropagation();
               return false;
           });
       },
-      
+
       initInsertHtml: function(toolbar) {
           var self = this;
           var insertHtmlModal = toolbar.find('.bootstrap-wysihtml5-insert-html-modal');
