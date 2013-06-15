@@ -39,7 +39,7 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 
 	var listenersInitialized = false;
 
-	var render = function () {
+	var renderList = function () {
 		var $nt = $tableTemplate.clone();
 		$table.replaceWith($nt);
 		$table = $nt;
@@ -57,6 +57,10 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 
 	var showList = function () {
 		$('span', $bookingsModal.title).remove();
+		renderList();
+		$table.off('click').on('click', function (event) {
+			showDetails($(event.target).parents('.booking-row').data('bookingId'));
+		});
 		activate('list');
 	};
 
@@ -140,11 +144,9 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 
 	var renderRow = function (booking) {
 		var $row = $('#Booking' + booking.id);
-		showDetails(booking.id);
 		$row.replaceWith(
 			transparency.render($row.clone(), booking, bookingsDirective)
 		);
-		$bookingDetails.render(booking, bookingDetailsDirective);
 	};
 
 	var setState = function (action, data) {
@@ -156,6 +158,8 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 				booking.modified = data.modified;
 				modal.displayNotification($bookingsModal, data.message, 'success');
 				renderRow(booking);
+				showDetails(booking.id);
+				$bookingDetails.render(booking, bookingDetailsDirective);
 				renderBadge();
 			},
 			'error' : function (data) {
@@ -203,10 +207,14 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 			'dataType': 'json',
 			'success': function (data) {
 				modal.displayNotification($bookingsModal, data.message, 'success');
+
+				var booking = model.db.booking[bookingId];
 				delete model.db.booking[bookingId];
+				var idx = model.bookings.indexOf(booking);
+				model.bookings.splice(idx, 1);
+
 				$bookingDetails.data('bookingId', -1);
 				showList();
-				render();
 				renderBadge();
 			},
 			'error' : function (data) {
@@ -250,9 +258,6 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 			wysihtml5.renderTextAreas($bookingsModal);
 			listenersInitialized = true;
 		}
-		$table.off('click').on('click', function (event) {
-			showDetails($(event.target).parents('.booking-row').data('bookingId'));
-		});
 	};
 
 	var renderBadge = function () {
@@ -278,7 +283,6 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 					el.pricePerNight = el.price / el.nrOfNights;
 					el.state = parseInt(el.state, 10);
 				});
-				render();
 				initListeners();
 				showList();
 				$bookingsModal.modal('show');

@@ -178,10 +178,22 @@ def send_new_booking_mail(booking):
     pass
 
 
+def check_overbooking(booking):
+    if not is_valid_quantity_for_range(
+            booking.bookable,
+            booking.start,
+            booking.end,
+            booking.quantity):
+            raise Exception(si18n.translate('Range is overbooked'))
+
+
 @app.route('/admin/bookings/accept/<int:entity_id>', methods=['POST'])
 @admin_required
 def accept_booking(entity_id):
-    return set_state_and_mail(entity_id, BookingState.ACCEPTED)
+    return set_state_and_mail(
+        entity_id,
+        BookingState.ACCEPTED,
+        check_overbooking)
 
 
 @app.route('/admin/bookings/deny/<int:entity_id>', methods=['POST'])
@@ -198,7 +210,7 @@ def mark_as_paid(entity_id):
         '"state": "' + str(booking.state) + '"}'
 
 
-def set_state_and_mail(entity_id, state):
+def set_state_and_mail(entity_id, state, validator=lambda b: None):
     booking = set_state(entity_id, state)
 
     msg = si18n.translate('Mail sent')\
@@ -209,16 +221,10 @@ def set_state_and_mail(entity_id, state):
         '"state": "' + str(state) + '"}'
 
 
-def set_state(entity_id, state):
+def set_state(entity_id, state, validator=lambda b: None):
     booking = BookingModel.get_by_id(entity_id)
     if (booking.state, state) in BookingState.transitions:
-        if state is BookingState.ACCEPTED\
-            and not is_valid_quantity_for_range(
-                booking.bookable,
-                booking.start,
-                booking.end,
-                booking.quantity):
-            raise Exception(si18n.translate('Range is overbooked'))
+        validator(booking)
         booking.state = state
         booking.put()
         return booking

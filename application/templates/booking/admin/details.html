@@ -4,7 +4,7 @@
 			<thead>
 				<tr>
 					<th colspan="2" class="username panel-title">
-						<span data-bind="index"></span> 
+						<span data-bind="index"></span>
 						<span data-bind="user.full_name"></span>
 					</th>
 				</tr>
@@ -13,7 +13,7 @@
 				<tr class="state">
 					<td>{{ __('State') }}</td>
 					<td data-bind="state">
-						<i class="icon-minus-sign" data-bind="state-icon"></i> 
+						<i class="icon-white" data-bind="state-icon"></i>
 					</td>
 				</tr>
 				<tr>
@@ -46,7 +46,7 @@
 	</div>
 	<div class="rightside">
 		<p class="date">
-			<i class="icon-time" title="{{ __('Modified') }}"></i> 
+			<i class="icon-time" title="{{ __('Modified') }}"></i>
 			<span data-bind="created" title="{{ __('Modified') }}"></span>
 		</p>
 		<table class="table">
@@ -71,8 +71,8 @@
 				</tr>
 				<tr>
 					<td>{{ __('Departure date') }}</td>
-					<td> 
-						<span data-bind="end"></span> 
+					<td>
+						<span data-bind="end"></span>
 						<small>
 							( <span data-bind="nrOfNights"></span>
 							{{ __('nights') }} )
@@ -109,7 +109,7 @@
 			<button type="button" class="btn btn-disabled" id="show-send-message">
 				{{ __('Send message') }}
 			</button>
-			
+
 		</div>
 		<button type="button" class="btn btn-link" id="delete-booking">
 			<i class="icon-trash" title="{{ __('Delete') }}"></i>{{ __('Delete') }}

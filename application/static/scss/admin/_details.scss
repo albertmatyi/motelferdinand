@@ -30,14 +30,14 @@
 					display: block;
 				}
 			}
-			
+
 			.state{
 				td[data-bind="state"] {
 					background: #DD3333;
 					color: #FFFFFF;
-				}
-				.ok {
-					background: #3399ff;
+					&.ok {
+						background: #3399ff;
+					}
 				}
 			}
 		}

@@ -164,13 +164,14 @@ D	make accepting overbooked requests impossible
 
 130615
 D	empty getElementById warning
-	admin bookings ( 3 | 4 ) notification fix
 	discount
+	admin bookings ( 3 | 4 ) notification fix
 	bugs
 D		admin bookings click row after rerender
 		after booking delete list becomes uneditable
-		after acceptance style/icons of booking don't change
-		admin booking status color
+D		after acceptance style/icons of booking don't change
+D		admin booking status color
+		cannot mark as paid when overbooked range
 Z	get the emails right
 
 	try http://imperavi.com/redactor/

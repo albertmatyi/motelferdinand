@@ -5,6 +5,7 @@
 /*global window */
 
 var fullOrMin = (typeof PRODUCTION === 'undefined' || PRODUCTION ? '.min':'');
+var fullOrMin = '.min';
 
 requirejs.config({
 
