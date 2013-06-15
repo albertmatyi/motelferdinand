@@ -184,7 +184,9 @@ def check_overbooking(booking):
             booking.start,
             booking.end,
             booking.quantity):
-            raise Exception(si18n.translate('Range is overbooked'))
+        raise Exception(si18n.translate('Range is overbooked'))
+    else:
+        raise Exception('OK')
 
 
 @app.route('/admin/bookings/accept/<int:entity_id>', methods=['POST'])
@@ -211,7 +213,7 @@ def mark_as_paid(entity_id):
 
 
 def set_state_and_mail(entity_id, state, validator=lambda b: None):
-    booking = set_state(entity_id, state)
+    booking = set_state(entity_id, state, validator)
 
     msg = si18n.translate('Mail sent')\
         if send_acceptance_mail(booking)\

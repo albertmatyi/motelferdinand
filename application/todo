@@ -168,10 +168,10 @@ D	empty getElementById warning
 	admin bookings ( 3 | 4 ) notification fix
 	bugs
 D		admin bookings click row after rerender
-		after booking delete list becomes uneditable
+D		after booking delete list becomes uneditable
 D		after acceptance style/icons of booking don't change
 D		admin booking status color
-		cannot mark as paid when overbooked range
+D		cannot mark as paid when overbooked range
 Z	get the emails right
 
 	try http://imperavi.com/redactor/
