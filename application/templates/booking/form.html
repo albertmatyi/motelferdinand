@@ -84,13 +84,14 @@
 					<input type="text" class="datepicker" id="booking.end" name="booking.end" data-toggle="tooltip" data-title="{{ __('Specify a valid date (dd-mm-yyyy)') }}" data-placement="right"/>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</div>
 	<div class="control-group prices">
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th colspan="2"> {{ __('Price') }}</th>
+					<th> {{ __('Price') }}</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -106,7 +107,7 @@
 		</table>
 	</div>
 	<div class="form-actions">
-		<button type="button" class="btn btn-primary btn-large booking-btn" id="submitBookingButton" data-toggle="tooltip" data-title="{{ __('Invalid data! See fields above.') }}" data-placement="left"> 
+		<button type="button" class="btn btn-primary btn-large booking-btn" id="submitBookingButton" data-toggle="tooltip" data-title="{{ __('Invalid data! See fields above.') }}" data-placement="left">
 			{{ __('Book') }}
 		</button>
 		<button type="button" class="btn btn-link" id="cancelBookingButton"> {{ __('Cancel') }}</button>

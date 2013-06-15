@@ -4,7 +4,7 @@
 	@include gradient($contentGradientFrom, $contentGradientTo);
 
 	.booking-btn {
-		float: right; 
+		float: right;
 		padding: 0.7em 3em;
 	}
 	.btn-link {
@@ -16,22 +16,29 @@
 		display: block;
 		background: #F4F4F4;
 		margin-top: 2em;
-		
+
 		&, .form-actions {
 			margin-bottom: 0;
 			padding-bottom: 0;
 		}
-		
+
 		th.tableAddControl {
 			text-align: center;
 		}
-
 		.prices {
-			height: 0px;
-			position: relative;
-			top: -200px;
-			width: 40%;
-			left: 60%;
+			@media (max-width: 1199px){
+				td:first-child, th:first-child {
+					text-align: right;
+					width: 160px;
+				}
+			}
+			@media (min-width: 1200px){
+				height: 0px;
+				position: relative;
+				top: -200px;
+				width: 40%;
+				left: 60%;
+			}
 			.total {
 				font-weight: bold;
 				.currency {

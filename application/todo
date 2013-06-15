@@ -186,8 +186,9 @@ Z	get the emails right
 	caching
 	add special prices for date ranges
 	fixed booking button
-	booking
-		pagination
+	booking retrieval
+		sorting
+		old bookings in other page
 	feedback
 		add one
 		notify
