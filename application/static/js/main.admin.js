@@ -77,11 +77,6 @@ function (us, config, test, social, modal, modelBase,
 	bookable.init();
 	booking.setup();
 
-	// DEFAULT SELECTION
-	if (window.location.hash.length > 1) {
-		window.location.hash = window.location.hash;
-	}
-
 	$('#loading-overlay').remove();
 	modal.fix().init();
 

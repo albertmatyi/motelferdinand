@@ -18,33 +18,34 @@ html, body, #maincontent, #body_content, .categories, .category {
 	}
 	.category-info {
 		@include tile;
-		
+
 		color: #efefef;
-		
+
 		.category-title, .category-description{
 			@include tile-content;
 		}
-		
+
 		.page-header{
 			border-bottom: $ci-border;
 			padding-top: 5em;
 			.category-title{
-				font-family: LifeSavers-Regular;
+				font-family: category-title-font, body-font, $fallback-fonts;
 				padding-bottom: 0;
+				font-weight: normal;
 			}
 		}
-		
+
 		.category-description{
 			iframe {
 				width: 100%;
 			}
 		}
 	}
-	
+
 	.info-container{
 		height:100%;
 	}
-	
+
 	.picaslide {
 		margin-left: -$contentPadding;
 		margin-right: -$contentPadding;

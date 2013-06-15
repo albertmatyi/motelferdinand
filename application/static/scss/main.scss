@@ -31,6 +31,7 @@ $contentMargin: 4%;
 
 body {
 	background: $background;
+	font-family: body-font, $fallback-fonts;
 }
 
 a {

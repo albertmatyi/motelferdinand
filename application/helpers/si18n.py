@@ -189,7 +189,7 @@ translations = {
         'Title': u'Title',
 
         #Footer
-        'Find us on': u'Find us'
+        'Contact us': u'Contact us'
     },
     'hu': {
         'lang_id': 'hu',
@@ -311,7 +311,7 @@ translations = {
         'Title': u'Cím',
 
         #Footer
-        'Find us on': u'Itt találsz minket'
+        'Contact us': u'Lépj kapcsolatba'
     },
     'ro': {
         'lang_id': 'ro',
@@ -432,7 +432,7 @@ translations = {
         'Title': u'Titlu',
 
         #Footer
-        'Find us on': u'Așa ne poți găsi'
+        'Contact us': u'Contactează-ne'
     }
 }
 

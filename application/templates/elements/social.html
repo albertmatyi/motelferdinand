@@ -1,67 +1,57 @@
 <div class="social span4">
-	<span class="header" > {{ __('Find us on') }}: </span>
-	<a href="#mapModal" class="icon map" data-toggle="modal" title="{{ __('How to get here') }}">
-	</a><a href="#phoneModal" class="icon phone" data-toggle="modal" title="{{ __('Phone numbers') }}">
-	</a><span class="icon mail" data-toggle="modal" title="{{ __('Email') }}">
-	</span><a href="https://www.facebook.com/ferdinand.panziopensiunebandb" class="icon facebook" target="_blank" title="Facebook">
-	</a><a href="http://www.tripadvisor.com/Hotel_Review-g1833649-d2455135-Reviews-Ferdinand_Pension-Sfantu_Gheorghe_Covasna_County_Central_Romania_Transylvania.html" class="icon tripadvisor" target="_blank" title="Tripadvisor">
-	</a><a href="https://plus.google.com/101675121296802996485/about?gl=US&amp;hl=en" class="icon google" target="_blank" title="Google+">
-	</a><a href="skype:albertmatyi?call" class="icon skype" target="_blank" title="Skype"></a>
+	<div class="header" > {{ __('Contact us') }} </div>
+	<div class="icons">
+		<a href="#contactModal" class="group" data-toggle="modal">
+			<span class="icon map" title="{{ __('How to get here') }}">
+			</span>
+			<span class="icon phone" title="{{ __('Phone numbers') }}">
+			</span>
+			<span class="icon mail" title="{{ __('Email') }}"></span>
+		</a>
+		<a href="https://www.facebook.com/ferdinand.panziopensiunebandb" class="icon facebook" target="_blank" title="Facebook"></a>
+		<a href="http://www.tripadvisor.com/Hotel_Review-g1833649-d2455135-Reviews-Ferdinand_Pension-Sfantu_Gheorghe_Covasna_County_Central_Romania_Transylvania.html" class="icon tripadvisor" target="_blank" title="Tripadvisor"></a>
+		<a href="https://plus.google.com/101675121296802996485/about?gl=US&amp;hl=en" class="icon google" target="_blank" title="Google+"></a>
+		<a href="skype:albertmatyi?call" class="icon skype" target="_blank" title="Skype"></a>
+	</div>
+	<div class="arrow"></div>
 </div>
-<div id="mapModal" class="modal hide big-modal" tabindex="-1" role="dialog" aria-labelledby="mapModalTitle" aria-hidden="true">
+<div id="contactModal" class="modal hide big-modal" tabindex="-1" role="dialog" aria-labelledby="mapModalTitle" aria-hidden="true">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		<h3 id="mapModalTitle">{{ __('How to get here') }}</h3>
 	</div>
 	<div class="modal-body row-fluid">
+		<div class="span4">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th> {{ __('Address') }} </th>
+						<td>
+							Strada 1 Decembrie 1918 <br/>
+							nr. 10 ( {{ __ ('Yard') }} )<br/>
+							Sfântu Gheorghe<br/>
+							520008<br/>
+							Covasna, Romania
+						‎</td>
+					</tr>
+					<tr>
+						<th> {{ __('Landline') }} </th>
+						<td> +40 267 312 345 </td>
+					</tr>
+					<tr>
+						<th> {{ __('Mobile') }} </th>
+						<td> +40 745 304 114 </td>
+					</tr>
+					<tr>
+						<th> {{ __('Email') }} </th>
+						<td class="email"> +40 745 304 114 </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		<div class="map-iframe span8">
 			<!-- googlemaps inserted here by social.js -->
 		</div>
-		<table class="table span4">
-			<thead>
-				<tr>
-					<th> {{ __('Address') }} </th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Strada 1 Decembrie 1918</td>
-				</tr>
-				<tr>
-					<td>nr. 10 ( {{ __ ('Yard') }} )</td>
-				</tr>
-				<tr>
-					<td>Sfântu Gheorghe 520008</td>
-				</tr>
-				<tr>
-					<td>Covasna, Romania‎</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true"> {{ __('Close') }} </button>
-	</div>
-</div>
-
-<div id="phoneModal" class="modal hide " tabindex="-1" role="dialog" aria-labelledby="phoneModalTitle" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="phoneModalTitle">{{ __('Phone numbers') }}</h3>
-	</div>
-	<div class="modal-body">
-		<table class="table">
-			<tbody>
-				<tr>
-					<td> {{ __('Landline') }} </td>
-					<td> +40 267 312 345 </td>
-				</tr>
-				<tr>
-					<td> {{ __('Mobile') }} </td>
-					<td> +40 745 304 114 </td>
-				</tr>
-			</tbody>
-		</table>
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true"> {{ __('Close') }} </button>

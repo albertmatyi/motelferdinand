@@ -1,86 +1,129 @@
-@mixin img($row, $col, $width: 48px, $height: 48px, $offsetX: 0px, $offsetY: 0px){
+@mixin socialImg($row, $col, $width: 48px, $height: 48px, $offsetX: 0px, $offsetY: 0px){
 	background-position: ( - $offsetY - $row * $height) ( - $offsetX - $col * $width);
 }
-#mapModal {
-	.modal-body .map-iframe {
-		height: 100%;
-		iframe {
-			height: 100%;
-			width: 100%;
+#contactModal {
+	.modal-body{
+		padding-left: 0;
+		padding-right: 0;
+		.table {
+			tr:first-child {
+				td, th {
+					border-top: none;
+				}
+			}
+			td {
+				text-align: right;
+			}
 		}
-	}
-}
-
-#phoneModal {
-	.table {
-		tr:first-child td {
-			border-top: none;
+		.map-iframe {
+			height: 90%;
+			margin-left: 0;
+			iframe {
+				height: 100%;
+				width: 100%;
+			}
 		}
 	}
 }
 
 .social {
-	background: $background;
-	border-top: $ci-border;
 	text-align: center;
-	margin-top: -7em;
-	margin-left: 0;	
-	padding-top: 1em;
+	margin-left: 0;
 	color: #fff;
+	position: relative;
+	top: -60px;
 	.header {
-		display: block;
+		font-size: 1.2em;
+		text-align: left;
+		padding-left: 1em;
 	}
+	.arrow {
+		background: url(../img/social/arrow.png) no-repeat right;
+		height: 40px;
+		width: 260px;
+		position: relative;
+		top: -68px;
+		left: 150px;
+		z-index: -1;
+	}
+	.icons {
+		font: 0/0 a;
+		letter-spacing: -1em;
+		word-spacing: -1em;
+		.group , .icon {
+			display: inline-block;
+			position: relative;
+			top: 5px;
+			margin: 2px;
+			background-image: url(../img/social/social_sprite_48.png);
+			background-repeat: no-repeat;
+			&:hover{
+				-webkit-transition: top 0.15s linear;
+				-moz-transition: top 0.15s linear;
+				-o-transition: top 0.15s linear;
+				transition: top 0.15s linear;
+				top: -8px;
+			}
+		}
+		.group .icon {
+			margin: 0;
+			background: none;
+		}
+		.group {
+			@include socialImg(4, 0);
+			&:hover {
+				@include socialImg(4, 1);
+			}
+		}
 
-	.icon {
-		height: 48px;
-		width: 48px;
-		margin: 2px;
-		display: inline-block;
 
-		background-image: url(../img/social/social_sprite_48.png);
-		background-repeat: no-repeat;
+		.icon {
+			height: 48px;
+			width: 48px;
 
-		&.skype {
-			@include img(0, 0);
-			&:hover {
-				@include img(0, 1);
+			&.skype {
+				@include socialImg(0, 0);
+				&:hover {
+					@include socialImg(0, 1);
+				}
 			}
-		}
-		&.google {
-			@include img(1, 0);
-			&:hover {
-				@include img(1, 1);
+			&.google {
+				@include socialImg(1, 0);
+				&:hover {
+					@include socialImg(1, 1);
+				}
 			}
-		}
-		&.facebook {
-			@include img(2, 0);
-			&:hover {
-				@include img(2, 1);
+			&.facebook {
+				@include socialImg(2, 0);
+				&:hover {
+					@include socialImg(2, 1);
+				}
 			}
-		}
-		&.tripadvisor {
-			@include img(3, 0);
-			&:hover {
-				@include img(3, 1);
+			&.tripadvisor {
+				@include socialImg(3, 0);
+				&:hover {
+					@include socialImg(3, 1);
+				}
 			}
-		}
-		&.map {
-			@include img(4, 0);
-			&:hover {
-				@include img(4, 1);
-			}
-		}
-		&.phone {
-			@include img(5, 0);
-			&:hover {
-				@include img(5, 1);
-			}
-		}
-		&.mail {
-			@include img(6, 0);
-			&:hover {
-				@include img(6, 1);
-			}
+
+			// &.map {
+			// 	@include socialImg(4, 0);
+			// 	&:hover {
+			// 		@include socialImg(4, 1);
+			// 	}
+			// }
+			// &.phone {
+			// 	@include socialImg(5, 0);
+			// 	&:hover {
+			// 		@include socialImg(5, 1);
+			// 	}
+			// }
+			// &.mail {
+			// 	@include socialImg(6, 0);
+			// 	&:hover {
+			// 		@include socialImg(6, 1);
+			// 	}
+			// }
 		}
 	}
 }

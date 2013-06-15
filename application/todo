@@ -171,7 +171,11 @@ D		after booking delete list becomes uneditable
 D		after acceptance style/icons of booking don't change
 D		admin booking status color
 D		cannot mark as paid when overbooked range
+	style background
+	modify fonts
+	unify contact info
 	discount
+
 Z	get the emails right
 
 	try http://imperavi.com/redactor/

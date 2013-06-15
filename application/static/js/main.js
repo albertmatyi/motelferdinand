@@ -67,11 +67,6 @@ function (us, config, social, modal, modelBase, categoryView, languageView,
 	categoryView.render(model.categories);
 	category.init();
 
-	// DEFAULT SELECTION
-	if (window.location.hash.length > 1) {
-		window.location.hash = window.location.hash;
-	}
-
 	$('#loading-overlay').remove();
 	modal.fix().init();
 	bookable.init();

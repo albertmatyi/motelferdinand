@@ -1,10 +1,10 @@
 
 .navbar{
 	.brand {
-		font-family: GreatVibes-Regular;
+		font-family: brand-font, body-font, $fallback-fonts;
 		font-size: 35px;
-		//text-shadow: 1px 1px 0px #FFFFFF, -1px -1px 0px #999999;
-	}	
+		// text-shadow: 1px 1px 0px #FFFFFF, -1px -1px 0px #999999;
+	}
 	.nav > li > a, .brand {
 		padding-top: 20px;
 		padding-bottom: 20px;
