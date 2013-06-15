@@ -4,15 +4,12 @@
 /*global model */
 /*global window */
 
-var fullOrMin = (typeof PRODUCTION === 'undefined' || PRODUCTION ? '.min':'');
-var fullOrMin = '.min';
-
 requirejs.config({
 
 	paths : {
-		'lib/jquery': '../lib/jquery-1.10.1' + fullOrMin,
+		'lib/jquery': '../lib/jquery-1.10.1.min',
 		'lib/jquery-ui': '../lib/jquery-ui-1.8.20.custom.min',
-		'lib/bootstrap': '../lib/bootstrap/js/bootstrap' + fullOrMin,
+		'lib/bootstrap': '../lib/bootstrap/js/bootstrap.min',
 		'lib/slides': '../lib/slides.min.jquery',
 		'lib/picasa': '../lib/picasa',
 		'lib/transparency': '../lib/transparency.min',
