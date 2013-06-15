@@ -260,14 +260,15 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 		}
 	};
 
-	var renderBadge = function () {
-		var nu = _.reduce(model.bookings, function (sum, el) {
-			return sum + (el.state === 1 ? 1:0);
-		}, 0);
-		if (nu === 0) {
+	var renderBadge = function (new_bookings_nr) {
+		new_bookings_nr = new_bookings_nr ||
+			_.reduce(model.bookings, function (sum, el) {
+				return sum + (el.state === 1 ? 1:0);
+			}, 0);
+		if (new_bookings_nr === 0) {
 			$badge.hide();
 		} else {
-			$badge.text(nu);
+			$badge.text(new_bookings_nr);
 			$badge.show();
 		}
 	};
@@ -286,6 +287,7 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 				initListeners();
 				showList();
 				$bookingsModal.modal('show');
+				renderBadge();
 			}
 		);
 		return this;
@@ -299,6 +301,7 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 			$('.footer-buttons', $bookingsModal.footer).append(btns);
 			btns.addClass($fbs.prop('class'));
 		});
+		renderBadge(model.new_bookings_nr);
 		return this;
 	};
 

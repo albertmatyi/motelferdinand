@@ -37,6 +37,10 @@ class BookingModel(AbstractModel):
         pass
     pass
 
+    @staticmethod
+    def get_number_of_new():
+        return BookingModel.all().filter('state', State.INITIAL).count()
+
 
 class BookingDictBuilder():
 

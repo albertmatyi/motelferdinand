@@ -1,6 +1,7 @@
 from application import app
 from application.decorators import admin_required
 from application.models.category import CategoryModel
+from application.models.booking import BookingModel
 from application.models import prop
 from application.controllers import helpers
 from werkzeug.utils import redirect
@@ -33,6 +34,7 @@ def home():
     qry = CategoryModel.all().filter('parent_category', None)
     if not is_admin:
         qry = qry.filter('visible', True)
+
     categories = [e.to_dict() for e in qry]
     prod = 'Development' not in os.environ['SERVER_SOFTWARE']
     return render_template(
@@ -44,7 +46,9 @@ def home():
             'language': lang_id,
             'bookings': [],
             'si18n': si18n.translations_js,
-            'is_admin': is_admin
+            'is_admin': is_admin,
+            'new_bookings_nr':
+            BookingModel.get_number_of_new() if is_admin else 0
         }, is_admin=is_admin,
         is_production=prod,
         logout_url=users.create_logout_url("/"))
