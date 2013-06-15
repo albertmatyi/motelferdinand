@@ -4,16 +4,25 @@
 
 define(
 [
-	'helpers/fixit'
+	'helpers/fixit',
+	'lib/jquery'
 ],
 function (fixit) {
 	'use strict';
 
 	var scrollToAnchor = function (href) {
 		var $cat = $(href);
-		$('html, body').animate({scrollTop: $cat.offset().top /*- 5 * 16 /*5em*/}, 1000, function () {
-			window.location.hash = href.split('#')[1];
-		});
+		var scrollF = function () {
+			var os = $cat.offset()
+			if (!os) {
+				setTimeout(scrollF, 250);
+			} else {
+				$('html, body').animate({scrollTop: os.top /*- 5 * 16 /*5em*/}, 1000, function () {
+					window.location.hash = href.split('#')[1];
+				});
+			}
+		};
+		scrollF();
 	};
 	return {
 		init : function () {

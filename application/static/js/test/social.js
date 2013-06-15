@@ -1,33 +1,26 @@
 /*global define */
-define(['test/elements/dialog'],
-	function (dialog) {
+define([],
+	function () {
 		'use strict';
+
+		var openContactFrom = function (t, btn) {
+			t.l('Click on ' + btn + ' icon').click('.social ' + btn);
+
+			t.l('Verify popup visible').assertVisible('#contactModal');
+
+			t.l('Click close').click('#contactModal .modal-footer .btn').assertInvisible('#contactModal');
+		};
+
 		var testPhone = function (t) {
-			t.l('Click on phone icon').click('.social .phone');
-
-			t.l('Verify popup visible').assertVisible('#phoneModal');
-
-			t.l('Click close').click('#phoneModal .modal-footer .btn').assertInvisible('#phoneModal');
+			openContactFrom(t, '.phone');
 		};
 
 		var testMap = function (t) {
-			t.l('Click on map icon').click('.social .map');
-
-			t.l('Verify popup visible').assertVisible('#mapModal iframe');
-
-			t.l('Click close').click('#mapModal .modal-footer .btn').assertInvisible('#mapModal');
+			openContactFrom(t, '.map');
 		};
 
 		var testMail = function (t) {
-			t.l('Click on mail icon').click('.social .mail');
-
-			t.l('Verify popup visible').assertVisible(dialog.selector);
-
-			t.$(dialog.selector, function (dm) {
-				t.assertTrue(/\w+@[^\s]+\.\w+/.exec(dm.text()).length > 0, 'Popup should contain an email address');
-			});
-
-			t.l('Click close').click(dialog.alert.ok).assertInvisible(dialog.selector);
+			openContactFrom(t, '.mail');
 		};
 
 		return {

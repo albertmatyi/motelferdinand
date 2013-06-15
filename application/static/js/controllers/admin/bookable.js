@@ -192,6 +192,9 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 	};
 
 	var _populatePrices = function (prices) {
+		if (!prices || !prices.values) {
+			return;
+		}
 		var inputs = $(PRICES_SELECTOR, $pricesTable);
 		for (var i = inputs.length - 1; i >= 0; i -= 1) {
 			var input = inputs[i];

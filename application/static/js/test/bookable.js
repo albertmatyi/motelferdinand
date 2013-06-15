@@ -6,9 +6,10 @@
 define([
 		'lib/jquery',
 		'test/category',
-		'test/elements/dialog'
+		'test/elements/dialog',
+		'helpers/currency'
 	],
-	function (jquery, categoryTest, dialog) {
+	function (jquery, categoryTest, dialog, currencyHelper) {
 		'use strict';
 		var $bookableModal;
 		var bkblInfo = {
@@ -63,6 +64,7 @@ define([
 		};
 
 		var createBookablePvt = function (t, info, $cat) {
+			currencyHelper.change(model.currency.default);
 			info = $.extend({}, bkblInfo, info);
 			t.l('createBookablePvt');
 			var $addDropdown = $('.page-header .dropdown-toggle', $cat);

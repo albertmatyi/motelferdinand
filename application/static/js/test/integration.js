@@ -97,6 +97,7 @@ function (jquery, testUtil) {
 			setTimeout(runNext, 1);
 		}, function (e) {
 			console.warn('\tFAIL[' + getTime($.now() - testTime) + ']' + e);
+			// + '\n In file: ' + e.href + ':' + e.lineNo
 
 			total += 1;
 			fail += 1;
@@ -206,7 +207,7 @@ function (jquery, testUtil) {
 		'test' : {
 			'breakOnError' : false,
 			'xhr' : {
-				'maxRetries' : 50, // the 
+				'maxRetries' : 50, // the
 				'timeout' : 200, // the timeout between two "XHR is finished" checks
 				'after' : 200 // the ammount of time the app is let to respond after an XHR call
 			},
