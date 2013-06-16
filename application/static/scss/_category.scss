@@ -26,7 +26,7 @@ html, body, #maincontent, #body_content, .categories, .category {
 		}
 
 		.page-header{
-			border-bottom: $ci-border;
+			border-bottom: none;
 			padding-top: 5em;
 			.category-title{
 				font-family: category-title-font, body-font, $fallback-fonts;

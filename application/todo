@@ -156,7 +156,6 @@ D			load cookie
 D		booking
 D			prices with selected currency
 D			backend
-Z			confirm admin price view (which currency is paid at the end?)
 D	move
 D		content
 D		bookable
@@ -171,11 +170,12 @@ D		after booking delete list becomes uneditable
 D		after acceptance style/icons of booking don't change
 D		admin booking status color
 D		cannot mark as paid when overbooked range
-	style background
-	modify fonts
-	unify contact info
+D	style background
+D	modify fonts
+D	unify contact info
 	discount
 
+Z	admin price view (which currency is paid at the end?)
 Z	get the emails right
 
 	try http://imperavi.com/redactor/

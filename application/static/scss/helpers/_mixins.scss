@@ -7,7 +7,7 @@
 }
 
 @mixin tile {
-	border-radius: 5px;	
+	border-radius: 5px;
 	padding-bottom: $contentPadding + .1em;
 }
 
@@ -18,4 +18,24 @@
 	$iefrom: ie-hex-str($from);
 	$ieto: ie-hex-str($to);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$iefrom}', endColorstr='#{$ieto}');
+}
+
+@mixin transition ($args...) {
+	-webkit-transition: $args;
+	-moz-transition: $args;
+	-o-transition: $args;
+	transition: $args;
+}
+
+@mixin rotate ($degrees) {
+	// http://stackoverflow.com/questions/5669489/create-a-cross-browser-mixin-for-transform-rotate
+	-webkit-transform: rotate(#{$degrees}deg);
+	-moz-transform: rotate(#{$degrees}deg);
+	-ms-transform: rotate(#{$degrees}deg);
+	-o-transform: rotate(#{$degrees}deg);
+	transform: rotate(#{$degrees}deg);
+
+	filter:  progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=#{cos($degrees)}, M12=-#{sin($degrees)}, M21=#{sin($degrees)}, M22=#{cos($degrees)});
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=#{cos($degrees)}, M12=-#{sin($degrees)}, M21=#{sin($degrees)}, M22=#{cos($degrees)})";
+	zoom: 1;
 }

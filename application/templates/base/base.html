@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <![endif]-->
     <title>{% block title%}{% endblock %}{{ __('Ferdinand Motel') }}</title>
-    
+
     {% if is_admin %}
         <link href="/static/css/admin_main.css" rel="stylesheet" />
     {% else %}
@@ -17,7 +17,7 @@
     <script type="text/javascript">
         var PRODUCTION = '{{ is_production }}' === 'True';
         // var PRODUCTION = true;
-        
+
         var require = {
             waitSeconds: 60,
             baseUrl: '/static/js/',
@@ -55,17 +55,18 @@
 
     <footer>
         <div id="footer" class="container">
-        
+
             {% block footer %}<!-- footer -->{% endblock %}
         </div><!-- /footer -->
     </footer>
-    
+
     <!-- alert & confirm dialogs -->
     {% block modals %}
         {% include "elements/dialog.html" %}
     {% endblock %}
 
     {% include "elements/progress.html" %}
+    {% include 'elements/social.html' %}
 
     <script type="text/javascript">
     {% if js_data %}

@@ -20,15 +20,7 @@ define([
 			'category-title' : commonDirectives.titleDirective,
 			'category-description' : commonDirectives.descriptionDirective,
 			'contents' : contentDirective,
-			'bookables' : bookableDirective,
-			'category-booking-id' : {
-				'id' : function () {
-					return 'bookBtn' + this.id;
-				},
-				'text' : function (params) {
-					return params.element.text;
-				}
-			}
+			'bookables' : bookableDirective
 		};
 	}
 );

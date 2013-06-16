@@ -11,24 +11,14 @@ define([],
 			t.l('Click close').click('#contactModal .modal-footer .btn').assertInvisible('#contactModal');
 		};
 
-		var testPhone = function (t) {
-			openContactFrom(t, '.phone');
-		};
-
-		var testMap = function (t) {
-			openContactFrom(t, '.map');
-		};
-
-		var testMail = function (t) {
-			openContactFrom(t, '.mail');
+		var testContact = function (t) {
+			openContactFrom(t, '.group');
 		};
 
 		return {
 			'name' : 'Social',
 			'tests' : [
-				{ 'testPhone' : testPhone },
-				{ 'testMail' : testMail },
-				{ 'testMap' : testMap }
+				{ 'testContact' : testContact }
 			]
 		};
 	}

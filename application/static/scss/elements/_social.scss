@@ -1,4 +1,5 @@
-@mixin socialImg($row, $col, $width: 48px, $height: 48px, $offsetX: 0px, $offsetY: 0px){
+$iconSize: 48px;
+@mixin socialImg($col, $row, $width: $iconSize, $height: $iconSize, $offsetX: 0px, $offsetY: 0px){
 	background-position: ( - $offsetY - $row * $height) ( - $offsetX - $col * $width);
 }
 #contactModal {
@@ -30,39 +31,43 @@
 	text-align: center;
 	margin-left: 0;
 	color: #fff;
-	position: relative;
-	top: -60px;
+	position: fixed;
+	bottom: 0;
 	.header {
 		font-size: 1.2em;
-		text-align: left;
 		padding-left: 1em;
+		font-variant: small-caps;
+		display: none;
 	}
 	.arrow {
-		background: url(../img/social/arrow.png) no-repeat right;
-		height: 40px;
-		width: 260px;
+		background: url(../img/social/arrow.png) no-repeat left;
+		height: 66px;
 		position: relative;
-		top: -68px;
-		left: 150px;
 		z-index: -1;
+	    left: -70px;
+	    top: -70px;
+	    display: none;
 	}
 	.icons {
-		font: 0/0 a;
-		letter-spacing: -1em;
-		word-spacing: -1em;
-		.group , .icon {
-			display: inline-block;
-			position: relative;
-			top: 5px;
-			margin: 2px;
-			background-image: url(../img/social/social_sprite_48.png);
+		position: fixed;
+		height: 0;
+		top: 50%;
+		margin-top: -7 * $iconSize / 2;
+		left: -20px;
+		.group, .icon {
+			display: block;
+			width: $iconSize;
+		}
+		& > .group, & > .icon {
+			background-image: url(../img/social/social_sprite_48_v_dark.png);
 			background-repeat: no-repeat;
+			position: relative;
+			@include transition(top 0.15s linear);
+			left: 0px;
+			margin: 0 2px;
 			&:hover{
-				-webkit-transition: top 0.15s linear;
-				-moz-transition: top 0.15s linear;
-				-o-transition: top 0.15s linear;
-				transition: top 0.15s linear;
-				top: -8px;
+				left: 14px;
+				@include transition(left 0.15s linear);
 			}
 		}
 		.group .icon {
@@ -78,8 +83,7 @@
 
 
 		.icon {
-			height: 48px;
-			width: 48px;
+			height: $iconSize;
 
 			&.skype {
 				@include socialImg(0, 0);
