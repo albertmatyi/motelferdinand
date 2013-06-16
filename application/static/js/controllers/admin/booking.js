@@ -4,7 +4,6 @@
 /*global model */
 
 define([
-	'lib/jquery',
 	'lib/transparency',
 	'view/directives/admin/booking',
 	'view/directives/admin/bookingDetails',
@@ -15,10 +14,13 @@ define([
 	'elements/modal',
 	'helpers/wysihtml5',
 	'helpers/date',
-	'elements/progress'
+	'elements/progress',
+	'helpers/currency',
+	'model/booking',
+	'lib/jquery'
 ],
-function (jq, transp, bookingsDirective, bookingDetailsDirective,
-	i18n, transparency, dialog, adminControls, modal, wysihtml5, date, progress) {
+function (transp, bookingsDirective, bookingDetailsDirective,
+	i18n, transparency, dialog, adminControls, modal, wysihtml5, date, progress, currencyHelper, bookingModel) {
 	'use strict';
 
 	var $bookingsButton = $('#adminBookingsButton');
@@ -27,7 +29,8 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 	var $bookingsModal = $('#adminBookingsModal');
 	$bookingsModal.footer = $('.modal-footer', $bookingsModal);
 	$bookingsModal.body = $('.modal-body', $bookingsModal);
-	$bookingsModal.title = $('.modal-header h3', $bookingsModal);
+	$bookingsModal.header = $('.modal-header', $bookingsModal);
+	$bookingsModal.title = $('h3', $bookingsModal.header);
 
 	var $table = $('.bookings-list .table > tbody', $bookingsModal);
 	var $tableTemplate = $table.clone();
@@ -36,8 +39,6 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 
 	var $subject = $('#mail-subject', $bookingsModal);
 	var $textarea = $('#booking-textarea', $bookingsModal);
-
-	var listenersInitialized = false;
 
 	var renderList = function () {
 		var $nt = $tableTemplate.clone();
@@ -239,27 +240,6 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 		dialog.confirm(i18n.translate('Are you sure you wish to delete?'), deleteBooking);
 	};
 
-	var initListeners = function () {
-		if (!listenersInitialized) {
-			$('#show-accept-booking', $bookingsModal).click(function () { showMailBookingFormFor.call(this, 'accept', true); });
-			$('#show-deny-booking', $bookingsModal).click(function () { showMailBookingFormFor.call(this, 'deny', true); });
-			$('#accept-booking', $bookingsModal).click(acceptBooking);
-			$('#deny-booking', $bookingsModal).click(denyBooking);
-			$('#mark-as-paid', $bookingsModal).click(markAsPaid);
-			$('#show-send-message', $bookingsModal).click(function () { showMailBookingFormFor.call(this, 'send-message', false); });
-			$('#send-message-submit', $bookingsModal).click(sendMessage);
-			$('#close-booking-details', $bookingsModal).click(function () {
-				showList();
-			});
-			$('#cancel-mail', $bookingsModal).click(function () {
-				showDetails();
-			});
-			$('#delete-booking', $bookingsModal).click(askDeleteBooking);
-			wysihtml5.renderTextAreas($bookingsModal);
-			listenersInitialized = true;
-		}
-	};
-
 	var renderBadge = function (new_bookings_nr) {
 		new_bookings_nr = new_bookings_nr ||
 			_.reduce(model.bookings, function (sum, el) {
@@ -273,24 +253,27 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 		}
 	};
 
-
 	var showBookings = function () {
-		$.getJSON('/admin/bookings/',
-			function (data) {
-				model.mapToDB(data, 'booking');
-				model.bookings = data;
-				_.each(data, function (el) {
-					el.nrOfNights = date.getDateDiff(el.start, el.end);
-					el.pricePerNight = el.price / el.nrOfNights;
-					el.state = parseInt(el.state, 10);
-				});
-				initListeners();
-				showList();
-				$bookingsModal.modal('show');
-				renderBadge();
-			}
-		);
+		bookingModel.loadNewBookings(function () {
+			showList();
+			$bookingsModal.modal('show');
+			renderBadge();
+		});
 		return this;
+	};
+
+	var refreshDetails = function () {
+		if ($bookingDetails.is(':visible')) {
+			showDetails($bookingDetails.data('bookingId'));
+		}
+	};
+
+	var recalculatePrices = function () {
+		if (!$bookingsModal.is(':visible')) {
+			return;
+		}
+		bookingModel.recalculateAdminPrices();
+		refreshDetails();
 	};
 
 	var init = function () {
@@ -302,6 +285,23 @@ function (jq, transp, bookingsDirective, bookingDetailsDirective,
 			btns.addClass($fbs.prop('class'));
 		});
 		renderBadge(model.new_bookings_nr);
+		currencyHelper.initSelect($('select.currency', $bookingsModal.header));
+		$('a[data-toggle=tooltip]', $bookingsModal.body).tooltip({});
+		wysihtml5.renderTextAreas($bookingsModal);
+
+		$('#show-accept-booking', $bookingsModal).click(function () { showMailBookingFormFor.call(this, 'accept', true); });
+		$('#show-deny-booking', $bookingsModal).click(function () { showMailBookingFormFor.call(this, 'deny', true); });
+		$('#accept-booking', $bookingsModal).click(acceptBooking);
+		$('#deny-booking', $bookingsModal).click(denyBooking);
+		$('#mark-as-paid', $bookingsModal).click(markAsPaid);
+		$('#show-send-message', $bookingsModal).click(function () { showMailBookingFormFor.call(this, 'send-message', false); });
+		$('#send-message-submit', $bookingsModal).click(sendMessage);
+		$('#close-booking-details', $bookingsModal).click(showList);
+		$('#delete-booking', $bookingsModal).click(askDeleteBooking);
+		$('#cancel-mail', $bookingsModal).click(function () {
+			showDetails(); // empty call needed
+		});
+		currencyHelper.onchange(recalculatePrices);
 		return this;
 	};
 

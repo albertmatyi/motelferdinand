@@ -53,25 +53,25 @@
 			<tbody>
 				<tr>
 					<td>{{ __('Bookable') }}</td>
-					<td data-bind="bookable"></td>
+					<td data-bind="bookable" colspan="2"></td>
 				</tr>
 				<tr>
 					<td>{{ __('Quantity') }}</td>
-					<td data-bind="quantity"></td>
+					<td data-bind="quantity" colspan="2"></td>
 				</tr>
 				<tr>
 					<td>{{ __('Guests') }}</td>
-					<td data-bind="guests"></td>
+					<td data-bind="guests" colspan="2"></td>
 				</tr>
 				<tr>
 					<td>
 						{{ __('Arrival date') }}
 					</td>
-					<td data-bind="start"></td>
+					<td data-bind="start" colspan="2"></td>
 				</tr>
 				<tr>
 					<td>{{ __('Departure date') }}</td>
-					<td>
+					<td colspan="2">
 						<span data-bind="end"></span>
 						<small>
 							( <span data-bind="nrOfNights"></span>
@@ -80,13 +80,69 @@
 					</td>
 				</tr>
 				<tr>
-					<td>{{ __('Price') }}</td>
+					<td></td>
+					<th>{{ __('Client') }}
+						<a data-toggle="tooltip" title="{{ __('Prices displayed in the currency the client chose. The price of the bookable and exchange rates are the ones from the day of the booking.') }}">
+							<i class="icon-question-sign"></i>
+						</a>
+					</th>
+					<th>{{ __('Admin') }}
+						<a data-toggle="tooltip" title="{{ __('Prices in the currently selected currency. The price of the bookable and exchange rates are the ones from the day of the booking.') }}">
+							<i class="icon-question-sign"></i>
+						</a>
+					</th>
+				</tr>
+				<tr>
+					<th>{{ __('Price') }}</th>
 					<td>
-						<span data-bind="price">1billion</span>
-						<span data-bind="currency"></span>
+						<span data-bind="priceClient">1billion</span>
+						<span data-bind="currencyClient"></span>
 						<small>
-							( <span data-bind="pricePerNight"></span>
-							<span data-bind="currency"></span>
+							( <span data-bind="pricePerNightClient"></span>
+							<span data-bind="currencyClient"></span>
+							{{ __('Per night') }} )
+						</small>
+					</td>
+					<td>
+						<span data-bind="priceAdmin">1billion</span>
+						<span data-bind="currencyAdmin"></span>
+						<small>
+							( <span data-bind="pricePerNightAdmin"></span>
+							<span data-bind="currencyAdmin"></span>
+							{{ __('Per night') }} )
+						</small>
+					</td>
+				</tr>
+				<tr>
+					<th>{{ __('Discount') }}</th>
+					<td>
+						<div class="input-append">
+							<input type="text" data-bind="discount"/>
+							<span class="add-on currency" data-bind="currencyClient">$$$</span>
+						</div>
+					</td>
+					<td>
+						<span data-bind="discountAdmin">1billion</span>
+						<span data-bind="currencyAdmin"></span>
+					</td>
+				</tr>
+				<tr class="total">
+					<th>{{ __('Total') }}</th>
+					<td>
+						<span data-bind="totalClient">1billion</span>
+						<span data-bind="currencyClient"></span>
+						<small>
+							( <span data-bind="totalPricePerNightClient"></span>
+							<span data-bind="currencyClient"></span>
+							{{ __('Per night') }} )
+						</small>
+					</td>
+					<td>
+						<span data-bind="totalAdmin">1billion</span>
+						<span data-bind="currencyAdmin"></span>
+						<small>
+							( <span data-bind="totalPricePerNightAdmin"></span>
+							<span data-bind="currencyAdmin"></span>
 							{{ __('Per night') }} )
 						</small>
 					</td>

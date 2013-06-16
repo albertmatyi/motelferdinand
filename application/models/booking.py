@@ -18,8 +18,14 @@ class BookingModel(AbstractModel):
     guests = db.IntegerProperty(required=True, default=1)
     message = db.TextProperty()
     feedback = db.TextProperty()
+    # the currency the booking was made in
     currency = db.StringProperty(required=True, default=currency_default)
+    # the rates of that day
+    rates = db.StringProperty(required=True, default='{ "error": "not saved"}')
+    # the price of the stay in the default currency
     price = db.FloatProperty(required=True, default=99.9)
+    # disctoun over the total price
+    discount = db.FloatProperty(required=True, default=0.0)
     state = db.IntegerProperty(required=True, default=State.INITIAL)
     quantity = db.IntegerProperty(required=True, default=1)
     start = db.DateProperty(required=True, auto_now_add=True)

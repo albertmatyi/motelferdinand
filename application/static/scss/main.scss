@@ -28,6 +28,8 @@ $contentMargin: 4%;
 
 @import "elements/social";
 
+@import "elements/currency";
+
 body {
 	background: $background;
 	font-family: body-font, $fallback-fonts;

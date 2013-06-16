@@ -23,6 +23,9 @@
 				transform: rotate(45deg);
 			}
 		}
+		.currency {
+			float: right;
+		}
 	}
 	.footer-buttons {
 		float: right;
@@ -35,5 +38,5 @@
 	@import "accept";
 	@import "deny";
 	@import "send_message";
-	
+
 }

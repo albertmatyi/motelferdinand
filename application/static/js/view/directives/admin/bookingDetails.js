@@ -7,9 +7,16 @@ define([
 	'view/directives/common',
 	'view/directives/admin/bookingCommons',
 	'helpers/date',
-	'helpers/i18n'
-], function (userDirective, common, bookingCommons, date, i18n) {
+	'helpers/currency',
+	'helpers/i18n',
+	'lib/jquery'
+], function (userDirective, common, bookingCommons, date, currencyHelper, i18n) {
 	'use strict';
+
+	var clientPriceToAdmin = function (booking, priceKey) {
+		return currencyHelper.convert(booking[priceKey], booking.currencyClient, model.currency.selected, booking.rates);
+	};
+
 	var dir = {
 		'index' : {
 			text : function () {
@@ -44,9 +51,9 @@ define([
 				return this.nrOfNights;
 			}
 		},
-		'pricePerNight': {
+		'currencyAdmin': {
 			'text': function () {
-				return this.pricePerNight;
+				return model.currency.selected;
 			}
 		},
 		'acceptance-button' : {

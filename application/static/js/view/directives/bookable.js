@@ -1,5 +1,4 @@
 /*global define */
-/*global model */
 /*global $ */
 
 define(
@@ -27,15 +26,14 @@ function (commonDirectives, currencyHelper) {
 				if (!this.prices || !this.prices.values[0]) {
 					return 'Please define prices!';
 				}
-				return currencyHelper.convert(this.prices.values[0]);
+				return currencyHelper.convertDefaultTo(this.prices.values[0]);
 			}
 		},
 		'currency' : {
 			'html': function (params) {
-				$(params.element)
-					.data('price', this.prices.values[0])
-					.empty()
-					.append(currencyHelper.getCurrencyOptions());
+				var $el = $(params.element);
+				currencyHelper.initSelect($el);
+				$el.data('price', this.prices.values[0]);
 			}
 		},
 		'price-for-guests' : {

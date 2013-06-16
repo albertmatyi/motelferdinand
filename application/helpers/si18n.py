@@ -101,6 +101,9 @@ translations = {
         'Preferred language': u'Preferred language',
         'nights': u'nights',
         'Attached message': u'Attached message',
+        'Client': u'Client',
+        'Prices': u'Prices',
+        'Discount': u'Discount',
 
         # Admin
         'Admin': u'Admin',
@@ -222,6 +225,9 @@ translations = {
         'Preferred language': u'Kedvelt nyelv',
         'nights': u'északa',
         'Attached message': u'Csatolt üzenet',
+        'Client': u'Kliens',
+        'Prices': u'Árak',
+        'Discount': u'Kedvezmény',
 
         # Admin
         'Admin': u'Admin',
@@ -344,6 +350,9 @@ translations = {
         'Preferred language': u'Limba preferată',
         'nights': u'nopți',
         'Attached message': u'Mesaj atașat',
+        'Client': u'Client',
+        'Prices': u'Prețuri',
+        'Discount': u'Discount',
 
         # Admin
         'Admin': u'Admin',

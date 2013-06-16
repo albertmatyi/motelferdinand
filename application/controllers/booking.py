@@ -138,11 +138,12 @@ def map_price(bookingForm, booking):
     # add price_per_day of partially filled room
     price_per_day = price_per_day - float(vals[0]) + float(vals[rg])
 
-    price_per_day = math.ceil(currency_helper.convert(price_per_day))
+    price_per_day = math.ceil(price_per_day)
 
     days = (bookingForm['end'] - bookingForm['start']).days
     booking.price = price_per_day * days
     booking.currency = currency_helper.get_selected_currency()
+    booking.rates = json.dumps(currency_helper.get_rates())
 
 
 def send_new_booking_mail(booking):

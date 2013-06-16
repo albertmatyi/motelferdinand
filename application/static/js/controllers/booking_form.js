@@ -118,7 +118,7 @@ define([
 			var rg = p  > 1 ? g % (p - 1):0; // nr of guests that are not in full rooms
 			price = price - f * parseInt(vals[0], 10) + f * parseInt(vals[p - 1], 10); // add prices of full rooms
 			price = price - parseInt(vals[0], 10) + parseInt(vals[rg], 10); // add price of partially filled room
-			return currencyHelper.convert(price);
+			return currencyHelper.convertDefaultTo(price);
 		};
 
 		var addPriceUpdater = function (bookable) {
@@ -168,12 +168,7 @@ define([
 		};
 
 		var renderCurrencies = function () {
-			if ($('option', $currencySelect).length === 0) {
-				$currencySelect.empty().append(currencyHelper.getCurrencyOptions());
-				$currencySelect.on('change', function () {
-					currencyHelper.change($(this).val());
-				});
-			}
+			currencyHelper.initSelect($currencySelect);
 		};
 
 		/**

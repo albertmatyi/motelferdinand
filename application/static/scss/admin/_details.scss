@@ -50,5 +50,14 @@
 		.leftside {
 			float: left;
 		}
+		input[data-bind=discount] {
+			width: 4em;
+			text-align: right;
+		}
+		.table {
+			tr.total {
+				font-weight: bold;
+			}
+		}
 	}
 }

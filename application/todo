@@ -173,9 +173,19 @@ D		cannot mark as paid when overbooked range
 D	style background
 D	modify fonts
 D	unify contact info
-	discount
+	admin price view (which currency is paid at the end?)
+D		save rate
+D		original total price
+D		allow admin to change currency
+D		display correct price
+		discount
+			fe
+				update price
+				toggle buttons
+			be save
+		send mail in clients currency
+	send message from contact
 
-Z	admin price view (which currency is paid at the end?)
 Z	get the emails right
 
 	try http://imperavi.com/redactor/

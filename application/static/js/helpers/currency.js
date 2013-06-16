@@ -16,9 +16,23 @@ define(['helpers/cookies', 'lib/jquery'], function (cookieHelper) {
 		$el.on('currencyChange', function (element, cur) {callback(cur); });
 	};
 
-	var convert = function (basePrice, currency) {
+	var convert = function (price, srcCurrency, dstCurrency, rates) {
+		if (!srcCurrency) {
+			throw 'Currencies not defined';
+		}
+		dstCurrency = dstCurrency || model.currency.selected;
+		rates = rates || model.currency.rates;
+		rates = rates || model.currency.rates;
+		var rate = rates[srcCurrency];
+
+		var basePrice = price * rate.val / rate.multiplier;
+		return convertDefaultTo(basePrice, dstCurrency, rates);
+	};
+
+	var convertDefaultTo = function (basePrice, currency, rates) {
+		rates = rates || model.currency.rates;
 		currency = currency || model.currency.selected;
-		var rate = model.currency.rates[currency];
+		var rate = rates[currency];
 		return Math.ceil(basePrice / rate.val) * rate.multiplier;
 	};
 
@@ -44,11 +58,19 @@ define(['helpers/cookies', 'lib/jquery'], function (cookieHelper) {
 		return currency && typeof currency === 'string' && model.currency.rates[currency];
 	};
 
+	var initSelect = function ($currencySelect) {
+		$currencySelect.empty().append(getCurrencyOptions());
+		$currencySelect.off('change').on('change', function () {
+			change($(this).val());
+		});
+	};
+
 	return {
 		'change': change,
 		'onchange': onchange,
 		'convert': convert,
+		'convertDefaultTo': convertDefaultTo,
 		'isValid': isValid,
-		'getCurrencyOptions': getCurrencyOptions
+		'initSelect': initSelect
 	};
 });
