@@ -5,7 +5,8 @@
 define(
 [
 	'view/directives/common',
-	'helpers/currency'
+	'helpers/currency',
+	'lib/jquery'
 ],
 function (commonDirectives, currencyHelper) {
 	'use strict';

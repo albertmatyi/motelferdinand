@@ -29,7 +29,7 @@ define(['helpers/cookies', 'lib/jquery'], function (cookieHelper) {
 		for (var currency in rates) {
 			if (rates.hasOwnProperty(currency)) {
 				opts.push(['<option value="', currency, '"',
-					(selected === currency ? 'selected="selected"':''),
+					(selected === currency ? ' selected="selected"':''),
 					'>', currency, '</option>'].join('')
 				);
 			}
