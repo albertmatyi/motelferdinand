@@ -2,7 +2,7 @@
 /*global $ */
 /*global requirejs */
 /*global model */
-/*global window */
+/*global PRODUCTION */
 
 requirejs.config({
 
@@ -81,6 +81,9 @@ function (us, config, test, social, modal, modelBase,
 	categoryAdmin.init();
 	contentAdmin.init();
 	bookableAdmin.init();
-	bookingAdmin.init().showBookings();
+	bookingAdmin.init();
+	if (!PRODUCTION) {
+		bookingAdmin.showBookings();
+	}
 //close the function & define
 });
