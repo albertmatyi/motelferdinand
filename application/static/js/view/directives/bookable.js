@@ -32,8 +32,10 @@ function (commonDirectives, currencyHelper) {
 		},
 		'currency' : {
 			'html': function (params) {
-				$(params.element).data('price', this.prices.values[0]);
-				return currencyHelper.getCurrencyOptions();
+				$(params.element)
+					.data('price', this.prices.values[0])
+					.empty()
+					.append(currencyHelper.getCurrencyOptions());
 			}
 		},
 		'price-for-guests' : {

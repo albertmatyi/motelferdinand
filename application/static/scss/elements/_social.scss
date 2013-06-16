@@ -33,26 +33,18 @@ $iconSize: 48px;
 	color: #fff;
 	position: fixed;
 	bottom: 0;
-	.header {
-		font-size: 1.2em;
-		padding-left: 1em;
-		font-variant: small-caps;
-		display: none;
-	}
 	.arrow {
-		background: url(../img/social/arrow.png) no-repeat left;
-		height: 66px;
-		position: relative;
-		z-index: -1;
-	    left: -70px;
-	    top: -70px;
-	    display: none;
+		position: fixed;
+		height: 0;
+		width: 0;
+		top: 0;
+		left: 0;
 	}
 	.icons {
 		position: fixed;
 		height: 0;
 		top: 50%;
-		margin-top: -7 * $iconSize / 2;
+		margin-top: -4 * $iconSize / 2;
 		left: -20px;
 		.group, .icon {
 			display: block;

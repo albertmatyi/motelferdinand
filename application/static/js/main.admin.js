@@ -73,6 +73,7 @@ function (us, config, test, social, modal, modelBase,
 	category.init();
 	bookable.init();
 	booking.setup();
+	social.init();
 
 	$('#loading-overlay').remove();
 	modal.fix().init();

@@ -169,7 +169,7 @@ define([
 
 		var renderCurrencies = function () {
 			if ($('option', $currencySelect).length === 0) {
-				$currencySelect.html(currencyHelper.getCurrencyOptions());
+				$currencySelect.empty().append(currencyHelper.getCurrencyOptions());
 				$currencySelect.on('change', function () {
 					currencyHelper.change($(this).val());
 				});

@@ -28,13 +28,16 @@ define(['helpers/cookies', 'lib/jquery'], function (cookieHelper) {
 		var selected = model.currency.selected;
 		for (var currency in rates) {
 			if (rates.hasOwnProperty(currency)) {
-				opts.push(['<option value="', currency, '"',
-					(selected === currency ? ' selected="selected"':''),
-					'>', currency, '</option>'].join('')
+				opts.push(
+					$('<option/>', {
+						value: currency,
+						selected: currency === selected,
+						text: currency
+					})
 				);
 			}
 		}
-		return opts.join('');
+		return opts;
 	};
 
 	var isValid = function (currency) {

@@ -1,5 +1,4 @@
 <div class="social span4">
-	<div class="header" > {{ __('Contact us') }} </div>
 	<div class="icons">
 		<a href="#contactModal" class="group" data-toggle="modal">
 			<span class="icon map" title="{{ __('How to get here') }}">
@@ -13,7 +12,19 @@
 		<a href="https://plus.google.com/101675121296802996485/about?gl=US&amp;hl=en" class="icon google" target="_blank" title="Google+"></a>
 		<a href="skype:albertmatyi?call" class="icon skype" target="_blank" title="Skype"></a>
 	</div>
-	<div class="arrow span4"></div>
+	<div class="arrow-container">
+		<svg id="social-arrow" version="1.1" baseProfile="full" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+			<path id="svg-arrow" d="M10,20 C40,50 30,200 200,150" fill="none" stroke="white" stroke-dasharray="10,10"/>
+			<path id="svg-arrow-head" d="M200,150 200,155 209,145 200, 146" fill="#fff"/>
+			<text font-family="body-font" x="0" y="0" fill="#fff">
+				<textPath startOffset="50%" text-anchor="middle" xlink:href="#svg-arrow">
+					<tspan dy="-.2em">
+						{{ __('Contact us') }}
+					</tspan>
+				</textPath>
+			</text>
+		</svg>
+	</div>
 </div>
 <div id="contactModal" class="modal hide big-modal" tabindex="-1" role="dialog" aria-labelledby="mapModalTitle" aria-hidden="true">
 	<div class="modal-header">

@@ -69,5 +69,6 @@ function (us, config, social, modal, modelBase, categoryView, languageView,
 	modal.fix().init();
 	bookable.init();
 	booking.setup();
+	social.init();
 //close the function & define
 });
