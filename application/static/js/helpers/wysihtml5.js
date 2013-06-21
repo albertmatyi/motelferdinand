@@ -11,7 +11,7 @@ define([
 		'renderTextAreas' : function ($context) {
 			$('textarea', $context).each(function (idx, el) {
 					var $el = $(el);
-					if (config.RENDER_TEXTAREAS) {
+					if (config.RENDER_TEXTEDITOR) {
 						$el.wysihtml5({ parserRules : wysihtml5ParserRules });
 					}
 				}
