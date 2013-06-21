@@ -179,9 +179,10 @@ D		original total price
 D		allow admin to change currency
 D		display correct price
 		discount
-			fe
-				update price
-				toggle buttons
+130621
+D			fe
+D				update price
+D				toggle buttons
 			be save
 		send mail in clients currency
 	send message from contact

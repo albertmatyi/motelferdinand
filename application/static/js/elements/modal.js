@@ -18,6 +18,7 @@ function (notification) {
 		setTimeout(function () {
 			$notification.remove();
 		}, 5000);
+		return $notification;
 	};
 
 	var setSize = function ($el) {

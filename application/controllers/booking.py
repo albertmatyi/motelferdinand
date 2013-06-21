@@ -24,11 +24,39 @@ import logging
 
 @app.route("/bookings/", methods=["POST"])
 def bookings_new():
-    booking = save_booking()
+    data = json.loads(request.form['data'])
+    logging.info('save booking data: ' + str(data))
+    transform(data['booking'])
+    bk_data = data['booking']
+    validate_user(data['user'])
+    validate_booking(bk_data)
+
+    booking = BookingModel()
+    usr = get_or_create_user(data['user'])
+    booking.user = usr
+    map_booking_data(bk_data, booking)
+    booking.put()
 
     send_new_booking_mail(booking)
     return '{ "message": "Booking successfully saved!' +\
         ' Stand by for a confirmation email." , "success" : true }'
+    pass
+
+
+@admin_required
+@app.route('/admin/bookings/', methods=['POST'])
+def save_booking():
+    booking_in = json.loads(request.form['data'])
+
+    if booking_in['id']:
+        booking = BookingModel.get_by_id(long(booking_in['id']))
+        booking.discount = float(booking_in['discount'])
+    else:
+        raise Exception(" Not implemented")
+
+    booking.put()
+
+    return '{ "message": "Booking successfully saved!", "success" : true }'
     pass
 
 
@@ -43,27 +71,30 @@ def transform(bkng):
     pass
 
 
-def validate(form):
-    msg = ''
-    valid = re.search('[\w -]{3,}', form['user']['full_name']) is not None
+def validate_user(user):
+    valid = re.search('[\w -]{3,}', user['full_name']) is not None
     valid &= re.search('[\w\.\-_]{1,}@([\w\-_]+.){1,}\w{3,5}',
-                       form['user']['email']) is not None
-    valid &= re.search('[\d+\s\-]{5,}', form['user']['phone']) is not None
-    bkng = form['booking']
-    tday = bkng['start'].today()
-    valid &= bkng['start'] < bkng['end']
-    valid &= tday <= bkng['start']
-    valid &= bkng['bookable'] is not None
+                       user['email']) is not None
+    valid &= re.search('[\d+\s\-]{5,}', user['phone']) is not None
+    if not valid:
+        raise Exception('Invalid data.')
+    pass
 
-    bookable = bkng['bookable']
+
+def validate_booking(booking):
+    tday = booking['start'].today()
+    valid = booking['start'] < booking['end']
+    valid &= tday <= booking['start']
+    valid &= booking['bookable'] is not None
+
+    bookable = booking['bookable']
     valid &= is_valid_quantity_for_range(
         bookable,
-        bkng['start'],
-        bkng['end'],
-        bkng['quantity'])
+        booking['start'],
+        booking['end'],
+        booking['quantity'])
     if not valid:
-        raise Exception('Invalid data. ' + msg)
-    pass
+        raise Exception('Invalid data.')
 
 
 @app.route('/admin/booking/valid/<int:booking_id>', methods=['GET'])
@@ -97,27 +128,14 @@ def get_quantity_for_date(date, bookings):
     return q
 
 
-def save_booking():
-    # pdb.set_trace()
-    form = json.loads(request.form['data'])
-    logging.info('save booking form: ' + str(form))
-    transform(form['booking'])
-    validate(form)
-
-    usr = get_or_create_user(form['user'])
-    bkf = form['booking']
-    booking = BookingModel()
+def map_booking_data(bkf, booking):
     booking.message = bkf['message']
-    booking.user = usr
     booking.quantity = bkf['quantity']
     booking.guests = bkf['guests']
     booking.start = bkf['start']
     booking.end = bkf['end']
     booking.bookable = bkf['bookable']
     map_price(bkf, booking)
-    booking.put()
-    return booking
-    pass
 
 
 def map_price(bookingForm, booking):

@@ -38,6 +38,11 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 	var $bookingDetails = $('.booking-details', $bookingsModal);
 	$bookingDetails.body = $('.booking-details-body', $bookingsModal);
 	$bookingDetails.discountInput = $('input[data-bind=discount]', $bookingDetails);
+	$bookingDetails.acceptButton = $('#show-accept-booking', $bookingsModal);
+	$bookingDetails.denyButton = $('#show-deny-booking', $bookingsModal);
+	$bookingDetails.updateButton = $('#update-booking', $bookingsModal);
+
+	var UPDATEABLE_FIELDS = ['discount', 'id'];
 
 	var $subject = $('#mail-subject', $bookingsModal);
 	var $textarea = $('#booking-textarea', $bookingsModal);
@@ -73,7 +78,8 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 			$bookingDetails.data('bookingId', booking.id);
 			$bookingDetails.render(booking, bookingDetailsDirective);
 			$('.footer-buttons', $bookingsModal.footer).render(booking, bookingDetailsDirective);
-			// disable accept on overbooking
+			// TODO disable accept on overbooking
+			$bookingDetails.data('bookingDraft', null);
 		}
 		$('span', $bookingsModal.title).remove();
 		$bookingsModal.title.prepend('<span>' + $('.panel-title', $bookingDetails).text() + '</span><span class="separator"></span>');
@@ -282,18 +288,82 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 		return model.db.booking[$bookingDetails.data('bookingId')];
 	};
 
-	var handleDiscountChange = function () {
+	var getSelectedBookingDraft = function () {
+		var draft = $bookingDetails.data('bookingDraft');
+		if (!draft) {
+			var dbooking = getSelectedBooking();
+			draft = {};
+			for (var k in dbooking) {
+				if (dbooking.hasOwnProperty(k)) {
+					draft[k] = dbooking[k];
+				}
+			}
+			$bookingDetails.data('bookingDraft', draft);
+		}
+		return draft;
+	};
+
+	var updateButtonStatesFor = function (bookingDraft) {
+		var changed = false;
 		var booking = getSelectedBooking();
+		for (var k in booking) {
+			if (booking.hasOwnProperty(k) && booking[k] !== bookingDraft[k]) {
+				changed = true;
+				break;
+			}
+		}
+		$bookingDetails.acceptButton.prop('disabled', changed);
+		$bookingDetails.denyButton.prop('disabled', changed);
+		$bookingDetails.updateButton.prop('disabled', !changed);
+	};
+
+	var handleDiscountChange = function () {
+		var bookingDraft = getSelectedBookingDraft();
 		var discount = parseFloat($bookingDetails.discountInput.val());
 		if (!isNaN(discount)) {
-			bookingModel.setDiscount(booking, discount);
-			$('*[data-bind=discountClient]', $bookingDetails.body).val(booking.discountClient);
-			$('*[data-bind=discountAdmin]', $bookingDetails.body).text(booking.discountAdmin);
-			$('*[data-bind=totalClient]', $bookingDetails.body).text(booking.totalClient);
-			$('*[data-bind=totalAdmin]', $bookingDetails.body).text(booking.totalAdmin);
-			$('*[data-bind=totalPricePerNightClient]', $bookingDetails.body).text(booking.totalPricePerNightClient);
-			$('*[data-bind=totalPricePerNightAdmin]', $bookingDetails.body).text(booking.totalPricePerNightAdmin);
+			bookingModel.setDiscount(bookingDraft, discount);
+			$('*[data-bind=discountClient]', $bookingDetails.body).val(bookingDraft.discountClient);
+			$('*[data-bind=discountAdmin]', $bookingDetails.body).text(bookingDraft.discountAdmin);
+			$('*[data-bind=totalClient]', $bookingDetails.body).text(bookingDraft.totalClient);
+			$('*[data-bind=totalAdmin]', $bookingDetails.body).text(bookingDraft.totalAdmin);
+			$('*[data-bind=totalPricePerNightClient]', $bookingDetails.body).text(bookingDraft.totalPricePerNightClient);
+			$('*[data-bind=totalPricePerNightAdmin]', $bookingDetails.body).text(bookingDraft.totalPricePerNightAdmin);
+			updateButtonStatesFor(bookingDraft);
 		}
+	};
+
+	var updateBooking = function () {
+		var $progress = modal.displayNotification($bookingsModal, i18n.translate('Saving') + '...');
+		var draft = getSelectedBookingDraft();
+		var toSend = {};
+		for (var k in draft) {
+			if (draft.hasOwnProperty(k) && UPDATEABLE_FIELDS.indexOf(k) !== -1) {
+				toSend[k] = draft[k];
+			}
+		}
+		$.ajax({
+			'url': '/admin/bookings/',
+			'data': {data: JSON.stringify(toSend)},
+			'success': function () {
+				modal.displayNotification($bookingsModal, i18n.translate('Saved', 'success'));
+				var booking = getSelectedBooking();
+				for (var k in toSend) {
+					if (booking.hasOwnProperty(k)) {
+						booking[k] = toSend[k];
+					}
+				}
+				$bookingDetails.data('bookingDraft', undefined);
+				bookingModel.recalculatePrices(booking);
+				updateButtonStatesFor(draft);
+				$progress.remove();
+			},
+			'error': function (e) {
+				handleException(e);
+				$progress.remove();
+			},
+			'type': 'POST',
+			'dataType': 'json'
+		});
 	};
 
 	var init = function () {
@@ -309,8 +379,9 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 		$('a[data-toggle=tooltip]', $bookingsModal.body).tooltip({});
 		wysihtml5.renderTextAreas($bookingsModal);
 
-		$('#show-accept-booking', $bookingsModal).click(function () { showMailBookingFormFor.call(this, 'accept', true); });
-		$('#show-deny-booking', $bookingsModal).click(function () { showMailBookingFormFor.call(this, 'deny', true); });
+		$bookingDetails.acceptButton.click(function () { showMailBookingFormFor.call(this, 'accept', true); });
+		$bookingDetails.denyButton.click(function () { showMailBookingFormFor.call(this, 'deny', true); });
+		$bookingDetails.updateButton.on('click', updateBooking);
 		$('#accept-booking', $bookingsModal).click(acceptBooking);
 		$('#deny-booking', $bookingsModal).click(denyBooking);
 		$('#mark-as-paid', $bookingsModal).click(markAsPaid);

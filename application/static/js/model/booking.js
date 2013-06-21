@@ -19,23 +19,31 @@ define(['helpers/currency', 'helpers/date'], function (currencyHelper, dateHelpe
 			model.mapToDB(data, 'booking');
 			model.bookings = data;
 			_.each(data, function (el) {
-				el.nrOfNights = dateHelper.getDateDiff(el.start, el.end);
+				el.guests = parseInt(el.guests, 10);
+				el.quantity = parseInt(el.quantity, 10);
+				el.price = parseFloat(el.price);
+				el.discount = parseFloat(el.discount);
 				el.rates = JSON.parse(el.rates);
-				el.pricePerNight = el.price / el.nrOfNights;
-				el.currencyClient = el.currency;
-
-				el.pricePerNightClient = // rounding is applied on the per night value
-					currencyHelper.convertDefaultTo(el.pricePerNight, el.currencyClient, el.rates);
-				el.priceClient = el.pricePerNightClient * el.nrOfNights;
-				el.discountClient = el.discount;
-				el.totalClient = el.priceClient - el.discountClient;
-				el.totalPricePerNightClient = el.totalClient / el.nrOfNights;
-
-				setAdminPrices(el);
+				el.nrOfNights = dateHelper.getDateDiff(el.start, el.end);
 				el.state = parseInt(el.state, 10);
+				recalculatePrices(el);
 			});
 			callback();
 		});
+	};
+
+	var recalculatePrices = function (el) {
+		el.pricePerNight = el.price / el.nrOfNights;
+		el.currencyClient = el.currency;
+
+		el.pricePerNightClient = // rounding is applied on the per night value
+			currencyHelper.convertDefaultTo(el.pricePerNight, el.currencyClient, el.rates);
+		el.priceClient = el.pricePerNightClient * el.nrOfNights;
+		el.discountClient = el.discount;
+		el.totalClient = el.priceClient - el.discountClient;
+		el.totalPricePerNightClient = el.totalClient / el.nrOfNights;
+
+		setAdminPrices(el);
 	};
 
 	var recalculateAdminPrices = function () {
@@ -45,7 +53,8 @@ define(['helpers/currency', 'helpers/date'], function (currencyHelper, dateHelpe
 	};
 
 	var setDiscount = function (el, discount) {
-		el.discountClient = discount;
+		el.discount = discount;
+		el.discountClient = el.discount;
 		el.totalClient = el.priceClient - el.discountClient;
 		el.totalPricePerNightClient = el.totalClient / el.nrOfNights;
 		el.discountAdmin = currencyHelper.convert(el.discountClient, el.currencyClient);
@@ -56,6 +65,7 @@ define(['helpers/currency', 'helpers/date'], function (currencyHelper, dateHelpe
 	return {
 		'loadNewBookings': loadNewBookings,
 		'recalculateAdminPrices': recalculateAdminPrices,
+		'recalculatePrices': recalculatePrices,
 		'setDiscount': setDiscount
 	};
 });
