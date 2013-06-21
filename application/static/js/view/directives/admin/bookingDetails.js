@@ -46,11 +46,6 @@ define([
 				return this.state >= 3 ? 'ok':'';
 			}
 		},
-		'nrOfNights': {
-			'text': function () {
-				return this.nrOfNights;
-			}
-		},
 		'currencyAdmin': {
 			'text': function () {
 				return model.currency.selected;

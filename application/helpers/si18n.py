@@ -126,9 +126,12 @@ translations = {
         'Mail sent': u'Mail sent',
         'Deny booking': u'Deny booking',
         'Deny booking and send email': u'Deny booking and send mail',
+        'Prices displayed in the currency the client chose. The price of the bookable and exchange rates are the ones from the day of the booking.': u'Prices displayed in the currency the client chose. The price of the bookable and exchange rates are the ones from the day of the booking.',
+        'Prices in the currently selected currency. The price of the bookable and exchange rates are the ones from the day of the booking.': u'Prices in the currently selected currency. The price of the bookable and exchange rates are the ones from the day of the booking.',
 
         # Booking
         'Book': u'Book',
+        'available': u'available',
         'Places': u'Places',
         'Place': u'Place',
         'Guest(s)': u'Guest(s)',
@@ -251,10 +254,13 @@ translations = {
         'Mail sent': u'Űzenet elküldve',
         'Deny booking': u'Foglalás elutasítás',
         'Deny booking and send email': u'Foglalást elutasít és email küldés',
+        'Prices displayed in the currency the client chose. The price of the bookable and exchange rates are the ones from the day of the booking.': u'Az árak a kliens által választott valutában. A szoba ára illetve az árfolyam a foglalás napján mutatott értékekkel egyezik meg.',
+        'Prices in the currently selected currency. The price of the bookable and exchange rates are the ones from the day of the booking.': u'Az árak a kiválasztott valutában. A szoba ára illetve az árfolyam a foglalás napján mutatott értékekkel egyezik meg.',
 
         # Booking
         'Book': u'Foglalás',
         'Places': u'Férőhelyek száma',
+        'available': u'foglalható',
         'Place': u'Férőhely',
         'Guest(s)': u'Vendég',
         'Currency': u'Pénznem',
@@ -375,10 +381,14 @@ translations = {
         'Mail sent': u'Mesaj trimis',
         'Deny booking': u'Refuzare de rezervare',
         'Deny booking and send email': u'Refuză rezervarea și trimite email',
+        'Prices displayed in the currency the client chose. The price of the bookable and exchange rates are the ones from the day of the booking.': u'Prețurile în valuta selectată de client. Prețul camerei respectiv ratele de valută sunt cele din ziua rezervării.',
+        'Prices in the currently selected currency. The price of the bookable and exchange rates are the ones from the day of the booking.': u'Prețurile în valuta selectată. Prețul camerei respectiv ratele de valută sunt cele din ziua rezervării.',
+
 
         # Booking
         'Book': u'Rezervă',
         'Places': u'Locuri',
+        'available': u'disponibil(e)',
         'Place': u'Loc',
         'Guest(s)': u'Oaspet(i)',
         'Currency': u'Mondeda',

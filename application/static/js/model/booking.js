@@ -22,14 +22,14 @@ define(['helpers/currency', 'helpers/date'], function (currencyHelper, dateHelpe
 				el.nrOfNights = dateHelper.getDateDiff(el.start, el.end);
 				el.rates = JSON.parse(el.rates);
 				el.pricePerNight = el.price / el.nrOfNights;
+				el.currencyClient = el.currency;
 
 				el.pricePerNightClient = // rounding is applied on the per night value
-					currencyHelper.convertDefaultTo(el.pricePerNight, el.currency, el.rates);
+					currencyHelper.convertDefaultTo(el.pricePerNight, el.currencyClient, el.rates);
 				el.priceClient = el.pricePerNightClient * el.nrOfNights;
 				el.discountClient = el.discount;
 				el.totalClient = el.priceClient - el.discountClient;
 				el.totalPricePerNightClient = el.totalClient / el.nrOfNights;
-				el.currencyClient = el.currency;
 
 				setAdminPrices(el);
 				el.state = parseInt(el.state, 10);
@@ -44,8 +44,18 @@ define(['helpers/currency', 'helpers/date'], function (currencyHelper, dateHelpe
 		});
 	};
 
+	var setDiscount = function (el, discount) {
+		el.discountClient = discount;
+		el.totalClient = el.priceClient - el.discountClient;
+		el.totalPricePerNightClient = el.totalClient / el.nrOfNights;
+		el.discountAdmin = currencyHelper.convert(el.discountClient, el.currencyClient);
+		el.totalAdmin = el.priceAdmin - el.discountAdmin;
+		el.totalPricePerNightAdmin = el.totalAdmin / el.nrOfNights;
+	};
+
 	return {
 		'loadNewBookings': loadNewBookings,
-		'recalculateAdminPrices': recalculateAdminPrices
+		'recalculateAdminPrices': recalculateAdminPrices,
+		'setDiscount': setDiscount
 	};
 });

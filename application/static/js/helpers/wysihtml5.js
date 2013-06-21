@@ -3,14 +3,17 @@
 /*global wysihtml5ParserRules */
 
 define([
+	'config',
 	'lib/bootstrap-wysihtml5'
-], function () {
+], function (config) {
 	'use strict';
 	return {
 		'renderTextAreas' : function ($context) {
 			$('textarea', $context).each(function (idx, el) {
 					var $el = $(el);
-					$el.wysihtml5({ parserRules : wysihtml5ParserRules });
+					if (config.RENDER_TEXTAREAS) {
+						$el.wysihtml5({ parserRules : wysihtml5ParserRules });
+					}
 				}
 			);
 		},

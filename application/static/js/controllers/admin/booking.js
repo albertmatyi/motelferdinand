@@ -36,6 +36,8 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 	var $tableTemplate = $table.clone();
 
 	var $bookingDetails = $('.booking-details', $bookingsModal);
+	$bookingDetails.body = $('.booking-details-body', $bookingsModal);
+	$bookingDetails.discountInput = $('input[data-bind=discount]', $bookingDetails);
 
 	var $subject = $('#mail-subject', $bookingsModal);
 	var $textarea = $('#booking-textarea', $bookingsModal);
@@ -110,7 +112,7 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 
 	var renderMail = function (action, fetchMailContent) {
 		if (fetchMailContent) {
-			var booking = model.db.booking[$bookingDetails.data('bookingId')];
+			var booking = getSelectedBooking();
 			var user = booking.user;
 			var bookable = model.db.bookable[booking.bookable];
 			progress.show($bookingsModal.body);
@@ -276,6 +278,24 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 		refreshDetails();
 	};
 
+	var getSelectedBooking = function () {
+		return model.db.booking[$bookingDetails.data('bookingId')];
+	};
+
+	var handleDiscountChange = function () {
+		var booking = getSelectedBooking();
+		var discount = parseFloat($bookingDetails.discountInput.val());
+		if (!isNaN(discount)) {
+			bookingModel.setDiscount(booking, discount);
+			$('*[data-bind=discountClient]', $bookingDetails.body).val(booking.discountClient);
+			$('*[data-bind=discountAdmin]', $bookingDetails.body).text(booking.discountAdmin);
+			$('*[data-bind=totalClient]', $bookingDetails.body).text(booking.totalClient);
+			$('*[data-bind=totalAdmin]', $bookingDetails.body).text(booking.totalAdmin);
+			$('*[data-bind=totalPricePerNightClient]', $bookingDetails.body).text(booking.totalPricePerNightClient);
+			$('*[data-bind=totalPricePerNightAdmin]', $bookingDetails.body).text(booking.totalPricePerNightAdmin);
+		}
+	};
+
 	var init = function () {
 		$('.footer-buttons', $bookingsModal.body).each(function (i, fbs) {
 			var $fbs = $(fbs);
@@ -298,6 +318,7 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 		$('#send-message-submit', $bookingsModal).click(sendMessage);
 		$('#close-booking-details', $bookingsModal).click(showList);
 		$('#delete-booking', $bookingsModal).click(askDeleteBooking);
+		$bookingDetails.discountInput.on('keyup', handleDiscountChange).on('change', handleDiscountChange);
 		$('#cancel-mail', $bookingsModal).click(function () {
 			showDetails(); // empty call needed
 		});
