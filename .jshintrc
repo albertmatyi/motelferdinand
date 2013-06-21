@@ -1,7 +1,7 @@
 {
   "asi": false,
   "boss": false,
-  "camelcase": false,
+  "camelcase": true,
   "curly": true,
   "eqeqeq": true,
   "eqnull": false,
@@ -22,7 +22,7 @@
   "quotmark": "single",
   "regexdash": false,
   "shadow": false,
-  "strict": true,
+  "strict": false,
   "sub": false,
   "supernew": false,
   "trailing": true,
