@@ -16,11 +16,12 @@ define([
 	'helpers/date',
 	'elements/progress',
 	'helpers/currency',
+	'helpers/mail',
 	'model/booking',
 	'lib/jquery'
 ],
 function (transp, bookingsDirective, bookingDetailsDirective,
-	i18n, transparency, dialog, adminControls, modal, wysihtml5, date, progress, currencyHelper, bookingModel) {
+	i18n, transparency, dialog, adminControls, modal, wysihtml5, date, progress, currencyHelper, mailHelper, bookingModel) {
 	'use strict';
 
 	var $bookingsButton = $('#adminBookingsButton');
@@ -86,22 +87,6 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 		activate('details');
 	};
 
-	var subst = function (dict, str, prefix) {
-		prefix = prefix || '#';
-		for (var key in dict) {
-			if (dict.hasOwnProperty(key)) {
-				var val = dict[key];
-				if (typeof val === 'object') {
-					str = subst(val, str, prefix + key + '\\.');
-				} else {
-					var regex = new RegExp(prefix + key + '\\b', 'g');
-					str = str.replace(regex, val);
-				}
-			}
-		}
-		return str;
-	};
-
 	var showMailBookingFormFor = function (action, fetchMailContent) {
 		if ($(this).hasClass('disabled')) {
 			return;
@@ -111,31 +96,19 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 
 		$bookingsModal.title.prepend('<span>' + title + '</span><span class="separator"></span>');
 
-		renderMail(action, fetchMailContent);
-
-		activate(action);
-	};
-
-	var renderMail = function (action, fetchMailContent) {
 		if (fetchMailContent) {
-			var booking = getSelectedBooking();
-			var user = booking.user;
-			var bookable = model.db.bookable[booking.bookable];
 			progress.show($bookingsModal.body);
-			$.getJSON('/props/mail.' + action + '.' + user.language + '.body', function (data) {
-				var val = subst({'lang_id': user.language, 'user': user, 'booking': booking, 'bookable': bookable}, data.value);
-
+			mailHelper.render(action, getSelectedBooking(), function (subject, body) {
+				wysihtml5.setValue($textarea, body);
+				$subject.val(subject);
 				progress.hide();
-
-				wysihtml5.setValue($textarea, val);
-			});
-			$.getJSON('/props/mail.' + action + '.' + user.language + '.subject', function (data) {
-				$subject.val(data.value);
 			});
 		} else {
 			wysihtml5.setValue($textarea, '');
 			$subject.val('');
 		}
+
+		activate(action);
 	};
 
 	var acceptBooking = function () {
@@ -248,15 +221,15 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 		dialog.confirm(i18n.translate('Are you sure you wish to delete?'), deleteBooking);
 	};
 
-	var renderBadge = function (new_bookings_nr) {
-		new_bookings_nr = new_bookings_nr ||
+	var renderBadge = function (newBookingNr) {
+		newBookingNr = newBookingNr ||
 			_.reduce(model.bookings, function (sum, el) {
 				return sum + (el.state === 1 ? 1:0);
 			}, 0);
-		if (new_bookings_nr === 0) {
+		if (newBookingNr === 0) {
 			$badge.hide();
 		} else {
-			$badge.text(new_bookings_nr);
+			$badge.text(newBookingNr);
 			$badge.show();
 		}
 	};

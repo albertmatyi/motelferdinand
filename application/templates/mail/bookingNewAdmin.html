@@ -4,17 +4,78 @@
 <table>
 <tbody>
 <tr>
-	<th colspan="2">{{ booking.user.full_name }} </th>
+	<th colspan="2">#user.full_name</th>
 </tr>
 <tr>
-	<td><a href="mailto:{{ booking.user.email }}">{{ booking.user.email }}</a></td>
-	<td>{{ booking.user.phone }}</td>
+	<td><a href="mailto:#user.email">#user.email</a></td>
+	<td>#user.phone</td>
 </tr>
 </tbody>
 </table>
- 
-{% include '/mail/booking.html' %}
-<p>	
+
+<div>
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th colspan="2">
+						<span>Booking details</span>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<i></i> <span>#user.email</span>
+					</td>
+					<td>
+						<i></i> <span>#user.phone</span>
+					</td>
+				</tr>
+				<tr>
+					<td>Bookable</td>
+					<td>#bookable.i18n.title</td>
+				</tr>
+				<tr>
+					<td>Quantity</td>
+					<td>#booking.quantity</td>
+				</tr>
+				<tr>
+					<td>Guests</td>
+					<td>#booking.guests</td>
+				</tr>
+				<tr>
+					<td>Arrival date</td>
+					<td>#booking.start</td>
+				</tr>
+				<tr>
+					<td>Departure date</td>
+					<td>
+						<span>#booking.end</span>
+						<small>
+							( <span>#booking.nrOfNights</span>
+							nights )
+						</small>
+					</td>
+				</tr>
+				<tr>
+					<td>Price</td>
+					<td>
+						<span>#booking.priceClient</span>
+						<span>#booking.currencyClient</span>
+						<small>
+							( <span>#booking.pricePerNightClient</span>
+							<span>#booking.currencyClient</span>
+							Per night )
+						</small>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<p>
 <h5>Please access the application's <a href="http://ferdinandmotel.appspot.com/admin">admin</a> part to accept the reservation <h5>
 ( @ http://ferdinandmotel.appspot.com/admin )
 </p>

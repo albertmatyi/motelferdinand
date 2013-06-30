@@ -183,8 +183,10 @@ D		display correct price
 D			fe
 D				update price
 D				toggle buttons
-			be save
+D			be save
+130630
 		send mail in clients currency
+	edit admin props
 	send message from contact
 
 Z	get the emails right

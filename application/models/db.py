@@ -72,7 +72,7 @@ def migrate(ver):
 
 def init():
     '''
-        Initializes languages and mails. Sets db version to 1
+        Initializes languages and mails.
     '''
 
     for p in prop.PropModel.all():
@@ -121,19 +121,23 @@ def init_mails():
     mails = {
         'accept': {
             'subject': 'Your booking at Ferdinand Motel has been ACCEPTED',
-            'body': load_file('/mail/bookingAcceptedClient.html')
+            'body': load_file('/mail/bookingAcceptedClient.html'),
+            'description': 'The mail the client receives when a booking is accepted'
         },
         'deny': {
             'subject': 'Your booking at Ferdinand Motel has NOT been ACCEPTED',
-            'body': load_file('/mail/bookingDeniedClient.html')
+            'body': load_file('/mail/bookingDeniedClient.html'),
+            'description': 'The mail the client receives when a booking is denied'
         },
         'new_client': {
             'subject': 'You\'ve registered a booking at Ferdinand Motel',
-            'body': load_file('/mail/bookingNewClient.html')
+            'body': load_file('/mail/bookingNewClient.html'),
+            'description': 'The mail the client receives when a booking is created'
         },
         'new_admin': {
             'subject': 'A new booking has been registered at Ferdinand Motel',
-            'body': load_file('/mail/bookingNewAdmin.html')
+            'body': load_file('/mail/bookingNewAdmin.html'),
+            'description': 'The mail the admin receives when a booking is created'
         }
     }
 
@@ -152,10 +156,16 @@ def init_langs():
     langs = {}
     for lang_id in initial_lang_ids:
         langs[lang_id] = si18n.translate('LanguageName', lang_id)
-    PropModel(kkey='currencies', value=json.dumps(['EUR', 'RON', 'HUF'])).put()
-    PropModel(kkey='currency_default', value='RON').put()
+    PropModel(kkey='currencies',
+              value=json.dumps(['EUR', 'RON', 'HUF']),
+              description='The currencies used in the application').put()
+    PropModel(kkey='currency_default',
+              value='RON',
+              description='The default currency').put()
     prop.languages = langs
-    PropModel(kkey='languages', value=json.dumps(langs)).put()
+    PropModel(kkey='languages',
+              value=json.dumps(langs),
+              description='The languages used in the application').put()
     pass
 
 

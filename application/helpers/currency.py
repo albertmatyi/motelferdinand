@@ -31,9 +31,10 @@ def get_rates():
     return rates
 
 
-def convert(val, currency=None):
+def convert(val, currency=None, rates=None):
     currency = currency if currency is not None else get_selected_currency()
-    rate = get_rates()[currency]
+    rates = rates if rates is not None else get_rates()
+    rate = rates[currency]
     return val / rate['val'] * rate['multiplier']
 
 

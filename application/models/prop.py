@@ -6,6 +6,7 @@ import json
 class PropModel(AbstractModel):
     kkey = db.StringProperty(required=True, default="")
     value = db.TextProperty(required=True, default="")
+    description = db.TextProperty(required=True, default=" ")
 
 all_props = {}
 for p in PropModel.all():

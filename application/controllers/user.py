@@ -3,12 +3,12 @@ Created on Jul 26, 2012
 
 @author: matyas
 '''
-from application import app, APP_MAIL_SENDER
+from application import app
 from google.appengine.api import mail
 from flask.globals import request
 from application.decorators import admin_required
 from application.models.user import UserModel
-from application.helpers import si18n
+from application.helpers import si18n, mail as mail_helper
 import json
 
 
@@ -21,7 +21,7 @@ def send_mail(entity_id):
     # To client
     message = mail.EmailMessage(
         sender=si18n.translate('Ferdinand Motel') +
-        '<' + APP_MAIL_SENDER + '>',
+        '<' + mail_helper.get_sender() + '>',
         subject=mail_data['subject']
     )
 

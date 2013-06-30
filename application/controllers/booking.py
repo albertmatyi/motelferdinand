@@ -3,16 +3,15 @@ Created on Jul 26, 2012
 
 @author: matyas
 '''
-from application import app, APP_MAIL_SENDER, APP_ADMIN_MAILS
-from application.models.booking import BookingModel, BookingDictBuilder
+from application import app
+from application.models.booking import BookingModel
 from application.models.bookable import BookableModel
 from application.models.user import UserModel
 from application.models.commons import BookingState
-from application.helpers import si18n
+from application.helpers import si18n, mail as mail_helper
 from flask.globals import request
 from google.appengine.api import mail
 from application.decorators import admin_required
-from flask.templating import render_template, render_template_string
 from application.models.converters import date
 from datetime import timedelta
 from application.helpers import currency as currency_helper
@@ -37,7 +36,7 @@ def bookings_new():
     map_booking_data(bk_data, booking)
     booking.put()
 
-    send_new_booking_mail(booking)
+    mail_helper.send_mails_for_new(booking)
     return '{ "message": "Booking successfully saved!' +\
         ' Stand by for a confirmation email." , "success" : true }'
     pass
@@ -58,6 +57,83 @@ def save_booking():
 
     return '{ "message": "Booking successfully saved!", "success" : true }'
     pass
+
+
+@app.route('/admin/booking/valid/<int:booking_id>', methods=['GET'])
+def booking_is_valid(booking_id):
+    booking = BookingModel.get_by_id(booking_id)
+
+    return is_valid_quantity_for_range(
+        booking.bookable,
+        booking.start,
+        booking.end,
+        booking.quantity)
+
+
+@app.route('/admin/bookings/accept/<int:entity_id>', methods=['POST'])
+@admin_required
+def accept_booking(entity_id):
+    return set_state_and_mail(
+        entity_id,
+        BookingState.ACCEPTED,
+        check_overbooking)
+
+
+@app.route('/admin/bookings/deny/<int:entity_id>', methods=['POST'])
+@admin_required
+def deny_booking(entity_id):
+    return set_state_and_mail(entity_id, BookingState.DENIED)
+
+
+@app.route('/admin/bookings/paid/<int:entity_id>', methods=['POST'])
+@admin_required
+def mark_as_paid(entity_id):
+    booking = set_state(entity_id, BookingState.PAID)
+    return '{ "message": "' + si18n.translate('Success') + '", ' +\
+        '"state": "' + str(booking.state) + '"}'
+
+
+@app.route('/booking-mail/<typ>/<int:entity_id>', methods=['GET'])
+@admin_required
+def booking_mail(typ, entity_id):
+    return mail_helper.render_mail_template(
+        typ,
+        mail_helper.build_booking_info(long(entity_id))
+    )[1]
+    pass
+
+
+@app.route('/admin/bookings/<int:entity_id>', methods=['POST', 'DELETE'])
+@admin_required
+def admin_delete_booking(entity_id):
+    if request.method == 'DELETE' or request.values['_method'] == 'DELETE':
+        BookingModel.get_by_id(entity_id).delete()
+        return '{ "message" : "' +\
+            si18n.translate('Successfully deleted') + '" }'
+    return '{ "message" : "' +\
+        si18n.translate('Element does not exist') + '" }'
+
+
+@app.route("/admin/bookings/", methods=["GET"])
+@admin_required
+def get_bookings():
+    bookings = [e.to_dict(True) for e in BookingModel.all()]
+    return json.dumps(bookings)
+
+
+@app.route("/admin/bookings/", methods=["POST"])
+@admin_required
+def update_booking():
+    # pdb.set_trace()
+    obj = transform(json.loads(request.form['data']))
+    booking = BookingModel.get_by_id(long(obj['id']))
+    del obj['user']
+    booking.populate(obj).put()
+
+    return '{ "modified" : "' +\
+        booking.to_dict()['modified'] +\
+        '", "message" : "' + \
+        si18n.translate('Modified successfully') + '"}'
 
 
 def transform(bkng):
@@ -95,17 +171,6 @@ def validate_booking(booking):
         booking['quantity'])
     if not valid:
         raise Exception('Invalid data.')
-
-
-@app.route('/admin/booking/valid/<int:booking_id>', methods=['GET'])
-def booking_is_valid(booking_id):
-    booking = BookingModel.get_by_id(booking_id)
-
-    return is_valid_quantity_for_range(
-        booking.bookable,
-        booking.start,
-        booking.end,
-        booking.quantity)
 
 
 def is_valid_quantity_for_range(bookable, start, end, quantity):
@@ -164,39 +229,6 @@ def map_price(bookingForm, booking):
     booking.rates = json.dumps(currency_helper.get_rates())
 
 
-def send_new_booking_mail(booking):
-    subject = 'Your booking request at Ferdinand Motel '
-    booking_dict = BookingDictBuilder(booking)\
-        .with_user()\
-        .with_bookable()\
-        .build()
-    # To client
-    message = mail.EmailMessage(sender=si18n.translate('Ferdinand Motel') +
-                                '<' + APP_MAIL_SENDER + '>',
-                                subject=render_template_string(
-                                    subject,
-                                    booking=booking_dict)
-                                )
-
-    message.to = booking.user.full_name + '<' + booking.user.email + '>'
-    message.html = render_template(
-        '/mail/bookingNewClient.html',
-        booking=booking_dict
-    )
-    message.send()
-
-    # To admin
-    subject = 'A new reservation has been made - Ferdinand Motel'
-    message.subject = render_template_string(subject, booking=booking_dict)
-    message.to = ', '.join(APP_ADMIN_MAILS)
-    message.html = render_template(
-        '/mail/bookingNewAdmin.html',
-        booking=booking_dict
-    )
-    message.send()
-    pass
-
-
 def check_overbooking(booking):
     if not is_valid_quantity_for_range(
             booking.bookable,
@@ -206,29 +238,6 @@ def check_overbooking(booking):
         raise Exception(si18n.translate('Range is overbooked'))
     else:
         raise Exception('OK')
-
-
-@app.route('/admin/bookings/accept/<int:entity_id>', methods=['POST'])
-@admin_required
-def accept_booking(entity_id):
-    return set_state_and_mail(
-        entity_id,
-        BookingState.ACCEPTED,
-        check_overbooking)
-
-
-@app.route('/admin/bookings/deny/<int:entity_id>', methods=['POST'])
-@admin_required
-def deny_booking(entity_id):
-    return set_state_and_mail(entity_id, BookingState.DENIED)
-
-
-@app.route('/admin/bookings/paid/<int:entity_id>', methods=['POST'])
-@admin_required
-def mark_as_paid(entity_id):
-    booking = set_state(entity_id, BookingState.PAID)
-    return '{ "message": "' + si18n.translate('Success') + '", ' +\
-        '"state": "' + str(booking.state) + '"}'
 
 
 def set_state_and_mail(entity_id, state, validator=lambda b: None):
@@ -260,7 +269,7 @@ def send_acceptance_mail(booking):
     # To client
     message = mail.EmailMessage(
         sender=si18n.translate('Ferdinand Motel') +
-        '<' + APP_MAIL_SENDER + '>',
+        '<' + mail_helper.get_sender() + '>',
         subject=mail_data['subject']
     )
 
@@ -268,56 +277,6 @@ def send_acceptance_mail(booking):
     message.html = mail_data['body']
     message.send()
     return True
-
-
-@app.route('/booking-mail/<int:entity_id>', methods=['GET'])
-@admin_required
-def booking_mail(entity_id):
-    # pdb.set_trace()
-    # mail.send(usr.email, 'BOOKING_SUBJ', '/bookingClient.html', booking);
-
-    body = '/mail/bookingNewClient.html'
-    body = '/mail/bookingNewAdmin.html'
-    body = '/mail/bookingAcceptedClient.html'
-    booking = BookingDictBuilder(long(entity_id))\
-        .with_user()\
-        .with_bookable()\
-        .build()
-    return render_template(body, booking=booking)
-    pass
-
-
-@app.route('/admin/bookings/<int:entity_id>', methods=['POST', 'DELETE'])
-@admin_required
-def admin_delete_booking(entity_id):
-    if request.method == 'DELETE' or request.values['_method'] == 'DELETE':
-        BookingModel.get_by_id(entity_id).delete()
-        return '{ "message" : "' +\
-            si18n.translate('Successfully deleted') + '" }'
-    return '{ "message" : "' +\
-        si18n.translate('Element does not exist') + '" }'
-
-
-@app.route("/admin/bookings/", methods=["GET"])
-@admin_required
-def get_bookings():
-    bookings = [e.to_dict(True) for e in BookingModel.all()]
-    return json.dumps(bookings)
-
-
-@app.route("/admin/bookings/", methods=["POST"])
-@admin_required
-def update_booking():
-    # pdb.set_trace()
-    obj = transform(json.loads(request.form['data']))
-    booking = BookingModel.get_by_id(long(obj['id']))
-    del obj['user']
-    booking.populate(obj).put()
-
-    return '{ "modified" : "' +\
-        booking.to_dict()['modified'] +\
-        '", "message" : "' + \
-        si18n.translate('Modified successfully') + '"}'
 
 
 def get_or_create_user(user):
