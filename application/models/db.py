@@ -122,32 +122,34 @@ def init_mails():
         'accept': {
             'subject': 'Your booking at Ferdinand Motel has been ACCEPTED',
             'body': load_file('/mail/bookingAcceptedClient.html'),
-            'description': 'The mail the client receives when a booking is accepted'
+            'description': 'the mail the client receives when a booking is accepted'
         },
         'deny': {
             'subject': 'Your booking at Ferdinand Motel has NOT been ACCEPTED',
             'body': load_file('/mail/bookingDeniedClient.html'),
-            'description': 'The mail the client receives when a booking is denied'
+            'description': 'the mail the client receives when a booking is denied'
         },
         'new_client': {
             'subject': 'You\'ve registered a booking at Ferdinand Motel',
             'body': load_file('/mail/bookingNewClient.html'),
-            'description': 'The mail the client receives when a booking is created'
+            'description': 'the mail the client receives when a booking is created'
         },
         'new_admin': {
             'subject': 'A new booking has been registered at Ferdinand Motel',
             'body': load_file('/mail/bookingNewAdmin.html'),
-            'description': 'The mail the admin receives when a booking is created'
+            'description': 'the mail the admin receives when a booking is created'
         }
     }
 
     for lang_id in prop.languages:
         for mail_type in mails:
             PropModel(kkey='mail.' + mail_type + '.' + lang_id + '.body',
-                      value=mails[mail_type]['body'])\
+                      value=mails[mail_type]['body'],
+                      description=lang_id + ' body ' + mails[mail_type]['description'])\
                 .put()
             PropModel(kkey='mail.' + mail_type + '.' + lang_id + '.subject',
-                      value=mails[mail_type]['subject'])\
+                      value=mails[mail_type]['subject'],
+                      description=lang_id + ' subject ' + mails[mail_type]['description'])\
                 .put()
 
 

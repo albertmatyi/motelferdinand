@@ -9,7 +9,7 @@ define([
 	'use strict';
 	return {
 		'renderTextAreas' : function ($context) {
-			$('textarea', $context).each(function (idx, el) {
+			$('textarea.rich', $context).each(function (idx, el) {
 					var $el = $(el);
 					if (config.RENDER_TEXTEDITOR) {
 						$el.wysihtml5({ parserRules : wysihtml5ParserRules });

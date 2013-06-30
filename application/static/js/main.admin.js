@@ -63,11 +63,12 @@ define('main',
 	'controllers/admin/category',
 	'controllers/admin/content',
 	'controllers/admin/bookable',
-	'controllers/admin/booking'
+	'controllers/admin/booking',
+	'controllers/admin/prop'
 ],
 function (us, config, test, social, modal, modelBase,
 	categoryView, languageView, category, bookable, booking,
-	categoryAdmin, contentAdmin, bookableAdmin, bookingAdmin) {
+	categoryAdmin, contentAdmin, bookableAdmin, bookingAdmin, settingsAdmin) {
 	'use strict';
 	categoryView.render(model.categories);
 	category.init();
@@ -82,8 +83,10 @@ function (us, config, test, social, modal, modelBase,
 	contentAdmin.init();
 	bookableAdmin.init();
 	bookingAdmin.init();
+	settingsAdmin.init();
 	if (!PRODUCTION) {
-		bookingAdmin.showBookings();
+		settingsAdmin.show();
+		// bookingAdmin.showBookings();
 	}
 //close the function & define
 });

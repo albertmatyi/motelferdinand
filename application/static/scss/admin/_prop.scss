@@ -1,0 +1,15 @@
+#adminSettingsModal {
+	.table{
+		tbody {
+			tr {
+				cursor: pointer;
+			}
+			.prop-editor {
+				cursor: default;
+			}
+		}
+		tfoot {
+			display: none;
+		}
+	}
+}

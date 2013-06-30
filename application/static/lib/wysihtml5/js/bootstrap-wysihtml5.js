@@ -33,7 +33,7 @@ define(
                          "</div>" +
                      "</li>",
      "link": "<li>" +
-                     "<div class='bootstrap-wysihtml5-insert-link-modal modal hide fade'>" +
+                     "<div class='bootstrap-wysihtml5-insert-link-modal modal hide'>" +
                          "<div class='modal-header'>" +
                              "<a class='close' data-dismiss='modal'>&times;</a>" +
                              "<h3>Insert Link</h3>" +
@@ -49,7 +49,7 @@ define(
                      "<a class='btn' data-wysihtml5-command='createLink' title='Link'><i class='icon-share'></i></a>" +
                  "</li>",
       "image": "<li>" +
-                         "<div class='bootstrap-wysihtml5-insert-image-modal modal hide fade'>" +
+                         "<div class='bootstrap-wysihtml5-insert-image-modal modal hide'>" +
                              "<div class='modal-header'>" +
                                  "<a class='close' data-dismiss='modal'>&times;</a>" +
                                  "<h3>Insert Image</h3>" +
@@ -65,7 +65,7 @@ define(
                          "<a class='btn' data-wysihtml5-command='insertImage' title='Insert image'><i class='icon-picture'></i></a>" +
                      "</li>",
       "insertHTML": "<li>" +
-                     "<div class='bootstrap-wysihtml5-insert-html-modal modal hide fade'>" +
+                     "<div class='bootstrap-wysihtml5-insert-html-modal modal hide'>" +
                          "<div class='modal-header'>" +
                              "<a class='close' data-dismiss='modal'>&times;</a>" +
                              "<h3>Embed Html</h3>" +
@@ -81,7 +81,7 @@ define(
                      "<a class='btn' data-wysihtml5-command='insertHTML' title='Embed HTML'><i class='icon-chevron-left'></i><i class='icon-chevron-right'></i></a>" +
                  "</li>",
       "insertGallery": '<li class="picaslideButton">' +
-                 '<div class="bootstrap-wysihtml5-insert-gallery-modal modal hide fade">' +
+                 '<div class="bootstrap-wysihtml5-insert-gallery-modal modal hide">' +
                      '<div class="modal-header">' +
                          '<a class="close" data-dismiss="modal">&times;</a>' +
                          '<h3>Insert Picasa album</h3>' +

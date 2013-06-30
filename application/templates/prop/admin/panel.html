@@ -1,0 +1,41 @@
+{% set id = 'adminSettings' %}
+{% set title = __('Settings') %}
+{% set big_modal = True %}
+{% extends "elements/modal.html" %}
+{% block title_content %}
+{% endblock %}
+
+{% block content %}
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th> Key </th>
+			<th> Description </th>
+			<th> Value </th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="key" data-bind="kkey"></td>
+			<td class="description" data-bind="description"></td>
+			<td class="value" data-bind="shortValue"></td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr class="prop-editor" >
+			<td colspan="3">
+					<textarea></textarea>
+				<button class="btn btn-primary" type="button">
+					{{ __('Save') }}
+				</button>
+				<button class="btn btn-link" type="button">
+					{{ __('Cancel') }}
+				</button>
+			</td>
+		</tr>
+	</tfoot>
+</table>
+{% endblock %}
+
+{% block footer_content %}
+{% endblock %}
