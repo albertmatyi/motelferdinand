@@ -185,11 +185,11 @@ D				update price
 D				toggle buttons
 D			be save
 130630
-		send mail in clients currency
+D		send mail in clients currency
+D	generate correct i18ned mails
 	edit admin props
 	send message from contact
 
-Z	get the emails right
 
 	try http://imperavi.com/redactor/
 		picasa albums
