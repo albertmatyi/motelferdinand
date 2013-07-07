@@ -1,0 +1,48 @@
+<label class="control-label">{{ __('Price per night') }}</label>
+<table class="table prices">
+	<thead>
+		<tr>
+			<th class="values"> 1 {{ __('Guest(s)') }} </th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="values">
+				<div class="input-append">
+					<input type="text" class="price" name="prices.values"/>
+					<span class="add-on currency">$$$</span>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<label class="control-label">{{ __('Special prices') }}
+	<button type="button" class="btn btn-success special-prices-add-btn">
+		{{ __('Add') }} <i class="icon-plus icon-white"></i>
+	</button>
+</label>
+<table class="table special-prices">
+	<thead>
+		<tr>
+			<th class="delete">  </th>
+			<th class="start"> {{ __('Start') }} </th>
+			<th class="end"> {{ __('End') }} </th>
+			<th class="values"> 1 {{ __('Guest(s)') }} </th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<button class="btn btn-danger special-prices-remove-btn" title="{{ __('Remove') }}"><i class="icon-white icon-remove"></i></button>
+			</td>
+			<td><input type="text" class="date" name="prices.special.start" placeholder="dd-mm-yyyy" /></td>
+			<td><input type="text" class="date" name="prices.special.end" placeholder="dd-mm-yyyy" /></td>
+			<td class="values">
+				<div class="input-append">
+					<input type="text" type="text" name="prices.special.values" class="price"/>
+					<span class="add-on currency">$$$</span>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>

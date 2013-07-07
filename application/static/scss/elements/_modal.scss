@@ -9,19 +9,29 @@ $modalFooterHeight: 32px;
 
 	& > .modal-header{
 		height: $modalHeaderHeight;
-		overflow-y: hidden;
 		h3,ul{
 			float: left;
 		}
 		ul{
 			margin-left: 2em;
 		}
-		.alert{
+		.notifications {
 			float: left;
-			margin-left: 3em;
+			height: 100%;
+			overflow-y: hidden;
+			position: relative;
+			top: 4px;
+			.alert{
+				float: left;
+				margin-left: .3em;
+				padding: 2px 30px 2px 8px;
+			}
 		}
+
 		.move-to-category {
 			float: right;
+			height: 0;
+
 		}
 		.close {
 			margin-left: 2em;

@@ -13,22 +13,12 @@ define([
 	'view/bookable',
 	'controllers/booking',
 	'elements/modal',
-	'controllers/admin/commons'
+	'view/directives/common',
+	'controllers/admin/commons',
+	'controllers/admin/bookable_prices'
 ],
-function (jq, i18n, adminControls, bookableDirective, transparency, common, view, booking, modal, adminCommons) {
+function (jq, i18n, adminControls, bookableDirective, transparency, common, view, booking, modal, commonDirectives, adminCommons, bookablePrices) {
 	'use strict';
-
-	var PRICES_SELECTOR = 'tbody input[name=prices\\.values]';
-	var optionDirective = {
-		'value' : {
-			'text' : function () {
-				return this.value;
-			},
-			'value' : function () {
-				return this.value;
-			}
-		}
-	};
 
 	var $bookableTemplate = $('.bookables').clone();
 
@@ -37,12 +27,6 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 	var $formModal = $('#bookableEditFormModal');
 
 	var $moveToCategoryElement = $('.move-to-category', $formModal);
-
-	var $pricesTable = $('.prices.table', $formModal);
-
-	var $priceCell = $('tbody td.values', $pricesTable).clone();
-
-	var $priceHCell = $('thead th.values', $pricesTable).clone();
 
 	i18n.renderLanguageTabs($formModal, TAB_ID_BASE);
 
@@ -56,7 +40,7 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 	};
 
 	var editCallback = function ($form, entity) {
-		_populatePrices(entity.prices);
+		bookablePrices.populate(entity.prices);
 		adminCommons.initMoveToCategory($moveToCategoryElement, entity, 'bookable', function (categoryId) {
 			var $catContents = $('#Category' + categoryId + '	.bookables');
 			$('#Bookable' + entity.id).appendTo($catContents);
@@ -117,14 +101,9 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 		event.preventDefault();
 		event.stopPropagation();
 		var $form = $('form', $formModal);
-		i18n.submitForm($form, '/admin/bookables/', saveSuccess, saveFail, formatPrices);
+		i18n.submitForm($form, '/admin/bookables/', saveSuccess, saveFail, bookablePrices.format);
 	});
 
-	var formatPrices = function (data) {
-		delete data['prices.values'];
-		data.prices = gatherPrices();
-		return data;
-	};
 
 	var initAddButton = function ($context) {
 		if (typeof ($context) === 'undefined') {
@@ -145,7 +124,7 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 	var addOptions = function ($el, n) {
 		$el.render(
 			_.range(1, n + 1),
-			optionDirective
+			commonDirectives.option
 		);
 	};
 
@@ -158,9 +137,7 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 		var $el = $('select[name=places]', $formModal);
 		addOptions($el, 10);
 		$el.on('change', function () {
-			var prices = gatherPrices();
-			renderPrices($el.val());
-			_populatePrices(prices);
+			bookablePrices.setForPlaces($el.val());
 		});
 	};
 
@@ -168,50 +145,7 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 	var initForm = function () {
 		initQuantitySelect();
 		initPlacesSelect();
-		$('.currency', $priceCell).text(model.currency['default']);
-	};
-
-	var renderPrices = function (n) {
-		$('tr', $pricesTable).each(function (idx, tr) {
-			var $tr = $(tr);
-			$('.values', tr).remove();
-			var els = [];
-			for (var i = n; i > 0; i -= 1) {
-				var c;
-				if (idx === 0) {
-					c = $priceHCell.clone();
-					c.text(c.text().replace(/\d+/, i));
-				} else {
-					c = $priceCell.clone();
-					c.attr('name', c.attr('name'));
-				}
-				els.unshift(c);
-			}
-			$tr.append(els);
-		});
-	};
-
-	var _populatePrices = function (prices) {
-		if (!prices || !prices.values) {
-			return;
-		}
-		var inputs = $(PRICES_SELECTOR, $pricesTable);
-		for (var i = inputs.length - 1; i >= 0; i -= 1) {
-			var input = inputs[i];
-			if (prices.values.length > i) {
-				$(input).val(prices.values[i]);
-			}
-		}
-	};
-
-	var gatherPrices = function () {
-		var prices = {};
-		prices.values = $(PRICES_SELECTOR, $pricesTable)
-			.serializeObject()['prices.values'];
-		if (typeof prices.values === 'string') {
-			prices.values = [prices.values];
-		}
-		return prices;
+		bookablePrices.init();
 	};
 
 	return {

@@ -1,5 +1,29 @@
-.prices.table { 
-	input {
+.prices.table, .special-prices {
+	input.price {
     	width: 50px;
+    	text-align: right;
+	}
+}
+
+.special-prices {
+	.special-prices-remove-btn {
+		padding: 0;
+		height: 1.5em;
+		width: 1.5em;
+	}
+	.date {
+		width: 7em;
+	}
+}
+
+#bookableEditFormModal {
+	.picaslideButton {
+		display: none;
+	}
+}
+
+.wysihtml5-toolbar {
+	.editHtmlButton {
+		display: none;
 	}
 }

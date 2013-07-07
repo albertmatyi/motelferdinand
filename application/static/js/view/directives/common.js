@@ -43,6 +43,16 @@ function () {
 				}
 			}
 			return nuDir;
+		},
+		'option': {
+			'value' : {
+				'text' : function () {
+					return this.value;
+				},
+				'value' : function () {
+					return this.value;
+				}
+			}
 		}
 	};
 });

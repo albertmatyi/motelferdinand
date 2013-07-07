@@ -318,7 +318,7 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 			'url': '/admin/bookings/',
 			'data': {data: JSON.stringify(toSend)},
 			'success': function () {
-				modal.displayNotification($bookingsModal, i18n.translate('Saved', 'success'));
+				modal.displayNotification($bookingsModal, i18n.translate('Saved'), 'success');
 				var booking = getSelectedBooking();
 				for (var k in toSend) {
 					if (booking.hasOwnProperty(k)) {

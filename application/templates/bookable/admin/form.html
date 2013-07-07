@@ -3,7 +3,7 @@
 
 {% extends 'base/admin/form.html' %}
 {% block i18n_inputs %}
-<div class="control-group">
+<!-- <div class="control-group">
 	<label class="control-label">{{ __('Title') }}</label>
 	<input name="title" type="text" />
 </div>
@@ -11,10 +11,13 @@
 	<label class="control-label">{{ __('Description') }}</label>
 	<textarea name="description" class="rich" ></textarea>
 </div>
-{% endblock %}
+ -->{% endblock %}
 
 {% block inputs %}
 <input name="category" type="hidden" />
+<div class="control-group">
+	{% include 'bookable/admin/prices.html' %}
+</div>
 <div class="control-group">
 	<label class="control-label">{{ __('Album url') }}</label>
 	<input name="album_url" type="text" />
@@ -30,26 +33,6 @@
 	<select name="places">
 		<option data-bind="value">1</option>
 	</select>
-</div>
-<div class="control-group">
-	<label class="control-label">{{ __('Price per night') }}</label>
-	<table class="table prices">
-		<thead>
-			<tr>
-				<th class="values"> 1 {{ __('Guest(s)') }} </th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td class="values">
-					<div class="input-append">
-						<input type="text" name="prices.values"/>
-						<span class="add-on currency">$$$</span>
-					</div>
-				</td>
-			</tr>
-		</tbody>
-	</table>
 </div>
 <div class="control-group">
 	<label class="control-label">

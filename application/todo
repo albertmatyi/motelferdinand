@@ -188,8 +188,14 @@ D			be save
 D		send mail in clients currency
 D	generate correct i18ned mails
 D	edit admin props
+130707
+	add special prices for date ranges
+	caching
+	fixed booking button
+	booking retrieval
+		sorting
+		old bookings in other page
 	send message from contact
-
 
 	try http://imperavi.com/redactor/
 		picasa albums
@@ -199,13 +205,8 @@ D	edit admin props
 		delete
 		accept
 		move
+
 	fullscreen image quality
-	caching
-	add special prices for date ranges
-	fixed booking button
-	booking retrieval
-		sorting
-		old bookings in other page
 	feedback
 		add one
 		notify

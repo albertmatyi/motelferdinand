@@ -200,6 +200,11 @@ translations = {
         'Weight explanation': u'The heavier the content, the lower it will appear',
         'Description': u'Description',
         'Title': u'Title',
+        'Special prices': u'Special prices',
+        'Add': u'Add',
+        'Start': u'Start',
+        'End': u'End',
+        'Remove': u'Remove',
 
         #Footer
         'Contact us': u'Contact us'
@@ -329,6 +334,11 @@ translations = {
         'Weight': u'Súly',
         'Weight explanation': u'Minél súlyosabb a tartalom, annál lennebb jelenik meg.',
         'Title': u'Cím',
+        'Special prices': u'Speciális árak',
+        'Add': u'Hozzáad',
+        'Start': u'Kezdet',
+        'End': u'Vég',
+        'Remove': u'Töröl',
 
         #Footer
         'Contact us': u'Lépj kapcsolatba'
@@ -458,6 +468,11 @@ translations = {
         'Weight': u'Greutate',
         'Weight explanation': u'Cu cât mai greu este conținutul, cu atât apare mai în josul paginii.',
         'Title': u'Titlu',
+        'Special prices': u'Special prices',
+        'Add': u'Adaugă',
+        'Start': u'Început',
+        'End': u'Sfârșit',
+        'End': u'Șterge',
 
         #Footer
         'Contact us': u'Contactează-ne'
