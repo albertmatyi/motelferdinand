@@ -3,7 +3,7 @@
 
 define(
 [ 'lib/jquery' ],
-function (jq) {
+function () {
 	'use strict';
 	var createNotification = function (str, type, $context) {
 		var $notification = $('<div class="alert ' + (type ? 'alert-' + type : '') + '">' +

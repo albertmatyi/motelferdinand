@@ -2,6 +2,7 @@
 
 div.picaslide {
 	padding: 0;
+	margin-bottom: 1.5em;
 	.fullscreen-btn{
 		padding: 2px 4px;
 		position: relative;
@@ -19,7 +20,7 @@ div.picaslide {
 	ul.picaslide-pagination {
 		float: right;
 		height: 0;
-		position: relative; 
+		position: relative;
 		top: 0px;
 		padding: 0;
 		margin: 0;
@@ -38,9 +39,9 @@ div.picaslide {
 				background: #000000;
 			}
 			&> a{
-				line-height: 0; 
+				line-height: 0;
 				font-size: 0;
-				color: transparent; 
+				color: transparent;
 				border: none;
 				display: block;
 				height: 100%;

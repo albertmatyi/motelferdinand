@@ -13,7 +13,7 @@ function (fixit) {
 	var scrollToAnchor = function (href) {
 		var $cat = $(href);
 		var scrollF = function () {
-			var os = $cat.offset()
+			var os = $cat.offset();
 			if (!os) {
 				setTimeout(scrollF, 250);
 			} else {

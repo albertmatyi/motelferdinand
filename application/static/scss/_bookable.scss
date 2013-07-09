@@ -11,6 +11,9 @@
 			padding-left: $contentPadding;
 			padding-right: $contentPadding;
 		}
+		.bookable-description {
+			list-style-position: inside;
+		}
 		.picaslide {
 			float: left;
 			margin-right: 1em;

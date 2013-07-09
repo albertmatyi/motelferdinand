@@ -1,5 +1,6 @@
 /*global define */
-define(['lib/jquery'], function (jquery) {
+
+define(['lib/jquery'], function () {
 	'use strict';
 	return {
 		'confirmation' : { 'ok' : '#dialogModal .modal-footer .btn-primary' },

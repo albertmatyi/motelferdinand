@@ -2,9 +2,9 @@
 	 <div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		<h3 id="{{ id }}ModalTitle" data-bind="modal-title">{{ title }}</h3>
-		<div class="notifications"></div>
 		{% block title_content %}
 		{% endblock %}
+		<div class="notifications"></div>
 	</div>
 	<div class="modal-body" data-bind="modal-body">
 		{% block content %}

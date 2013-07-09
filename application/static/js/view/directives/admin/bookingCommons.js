@@ -8,9 +8,9 @@ define(['helpers/i18n', 'lib/jquery'], function (i18n) {
 	var STATE_TEXT = ['none', i18n.translate('New'), i18n.translate('Denied'), i18n.translate('Accepted'), i18n.translate('Paid')];
 
 	var removeClasses = function (cls, classes) {
-		for (var i = classes.length - 1; i >= 0; i--) {
+		for (var i = classes.length - 1; i >= 0; i -= 1) {
 			cls = cls.replace(classes[i], '');
-		};
+		}
 		return cls;
 	};
 

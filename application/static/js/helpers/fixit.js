@@ -38,6 +38,7 @@ function () {
 		var y = $(document).scrollTop();
 		var lobjs = OBJECTS;
 		var viewportH = $(window).height();
+		var currentContainerIdx = 0;
 		for (var i = lobjs.length - 1; i >= 0; i -= 1) {
 			var $el = lobjs[i];
 			var $container = $el.parent;
@@ -63,6 +64,7 @@ function () {
 				} else { // el should be at the beginning of the container
 					top = containerTop;
 				}
+				currentContainerIdx = i;
 			}
 			$el.css({
 				'position': pos,
@@ -70,6 +72,7 @@ function () {
 			});
 			// $el.offset({'top': top});
 		}
+		return currentContainerIdx;
 	};
 	return {
 		'setup': function ($objs) {
@@ -83,7 +86,8 @@ function () {
 
 			OBJECTS = arr;
 			$(window).scroll(scrollChanged);
-			scrollChanged();
+			var curIdx = scrollChanged();
+			$('body').css('background-color', 'rgb(' + getColorFor(curIdx, 0).join(', ') + ')');
 		}
 	};
 });

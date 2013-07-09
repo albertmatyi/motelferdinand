@@ -6,7 +6,7 @@ define(
 	'lib/jquery',
 	'lib/transparency'
 ],
-function (jq, transparency) {
+function () {
 	'use strict';
 	$('body').append('<div id="transparencyRenderArea" style="display:none;"></div>');
 	var $renderArea = $('#transparencyRenderArea');

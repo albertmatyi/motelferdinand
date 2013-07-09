@@ -2,8 +2,9 @@
 /*global $ */
 /*global window */
 
-define(['lib/jquery'],
-	function (jq) {
+define([
+	'lib/jquery'
+], function () {
 	'use strict';
 	var $fsContext = $('#fullscreen-image');
 
@@ -40,7 +41,7 @@ define(['lib/jquery'],
 
 	/**
 	 * Shows the images in a fullscreen overlay
-	 * 
+	 *
 	 * @param imgs The array of images {title: , description: , url: }
 	 * @param startIndex
 	 */

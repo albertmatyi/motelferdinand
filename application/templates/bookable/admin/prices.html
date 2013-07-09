@@ -24,9 +24,10 @@
 <table class="table special-prices">
 	<thead>
 		<tr>
-			<th class="delete">  </th>
+			<th class="remove">  </th>
 			<th class="start"> {{ __('Start') }} </th>
 			<th class="end"> {{ __('End') }} </th>
+			<th class="repeat"> {{ __('Repeat') }} </th>
 			<th class="values"> 1 {{ __('Guest(s)') }} </th>
 		</tr>
 	</thead>
@@ -37,9 +38,14 @@
 			</td>
 			<td><input type="text" class="date" name="prices.special.start" placeholder="dd-mm-yyyy" /></td>
 			<td><input type="text" class="date" name="prices.special.end" placeholder="dd-mm-yyyy" /></td>
+			<td>
+				<select class="repeat">
+					<option value="" data-bind="value">
+				</select>
+			</td>
 			<td class="values">
 				<div class="input-append">
-					<input type="text" type="text" name="prices.special.values" class="price"/>
+					<input type="text" name="prices.special.values" class="price"/>
 					<span class="add-on currency">$$$</span>
 				</div>
 			</td>

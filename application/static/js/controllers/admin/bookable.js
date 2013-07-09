@@ -97,11 +97,15 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 		modal.displayNotification($formModal, txt, 'error');
 	};
 
+	var format = function (data) {
+		return bookablePrices.format(data);
+	};
+
 	$('#submitBookableEditForm').click(function (event) {
 		event.preventDefault();
 		event.stopPropagation();
 		var $form = $('form', $formModal);
-		i18n.submitForm($form, '/admin/bookables/', saveSuccess, saveFail, bookablePrices.format);
+		i18n.submitForm($form, '/admin/bookables/', saveSuccess, saveFail, format);
 	});
 
 

@@ -205,6 +205,7 @@ translations = {
         'Start': u'Start',
         'End': u'End',
         'Remove': u'Remove',
+        'Repeat': u'Repeat',
 
         #Footer
         'Contact us': u'Contact us'
@@ -339,6 +340,7 @@ translations = {
         'Start': u'Kezdet',
         'End': u'Vég',
         'Remove': u'Töröl',
+        'Repeat': u'Ismétel',
 
         #Footer
         'Contact us': u'Lépj kapcsolatba'
@@ -472,7 +474,8 @@ translations = {
         'Add': u'Adaugă',
         'Start': u'Început',
         'End': u'Sfârșit',
-        'End': u'Șterge',
+        'Remove': u'Șterge',
+        'Repeat': u'Repetă',
 
         #Footer
         'Contact us': u'Contactează-ne'

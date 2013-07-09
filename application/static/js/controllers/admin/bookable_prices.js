@@ -4,9 +4,13 @@
 /*global model */
 
 define([
+	'helpers/price',
+	'helpers/date',
+	'elements/modal',
+	'view/directives/common',
 	'lib/jquery',
 	'lib/underscore'
-], function () {
+], function (priceHelper, dateHelper, modalHelper, commonDirectives) {
 
 	var $formModal;
 	var $pricesTable;
@@ -25,6 +29,7 @@ define([
 		$specialPricesTable.body.on('click', '.special-prices-remove-btn', removeSpecialPrice);
 		$('.special-prices-add-btn', $formModal).on('click', addSpecialPrice);
 		$specialPricesRow = $('tbody tr', $specialPricesTable).remove();
+		$('select', $specialPricesRow).render(priceHelper.specialRepeat, commonDirectives.option);
 		$priceCell = $('tbody td.values', $pricesTable).clone();
 		$priceHCell = $('thead th.values', $pricesTable).clone();
 
@@ -149,9 +154,52 @@ define([
 		populate(prices);
 	};
 
+	var notEmpty = function (v, dataType) {
+		if (typeof v === 'undefined' || v === null || (v + '').length === 0) {
+			var str = 'Empty ' + dataType;
+			modalHelper.displayNotification($formModal, str, 'danger');
+			throw dataType;
+		}
+	};
+
+	var mustBeValidDate = function (date) {
+		notEmpty(date, 'date');
+		if (!dateHelper.isValid(date)) {
+			var str = 'Invalid date: ' + date;
+			modalHelper.displayNotification($formModal, str, 'danger');
+			throw str;
+		}
+	};
+
+	var mustBeFilledWithFloat = function (values) {
+		for (var i = values.length - 1; i >= 0; i -= 1) {
+			var v = values[i].replace(/^\s*|\s*$/g, '');
+			notEmpty(v, 'price');
+			var vf = parseFloat(v);
+			if (v !== vf + '') {
+				var str = 'Invalid price: ' + v;
+				modalHelper.displayNotification($formModal, str, 'danger');
+				throw str;
+			}
+			values[i] = vf;
+		}
+	};
+
+	var validate = function (prices) {
+		mustBeFilledWithFloat(prices.values);
+		_.map(prices.special, function (e) {
+			mustBeValidDate(e.start);
+			mustBeValidDate(e.end);
+			mustBeFilledWithFloat(e.values);
+		});
+	};
+
+
 	var format = function (data) {
 		delete data['prices.values'];
-		data.prices = gather();
+		var prices = gather();
+		validate(prices);
+		data.prices = prices;
 		return data;
 	};
 

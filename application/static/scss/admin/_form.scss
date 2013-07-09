@@ -11,6 +11,17 @@
 		height: 1.5em;
 		width: 1.5em;
 	}
+	select.repeat {
+		width: 5em;
+	}
+	th {
+		&.remove {
+			width: 1em;
+		}
+		&.start, &.end, &.repeat {
+			width: 4em;
+		}
+	}
 	.date {
 		width: 7em;
 	}

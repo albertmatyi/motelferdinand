@@ -2,7 +2,7 @@
 /*global $ */
 
 define(['lib/jquery'],
-function (jq) {
+function () {
 	'use strict';
 
 	var defaultOptions = {

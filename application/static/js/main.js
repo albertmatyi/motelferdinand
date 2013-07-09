@@ -1,7 +1,6 @@
 /*global define */
 /*global $ */
 /*global model */
-/*global window */
 /*global requirejs */
 
 requirejs.config({

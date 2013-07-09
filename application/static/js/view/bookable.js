@@ -8,7 +8,7 @@ define(
 ],
 function (jq, config) {
 	'use strict';
-	
+
 	var renderGallery = function ($context) {
 		if (config.RENDER_BOOKING_GALLERIES) {
 			$('.bookable-picaslide', $context).each(function (idx, el) {
