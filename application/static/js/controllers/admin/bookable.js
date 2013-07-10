@@ -44,6 +44,8 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 		adminCommons.initMoveToCategory($moveToCategoryElement, entity, 'bookable', function (categoryId) {
 			var $catContents = $('#Category' + categoryId + '	.bookables');
 			$('#Bookable' + entity.id).appendTo($catContents);
+			$('input[name=category]', $formModal).val(categoryId);
+			modal.displayNotification($formModal, i18n.translate('Moved'), 'success');
 		});
 	};
 

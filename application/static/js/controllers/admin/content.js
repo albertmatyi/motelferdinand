@@ -85,7 +85,9 @@ function (jq, i18n, adminControls, transparency, viewCommons, directive, modal, 
 	var editCallback = function ($form, entity) {
 		adminCommons.initMoveToCategory($moveToCategoryElement, entity, 'content', function (categoryId) {
 			var $catContents = $('#Category' + categoryId + '	.contents');
+			// move visually
 			$('#Content' + entity.id).appendTo($catContents);
+			$('input[name=category]', $formModal).val(categoryId);
 			modal.displayNotification($formModal, i18n.translate('Moved'), 'success');
 		});
 	};
