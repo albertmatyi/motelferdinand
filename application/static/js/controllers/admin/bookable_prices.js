@@ -82,13 +82,15 @@ define([
 		var rows = addSpecialRows(prices.special.length);
 		_.each(prices.special, function (el, idx) {
 			populateFields('prices.values', rows[idx], el.values);
-			$(selectorFor('prices.special.start'), rows[idx], el.start);
-			$(selectorFor('prices.special.end'), rows[idx], el.end);
+			$(selectorFor('prices.special.start'), rows[idx]).val(el.start);
+			$(selectorFor('prices.special.end'), rows[idx]).val(el.end);
+			$(selectorFor('prices.special.repeat'), rows[idx]).val(el.repeat);
 		});
 	};
 
 	var selectorFor = function (key) {
-		return 'input[name=' + key.replace(/\./g, '\\.') + ']';
+		var name = '[name=' + key.replace(/\./g, '\\.') + ']';
+		return 'input' + name + ', select' + name;
 	};
 
 	var gatherValues = function (key, container, wrapInArr) {
@@ -109,6 +111,7 @@ define([
 				return {
 					start: gatherValues('prices.special.start', tr, false),
 					end: gatherValues('prices.special.end', tr, false),
+					repeat: gatherValues('prices.special.repeat', tr, false),
 					values: gatherValues('prices.values', tr, true)
 				};
 			});
@@ -197,6 +200,9 @@ define([
 
 	var format = function (data) {
 		delete data['prices.values'];
+		delete data['prices.special.start'];
+		delete data['prices.special.end'];
+		delete data['prices.special.repeat'];
 		var prices = gather();
 		validate(prices);
 		data.prices = prices;

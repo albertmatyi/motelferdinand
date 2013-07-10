@@ -189,7 +189,15 @@ D		send mail in clients currency
 D	generate correct i18ned mails
 D	edit admin props
 130707
-	add special prices for date ranges
+	special prices
+D		UI
+130710
+D	Add analytics
+	special prices
+		save to backend
+		calculate at booking
+		calculate on backend
+?		calculate on admin
 	caching
 	fixed booking button
 	booking retrieval
