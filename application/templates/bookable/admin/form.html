@@ -16,9 +16,6 @@
 {% block inputs %}
 <input name="category" type="hidden" />
 <div class="control-group">
-	{% include 'bookable/admin/prices.html' %}
-</div>
-<div class="control-group">
 	<label class="control-label">{{ __('Album url') }}</label>
 	<input name="album_url" type="text" />
 </div>
@@ -33,6 +30,9 @@
 	<select name="places">
 		<option data-bind="value">1</option>
 	</select>
+</div>
+<div class="control-group">
+	{% include 'bookable/admin/prices.html' %}
 </div>
 <div class="control-group">
 	<label class="control-label">
