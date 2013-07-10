@@ -173,12 +173,12 @@ D		cannot mark as paid when overbooked range
 D	style background
 D	modify fonts
 D	unify contact info
-	admin price view (which currency is paid at the end?)
+D	admin price view (which currency is paid at the end?)
 D		save rate
 D		original total price
 D		allow admin to change currency
 D		display correct price
-		discount
+D		discount
 130621
 D			fe
 D				update price
@@ -194,7 +194,8 @@ D		UI
 130710
 D	Add analytics
 	special prices
-		save to backend
+D		save to backend
+			validate
 		calculate at booking
 		calculate on backend
 ?		calculate on admin
@@ -227,3 +228,7 @@ D	Add analytics
 		attach to content
 		view on site / download
 	view bookings for users based on mail/phone
+
+
+Extra
+	edit (bigModals) slide over like Chrome settings panels

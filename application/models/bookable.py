@@ -7,7 +7,10 @@ from google.appengine.ext import db
 from application.models.abstract_content import AbstractContentModel
 from application.models.category import CategoryModel
 from application.models.commons import BookingState as State
+from application.models.converters import validate_date
 import json
+
+SPECIAL_PRICE_REPEAT_VALUES = ['no', 'month', 'week', 'year']
 
 
 class BookableModel(AbstractContentModel):
@@ -30,17 +33,28 @@ class BookableModel(AbstractContentModel):
         if key is 'category':
             self.category = CategoryModel.get_by_id(long(dictionary[key]))
         elif key is 'prices':
-            self.validate(dictionary)
+            self.validate_prices_for(
+                int(dictionary['places']),
+                dictionary['prices'])
             self.prices = json.dumps(dictionary[key])
         else:
             super(BookableModel, self).populate_field(dictionary, key)
         pass
 
-    def validate(self, dictionary):
-        pcs = dictionary['prices']
-        vn = int(dictionary['places'])
-        for i in range(vn):
-            pcs['values'][i] = float(pcs['values'][i])
+    def validate_prices_for(self, places, prices):
+        self.validate_price_values_for(places, prices['values'])
+        specials = len(prices['special'])
+        for i in range(specials):
+            special = prices['special'][i]
+            self.validate_price_values_for(places, special['values'])
+            validate_date(special['start'])
+            validate_date(special['end'])
+            if special['repeat'] not in SPECIAL_PRICE_REPEAT_VALUES:
+                raise Exception('Invalid repeat value: ' + special['repeat'])
+
+    def validate_price_values_for(self, places, values):
+        for i in range(places):
+            values[i] = float(values[i])
 
     def to_dict_field(self, key):
         if key is 'prices':
