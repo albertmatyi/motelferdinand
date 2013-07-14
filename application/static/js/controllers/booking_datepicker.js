@@ -96,12 +96,13 @@ define([
 		$.getJSON('/bookable/bookings/' + bookable.id, function (data) {
 			bookedDates = {};
 			_.each(data, function (bkng) {
-				var start = dateHelper.toDate(bkng.start).getTime();
-				var end = dateHelper.toDate(bkng.end).getTime();
-				for (var i = start; i < end; i += dateHelper.MILLIS_IN_DAY) {
-					var k = dateHelper.toStr(new Date(i));
-					bookedDates[k] = bookedDates[k] ? bookedDates[k] + bkng.quantity:bkng.quantity;
-				}
+				dateHelper.iterateBetweenDates(bkng.start, bkng.end, 'str', function (dateStr) {
+					if (bookedDates[dateStr]) {
+						bookedDates[dateStr] = bookedDates[dateStr] + bkng.quantity;
+					} else {
+						bookedDates[dateStr] = bkng.quantity;
+					}
+				});
 			});
 			initialized = true;
 			callback();
@@ -163,14 +164,15 @@ define([
 		if (!initialized) {
 			return;
 		}
-		start = start.getTime();
-		end = end.getTime();
-		for (var i = start; i < end; i += dateHelper.MILLIS_IN_DAY) {
-			if (!getAvailabilityData(new Date(i)).enabled) {
+		var retVal = true;
+		dateHelper.iterateBetweenDates(start, end, 'date', function (date) {
+			if (!getAvailabilityData(date).enabled) {
+				retVal = false;
 				return false;
 			}
-		}
-		return true;
+		});
+
+		return retVal;
 	};
 
 	var isValid = function () {
@@ -228,12 +230,22 @@ define([
 		});
 	};
 
+	var getStart = function () {
+		return $bookStart.val();
+	};
+
+	var getEnd = function () {
+		return $bookEnd.val();
+	};
+
 
 	return {
 		'init': init,
 		'setQuantity': setQuantity,
 		'isValid': isValid,
 		'getNights': getNights,
+		'getStart': getStart,
+		'getEnd': getEnd,
 		'onchange': onchange
 	};
 });

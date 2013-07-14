@@ -236,8 +236,6 @@ def check_overbooking(booking):
             booking.end,
             booking.quantity):
         raise Exception(si18n.translate('Range is overbooked'))
-    else:
-        raise Exception('OK')
 
 
 def set_state_and_mail(entity_id, state, validator=lambda b: None):

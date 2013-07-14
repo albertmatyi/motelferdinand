@@ -195,8 +195,9 @@ D		UI
 D	Add analytics
 	special prices
 D		save to backend
-			validate
-		calculate at booking
+D			validate
+130712
+$		calculate at booking js
 		calculate on backend
 ?		calculate on admin
 	caching

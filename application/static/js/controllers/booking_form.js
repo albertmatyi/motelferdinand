@@ -5,9 +5,10 @@
 define([
 	'helpers/tooltip',
 	'controllers/booking_datepicker',
-	'helpers/currency'
+	'helpers/currency',
+	'helpers/price'
 ],
-	function (tooltip, datepicker, currencyHelper) {
+	function (tooltip, datepicker, currencyHelper, priceHelper) {
 		'use strict';
 
 		var FORM_ID = 'booking-form';
@@ -107,20 +108,6 @@ define([
 			}
 		};
 
-		var calcPerNight = function (bookable) {
-			var vals = bookable.prices.values;
-			var q = parseInt($quantitySelect.val(), 10);
-			var g = parseInt($guestsSelect.val(), 10);
-			var p = parseInt(bookable.places, 10);
-			var price = parseInt(vals[0], 10) * q; // every room should have at least 1 guest
-			g = Math.max(0, g - q); // calculate without these guests
-			var f = p > 1 ? Math.floor(g / (p - 1)):q; // nr of full rooms
-			var rg = p  > 1 ? g % (p - 1):0; // nr of guests that are not in full rooms
-			price = price - f * parseInt(vals[0], 10) + f * parseInt(vals[p - 1], 10); // add prices of full rooms
-			price = price - parseInt(vals[0], 10) + parseInt(vals[rg], 10); // add price of partially filled room
-			return currencyHelper.convertDefaultTo(price);
-		};
-
 		var addPriceUpdater = function (bookable) {
 			var pcalc = function (currency) {
 				if (currencyHelper.isValid(currency)) {
@@ -129,7 +116,12 @@ define([
 				if (!datepicker.isValid()) {
 					return;
 				}
-				var perNight = calcPerNight(bookable);
+				var quantity = parseInt($quantitySelect.val(), 10);
+				var guests = parseInt($guestsSelect.val(), 10);
+				var perNight = priceHelper.calcPerNight(
+					bookable.prices, parseInt(quantity, 10), parseInt(guests, 10),
+					parseInt(bookable.places, 10),
+					datepicker.getStart(), datepicker.getEnd());
 				var nights = datepicker.getNights();
 				var total = nights * perNight;
 				var curr = ' ' + model.currency.selected;

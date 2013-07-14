@@ -2,6 +2,7 @@
 
 define([], function () {
 	'use strict';
+	var MILLIS_IN_DAY = 1000 * 60 * 60 * 24;
 	var strToDate = function (str) {
 		var parts = str.split('-');
 		var year = parts[2];
@@ -42,18 +43,80 @@ define([], function () {
 	var stripTime = function (date) {
 		return strToDate(dateToStr(date));
 	};
-	var MILLIS_IN_DAY = 1000 * 60 * 60 * 24;
+
+	var getDateForType = function (timeInMillis, type) {
+		switch (type) {
+		case 'int':
+		case 'number':
+			return timeInMillis;
+		case 'str':
+		case 'string':
+			return dateToStr(new Date(timeInMillis));
+		case 'date':
+			return new Date(timeInMillis);
+		}
+	};
+
+	var someDateToMillis = function (someDate) {
+		var typ = typeof someDate;
+		if (['int', 'number'].indexOf(typ) !== -1) {
+			typ = 'object';
+			someDate = new Date(someDate);
+		}
+		if (typ === 'object') {
+			someDate = dateToStr(someDate);
+			typ = 'string';
+		}
+		if (typ === 'string') {
+			return strToDate(someDate).getTime();
+		} else {
+			throw 'Cannot convert "' + someDate + '" into millis';
+		}
+	};
+
+	var iterateBetweenDates = function (startD, endD, returnType, callback, inclusive) {
+		inclusive = inclusive ? true:false;
+		var start = someDateToMillis(startD);
+		var end = someDateToMillis(endD);
+		for (var i = start; (inclusive ? i <= end:i < end); i += MILLIS_IN_DAY) {
+			var date = getDateForType(i, returnType);
+			var rv = callback(date);
+			if (rv === false) {
+				break;
+			}
+		}
+	};
+
+	var getDayOfYear = function (date) {
+		var yearStart = new Date(date.getFullYear(), 0);
+		var diff = date - yearStart;
+		return diff / MILLIS_IN_DAY;
+	};
+
+	var isValidRange = function (start, end) {
+		try {
+			start = someDateToMillis(start);
+			end = someDateToMillis(end);
+			return start < end;
+		} catch (end) {
+			return false;
+		}
+	};
+
 	var TODAY = stripTime(new Date());
+
 	return {
 		'toDate': strToDate,
 		'toStr': dateToStr,
 		'isValid': isValid,
+		'isValidRange': isValidRange,
 		'getDateDiff': getDateDiff,
-		'MILLIS_IN_DAY': MILLIS_IN_DAY,
 		'today': TODAY,
 		'previousDay': previousDay,
 		'nextDay': nextDay,
 		'yesterday': new Date(TODAY.getTime() - MILLIS_IN_DAY),
-		'stripTime': stripTime
+		'stripTime': stripTime,
+		'iterateBetweenDates': iterateBetweenDates,
+		'getDayOfYear': getDayOfYear
 	};
 });

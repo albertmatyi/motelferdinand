@@ -35,7 +35,8 @@ translations_js = {
         'Start date can\'t be in the past.': u'Start date can\'t be in the past.',
         'Range can\'t contain overbooked days': u'Range can\'t contain overbooked days',
         'Saving': u'Saving',
-        'Saved': u'Saved'
+        'Saved': u'Saved',
+        'available': u'available'
     },
     'hu': {
         'Booking successfully saved! Stand by for a confirmation email.': u'Foglalás sikeresen bejegyezve. Kérem várja meg a konfirmáló emailt.',
@@ -53,7 +54,8 @@ translations_js = {
         'Start date can\'t be in the past.': u'Kezdő dátum nem lehet a múltban.',
         'Range can\'t contain overbooked days': u'Az időtartam túlfoglalt napokat tartalmaz.',
         'Saving': u'Mentés',
-        'Saved': u'Elmentve'
+        'Saved': u'Elmentve',
+        'available': u'foglalható'
     },
     'ro': {
         'Booking successfully saved! Stand by for a confirmation email.': u'Rezervarea s-a efectuat cu succes. Vă rugăm să așteptați mailul de confirmare.',
@@ -71,7 +73,8 @@ translations_js = {
         'Start date can\'t be in the past.': u'Data sosirii nu poate fi în trecut',
         'Range can\'t contain overbooked days': u'Selecția conține zile suprarezervate',
         'Saving': u'Salvare',
-        'Saved': u'Salvat'
+        'Saved': u'Salvat',
+        'available': u'disponibil(e)'
     }
 }
 
