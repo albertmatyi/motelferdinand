@@ -11,7 +11,7 @@ from application.controllers import helpers
 from application.helpers import request as request_helper
 from flask.globals import request
 from datetime import datetime
-from application.models.converters import date
+from application.helpers import date
 import json
 
 

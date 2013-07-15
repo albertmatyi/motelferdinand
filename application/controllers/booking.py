@@ -12,17 +12,17 @@ from application.helpers import si18n, mail as mail_helper
 from flask.globals import request
 from google.appengine.api import mail
 from application.decorators import admin_required
-from application.models.converters import date
+from application.helpers import date as date_helper
 from datetime import timedelta
-from application.helpers import currency as currency_helper
+from application.helpers import currency as currency_helper,\
+    price as price_helper
 import json
 import re
-import math
 import logging
 
 
 @app.route("/bookings/", methods=["POST"])
-def bookings_new():
+def save_new_booking():
     data = json.loads(request.form['data'])
     logging.info('save booking data: ' + str(data))
     transform(data['booking'])
@@ -137,7 +137,7 @@ def update_booking():
 
 
 def transform(bkng):
-    to_date = lambda sstr: date.to_obj(sstr)
+    to_date = lambda sstr: date_helper.to_date(sstr)
     bkng['quantity'] = int(bkng['quantity'])
     bkng['guests'] = int(bkng['guests'])
     bkng['start'] = to_date(bkng['start'])
@@ -204,27 +204,13 @@ def map_booking_data(bkf, booking):
 
 
 def map_price(bookingForm, booking):
-    vals = booking.bookable.get_prices()['values']
-    q = int(bookingForm['quantity'])
-    g = int(bookingForm['guests'])
-    p = booking.bookable.places
-    # every room should have at least 1 guest
-    price_per_day = float(vals[0]) * q
-    # calculate without these guests
-    g = max(0, g - q)
-    # nr of full rooms
-    f = int(g / (p - 1)) if p > 1 else q
-    # nr of guests that are not in full rooms
-    rg = g % (p - 1) if p > 1 else 0
-    # add prices of full rooms
-    price_per_day = price_per_day - f * float(vals[0]) + f * float(vals[p - 1])
-    # add price_per_day of partially filled room
-    price_per_day = price_per_day - float(vals[0]) + float(vals[rg])
 
-    price_per_day = math.ceil(price_per_day)
-
-    days = (bookingForm['end'] - bookingForm['start']).days
-    booking.price = price_per_day * days
+    booking.price = price_helper.get_price_for(
+        json.loads(booking.bookable.prices),
+        booking.quantity,
+        booking.guests,
+        booking.start,
+        booking.end)
     booking.currency = currency_helper.get_selected_currency()
     booking.rates = json.dumps(currency_helper.get_rates())
 

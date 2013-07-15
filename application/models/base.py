@@ -1,7 +1,7 @@
 import logging
 from google.appengine.ext import db
 from datetime import datetime
-from converters import date as date_converter
+from application.helpers import date as date_helper
 
 
 class AbstractModel(db.Model):
@@ -39,8 +39,8 @@ class AbstractModel(db.Model):
             db.ReferenceProperty
         ):
             val = val.key().id()
-        elif date_converter.is_date_type(tp):
-            val = date_converter.to_str(val)
+        elif date_helper.is_date_type(tp):
+            val = date_helper.to_str(val)
         else:
             val = unicode(val)
         return val

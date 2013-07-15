@@ -7,7 +7,7 @@ from google.appengine.ext import db
 from application.models.abstract_content import AbstractContentModel
 from application.models.category import CategoryModel
 from application.models.commons import BookingState as State
-from application.models.converters import validate_date
+from application.helpers.date import validate_date
 import json
 
 SPECIAL_PRICE_REPEAT_VALUES = ['no', 'month', 'week', 'year']
