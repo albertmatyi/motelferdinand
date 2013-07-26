@@ -39,9 +39,9 @@ define(['helpers/currency', 'helpers/date', 'lib/underscore'], function (currenc
 		for (var i = 0; i < n; i += 1) {
 			var special = prices.special[i];
 			if (specialAppliesTo(special, date)) {
-				console.log('\tapply ' + special.repeat + 'ly (' +
-					special.start + ' - ' + special.end + '): ' +
-					special.values);
+				// console.log('\tapply ' + special.repeat + 'ly (' +
+				// special.start + ' - ' + special.end + '): ' +
+				// special.values);
 				return special.values;
 			}
 		}
@@ -52,7 +52,7 @@ define(['helpers/currency', 'helpers/date', 'lib/underscore'], function (currenc
 		var avg = [];
 		var guests = pricesPerDays[0].length;
 		var days = pricesPerDays.length;
-		console.log('price matrix: ' + pricesPerDays);
+		// console.log('price matrix: ' + pricesPerDays);
 		for (var guestsIdx = guests - 1; guestsIdx >= 0; guestsIdx -= 1) {
 			var avgForGuest = _.reduce(pricesPerDays, function (sum, pricesPerDay) {
 				return sum + pricesPerDay[guestsIdx];
@@ -60,7 +60,7 @@ define(['helpers/currency', 'helpers/date', 'lib/underscore'], function (currenc
 			avg.unshift(avgForGuest);
 		}
 
-		console.log('avgs: ' + avg);
+		// console.log('avgs: ' + avg);
 		return avg;
 	};
 
@@ -69,9 +69,9 @@ define(['helpers/currency', 'helpers/date', 'lib/underscore'], function (currenc
 			var pricesPerDays = []; // will contain prices for each day
 			dateHelper.iterateBetweenDates(start, end, 'date', function (date) {
 				// for every date, retrieve price values
-				console.log('for date: ' + dateHelper.toStr(date));
+				// console.log('for date: ' + dateHelper.toStr(date));
 				var vals = getPriceValuesForDate(prices, date);
-				console.log('\twith vals: ' + vals);
+				// console.log('\twith vals: ' + vals);
 				pricesPerDays.push(vals);
 			});
 			return getAvgPricesForDays(pricesPerDays);

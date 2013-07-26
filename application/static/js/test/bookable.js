@@ -16,12 +16,14 @@ define([
 			title: '',
 			places: 3,
 			quantity: 4,
-			priceFunction: function (i) { return i + 1; }
+			priceFunction: function (i) { return i + 1; },
+			special: []
 		};
 		var catInfo = {
 			title: ''
 		};
 		var $saveButton;
+		var $addSpecialButton;
 		var $category;
 		var categoryId;
 
@@ -40,6 +42,7 @@ define([
 			categoryId = /\d+/.exec($cat.attr('id'))[0];
 			$bookableModal = $('#bookableEditFormModal');
 			$saveButton = $('#submitBookableEditForm', $bookableModal);
+			$addSpecialButton = $('.special-prices-add-btn', $bookableModal);
 		};
 
 		var after = function (t) {
@@ -90,8 +93,9 @@ define([
 			t.l('fill form quantity').setValue($('*[name=quantity]', $bookableModal), info.quantity);
 
 			var expectedPrice = [];
+			var expectedSpecial = [];
 			t.l('set prices').addFunction(function () {
-				setPrices(t, info, expectedPrice);
+				setPrices(t, info, expectedPrice, expectedSpecial);
 			});
 
 			t.l('click submit').click($saveButton).waitAnimation();
@@ -130,13 +134,29 @@ define([
 			var baseSel = $bookableModal.selector + ' .prices tbody tr';
 			var $inputs = $(baseSel + ' input[name=prices\\.values]');
 			t.assertCount(info.places, $inputs.selector);
-			for (var i = 0; i < info.places; i += 1) {
+			setPriceRow(t, $inputs, info.places, pf);
+			for (var i = 0; i < info.special; i += 1) {
+				t.l('add special').click($addSpecialButton);
+				t.$($bookableModal.selector + ' .special-prices tbody tr:last-child', function ($row) {
+					t.l('set special start')
+						.setValue($row.selector + ' input[name=prices.special.start]', info.special.start);
+					t.l('set special end')
+						.setValue($row.selector + ' input[name=prices.special.end]', info.special.end);
+					t.l('set special repeat')
+						.setValue($row.selector + ' select[name=prices.special.repeat]', info.special.repeat);
+					setPriceRow(t, $('input[name=prices\\.values', $row), info.places, pf);
+				});
+			}
+			priceToExpect.push(pf(1));
+			return displayedPrice;
+		};
+
+		var setPriceRow = function (t, $inputs, places, pf) {
+			for (var i = 0; i < places; i += 1) {
 				var $pinput = $($inputs[i]);
 				t.l('Set price for guest' + (i + 1))
 					.setValue($pinput, pf(i + 1));
 			}
-			priceToExpect.push(pf(1));
-			return displayedPrice;
 		};
 
 		var testDeleteBookable = function (t) {

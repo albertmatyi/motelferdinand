@@ -22,7 +22,7 @@
         });
         callback(albums);
       }).error(function () {
-        console && console.log && console.log("Could not load picasa album");
+        typeof console !== 'undefined' && console.log && console.log("Could not load picasa album");
       });
     },
 

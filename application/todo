@@ -196,10 +196,19 @@ D	Add analytics
 	special prices
 D		save to backend
 D			validate
-130712
+130713
 D		calculate at booking js
 D		calculate on backend
+130725
+	bugs
+		gallery
+			url not working: https://picasaweb.google.com/116008649935898699063/July112013
+			paging stops after some clicking
+		hungarian mail sending (str contains unicode)
+	special prices
+		test
 ?		show calculations on admin
+
 	caching
 	fixed booking button
 	booking retrieval
