@@ -7,17 +7,23 @@ define([
 		'lib/jquery',
 		'test/category',
 		'test/elements/dialog',
-		'helpers/currency'
+		'helpers/currency',
+		'helpers/date'
 	],
-	function (jquery, categoryTest, dialog, currencyHelper) {
+	function (jquery, categoryTest, dialog, currencyHelper, dateHelper) {
 		'use strict';
 		var $bookableModal;
 		var bkblInfo = {
-			title: '',
-			places: 3,
-			quantity: 4,
-			priceFunction: function (i) { return i + 1; },
-			special: []
+			'title': '',
+			'places': 3,
+			'quantity': 4,
+			'prices': function (i) { return i + 1; },
+			'special': [{
+				'start': dateHelper.toStr(dateHelper.nextDay(new Date())),
+				'end': dateHelper.toStr(dateHelper.nextDay(dateHelper.nextDay(new Date()))),
+				'repeat': 'week',
+				'prices': function (i) { return i + 1; }
+			}]
 		};
 		var catInfo = {
 			title: ''
@@ -128,34 +134,47 @@ define([
 			});
 		};
 
-		var setPrices = function (t, info, priceToExpect) {
+		var setPrices = function (t, info, priceToExpect, specialPriceToExpect) {
 			var displayedPrice = '';
-			var pf = info.priceFunction;
 			var baseSel = $bookableModal.selector + ' .prices tbody tr';
 			var $inputs = $(baseSel + ' input[name=prices\\.values]');
 			t.assertCount(info.places, $inputs.selector);
-			setPriceRow(t, $inputs, info.places, pf);
-			for (var i = 0; i < info.special; i += 1) {
+			setPriceRow(t, $inputs, info.places, info.prices);
+			priceToExpect.push(getPrices(info.prices, 1));
+
+			for (var i = 0; i < info.special.length; i += 1) {
 				t.l('add special').click($addSpecialButton);
-				t.$($bookableModal.selector + ' .special-prices tbody tr:last-child', function ($row) {
-					t.l('set special start')
-						.setValue($row.selector + ' input[name=prices.special.start]', info.special.start);
-					t.l('set special end')
-						.setValue($row.selector + ' input[name=prices.special.end]', info.special.end);
-					t.l('set special repeat')
-						.setValue($row.selector + ' select[name=prices.special.repeat]', info.special.repeat);
-					setPriceRow(t, $('input[name=prices\\.values', $row), info.places, pf);
-				});
+				setSpecials(t, info.special[i], info.places, specialPriceToExpect);
 			}
-			priceToExpect.push(pf(1));
 			return displayedPrice;
 		};
 
-		var setPriceRow = function (t, $inputs, places, pf) {
+		var setSpecials = function (t, special, places, specialPriceToExpect) {
+			t.$($bookableModal.selector + ' .special-prices tbody tr:last-child', function ($row) {
+				t.l('set special start')
+					.setValue($row.selector + ' input[name=prices\\.special\\.start]', special.start);
+				t.l('set special end')
+					.setValue($row.selector + ' input[name=prices\\.special\\.end]', special.end);
+				t.l('set special repeat')
+					.setValue($row.selector + ' select[name=prices\\.special\\.repeat]', special.repeat);
+				setPriceRow(t, $('input[name=prices\\.values]', $row), places, special.prices);
+			});
+			specialPriceToExpect.push(getPrices(special.prices, 1));
+		};
+
+		var getPrices = function (prices, nr) {
+			if (typeof prices === 'function') {
+				return prices(nr);
+			} else {
+				return prices[nr];
+			}
+		};
+
+		var setPriceRow = function (t, $inputs, places, prices) {
 			for (var i = 0; i < places; i += 1) {
 				var $pinput = $($inputs[i]);
 				t.l('Set price for guest' + (i + 1))
-					.setValue($pinput, pf(i + 1));
+					.setValue($pinput, getPrices(prices, i + 1));
 			}
 		};
 

@@ -200,14 +200,15 @@ D			validate
 D		calculate at booking js
 D		calculate on backend
 130725
-	bugs
-		gallery
+D	bugs
+D		gallery
 D			url not working: https://picasaweb.google.com/116008649935898699063/July112013
 D			paging stops after some clicking
+130729
 D		hungarian mail sending (str contains unicode)
 D		mark as paid not working
 	special prices
-		test
+$		test
 ?		show calculations on admin
 
 	caching
