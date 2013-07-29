@@ -10,7 +10,6 @@ from application.models.user import UserModel
 from application.models.commons import BookingState
 from application.helpers import si18n, mail as mail_helper
 from flask.globals import request
-from google.appengine.api import mail
 from application.decorators import admin_required
 from application.helpers import date as date_helper
 from datetime import timedelta
@@ -37,8 +36,11 @@ def save_new_booking():
     booking.put()
 
     mail_helper.send_mails_for_new(booking)
-    return '{ "message": "Booking successfully saved!' +\
-        ' Stand by for a confirmation email." , "success" : true }'
+    return '{ "message": "' +\
+        si18n.translate(
+            'Booking successfully saved! ' +
+            'Stand by for a confirmation email.') +\
+        '" , "success" : true }'
     pass
 
 
@@ -215,52 +217,40 @@ def map_price(bookingForm, booking):
     booking.rates = json.dumps(currency_helper.get_rates())
 
 
-def check_overbooking(booking):
-    if not is_valid_quantity_for_range(
+def check_overbooking(booking, new_state):
+
+    if booking.state is BookingState.INITIAL and\
+        new_state is BookingState.ACCEPTED and\
+        not is_valid_quantity_for_range(
             booking.bookable,
             booking.start,
             booking.end,
             booking.quantity):
-        raise Exception(si18n.translate('Range is overbooked'))
+        raise Exception('Range is overbooked')
 
 
-def set_state_and_mail(entity_id, state, validator=lambda b: None):
+def set_state_and_mail(entity_id, state, validator=lambda b, ns: None):
     booking = set_state(entity_id, state, validator)
+    if 'data' not in request.form:
+        return '{ "message": "' + si18n.translate('Success') + '",' +\
+               '"state": "' + str(state) + '"}'
 
-    msg = si18n.translate('Mail sent')\
-        if send_acceptance_mail(booking)\
-        else si18n.translate('Success')
+    mail_data = json.loads(request.form['data'])
+    mail_helper.send_acceptance_mail(booking, mail_data)
+    si18n.translate('Mail sent')
+    return '{ "message": "' + si18n.translate('Success') + '",' +\
+           '"state": "' + str(state) + '"}'
 
-    return '{ "message": "' + msg + '",' +\
-        '"state": "' + str(state) + '"}'
 
-
-def set_state(entity_id, state, validator=lambda b: None):
+def set_state(entity_id, state, validator=lambda b, ns: None):
     booking = BookingModel.get_by_id(entity_id)
     if (booking.state, state) in BookingState.transitions:
-        validator(booking)
+        validator(booking, state)
         booking.state = state
         booking.put()
         return booking
     else:
         raise Exception("Invalid state change.")
-
-
-def send_acceptance_mail(booking):
-    if 'data' not in request.form:
-        return False
-    mail_data = json.loads(request.form['data'])
-    # To client
-    message = mail.EmailMessage(
-        sender=si18n.translate('Ferdinand Motel') +
-        '<' + mail_helper.get_sender() + '>',
-        subject=mail_data['subject']
-    )
-
-    message.to = booking.user.full_name + '<' + booking.user.email + '>'
-    message.html = mail_data['body']
-    message.send()
-    return True
 
 
 def get_or_create_user(user):

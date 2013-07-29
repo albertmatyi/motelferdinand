@@ -18,12 +18,13 @@ from application.helpers import currency
 @app.errorhandler(500)
 def page_not_found(error):
     if request.is_xhr:
-        data = '{ "message" : "' + si18n.translate(str(error.message)) + '"}'
+        data = '{ "message" : "' +\
+            si18n.translate(unicode(error.message)) + '"}'
         resp = Response(status=500)
         resp.mimetype = 'application/json'
         resp.data = data
         return resp
-    return str(error)
+    return unicode(error)
 
 
 @app.route("/", methods=["GET"])

@@ -30,6 +30,19 @@ def send_mails_for_new(booking):
     pass
 
 
+def send_acceptance_mail(booking, mail_data):
+    # To client
+    message = mail.EmailMessage(
+        sender=si18n.translate('Ferdinand Motel') +
+        '<' + get_sender() + '>',
+        subject=mail_data['subject']
+    )
+
+    message.to = booking.user.full_name + '<' + booking.user.email + '>'
+    message.html = mail_data['body']
+    message.send()
+
+
 def build_booking_info(booking):
     bldr = BookingDictBuilder(booking)\
         .with_user()\
@@ -54,8 +67,8 @@ def build_booking_info(booking):
 
 def render_mail_template(which, booking_info):
     key_base = 'mail.' + which + '.' + si18n.get_lang_id()
-    subject_template = str(all_props[key_base + '.subject'])
-    body_template = str(all_props[key_base + '.body'])
+    subject_template = unicode(all_props[key_base + '.subject'])
+    body_template = unicode(all_props[key_base + '.body'])
 
     return (
         render(subject_template, booking_info),
@@ -78,7 +91,7 @@ def render(string, booking_info):
 def iterate_and_replace(string, base, dct):
     for k in dct:
         rk = r'#' + base + r'\.' + k + r'\b'
-        string = re.sub(rk, str(dct[k]), string)
+        string = re.sub(rk, unicode(dct[k]), string)
     return string
 
 

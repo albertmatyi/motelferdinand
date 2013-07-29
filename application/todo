@@ -202,9 +202,10 @@ D		calculate on backend
 130725
 	bugs
 		gallery
-			url not working: https://picasaweb.google.com/116008649935898699063/July112013
-			paging stops after some clicking
-		hungarian mail sending (str contains unicode)
+D			url not working: https://picasaweb.google.com/116008649935898699063/July112013
+D			paging stops after some clicking
+D		hungarian mail sending (str contains unicode)
+D		mark as paid not working
 	special prices
 		test
 ?		show calculations on admin

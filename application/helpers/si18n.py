@@ -15,7 +15,7 @@ def translate(what, lang_id=''):
         lang_id = get_lang_id()
     if lang_id in translations and what in translations[lang_id]:
         return translations[lang_id][what]
-    return 'translations.' + str(lang_id) + '.' + str(what)
+    return 'translations.' + str(lang_id) + '.' + unicode(what)
     pass
 
 translations_js = {
@@ -171,6 +171,7 @@ translations = {
         'Cancel': u'Cancel',
         'Number of guests': u'Number of guests',
         'Guests': u'Guests',
+        'Booking successfully saved! Stand by for a confirmation email.': u'Booking successfully saved! Stand by for a confirmation email.',
 
         #Bookin validation
         'Specify a valid email address': u'Specify a valid email address',
@@ -306,6 +307,7 @@ translations = {
         'Cancel': u'Mégse',
         'Number of guests': u'Vendégek száma',
         'Guests': u'Vendégek',
+        'Booking successfully saved! Stand by for a confirmation email.': u'Foglás elmentve. Kérem várja meg a visszaigazoló levelet.',
 
         #Bookin validation
         'Specify a valid email address': u'Kérem adjon meg egy helyes email címet!',
@@ -441,6 +443,7 @@ translations = {
         'Cancel': u'Anulează',
         'Number of guests': u'Numărul oaspeților',
         'Guests': u'Oaspeți',
+        'Booking successfully saved! Stand by for a confirmation email.': u'Rezervare salvată. Vă rugăm să așteptați mailul de confirmare.',
 
         #Bookin validation
         'Specify a valid email address': u'Secificați o adresă de email valid.',
