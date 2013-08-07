@@ -79,7 +79,6 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 			$bookingDetails.data('bookingId', booking.id);
 			$bookingDetails.render(booking, bookingDetailsDirective);
 			$('.footer-buttons', $bookingsModal.footer).render(booking, bookingDetailsDirective);
-			// TODO disable accept on overbooking
 			$bookingDetails.data('bookingDraft', null);
 		}
 		$('span', $bookingsModal.title).remove();

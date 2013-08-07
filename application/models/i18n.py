@@ -19,7 +19,7 @@ class I18nableModel(AbstractModel):
         '''
             Initializes i18n fields for which no translations were found
         '''
-        for lang_id in prop.languages:
+        for lang_id in prop.get_languages():
             if lang_id not in ddct['i18n']:
                 ddct['i18n'][lang_id] = {}
             for fld_name in self.__class__.i18d_fields:

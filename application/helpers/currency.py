@@ -1,4 +1,4 @@
-from application.models.prop import currency_default, currencies
+from application.models import prop
 from google.appengine.api.urlfetch import fetch
 from xml.etree import ElementTree as etree
 from flask import request
@@ -19,7 +19,7 @@ def get_rates():
     rates = {}
     for rate in tree.findall('.//*[@currency]'):
         cur_name = rate.attrib['currency']
-        if cur_name in currencies:
+        if cur_name in prop.get_currencies():
             rates[cur_name] = {
                 'val': float(rate.text),
                 'multiplier':
@@ -27,7 +27,7 @@ def get_rates():
                 if 'multiplier' in rate.attrib
                 else 1
             }
-    rates[currency_default] = {'val': 1, 'multiplier': 1}
+    rates[prop.get_currency_default()] = {'val': 1, 'multiplier': 1}
     return rates
 
 
@@ -40,13 +40,13 @@ def convert(val, currency=None, rates=None):
 
 def get_selected_currency():
     cookie = request.cookies.get('currency')
-    return cookie if cookie is not None else currency_default
+    return cookie if cookie is not None else prop.get_currency_default()
 
 
 def get_data():
-    return {'default': currency_default,
+    return {'default': prop.get_currency_default(),
             'selected': get_selected_currency(),
-            'all': currencies,
+            'all': prop.get_currencies(),
             'rates': get_rates()}
 
 

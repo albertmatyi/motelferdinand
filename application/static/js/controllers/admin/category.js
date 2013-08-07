@@ -91,7 +91,6 @@ function (jq, i18n, adminControls, transparency, adminContent, adminBookable, ca
 				i18n.populateForm($('form', $formModal), {});
 				//show the edit category form
 				$formModal.modal('show');
-				// TODO set focus on 1st input
 			});
 		}
 	};

@@ -49,8 +49,8 @@ def validate_migration(dst_ver, current_ver):
 
 
 def get_current_version():
-    if 'db_version' in prop.all_props:
-        db_version = int(prop.all_props['db_version'])
+    if 'db_version' in prop.get_all_props():
+        db_version = int(prop.get_all_props()['db_version'])
     else:
         prop.PropModel(kkey='db_version', value='1').put()
         db_version = 1
@@ -141,7 +141,7 @@ def init_mails():
         }
     }
 
-    for lang_id in prop.languages:
+    for lang_id in prop.get_languages():
         for mail_type in mails:
             PropModel(kkey='mail.' + mail_type + '.' + lang_id + '.body',
                       value=mails[mail_type]['body'],
@@ -164,7 +164,6 @@ def init_langs():
     PropModel(kkey='currency_default',
               value='RON',
               description='The default currency').put()
-    prop.languages = langs
     PropModel(kkey='languages',
               value=json.dumps(langs),
               description='The languages used in the application').put()
@@ -202,8 +201,8 @@ def init_contents(category_key, idx, addGallery):
 
 
 def add_translations(entity):
-    for lang_id in prop.languages:
-        lang_name = prop.languages[lang_id]
+    for lang_id in prop.get_languages():
+        lang_name = prop.get_languages()[lang_id]
         for field_name in entity.__class__.i18d_fields:
             I18n(field=field_name, value=lang_name + ' ' + field_name, lang_id=lang_id, foreign_entity=entity).put()
     pass

@@ -42,7 +42,7 @@ def home():
         '/main.html',
         js_data={
             'categories': categories,
-            'languages': prop.languages,
+            'languages': prop.get_languages(),
             'currency': currency.get_data(),
             'language': lang_id,
             'bookings': [],

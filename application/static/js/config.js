@@ -6,7 +6,7 @@ define([
 ], function (transparency) {
 	'use strict';
 	transparency.matcher = function (element, key) {
-		return element.getAttribute('data-bind') === key;
+		return element.el.getAttribute('data-bind') === key;
 	};
 
 	return {

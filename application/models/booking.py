@@ -8,7 +8,7 @@ from google.appengine.ext import db
 from application.models.user import UserModel
 from application.models.commons import BookingState as State
 from application.models.bookable import BookableModel
-from application.models.prop import currency_default
+from application.models import prop
 
 
 class BookingModel(AbstractModel):
@@ -19,7 +19,8 @@ class BookingModel(AbstractModel):
     message = db.TextProperty()
     feedback = db.TextProperty()
     # the currency the booking was made in
-    currency = db.StringProperty(required=True, default=currency_default)
+    currency = db.StringProperty(
+        required=True, default=prop.get_currency_default())
     # the rates of that day
     rates = db.StringProperty(required=True, default='{ "error": "not saved"}')
     # the price of the stay in the default currency

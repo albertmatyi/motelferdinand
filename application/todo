@@ -208,7 +208,17 @@ D			paging stops after some clicking
 D		hungarian mail sending (str contains unicode)
 D		mark as paid not working
 	special prices
-$		test
+%		test
+130806
+	bugs
+D		static props all
+D		migrate emails
+		admin discount
+			value remains for multiple views
+			changing curency doesn't cause recalc
+D	change denied color
+	log sent msgs (acc/den/other)
+
 ?		show calculations on admin
 
 	caching

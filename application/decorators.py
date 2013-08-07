@@ -8,6 +8,8 @@ Decorators for URL handlers
 from functools import wraps
 from google.appengine.api import users
 from flask import redirect, request
+from google.appengine.api import memcache
+import logging
 
 
 def login_required(func):
@@ -29,3 +31,30 @@ def admin_required(func):
         return func(*args, **kwargs)
     return decorated_view
 
+
+def cached(key, time=0):
+    """Retrieves a cached value of the method, or creates a new one"""
+    def get_cached_val_wrapper(func):
+        @wraps(func)
+        def get_cached_val(*args, **kwargs):
+            data = memcache.get(key)
+            if data is None:
+                data = func(*args, **kwargs)
+                memcache.set(key, data, time)
+            else:
+                logging.info('getting cached value for ' + key)
+            return data
+        return get_cached_val
+    return get_cached_val_wrapper
+
+
+def invalidate_cache(key):
+    """Deletes a cached value"""
+    def del_cached_val_wrapper(func):
+        @wraps(func)
+        def del_cached_val(*args, **kwargs):
+            memcache.delete(key)
+            # raise Exception('removing value')
+            return func(*args, **kwargs)
+        return del_cached_val
+    return del_cached_val_wrapper

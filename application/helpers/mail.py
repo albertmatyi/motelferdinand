@@ -2,7 +2,7 @@
 from google.appengine.api import mail
 from application.helpers import si18n, currency
 from application.models.booking import BookingDictBuilder
-from application.models.prop import all_props
+from application.models import prop
 import re
 import json
 import math
@@ -67,8 +67,8 @@ def build_booking_info(booking):
 
 def render_mail_template(which, booking_info):
     key_base = 'mail.' + which + '.' + si18n.get_lang_id()
-    subject_template = unicode(all_props[key_base + '.subject'])
-    body_template = unicode(all_props[key_base + '.body'])
+    subject_template = unicode(prop.get_all_props()[key_base + '.subject'])
+    body_template = unicode(prop.get_all_props()[key_base + '.body'])
 
     return (
         render(subject_template, booking_info),
