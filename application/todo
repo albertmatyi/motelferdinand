@@ -210,13 +210,15 @@ D		mark as paid not working
 	special prices
 %		test
 130806
-	bugs
+D	bugs
 D		static props all
 D		migrate emails
-		admin discount
-			value remains for multiple views
-			changing curency doesn't cause recalc
+130807
+D		admin discount
+D			value remains for multiple views
+D			changing curency doesn't cause recalc
 D	change denied color
+D	upgrade transparency
 	log sent msgs (acc/den/other)
 
 ?		show calculations on admin

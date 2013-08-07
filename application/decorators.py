@@ -9,7 +9,6 @@ from functools import wraps
 from google.appengine.api import users
 from flask import redirect, request
 from google.appengine.api import memcache
-import logging
 
 
 def login_required(func):
@@ -41,8 +40,6 @@ def cached(key, time=0):
             if data is None:
                 data = func(*args, **kwargs)
                 memcache.set(key, data, time)
-            else:
-                logging.info('getting cached value for ' + key)
             return data
         return get_cached_val
     return get_cached_val_wrapper
