@@ -15,7 +15,8 @@ define(
 	var bkblInfo = {
 		title: '',
 		places: 3,
-		prices: function (i) { return i; }
+		prices: function (i) { return i; },
+		special: []
 	};
 	var bkngInfo = {
 		name: 'John Doe',

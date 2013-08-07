@@ -205,7 +205,8 @@ define([
 	var getNights = function () {
 		var from = getStartDate();
 		var until = getEndDate();
-		return new Date(until - from) / (1000 * 60 * 60 * 24);
+		// have to round to avoid DST problems
+		return Math.round(new Date(until - from) / (1000 * 60 * 60 * 24));
 	};
 
 	var onchange = function (callback) {

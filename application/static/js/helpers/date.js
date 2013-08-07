@@ -29,15 +29,17 @@ define([], function () {
 	};
 
 	var getDateDiff = function (date0, date1) {
-		return (strToDate(date1) - strToDate(date0)) / MILLIS_IN_DAY;
+		// have to round to avoid DST problems
+		return Math.round((strToDate(date1) - strToDate(date0)) / MILLIS_IN_DAY);
 	};
 
 	var previousDay = function (date) {
 		return new Date(date.getTime() - MILLIS_IN_DAY);
 	};
 
-	var nextDay = function (date) {
-		return new Date(date.getTime() + MILLIS_IN_DAY);
+	var nextDay = function (date, days) {
+		days = days || 1;
+		return new Date(date.getTime() + MILLIS_IN_DAY * days);
 	};
 
 	var stripTime = function (date) {

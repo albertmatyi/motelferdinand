@@ -20,9 +20,19 @@ define([
 			'prices': function (i) { return i + 1; },
 			'special': [{
 				'start': dateHelper.toStr(dateHelper.nextDay(new Date())),
-				'end': dateHelper.toStr(dateHelper.nextDay(dateHelper.nextDay(new Date()))),
+				'end': dateHelper.toStr(dateHelper.nextDay(new Date(), 2)),
 				'repeat': 'week',
 				'prices': function (i) { return i + 1; }
+			}, {
+				'start': dateHelper.toStr(dateHelper.nextDay(new Date(), 2)),
+				'end': dateHelper.toStr(dateHelper.nextDay(new Date(), 3)),
+				'repeat': 'month',
+				'prices': function (i) { return i + 3; }
+			}, {
+				'start': dateHelper.toStr(dateHelper.nextDay(new Date(), 3)),
+				'end': dateHelper.toStr(dateHelper.nextDay(new Date(), 4)),
+				'repeat': 'year',
+				'prices': function (i) { return i + 6; }
 			}]
 		};
 		var catInfo = {
