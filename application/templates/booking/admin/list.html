@@ -4,7 +4,7 @@
 			<span class="add-on">{{ __('Booking between') }}</span>
 			<input type="text" class="start" id="booking-between-start" placeholder="{{ __('Start (dd-mm-yyyy)') }}"/>
 			<input type="text" class="end" id="booking-between-end" placeholder="{{ __('End (dd-mm-yyyy)') }}"/>
-			<button class="btn btn-primary" > {{ __('Load')}} </button>
+			<button class="btn btn-primary load-bookings"> {{ __('Load')}} </button>
 		</div>
 		<div class="input-append">
 			<input type="text" class="quicksearch" id="booking-quicksearch" placeholder="{{ __('Quicksearch') }}"/>
@@ -41,11 +41,11 @@
 		</tbody>
 	</table>
 </div>
-<div class="bookings-list header-controls">
-	<!-- <span class="btn btn-link filter-btn">
+<!-- <div class="bookings-list ">
+	<span class="btn btn-link filter-btn">
 		{{ __('Filters') }} <i class="icon-chevron-down"></i>
-	</span> -->
-</div>
+	</span>
+</div> -->
 <div class="bookings-list footer-buttons">
 	<button class="btn btn-link" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>
 		{{ __('Close') }}

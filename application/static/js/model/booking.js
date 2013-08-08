@@ -14,8 +14,10 @@ define(['helpers/currency', 'helpers/date'], function (currencyHelper, dateHelpe
 		el.totalPricePerNightAdmin = el.totalAdmin / el.nrOfNights;
 	};
 
-	var loadNewBookings = function (callback) {
-		$.getJSON('/admin/bookings/', function (data) {
+	var loadBookings = function (startDate, endDate, callback) {
+		startDate = startDate || 'NaN';
+		endDate = endDate || 'NaN';
+		$.getJSON('/admin/bookings/' + startDate + '/' + endDate, function (data) {
 			model.mapToDB(data, 'booking');
 			model.bookings = data;
 			_.each(data, function (el) {
@@ -63,7 +65,7 @@ define(['helpers/currency', 'helpers/date'], function (currencyHelper, dateHelpe
 	};
 
 	return {
-		'loadNewBookings': loadNewBookings,
+		'loadBookings': loadBookings,
 		'recalculateAdminPrices': recalculateAdminPrices,
 		'recalculatePrices': recalculatePrices,
 		'setDiscount': setDiscount

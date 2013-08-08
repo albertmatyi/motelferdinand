@@ -21,7 +21,7 @@ define([
 	'lib/jquery'
 ],
 function (transp, bookingsDirective, bookingDetailsDirective,
-	i18n, transparency, dialog, adminControls, modal, wysihtml5, date, progress, currencyHelper, mailHelper, bookingModel) {
+	i18n, transparency, dialog, adminControls, modal, wysihtml5, dateHelper, progress, currencyHelper, mailHelper, bookingModel) {
 	'use strict';
 
 	var $bookingsButton = $('#adminBookingsButton');
@@ -49,6 +49,9 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 	var $subject = $('#mail-subject', $bookingsModal);
 	var $textarea = $('#booking-textarea', $bookingsModal);
 
+	var $loadBookingsButton = $('.filters .load-bookings', $bookingsModal);
+	var $quickSearchField = $('.filters .quicksearch');
+
 	var renderList = function () {
 		var $nt = $tableTemplate.clone();
 		$table.replaceWith($nt);
@@ -72,6 +75,7 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 			showDetails($(event.target).parents('.booking-row').data('bookingId'));
 		});
 		activate('list');
+		quickSearch();
 	};
 
 	var showDetails = function (bookingId) {
@@ -234,9 +238,24 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 		}
 	};
 
-	var showBookings = function () {
-		bookingModel.loadNewBookings(function () {
+	var loadBookings = function (callback) {
+		bookingModel.loadBookings(
+			$('.filters .start').val(),
+			$('.filters .end').val(), function () {
 			showList();
+			if (typeof callback === 'function') {
+				callback();
+			}
+			quickSearch();
+		});
+	};
+
+	var showBookings = function () {
+		var todayStr = dateHelper.toStr(dateHelper.today);
+		$('.filters .start').val(todayStr);
+		$('.filters .end').val('');
+		$quickSearchField.val('');
+		loadBookings(function () {
 			$bookingsModal.modal('show');
 			renderBadge();
 		});
@@ -357,9 +376,11 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 	};
 
 	var quickSearch = function (event) {
-		var val = $(event.target).val();
-		if (event.which === 27) { // esc
+		var val = $quickSearchField.val();
+		if (event && event.which === 27) { // esc
 			val = '';
+		}
+		if (val === '') {
 			$table.removeClass('filtered');
 		} else {
 			$table.addClass('filtered');
@@ -382,11 +403,12 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 		currencyHelper.initSelect($('select.currency', $bookingsModal.header));
 		$('a[data-toggle=tooltip]', $bookingsModal.body).tooltip({});
 		wysihtml5.renderTextAreas($bookingsModal);
-		$('.filters .quicksearch').on('keyup', quickSearch);
+		$quickSearchField.on('keyup', quickSearch);
 
 		$bookingDetails.acceptButton.click(function () { showMailBookingFormFor.call(this, 'accept', true); });
 		$bookingDetails.denyButton.click(function () { showMailBookingFormFor.call(this, 'deny', true); });
 		$bookingDetails.updateButton.on('click', updateBooking);
+		$loadBookingsButton.on('click', loadBookings);
 		$('#accept-booking', $bookingsModal).click(acceptBooking);
 		$('#deny-booking', $bookingsModal).click(denyBooking);
 		$('#mark-as-paid', $bookingsModal).click(markAsPaid);
