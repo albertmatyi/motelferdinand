@@ -1,4 +1,18 @@
 <div class="bookings-list">
+	<div class="filters">
+		<div class="input-prepend input-append">
+			<span class="add-on">{{ __('Booking between') }}</span>
+			<input type="text" class="start" id="booking-between-start" placeholder="{{ __('Start (dd-mm-yyyy)') }}"/>
+			<input type="text" class="end" id="booking-between-end" placeholder="{{ __('End (dd-mm-yyyy)') }}"/>
+			<button class="btn btn-primary" > {{ __('Load')}} </button>
+		</div>
+		<div class="input-append">
+			<input type="text" class="quicksearch" id="booking-quicksearch" placeholder="{{ __('Quicksearch') }}"/>
+			<button class="btn" disabled="disabled"><i class="icon-search"></i></button>
+		</div>
+	</div>
+</div>
+<div class="bookings-list">
 	<table class="table">
 		<thead>
 			<tr>
@@ -6,7 +20,7 @@
 				<th>{{ __('Name') }}</th>
 				<th>{{ __('Email') }}</th>
 				<th>{{ __('Phone') }}</th>
-				<th>{{ __('Booking entries') }}</th>
+				<th>{{ __('Bookable') }}</th>
 				<th>{{ __('Date') }}</th>
 				<th>{{ __('State') }}</th>
 			</tr>
@@ -27,8 +41,13 @@
 		</tbody>
 	</table>
 </div>
+<div class="bookings-list header-controls">
+	<!-- <span class="btn btn-link filter-btn">
+		{{ __('Filters') }} <i class="icon-chevron-down"></i>
+	</span> -->
+</div>
 <div class="bookings-list footer-buttons">
-	<button class="btn btn-link" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i> 
+	<button class="btn btn-link" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>
 		{{ __('Close') }}
 	</button>
 </div>

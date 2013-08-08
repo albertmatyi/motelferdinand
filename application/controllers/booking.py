@@ -12,7 +12,7 @@ from application.helpers import si18n, mail as mail_helper
 from flask.globals import request
 from application.decorators import admin_required
 from application.helpers import date as date_helper
-from datetime import timedelta
+from datetime import timedelta, date
 from application.helpers import currency as currency_helper,\
     price as price_helper
 import json
@@ -119,8 +119,12 @@ def admin_delete_booking(entity_id):
 @app.route("/admin/bookings/", methods=["GET"])
 @admin_required
 def get_bookings():
-    bookings = [e.to_dict(True) for e in BookingModel.all()]
+    bookings = [e.to_dict(True) for e in get_new_bookings()]
     return json.dumps(bookings)
+
+
+def get_new_bookings():
+    return BookingModel.all().filter('end >=', date.today())
 
 
 @app.route("/admin/bookings/", methods=["POST"])

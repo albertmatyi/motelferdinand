@@ -117,6 +117,9 @@ translations = {
 
         # Admin
         'Admin': u'Admin',
+        'Filters': u'Filters',
+        'Load': u'Load',
+        'Quicksearch': u'Quicksearch',
         'Guestbook entries': u'Guestbook entries',
         'Bookings': u'Bookings',
         'Booking entries': u'Booking entries',
@@ -181,6 +184,9 @@ translations = {
         'Specify a valid phone number': u'Specify a valid phone number',
         'Specify your citizenship': u'Specify your citizenship',
         'Specify a valid date (dd-mm-yyyy)': u'Sepcify a valid date (dd-mm-yyyy)',
+        'Booking between': u'Booking between',
+        'Start (dd-mm-yyyy)': u'Start (dd-mm-yyyy)',
+        'End (dd-mm-yyyy)': u'End (dd-mm-yyyy)',
 
         #Admin booking
         'Accepted': u'Accepted',
@@ -252,6 +258,9 @@ translations = {
 
         # Admin
         'Admin': u'Admin',
+        'Filters': u'Szűrők',
+        'Load': u'Betölt',
+        'Quicksearch': u'Gyorskeresés',
         'Guestbook entries': u'Bejegyzések',
         'Bookings': u'Foglalások',
         'Booking entries': u'Lefoglalt szobák',
@@ -317,6 +326,9 @@ translations = {
         'Specify your citizenship': u'Határozza meg állampolgárságát',
         'Specify a valid phone number': u'A megadott telefonszám helytelen.',
         'Specify a valid date (dd-mm-yyyy)': u'Helytelen dátum. (nn-hh-éééé)',
+        'Booking between': u'Foglalás a köv. dátumok között',
+        'Start (dd-mm-yyyy)': u'Kezdet (nn-hh-éééé)',
+        'End (dd-mm-yyyy)': u'Vég (nn-hh-éééé)',
 
         #Admin booking
         'Accepted': u'Elfogadva',
@@ -388,6 +400,9 @@ translations = {
 
         # Admin
         'Admin': u'Admin',
+        'Filters': u'Filtre',
+        'Load': u'Încarcă',
+        'Quicksearch': u'Căutare rapidă',
         'Guestbook entries': u'Mesaje clienți',
         'Bookings': u'Rezervări',
         'Booking entries': u'Camere rezervate',
@@ -453,6 +468,9 @@ translations = {
         'Specify your citizenship': u'Specificați cetățenia Dvs.',
         'Specify a valid phone number': u'Numărul specificat este invalid.',
         'Specify a valid date (dd-mm-yyyy)': u'Dată greșită (zz-ll-aaaa)',
+        'Booking between': u'Rezervarea între',
+        'Start (dd-mm-yyyy)': u'Început (zz-ll-aaaa)',
+        'End (dd-mm-yyyy)': u'Sfârșit (zz-ll-aaaa)',
 
         #Admin booking
         'Accepted': u'Acceptat',

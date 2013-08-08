@@ -1,43 +1,65 @@
 &.list-view {
 	.bookings-list{
 		display: block;
+		.filters {
+			& > * {
+				display: inline-block;
+			}
+			input[type=text], button {
+				// height: 14px;
+		        // font-size: .8em;
+			}
+			input {
+				&.start, &.end {
+					width: 130px;
+					text-align: right;
+				}
+			}
+		}
 		& .table {
 			thead th{
 				text-align: center;
 			}
-			&>tbody>tr{
-				background: none; //#FFcccc;
-				&>td.center{
-					text-align: center;
-				}
-				&:hover {
-					background: #EEEEEE;//#FF9999;
-				}
-				&.new {
-					font-weight: bold;
-				}
-				&.accepted {
-					background: #CCEEFF;
-					&:hover{
-						background: #99CCFF;
+			&>tbody {
+				&.filtered {
+					&>tr.not-a-match {
+						display: none;
 					}
 				}
-				&.paid {
-					background: #CCFFCC;
-					&:hover{
-						background: #99CC66;
+				&>tr {
+					background: none; //#FFcccc;
+					&>td.center{
+						text-align: center;
 					}
-				}
-				&.denied{
-					background: #fcc;
-					&:hover{
-						background: #f99;
+					&:hover {
+						background: #EEEEEE;//#FF9999;
 					}
-				}
-				cursor: pointer;
-				&.bookingDetails {
-					cursor: default;
-					font-weight: normal;
+					&.new {
+						font-weight: bold;
+					}
+					&.accepted {
+						background: #CCEEFF;
+						&:hover{
+							background: #99CCFF;
+						}
+					}
+					&.paid {
+						background: #CCFFCC;
+						&:hover{
+							background: #99CC66;
+						}
+					}
+					&.denied{
+						background: #fcc;
+						&:hover{
+							background: #f99;
+						}
+					}
+					cursor: pointer;
+					&.bookingDetails {
+						cursor: default;
+						font-weight: normal;
+					}
 				}
 			}
 		}

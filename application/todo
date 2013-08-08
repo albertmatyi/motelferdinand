@@ -207,8 +207,6 @@ D			paging stops after some clicking
 130729
 D		hungarian mail sending (str contains unicode)
 D		mark as paid not working
-	special prices
-%		test
 130806
 D	bugs
 D		static props all
@@ -219,15 +217,19 @@ D			value remains for multiple views
 D			changing curency doesn't cause recalc
 D	change denied color
 D	upgrade transparency
-	log sent msgs (acc/den/other)
+130808
+%	booking retrieval
+		sorting
+		old bookings in other page
+	special prices
+		test
 
+
+?	log sent msgs (acc/den/other)
 ?		show calculations on admin
 
 	caching
 	fixed booking button
-	booking retrieval
-		sorting
-		old bookings in other page
 	send message from contact
 
 	try http://imperavi.com/redactor/

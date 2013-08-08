@@ -86,7 +86,7 @@ function (us, config, test, social, modal, modelBase,
 	settingsAdmin.init();
 	if (!PRODUCTION) {
 		// settingsAdmin.show();
-		// bookingAdmin.showBookings();
+		bookingAdmin.showBookings();
 		console.clear();
 	}
 //close the function & define

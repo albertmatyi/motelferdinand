@@ -5,7 +5,7 @@
 		background: #999999;
 		@include gradient(#666666, #999999);
 		border-radius: 3px;
-		padding: 0px 3px;
+		padding: 3px 3px 0px;
 		float: left;
 		cursor: pointer;
 		margin-left: $adminControlsMarginL;
@@ -20,6 +20,6 @@
 	}
 	.add:hover{
 		background: #88DD55;
-		@include gradient(#339933, #66CC33);	
+		@include gradient(#339933, #66CC33);
 	}
 }

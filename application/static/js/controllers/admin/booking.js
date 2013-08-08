@@ -43,6 +43,7 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 	$bookingDetails.denyButton = $('#show-deny-booking', $bookingsModal);
 	$bookingDetails.updateButton = $('#update-booking', $bookingsModal);
 
+
 	var UPDATEABLE_FIELDS = ['discount', 'id'];
 
 	var $subject = $('#mail-subject', $bookingsModal);
@@ -338,7 +339,7 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 		});
 	};
 
-	var init = function () {
+	var moveFooterElementsToFooter = function () {
 		$('.footer-buttons', $bookingsModal.body).each(function (i, fbs) {
 			var $fbs = $(fbs);
 			$fbs.removeClass('footer-buttons');
@@ -346,10 +347,42 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 			$('.footer-buttons', $bookingsModal.footer).append(btns);
 			btns.addClass($fbs.prop('class'));
 		});
+	};
+
+	var moveHeaderElementsToHeader = function () {
+		$('.header-controls', $bookingsModal.body).each(function (i, hct) {
+			var $hct = $(hct);
+			$hct.appendTo($bookingsModal.header);
+		});
+	};
+
+	var quickSearch = function (event) {
+		var val = $(event.target).val();
+		if (event.which === 27) { // esc
+			val = '';
+			$table.removeClass('filtered');
+		} else {
+			$table.addClass('filtered');
+		}
+		val = val.toLowerCase();
+		$('tr', $table).each(function (idx, el) {
+			var $row = $(el);
+			if ($row.text().toLowerCase().indexOf(val) !== -1) {
+				$row.removeClass('not-a-match');
+			} else {
+				$row.addClass('not-a-match');
+			}
+		});
+	};
+
+	var init = function () {
+		moveFooterElementsToFooter();
+		moveHeaderElementsToHeader();
 		renderBadge(model.new_bookings_nr);
 		currencyHelper.initSelect($('select.currency', $bookingsModal.header));
 		$('a[data-toggle=tooltip]', $bookingsModal.body).tooltip({});
 		wysihtml5.renderTextAreas($bookingsModal);
+		$('.filters .quicksearch').on('keyup', quickSearch);
 
 		$bookingDetails.acceptButton.click(function () { showMailBookingFormFor.call(this, 'accept', true); });
 		$bookingDetails.denyButton.click(function () { showMailBookingFormFor.call(this, 'deny', true); });
