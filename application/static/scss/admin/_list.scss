@@ -19,6 +19,27 @@
 		& .table {
 			thead th{
 				text-align: center;
+				cursor: pointer;
+				&:hover {
+					background: #eee;
+				}
+				.sorted-by {
+					float: right;
+					width: 0;
+					position: relative;
+					left: -7px;
+					.icon-chevron-up {
+						display: none;
+					}
+					&.sorted-up {
+						.icon-chevron-up {
+							display: block;
+						}
+						.icon-chevron-down {
+							display: none;
+						}
+					}
+				}
 			}
 			&>tbody {
 				&.filtered {

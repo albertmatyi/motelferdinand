@@ -87,7 +87,7 @@ function (us, config, test, social, modal, modelBase,
 	if (!PRODUCTION) {
 		// settingsAdmin.show();
 		bookingAdmin.showBookings();
-		console.clear();
+		// console.clear();
 	}
 //close the function & define
 });

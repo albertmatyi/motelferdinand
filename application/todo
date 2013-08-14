@@ -218,9 +218,11 @@ D			changing curency doesn't cause recalc
 D	change denied color
 D	upgrade transparency
 130808
-%	booking retrieval
-		sorting
-		old bookings in other page
+	booking retrieval
+D		quicksearch
+D		load
+D		only enable discount when pending
+D		sorting
 	special prices
 		test
 

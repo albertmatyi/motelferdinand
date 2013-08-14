@@ -16,13 +16,18 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>#</th>
-				<th>{{ __('Name') }}</th>
-				<th>{{ __('Email') }}</th>
-				<th>{{ __('Phone') }}</th>
-				<th>{{ __('Bookable') }}</th>
-				<th>{{ __('Date') }}</th>
-				<th>{{ __('State') }}</th>
+				<th>#
+					<span class="sorted-by">
+						<i class=" icon-chevron-down"></i>
+						<i class=" icon-chevron-up"></i>
+					</span>
+				</th>
+				<th data-sort-by="user.full_name">{{ __('Name') }}</th>
+				<th data-sort-by="user.email">{{ __('Email') }}</th>
+				<th data-sort-by="user.phone">{{ __('Phone') }}</th>
+				<th data-sort-by="bookable">{{ __('Bookable') }}</th>
+				<th data-sort-by="created">{{ __('Date') }}</th>
+				<th data-sort-by="state">{{ __('State') }}</th>
 			</tr>
 		</thead>
 		<tbody >

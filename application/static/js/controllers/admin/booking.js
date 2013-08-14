@@ -34,6 +34,7 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 	$bookingsModal.title = $('h3', $bookingsModal.header);
 
 	var $table = $('.bookings-list .table > tbody', $bookingsModal);
+	$table.head = $('.bookings-list .table > thead', $bookingsModal);
 	var $tableTemplate = $table.clone();
 
 	var $bookingDetails = $('.booking-details', $bookingsModal);
@@ -242,6 +243,10 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 		bookingModel.loadBookings(
 			$('.filters .start').val(),
 			$('.filters .end').val(), function () {
+			sort('created', -1);
+			$('.sorted-by', $table.head)
+				.appendTo('th[data-sort-by=created]', $table.head)
+				.addClass('sorted-up');
 			showList();
 			if (typeof callback === 'function') {
 				callback();
@@ -396,6 +401,43 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 		});
 	};
 
+	var sort = function (by, mult) {
+		mult = mult || 1;
+		var bies = by.split('.');
+		model.bookings.sort(function (a, b) {
+			for (var i = 0; i < bies.length; i += 1) {
+				a = a[bies[i]];
+				b = b[bies[i]];
+			}
+			if (/\d{2}-\d{2}-\d{4}/.exec(bies[i - 1]) !== null) {
+				a = dateHelper.toDate(a);
+				b = dateHelper.toDate(b);
+			}
+			if (typeof a === 'string') {
+				a = a.toLowerCase();
+				b = b.toLowerCase();
+			}
+			return mult * (a < b ? -1:(a === b ? 0:1));
+		});
+	};
+
+	var handleSort = function (event) {
+		var sb = $(event.target).data('sort-by');
+		if (!sb) {
+			return;
+		}
+		var $currentSort = $('.sorted-by', event.target);
+		if ($currentSort.length > 0 && !$currentSort.hasClass('sorted-up')) {
+			$currentSort.addClass('sorted-up');
+			sort(sb, -1);
+		} else {
+			$('.sorted-by', $table.head).appendTo(event.target).removeClass('sorted-up');
+			sort(sb);
+		}
+		showList();
+		quickSearch();
+	};
+
 	var init = function () {
 		moveFooterElementsToFooter();
 		moveHeaderElementsToHeader();
@@ -404,6 +446,7 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 		$('a[data-toggle=tooltip]', $bookingsModal.body).tooltip({});
 		wysihtml5.renderTextAreas($bookingsModal);
 		$quickSearchField.on('keyup', quickSearch);
+		$('th', $table.head).on('click', handleSort);
 
 		$bookingDetails.acceptButton.click(function () { showMailBookingFormFor.call(this, 'accept', true); });
 		$bookingDetails.denyButton.click(function () { showMailBookingFormFor.call(this, 'deny', true); });

@@ -1,7 +1,7 @@
 {
   "asi": false,
   "boss": false,
-  "camelcase": false,
+  "camelcase": true,
   "curly": true,
   "eqeqeq": true,
   "eqnull": false,

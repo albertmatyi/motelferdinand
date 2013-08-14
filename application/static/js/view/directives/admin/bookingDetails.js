@@ -56,6 +56,11 @@ define([
 				$(params.element).prop('disabled', this.state > 1);
 			}
 		},
+		'discount' : {
+			'disabled' : function () {
+				return this.state > 1 ? 'disabled':'';
+			}
+		},
 		'paid-button' : {
 			'text' : function (params) {
 				if (this.state < 3) {
