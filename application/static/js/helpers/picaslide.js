@@ -11,12 +11,27 @@ define([
 ],
 function (jq, picasa, slides, fullscreen) {
 	'use strict';
+
+	var	fullscreenUrlPreprocessor = function (url, width) {
+		return getUrlForSize(url, width, 'w');
+	};
+
 	var initControls  = function ($context, images) {
 		var $btn = $('<span class="fullscreen-btn btn"><i class="icon-fullscreen"></i></span>');
 		$btn.appendTo($context).click(function () {
-			fullscreen.showImages(_.map(images, function (el) { delete el.title; return el; }), 0);
+			fullscreen.showImages(
+				_.map(images, function (el) { delete el.title; return el; }),
+				0,
+				fullscreenUrlPreprocessor);
 		});
 	};
+
+	var getUrlForSize = function (url, size, side) {
+		side = side || 's';
+		size = parseInt(size, 10);
+		return url.replace(/(\/)([^\/]+)$/, '$1' + side + size + '/$2');
+	};
+
 	(function ($) {
 		$.fn.picaslide = function (slideOpts, successCallback) {
 			var scope = $(this);
@@ -28,6 +43,7 @@ function (jq, picasa, slides, fullscreen) {
 			var w = scope.width();
 			var width = w + 'px';
 			var height = w * 3 / 4 + 'px';
+			console.log(width);
 			scope.css('width', width);
 			scope.css('height', height);
 			$.picasa.images(user, album, function (images) {
@@ -35,9 +51,8 @@ function (jq, picasa, slides, fullscreen) {
 				$.each(images, function (i, element) {
 					picasaAlbum += '  <div class="picasa-image" style="width: ' + width + '; height: ' + height + ';' +
 					' background-repeat: no-repeat; background-image: url(' +
-						element.url.replace(/(\/)([^\/]+)$/, '$1s' +
-						Math.max(parseInt(height, 10), parseInt(width, 10)) +
-						'/$2') + '); background-size: cover; background-position: center;"' +
+						getUrlForSize(element.url, Math.max(parseInt(height, 10), parseInt(width, 10))) +
+						'); background-size: cover; background-position: center;"' +
 					'>\n';
 					picasaAlbum += '  </div>\n';
 				});

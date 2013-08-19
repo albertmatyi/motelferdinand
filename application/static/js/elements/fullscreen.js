@@ -15,6 +15,8 @@ define([
 	 */
 	var index = -1;
 
+	var URL_PREPROCESSOR;
+
 	$fsContext.click(function () {
 		$fsContext.hide();
 	});
@@ -25,7 +27,7 @@ define([
 		if (index >= images.length) {
 			index = 0;
 		}
-		showImages(images, index);
+		showImages(images, index, URL_PREPROCESSOR);
 		return false;
 	});
 
@@ -35,7 +37,7 @@ define([
 		if (index < 0) {
 			index = images.length - 1;
 		}
-		showImages(images, index);
+		showImages(images, index, URL_PREPROCESSOR);
 		return false;
 	});
 
@@ -45,7 +47,10 @@ define([
 	 * @param imgs The array of images {title: , description: , url: }
 	 * @param startIndex
 	 */
-	var showImages = function (imgs, startIndex) {
+	var showImages = function (imgs, startIndex, urlPreprocessor) {
+		urlPreprocessor = urlPreprocessor || function (url) { return url; };
+		URL_PREPROCESSOR = urlPreprocessor;
+
 		index = startIndex || 0;
 		images = imgs || [];
 		var DATA = images[index];
@@ -78,10 +83,11 @@ define([
 		var ic = $('.image-container', $fsContext);
 		ic.css('left', (oww * infoWP + (windowW - w) / 2) + 'px');
 		ic.css('top', ((windowH - w * DATA.height / DATA.width) / 2) + 'px');
-		ic.html('<img src="' + imageURL +
+		ic.html('<img src="' + urlPreprocessor(imageURL, w) +
 			'" alt="' + DATA.title +
 			'" title="' + DATA.title +
 			'" style="width: ' + w + 'px" />');
+		$('.prev, .next', $fsContext).show();
 		$fsContext.fadeIn();
 	};
 

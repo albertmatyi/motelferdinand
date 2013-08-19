@@ -227,6 +227,7 @@ D		sorting
 		test
 130818
 D	send message from contact
+D	fullscreen image quality
 
 ?	log sent msgs (acc/den/other)
 ?		show calculations on admin
@@ -243,7 +244,6 @@ D	send message from contact
 		accept
 		move
 
-	fullscreen image quality
 	feedback
 		add one
 		notify
