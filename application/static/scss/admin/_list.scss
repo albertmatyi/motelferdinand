@@ -5,6 +5,9 @@
 			& > * {
 				display: inline-block;
 			}
+			.end {
+				border-left: 0;
+			}
 			input[type=text], button {
 				// height: 14px;
 		        // font-size: .8em;

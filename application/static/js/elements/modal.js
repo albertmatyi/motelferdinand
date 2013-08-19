@@ -32,7 +32,7 @@ function (notification) {
 
 	var displayNotification = function ($modal, str, type) {
 		var $notification = notification.createNotification(str, type);
-		var $modalHeader = $('.modal-header', $modal);
+		var $modalHeader = $('.modal-header:visible', $modal);
 
 		setNotificationsContainerWidth($modalHeader);
 

@@ -3,6 +3,16 @@ $iconSize: 48px;
 	background-position: ( - $offsetY - $row * $height) ( - $offsetX - $col * $width);
 }
 #contactModal {
+	.message-content, .info-content {
+		display: none;
+	}
+	&.info .info-content {
+		display: block;
+	}
+	&.message .message-content {
+		display: block;
+	}
+
 	.modal-body{
 		padding-left: 0;
 		padding-right: 0;

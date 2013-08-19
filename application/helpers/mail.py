@@ -1,11 +1,54 @@
 # -*- coding: utf-8 -*-
+from application import app
 from google.appengine.api import mail
 from application.helpers import si18n, currency
 from application.models.booking import BookingDictBuilder
 from application.models import prop
+from application.helpers import request as request_helper
 import re
 import json
 import math
+
+
+@app.route('/mail/send-contact-message', methods=['POST'])
+def send_contact_message():
+    js_data = request_helper.get_json_data()
+    name = js_data['name']
+    email = js_data['email']
+    message = js_data['message']
+    send_mail(
+        get_sender(),
+        get_admin_mails(),
+        name + ' ' +
+        si18n.translate(
+            'has sent you a message from Ferdinand Pension\'s webpage'),
+        wrap_message(name, email, message),
+        email)
+    return \
+        '{ "message" : "' +\
+        si18n.translate('Message sent successfully') +\
+        '" }'
+    pass
+
+
+def wrap_message(name, email, message):
+    return '''
+        <table>
+            <tr>
+                <th><b>''' + si18n.translate('Name') + '''</b></th>
+                <td>''' + name + '''</td>
+            </tr>
+            <tr>
+                <th><b>''' + si18n.translate('Email') + '''</b></th>
+                <td>''' + email + '''</td>
+            </tr>
+            <tr>
+                <th><b>''' + si18n.translate('Message') + '''</b></th>
+                <td>''' + message + '''</td>
+            </tr>
+        </table>
+    '''
+    pass
 
 
 def send_mails_for_new(booking):
@@ -95,10 +138,12 @@ def iterate_and_replace(string, base, dct):
     return string
 
 
-def send_mail(ffrom, to, subject, body):
+def send_mail(ffrom, to, subject, body, reply_to=''):
     message = mail.EmailMessage(sender=ffrom, subject=subject)
     message.to = to
     message.html = body
+    if not reply_to == '':
+        message.reply_to = reply_to
     message.send()
 
 

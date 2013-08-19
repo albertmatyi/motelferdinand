@@ -13,9 +13,12 @@ define([
 		text = text || DEFAULT_TXT;
 
 		$places.each(function (i, place) {
+			var $place = $(place);
+			if (!$place.is(':visible')) {
+				return;
+			}
 			var $pb = $progress.clone();
 			$('.bar', $pb).text(text);
-			var $place = $(place);
 			$pb.css({
 				'width': $place.outerWidth() + 'px',
 				'height': $place.outerHeight() + 'px',

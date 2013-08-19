@@ -114,6 +114,12 @@ translations = {
         'Client': u'Client',
         'Prices': u'Prices',
         'Discount': u'Discount',
+        'Message': u'Message',
+        'Your full name': u'Your full name',
+        'Your email address': u'Your email address',
+        'The body of the message': u'The body of the message',
+        'Message sent successfully': u'Message sent successfully',
+        'has sent you a message from Ferdinand Pension\'s webpage': u'has sent you a message from Ferdinand Pension\'s webpage',
 
         # Admin
         'Admin': u'Admin',
@@ -255,6 +261,12 @@ translations = {
         'Client': u'Kliens',
         'Prices': u'Árak',
         'Discount': u'Kedvezmény',
+        'Message': u'Üzenet',
+        'Your full name': u'A teljes neve',
+        'Your email address': u'Az email címe',
+        'The body of the message': u'Az üzenet tartalma',
+        'Message sent successfully': u'Üzenet sikeresen elküldve',
+        'has sent you a message from Ferdinand Pension\'s webpage': u'küldött egy üzenetet a Ferdinánd Panzió oldaláról',
 
         # Admin
         'Admin': u'Admin',
@@ -397,6 +409,12 @@ translations = {
         'Client': u'Client',
         'Prices': u'Prețuri',
         'Discount': u'Discount',
+        'Message': u'Mesaj',
+        'Your full name': u'Numele Dvs. complet',
+        'Your email address': u'Adresa Dvs. de mail',
+        'The body of the message': u'Conținutul mesajului',
+        'Message sent successfully': u'Mesajul s-a trimis cu succes',
+        'has sent you a message from Ferdinand Pension\'s webpage': u'v-a trimis un mesaj de pe pagine Pensiunea Ferdinand',
 
         # Admin
         'Admin': u'Admin',

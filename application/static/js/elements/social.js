@@ -3,9 +3,11 @@
 /*global $ */
 
 define([
+	'elements/modal',
+	'elements/progress',
 	'lib/jquery'
 ],
-function () {
+function (modalHelper, progressHelper) {
 	'use strict';
 	var AT = '@';
 	var DOT = '.';
@@ -15,6 +17,8 @@ function () {
 	var $svg = $('#social-arrow', $arrowContainer);
 	var $arrow = $('#svg-arrow', $svg);
 	var $arrowHead = $('#svg-arrow-head', $svg);
+	var $infoModal = $('#contactModal');
+	$infoModal.body = $('.modal-body', $infoModal);
 
 	var drawArrow = function () {
 		var scrollTop = $(window).scrollTop();
@@ -69,13 +73,48 @@ function () {
 		$('#contactModal .email').html(email);
 	};
 
+	var toggleMessage = function () {
+		$infoModal.toggleClass('info').toggleClass('message');
+	};
+
+	var send = function () {
+		var name = $('#contact-name', $infoModal).val();
+		var email = $('#contact-email', $infoModal).val();
+		var message = $('#contact-message', $infoModal).val();
+		progressHelper.show($infoModal.body);
+		$.post(
+			'/mail/send-contact-message',
+			{
+				'data': JSON.stringify({
+					'name': name,
+					'email': email,
+					'message': message
+				})
+			}, function (data) {
+				toggleMessage();
+				modalHelper.displayNotification($infoModal,
+					data.message,
+					'success');
+				progressHelper.hide();
+			}, 'json');
+
+	};
+
 	var init = function () {
 		$(window).on('resize', drawArrow);
 		drawArrow();
 		$('.social .group').one('click', addMapAndMail);
+		$('.show-send-message', $infoModal).on('click', toggleMessage);
+		$('.message-content .back-button', $infoModal).on('click', toggleMessage);
+		$('.message-content .send-button', $infoModal).on('click', send);
+	};
+
+	var show = function () {
+		$('#contactModal').modal('show');
 	};
 
 	return {
-		'init': init
+		'init': init,
+		'show': show
 	};
 });

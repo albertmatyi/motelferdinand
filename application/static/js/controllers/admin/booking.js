@@ -391,9 +391,11 @@ function (transp, bookingsDirective, bookingDetailsDirective,
 			$table.addClass('filtered');
 		}
 		val = val.toLowerCase();
+		val = val.replace(/\*+/g, '.*').replace(/[.+]/g, '\\$0');
+		var rex = new RegExp(val);
 		$('tr', $table).each(function (idx, el) {
 			var $row = $(el);
-			if ($row.text().toLowerCase().indexOf(val) !== -1) {
+			if (rex.exec($row.text().toLowerCase()) !== null) {
 				$row.removeClass('not-a-match');
 			} else {
 				$row.addClass('not-a-match');

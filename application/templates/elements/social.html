@@ -26,12 +26,13 @@
 		</svg>
 	</div>
 </div>
-<div id="contactModal" class="modal hide big-modal" tabindex="-1" role="dialog" aria-labelledby="mapModalTitle" aria-hidden="true">
-	<div class="modal-header">
+<div id="contactModal" class="modal hide big-modal info" tabindex="-1" role="dialog" aria-labelledby="mapModalTitle" aria-hidden="true">
+	<div class="modal-header info-content">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		<h3 id="mapModalTitle">{{ __('How to get here') }}</h3>
+		<div class="notifications"></div>
 	</div>
-	<div class="modal-body row-fluid">
+	<div class="modal-body row-fluid info-content">
 		<div class="span4">
 			<table class="table">
 				<tbody>
@@ -55,7 +56,11 @@
 					</tr>
 					<tr>
 						<th> {{ __('Email') }} </th>
-						<td class="email"> +40 745 304 114 </td>
+						<td class="email"></td>
+					</tr>
+					<tr>
+						<th></th>
+						<td><button class="btn btn-primary show-send-message"> {{ __('Send message') }} </button></td>
 					</tr>
 				</tbody>
 			</table>
@@ -64,7 +69,39 @@
 			<!-- googlemaps inserted here by social.js -->
 		</div>
 	</div>
-	<div class="modal-footer">
+	<div class="modal-footer info-content">
 		<button class="btn" data-dismiss="modal" aria-hidden="true"> {{ __('Close') }} </button>
+	</div>
+	<div class="modal-header message-content">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id="mapModalTitle">{{ __('Message') }}</h3>
+		<div class="notifications"></div>
+	</div>
+	<div class="modal-body row-fluid message-content form-horizontal">
+		<div class="span12">
+			<div class="control-group">
+				<label class="control-label"> {{ __('Name') }}*</label>
+				<div class="controls controls-row">
+					<input id="contact-name" type="text" placeholder="{{__('Your full name')}}"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label"> {{ __('Email') }}*</label>
+				<div class="controls controls-row">
+					<input id="contact-email" type="text" placeholder="{{__('Your email address')}}"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label"> {{ __('Message') }}*</label>
+				<div class="controls controls-row">
+					<textarea id="contact-message" placeholder="{{__('The body of the message')}}"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer message-content">
+		<button class="btn" data-dismiss="modal" aria-hidden="true"> {{ __('Close') }} </button>
+		<button class="btn back-button"> {{ __('Back') }} </button>
+		<button class="btn btn-primary send-button"> {{ __('Send') }} </button>
 	</div>
 </div>

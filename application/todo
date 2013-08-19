@@ -218,21 +218,21 @@ D			changing curency doesn't cause recalc
 D	change denied color
 D	upgrade transparency
 130808
-	booking retrieval
+D	booking retrieval
 D		quicksearch
 D		load
 D		only enable discount when pending
 D		sorting
 	special prices
 		test
-
+130818
+D	send message from contact
 
 ?	log sent msgs (acc/den/other)
 ?		show calculations on admin
 
 	caching
 	fixed booking button
-	send message from contact
 
 	try http://imperavi.com/redactor/
 		picasa albums
