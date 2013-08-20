@@ -19,3 +19,11 @@ def migrate(ver):
     db.migrate(ver)
     return redirect(url_for('home'), 302)
     pass
+
+
+@app.route("/admin/db/fix_picaslide")
+@admin_required
+def fix_picaslide():
+    db.fix_picaslide()
+    return redirect(url_for('home'), 302)
+    pass

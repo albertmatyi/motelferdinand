@@ -11,6 +11,13 @@ import json
 import logging
 
 
+def fix_picaslide():
+    for tr in I18n.all():
+        tr.value = tr.value.replace('[<img src="/static/img/picasa_s.png" alt="Insert picasa album"/> gallery comes here]', '')
+        tr.save()
+    pass
+
+
 def migrate_to_version_2():
     '''
         Change bookable prices from

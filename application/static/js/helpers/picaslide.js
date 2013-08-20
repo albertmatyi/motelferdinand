@@ -43,7 +43,6 @@ function (jq, picasa, slides, fullscreen) {
 			var w = scope.width();
 			var width = w + 'px';
 			var height = w * 3 / 4 + 'px';
-			console.log(width);
 			scope.css('width', width);
 			scope.css('height', height);
 			$.picasa.images(user, album, function (images) {
