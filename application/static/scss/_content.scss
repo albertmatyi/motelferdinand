@@ -3,7 +3,6 @@
 	width: 50% - $contentMargin;
 	margin-left: $contentMargin;
 	float: left;
-	margin-bottom: 1em;
 	text-align: center;
 	iframe {
 		width: 100%;
@@ -16,6 +15,10 @@
 	.content-description, .content-title{
 		@include tile-content;
 		text-align: left;
+		margin-bottom: 1em;
+	}
+
+	.content-description {
 	}
 
 	$dashLength: 120px;

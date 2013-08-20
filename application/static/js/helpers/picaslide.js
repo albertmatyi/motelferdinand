@@ -38,7 +38,13 @@ function (jq, picasa, slides, fullscreen, progressHelper) {
 
 	(function ($) {
 		$.fn.picaslide = function (slideOpts, successCallback) {
-			GALLERIES.push({element: $(this), slideOpts: slideOpts, successCallback: successCallback});
+			var glry = $(this);
+			var w = glry.width();
+			var width = w + 'px';
+			var height = w * 3 / 4 + 'px';
+			glry.css('width', width);
+			glry.css('height', height);
+			GALLERIES.push({element: glry, slideOpts: slideOpts, successCallback: successCallback});
 			refresh();
 		};
 	})(jQuery);
@@ -58,10 +64,10 @@ function (jq, picasa, slides, fullscreen, progressHelper) {
 		var notRendered = [];
 		for (var i = GALLERIES.length - 1;  i >= 0; i -= 1) {
 			var gal = GALLERIES[i];
-			if (gal.element.data('rendered') !== 'yes') {
+			if (gal.element.data('loaded') !== 'yes') {
 				if (isInViewport(gal.element)) {
-					renderGallery(gal);
-					gal.element.data('rendered', 'yes');
+					loadImages(gal);
+					gal.element.data('loaded', 'yes');
 				} else {
 					notRendered.push(gal);
 				}
@@ -70,7 +76,7 @@ function (jq, picasa, slides, fullscreen, progressHelper) {
 		GALLERIES = notRendered;
 	};
 
-	var renderGallery = function (obj) {
+	var loadImages = function (obj) {
 		var glry = obj.element;
 		var slideOpts = obj.slideOpts;
 		var successCallback = obj.successCallback;
@@ -82,8 +88,6 @@ function (jq, picasa, slides, fullscreen, progressHelper) {
 		var w = glry.width();
 		var width = w + 'px';
 		var height = w * 3 / 4 + 'px';
-		glry.css('width', width);
-		glry.css('height', height);
 		progressHelper.show(glry);
 		$.picasa.images(user, album, function (images) {
 			glry.removeClass('error');
