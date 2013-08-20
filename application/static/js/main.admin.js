@@ -76,7 +76,9 @@ function (us, config, test, social, modal, modelBase,
 	booking.setup();
 	social.init();
 
-	$('#loading-overlay').remove();
+	$('#loading-overlay').animate({top: -$(window).height()}, 1000, function () {
+		$(this).remove();
+	});
 	modal.fix().init();
 
 	categoryAdmin.init();
