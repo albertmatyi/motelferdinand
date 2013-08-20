@@ -5,6 +5,12 @@ div.picaslide {
 	margin-bottom: 1.5em;
 	background: url(../img/picasa_placeholder.jpg) center center;
 	background-size: cover;
+	&:after{
+		content: 'Loading...';
+		color: #333;
+		text-align: center;
+		padding-top: 8em;
+	}
 	.fullscreen-btn{
 		padding: 2px 4px;
 		position: relative;

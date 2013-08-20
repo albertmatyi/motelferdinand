@@ -9,11 +9,13 @@ from application.models import prop
 from application.helpers.file import load_file
 import json
 import logging
+import re
 
 
 def fix_picaslide():
+    regex = re.compile('\[\s*<\s*img[^>]+>\s*gallery comes here\s*\]', re.IGNORECASE)
     for tr in I18n.all():
-        tr.value = tr.value.replace('[<img src="/static/img/picasa_s.png" alt="Insert picasa album"/> gallery comes here]', '')
+        tr.value = reduce(lambda x, y: x + y, regex.split(tr.value))
         tr.save()
     pass
 

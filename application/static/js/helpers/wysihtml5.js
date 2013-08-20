@@ -12,7 +12,7 @@ define([
 			$('textarea.rich', $context).each(function (idx, el) {
 					var $el = $(el);
 					if (config.RENDER_TEXTEDITOR) {
-						$el.wysihtml5({ parserRules : wysihtml5ParserRules });
+						$el.wysihtml5({ parserRules : wysihtml5ParserRules, stylesheets: ['static/css/admin/wysihtml5.css'] });
 					}
 				}
 			);
