@@ -220,6 +220,7 @@ D	upgrade transparency
 130808
 D	booking retrieval
 D		quicksearch
+D			view bookings for users based on mail/phone
 D		load
 D		only enable discount when pending
 D		sorting
@@ -228,12 +229,18 @@ D		sorting
 130818
 D	send message from contact
 D	fullscreen image quality
+D 	gallery display in admin mode & loading
+
+130819
+% 	design
+		fixed booking button
+
 
 ?	log sent msgs (acc/den/other)
 ?		show calculations on admin
+?	bookable variants?
 
 	caching
-	fixed booking button
 
 	try http://imperavi.com/redactor/
 		picasa albums
@@ -255,7 +262,6 @@ D	fullscreen image quality
 	documents
 		attach to content
 		view on site / download
-	view bookings for users based on mail/phone
 
 
 Extra
