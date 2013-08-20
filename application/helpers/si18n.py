@@ -89,7 +89,7 @@ translations = {
         'LanguageName': u'English',
         'Success': u'Success',
         'DefaultCurrency': 'EUR',
-        'Ferdinand Motel': u'Ferdinand Motel',
+        'Ferdinand Pension': u'Ferdinand Pension',
         'Language': u'Language',
         'Date': u'Date',
         'Name': u'Name',
@@ -236,7 +236,7 @@ translations = {
         'LanguageName': u'Magyar',
         'Success': u'Sikeres',
         'DefaultCurrency': 'HUF',
-        'Ferdinand Motel': u'Ferdinánd Panzió',
+        'Ferdinand Pension': u'Ferdinánd Panzió',
         'Language': u'Nyelv',
         'Date': u'Dátum',
         'Name': u'Név',
@@ -384,7 +384,7 @@ translations = {
         'LanguageName': u'Română',
         'Success': u'Success',
         'DefaultCurrency': 'RON',
-        'Ferdinand Motel': u'Motel Ferdinand',
+        'Ferdinand Pension': u'Pensiunea Ferdinand',
         'Language': u'Limbă',
         'Date': u'Data',
         'Name': u'Nume',
@@ -527,7 +527,7 @@ translations = {
 TEMPLATES = {
     'BOOKING': {
         'subject': {
-            'en': u'Your booking request at Ferdinand Motel',
+            'en': u'Your booking request at Ferdinand Pension',
             'hu': u'A foglalása a Ferdinánd Panziónál',
             'ro': u'Cererea de rezervare - Pensiune Ferdnand'
         },

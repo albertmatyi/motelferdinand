@@ -5,6 +5,20 @@ div.picaslide {
 	margin-bottom: 1.5em;
 	background: url(../img/picasa_placeholder.jpg) center center;
 	background-size: cover;
+	&.error:after {
+		content: 'Error loading gallery';
+		text-align: center;
+
+		display: block;
+		margin: auto;
+		position: relative;
+		top: 3em;
+		width: 150px;
+
+		background: #c33;
+		border-radius: 4px;
+		color: #fff;
+	}
 	.fullscreen-btn{
 		padding: 2px 4px;
 		position: relative;

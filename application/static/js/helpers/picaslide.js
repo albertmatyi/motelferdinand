@@ -86,6 +86,7 @@ function (jq, picasa, slides, fullscreen, progressHelper) {
 		glry.css('height', height);
 		progressHelper.show(glry);
 		$.picasa.images(user, album, function (images) {
+			glry.removeClass('error');
 			progressHelper.hide();
 			var picasaAlbum = '<div class="picasa-album picaslides-container" style="height: ' + height + '; width: ' + width + ';">\n';
 			$.each(images, function (i, element) {
@@ -106,6 +107,10 @@ function (jq, picasa, slides, fullscreen, progressHelper) {
 			}
 			initControls(glry, images);
 			glry.show();
+		},
+		function () {
+			progressHelper.hide();
+			glry.addClass('error');
 		});
 	};
 

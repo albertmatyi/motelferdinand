@@ -1,11 +1,10 @@
 .content {
 	@include tile;
-	background-color: #F4F4F4;
-	@include gradient($contentGradientFrom, $contentGradientTo);
 	width: 50% - $contentMargin;
 	margin-left: $contentMargin;
 	float: left;
 	margin-bottom: 1em;
+	text-align: center;
 	iframe {
 		width: 100%;
 	}
@@ -13,12 +12,35 @@
 	.admin-controls{
 		margin-right: 1em;
 	}
-	
+
 	.content-description, .content-title{
-		@include tile-content; 
+		@include tile-content;
+		text-align: left;
 	}
-	
+
+	$dashLength: 120px;
+	$dashPad: 5px;
+
 	.content-title{
-		border-bottom: dashed 1px #CCCCCC;
+		display: inline-block;
+		position: relative;
+	    font-weight: 100;
+	    font-variant: small-caps;
+		&:before, &:after {
+			content: '';
+			width: $dashLength;
+			height: 1px;
+			display: block;
+			position: absolute;
+			top:55%
+		}
+		&:before {
+			@include gradienth(rgba(99,99,99,1), rgba(99,99,99,0));
+			right: -($dashLength + $dashPad);
+		}
+		&:after {
+			@include gradienth(rgba(99,99,99,0), rgba(99,99,99,1));
+			left: -($dashLength + $dashPad);
+		}
 	}
 }

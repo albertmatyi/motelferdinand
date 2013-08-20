@@ -1,8 +1,6 @@
 .bookables {
 	.bookable {
 		@include tile;
-		background: #f4f4f4;
-		@include gradient($contentGradientFrom, $contentGradientTo);
 		width: 100% - $contentMargin;
 		margin-left: $contentMargin;
 		margin-bottom: 1em;
