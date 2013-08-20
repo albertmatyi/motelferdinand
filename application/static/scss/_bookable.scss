@@ -1,14 +1,40 @@
 .bookables {
 	.bookable {
 		@include tile;
-		width: 100% - $contentMargin;
+		width: 100% - $contentMargin*2;
 		margin-left: $contentMargin;
+		$dashLength: 320px;
+		$dashPad: 15px;
+		h3 {
+			display: inline-block;
+			position: relative;
+		    font-weight: 100;
+		    font-variant: small-caps;
+			&:before, &:after {
+				content: '';
+				width: $dashLength;
+				height: 1px;
+				display: block;
+				position: absolute;
+				top:55%
+			}
+			&:before {
+				@include gradienth(rgba(99,99,99,1), rgba(99,99,99,0));
+				right: -($dashLength + $dashPad);
+			}
+		}
 
-		h3, h4, h5, .bookable-description{
-			padding-left: $contentPadding;
-			padding-right: $contentPadding;
+		h4, h5{
+			display: inline-block;
+			position: relative;
+			margin-left: 2em;
+			font-weight: 100;
+			top: -.2em;
+			left: $dashLength + $dashPad;
 		}
 		.bookable-description {
+			padding-left: $contentPadding;
+			padding-right: $contentPadding;
 			list-style-position: inside;
 		}
 		.picaslide {

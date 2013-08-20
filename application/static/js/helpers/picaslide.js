@@ -90,7 +90,7 @@ function (jq, picasa, slides, fullscreen, progressHelper) {
 		var height = w * 3 / 4 + 'px';
 		progressHelper.show(glry);
 		$.picasa.images(user, album, function (images) {
-			glry.removeClass('error');
+			glry.removeClass('error').addClass('success');
 			progressHelper.hide();
 			var picasaAlbum = '<div class="picasa-album picaslides-container" style="height: ' + height + '; width: ' + width + ';">\n';
 			$.each(images, function (i, element) {
@@ -106,6 +106,7 @@ function (jq, picasa, slides, fullscreen, progressHelper) {
 			slideOpts.container = 'picaslides-container';
 			slideOpts.paginationClass = 'picaslide-pagination';
 			glry.slides(slideOpts);
+			addThumbs(glry, images);
 			if (successCallback) {
 				successCallback.apply(glry, images);
 			}
@@ -115,6 +116,16 @@ function (jq, picasa, slides, fullscreen, progressHelper) {
 		function () {
 			progressHelper.hide();
 			glry.addClass('error');
+		});
+	};
+
+	var addThumbs = function (gallery, images) {
+		$('.picaslide-pagination li', gallery).each(function (idx, el) {
+			var $el = $(el);
+			var url = getUrlForSize(images[idx].url, $el.width());
+			$el.css({
+				'background-image': 'url(' + url + ')'
+			});
 		});
 	};
 

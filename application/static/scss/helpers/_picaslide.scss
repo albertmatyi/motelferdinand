@@ -5,6 +5,9 @@ div.picaslide {
 	margin-bottom: 1.5em;
 	background: url(../img/picasa_placeholder.jpg) center center;
 	background-size: cover;
+	&.success {
+		background: transparent;
+	}
 	&.error:after {
 		content: 'Error loading gallery';
 		text-align: center;
@@ -19,13 +22,21 @@ div.picaslide {
 		border-radius: 4px;
 		color: #fff;
 	}
-	.fullscreen-btn{
+	.fullscreen-btn {
 		padding: 2px 4px;
 		position: relative;
 		top: -25px;
 		z-index: 1000;
 		border-bottom: none;
-		border-radius: 0px 10px 0px 0px;
+		border-left: none;
+		border-radius: 0px 0px 0px 0px;
+		background: #fff;
+		box-shadow: none;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		&:hover:after {
+			content: ' Fullscreen';
+		}
 	}
 	&>.picaslides-container{
 		display: none;
@@ -42,18 +53,22 @@ div.picaslide {
 		padding: 0;
 		margin: 0;
 		z-index: 100;
+		$thumbsize: 30px;
 		li {
-			width: 6px;
-			height: 6px;
-			margin: 3px;
-			border-radius: 6px;
+			width: $thumbsize;
+			height: $thumbsize;
+			margin: 4px;
 			float: left;
 			padding: 0;
 			overflow: hidden;
-			background: transparent;
-			border: solid 2px #000000;
+			background-color: transparent;
+			background-repeat: no-repeat;
+			background-position: center;
+			&:hover {
+				background-color: #39f;
+			}
 			&.current{
-				background: #000000;
+				background-color: #333;
 			}
 			&> a{
 				line-height: 0;
@@ -63,7 +78,6 @@ div.picaslide {
 				display: block;
 				height: 100%;
 				width: 100%;
-				background: transparent;
 			}
 		}
 	}

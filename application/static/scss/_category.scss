@@ -10,6 +10,10 @@
 		.page-header{
 			border-bottom: none;
 			text-align: center;
+			.admin-controls{
+				position: relative;
+				top: 3em;
+			}
 			.category-title{
 				font-family: category-title-font, body-font, $fallback-fonts;
 				font-weight: normal;
@@ -49,8 +53,6 @@
 	}
 
 	.picaslide {
-		margin-left: -$contentPadding;
-		margin-right: -$contentPadding;
 	}
 
 	.admin-controls{

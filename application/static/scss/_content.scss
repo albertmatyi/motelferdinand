@@ -1,6 +1,6 @@
 .content {
 	@include tile;
-	width: 50% - $contentMargin;
+	width: 50% - $contentMargin * 1.5;
 	margin-left: $contentMargin;
 	float: left;
 	text-align: center;
