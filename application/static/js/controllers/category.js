@@ -17,7 +17,7 @@ function (fixit) {
 			if (!os) {
 				setTimeout(scrollF, 250);
 			} else {
-				$('html, body').animate({scrollTop: os.top /*- 5 * 16 /*5em*/}, 1000, function () {
+				$('html, body').animate({scrollTop: os.top /*- 9 * 16 /*9em*/}, 1000, function () {
 					window.location.hash = href.split('#')[1];
 				});
 			}

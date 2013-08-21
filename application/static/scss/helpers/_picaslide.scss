@@ -5,6 +5,7 @@ div.picaslide {
 	margin-bottom: 1.5em;
 	background: url(../img/picasa_placeholder.jpg) center center;
 	background-size: cover;
+	position: relative;
 	&.success {
 		background: transparent;
 	}
@@ -24,8 +25,8 @@ div.picaslide {
 	}
 	.fullscreen-btn {
 		padding: 2px 4px;
-		position: relative;
-		top: -25px;
+		position: absolute;
+		top: 25px;
 		z-index: 1000;
 		border-bottom: none;
 		border-left: none;
@@ -46,10 +47,9 @@ div.picaslide {
 	}
 	ul.picaslide-pagination {
 		float: right;
-		height: 0;
 		position: relative;
 		width: 100%;
-		top: 0px;
+		// top: -25px;
 		padding: 0;
 		margin: 0;
 		z-index: 100;

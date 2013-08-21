@@ -20,9 +20,10 @@ function (jq, picasa, slides, fullscreen, progressHelper) {
 		return getUrlForSize(url, width, 'w');
 	};
 
-	var initControls  = function ($context, images) {
+	var initControls  = function ($gallery, images) {
 		var $btn = $('<span class="fullscreen-btn btn"><i class="icon-fullscreen"></i></span>');
-		$btn.appendTo($context).click(function () {
+		var $img = $('.picaslides-container', $gallery);
+		$btn.insertAfter($img).click(function () {
 			fullscreen.showImages(
 				_.map(images, function (el) { delete el.title; return el; }),
 				0,
@@ -41,7 +42,7 @@ function (jq, picasa, slides, fullscreen, progressHelper) {
 			var glry = $(this);
 			var w = glry.width();
 			var width = w + 'px';
-			var height = w * 3 / 4 + 'px';
+			var height = w * 3 / 4 + 40 + 'px';
 			glry.css('width', width);
 			glry.css('height', height);
 			GALLERIES.push({element: glry, slideOpts: slideOpts, successCallback: successCallback});
@@ -91,6 +92,7 @@ function (jq, picasa, slides, fullscreen, progressHelper) {
 		progressHelper.show(glry);
 		$.picasa.images(user, album, function (images) {
 			glry.removeClass('error').addClass('success');
+			glry.css('height', 'auto');
 			progressHelper.hide();
 			var picasaAlbum = '<div class="picasa-album picaslides-container" style="height: ' + height + '; width: ' + width + ';">\n';
 			$.each(images, function (i, element) {
