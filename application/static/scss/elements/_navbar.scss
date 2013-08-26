@@ -1,8 +1,9 @@
 .on-first-page .navbar {
-	@include transition(top 0.5s linear);
-	top: -70px}
+	// @include transition(top 0.5s linear);
+	// top: -70px;
+}
 .navbar{
-	@include transition(top 0.5s linear);
+	// @include transition(top 0.5s linear);
 	.brand {
 		font-family: brand-font, body-font, $fallback-fonts;
 		font-size: 35px;

@@ -4,11 +4,11 @@
 
 define(
 [
-	'helpers/fixit',
+	'helpers/bgscroll',
 	'elements/hero',
 	'lib/jquery'
 ],
-function (fixit, hero) {
+function (bgscroll, hero) {
 	'use strict';
 
 	var scrollToAnchor = function (href) {
@@ -27,7 +27,7 @@ function (fixit, hero) {
 	};
 	return {
 		init : function () {
-			fixit.setup($('.category-info'));
+			bgscroll.setup($('.category-content'));
 			hero.init();
 			$('.navbar .category-nav a, a.brand, #hero .category-nav a').click(function (e) {
 				e.preventDefault();

@@ -20,19 +20,46 @@ define(['lib/jquery'], function () {
 	};
 
 	var init = function () {
+		var $firstCat = $('.category').first();
+		var $navbar = $('#navbar');
 		var $w = $(window);
 		var wH = $w.height();
 		$hero.height(wH);
+
+		var origMarginTop = parseInt($firstCat.css('margin-top'), 10);
+		var navH = $navbar.height();
+		var fixed = true;
 		var markFirstPage = function () {
-			if ($w.scrollTop() < wH - 100) {
-				$('body').addClass('on-first-page');
-			} else {
-				$('body').removeClass('on-first-page');
+			var st = $w.scrollTop();
+			if (st < wH && fixed) {
+				// $('body').addClass('on-first-page');
+				// $navbar.removeClass('navbar-fixed-top');
+				$navbar.css({
+					position: 'static'
+				});
+				$firstCat.css({
+					'margin-top': origMarginTop + 'px'
+				});
+				fixed = false;
+			} else if (st >= wH && !fixed) {
+				// $navbar.addClass('navbar-fixed-top');
+				// $('body').removeClass('on-first-page');
+				$('.category').first().css({
+
+				});
+				$firstCat.css({
+					'margin-top': origMarginTop + navH + 'px'
+				});
+				$navbar.css({
+					position: 'fixed',
+					top: 0
+				});
+				fixed = true;
 			}
 		};
 		$w.on('scroll', markFirstPage);
-		markFirstPage();
 		$('.nav-list', $hero).render(model.categories, categoryDirective);
+		markFirstPage();
 	};
 
 	return {
