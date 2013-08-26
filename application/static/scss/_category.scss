@@ -9,6 +9,9 @@
 		height: 9em;
 		margin-top: -9em;
 	}
+	&:first-child:before {
+		display: none;
+	}
 	.category-info {
 		color: #efefef;
 		.category-title-container {

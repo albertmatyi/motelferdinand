@@ -43,13 +43,6 @@ $iconSize: 48px;
 	color: #fff;
 	position: fixed;
 	bottom: 0;
-	.arrow {
-		position: fixed;
-		height: 0;
-		width: 0;
-		top: 0;
-		left: 0;
-	}
 	.icons {
 		position: fixed;
 		height: 0;
@@ -132,4 +125,7 @@ $iconSize: 48px;
 			// }
 		}
 	}
+}
+.on-first-page #social-arrow {
+	display: none;
 }

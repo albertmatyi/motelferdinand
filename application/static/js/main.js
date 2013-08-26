@@ -1,5 +1,4 @@
 /*global define */
-/*global $ */
 /*global model */
 /*global requirejs */
 
@@ -64,9 +63,6 @@ function (us, config, social, modal, modelBase, categoryView, languageView,
 	categoryView.render(model.categories);
 	category.init();
 
-	$('#loading-overlay').animate({top: -$(window).height()}, 1000, function () {
-		$(this).remove();
-	});
 	modal.fix().init();
 	bookable.init();
 	booking.setup();

@@ -82,6 +82,7 @@ translations = {
     'en': {
         'lang_id': 'en',
         '$': 'EUR',
+        'Welcome to': u'Welcome to',
         'Log out': u'Log out',
         'Loading': u'Loading',
         'Settings': u'Settings',
@@ -229,6 +230,7 @@ translations = {
     'hu': {
         'lang_id': 'hu',
         '$': 'HUF',
+        'Welcome to': u'Üdvözöljük honlapunkon',
         'Log out': u'Kilép',
         'Loading': u'Pillanat',
         'Settings': u'Beállítások',
@@ -377,6 +379,7 @@ translations = {
     'ro': {
         'lang_id': 'ro',
         '$': 'RON',
+        'Welcome to': u'Bine ați venit!',
         'Log out': u'Închide sesiunea',
         'Loading': u'O clipă',
         'Settings': u'Setări',

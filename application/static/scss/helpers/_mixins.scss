@@ -49,3 +49,12 @@
 	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=#{cos($degrees)}, M12=-#{sin($degrees)}, M21=#{sin($degrees)}, M22=#{cos($degrees)})";
 	zoom: 1;
 }
+@mixin blur ($ammount) {
+	filter: blur($ammount + 'px');
+	-webkit-filter: blur($ammount + 'px');
+	-moz-filter: blur($ammount + 'px');
+	-o-filter: blur($ammount + 'px');
+	-ms-filter: blur($ammount + 'px');
+	// filter: url(blur.svg#blur);
+	filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='#{$ammount}');
+}
