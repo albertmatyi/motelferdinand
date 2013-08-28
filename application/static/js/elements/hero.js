@@ -9,10 +9,12 @@ define(['lib/jquery'], function () {
 	var $hero = $('#hero');
 
 	var categoryDirective = {
-		'title': {
+		'link': {
 			'href': function () {
 				return '#Category' + this.id;
-			},
+			}
+		},
+		'title': {
 			'text': function () {
 				return this.i18n[model.language].title;
 			}

@@ -51,40 +51,45 @@
 
 	.nav {
 		$transitionTime: 0.2s;
-		// overflow: hidden;
-		padding-bottom: 50px;
 		position: absolute;
 		bottom: 0;
+		text-align: center;
 		li {
-			float: left;
+			display: inline-block;
 			margin-left: 1em;
 			a {
-				font-size: 1.8em;
-				color: #644;
-				background: rgba(255, 255, 255, 0.6);
-				margin: 0.2em 0;
-				padding: .2em 1em;
-				border-radius: 4px;
+				padding-bottom: 50px;
 				position: relative;
 				top: 0px;
 				@include transition(top $transitionTime linear);
-			}
-			.icon-chevron-down {
-				position: relative;
-				display: block;
-				bottom: -60px;
-				margin: 0 auto;
-				@include transition(bottom $transitionTime linear);
+				span {
+					font-size: 1.8em;
+					color: #644;
+					background: rgba(255, 255, 255, 0.6);
+					margin: 0.2em 0;
+					padding: .1em .7em;
+					border-radius: 2px;
+				}
+				.icon-chevron-down {
+					position: relative;
+					display: block;
+					bottom: -60px;
+					margin: 0 auto;
+					@include transition(bottom $transitionTime linear);
+				}
 			}
 			&:hover {
-				a {
+				a  {
 					top: -10px;
 					@include transition(top $transitionTime linear);
-					background: rgba(255,255,255, 1);
-				}
-			 	.icon-chevron-down {
-					bottom: 0px;
-					@include transition(bottom $transitionTime linear);
+					span {
+						background: rgba(255,255,255, 1);
+					}
+					background: none;
+					.icon-chevron-down {
+						bottom: -10px;
+						@include transition(bottom $transitionTime linear);
+					}
 				}
 			}
 		}
