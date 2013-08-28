@@ -50,24 +50,41 @@
 
 
 	.nav {
-		overflow: hidden;
-		a {
-			font-size: 1.8em;
-			color: #644;
-			background: rgba(255,255,255,.9);
-			margin: .2em 0;
-			border-radius: 4px;
-			.icon-chevron-right {
+		$transitionTime: 0.2s;
+		// overflow: hidden;
+		padding-bottom: 50px;
+		position: absolute;
+		bottom: 0;
+		li {
+			float: left;
+			margin-left: 1em;
+			a {
+				font-size: 1.8em;
+				color: #644;
+				background: rgba(255, 255, 255, 0.6);
+				margin: 0.2em 0;
+				padding: .2em 1em;
+				border-radius: 4px;
 				position: relative;
-				right: -200px;
-				top: 10px;
-				@include transition(right 0.15s linear);
+				top: 0px;
+				@include transition(top $transitionTime linear);
+			}
+			.icon-chevron-down {
+				position: relative;
+				display: block;
+				bottom: -60px;
+				margin: 0 auto;
+				@include transition(bottom $transitionTime linear);
 			}
 			&:hover {
-				background: rgba(255,255,255, 1);
-			 	.icon-chevron-right {
-					right: 0px;
-					@include transition(right 0.15s linear);
+				a {
+					top: -10px;
+					@include transition(top $transitionTime linear);
+					background: rgba(255,255,255, 1);
+				}
+			 	.icon-chevron-down {
+					bottom: 0px;
+					@include transition(bottom $transitionTime linear);
 				}
 			}
 		}

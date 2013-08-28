@@ -27,8 +27,8 @@ function (bgscroll, hero) {
 	};
 	return {
 		init : function () {
-			bgscroll.setup($('.category-content'));
 			hero.init();
+			bgscroll.setup($('.category-content'));
 			$('.navbar .category-nav a, a.brand, #hero .category-nav a').click(function (e) {
 				e.preventDefault();
 				var href = $(this).attr('href');

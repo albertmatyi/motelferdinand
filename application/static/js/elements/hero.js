@@ -32,8 +32,7 @@ define(['lib/jquery'], function () {
 		var markFirstPage = function () {
 			var st = $w.scrollTop();
 			if (st < wH && fixed) {
-				// $('body').addClass('on-first-page');
-				// $navbar.removeClass('navbar-fixed-top');
+				$('body').addClass('on-first-page');
 				$navbar.css({
 					position: 'static'
 				});
@@ -42,8 +41,7 @@ define(['lib/jquery'], function () {
 				});
 				fixed = false;
 			} else if (st >= wH && !fixed) {
-				// $navbar.addClass('navbar-fixed-top');
-				// $('body').removeClass('on-first-page');
+				$('body').removeClass('on-first-page');
 				$('.category').first().css({
 
 				});
