@@ -75,7 +75,7 @@ function (jq, i18n, adminControls, transparency, adminContent, adminBookable, ca
 	};
 
 	return {'init': function () {
-			var $controls = $('.page-header .admin-controls ');
+			var $controls = $('.category-title .admin-controls ');
 			adminControls.init($formModal, $controls, 'categories', deletedCallback);
 
 			// add "add category button"
