@@ -5,12 +5,12 @@ define(
 [
 	'lib/jquery',
 	'config',
-	'view/bookable',
+	'view/bookable_variant',
 	'view/directives/menu',
 	'view/directives/body',
 	'view/common'
 ],
-function (jq, config, bookableView, navDirective, bodyDirective, common) {
+function (jq, config, bookableVariantView, navDirective, bodyDirective, common) {
 	'use strict';
 	var $menu = $('.navbar .category-nav');
 	var $container = $('.categories');
@@ -28,13 +28,14 @@ function (jq, config, bookableView, navDirective, bodyDirective, common) {
 			}
 
 			if (config.RENDER_CONTENT) {
+				console.log(bodyDirective);
 				$container.render(data, bodyDirective);
 			}
 
 			if (config.RENDER_GALLERIES) {
 				common.renderContentGallery('.content-description div.picaslide, .category-description div.picaslide');
+				bookableVariantView.render();
 			}
-			bookableView.render();
 		}
 	};
 });

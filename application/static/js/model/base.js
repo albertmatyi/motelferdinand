@@ -60,6 +60,7 @@ function () {
 	model.db.content = new EntityMap();
 	model.db.booking = new EntityMap();
 	model.db.bookable = new EntityMap();
+	model.db.bookableVariant = new EntityMap();
 
 
 	for (var i = model.categories.length - 1; i >= 0; i -= 1) {
@@ -72,6 +73,12 @@ function () {
 		for (var k = cat.bookables.length - 1; k >= 0; k -= 1) {
 			var bookable = cat.bookables[k];
 			model.db.bookable[bookable.id] = bookable;
+			for (var l = bookable.bookable_variants.length - 1; l >= 0; l -= 1) {
+				var bookableVariant = bookable.bookable_variants[l];
+				model.db.bookableVariant[bookableVariant.id] = bookableVariant;
+			}
+			bookable.bookableVariants = bookable.bookable_variants;
+			delete bookable.bookable_variants;
 		}
 	}
 

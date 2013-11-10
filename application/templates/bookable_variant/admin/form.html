@@ -1,0 +1,18 @@
+{% set entityName = 'bookableVariant' %}
+{% set EntityName = 'BookableVariant' %}
+
+{% extends 'base/admin/form.html' %}
+{% block i18n_inputs %}
+<div class="control-group">
+	<label class="control-label">{{ __('Description') }}</label>
+	<textarea name="description" class="rich" ></textarea>
+</div>
+{% endblock %}
+
+{% block inputs %}
+<input name="bookable" type="hidden" />
+<div class="control-group">
+	<label class="control-label">{{ __('Album url') }}</label>
+	<input name="album_url" type="text" />
+</div>
+{% endblock %}

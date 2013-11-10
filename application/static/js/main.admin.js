@@ -62,12 +62,11 @@ define('main',
 	'controllers/admin/category',
 	'controllers/admin/content',
 	'controllers/admin/bookable',
+	'controllers/admin/bookable_variant',
 	'controllers/admin/booking',
 	'controllers/admin/prop'
 ],
-function (us, config, test, social, modal, modelBase,
-	categoryView, languageView, category, bookable, booking,
-	categoryAdmin, contentAdmin, bookableAdmin, bookingAdmin, settingsAdmin) {
+function (us, config, test, social, modal, modelBase, categoryView, languageView, category, bookable, booking, categoryAdmin, contentAdmin, bookableAdmin, bookableVariantAdmin, bookingAdmin, settingsAdmin) {
 	'use strict';
 	categoryView.render(model.categories);
 	category.init();
@@ -80,6 +79,7 @@ function (us, config, test, social, modal, modelBase,
 	categoryAdmin.init();
 	contentAdmin.init();
 	bookableAdmin.init();
+	bookableVariantAdmin.init();
 	bookingAdmin.init();
 	settingsAdmin.init();
 	if (!PRODUCTION) {

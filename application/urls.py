@@ -27,4 +27,4 @@ def server_error(e):
 '''
 Read the urls from the following files
 '''
-from controllers import category, content, bookable, booking, user, prop, db
+from controllers import category, content, bookable, bookable_variant, booking, user, prop, db

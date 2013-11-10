@@ -12,11 +12,11 @@ define(
 	'controllers/admin/content',
 	'controllers/admin/bookable',
 	'view/category',
-	'view/bookable',
+	'view/bookable_variant',
 	'view/directives/menu',
 	'view/directives/body'
 ],
-function (jq, i18n, adminControls, transparency, adminContent, adminBookable, categoryView, bookableView, navDirective, bodyDirective) {
+function (jq, i18n, adminControls, transparency, adminContent, adminBookable, categoryView, bookableVariantView, navDirective, bodyDirective) {
 	'use strict';
 	var TAB_ID_BASE = 'editCategory-';
 
@@ -54,7 +54,7 @@ function (jq, i18n, adminControls, transparency, adminContent, adminBookable, ca
 
 		categoryView.container.append($el);
 
-		bookableView.render($el);
+		bookableVariantView.render($el);
 		adminContent.initAddButton($el);
 		adminBookable.initAddButton($el);
 

@@ -70,7 +70,7 @@ function (jq, i18n, adminControls, transparency, viewCommons, directive, modal, 
 		if (typeof($context) === 'undefined') {
 			$context = $('body');
 		}
-		var $addContentButton = $('.page-header .admin-controls .addContentButton', $context);
+		var $addContentButton = $('.category-info .admin-controls .addContentButton', $context);
 
 		$addContentButton.click(function (e) {
 			e.preventDefault();

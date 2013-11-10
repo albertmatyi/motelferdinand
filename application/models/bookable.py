@@ -26,8 +26,9 @@ class BookableModel(AbstractContentModel):
     category = db.ReferenceProperty(CategoryModel, collection_name='bookables')
     album_url = db.StringProperty(required=False, default='')
     prices = db.TextProperty(str)
-    dependencies = ['bookings']
+    dependencies = ['bookings', 'bookable_variants']
     to_dict_exclude = ['bookings']
+    i18d_fields = ['title']
 
     def populate_field(self, dictionary, key):
         if key is 'category':
