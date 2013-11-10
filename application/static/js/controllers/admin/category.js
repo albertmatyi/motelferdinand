@@ -58,7 +58,7 @@ function (jq, i18n, adminControls, transparency, adminContent, adminBookable, ca
 		adminContent.initAddButton($el);
 		adminBookable.initAddButton($el);
 
-		var $controls = $('.page-header .admin-controls ', $el);
+		var $controls = $('.info-container .admin-controls ', $el);
 		adminControls.init($formModal, $controls, 'categories', deletedCallback);
 	};
 
@@ -75,7 +75,7 @@ function (jq, i18n, adminControls, transparency, adminContent, adminBookable, ca
 	};
 
 	return {'init': function () {
-			var $controls = $('.category-title .admin-controls ');
+			var $controls = $('.category-title-container .admin-controls ');
 			adminControls.init($formModal, $controls, 'categories', deletedCallback);
 
 			// add "add category button"

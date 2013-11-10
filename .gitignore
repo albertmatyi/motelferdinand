@@ -1,5 +1,6 @@
 *.pyc
 secret_keys.py
+.idea
 .sass-cache/
 local/
 *.sublime-workspace
