@@ -101,8 +101,8 @@ define([
 			var bottom = top + $el.height();
 			contentPositions.push({top: top, bottom: bottom});
 		});
-		$(window).on('scroll', calcBg);
-		calcBg(true, $('#hero').height());
+		// $(window).on('scroll', calcBg);
+		// calcBg(true, $('#hero').height());
 	};
 
 	return {

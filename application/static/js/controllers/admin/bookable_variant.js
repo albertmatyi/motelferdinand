@@ -16,7 +16,7 @@ define([
 function (jq, i18n, adminControls, bookableVariantDirective, transparency, common, view, modal) {
 	'use strict';
 
-	var $bookableVariantTemplate = $('.bookableVariants').clone();
+	var $bookableVariantTemplate = $('.bookable-variants').clone();
 
 	var TAB_ID_BASE = 'editBookableVariant-';
 
@@ -44,7 +44,7 @@ function (jq, i18n, adminControls, bookableVariantDirective, transparency, commo
 	var addNewUI = function (bookable, bookableVariant) {
 		var $newUI = $bookableVariantTemplate.clone()
 			.render(bookableVariant, bookableVariantDirective)
-			.children('.bookableVariant');
+			.children('.bookable-variant');
 		$('#Bookable' + bookable.id + ' .bookable-variants').append($newUI);
 		initAdminControls($newUI);
 		view.render($('#Bookable' + bookable.id));
