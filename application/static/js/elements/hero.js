@@ -22,6 +22,7 @@ define(['lib/jquery'], function () {
 	};
 
 	var init = function () {
+        return;
 		var $firstCat = $('.category').first();
 		var $navbar = $('#navbar');
 		var $w = $(window);

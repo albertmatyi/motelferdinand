@@ -236,10 +236,16 @@ D 	lazy load galleries
 % 	design
 		fixed booking button
 
+131111
+    bookable variants
+D       add
+D       remove
+D       edit
+        design
+        migrate script
 
 ?	log sent msgs (acc/den/other)
 ?		show calculations on admin
-?	bookable variants?
 
 	caching
 

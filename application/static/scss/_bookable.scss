@@ -32,16 +32,7 @@
 			top: -.2em;
 			left: $dashLength + $dashPad;
 		}
-		.bookable-description {
-			padding-left: $contentPadding;
-			padding-right: $contentPadding;
-			list-style-position: inside;
-		}
-		.picaslide {
-			float: left;
-			margin-right: 1em;
-			margin-left: 0;
-		}
+        @import ("bookable_variant");
 		.admin-controls{
 			margin-right: 2em;
 		}
