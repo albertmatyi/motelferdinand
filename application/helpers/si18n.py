@@ -89,7 +89,7 @@ translations = {
         'LanguageName': u'English',
         'Success': u'Success',
         'DefaultCurrency': 'EUR',
-        'Ferdinand Motel': u'Ferdinand Motel',
+        'Ferdinand Motel': u'Ferdinand B&B',
         'Language': u'Language',
         'Date': u'Date',
         'Name': u'Name',
