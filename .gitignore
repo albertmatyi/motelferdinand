@@ -9,3 +9,4 @@ bulk*
 bulk/
 remote/
 *.log
+.idea
