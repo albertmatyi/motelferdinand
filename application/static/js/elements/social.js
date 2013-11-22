@@ -68,7 +68,7 @@ function (modalHelper, progressHelper) {
 			'	</a>' +
 			'</small>'
 		);
-		var email = 'ferdinand' + AT + 'motel' + DOT + 'ro';
+		var email = 'fp' + AT + 'zoltur' + DOT + 'ro';
 		email = '<a href="mailto:' + email + '">' + email + '</a>';
 		$('#contactModal .email').html(email);
 	};

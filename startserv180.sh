@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/bash -x
 cat /dev/null > ./server.log
-~/progz/sdks/google_appengine_1.8.0/dev_appserver.py \
+python2 ~/progz/sdks/google_appengine_1.8.0/dev_appserver.py \
 	--host 0.0.0.0 \
 	--log_level debug \
 	--storage_path ./local/ \
