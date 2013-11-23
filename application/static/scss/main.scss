@@ -10,6 +10,8 @@ $contentMargin: 4%;
 
 @import "elements/navbar";
 
+@import "elements/hero";
+
 @import "elements/footer";
 
 @import "elements/dialog";
@@ -31,7 +33,7 @@ $contentMargin: 4%;
 @import "elements/currency";
 
 body {
-	background: $background;
+	background: none;
 	font-family: body-font, $fallback-fonts;
 }
 

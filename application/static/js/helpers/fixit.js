@@ -66,10 +66,10 @@ function () {
 				}
 				currentContainerIdx = i;
 			}
-			$el.css({
-				'position': pos,
-				'top': top + 'px'
-			});
+			// $el.css({
+			// 	'position': pos,
+			// 	'top': top + 'px'
+			// });
 			// $el.offset({'top': top});
 		}
 		return currentContainerIdx;
@@ -79,7 +79,7 @@ function () {
 			var arr = [];
 			for (var i = $objs.length - 1; i >= 0; i -= 1) {
 				var $el = $($objs[i]);
-				$el.css('position', 'absolute');
+				// $el.css('position', 'absolute');
 				$el.parent = $el.parent();
 				arr.push($el);
 			}

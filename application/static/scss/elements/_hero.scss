@@ -1,0 +1,97 @@
+#body-bg {
+	position: fixed;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	// background-repeat: no-repeat;
+	background-size: cover;
+	#body-overlay {
+		height: 100%;
+		width: 100%;
+		background: rgba(0, 0, 0, .5);
+	}
+}
+#hero {
+	position: relative;
+	left: 0;
+	// background: url(http://lh5.ggpht.com/-0ti_gYq360g/Ud5Lu8lzZbI/AAAAAAAAA84/aO9ze9i__To/w1052/poarta%252520-%252520biserica%252520fortificata%252520reformata%252520din%252520Zabala.JPG) no-repeat center;
+	// background: url(../img/bgs.jpg) no-repeat center;
+	// background-size: cover;
+
+	.logo {
+		font-family: brand-font, body-font, $fallback-fonts;
+		font-size: 65px;
+		display: inline-block;
+		padding: 1.1em .2em .7em .2em;
+		border-radius: 100%;
+		background: #fff;
+		color: #644;
+		position: relative;
+		left: 5em;
+	}
+	h2 {
+		font-family: body-font, $fallback-fonts;
+		font-size: 35px;
+		color: #fff;
+		font-weight: 100;
+		margin-top: 2em;
+	}
+	h1 {
+		font-family: brand-font, body-font, $fallback-fonts;
+		// text-shadow: 1px 1px 0px #FFFFFF, -1px -1px 0px #999999;
+		font-size: 65px;
+		color: #fff;
+		margin-left: 1.5em;
+		margin-top: .5em;
+		font-weight: 100;
+	}
+
+
+	.nav {
+		$transitionTime: 0.2s;
+		position: absolute;
+		bottom: 0;
+		text-align: center;
+		li {
+			display: inline-block;
+			margin-left: 1em;
+			a {
+				padding-bottom: 50px;
+				position: relative;
+				top: 0px;
+				@include transition(top $transitionTime linear);
+				span {
+					font-size: 1.8em;
+					color: #644;
+					background: rgba(255, 255, 255, 0.6);
+					margin: 0.2em 0;
+					padding: .1em .7em;
+					border-radius: 2px;
+				}
+				.icon-chevron-down {
+					position: relative;
+					display: block;
+					bottom: -60px;
+					margin: 0 auto;
+					@include transition(bottom $transitionTime linear);
+				}
+			}
+			&:hover {
+				a  {
+					top: -10px;
+					@include transition(top $transitionTime linear);
+					span {
+						background: rgba(255,255,255, 1);
+					}
+					background: none;
+					.icon-chevron-down {
+						bottom: -10px;
+						@include transition(bottom $transitionTime linear);
+					}
+				}
+			}
+		}
+	}
+}

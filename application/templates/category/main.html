@@ -1,18 +1,21 @@
 <div class="categories">
-	<div data-bind="id" class="category row">
-		<div class="category-info span4">
-			<div class="info-container">
-				<div class="page-header">
-					{% include "category/admin/controls.html" %}
-					<h1 data-bind="category-title" class="category-title"></h1> 
+	<div data-bind="id" class="category">
+		<div class="category-info container container-fluid">
+			<div class="info-container row row-fluid">
+				<div class="category-title-container span6">
+					<h1 data-bind="category-title" class="category-title">
+		{% include "category/admin/controls.html" %}
+					</h1>
 				</div>
-				<div data-bind="category-description" class="category-description">
+				<div data-bind="category-description" class="category-description span4 offset1">
 				</div>
 			</div>
 		</div>
-		<div class=" category-content offset4 span8">
-			{% include "bookable/main.html" %}
-			{% include "content/main.html" %}
+		<div class="category-content clearfix">
+			<div class="container container-fluid">
+				{% include "bookable/main.html" %}
+				{% include "content/main.html" %}
+			</div>
 		</div>
 	</div>
 </div>

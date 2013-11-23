@@ -1,5 +1,5 @@
 application: ferdinandmotel
-version: 22
+version: 23
 runtime: python27
 api_version: 1
 threadsafe: true

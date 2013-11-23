@@ -1,7 +1,4 @@
 .booking-controls {
-	border-top: solid 1px #e5e5e5;
-	padding-top: 1em;
-	@include gradient($contentGradientFrom, $contentGradientTo);
 
 	.booking-btn {
 		float: right;
@@ -14,8 +11,6 @@
 	}
 	#booking-form {
 		display: block;
-		background: #F4F4F4;
-		margin-top: 2em;
 
 		&, .form-actions {
 			margin-bottom: 0;

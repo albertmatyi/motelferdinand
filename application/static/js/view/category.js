@@ -12,7 +12,7 @@ define(
 ],
 function (jq, config, bookableView, navDirective, bodyDirective, common) {
 	'use strict';
-	var $menu = $('.category-nav');
+	var $menu = $('.navbar .category-nav');
 	var $container = $('.categories');
 	var menuTemplate = $menu.html();
 	var categoryTemplate = $container.html();

@@ -82,6 +82,7 @@ translations = {
     'en': {
         'lang_id': 'en',
         '$': 'EUR',
+        'Welcome to': u'Welcome to',
         'Log out': u'Log out',
         'Loading': u'Loading',
         'Settings': u'Settings',
@@ -230,6 +231,7 @@ translations = {
     'hu': {
         'lang_id': 'hu',
         '$': 'HUF',
+        'Welcome to': u'Üdvözöljük honlapunkon',
         'Log out': u'Kilép',
         'Loading': u'Pillanat',
         'Settings': u'Beállítások',
@@ -237,7 +239,7 @@ translations = {
         'LanguageName': u'Magyar',
         'Success': u'Sikeres',
         'DefaultCurrency': 'HUF',
-        'Ferdinand Motel': u'Ferdinánd Panzió',
+        'Ferdinand Pension': u'Ferdinánd Panzió',
         'Language': u'Nyelv',
         'Date': u'Dátum',
         'Name': u'Név',
@@ -379,6 +381,7 @@ translations = {
     'ro': {
         'lang_id': 'ro',
         '$': 'RON',
+        'Welcome to': u'Bine ați venit!',
         'Log out': u'Închide sesiunea',
         'Loading': u'O clipă',
         'Settings': u'Setări',
@@ -386,7 +389,7 @@ translations = {
         'LanguageName': u'Română',
         'Success': u'Success',
         'DefaultCurrency': 'RON',
-        'Ferdinand Motel': u'Pensiunea Ferdinand',
+        'Ferdinand Motel': u'Motel Ferdinand',
         'Language': u'Limbă',
         'Date': u'Data',
         'Name': u'Nume',
@@ -530,7 +533,7 @@ translations = {
 TEMPLATES = {
     'BOOKING': {
         'subject': {
-            'en': u'Your booking request at Ferdinand Motel',
+            'en': u'Your booking request at Ferdinand Pension',
             'hu': u'A foglalása a Ferdinánd Panziónál',
             'ro': u'Cererea de rezervare - Pensiune Ferdnand'
         },

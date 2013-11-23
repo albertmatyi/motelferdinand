@@ -4,10 +4,11 @@
 
 define(
 [
-	'helpers/fixit',
+	'helpers/bgscroll',
+	'elements/hero',
 	'lib/jquery'
 ],
-function (fixit) {
+function (bgscroll, hero) {
 	'use strict';
 
 	var scrollToAnchor = function (href) {
@@ -17,7 +18,7 @@ function (fixit) {
 			if (!os) {
 				setTimeout(scrollF, 250);
 			} else {
-				$('html, body').animate({scrollTop: os.top /*- 5 * 16 /*5em*/}, 1000, function () {
+				$('html, body').animate({scrollTop: os.top /*- 9 * 16 /*9em*/}, 1000, function () {
 					window.location.hash = href.split('#')[1];
 				});
 			}
@@ -26,8 +27,9 @@ function (fixit) {
 	};
 	return {
 		init : function () {
-			fixit.setup($('.category-info'));
-			$('.category-nav a').click(function (e) {
+			hero.init();
+			bgscroll.setup($('.category-content'));
+			$('.navbar .category-nav a, a.brand, #hero .category-nav a').click(function (e) {
 				e.preventDefault();
 				var href = $(this).attr('href');
 				scrollToAnchor(href);
@@ -37,6 +39,9 @@ function (fixit) {
 			if (window.location.hash.length > 1) {
 				scrollToAnchor(window.location.hash);
 			}
+			$('#loading-overlay').animate({top: -$(window).height()}, 1000, function () {
+				$(this).remove();
+			});
 		}
 	};
 });

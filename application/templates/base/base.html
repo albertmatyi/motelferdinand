@@ -6,7 +6,7 @@
     <!--[if IE]>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <![endif]-->
-    <title>{% block title%}{% endblock %}{{ __('Ferdinand Motel') }}</title>
+    <title>{% block title%}{% endblock %}{{ __('Ferdinand Pension') }}</title>
 
     {% if is_admin %}
         <link href="/static/css/admin_main.css" rel="stylesheet" />
@@ -53,10 +53,14 @@
             </div>
         </div>
 	</div>
+    <div id="body-bg">
+        <div id="body-overlay"></div>
+    </div>
     <div id="header">
+        {% include "elements/hero.html" %}
         {% include 'elements/nav.html' %} {# pull in navbar #}
     </div>
-    <div class="container" id="maincontent">
+    <div class="" id="maincontent">
         <div id="body_content" >
             {% block content %}<!-- main content area -->{% endblock %}
         </div>
