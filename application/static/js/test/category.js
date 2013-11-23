@@ -87,7 +87,7 @@ define([
 
 			t.$('.category:contains(' + title + ')', function (el) {
 				var categoryId = el.attr('id');
-				var $delBtn = $('#' + categoryId + ' .page-header .admin-controls .delete');
+				var $delBtn = $('#' + categoryId + ' .info-container .admin-controls .delete');
 
 				var modelCount0 = _.size(model.db.category);
 				var modelCount1 = _.size(model.categories);
@@ -108,7 +108,7 @@ define([
 		};
 
 		var testEditCategory = function (t) {
-			var $editBtn = $('.page-header:contains(' + categoryTitleStr + ') .admin-controls .edit');
+			var $editBtn = $('.info-container:contains(' + categoryTitleStr + ') .admin-controls .edit');
 			var editedTitle = categoryTitleStr + '2';
 			var count = $('.category').length;
 

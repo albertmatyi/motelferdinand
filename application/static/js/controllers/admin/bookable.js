@@ -10,14 +10,14 @@ define([
 	'view/directives/bookable',
 	'helpers/transparency',
 	'view/common',
-	'view/bookable',
 	'controllers/booking',
 	'elements/modal',
 	'view/directives/common',
 	'controllers/admin/commons',
-	'controllers/admin/bookable_prices'
+	'controllers/admin/bookable_prices',
+	'controllers/admin/bookable_variant'
 ],
-function (jq, i18n, adminControls, bookableDirective, transparency, common, view, booking, modal, commonDirectives, adminCommons, bookablePrices) {
+function (jq, i18n, adminControls, bookableDirective, transparency, common, booking, modal, commonDirectives, adminCommons, bookablePrices, bookableVariant) {
 	'use strict';
 
 	var $bookableTemplate = $('.bookables').clone();
@@ -49,12 +49,11 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 		});
 	};
 
-
 	var initAdminControls = function ($ctxt) {
 		if (!$ctxt) {
 			$ctxt = $('body .bookables');
 		}
-		var $controls = $('.admin-controls', $ctxt);
+		var $controls = $($('.admin-controls', $ctxt)[0]);
 		adminControls.init($formModal, $controls, 'bookables', deletedCallback, editCallback);
 	};
 
@@ -64,8 +63,8 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 			.children('.bookable');
 		$('#Category' + category.id + ' .bookables').append($newUI);
 		initAdminControls($newUI);
-		view.render($('#Category' + category.id));
 		booking.setup(bookable);
+		bookableVariant.initAddButton($newUI);
 	};
 
 	var add = function (entity) {
@@ -115,7 +114,7 @@ function (jq, i18n, adminControls, bookableDirective, transparency, common, view
 		if (typeof ($context) === 'undefined') {
 			$context = $('body');
 		}
-		var $addBookableButton = $('.page-header .admin-controls .addBookableButton', $context);
+		var $addBookableButton = $('.category-info .admin-controls .addBookableButton', $context);
 
 		$addBookableButton.click(function (e) {
 			e.preventDefault();

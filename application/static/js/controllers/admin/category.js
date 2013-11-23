@@ -12,11 +12,11 @@ define(
 	'controllers/admin/content',
 	'controllers/admin/bookable',
 	'view/category',
-	'view/bookable',
+	'view/bookable_variant',
 	'view/directives/menu',
 	'view/directives/body'
 ],
-function (jq, i18n, adminControls, transparency, adminContent, adminBookable, categoryView, bookableView, navDirective, bodyDirective) {
+function (jq, i18n, adminControls, transparency, adminContent, adminBookable, categoryView, bookableVariantView, navDirective, bodyDirective) {
 	'use strict';
 	var TAB_ID_BASE = 'editCategory-';
 
@@ -54,11 +54,11 @@ function (jq, i18n, adminControls, transparency, adminContent, adminBookable, ca
 
 		categoryView.container.append($el);
 
-		bookableView.render($el);
+		bookableVariantView.render($el);
 		adminContent.initAddButton($el);
 		adminBookable.initAddButton($el);
 
-		var $controls = $('.page-header .admin-controls ', $el);
+		var $controls = $('.info-container .admin-controls ', $el);
 		adminControls.init($formModal, $controls, 'categories', deletedCallback);
 	};
 
@@ -75,7 +75,7 @@ function (jq, i18n, adminControls, transparency, adminContent, adminBookable, ca
 	};
 
 	return {'init': function () {
-			var $controls = $('.category-title .admin-controls ');
+			var $controls = $('.category-title-container .admin-controls ');
 			adminControls.init($formModal, $controls, 'categories', deletedCallback);
 
 			// add "add category button"

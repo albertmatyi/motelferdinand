@@ -86,8 +86,8 @@ define([
 			currencyHelper.change(model.currency['default']);
 			info = $.extend({}, bkblInfo, info);
 			t.l('createBookablePvt');
-			var $addDropdown = $('.page-header .dropdown-toggle', $cat);
-			var $addButton = $('.page-header .addBookableButton', $cat);
+			var $addDropdown = $('.info-container .dropdown-toggle', $cat);
+			var $addButton = $('.info-container .addBookableButton', $cat);
 			var catId = /\d+/.exec($cat.attr('id'))[0];
 
 			var modelCount0;

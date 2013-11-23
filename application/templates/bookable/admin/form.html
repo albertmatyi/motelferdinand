@@ -7,18 +7,10 @@
 	<label class="control-label">{{ __('Title') }}</label>
 	<input name="title" type="text" />
 </div>
-<div class="control-group">
-	<label class="control-label">{{ __('Description') }}</label>
-	<textarea name="description" class="rich" ></textarea>
-</div>
 {% endblock %}
 
 {% block inputs %}
 <input name="category" type="hidden" />
-<div class="control-group">
-	<label class="control-label">{{ __('Album url') }}</label>
-	<input name="album_url" type="text" />
-</div>
 <div class="control-group">
 	<label class="control-label">{{ __('Quantity') }}</label>
 	<select name="quantity">

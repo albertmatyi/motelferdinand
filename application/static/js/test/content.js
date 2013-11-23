@@ -26,8 +26,8 @@ define([
 				t.l('Got category id ' + $cat.selector);
 				$category = $cat;
 				categoryId = /\d+/.exec($cat.attr('id'))[0];
-				$addDropdown = $('.page-header .dropdown-toggle', $category);
-				$addButton = $('.page-header .addContentButton', $category);
+				$addDropdown = $('.info-container .dropdown-toggle', $category);
+				$addButton = $('.info-container .addContentButton', $category);
 				$contentModal = $('#contentEditFormModal');
 				$saveButton = $('#submitContentEditForm', $contentModal);
 			});

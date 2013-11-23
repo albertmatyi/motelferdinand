@@ -1,6 +1,7 @@
 from application import app
 from application.decorators import admin_required
 from application.models.category import CategoryModel
+from application.models.bookable_variant import BookableVariantModel
 from application.models.booking import BookingModel
 from application.models import prop
 from application.controllers import helpers

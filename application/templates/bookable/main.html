@@ -1,6 +1,6 @@
 <div data-bind="bookables" class="bookables">
 	<div class="bookable" data-bind="id">
-		{% include "elements/admin/controls.html" %}
+		{% include "bookable/admin/controls.html" %}
 		<h3 data-bind="bookable-title" class="bookable-title"></h3>
 		<h5 class="places">{{ __('Places') }}: <span data-bind="places"></span></h5>
 		<h5 class="price">{{ __('Prices starting from') }}:
@@ -8,10 +8,7 @@
 			<select data-bind="currency" class="currency">
 			</select>
 		</h5>
-		<div class="variants clearfix">
-			<div data-bind="album_url"></div>
-			<div data-bind="bookable-description" class="bookable-description"></div>
-		</div>
+		{% include "bookable_variant/main.html" %}
 		<div class="booking-controls clearfix">
 			<button type="button" class="btn btn-primary btn-large booking-btn showBookingFormButton">
 				{{ __('Book') }}
