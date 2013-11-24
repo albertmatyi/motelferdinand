@@ -61,11 +61,10 @@
         <div id="body-overlay"></div>
     </div>
     <div id="header">
-        {% include "elements/hero.html" %}
         {% include 'elements/nav.html' %} {# pull in navbar #}
     </div>
     <div class="" id="maincontent">
-        <div id="body_content" >
+        <div id="body_content" class="container">
             {% block content %}<!-- main content area -->{% endblock %}
         </div>
     </div><!-- /container -->

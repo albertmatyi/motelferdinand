@@ -1,4 +1,21 @@
-.category {
-
+.categories {
+  &:hover {
+    .category {
+      //-webkit-filter: opacit(2px);
+      opacity: .6;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  .category {
+    transition: all .5s ease;
+    height: 300px;
+    overflow: hidden;
+    cursor: pointer;
+    .category-content {
+      display: none;
+    }
+  }
 }
 

@@ -1,46 +1,22 @@
-<div class="navbar navbar-fixed-top" id="navbar">
-	<div class="navbar-inner">
-		<div class="container">
-			<a class="brand"
-				href="#hero">
-				{{ __('Ferdinand Pension') }}
-			</a>
-			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-
-			<!-- List of pages -->
-
-			<ul class="category-nav nav nav-collapse">
-				<li>
-					<a href="/" data-bind="title"></a>
-				</li>
-			</ul>
-
-			<!-- Language button -->
-
-			<ul class="pull-right nav nav-pills nav-collapse">
-				{% include "elements/admin/menu.html" %}
-				<li class="dropdown">
-				    <a class="dropdown-toggle" data-toggle="dropdown" data-target="languageMenu">
-				    	{{ __('Language') }}
-				    	<span class="caret"></span>
-				    </a>
-				    <ul class="language dropdown-menu" id="languageMenu">
-				    	<li>
-				    		<a data-bind="name">hello world</a>
-				    	</li>
-					</ul>
-				</li>
-			</ul>
-
-		</div>
-		<!-- /.navbar .container -->
-	</div>
-	<!-- /.navbar-inner -->
-</div>
-<!-- /navbar -->
-
-
+<nav class="navbar navbar-default container" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">{{ __('Ferdinand Pension') }}</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+            {% include "elements/admin/menu.html" %}
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" data-target="languageMenu">
+                    {{ __('Language') }}
+                    <span class="caret"></span>
+                </a>
+                <ul class="language dropdown-menu" id="languageMenu">
+                    <li>
+                        <a data-bind="name">hello world</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

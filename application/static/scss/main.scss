@@ -1,53 +1,25 @@
 $contentPadding: 1em;
 $contentMargin: 4%;
 
-//@import "../lib/bootstrap/css/bootstrap.min";
-//@import "../lib/bootstrap/css/bootstrap-responsive.min";
-@import "../lib/flatui/flat-ui/css/bootstrap.css";
-@import "../lib/flatui/flat-ui/css/flat-ui.css";
+@import "../lib/flatui/bootstrap/css/bootstrap.css";
 @import "../lib/bootstrap-datepicker/datepicker";
-//input, select, textarea{
-//  border-width: 1px !important;
-//}
-//.input-prepend input {
-//  border-top-left-radius: 0;
-//}
-
+@import "../lib/flatui/css/flat-ui.css";
 
 @import "base";
 @import "category";
-//
 //@import "elements/navbar";
-//
 //@import "elements/footer";
-//
 //@import "elements/dialog";
-//
 //@import "elements/progress";
-//
 //@import "elements/modal";
-//
 //@import "booking";
-//
-//
 //@import "content";
-//
 //@import "bookable";
+//@import "elements/social";
+//@import "elements/currency";
 
-@import "elements/social";
-
-@import "elements/currency";
-
-//input, select, textarea, span.add-on, .btn {
-//  border-radius: 0 !important;
-//}
 body {
-	background: none;
-	//font-family: body-font, $fallback-fonts;
-}
-
-a {
-	cursor: pointer;
+  background: $background;
 }
 
 #loading-overlay {
