@@ -1,42 +1,49 @@
 $contentPadding: 1em;
-
 $contentMargin: 4%;
 
-@import "../lib/bootstrap/css/bootstrap.min";
-@import "../lib/bootstrap/css/bootstrap-responsive.min";
-//@import "../lib/flatui/bootstrap.css";
-//@import "../lib/flatui/flatui.css";
+//@import "../lib/bootstrap/css/bootstrap.min";
+//@import "../lib/bootstrap/css/bootstrap-responsive.min";
+@import "../lib/flatui/flat-ui/css/bootstrap.css";
+@import "../lib/flatui/flat-ui/css/flat-ui.css";
 @import "../lib/bootstrap-datepicker/datepicker";
+//input, select, textarea{
+//  border-width: 1px !important;
+//}
+//.input-prepend input {
+//  border-top-left-radius: 0;
+//}
+
 
 @import "base";
-
-@import "elements/navbar";
-
-@import "elements/hero";
-
-@import "elements/footer";
-
-@import "elements/dialog";
-
-@import "elements/progress";
-
-@import "elements/modal";
-
-@import "booking";
-
 @import "category";
-
-@import "content";
-
-@import "bookable";
+//
+//@import "elements/navbar";
+//
+//@import "elements/footer";
+//
+//@import "elements/dialog";
+//
+//@import "elements/progress";
+//
+//@import "elements/modal";
+//
+//@import "booking";
+//
+//
+//@import "content";
+//
+//@import "bookable";
 
 @import "elements/social";
 
 @import "elements/currency";
 
+//input, select, textarea, span.add-on, .btn {
+//  border-radius: 0 !important;
+//}
 body {
 	background: none;
-	font-family: body-font, $fallback-fonts;
+	//font-family: body-font, $fallback-fonts;
 }
 
 a {
