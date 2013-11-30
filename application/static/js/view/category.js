@@ -31,11 +31,6 @@ function (jq, config, bookableVariantView, navDirective, bodyDirective, common) 
 				console.log(bodyDirective);
 				$container.render(data, bodyDirective);
 			}
-
-			if (config.RENDER_GALLERIES) {
-				common.renderContentGallery('.content-description div.picaslide, .category-description div.picaslide');
-				bookableVariantView.render();
-			}
 		}
 	};
 });

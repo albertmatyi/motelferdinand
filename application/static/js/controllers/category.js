@@ -4,9 +4,12 @@
 
 define(
     [
+        'config',
+        'view/common',
+        'view/bookable_variant',
         'lib/jquery'
     ],
-    function () {
+    function (config, common, bookableVariantView) {
         'use strict';
         var COLORS = ['turquoise', 'green-sea', 'emerald', 'nephritis', 'peter-river', 'belize-hole', 'amethyst', 'wisteria', 'wet-asphalt', 'midnight-blue', 'sun-flower', 'orange', 'carrot', 'pumpkin', 'alizarin', 'pomegranate', 'clouds', 'silver', 'concrete', 'asbestos'];
         var COL_MAP = [0, 1, 2, 3, 4, 6];
@@ -22,9 +25,7 @@ define(
                 };
                 $el.data('menu-pos-css', css);
             }
-            var css = $el.data('menu-pos-css');
-            console.log(css);
-            return css;
+            return $el.data('menu-pos-css');
         };
         var addColors = function () {
             $('.category').each(function (idx, el) {
@@ -38,7 +39,6 @@ define(
             }).on('click', function () {
                     var $this = $(this);
                     var $wrapper = $this.children('.wrapper');
-//                    var $container = $wrapper.children('.ccontainer');
                     if ($this.hasClass('opened')) {
                         $('body').removeClass('category-view');
                         $this.removeClass('ready');
@@ -55,6 +55,10 @@ define(
                             setTimeout(function () {
                                 $('body').addClass('category-view');
                                 $this.addClass('ready');
+                                if (config.RENDER_GALLERIES) {
+                                    common.renderContentGallery($('.content-description, .category-description', $this));
+                                    bookableVariantView.render($this);
+                                }
                             }, 1000);
                             $wrapper.css({'top': '', 'left': '', 'height': '', 'width': ''});
                         });
@@ -70,7 +74,6 @@ define(
 
                 // DEFAULT SELECTION
                 if (window.location.hash.length > 1) {
-//				scrollToAnchor(window.location.hash);
                     console.log("TODO: open cat");
                 }
                 $('#loading-overlay').animate({top: -$(window).height()}, 1000, function () {

@@ -1,107 +1,102 @@
 <div class="social span4">
-	<div class="icons">
-		<a href="#contactModal" class="group" data-toggle="modal">
+    <div class="icons">
+        <a href="#contactModal" class="group" data-toggle="modal">
 			<span class="icon map" title="{{ __('How to get here') }}">
 			</span>
 			<span class="icon phone" title="{{ __('Phone numbers') }}">
 			</span>
-			<span class="icon mail" title="{{ __('Email') }}"></span>
-		</a>
-		<a href="https://www.facebook.com/ferdinand.panziopensiunebandb" class="icon facebook" target="_blank" title="Facebook"></a>
-		<a href="http://www.tripadvisor.com/Hotel_Review-g1833649-d2455135-Reviews-Ferdinand_Pension-Sfantu_Gheorghe_Covasna_County_Central_Romania_Transylvania.html" class="icon tripadvisor" target="_blank" title="Tripadvisor"></a>
-		<a href="https://plus.google.com/101675121296802996485/about?gl=US&amp;hl=en" class="icon google" target="_blank" title="Google+"></a>
-		<a href="skype:albertmatyi?call" class="icon skype" target="_blank" title="Skype"></a>
-	</div>
-	<div class="arrow-container">
-		<svg id="social-arrow" version="1.1" baseProfile="full" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-			<path id="svg-arrow" d="M10,20 C40,50 30,200 200,150" fill="none" stroke="white" stroke-dasharray="10,10"/>
-			<path id="svg-arrow-head" d="M200,150 200,155 209,145 200, 146" fill="#fff"/>
-			<text font-family="body-font" x="0" y="0" fill="#fff">
-				<textPath startOffset="50%" text-anchor="middle" xlink:href="#svg-arrow">
-					<tspan dy="-.2em">
-						{{ __('Contact us') }}
-					</tspan>
-				</textPath>
-			</text>
-		</svg>
-	</div>
+            <span class="icon mail" title="{{ __('Email') }}"></span>
+        </a>
+        <a href="https://www.facebook.com/ferdinand.panziopensiunebandb" class="icon facebook" target="_blank" title="Facebook"></a>
+        <a href="http://www.tripadvisor.com/Hotel_Review-g1833649-d2455135-Reviews-Ferdinand_Pension-Sfantu_Gheorghe_Covasna_County_Central_Romania_Transylvania.html" class="icon tripadvisor" target="_blank" title="Tripadvisor"></a>
+        <a href="https://plus.google.com/101675121296802996485/about?gl=US&amp;hl=en" class="icon google" target="_blank" title="Google+"></a>
+        <a href="skype:albertmatyi?call" class="icon skype" target="_blank" title="Skype"></a>
+    </div>
 </div>
 <div id="contactModal" class="modal hide big-modal info" tabindex="-1" role="dialog" aria-labelledby="mapModalTitle" aria-hidden="true">
-	<div class="modal-header info-content">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="mapModalTitle">{{ __('How to get here') }}</h3>
-		<div class="notifications"></div>
-	</div>
-	<div class="modal-body row-fluid info-content">
-		<div class="span4">
-			<table class="table">
-				<tbody>
-					<tr>
-						<th> {{ __('Address') }} </th>
-						<td>
-							Strada 1 Decembrie 1918 <br/>
-							nr. 10 ( {{ __ ('Yard') }} )<br/>
-							Sfântu Gheorghe<br/>
-							520008<br/>
-							Covasna, Romania
-						‎</td>
-					</tr>
-					<tr>
-						<th> {{ __('Mobile') }} </th>
-						<td> +40 740 180 502 </td>
-					</tr>
-					<tr>
-						<th> {{ __('Fax') }} </th>
-						<td> +40 367 800 449 </td>
-					</tr>
-					<tr>
-						<th> {{ __('Email') }} </th>
-						<td class="email"></td>
-					</tr>
-					<tr>
-						<th></th>
-						<td><button class="btn btn-primary show-send-message"> {{ __('Send message') }} </button></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div class="map-iframe span8">
-			<!-- googlemaps inserted here by social.js -->
-		</div>
-	</div>
-	<div class="modal-footer info-content">
-		<button class="btn" data-dismiss="modal" aria-hidden="true"> {{ __('Close') }} </button>
-	</div>
-	<div class="modal-header message-content">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="messageModalTitle">{{ __('Message') }}</h3>
-		<div class="notifications"></div>
-	</div>
-	<div class="modal-body row-fluid message-content form-horizontal">
-		<div class="span12">
-			<div class="control-group">
-				<label class="control-label"> {{ __('Name') }}*</label>
-				<div class="controls controls-row">
-					<input id="contact-name" type="text" placeholder="{{__('Your full name')}}"/>
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label"> {{ __('Email') }}*</label>
-				<div class="controls controls-row">
-					<input id="contact-email" type="text" placeholder="{{__('Your email address')}}"/>
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label"> {{ __('Message') }}*</label>
-				<div class="controls controls-row">
-					<textarea id="contact-message" placeholder="{{__('The body of the message')}}"></textarea>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="modal-footer message-content">
-		<button class="btn" data-dismiss="modal" aria-hidden="true"> {{ __('Close') }} </button>
-		<button class="btn back-button"> {{ __('Back') }} </button>
-		<button class="btn btn-primary send-button"> {{ __('Send') }} </button>
-	</div>
+    <div class="modal-header info-content">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="mapModalTitle">{{ __('How to get here') }}</h3>
+
+        <div class="notifications"></div>
+    </div>
+    <div class="modal-body row-fluid info-content">
+        <div class="span4">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th> {{ __('Address') }} </th>
+                    <td>
+                        Strada 1 Decembrie 1918 <br/>
+                        nr. 10 ( {{ __ ('Yard') }} )<br/>
+                        Sfântu Gheorghe<br/>
+                        520008<br/>
+                        Covasna, Romania
+                        ‎
+                    </td>
+                </tr>
+                <tr>
+                    <th> {{ __('Mobile') }} </th>
+                    <td> +40 740 180 502</td>
+                </tr>
+                <tr>
+                    <th> {{ __('Fax') }} </th>
+                    <td> +40 367 800 449</td>
+                </tr>
+                <tr>
+                    <th> {{ __('Email') }} </th>
+                    <td class="email"></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <button class="btn btn-primary show-send-message"> {{ __('Send message') }} </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="map-iframe span8">
+            <!-- googlemaps inserted here by social.js -->
+        </div>
+    </div>
+    <div class="modal-footer info-content">
+        <button class="btn" data-dismiss="modal" aria-hidden="true"> {{ __('Close') }} </button>
+    </div>
+    <div class="modal-header message-content">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="messageModalTitle">{{ __('Message') }}</h3>
+
+        <div class="notifications"></div>
+    </div>
+    <div class="modal-body row-fluid message-content form-horizontal">
+        <div class="span12">
+            <div class="control-group">
+                <label class="control-label"> {{ __('Name') }}*</label>
+
+                <div class="controls controls-row">
+                    <input id="contact-name" type="text" placeholder="{{ __('Your full name')}}"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"> {{ __('Email') }}*</label>
+
+                <div class="controls controls-row">
+                    <input id="contact-email" type="text" placeholder="{{ __('Your email address')}}"/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"> {{ __('Message') }}*</label>
+
+                <div class="controls controls-row">
+                    <textarea id="contact-message" placeholder="{{ __('The body of the message')}}"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer message-content">
+        <button class="btn" data-dismiss="modal" aria-hidden="true"> {{ __('Close') }} </button>
+        <button class="btn back-button"> {{ __('Back') }} </button>
+        <button class="btn btn-primary send-button"> {{ __('Send') }} </button>
+    </div>
 </div>

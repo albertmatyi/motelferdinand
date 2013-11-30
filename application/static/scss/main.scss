@@ -11,16 +11,20 @@ $contentMargin: 4%;
 @import "elements/navbar";
 //@import "elements/footer";
 //@import "elements/dialog";
-//@import "elements/progress";
+@import "elements/progress";
 //@import "elements/modal";
 //@import "booking";
 @import "content";
 //@import "bookable";
 //@import "elements/social";
-//@import "elements/currency";
+@import "elements/currency";
 
 body {
   background: $background;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 100;
 }
 
 #loading-overlay {

@@ -50,7 +50,7 @@ function (jq, i18n, adminControls, transparency, viewCommons, directive, modal, 
 		$('#Category' + entity.category + ' .contents').append($el);
 
 		initAdminControls($el);
-		viewCommons.renderContentGallery('.content-description div.picaslide', $el);
+		viewCommons.renderContentGallery($('.content-description', $el));
 	};
 
 	var deletedCallback = function (deletedId) {

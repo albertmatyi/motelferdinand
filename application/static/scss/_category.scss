@@ -18,6 +18,14 @@ body.category-view {
     cursor: pointer;
     margin-bottom: 30px;
     .wrapper {
+      .info-container {
+        h1 {
+          @include transition();
+        }
+        .category-description {
+          @include transition();
+        }
+      }
       overflow: hidden;
       .category-content {
         @include transition();
@@ -32,12 +40,16 @@ body.category-view {
         //padding: 5px;
         position: relative;
         overflow: hidden;
+        .category-description {
+          opacity: 1;
+          height: auto;
+        }
         .category-content {
           display: none;
         }
-        .ccontainer {
+        .container {
           position: absolute;
-          width: 100%;
+          width: 96%;
         }
       }
     }
@@ -54,8 +66,11 @@ body.category-view {
         z-index: 100;
         .info-container {
           h1 {
-            text-align: center;
-            font-weight: 100;
+            //text-align: center;
+          }
+          .category-description {
+            opacity: 0;
+            height: 0px;
           }
         }
         .category-content {
@@ -68,7 +83,12 @@ body.category-view {
     &.ready {
       .wrapper {
         overflow: auto;
-
+        .category-info {
+          .category-description {
+            display: none;
+            height: 0;
+          }
+        }
         .category-content {
           opacity: 1;
         }
