@@ -1,49 +1,5 @@
-.content {
-	@include tile;
-	width: 50% - $contentMargin * 1.5;
-	margin-left: $contentMargin;
-	float: left;
-	text-align: center;
-	iframe {
-		width: 100%;
-	}
-
-	.admin-controls{
-		margin-right: 1em;
-	}
-
-	.content-description, .content-title{
-		@include tile-content;
-		text-align: left;
-		margin-bottom: 1em;
-	}
-
-	.content-description {
-	}
-
-	$dashLength: 120px;
-	$dashPad: 5px;
-
-	.content-title{
-		display: inline-block;
-		position: relative;
-	    font-weight: 100;
-	    font-variant: small-caps;
-		&:before, &:after {
-			content: '';
-			width: $dashLength;
-			height: 1px;
-			display: block;
-			position: absolute;
-			top:55%
-		}
-		&:before {
-			@include gradienth(rgba(99,99,99,1), rgba(99,99,99,0));
-			right: -($dashLength + $dashPad);
-		}
-		&:after {
-			@include gradienth(rgba(99,99,99,0), rgba(99,99,99,1));
-			left: -($dashLength + $dashPad);
-		}
-	}
+.contents {
+  .content {
+    font-size: 1.6em;
+  }
 }

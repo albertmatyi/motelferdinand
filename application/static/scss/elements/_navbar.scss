@@ -1,15 +1,21 @@
-.on-first-page .navbar {
-	// @include transition(top 0.5s linear);
-	// top: -70px;
+.navbar {
+  @include transition();
+  background: none;
+
+  .navbar-brand {
+    font-weight: 100;
+    font-size: 3em;
+    color: #fff;
+  }
+  .language.dropdown-menu {
+    position: absolute;
+    left: -110px;
+  }
 }
-.navbar{
-	// @include transition(top 0.5s linear);
-	.brand {
-		//font-family: brand-font, body-font, $fallback-fonts;
-		font-size: 35px;
-	}
-	.nav > li > a, .brand {
-		padding-top: 20px;
-		padding-bottom: 20px;
-	}
+
+.category-view {
+  //.navbar {
+  //  &, .navbar-brand {
+  //  }
+  //}
 }

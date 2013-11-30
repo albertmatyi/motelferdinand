@@ -1,3 +1,12 @@
+
+@mixin prefix($name, $value){
+  -webkit-#{$name}: $value;
+  -moz-#{$name}: $value;
+  -ms-#{$name}: $value;
+  -o-#{$name}: $value;
+  #{$name}: $value;
+}
+
 @mixin noise {
 	background-image: url(/static/img/noise.png);
 }
@@ -30,11 +39,8 @@
 	@include gradientv($from, $to);
 }
 
-@mixin transition ($args...) {
-	-webkit-transition: $args;
-	-moz-transition: $args;
-	-o-transition: $args;
-	transition: $args;
+@mixin transition ($val: all 1s ease) {
+	@include prefix('transition', $val);
 }
 
 @mixin rotate ($degrees) {

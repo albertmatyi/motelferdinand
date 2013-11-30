@@ -1,0 +1,7 @@
+--2013-11-30 13:40:43--  http://localhost:8080/static/lib/font-awesome/fonts/fontawesome-webfont.woff?v=4.0.3
+Resolving localhost (localhost)... ::1, 127.0.0.1
+Connecting to localhost (localhost)|::1|:8080... failed: Connection refused.
+Connecting to localhost (localhost)|127.0.0.1|:8080... connected.
+HTTP request sent, awaiting response... 404 Not Found
+2013-11-30 13:40:43 ERROR 404: Not Found.
+

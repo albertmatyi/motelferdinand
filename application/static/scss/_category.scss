@@ -1,10 +1,13 @@
+body.category-view {
+  overflow: hidden;
+}
+
 .categories {
   &:hover {
     .category {
-      //-webkit-filter: opacit(2px);
-      opacity: .6;
+      //@include prefix('filter', blur(1px));
       &:hover {
-        opacity: 1;
+        //@include prefix('filter', none);
       }
     }
   }
@@ -13,8 +16,63 @@
     height: 300px;
     overflow: hidden;
     cursor: pointer;
-    .category-content {
-      display: none;
+    margin-bottom: 30px;
+    .wrapper {
+      overflow: hidden;
+      .category-content {
+        @include transition();
+        text-transform: none;
+        font-weight: 100;
+      }
+    }
+    &.closed {
+      .wrapper {
+        height: 100%;
+        width: 100%;
+        //padding: 5px;
+        position: relative;
+        overflow: hidden;
+        .category-content {
+          display: none;
+        }
+        .ccontainer {
+          position: absolute;
+          width: 100%;
+        }
+      }
+    }
+
+    &.opened {
+      .wrapper {
+        @include prefix(transition, all 1s ease);
+
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        .info-container {
+          h1 {
+            text-align: center;
+            font-weight: 100;
+          }
+        }
+        .category-content {
+          display: block;
+          opacity: 0;
+        }
+      }
+
+    }
+    &.ready {
+      .wrapper {
+        overflow: auto;
+
+        .category-content {
+          opacity: 1;
+        }
+      }
     }
   }
 }
